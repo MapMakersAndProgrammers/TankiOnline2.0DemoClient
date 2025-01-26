@@ -1,16 +1,16 @@
 package package_71
 {
    import flash.utils.Dictionary;
-   import package_10.class_17;
-   import package_10.name_17;
-   import package_10.name_57;
+   import alternativa.tanks.game.EntityComponent;
+   import alternativa.tanks.game.GameKernel;
+   import alternativa.tanks.game.GameEvents;
    import package_20.class_11;
    
-   public class name_278 extends class_17 implements class_11
+   public class name_278 extends EntityComponent implements class_11
    {
       private static var stateEvents:Dictionary;
       
-      private var gameKernel:name_17;
+      private var gameKernel:GameKernel;
       
       public function name_278()
       {
@@ -25,15 +25,15 @@ package package_71
          }
       }
       
-      override public function addToGame(gameKernel:name_17) : void
+      override public function addToGame(gameKernel:GameKernel) : void
       {
          this.gameKernel = gameKernel;
-         gameKernel.name_61().addEventListener(name_57.BATTLE_FINISHED,this);
+         gameKernel.name_61().addEventListener(GameEvents.BATTLE_FINISHED,this);
       }
       
-      override public function removeFromGame(gameKernel:name_17) : void
+      override public function removeFromGame(gameKernel:GameKernel) : void
       {
-         gameKernel.name_61().removeEventListener(name_57.BATTLE_FINISHED,this);
+         gameKernel.name_61().removeEventListener(GameEvents.BATTLE_FINISHED,this);
       }
       
       public function method_470(state:name_563, data:* = undefined) : void

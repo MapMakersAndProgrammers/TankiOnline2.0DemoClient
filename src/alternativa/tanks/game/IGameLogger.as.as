@@ -1,6 +1,6 @@
-package package_10
+package alternativa.tanks.game
 {
-   public interface class_8
+   public interface IGameLogger
    {
       function log(param1:String, param2:String) : void;
    }

@@ -1,14 +1,14 @@
-package package_10
+package alternativa.tanks.game
 {
-   public class class_1
+   public class GameTask
    {
-      public var var_4:name_52;
+      public var var_4:TaskManager;
       
       public var priority:int;
       
       protected var var_3:Boolean;
       
-      public function class_1(priority:int)
+      public function GameTask(priority:int)
       {
          super();
          this.priority = priority;

@@ -1,8 +1,8 @@
 package package_85
 {
    import alternativa.engine3d.alternativa3d;
-   import package_10.class_17;
-   import package_10.name_17;
+   import alternativa.tanks.game.EntityComponent;
+   import alternativa.tanks.game.GameKernel;
    import package_114.name_488;
    import package_114.name_489;
    import package_18.name_44;
@@ -12,7 +12,7 @@ package package_85
    
    use namespace alternativa3d;
    
-   public class name_314 extends class_17 implements name_82
+   public class name_314 extends EntityComponent implements name_82
    {
       private var var_424:name_488;
       
@@ -24,7 +24,7 @@ package package_85
       
       private var alpha:Number = 1;
       
-      private var gameKernel:name_17;
+      private var gameKernel:GameKernel;
       
       public function name_314()
       {
@@ -43,7 +43,7 @@ package package_85
          this.var_424.name_493 = name_489.INSTANCE;
       }
       
-      override public function addToGame(gameKernel:name_17) : void
+      override public function addToGame(gameKernel:GameKernel) : void
       {
          this.gameKernel = gameKernel;
       }

@@ -1,7 +1,7 @@
 package package_81
 {
-   import package_10.class_17;
-   import package_10.name_17;
+   import alternativa.tanks.game.EntityComponent;
+   import alternativa.tanks.game.GameKernel;
    import package_25.name_250;
    import package_28.name_129;
    import package_75.class_15;
@@ -9,7 +9,7 @@ package package_81
    import package_76.name_256;
    import package_95.class_28;
    
-   public class name_265 extends class_17 implements class_28
+   public class name_265 extends EntityComponent implements class_28
    {
       private static var flamethrowerSmokeAtlas:name_250;
       
@@ -17,7 +17,7 @@ package package_81
       
       private static var flamethrowerFireAtlas:name_250;
       
-      private var gameKernel:name_17;
+      private var gameKernel:GameKernel;
       
       private var effect:name_544;
       
@@ -60,12 +60,12 @@ package package_81
          this.chassis = name_236(entity.getComponentStrict(name_236));
       }
       
-      override public function addToGame(gameKernel:name_17) : void
+      override public function addToGame(gameKernel:GameKernel) : void
       {
          this.gameKernel = gameKernel;
       }
       
-      override public function removeFromGame(gameKernel:name_17) : void
+      override public function removeFromGame(gameKernel:GameKernel) : void
       {
          this.gameKernel = null;
       }

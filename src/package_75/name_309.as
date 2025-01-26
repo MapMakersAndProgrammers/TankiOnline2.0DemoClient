@@ -1,17 +1,17 @@
 package package_75
 {
-   import package_10.class_17;
-   import package_10.name_17;
+   import alternativa.tanks.game.EntityComponent;
+   import alternativa.tanks.game.GameKernel;
    import package_44.name_465;
    import package_71.name_252;
    
-   public class name_309 extends class_17 implements name_465
+   public class name_309 extends EntityComponent implements name_465
    {
       private var chassisController:name_465;
       
       private var turretController:name_465;
       
-      private var gameKernel:name_17;
+      private var gameKernel:GameKernel;
       
       private var var_426:Boolean;
       
@@ -44,12 +44,12 @@ package package_75
          this.turretController.interpolate(interpolationCoeff);
       }
       
-      override public function addToGame(gameKernel:name_17) : void
+      override public function addToGame(gameKernel:GameKernel) : void
       {
          this.gameKernel = gameKernel;
       }
       
-      override public function removeFromGame(gameKernel:name_17) : void
+      override public function removeFromGame(gameKernel:GameKernel) : void
       {
          this.removeFromScene();
          this.chassisController = null;

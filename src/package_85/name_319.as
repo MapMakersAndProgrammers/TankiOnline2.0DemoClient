@@ -1,8 +1,8 @@
 package package_85
 {
    import alternativa.engine3d.alternativa3d;
-   import package_10.class_17;
-   import package_10.name_17;
+   import alternativa.tanks.game.EntityComponent;
+   import alternativa.tanks.game.GameKernel;
    import package_109.name_377;
    import package_18.name_44;
    import package_18.name_82;
@@ -23,7 +23,7 @@ package package_85
    
    use namespace alternativa3d;
    
-   public class name_319 extends class_17 implements name_82
+   public class name_319 extends EntityComponent implements name_82
    {
       private static var material:name_313 = new name_313(11141120);
       
@@ -96,7 +96,7 @@ package package_85
          }
       }
       
-      override public function addToGame(gameKernel:name_17) : void
+      override public function addToGame(gameKernel:GameKernel) : void
       {
          var collisionPrimitive3D:CollisionPrimitive3D = null;
          var rayEntry:RayEntry = null;
@@ -114,7 +114,7 @@ package package_85
          renderSystem.method_63(this);
       }
       
-      override public function removeFromGame(gameKernel:name_17) : void
+      override public function removeFromGame(gameKernel:GameKernel) : void
       {
          var collisionPrimitive3D:CollisionPrimitive3D = null;
          var rayEntry:RayEntry = null;

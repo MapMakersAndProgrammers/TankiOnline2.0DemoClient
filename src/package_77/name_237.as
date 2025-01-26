@@ -1,8 +1,8 @@
 package package_77
 {
-   import package_10.class_17;
-   import package_10.name_17;
-   import package_10.name_57;
+   import alternativa.tanks.game.EntityComponent;
+   import alternativa.tanks.game.GameKernel;
+   import alternativa.tanks.game.GameEvents;
    import package_109.name_377;
    import package_114.name_488;
    import package_114.name_489;
@@ -31,7 +31,7 @@ package package_77
    import package_92.name_467;
    import package_92.name_575;
    
-   public class name_237 extends class_17 implements name_465, name_236, class_30
+   public class name_237 extends EntityComponent implements name_465, name_236, class_30
    {
       private static var lastId:int;
       
@@ -39,7 +39,7 @@ package package_77
       
       private static var _v:name_194 = new name_194();
       
-      public var gameKernel:name_17;
+      public var gameKernel:GameKernel;
       
       public var body:name_271;
       
@@ -437,12 +437,12 @@ package package_77
          return false;
       }
       
-      override public function addToGame(gameKernel:name_17) : void
+      override public function addToGame(gameKernel:GameKernel) : void
       {
          this.gameKernel = gameKernel;
       }
       
-      override public function removeFromGame(gameKernel:name_17) : void
+      override public function removeFromGame(gameKernel:GameKernel) : void
       {
          this.var_424.name_493.stop();
          this.removeFromScene();
@@ -460,7 +460,7 @@ package package_77
          this.var_424.name_486(entity,name_252.SET_ACTIVE_STATE,new name_572(this));
          this.var_424.name_486(entity,name_252.SET_DEAD_STATE,new name_578(this));
          this.var_424.name_493 = name_489.INSTANCE;
-         entity.addEventHandler(name_57.BATTLE_FINISHED,this.method_386);
+         entity.addEventHandler(GameEvents.BATTLE_FINISHED,this.method_386);
       }
       
       public function name_505(point:name_194) : void

@@ -1,6 +1,6 @@
 package package_114
 {
-   import package_10.name_54;
+   import alternativa.tanks.game.Entity;
    
    public class name_488
    {
@@ -14,7 +14,7 @@ package package_114
          this.var_619 = new Object();
       }
       
-      public function name_486(entity:name_54, eventType:String, eventState:class_35) : void
+      public function name_486(entity:Entity, eventType:String, eventState:class_35) : void
       {
          if(this.var_619[eventType] != null)
          {

@@ -1,10 +1,10 @@
 package package_20
 {
-   import package_10.class_1;
+   import alternativa.tanks.game.GameTask;
    import package_108.name_373;
    import package_108.name_374;
    
-   public class name_179 extends class_1 implements name_56
+   public class name_179 extends GameTask implements name_56
    {
       private var eventQueue1:name_374;
       

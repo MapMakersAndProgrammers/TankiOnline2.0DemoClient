@@ -3,7 +3,7 @@ package alternativa.tanks
    import flash.display.BitmapData;
    import flash.utils.ByteArray;
    import flash.utils.Dictionary;
-   import package_10.name_17;
+   import alternativa.tanks.game.GameKernel;
    import package_117.name_542;
    import package_28.name_241;
    import package_28.name_93;
@@ -11,7 +11,7 @@ package alternativa.tanks
    
    public class TextureResourceService implements ITextureResourceService
    {
-      public var gameKernel:name_17;
+      public var gameKernel:GameKernel;
       
       private var var_455:name_326;
       
@@ -23,7 +23,7 @@ package alternativa.tanks
       
       private var var_456:Dictionary;
       
-      public function TextureResourceService(param1:name_17)
+      public function TextureResourceService(param1:GameKernel)
       {
          super();
          this.gameKernel = param1;

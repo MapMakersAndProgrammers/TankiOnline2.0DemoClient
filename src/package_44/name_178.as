@@ -1,7 +1,7 @@
 package package_44
 {
    import flash.utils.getTimer;
-   import package_10.class_1;
+   import alternativa.tanks.game.GameTask;
    import package_113.name_469;
    import package_26.name_100;
    import package_43.name_190;
@@ -13,7 +13,7 @@ package package_44
    import package_90.name_386;
    import package_92.name_467;
    
-   public class name_178 extends class_1
+   public class name_178 extends GameTask
    {
       private static var USE_GRID_COLLISION_DETECTOR:Boolean = true;
       

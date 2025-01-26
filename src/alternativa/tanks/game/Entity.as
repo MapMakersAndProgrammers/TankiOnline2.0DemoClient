@@ -1,22 +1,22 @@
-package package_10
+package alternativa.tanks.game
 {
-   public class name_54
+   public class Entity
    {
       private static var lastId:int;
       
       private var var_101:int;
       
-      private var components:Vector.<class_17>;
+      private var components:Vector.<EntityComponent>;
       
       private var var_100:Object;
       
       internal var index:int = -1;
       
-      public function name_54(id:int)
+      public function Entity(id:int)
       {
          super();
          this.var_101 = id;
-         this.components = new Vector.<class_17>();
+         this.components = new Vector.<EntityComponent>();
          this.var_100 = new Object();
       }
       
@@ -30,7 +30,7 @@ package package_10
          return this.var_101;
       }
       
-      public function name_60(component:class_17) : void
+      public function name_60(component:EntityComponent) : void
       {
          this.components.push(component);
          component.method_197(this);
@@ -38,16 +38,16 @@ package package_10
       
       public function name_64() : void
       {
-         var entityComponent:class_17 = null;
+         var entityComponent:EntityComponent = null;
          for each(entityComponent in this.components)
          {
             entityComponent.initComponent();
          }
       }
       
-      public function getComponent(cls:Class) : class_17
+      public function getComponent(cls:Class) : EntityComponent
       {
-         var component:class_17 = null;
+         var component:EntityComponent = null;
          for each(component in this.components)
          {
             if(component is cls)
@@ -58,9 +58,9 @@ package package_10
          return null;
       }
       
-      public function getComponentStrict(cls:Class) : class_17
+      public function getComponentStrict(cls:Class) : EntityComponent
       {
-         var component:class_17 = this.getComponent(cls);
+         var component:EntityComponent = this.getComponent(cls);
          if(component == null)
          {
             throw new Error("Component " + cls + " not found");
@@ -68,18 +68,18 @@ package package_10
          return component;
       }
       
-      public function addToGame(gameKernel:name_17) : void
+      public function addToGame(gameKernel:GameKernel) : void
       {
-         var entityComponent:class_17 = null;
+         var entityComponent:EntityComponent = null;
          for each(entityComponent in this.components)
          {
             entityComponent.addToGame(gameKernel);
          }
       }
       
-      public function removeFromGame(gameKernel:name_17) : void
+      public function removeFromGame(gameKernel:GameKernel) : void
       {
-         var entityComponent:class_17 = null;
+         var entityComponent:EntityComponent = null;
          for each(entityComponent in this.components)
          {
             entityComponent.removeFromGame(gameKernel);

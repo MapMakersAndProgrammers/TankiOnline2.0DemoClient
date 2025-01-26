@@ -1,8 +1,8 @@
 package package_94
 {
-   import package_10.class_17;
-   import package_10.name_17;
-   import package_10.name_57;
+   import alternativa.tanks.game.EntityComponent;
+   import alternativa.tanks.game.GameKernel;
+   import alternativa.tanks.game.GameEvents;
    import package_114.name_488;
    import package_114.name_489;
    import package_27.name_501;
@@ -19,7 +19,7 @@ package package_94
    import package_86.name_484;
    import package_86.name_500;
    
-   public class name_276 extends class_17 implements class_15, name_465
+   public class name_276 extends EntityComponent implements class_15, name_465
    {
       public var var_430:Number;
       
@@ -39,7 +39,7 @@ package package_94
       
       private var chassisComponent:name_236;
       
-      private var gameKernel:name_17;
+      private var gameKernel:GameKernel;
       
       private var turret:name_234;
       
@@ -63,7 +63,7 @@ package package_94
          this.setTurret(turret);
       }
       
-      override public function addToGame(gameKernel:name_17) : void
+      override public function addToGame(gameKernel:GameKernel) : void
       {
          this.gameKernel = gameKernel;
       }
@@ -82,7 +82,7 @@ package package_94
          this.var_424.name_486(entity,name_252.SET_ACTIVE_STATE,activeState);
          this.var_424.name_486(entity,name_252.SET_DEAD_STATE,new name_492(this));
          this.var_424.name_493 = name_489.INSTANCE;
-         entity.addEventHandler(name_57.BATTLE_FINISHED,this.method_386);
+         entity.addEventHandler(GameEvents.BATTLE_FINISHED,this.method_386);
       }
       
       public function getBarrelCount() : int

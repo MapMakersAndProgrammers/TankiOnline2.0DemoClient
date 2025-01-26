@@ -1,9 +1,9 @@
 package package_42
 {
-   import package_10.class_1;
-   import package_10.name_17;
+   import alternativa.tanks.game.GameTask;
+   import alternativa.tanks.game.GameKernel;
    
-   public class name_177 extends class_1 implements name_184
+   public class name_177 extends GameTask implements name_184
    {
       private var var_214:Vector.<name_477>;
       
@@ -11,9 +11,9 @@ package package_42
       
       private var running:Boolean;
       
-      private var gameKernel:name_17;
+      private var gameKernel:GameKernel;
       
-      public function name_177(priority:int, gameKernel:name_17)
+      public function name_177(priority:int, gameKernel:GameKernel)
       {
          super(priority);
          this.gameKernel = gameKernel;

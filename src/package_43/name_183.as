@@ -1,8 +1,8 @@
 package package_43
 {
-   import package_10.class_1;
+   import alternativa.tanks.game.GameTask;
    
-   public class name_183 extends class_1
+   public class name_183 extends GameTask
    {
       private var commands:name_190;
       

@@ -5,9 +5,9 @@ package package_93
    import flash.events.TimerEvent;
    import flash.utils.Timer;
    import flash.utils.getTimer;
-   import package_10.class_1;
+   import alternativa.tanks.game.GameTask;
    
-   public class name_294 extends class_1
+   public class name_294 extends GameTask
    {
       private static const MESSAGE_SPACING_Y:int = 19;
       

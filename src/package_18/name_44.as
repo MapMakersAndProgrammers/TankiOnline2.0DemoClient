@@ -11,7 +11,7 @@ package package_18
    import flash.events.Event;
    import flash.geom.Vector3D;
    import flash.ui.Keyboard;
-   import package_10.class_1;
+   import alternativa.tanks.game.GameTask;
    import package_19.name_91;
    import package_2.name_9;
    import package_21.name_77;
@@ -38,7 +38,7 @@ package package_18
    
    use namespace alternativa3d;
    
-   public class name_44 extends class_1 implements class_3
+   public class name_44 extends GameTask implements class_3
    {
       public static const SKYBOX_CONTAINER_ID:String = "skyboxContainer";
       

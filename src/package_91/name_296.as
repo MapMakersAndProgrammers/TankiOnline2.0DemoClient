@@ -1,17 +1,17 @@
 package package_91
 {
-   import package_10.class_17;
-   import package_10.name_54;
+   import alternativa.tanks.game.EntityComponent;
+   import alternativa.tanks.game.Entity;
    import package_74.class_23;
    import package_74.name_233;
    import package_74.name_327;
    import package_74.name_496;
    
-   public class name_296 extends class_17 implements class_23
+   public class name_296 extends EntityComponent implements class_23
    {
       private static var poolSize:int;
       
-      private static var pool:Vector.<name_54> = new Vector.<name_54>();
+      private static var pool:Vector.<Entity> = new Vector.<Entity>();
       
       private var roundData:name_498;
       
@@ -27,7 +27,7 @@ package package_91
          this.callback = callback;
       }
       
-      public static function method_382(entity:name_54) : void
+      public static function method_382(entity:Entity) : void
       {
          var _loc2_:* = poolSize++;
          pool[_loc2_] = entity;
@@ -35,7 +35,7 @@ package package_91
       
       public function getRound(shotType:name_496, maxRange:Number) : name_233
       {
-         var roundEntity:name_54 = null;
+         var roundEntity:Entity = null;
          if(poolSize == 0)
          {
             roundEntity = this.method_381();
@@ -50,9 +50,9 @@ package package_91
          return plasmaRoundComponent;
       }
       
-      private function method_381() : name_54
+      private function method_381() : Entity
       {
-         var entity:name_54 = new name_54(name_54.name_74());
+         var entity:Entity = new Entity(Entity.name_74());
          var energyRoundComponent:name_497 = new name_497();
          entity.name_60(energyRoundComponent);
          entity.name_64();

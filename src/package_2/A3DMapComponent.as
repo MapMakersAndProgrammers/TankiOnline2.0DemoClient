@@ -6,8 +6,8 @@ package package_2
    import flash.ui.Keyboard;
    import flash.utils.ByteArray;
    import flash.utils.setTimeout;
-   import package_10.class_17;
-   import package_10.name_17;
+   import alternativa.tanks.game.EntityComponent;
+   import alternativa.tanks.game.GameKernel;
    import package_109.name_377;
    import package_109.name_378;
    import package_109.name_381;
@@ -43,7 +43,7 @@ package package_2
    
    use namespace alternativa3d;
    
-   public class A3DMapComponent extends class_17
+   public class A3DMapComponent extends EntityComponent
    {
       public static const PHYSICS_GEOMETRY:String = "physicsGeometry";
       
@@ -55,7 +55,7 @@ package package_2
       
       private var var_89:A3DMapBuilder;
       
-      private var gameKernel:name_17;
+      private var gameKernel:GameKernel;
       
       private var var_90:Number = 1.5;
       
@@ -76,7 +76,7 @@ package package_2
       {
       }
       
-      override public function addToGame(gameKernel:name_17) : void
+      override public function addToGame(gameKernel:GameKernel) : void
       {
          this.gameKernel = gameKernel;
          this.method_205();
@@ -117,7 +117,7 @@ package package_2
          }
       }
       
-      override public function removeFromGame(gameKernel:name_17) : void
+      override public function removeFromGame(gameKernel:GameKernel) : void
       {
          var object:name_78 = null;
          var lights:name_89 = null;

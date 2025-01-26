@@ -1,4 +1,4 @@
-package package_10
+package alternativa.tanks.game
 {
    import flash.display.Stage;
    import package_18.name_44;
@@ -15,7 +15,7 @@ package package_10
    import package_44.name_178;
    import package_45.name_182;
    
-   public class name_17
+   public class GameKernel
    {
       public static const TIME_SYSTEM_PRIORITY:int = 0;
       
@@ -39,9 +39,9 @@ package package_10
       
       private var var_36:Object;
       
-      private var var_41:class_8 = new DummyLogger();
+      private var var_41:IGameLogger = new DummyLogger();
       
-      private var var_4:name_52;
+      private var var_4:TaskManager;
       
       private var var_44:name_182;
       
@@ -59,20 +59,20 @@ package package_10
       
       private var var_42:name_183;
       
-      private var var_39:Vector.<name_54>;
+      private var var_39:Vector.<Entity>;
       
       private var var_38:int;
       
       private var var_40:name_100;
       
-      public function name_17(stage:Stage, options:Object)
+      public function GameKernel(stage:Stage, options:Object)
       {
          super();
          this.var_43 = stage;
          this.var_36 = options || {};
-         this.var_39 = new Vector.<name_54>();
+         this.var_39 = new Vector.<Entity>();
          this.var_40 = new name_100();
-         this.var_4 = new name_52();
+         this.var_4 = new TaskManager();
          this.var_44 = new name_182(TIME_SYSTEM_PRIORITY);
          this.var_4.addTask(this.var_44);
          this.inputSystem = new name_181(INPUT_SYSTEM_PRIORITY,stage);
@@ -91,12 +91,12 @@ package package_10
          this.var_4.addTask(this.var_42);
       }
       
-      public function get logger() : class_8
+      public function get logger() : IGameLogger
       {
          return this.var_41;
       }
       
-      public function set logger(value:class_8) : void
+      public function set logger(value:IGameLogger) : void
       {
          if(value == null)
          {
@@ -125,12 +125,12 @@ package package_10
          return this.var_40;
       }
       
-      public function addTask(gameTask:class_1) : void
+      public function addTask(gameTask:GameTask) : void
       {
          this.var_4.addTask(gameTask);
       }
       
-      public function name_73(entity:name_54) : void
+      public function name_73(entity:Entity) : void
       {
          if(entity.index < 0)
          {
@@ -143,14 +143,14 @@ package package_10
          throw new Error("Entity " + entity + " is already in game");
       }
       
-      public function method_109(entity:name_54) : void
+      public function method_109(entity:Entity) : void
       {
          var index:int = int(entity.index);
          if(index < 0)
          {
             throw new Error("Entity " + entity + " is not in game");
          }
-         var lastEntity:name_54 = this.var_39[--this.var_38];
+         var lastEntity:Entity = this.var_39[--this.var_38];
          lastEntity.index = index;
          this.var_39[index] = lastEntity;
          this.var_39[this.var_38] = null;
@@ -203,7 +203,7 @@ package package_10
    }
 }
 
-class DummyLogger implements class_8
+class DummyLogger implements IGameLogger
 {
    public function DummyLogger()
    {

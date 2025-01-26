@@ -4,7 +4,7 @@ package package_9
    import flash.utils.getTimer;
    import alternativa.osgi.service.console.variables.ConsoleVarFloat;
    import alternativa.osgi.service.console.variables.ConsoleVarInt;
-   import package_10.name_54;
+   import alternativa.tanks.game.Entity;
    import package_18.name_102;
    import package_18.name_90;
    import package_19.name_380;
@@ -155,7 +155,7 @@ package package_9
       {
       }
       
-      public function method_115(target:name_54) : void
+      public function method_115(target:Entity) : void
       {
          if(target == null)
          {

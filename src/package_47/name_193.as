@@ -1,8 +1,8 @@
 package package_47
 {
    import alternativa.engine3d.alternativa3d;
-   import package_10.class_17;
-   import package_10.name_17;
+   import alternativa.tanks.game.EntityComponent;
+   import alternativa.tanks.game.GameKernel;
    import package_18.name_44;
    import package_19.name_380;
    import package_21.name_78;
@@ -18,7 +18,7 @@ package package_47
    
    use namespace alternativa3d;
    
-   public class name_193 extends class_17 implements class_22
+   public class name_193 extends EntityComponent implements class_22
    {
       private static var vector:name_194 = new name_194();
       
@@ -65,12 +65,12 @@ package package_47
          }
       }
       
-      override public function addToGame(gameKernel:name_17) : void
+      override public function addToGame(gameKernel:GameKernel) : void
       {
          this.renderSystem = gameKernel.name_5();
       }
       
-      override public function removeFromGame(gameKernel:name_17) : void
+      override public function removeFromGame(gameKernel:GameKernel) : void
       {
          this.removeFromScene();
          this.renderSystem = null;

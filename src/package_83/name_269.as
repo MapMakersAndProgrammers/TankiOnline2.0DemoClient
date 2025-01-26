@@ -1,6 +1,6 @@
 package package_83
 {
-   import package_10.name_17;
+   import alternativa.tanks.game.GameKernel;
    import package_118.name_550;
    import package_119.name_552;
    import package_4.class_4;
@@ -13,7 +13,7 @@ package package_83
    {
       private var var_468:name_550;
       
-      public function name_269(gameKernel:name_17, radius:Number, impactForce:Number, maximumDamageRadius:Number, minimumDamageRadius:Number, minimumDamageCoefficient:Number, callback:name_552, frames:Vector.<class_4>)
+      public function name_269(gameKernel:GameKernel, radius:Number, impactForce:Number, maximumDamageRadius:Number, minimumDamageRadius:Number, minimumDamageCoefficient:Number, callback:name_552, frames:Vector.<class_4>)
       {
          super();
          var splashDamage:name_551 = new name_551(radius);

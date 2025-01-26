@@ -8,10 +8,10 @@ package alternativa.tanks
    import flash.ui.Keyboard;
    import alternativa.osgi.service.console.variables.ConsoleVarFloat;
    import alternativa.osgi.service.console.variables.ConsoleVarInt;
-   import package_10.class_1;
-   import package_10.name_17;
-   import package_10.name_54;
-   import package_10.name_57;
+   import alternativa.tanks.game.GameTask;
+   import alternativa.tanks.game.GameKernel;
+   import alternativa.tanks.game.Entity;
+   import alternativa.tanks.game.GameEvents;
    import package_100.name_301;
    import alternativa.tanks.config.Config;
    import package_15.name_275;
@@ -110,7 +110,7 @@ package alternativa.tanks
    
    use namespace alternativa3d;
    
-   public class TankTestTask extends class_1 implements class_11
+   public class TankTestTask extends GameTask implements class_11
    {
       private static const DEAD_TEXTURE_ID:String = "dead";
       
@@ -126,13 +126,13 @@ package alternativa.tanks
       
       private var config:Config;
       
-      private var gameKernel:name_17;
+      private var gameKernel:GameKernel;
       
       private var var_82:int = 0;
       
       private var var_79:Vector.<name_255> = new Vector.<name_255>();
       
-      private var tanks:Vector.<name_54>;
+      private var tanks:Vector.<Entity>;
       
       private var var_62:int;
       
@@ -174,18 +174,18 @@ package alternativa.tanks
       
       private var preloader:Preloader;
       
-      private var var_72:name_54;
+      private var var_72:Entity;
       
       private var var_80:name_293 = new name_293();
       
-      public function TankTestTask(param1:int, param2:Config, param3:name_17, param4:name_20, param5:Preloader)
+      public function TankTestTask(param1:int, param2:Config, param3:GameKernel, param4:name_20, param5:Preloader)
       {
          super(param1);
          this.preloader = param5;
          this.config = param2;
          this.gameKernel = param3;
          this.freeCameraController = param4;
-         this.tanks = new Vector.<name_54>();
+         this.tanks = new Vector.<Entity>();
          this.var_62 = -1;
          this.var_73 = new BitmapData(1,1);
          this.var_73.setPixel(0,0,11141120);
@@ -215,12 +215,12 @@ package alternativa.tanks
             this.executeConsoleCommands(_loc3_,this.config.xml.elements("console-commands")[0].toString());
          }
          _loc3_.name_45("lstanks",this.listTanks);
-         this.var_71 = new name_294(name_17.RENDER_SYSTEM_PRIORITY + 1,10,this.gameKernel.stage,0,0);
+         this.var_71 = new name_294(GameKernel.RENDER_SYSTEM_PRIORITY + 1,10,this.gameKernel.stage,0,0);
          this.gameKernel.addTask(this.var_71);
-         this.gameKernel.name_61().addEventListener(name_57.MAP_COMPLETE,this);
+         this.gameKernel.name_61().addEventListener(GameEvents.MAP_COMPLETE,this);
       }
       
-      private function get activeTank() : name_54
+      private function get activeTank() : Entity
       {
          return this.var_62 >= 0 ? this.tanks[this.var_62] : null;
       }
@@ -331,7 +331,7 @@ package alternativa.tanks
       private function toggleTankTitle() : void
       {
          var _loc2_:name_245 = null;
-         var _loc1_:name_54 = this.activeTank;
+         var _loc1_:Entity = this.activeTank;
          if(_loc1_ != null)
          {
             _loc2_ = name_245(_loc1_.getComponent(name_245));
@@ -447,11 +447,11 @@ package alternativa.tanks
       private function rebuildActiveTank() : void
       {
          var _loc2_:TankParams = null;
-         var _loc3_:name_54 = null;
+         var _loc3_:Entity = null;
          var _loc4_:name_236 = null;
          var _loc5_:name_236 = null;
          var _loc6_:name_194 = null;
-         var _loc1_:name_54 = this.activeTank;
+         var _loc1_:Entity = this.activeTank;
          if(_loc1_ != null)
          {
             this.removeActiveTank();
@@ -499,19 +499,19 @@ package alternativa.tanks
          var _loc7_:XMLList = null;
          var _loc8_:int = 0;
          var _loc9_:int = 0;
-         var _loc10_:name_54 = null;
+         var _loc10_:Entity = null;
          var _loc11_:name_259 = null;
          var _loc12_:name_241 = null;
          switch(param1)
          {
             case name_253.TANK_CLICK:
-               _loc3_ = int(this.tanks.indexOf(name_54(param2)));
+               _loc3_ = int(this.tanks.indexOf(Entity(param2)));
                if(_loc3_ >= 0)
                {
                   this.selectTank(_loc3_);
                }
                break;
-            case name_57.MAP_COMPLETE:
+            case GameEvents.MAP_COMPLETE:
                this.setCameraController(this.var_67);
                if(this.config.xml.user.length() > 0)
                {
@@ -588,21 +588,21 @@ package alternativa.tanks
          this.selectTank(this.tanks.length - 1);
       }
       
-      private function addTank(param1:TankParams) : name_54
+      private function addTank(param1:TankParams) : Entity
       {
-         var _loc2_:name_54 = this.createTank(param1);
+         var _loc2_:Entity = this.createTank(param1);
          this.gameKernel.name_73(_loc2_);
          this.tanks.push(_loc2_);
          return _loc2_;
       }
       
-      private function createTank(param1:TankParams) : name_54
+      private function createTank(param1:TankParams) : Entity
       {
          var _loc2_:name_249 = this.config.tankParts.name_353(param1.hull);
          var _loc3_:name_234 = this.config.tankParts.name_331(param1.turret);
          var _loc4_:BitmapData = this.config.tankParts.name_347(param1.coloring);
          var _loc5_:BitmapData = this.config.var_37.name_244(DEAD_TEXTURE_ID) as BitmapData;
-         var _loc6_:name_54 = new name_54(name_54.name_74());
+         var _loc6_:Entity = new Entity(Entity.name_74());
          var _loc9_:name_237 = new name_237(_loc2_,1000,80000);
          var _loc10_:int = conMaxSpeed.value;
          _loc9_.name_321(_loc10_,true);
@@ -731,7 +731,7 @@ package alternativa.tanks
          return null;
       }
       
-      private function createSmoky(param1:name_54) : void
+      private function createSmoky(param1:Entity) : void
       {
          var _loc9_:name_129 = null;
          var _loc10_:Vector.<class_4> = null;
@@ -774,7 +774,7 @@ package alternativa.tanks
          param1.name_60(_loc17_);
       }
       
-      private function createThunder(param1:name_54) : void
+      private function createThunder(param1:Entity) : void
       {
          var _loc9_:name_129 = null;
          var _loc10_:Vector.<class_4> = null;
@@ -816,14 +816,14 @@ package alternativa.tanks
          param1.name_60(_loc17_);
       }
       
-      private function createRailgun(param1:name_54) : void
+      private function createRailgun(param1:Entity) : void
       {
          var _loc5_:name_256 = this.gameKernel.method_112().name_246().collisionDetector;
          var _loc6_:name_292 = new name_292();
          var _loc7_:name_291 = new name_291(Math.PI / 9,20,Math.PI / 9,20,_loc5_,_loc6_);
       }
       
-      private function createEnergyGun(param1:name_54) : void
+      private function createEnergyGun(param1:Entity) : void
       {
          var _loc9_:name_256 = this.gameKernel.method_112().name_246().collisionDetector;
          var _loc10_:name_240 = new name_240();
@@ -849,7 +849,7 @@ package alternativa.tanks
          param1.name_60(_loc27_);
       }
       
-      private function createContinuousActionGun(param1:name_54) : void
+      private function createContinuousActionGun(param1:Entity) : void
       {
          var _loc5_:name_286 = new name_286(1000,1,15,true);
          param1.name_60(_loc5_);
@@ -883,7 +883,7 @@ package alternativa.tanks
       
       private function removeActiveTank() : void
       {
-         var _loc1_:name_54 = null;
+         var _loc1_:Entity = null;
          if(this.var_62 >= 0)
          {
             _loc1_ = this.activeTank;
@@ -1022,7 +1022,7 @@ package alternativa.tanks
          var _loc8_:Vector.<name_129> = null;
          var _loc9_:Vector.<class_4> = null;
          var _loc10_:name_264 = null;
-         var _loc1_:name_54 = this.activeTank;
+         var _loc1_:Entity = this.activeTank;
          if(_loc1_ != null)
          {
             _loc2_ = this.gameKernel.method_112().name_246().collisionDetector;
@@ -1058,7 +1058,7 @@ package alternativa.tanks
          var _loc7_:Number = NaN;
          var _loc8_:Number = NaN;
          var _loc9_:Number = NaN;
-         var _loc1_:name_54 = this.activeTank;
+         var _loc1_:Entity = this.activeTank;
          if(_loc1_ != null)
          {
             _loc2_ = this.var_64.getFrames("tank_explosion/explosion");
@@ -1097,7 +1097,7 @@ package alternativa.tanks
          var _loc19_:Number = NaN;
          var _loc20_:name_260 = null;
          var _loc21_:Number = NaN;
-         var _loc1_:name_54 = this.activeTank;
+         var _loc1_:Entity = this.activeTank;
          if(_loc1_ != null)
          {
             _loc2_ = 100;
@@ -1142,7 +1142,7 @@ package alternativa.tanks
       
       private function listTanks(param1:name_4, param2:Array) : void
       {
-         var _loc3_:name_54 = null;
+         var _loc3_:Entity = null;
          var _loc4_:name_237 = null;
          var _loc5_:name_271 = null;
          for each(var _loc8_ in this.tanks)
@@ -1162,7 +1162,7 @@ package alternativa.tanks
 import flash.display.BitmapData;
 import flash.media.Sound;
 import flash.utils.ByteArray;
-import package_10.name_17;
+import alternativa.tanks.game.GameKernel;
 import package_101.name_304;
 import alternativa.tanks.config.TextureLibrary;
 import package_15.name_275;
@@ -1237,7 +1237,7 @@ class PointHitRoundAmmo implements class_14
    
    private var weaponHitEffects:WeaponHitEffects;
    
-   public function PointHitRoundAmmo(param1:name_17)
+   public function PointHitRoundAmmo(param1:GameKernel)
    {
       var _loc5_:int = 0;
       super();
@@ -1266,9 +1266,9 @@ class WeaponHitEffects implements class_12
    
    private var frames:Vector.<class_4>;
    
-   private var gameKernel:name_17;
+   private var gameKernel:GameKernel;
    
-   public function WeaponHitEffects(param1:Sound, param2:Vector.<class_4>, param3:name_17)
+   public function WeaponHitEffects(param1:Sound, param2:Vector.<class_4>, param3:GameKernel)
    {
       super();
       this.sound = param1;

@@ -1,7 +1,7 @@
 package package_91
 {
-   import package_10.class_17;
-   import package_10.name_17;
+   import alternativa.tanks.game.EntityComponent;
+   import alternativa.tanks.game.GameKernel;
    import package_27.name_501;
    import package_44.name_178;
    import package_44.name_465;
@@ -17,7 +17,7 @@ package package_91
    import package_90.name_273;
    import package_92.name_271;
    
-   public class name_497 extends class_17 implements name_465, name_233, name_631
+   public class name_497 extends EntityComponent implements name_465, name_233, name_631
    {
       private static const NUM_PERIPHERAL_RAYS:int = 8;
       
@@ -31,7 +31,7 @@ package package_91
       
       private static var _normal:name_194 = new name_194();
       
-      private var gameKernel:name_17;
+      private var gameKernel:GameKernel;
       
       private var var_623:name_194 = new name_194();
       
@@ -87,7 +87,7 @@ package package_91
       {
       }
       
-      override public function addToGame(gameKernel:name_17) : void
+      override public function addToGame(gameKernel:GameKernel) : void
       {
          this.gameKernel = gameKernel;
          var physicsSystem:name_178 = gameKernel.method_112();
@@ -100,7 +100,7 @@ package package_91
          }
       }
       
-      override public function removeFromGame(gameKernel:name_17) : void
+      override public function removeFromGame(gameKernel:GameKernel) : void
       {
          var physicsSystem:name_178 = gameKernel.method_112();
          physicsSystem.removeControllerBefore(this);
@@ -224,7 +224,7 @@ package package_91
          this.effect.name_201(_vector);
       }
       
-      public function method_372(gameKernel:name_17, shotId:int, shooter:name_271, barrelOrigin:name_194, barrelLength:Number, shotDirection:name_194, muzzlePosition:name_194) : void
+      public function method_372(gameKernel:GameKernel, shotId:int, shooter:name_271, barrelOrigin:name_194, barrelLength:Number, shotDirection:name_194, muzzlePosition:name_194) : void
       {
          this.shotId = shotId;
          this.shooter = shooter;

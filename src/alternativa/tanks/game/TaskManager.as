@@ -1,4 +1,4 @@
-package package_10
+package alternativa.tanks.game
 {
    import flash.utils.Dictionary;
    import flash.utils.describeType;
@@ -6,7 +6,7 @@ package package_10
    import package_108.name_373;
    import package_108.name_374;
    
-   public class name_52
+   public class TaskManager
    {
       private var var_85:name_374 = new name_374();
       
@@ -16,12 +16,12 @@ package package_10
       
       private var var_88:Dictionary = new Dictionary();
       
-      public function name_52()
+      public function TaskManager()
       {
          super();
       }
       
-      public function addTask(task:class_1) : void
+      public function addTask(task:GameTask) : void
       {
          if(this.var_85.contains(task))
          {
@@ -34,7 +34,7 @@ package package_10
          this.var_87.add(task);
       }
       
-      public function killTask(task:class_1) : void
+      public function killTask(task:GameTask) : void
       {
          if(this.var_85.contains(task) && !this.var_86.contains(task))
          {
@@ -44,18 +44,18 @@ package package_10
       
       public function name_185() : void
       {
-         var task:class_1 = null;
-         this.method_196();
+         var task:GameTask = null;
+         this.startAddedTasks();
          var iterator:name_373 = this.var_85.listIterator();
          while(iterator.hasNext())
          {
-            task = class_1(iterator.next());
+            task = GameTask(iterator.next());
             if(!task.method_20)
             {
                task.run();
             }
          }
-         this.method_195();
+         this.removeKilledTasks();
       }
       
       public function getTaskInterface(taskInterface:Class) : Object
@@ -65,28 +65,28 @@ package package_10
       
       public function name_189() : void
       {
-         var task:class_1 = null;
+         var task:GameTask = null;
          var listIterator:name_373 = this.var_85.listIterator();
          while(listIterator.hasNext())
          {
-            task = class_1(listIterator.next());
+            task = GameTask(listIterator.next());
             this.killTask(task);
          }
       }
       
-      private function method_196() : void
+      private function startAddedTasks() : void
       {
-         var task:class_1 = null;
+         var task:GameTask = null;
          var taskInterfaces:Vector.<Class> = null;
          var taskInterface:Class = null;
          var activeTasksIterator:name_373 = null;
-         var activeTask:class_1 = null;
+         var activeTask:GameTask = null;
          for(var i:int = 0; i < this.var_87.numTasks; i++)
          {
             task = this.var_87.tasks[i];
             task.var_4 = this;
             task.start();
-            taskInterfaces = this.method_194(task);
+            taskInterfaces = this.getObjectInterfaces(task);
             for each(taskInterface in taskInterfaces)
             {
                this.var_88[taskInterface] = task;
@@ -94,7 +94,7 @@ package package_10
             activeTasksIterator = this.var_85.listIterator();
             while(activeTasksIterator.hasNext())
             {
-               activeTask = class_1(activeTasksIterator.next());
+               activeTask = GameTask(activeTasksIterator.next());
                if(activeTask.priority > task.priority)
                {
                   activeTasksIterator.name_375();
@@ -106,9 +106,9 @@ package package_10
          this.var_87.clear();
       }
       
-      private function method_195() : void
+      private function removeKilledTasks() : void
       {
-         var task:class_1 = null;
+         var task:GameTask = null;
          var taskInterfaces:Vector.<Class> = null;
          var taskInterface:Class = null;
          for(var i:int = 0; i < this.var_86.numTasks; i++)
@@ -116,7 +116,7 @@ package package_10
             task = this.var_86.tasks[i];
             this.var_85.remove(task);
             task.stop();
-            taskInterfaces = this.method_194(task);
+            taskInterfaces = this.getObjectInterfaces(task);
             for each(taskInterface in taskInterfaces)
             {
                delete this.var_88[taskInterface];
@@ -126,7 +126,7 @@ package package_10
          this.var_86.clear();
       }
       
-      private function method_194(object:Object) : Vector.<Class>
+      private function getObjectInterfaces(object:Object) : Vector.<Class>
       {
          var interfaceXML:XML = null;
          var interfaceClass:Object = null;
@@ -144,7 +144,7 @@ package package_10
 
 class TaskArray
 {
-   public var tasks:Vector.<class_1> = new Vector.<class_1>();
+   public var tasks:Vector.<GameTask> = new Vector.<GameTask>();
    
    public var numTasks:int;
    
@@ -153,7 +153,7 @@ class TaskArray
       super();
    }
    
-   public function add(task:class_1) : void
+   public function add(task:GameTask) : void
    {
       var _loc2_:* = this.numTasks++;
       this.tasks[_loc2_] = task;
@@ -168,7 +168,7 @@ class TaskArray
       this.numTasks = 0;
    }
    
-   public function contains(task:class_1) : Boolean
+   public function contains(task:GameTask) : Boolean
    {
       return this.tasks.indexOf(task) >= 0;
    }

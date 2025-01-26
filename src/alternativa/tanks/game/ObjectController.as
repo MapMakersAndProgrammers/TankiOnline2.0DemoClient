@@ -1,11 +1,11 @@
-package package_10
+package alternativa.tanks.game
 {
    import package_21.name_124;
    import package_21.name_78;
    import package_46.Matrix3;
    import package_46.name_194;
    
-   public class name_195
+   public class ObjectController
    {
       private static var matrix:Matrix3 = new Matrix3();
       
@@ -13,7 +13,7 @@ package package_10
       
       private var var_234:name_78;
       
-      public function name_195()
+      public function ObjectController()
       {
          super();
       }

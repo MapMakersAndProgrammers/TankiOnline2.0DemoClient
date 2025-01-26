@@ -1,7 +1,7 @@
 package package_83
 {
    import flash.geom.Vector3D;
-   import package_10.name_17;
+   import alternativa.tanks.game.GameKernel;
    import package_18.name_44;
    import package_25.name_250;
    import package_28.name_129;
@@ -25,11 +25,11 @@ package package_83
       
       private static const tempVector:Vector3D = new Vector3D();
       
-      private var gameKernel:name_17;
+      private var gameKernel:GameKernel;
       
       private var frames:Vector.<class_4>;
       
-      public function name_270(gameKernel:name_17, frames:Vector.<class_4>)
+      public function name_270(gameKernel:GameKernel, frames:Vector.<class_4>)
       {
          super();
          this.gameKernel = gameKernel;

@@ -1,7 +1,7 @@
 package package_100
 {
    import flash.geom.ColorTransform;
-   import package_10.name_17;
+   import alternativa.tanks.game.GameKernel;
    import package_4.class_4;
    import package_46.name_194;
    import package_72.name_239;
@@ -18,7 +18,7 @@ package package_100
       
       private static const EXPLOSION_FPS:int = 30;
       
-      private var gameKernel:name_17;
+      private var gameKernel:GameKernel;
       
       private var roundFrames:Vector.<class_4>;
       
@@ -26,7 +26,7 @@ package package_100
       
       private var colorTransform:ColorTransform;
       
-      public function name_301(gameKernel:name_17, roundFrames:Vector.<class_4>, explosionFrames:Vector.<class_4>, colorTransform:ColorTransform)
+      public function name_301(gameKernel:GameKernel, roundFrames:Vector.<class_4>, explosionFrames:Vector.<class_4>, colorTransform:ColorTransform)
       {
          super();
          this.gameKernel = gameKernel;

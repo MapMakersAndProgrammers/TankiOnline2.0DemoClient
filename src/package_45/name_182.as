@@ -1,9 +1,9 @@
 package package_45
 {
    import flash.utils.getTimer;
-   import package_10.class_1;
+   import alternativa.tanks.game.GameTask;
    
-   public class name_182 extends class_1
+   public class name_182 extends GameTask
    {
       public static var time:int;
       

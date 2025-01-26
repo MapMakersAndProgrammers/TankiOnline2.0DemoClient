@@ -1,8 +1,8 @@
 package package_74
 {
-   import package_10.class_17;
-   import package_10.name_17;
-   import package_10.name_57;
+   import alternativa.tanks.game.EntityComponent;
+   import alternativa.tanks.game.GameKernel;
+   import alternativa.tanks.game.GameEvents;
    import package_115.class_26;
    import package_42.name_184;
    import package_42.name_477;
@@ -18,7 +18,7 @@ package package_74
    import package_90.name_273;
    import package_92.name_271;
    
-   public class name_283 extends class_17 implements class_24, class_25, name_477
+   public class name_283 extends EntityComponent implements class_24, class_25, name_477
    {
       private static const COLLISION_MASK:int = name_257.STATIC | name_257.WEAPON;
       
@@ -64,7 +64,7 @@ package package_74
       
       private var var_440:name_184;
       
-      private var gameKernel:name_17;
+      private var gameKernel:GameKernel;
       
       private var baseTime:int;
       
@@ -118,17 +118,17 @@ package package_74
             entity.addEventHandler(name_252.SET_ACTIVATING_STATE,this.method_400);
             entity.addEventHandler(name_252.SET_DEAD_STATE,this.method_400);
             entity.addEventHandler(name_252.SET_RESPAWN_STATE,this.method_400);
-            entity.addEventHandler(name_57.BATTLE_FINISHED,this.method_400);
+            entity.addEventHandler(GameEvents.BATTLE_FINISHED,this.method_400);
          }
       }
       
-      override public function addToGame(gameKernel:name_17) : void
+      override public function addToGame(gameKernel:GameKernel) : void
       {
          this.gameKernel = gameKernel;
          this.var_440 = gameKernel.getLogicSystem2();
       }
       
-      override public function removeFromGame(gameKernel:name_17) : void
+      override public function removeFromGame(gameKernel:GameKernel) : void
       {
          this.var_440 = null;
          this.gameKernel = null;

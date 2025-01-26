@@ -1,6 +1,6 @@
 package package_77
 {
-   import package_10.name_17;
+   import alternativa.tanks.game.GameKernel;
    import package_44.name_178;
    import package_71.name_720;
    import package_86.name_257;
@@ -17,7 +17,7 @@ package package_77
       
       override public function start(data:*) : void
       {
-         var gameKernel:name_17 = null;
+         var gameKernel:GameKernel = null;
          var physicsSystem:name_178 = null;
          component.addToScene();
          component.setDetailedCollisionGroup(name_257.TANK);
@@ -37,7 +37,7 @@ package package_77
       
       override public function stop() : void
       {
-         var gameKernel:name_17 = null;
+         var gameKernel:GameKernel = null;
          var physicsSystem:name_178 = null;
          component.body.postCollisionFilter = null;
          if(this.var_644.callback != null)

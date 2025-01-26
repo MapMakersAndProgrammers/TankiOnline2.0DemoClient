@@ -1,8 +1,8 @@
 package package_9
 {
    import flash.geom.Vector3D;
-   import package_10.name_195;
-   import package_10.name_54;
+   import alternativa.tanks.game.ObjectController;
+   import alternativa.tanks.game.Entity;
    import package_15.name_191;
    import package_18.name_102;
    import package_18.name_90;
@@ -54,7 +54,7 @@ package package_9
       
       private var input:name_87;
       
-      private var controller:name_195;
+      private var controller:ObjectController;
       
       private var target:name_78;
       
@@ -66,7 +66,7 @@ package package_9
       {
          super();
          this.input = input;
-         this.controller = new name_195();
+         this.controller = new ObjectController();
          this.controller.object = camera;
          this.var_46 = camera.rotationX;
          this.var_47 = camera.rotationZ;
@@ -100,7 +100,7 @@ package package_9
          this.var_47 = this.controller.object.rotationZ;
       }
       
-      public function method_115(value:name_54) : void
+      public function method_115(value:Entity) : void
       {
          if(value == null)
          {

@@ -1,7 +1,7 @@
 package package_85
 {
-   import package_10.class_17;
-   import package_10.name_17;
+   import alternativa.tanks.game.EntityComponent;
+   import alternativa.tanks.game.GameKernel;
    import package_4.class_4;
    import package_46.name_194;
    import package_71.name_252;
@@ -13,7 +13,7 @@ package package_85
    import package_86.name_257;
    import package_90.name_273;
    
-   public class name_284 extends class_17
+   public class name_284 extends EntityComponent
    {
       private static const MAX_SHOCK_WAVE_DISTANCE:Number = 1500;
       
@@ -35,7 +35,7 @@ package package_85
       
       private var smokeFrames:Vector.<class_4>;
       
-      private var gameKernel:name_17;
+      private var gameKernel:GameKernel;
       
       public function name_284(shockWaveStartSize:Number, shockWaveGrowSpeed:Number, shockWaveFrames:Vector.<class_4>, explosionFrames:Vector.<class_4>, smokeFrames:Vector.<class_4>)
       {
@@ -52,12 +52,12 @@ package package_85
          entity.addEventHandler(name_252.SET_DEAD_STATE,this.method_446);
       }
       
-      override public function addToGame(gameKernel:name_17) : void
+      override public function addToGame(gameKernel:GameKernel) : void
       {
          this.gameKernel = gameKernel;
       }
       
-      override public function removeFromGame(gameKernel:name_17) : void
+      override public function removeFromGame(gameKernel:GameKernel) : void
       {
          this.gameKernel = null;
       }

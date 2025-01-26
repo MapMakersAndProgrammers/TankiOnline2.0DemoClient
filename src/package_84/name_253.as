@@ -2,8 +2,8 @@ package package_84
 {
    import alternativa.engine3d.alternativa3d;
    import flash.geom.Point;
-   import package_10.class_17;
-   import package_10.name_17;
+   import alternativa.tanks.game.EntityComponent;
+   import alternativa.tanks.game.GameKernel;
    import package_18.name_44;
    import package_19.name_380;
    import package_19.name_528;
@@ -28,7 +28,7 @@ package package_84
    
    use namespace alternativa3d;
    
-   public class name_253 extends class_17 implements class_22, class_31
+   public class name_253 extends EntityComponent implements class_22, class_31
    {
       public static const TANK_CLICK:String = "tankClick";
       
@@ -48,7 +48,7 @@ package package_84
       
       private var physicsComponent:name_237;
       
-      private var gameKernel:name_17;
+      private var gameKernel:GameKernel;
       
       private var var_233:class_5;
       
@@ -306,7 +306,7 @@ package package_84
          this.var_490.physicsComponent = this.physicsComponent;
       }
       
-      override public function addToGame(gameKernel:name_17) : void
+      override public function addToGame(gameKernel:GameKernel) : void
       {
          this.gameKernel = gameKernel;
          var renderSystem:name_44 = gameKernel.name_5();
@@ -322,7 +322,7 @@ package package_84
          }
       }
       
-      override public function removeFromGame(gameKernel:name_17) : void
+      override public function removeFromGame(gameKernel:GameKernel) : void
       {
          if(this.var_491 != null)
          {

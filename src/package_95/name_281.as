@@ -1,15 +1,15 @@
 package package_95
 {
    import flash.utils.Dictionary;
-   import package_10.class_17;
-   import package_10.name_17;
+   import alternativa.tanks.game.EntityComponent;
+   import alternativa.tanks.game.GameKernel;
    import package_46.name_194;
    import package_74.name_508;
    import package_75.class_15;
    import package_75.name_236;
    import package_79.name_282;
    
-   public class name_281 extends class_17 implements name_508
+   public class name_281 extends EntityComponent implements name_508
    {
       private static var barrelOrigin:name_194 = new name_194();
       
@@ -66,7 +66,7 @@ package package_95
          this.effects = class_28(entity.getComponentStrict(class_28));
       }
       
-      override public function addToGame(gameKernel:name_17) : void
+      override public function addToGame(gameKernel:GameKernel) : void
       {
          if(this.createStarted)
          {
@@ -74,7 +74,7 @@ package package_95
          }
       }
       
-      override public function removeFromGame(gameKernel:name_17) : void
+      override public function removeFromGame(gameKernel:GameKernel) : void
       {
       }
       

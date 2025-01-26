@@ -3,8 +3,8 @@ package alternativa.tanks.game.usertitle.component
    import alternativa.tanks.game.usertitle.name_607;
    import alternativa.tanks.game.usertitle.name_610;
    import alternativa.tanks.game.usertitle.name_613;
-   import package_10.class_17;
-   import package_10.name_17;
+   import alternativa.tanks.game.EntityComponent;
+   import alternativa.tanks.game.GameKernel;
    import package_114.name_488;
    import package_18.name_44;
    import package_18.name_82;
@@ -14,7 +14,7 @@ package alternativa.tanks.game.usertitle.component
    import package_74.class_25;
    import package_75.name_236;
    
-   public class name_245 extends class_17 implements name_82
+   public class name_245 extends EntityComponent implements name_82
    {
       private static const REMOTE_LABEL_OFFSET_Z:int = 200;
       
@@ -30,7 +30,7 @@ package alternativa.tanks.game.usertitle.component
       
       private var var_424:name_488;
       
-      private var gameKernel:name_17;
+      private var gameKernel:GameKernel;
       
       private var var_426:Boolean;
       
@@ -93,13 +93,13 @@ package alternativa.tanks.game.usertitle.component
          this.setHealth(Number(data));
       }
       
-      override public function addToGame(gameKernel:name_17) : void
+      override public function addToGame(gameKernel:GameKernel) : void
       {
          this.gameKernel = gameKernel;
          this.var_505.name_612(gameKernel.name_5());
       }
       
-      override public function removeFromGame(gameKernel:name_17) : void
+      override public function removeFromGame(gameKernel:GameKernel) : void
       {
          this.var_424.name_493.stop();
          this.removeFromScene();

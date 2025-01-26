@@ -15,7 +15,7 @@ package
    import alternativa.osgi.service.console.variables.ConsoleVarInt;
    import alternativa.osgi.service.console.variables.ConsoleVarString;
    import alternativa.osgi.service.console.variables.ConsoleVar;
-   import package_10.name_17;
+   import alternativa.tanks.game.GameKernel;
    import package_11.name_16;
    import package_12.name_15;
    import alternativa.tanks.config.Config;
@@ -50,7 +50,7 @@ package
       
       private var config:Config;
       
-      private var gameKernel:name_17;
+      private var gameKernel:GameKernel;
       
       private var var_1:name_15;
       
@@ -266,7 +266,7 @@ package
       
       private function initGame() : void
       {
-         this.gameKernel = new name_17(stage,this.config.options);
+         this.gameKernel = new GameKernel(stage,this.config.options);
          this.gameKernel.name_5().name_37(this.stage3D);
          var _loc1_:InitBattleTask = new InitBattleTask(this.gameKernel,this.config,this,this.preloader);
          this.gameKernel.addTask(_loc1_);

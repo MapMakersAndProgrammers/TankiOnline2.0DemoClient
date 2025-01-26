@@ -1,8 +1,8 @@
 package package_74
 {
-   import package_10.class_17;
-   import package_10.name_17;
-   import package_10.name_57;
+   import alternativa.tanks.game.EntityComponent;
+   import alternativa.tanks.game.GameKernel;
+   import alternativa.tanks.game.GameEvents;
    import package_39.name_160;
    import package_42.name_184;
    import package_42.name_477;
@@ -10,7 +10,7 @@ package package_74
    import package_5.name_3;
    import package_71.name_252;
    
-   public class name_286 extends class_17 implements class_25, class_24, name_477
+   public class name_286 extends EntityComponent implements class_25, class_24, name_477
    {
       private var energyCapacity:Number;
       
@@ -32,7 +32,7 @@ package package_74
       
       private var isLocal:Boolean;
       
-      private var gameKernel:name_17;
+      private var gameKernel:GameKernel;
       
       private var var_440:name_184;
       
@@ -83,17 +83,17 @@ package package_74
             entity.addEventHandler(name_252.SET_ACTIVATING_STATE,this.setActivatingState);
             entity.addEventHandler(name_252.SET_DEAD_STATE,this.method_400);
             entity.addEventHandler(name_252.SET_RESPAWN_STATE,this.method_400);
-            entity.addEventHandler(name_57.BATTLE_FINISHED,this.method_400);
+            entity.addEventHandler(GameEvents.BATTLE_FINISHED,this.method_400);
          }
       }
       
-      override public function addToGame(gameKernel:name_17) : void
+      override public function addToGame(gameKernel:GameKernel) : void
       {
          this.gameKernel = gameKernel;
          this.var_440 = gameKernel.getLogicSystem2();
       }
       
-      override public function removeFromGame(gameKernel:name_17) : void
+      override public function removeFromGame(gameKernel:GameKernel) : void
       {
          this.var_440 = null;
          this.gameKernel = null;

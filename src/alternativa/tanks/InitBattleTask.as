@@ -1,9 +1,9 @@
 package alternativa.tanks
 {
    import flash.display.DisplayObjectContainer;
-   import package_10.class_1;
-   import package_10.name_17;
-   import package_10.name_54;
+   import alternativa.tanks.game.GameTask;
+   import alternativa.tanks.game.GameKernel;
+   import alternativa.tanks.game.Entity;
    import alternativa.tanks.config.Config;
    import alternativa.tanks.config.BlobGroup;
    import alternativa.tanks.config.BlobCategory;
@@ -13,9 +13,9 @@ package alternativa.tanks
    import package_2.A3DMapComponent;
    import package_9.name_20;
    
-   public class InitBattleTask extends class_1
+   public class InitBattleTask extends GameTask
    {
-      private var gameKernel:name_17;
+      private var gameKernel:GameKernel;
       
       private var config:Config;
       
@@ -23,9 +23,9 @@ package alternativa.tanks
       
       private var preloader:Preloader;
       
-      public function InitBattleTask(param1:name_17, param2:Config, param3:DisplayObjectContainer, param4:Preloader)
+      public function InitBattleTask(param1:GameKernel, param2:Config, param3:DisplayObjectContainer, param4:Preloader)
       {
-         super(name_17.EVENT_SYSTEM_PRIORITY + 1);
+         super(GameKernel.EVENT_SYSTEM_PRIORITY + 1);
          this.gameKernel = param1;
          this.config = param2;
          this.preloader = param4;
@@ -40,14 +40,14 @@ package alternativa.tanks
          _loc2_.name_75(0,0,1000);
          _loc2_.name_76(0,2000,0);
          this.container.addChild(_loc1_.name_71());
-         var _loc3_:name_54 = this.createMapEntity();
+         var _loc3_:Entity = this.createMapEntity();
          this.gameKernel.name_73(_loc3_);
          this.preloader.name_69(0.75);
-         var_4.addTask(new TankTestTask(name_17.INPUT_SYSTEM_PRIORITY + 1,this.config,this.gameKernel,_loc2_,this.preloader));
+         var_4.addTask(new TankTestTask(GameKernel.INPUT_SYSTEM_PRIORITY + 1,this.config,this.gameKernel,_loc2_,this.preloader));
          var_4.killTask(this);
       }
       
-      private function createMapEntity() : name_54
+      private function createMapEntity() : Entity
       {
          var _loc2_:name_55 = null;
          var _loc6_:BlobGroup = null;
@@ -62,7 +62,7 @@ package alternativa.tanks
                _loc2_.name_59(_loc7_,_loc6_.name_65(_loc7_));
             }
          }
-         var _loc4_:name_54 = new name_54(name_54.name_74());
+         var _loc4_:Entity = new Entity(Entity.name_74());
          var _loc5_:A3DMapComponent = new A3DMapComponent(this.config.mapData,_loc2_,1000000,new MapListener(this.gameKernel.name_61()));
          _loc4_.name_60(_loc5_);
          _loc4_.name_64();
@@ -71,7 +71,7 @@ package alternativa.tanks
    }
 }
 
-import package_10.name_57;
+import alternativa.tanks.game.GameEvents;
 import package_2.class_2;
 import package_20.name_56;
 
@@ -87,6 +87,6 @@ class MapListener implements class_2
    
    public function onA3DMapComplete() : void
    {
-      this.eventSystem.dispatchEvent(name_57.MAP_COMPLETE,null);
+      this.eventSystem.dispatchEvent(GameEvents.MAP_COMPLETE,null);
    }
 }

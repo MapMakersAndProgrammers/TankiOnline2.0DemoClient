@@ -3,10 +3,10 @@ package package_22
    import flash.display.InteractiveObject;
    import flash.events.KeyboardEvent;
    import flash.events.MouseEvent;
-   import package_10.class_1;
+   import alternativa.tanks.game.GameTask;
    import package_27.name_479;
    
-   public class name_181 extends class_1 implements name_87
+   public class name_181 extends GameTask implements name_87
    {
       private static const NUM_KEYS:int = 256;
       
@@ -329,9 +329,9 @@ package package_22
    }
 }
 
-import package_10.class_1;
+import alternativa.tanks.game.GameTask;
 
-class CleanupTask extends class_1
+class CleanupTask extends GameTask
 {
    private var inputSystem:name_181;
    

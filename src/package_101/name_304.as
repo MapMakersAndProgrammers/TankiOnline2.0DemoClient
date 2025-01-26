@@ -1,6 +1,6 @@
 package package_101
 {
-   import package_10.name_17;
+   import alternativa.tanks.game.GameKernel;
    import package_119.name_552;
    import package_27.name_501;
    import package_46.name_194;
@@ -47,7 +47,7 @@ package package_101
          this.callback = callback;
       }
       
-      public function method_372(gameKernel:name_17, shotId:int, shooter:name_271, barrelOrigin:name_194, barrelLength:Number, shotDirection:name_194, muzzlePosition:name_194) : void
+      public function method_372(gameKernel:GameKernel, shotId:int, shooter:name_271, barrelOrigin:name_194, barrelLength:Number, shotDirection:name_194, muzzlePosition:name_194) : void
       {
          var distance:Number = NaN;
          var weakeningCoefficient:Number = NaN;
