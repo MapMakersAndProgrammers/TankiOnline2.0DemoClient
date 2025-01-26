@@ -17,7 +17,7 @@ package package_68
    import package_48.A3D2Skin;
    import package_48.A3D2SpotLight;
    import package_48.A3D2Sprite;
-   import package_5.name_3;
+   import alternativa.osgi.OSGi;
    import package_51.A3D2CubeMap;
    import package_51.A3D2Image;
    import package_51.A3D2Map;
@@ -30,7 +30,7 @@ package package_68
    
    public class name_218 implements name_152
    {
-      public static var log:name_160 = name_160(name_3.name_8().name_30(name_160));
+      public static var log:name_160 = name_160(OSGi.name_8().name_30(name_160));
       
       private var var_351:name_152;
       
@@ -100,7 +100,7 @@ package package_68
       
       public function method_296(protocolBuffer:name_442) : Object
       {
-         log = name_160(name_3.name_8().name_30(name_160));
+         log = name_160(OSGi.name_8().name_30(name_160));
          var value_ambientLights:Vector.<A3D2AmbientLight> = this.var_351.method_296(protocolBuffer) as Vector.<A3D2AmbientLight>;
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.A3D2","ambientLights",value_ambientLights);
          var value_animationClips:Vector.<A3D2AnimationClip> = this.var_365.method_296(protocolBuffer) as Vector.<A3D2AnimationClip>;

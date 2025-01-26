@@ -15,7 +15,7 @@ package alternativa.tanks.game.usertitle
    import package_39.name_160;
    import package_4.class_5;
    import package_46.name_194;
-   import package_5.name_3;
+   import alternativa.osgi.OSGi;
    
    public class name_607
    {
@@ -541,7 +541,7 @@ package alternativa.tanks.game.usertitle
          matrix.tx = left;
          matrix.ty = TEXTURE_MARGIN + RANK_ICON_OFFSET_Y;
          var icon:BitmapData = this.rankIcon.method_776(this.rankId);
-         clientLog = name_160(name_3.name_8().name_30(name_160));
+         clientLog = name_160(OSGi.name_8().name_30(name_160));
          clientLog.log("icon","UserTitle::updateLabel() icon size: %1x%2",icon.width,icon.height);
          clientLog.log("icon","UserTitle::updateLabel() label height: %1",this.label.textHeight);
          tmpBitmapData.draw(icon,matrix,null,null,null,true);

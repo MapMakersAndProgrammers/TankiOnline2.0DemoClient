@@ -39,7 +39,7 @@ package alternativa.tanks
    import package_40.name_251;
    import package_46.name_194;
    import package_47.name_193;
-   import package_5.name_3;
+   import alternativa.osgi.OSGi;
    import alternativa.osgi.service.console.IConsole;
    import package_71.name_234;
    import package_71.name_249;
@@ -122,7 +122,7 @@ package alternativa.tanks
       
       private static var conMaxSpeed:ConsoleVarFloat = new ConsoleVarFloat("max_speed",800,0,2000);
       
-      private static var log:name_160 = name_160(name_3.name_8().name_30(name_160));
+      private static var log:name_160 = name_160(OSGi.name_8().name_30(name_160));
       
       private var config:Config;
       
@@ -207,7 +207,7 @@ package alternativa.tanks
          this.var_81 = new name_290(this.gameKernel.name_5());
          this.var_75 = new name_285();
          this.gameKernel.stage.addChild(this.var_75);
-         var _loc3_:IConsole = IConsole(name_3.name_8().name_30(IConsole));
+         var _loc3_:IConsole = IConsole(OSGi.name_8().name_30(IConsole));
          _loc3_.name_45("addtank",this.consoleAddTankHandler);
          var _loc4_:XMLList = this.config.xml.elements("console-commands");
          if(_loc4_.length() > 0)

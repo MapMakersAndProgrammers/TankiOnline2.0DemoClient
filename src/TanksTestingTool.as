@@ -34,7 +34,7 @@ package
    import package_4.name_11;
    import package_4.name_28;
    import package_4.name_6;
-   import package_5.name_3;
+   import alternativa.osgi.OSGi;
    import alternativa.osgi.service.console.IConsole;
    import alternativa.tanks.InitBattleTask;
    import alternativa.tanks.TankTestTask;
@@ -102,7 +102,7 @@ package
          new ConsoleVarFloat("horizon_offset",0,-1000000,1000000,this.onFogSettingsChange);
          new ConsoleVarFloat("horizon_size",5000,0,1000000,this.onFogSettingsChange);
          new ConsoleVarString("fog_color","0x0",this.onFogSettingsChange);
-         var _loc1_:IConsole = IConsole(name_3.name_8().name_30(IConsole));
+         var _loc1_:IConsole = IConsole(OSGi.name_8().name_30(IConsole));
          _loc1_.name_45("fog_texture",this.onFogTextureChange);
          new ConsoleVarFloat("beam_distance",7000,0,1000000,this.onLightSettingsChange);
          new ConsoleVarFloat("beam_spot",140,0,180,this.onLightSettingsChange);
@@ -182,17 +182,17 @@ package
       
       private function initClient() : void
       {
-         new name_3();
+         new OSGi();
          this.var_2 = new name_16();
          this.var_2.start(this,new name_19(loaderInfo.parameters),new Vector.<name_24>(),new name_25(null,null,null),new Vector.<String>());
-         new name_26().start(name_3.name_8());
-         new package_17.name_21().start(name_3.name_8());
-         new package_14.name_21().start(name_3.name_8());
+         new name_26().start(OSGi.name_8());
+         new package_17.name_21().start(OSGi.name_8());
+         new package_14.name_21().start(OSGi.name_8());
       }
       
       private function initConsole() : void
       {
-         var _loc1_:IConsole = IConsole(name_3.name_8().name_30(IConsole));
+         var _loc1_:IConsole = IConsole(OSGi.name_8().name_30(IConsole));
          _loc1_.width = 100;
          _loc1_.alpha = 0.8;
          _loc1_.height = 30;

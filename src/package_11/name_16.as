@@ -20,7 +20,7 @@ package package_11
    import package_31.name_366;
    import package_39.name_160;
    import package_39.name_368;
-   import package_5.name_3;
+   import alternativa.osgi.OSGi;
    import alternativa.osgi.service.console.Console;
    import alternativa.osgi.service.console.ClientLogConnector;
    import alternativa.osgi.service.console.IConsole;
@@ -30,7 +30,7 @@ package package_11
    
    public class name_16 implements class_16
    {
-      private var osgi:name_3;
+      private var osgi:OSGi;
       
       private var clientLog:name_160;
       
@@ -48,7 +48,7 @@ package package_11
       public function start(rootContainer:DisplayObjectContainer, urlParams:name_19, libraryInfos:Vector.<name_24>, connectionParameters:name_25, startupLogStrings:Vector.<String>) : void
       {
          var libraryInfo:name_24 = null;
-         this.osgi = name_3.name_8();
+         this.osgi = OSGi.name_8();
          this.method_191(urlParams,startupLogStrings);
          this.method_6(rootContainer.stage,urlParams);
          this.osgi.method_116(name_365,new name_361(urlParams,libraryInfos));
@@ -71,7 +71,7 @@ package package_11
          var s:String = null;
          var logChannelBufferSize:int = int(int(urlParams.method_25("log_channel_buffer_size","1000")));
          this.clientLog = new name_368(logChannelBufferSize);
-         name_3.clientLog = this.clientLog;
+         OSGi.clientLog = this.clientLog;
          this.osgi.method_116(name_160,this.clientLog);
          for each(s in startupLogStrings)
          {

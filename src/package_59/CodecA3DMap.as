@@ -7,13 +7,13 @@ package package_59
    import package_36.name_163;
    import package_36.name_442;
    import package_39.name_160;
-   import package_5.name_3;
+   import alternativa.osgi.OSGi;
    import package_53.A3DMap;
    import package_57.name_213;
    
    public class CodecA3DMap implements name_152
    {
-      public static var log:name_160 = name_160(name_3.name_8().name_30(name_160));
+      public static var log:name_160 = name_160(OSGi.name_8().name_30(name_160));
       
       private var var_322:name_152;
       
@@ -47,7 +47,7 @@ package package_59
       
       public function method_296(protocolBuffer:name_442) : Object
       {
-         log = name_160(name_3.name_8().name_30(name_160));
+         log = name_160(OSGi.name_8().name_30(name_160));
          var value_channel:uint = uint(this.var_322.method_296(protocolBuffer) as uint);
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.materials.A3DMap","channel",value_channel);
          var value_id:name_213 = this.var_252.method_296(protocolBuffer) as name_213;

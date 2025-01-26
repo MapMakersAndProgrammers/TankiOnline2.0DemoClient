@@ -7,12 +7,12 @@ package package_61
    import package_36.name_163;
    import package_36.name_442;
    import package_39.name_160;
-   import package_5.name_3;
+   import alternativa.osgi.OSGi;
    import package_55.A3D2AnimationClip;
    
    public class CodecA3D2AnimationClip implements name_152
    {
-      public static var log:name_160 = name_160(name_3.name_8().name_30(name_160));
+      public static var log:name_160 = name_160(OSGi.name_8().name_30(name_160));
       
       private var var_252:name_152;
       
@@ -40,7 +40,7 @@ package package_61
       
       public function method_296(protocolBuffer:name_442) : Object
       {
-         log = name_160(name_3.name_8().name_30(name_160));
+         log = name_160(OSGi.name_8().name_30(name_160));
          var value_id:int = int(this.var_252.method_296(protocolBuffer) as int);
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.animation.A3D2AnimationClip","id",value_id);
          var value_loop:Boolean = Boolean(this.var_306.method_296(protocolBuffer) as Boolean);

@@ -1,7 +1,7 @@
 package package_98
 {
    import package_18.name_44;
-   import package_5.name_3;
+   import alternativa.osgi.OSGi;
    import alternativa.osgi.service.console.IConsole;
    
    public class name_290
@@ -22,7 +22,7 @@ package package_98
       {
          super();
          this.renderSystem = param1;
-         var _loc2_:IConsole = IConsole(name_3.name_8().name_30(IConsole));
+         var _loc2_:IConsole = IConsole(OSGi.name_8().name_30(IConsole));
          _loc2_.name_45("light",this.method_469);
          this.var_471[LIGHT_TYPE_AMBIENT] = new name_558(param1);
          this.var_471[LIGHT_TYPE_DIRECTIONAL] = new name_559(param1);

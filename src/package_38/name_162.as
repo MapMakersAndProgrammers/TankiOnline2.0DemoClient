@@ -6,7 +6,7 @@ package package_38
    import package_36.name_442;
    import package_36.name_449;
    import package_39.name_160;
-   import package_5.name_3;
+   import alternativa.osgi.OSGi;
    
    public class name_162
    {
@@ -150,7 +150,7 @@ package package_38
       {
          if(clientLog == null)
          {
-            clientLog = name_160(name_3.name_8().name_30(name_160));
+            clientLog = name_160(OSGi.name_8().name_30(name_160));
          }
          return clientLog;
       }

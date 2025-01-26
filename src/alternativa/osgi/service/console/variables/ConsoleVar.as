@@ -1,6 +1,6 @@
 package alternativa.osgi.service.console.variables
 {
-   import package_5.name_3;
+   import alternativa.osgi.OSGi;
    import alternativa.osgi.service.console.IConsole;
    
    public class ConsoleVar
@@ -14,7 +14,7 @@ package alternativa.osgi.service.console.variables
          super();
          this.varName = varName;
          this.inputListener = inputListener;
-         var console:IConsole = IConsole(name_3.name_8().name_30(IConsole));
+         var console:IConsole = IConsole(OSGi.name_8().name_30(IConsole));
          if(console != null)
          {
             console.name_147(this);
@@ -28,7 +28,7 @@ package alternativa.osgi.service.console.variables
       
       public function destroy() : void
       {
-         var console:IConsole = IConsole(name_3.name_8().name_30(IConsole));
+         var console:IConsole = IConsole(OSGi.name_8().name_30(IConsole));
          if(console != null)
          {
             console.name_146(this.varName);

@@ -7,7 +7,7 @@ package package_74
    import package_42.name_184;
    import package_42.name_477;
    import package_45.name_182;
-   import package_5.name_3;
+   import alternativa.osgi.OSGi;
    import package_71.name_252;
    
    public class name_286 extends EntityComponent implements class_25, class_24, name_477
@@ -128,7 +128,7 @@ package package_74
       
       private function method_397() : name_160
       {
-         return name_160(name_3.name_8().name_30(name_160));
+         return name_160(OSGi.name_8().name_30(name_160));
       }
       
       public function method_395() : void

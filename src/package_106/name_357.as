@@ -1,13 +1,13 @@
 package package_106
 {
    import package_102.name_636;
-   import package_5.name_3;
+   import alternativa.osgi.OSGI;
    
    public class name_357 implements name_636
    {
-      private var osgi:name_3;
+      private var osgi:OSGI;
       
-      public function name_357(osgi:name_3)
+      public function name_357(osgi:OSGI)
       {
          super();
          this.osgi = osgi;

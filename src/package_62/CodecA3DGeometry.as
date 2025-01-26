@@ -6,7 +6,7 @@ package package_62
    import package_36.name_163;
    import package_36.name_442;
    import package_39.name_160;
-   import package_5.name_3;
+   import alternativa.osgi.OSGi;
    import package_54.A3DGeometry;
    import package_54.A3DIndexBuffer;
    import package_54.A3DVertexBuffer;
@@ -14,7 +14,7 @@ package package_62
    
    public class CodecA3DGeometry implements name_152
    {
-      public static var log:name_160 = name_160(name_3.name_8().name_30(name_160));
+      public static var log:name_160 = name_160(OSGi.name_8().name_30(name_160));
       
       private var var_252:name_152;
       
@@ -36,7 +36,7 @@ package package_62
       
       public function method_296(protocolBuffer:name_442) : Object
       {
-         log = name_160(name_3.name_8().name_30(name_160));
+         log = name_160(OSGi.name_8().name_30(name_160));
          var value_id:name_213 = this.var_252.method_296(protocolBuffer) as name_213;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.geometry.A3DGeometry","id",value_id);
          var value_indexBuffer:A3DIndexBuffer = this.var_275.method_296(protocolBuffer) as A3DIndexBuffer;

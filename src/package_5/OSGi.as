@@ -1,4 +1,4 @@
-package package_5
+package alternativa.osgi
 {
    import flash.utils.Dictionary;
    import flash.utils.getQualifiedClassName;
@@ -6,11 +6,11 @@ package package_5
    import package_31.name_202;
    import package_39.name_203;
    
-   public class name_3
+   public class OSGi
    {
       public static var clientLog:name_203;
       
-      private static var instance:name_3;
+      private static var instance:OSGi;
       
       private static const LOG_CHANNEL:String = "osgi";
       
@@ -20,7 +20,7 @@ package package_5
       
       private var var_51:Dictionary = new Dictionary();
       
-      public function name_3()
+      public function OSGi()
       {
          super();
          if(instance == null)
@@ -31,7 +31,7 @@ package package_5
          throw new Error("Only one instance of OSGi class is allowed");
       }
       
-      public static function name_8() : name_3
+      public static function name_8() : OSGi
       {
          return instance;
       }

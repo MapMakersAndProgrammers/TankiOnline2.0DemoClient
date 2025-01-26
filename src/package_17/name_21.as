@@ -42,18 +42,18 @@ package package_17
    import package_38.name_159;
    import package_38.name_162;
    import package_39.name_160;
-   import package_5.name_3;
+   import alternativa.osgi.OSGi;
    
    public class name_21 implements class_6
    {
-      public static var osgi:name_3;
+      public static var osgi:OSGi;
       
       public function name_21()
       {
          super();
       }
       
-      public function start(_osgi:name_3) : void
+      public function start(_osgi:OSGi) : void
       {
          var codec:name_152 = null;
          osgi = _osgi;
@@ -224,7 +224,7 @@ package package_17
          osgi.name_161(name_160,name_162,"clientLog");
       }
       
-      public function stop(osgi:name_3) : void
+      public function stop(osgi:OSGi) : void
       {
       }
    }

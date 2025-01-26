@@ -77,7 +77,7 @@ package package_14
    import package_49.VectorCodecA3D2TransformLevel1;
    import package_49.VectorCodecA3D2TransformLevel2;
    import package_49.VectorCodecA3D2TransformLevel3;
-   import package_5.name_3;
+   import alternativa.osgi.OSGi;
    import package_50.A3DBox;
    import package_50.A3DObject;
    import package_50.A3DSurface;
@@ -206,14 +206,14 @@ package package_14
    
    public class name_21 implements class_6
    {
-      public static var osgi:name_3;
+      public static var osgi:OSGi;
       
       public function name_21()
       {
          super();
       }
       
-      public function start(_osgi:name_3) : void
+      public function start(_osgi:OSGi) : void
       {
          var codec:name_152 = null;
          osgi = _osgi;
@@ -1039,7 +1039,7 @@ package package_14
          protocol.name_151(new name_149(new name_148(A3D2AmbientLight,true),true,1),new name_150(codec));
       }
       
-      public function stop(osgi:name_3) : void
+      public function stop(osgi:OSGi) : void
       {
       }
    }

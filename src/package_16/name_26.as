@@ -9,7 +9,7 @@ package package_16
    import package_33.name_158;
    import package_36.name_163;
    import package_38.name_159;
-   import package_5.name_3;
+   import alternativa.osgi.OSGi;
    import package_70.name_224;
    import package_70.name_225;
    import package_70.name_226;
@@ -27,7 +27,7 @@ package package_16
          super();
       }
       
-      public function start(osgi:name_3) : void
+      public function start(osgi:OSGi) : void
       {
          var protocol:name_163 = name_159.defaultInstance;
          osgi.method_116(name_163,protocol);
@@ -42,7 +42,7 @@ package package_16
          protocol.name_223(Number,new name_231());
       }
       
-      public function stop(osgi:name_3) : void
+      public function stop(osgi:OSGi) : void
       {
       }
    }

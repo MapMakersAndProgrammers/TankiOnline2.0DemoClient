@@ -14,7 +14,7 @@ package package_77
    import package_46.Matrix4;
    import package_46.name_194;
    import package_46.name_566;
-   import package_5.name_3;
+   import alternativa.osgi.OSGi;
    import package_71.class_30;
    import package_71.name_249;
    import package_71.name_252;
@@ -266,7 +266,7 @@ package package_77
       {
          var point:name_194 = null;
          var clientLog:name_160 = null;
-         clientLog = name_160(name_3.name_8().name_30(name_160));
+         clientLog = name_160(OSGi.name_8().name_30(name_160));
          clientLog.log("tank","LegacyTrackedChassisComponent::setBoundPoint() point %1: %2, %3, %4",index,x.toFixed(2),y.toFixed(2),z.toFixed(2));
          if(index < this.var_481.length)
          {

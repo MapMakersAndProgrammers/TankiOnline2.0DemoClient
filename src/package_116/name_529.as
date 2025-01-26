@@ -44,7 +44,7 @@ package package_116
    import package_48.A3D2SpotLight;
    import package_48.A3D2Surface;
    import package_48.A3D2Transform;
-   import package_5.name_3;
+   import alternativa.osgi.OSGi;
    import package_50.A3DBox;
    import package_50.A3DObject;
    import package_50.A3DSurface;
@@ -329,13 +329,13 @@ package package_116
          {
             return;
          }
-         if(name_3.name_8() != null)
+         if(OSGi.name_8() != null)
          {
-            this.protocol = name_159(name_3.name_8().name_30(name_163));
+            this.protocol = name_159(OSGi.name_8().name_30(name_163));
             return;
          }
-         name_3.clientLog = new DummyClientLog();
-         var osgi:name_3 = new name_3();
+         OSGi.clientLog = new DummyClientLog();
+         var osgi:OSGi = new OSGi();
          osgi.method_116(name_160,new DummyClientLog());
          new name_26().start(osgi);
          new package_14.name_21().start(osgi);

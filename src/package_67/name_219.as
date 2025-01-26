@@ -6,7 +6,7 @@ package package_67
    import package_36.name_163;
    import package_36.name_442;
    import package_39.name_160;
-   import package_5.name_3;
+   import alternativa.osgi.OSGi;
    import package_50.A3DBox;
    import package_50.A3DObject;
    import package_53.A3DImage;
@@ -17,7 +17,7 @@ package package_67
    
    public class name_219 implements name_152
    {
-      public static var log:name_160 = name_160(name_3.name_8().name_30(name_160));
+      public static var log:name_160 = name_160(OSGi.name_8().name_30(name_160));
       
       private var var_356:name_152;
       
@@ -48,7 +48,7 @@ package package_67
       
       public function method_296(protocolBuffer:name_442) : Object
       {
-         log = name_160(name_3.name_8().name_30(name_160));
+         log = name_160(OSGi.name_8().name_30(name_160));
          var value_boxes:Vector.<A3DBox> = this.var_356.method_296(protocolBuffer) as Vector.<A3DBox>;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.A3D","boxes",value_boxes);
          var value_geometries:Vector.<A3DGeometry> = this.var_419.method_296(protocolBuffer) as Vector.<A3DGeometry>;

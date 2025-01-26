@@ -1,18 +1,18 @@
 package package_102
 {
    import flash.utils.Dictionary;
-   import package_5.name_3;
+   import alternativa.osgi.OSGi;
    import alternativa.osgi.service.console.IConsole;
    
    public class name_359 implements name_355
    {
-      private var osgi:name_3;
+      private var osgi:OSGi;
       
       private var var_548:Dictionary;
       
       private var var_547:Vector.<name_636>;
       
-      public function name_359(osgi:name_3)
+      public function name_359(osgi:OSGi)
       {
          super();
          this.osgi = osgi;

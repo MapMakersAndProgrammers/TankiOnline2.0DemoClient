@@ -3,13 +3,13 @@ package package_31
    import flash.system.ApplicationDomain;
    import package_15.name_19;
    import package_39.name_160;
-   import package_5.name_3;
+   import alternativa.osgi.OSGi;
    
    public class name_366 implements name_202
    {
       private static var LOG_CHANNEL:String = "osgi";
       
-      private static var clientLog:name_160 = name_160(name_3.name_8().name_30(name_160));
+      private static var clientLog:name_160 = name_160(OSGi.name_8().name_30(name_160));
       
       private var _name:String;
       

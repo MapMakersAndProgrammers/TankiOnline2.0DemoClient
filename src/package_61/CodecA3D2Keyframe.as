@@ -7,12 +7,12 @@ package package_61
    import package_36.name_442;
    import package_39.name_160;
    import package_48.A3D2Transform;
-   import package_5.name_3;
+   import alternativa.osgi.OSGi;
    import package_55.A3D2Keyframe;
    
    public class CodecA3D2Keyframe implements name_152
    {
-      public static var log:name_160 = name_160(name_3.name_8().name_30(name_160));
+      public static var log:name_160 = name_160(OSGi.name_8().name_30(name_160));
       
       private var var_395:name_152;
       
@@ -31,7 +31,7 @@ package package_61
       
       public function method_296(protocolBuffer:name_442) : Object
       {
-         log = name_160(name_3.name_8().name_30(name_160));
+         log = name_160(OSGi.name_8().name_30(name_160));
          var value_time:Number = Number(this.var_395.method_296(protocolBuffer) as Number);
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.animation.A3D2Keyframe","time",value_time);
          var value_transform:A3D2Transform = this.var_249.method_296(protocolBuffer) as A3D2Transform;
