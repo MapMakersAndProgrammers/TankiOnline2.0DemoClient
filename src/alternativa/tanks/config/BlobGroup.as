@@ -1,12 +1,12 @@
-package package_13
+package alternativa.tanks.config
 {
    import flash.utils.ByteArray;
    
-   public class name_58
+   public class BlobGroup
    {
       private var blobs:Object;
       
-      public function name_58()
+      public function BlobGroup()
       {
          super();
          this.blobs = new Object();

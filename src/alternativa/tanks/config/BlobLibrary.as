@@ -1,10 +1,10 @@
-package package_13
+package alternativa.tanks.config
 {
-   public class name_174
+   public class BlobLibrary
    {
       private var var_199:Object;
       
-      public function name_174()
+      public function BlobLibrary()
       {
          super();
          this.var_199 = new Object();
@@ -21,12 +21,12 @@ package package_13
          return _loc1_;
       }
       
-      public function name_72(param1:String) : name_70
+      public function name_72(param1:String) : BlobCategory
       {
          return this.var_199[param1];
       }
       
-      public function method_326(param1:String, param2:name_70) : void
+      public function method_326(param1:String, param2:BlobCategory) : void
       {
          this.var_199[param1] = param2;
       }

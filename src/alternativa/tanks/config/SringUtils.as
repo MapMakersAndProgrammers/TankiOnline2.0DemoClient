@@ -1,8 +1,8 @@
-package package_13
+package alternativa.tanks.config
 {
-   public class name_459
+   public class StringUtils
    {
-      public function name_459()
+      public function StringUtils()
       {
          super();
       }

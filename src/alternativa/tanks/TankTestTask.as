@@ -13,7 +13,7 @@ package alternativa.tanks
    import package_10.name_54;
    import package_10.name_57;
    import package_100.name_301;
-   import package_13.name_18;
+   import alternativa.tanks.config.Config;
    import package_15.name_275;
    import package_15.name_55;
    import package_18.name_102;
@@ -124,7 +124,7 @@ package alternativa.tanks
       
       private static var log:name_160 = name_160(name_3.name_8().name_30(name_160));
       
-      private var config:name_18;
+      private var config:Config;
       
       private var gameKernel:name_17;
       
@@ -178,7 +178,7 @@ package alternativa.tanks
       
       private var var_80:name_293 = new name_293();
       
-      public function TankTestTask(param1:int, param2:name_18, param3:name_17, param4:name_20, param5:Preloader)
+      public function TankTestTask(param1:int, param2:Config, param3:name_17, param4:name_20, param5:Preloader)
       {
          super(param1);
          this.preloader = param5;
@@ -1164,7 +1164,7 @@ import flash.media.Sound;
 import flash.utils.ByteArray;
 import package_10.name_17;
 import package_101.name_304;
-import package_13.name_172;
+import alternativa.tanks.config.TextureLibrary;
 import package_15.name_275;
 import package_18.name_44;
 import package_28.name_129;
@@ -1286,11 +1286,11 @@ class WeaponHitEffects implements class_12
 
 class TextureResourceCache
 {
-   private var textureLibrary:name_172;
+   private var textureLibrary:TextureLibrary;
    
    private var cache:Object = {};
    
-   public function TextureResourceCache(param1:name_172)
+   public function TextureResourceCache(param1:TextureLibrary)
    {
       super();
       this.textureLibrary = param1;
@@ -1320,11 +1320,11 @@ class TextureResourceCache
 
 class MultiBitmapTextureResourceCache
 {
-   private var textureLibrary:name_172;
+   private var textureLibrary:TextureLibrary;
    
    private var cache:Object = {};
    
-   public function MultiBitmapTextureResourceCache(param1:name_172)
+   public function MultiBitmapTextureResourceCache(param1:TextureLibrary)
    {
       super();
       this.textureLibrary = param1;

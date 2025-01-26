@@ -1,14 +1,14 @@
-package package_13
+package alternativa.tanks.config
 {
    import package_40.class_7;
    
-   public class class_21 extends class_7
+   public class ResourceLoader extends class_7
    {
-      public var config:name_18;
+      public var config:Config;
       
       public var name:String;
       
-      public function class_21(param1:String, param2:name_18)
+      public function ResourceLoader(param1:String, param2:Config)
       {
          super();
          this.config = param2;

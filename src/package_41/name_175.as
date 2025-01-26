@@ -2,21 +2,21 @@ package package_41
 {
    import flash.events.Event;
    import flash.utils.ByteArray;
-   import package_13.name_18;
-   import package_13.name_459;
-   import package_13.name_58;
-   import package_13.name_70;
+   import alternativa.tanks.config.Config;
+   import alternativa.tanks.config.StringUtils;
+   import alternativa.tanks.config.BlobGroup;
+   import alternativa.tanks.config.BlobCategory;
    import package_40.class_7;
    import package_40.name_169;
    import package_40.name_170;
    
    public class name_175 extends class_7
    {
-      private var config:name_18;
+      private var config:Config;
       
       private var var_34:name_170;
       
-      public function name_175(param1:name_18)
+      public function name_175(param1:Config)
       {
          super();
          this.config = param1;
@@ -39,7 +39,7 @@ package package_41
             for each(_loc3_ in _loc1_.elements("blobs-group"))
             {
                _loc4_ = _loc3_.@id;
-               _loc5_ = name_459.name_460(_loc3_.@baseUrl);
+               _loc5_ = StringUtils.name_460(_loc3_.@baseUrl);
                for each(_loc6_ in _loc3_.elements("blob"))
                {
                   _loc7_ = _loc6_.@id;
@@ -60,16 +60,16 @@ package package_41
       
       public function method_328(param1:String, param2:String, param3:String, param4:ByteArray) : void
       {
-         var _loc5_:name_70 = this.config.name_68.name_72(param1);
+         var _loc5_:BlobCategory = this.config.name_68.name_72(param1);
          if(_loc5_ == null)
          {
-            _loc5_ = new name_70();
+            _loc5_ = new BlobCategory();
             this.config.name_68.method_326(param1,_loc5_);
          }
-         var _loc6_:name_58 = _loc5_.name_62(param2);
+         var _loc6_:BlobGroup = _loc5_.name_62(param2);
          if(_loc6_ == null)
          {
-            _loc6_ = new name_58();
+            _loc6_ = new BlobGroup();
             _loc5_.method_214(param2,_loc6_);
          }
          _loc6_.method_218(param3,param4);

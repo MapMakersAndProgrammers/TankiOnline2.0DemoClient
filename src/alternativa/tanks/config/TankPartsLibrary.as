@@ -1,4 +1,4 @@
-package package_13
+package alternativa.tanks.config
 {
    import flash.display.BitmapData;
    import flash.events.Event;
@@ -11,7 +11,7 @@ package package_13
    import package_71.name_249;
    import package_71.name_333;
    
-   public class name_176 extends class_21
+   public class TankPartsLibrary extends ResourceLoader
    {
       private var var_196:Vector.<name_333>;
       
@@ -23,7 +23,7 @@ package package_13
       
       private var var_195:name_462;
       
-      public function name_176(param1:name_18)
+      public function TankPartsLibrary(param1:Config)
       {
          super("Tank parts library",param1);
       }
@@ -40,12 +40,12 @@ package package_13
       
       public function name_353(param1:String) : name_249
       {
-         return this.method_316(param1,this.var_196) as name_249;
+         return this.findPartByID(param1,this.var_196) as name_249;
       }
       
       public function name_350(param1:String) : int
       {
-         return this.method_317(param1,this.var_196);
+         return this.getPartIndex(param1,this.var_196);
       }
       
       public function get name_302() : int
@@ -60,12 +60,12 @@ package package_13
       
       public function name_331(param1:String) : name_234
       {
-         return this.method_316(param1,this.var_197) as name_234;
+         return this.findPartByID(param1,this.var_197) as name_234;
       }
       
       public function name_338(param1:String) : int
       {
-         return this.method_317(param1,this.var_197);
+         return this.getPartIndex(param1,this.var_197);
       }
       
       public function get method_325() : int
@@ -80,10 +80,10 @@ package package_13
       
       override public function run() : void
       {
-         this.method_323();
+         this.loadHulls();
       }
       
-      private function method_316(param1:String, param2:Vector.<name_333>) : name_333
+      private function findPartByID(param1:String, param2:Vector.<name_333>) : name_333
       {
          var _loc3_:name_333 = null;
          for each(_loc3_ in param2)
@@ -96,7 +96,7 @@ package package_13
          return null;
       }
       
-      private function method_317(param1:String, param2:Vector.<name_333>) : int
+      private function getPartIndex(param1:String, param2:Vector.<name_333>) : int
       {
          var _loc4_:name_333 = null;
          var _loc3_:int = 0;
@@ -112,55 +112,55 @@ package package_13
          return -1;
       }
       
-      private function method_323() : void
+      private function loadHulls() : void
       {
          this.var_194 = new name_461();
-         this.var_194.addEventListener(Event.COMPLETE,this.method_321);
-         this.var_194.load(this.method_320(),config.xml.tankParts.hull,new name_463());
+         this.var_194.addEventListener(Event.COMPLETE,this.onHullsLoadingComplete);
+         this.var_194.load(this.getBaseUrl(),config.xml.tankParts.hull,new name_463());
       }
       
-      private function method_321(param1:Event) : void
+      private function onHullsLoadingComplete(param1:Event) : void
       {
          dispatchEvent(new name_169(name_169.TASK_PROGRESS,1,3));
-         this.var_194.removeEventListener(Event.COMPLETE,this.method_321);
+         this.var_194.removeEventListener(Event.COMPLETE,this.onHullsLoadingComplete);
          this.var_196 = this.var_194.parts;
-         this.method_324();
+         this.loadTurrets();
       }
       
-      private function method_324() : void
+      private function loadTurrets() : void
       {
-         this.var_194.addEventListener(Event.COMPLETE,this.method_319);
-         this.var_194.load(this.method_320(),config.xml.tankParts.turret,new name_464());
+         this.var_194.addEventListener(Event.COMPLETE,this.onTurretsLoadingComplete);
+         this.var_194.load(this.getBaseUrl(),config.xml.tankParts.turret,new name_464());
       }
       
-      private function method_319(param1:Event) : void
+      private function onTurretsLoadingComplete(param1:Event) : void
       {
          dispatchEvent(new name_169(name_169.TASK_PROGRESS,1,3));
-         this.var_194.removeEventListener(Event.COMPLETE,this.method_319);
+         this.var_194.removeEventListener(Event.COMPLETE,this.onTurretsLoadingComplete);
          this.var_197 = this.var_194.parts;
          this.var_194 = null;
-         this.method_322();
+         this.loadColormaps();
       }
       
-      private function method_322() : void
+      private function loadColormaps() : void
       {
          this.var_195 = new name_462();
-         this.var_195.addEventListener(Event.COMPLETE,this.method_318);
-         this.var_195.load(name_459.name_460(config.xml.colorings.@baseUrl),config.xml.colorings.image);
+         this.var_195.addEventListener(Event.COMPLETE,this.onColormapsLoadingComplete);
+         this.var_195.load(StringUtils.name_460(config.xml.colorings.@baseUrl),config.xml.colorings.image);
       }
       
-      private function method_318(param1:Event) : void
+      private function onColormapsLoadingComplete(param1:Event) : void
       {
          dispatchEvent(new name_169(name_169.TASK_PROGRESS,1,3));
          this.var_198 = this.var_195.images;
-         this.var_195.removeEventListener(Event.COMPLETE,this.method_318);
+         this.var_195.removeEventListener(Event.COMPLETE,this.onColormapsLoadingComplete);
          this.var_195 = null;
          method_102();
       }
       
-      private function method_320() : String
+      private function getBaseUrl() : String
       {
-         return name_459.name_460(config.xml.tankParts.@baseUrl);
+         return StringUtils.name_460(config.xml.tankParts.@baseUrl);
       }
    }
 }

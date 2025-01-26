@@ -1,11 +1,11 @@
-package package_13
+package alternativa.tanks.config
 {
    import flash.display.BitmapData;
    import flash.events.Event;
    import package_40.name_169;
    import package_40.name_170;
    
-   public class name_172 extends class_21
+   public class TextureLibrary extends ResourceLoader
    {
       private var textures:Object = {};
       
@@ -13,14 +13,14 @@ package package_13
       
       private var var_34:name_170;
       
-      public function name_172(param1:name_18)
+      public function TextureLibrary(param1:Config)
       {
          super("Texture library loader",param1);
       }
       
       public function name_244(param1:String) : Object
       {
-         return this.textures[param1] || this.method_311();
+         return this.textures[param1] || this.getDummyTexture();
       }
       
       public function method_310(param1:String, param2:Object) : void
@@ -32,29 +32,29 @@ package package_13
       {
          var _loc3_:XML = null;
          var _loc1_:XML = config.xml.textures[0];
-         var _loc2_:String = name_459.name_460(_loc1_.@baseUrl);
+         var _loc2_:String = StringUtils.name_460(_loc1_.@baseUrl);
          this.var_34 = new name_170();
          for each(_loc3_ in _loc1_.texture)
          {
             this.var_34.addTask(new TextureLoader(_loc3_.@id,_loc2_ + _loc3_.@url,this));
          }
-         this.var_34.addEventListener(name_169.TASK_COMPLETE,this.method_312);
-         this.var_34.addEventListener(Event.COMPLETE,this.method_107);
+         this.var_34.addEventListener(name_169.TASK_COMPLETE,this.onTaskComplete);
+         this.var_34.addEventListener(Event.COMPLETE,this.onSequenceComplete);
          this.var_34.run();
       }
       
-      private function method_312(param1:name_169) : void
+      private function onTaskComplete(param1:name_169) : void
       {
          dispatchEvent(new name_169(name_169.TASK_PROGRESS,1,this.var_34.length));
       }
       
-      private function method_107(param1:Event) : void
+      private function onSequenceComplete(param1:Event) : void
       {
          this.var_34 = null;
          method_102();
       }
       
-      private function method_311() : BitmapData
+      private function getDummyTexture() : BitmapData
       {
          var _loc1_:int = 0;
          var _loc2_:uint = 0;
@@ -98,13 +98,13 @@ class TextureLoader extends class_7
    
    private var url:String;
    
-   private var library:name_172;
+   private var library:TextureLibrary;
    
    private var loader:Loader;
    
    private var urlLoader:URLLoader;
    
-   public function TextureLoader(param1:String, param2:String, param3:name_172)
+   public function TextureLoader(param1:String, param2:String, param3:TextureLibrary)
    {
       super();
       this.id = param1;

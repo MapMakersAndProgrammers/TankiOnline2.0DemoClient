@@ -18,7 +18,7 @@ package
    import package_10.name_17;
    import package_11.name_16;
    import package_12.name_15;
-   import package_13.name_18;
+   import alternativa.tanks.config.Config;
    import package_14.name_21;
    import package_15.name_19;
    import package_16.name_26;
@@ -48,7 +48,7 @@ package
    {
       public static var testTask:TankTestTask;
       
-      private var config:name_18;
+      private var config:Config;
       
       private var gameKernel:name_17;
       
@@ -201,7 +201,7 @@ package
       private function loadConfig(param1:String) : void
       {
          addChild(this.preloader);
-         this.config = new name_18();
+         this.config = new Config();
          this.config.addEventListener(Event.COMPLETE,this.onConfigLoadingComplete);
          this.config.load(param1,this.preloader);
       }

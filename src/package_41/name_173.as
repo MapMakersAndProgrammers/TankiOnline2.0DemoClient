@@ -2,19 +2,19 @@ package package_41
 {
    import flash.events.Event;
    import flash.media.Sound;
-   import package_13.class_21;
-   import package_13.name_18;
-   import package_13.name_459;
+   import alternativa.tanks.config.ResourceLoader;
+   import alternativa.tanks.config.Config;
+   import alternativa.tanks.config.StringUtils;
    import package_40.name_169;
    import package_40.name_170;
    
-   public class name_173 extends class_21
+   public class name_173 extends ResourceLoader
    {
       private var sounds:Object = {};
       
       private var var_34:name_170;
       
-      public function name_173(param1:name_18)
+      public function name_173(param1:Config)
       {
          super("Sounds library loader",param1);
       }
@@ -38,7 +38,7 @@ package package_41
             return;
          }
          var _loc1_:XML = config.xml.sounds[0];
-         var _loc2_:String = name_459.name_460(_loc1_.@baseUrl);
+         var _loc2_:String = StringUtils.name_460(_loc1_.@baseUrl);
          this.var_34 = new name_170();
          for each(_loc3_ in _loc1_.sound)
          {

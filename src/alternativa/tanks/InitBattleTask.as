@@ -4,9 +4,9 @@ package alternativa.tanks
    import package_10.class_1;
    import package_10.name_17;
    import package_10.name_54;
-   import package_13.name_18;
-   import package_13.name_58;
-   import package_13.name_70;
+   import alternativa.tanks.config.Config;
+   import alternativa.tanks.config.BlobGroup;
+   import alternativa.tanks.config.BlobCategory;
    import package_15.name_55;
    import package_18.name_44;
    import package_19.name_53;
@@ -17,13 +17,13 @@ package alternativa.tanks
    {
       private var gameKernel:name_17;
       
-      private var config:name_18;
+      private var config:Config;
       
       private var container:DisplayObjectContainer;
       
       private var preloader:Preloader;
       
-      public function InitBattleTask(param1:name_17, param2:name_18, param3:DisplayObjectContainer, param4:Preloader)
+      public function InitBattleTask(param1:name_17, param2:Config, param3:DisplayObjectContainer, param4:Preloader)
       {
          super(name_17.EVENT_SYSTEM_PRIORITY + 1);
          this.gameKernel = param1;
@@ -50,9 +50,9 @@ package alternativa.tanks
       private function createMapEntity() : name_54
       {
          var _loc2_:name_55 = null;
-         var _loc6_:name_58 = null;
+         var _loc6_:BlobGroup = null;
          var _loc7_:String = null;
-         var _loc3_:name_70 = this.config.name_68.name_72("skybox");
+         var _loc3_:BlobCategory = this.config.name_68.name_72("skybox");
          if(_loc3_ != null)
          {
             _loc2_ = new name_55();

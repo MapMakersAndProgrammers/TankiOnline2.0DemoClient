@@ -1,10 +1,10 @@
-package package_13
+package alternativa.tanks.config
 {
-   public class name_70
+   public class BlobCategory
    {
       private var groups:Object;
       
-      public function name_70()
+      public function BlobCategory()
       {
          super();
          this.groups = new Object();
@@ -21,12 +21,12 @@ package package_13
          return _loc1_;
       }
       
-      public function name_62(param1:String) : name_58
+      public function name_62(param1:String) : BlobGroup
       {
          return this.groups[param1];
       }
       
-      public function method_214(param1:String, param2:name_58) : void
+      public function method_214(param1:String, param2:BlobGroup) : void
       {
          this.groups[param1] = param2;
       }
