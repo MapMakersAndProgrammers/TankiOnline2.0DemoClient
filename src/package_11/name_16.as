@@ -24,11 +24,11 @@ package package_11
    import alternativa.osgi.service.console.Console;
    import alternativa.osgi.service.console.ClientLogConnector;
    import alternativa.osgi.service.console.IConsole;
-   import package_8.class_16;
-   import package_8.name_24;
-   import package_8.name_25;
+   import alternativa.startup.IClientConfigurator;
+   import alternativa.startup.LibraryInfo;
+   import alternativa.startup.ConnectionParameters;
    
-   public class name_16 implements class_16
+   public class name_16 implements IClientConfigurator
    {
       private var osgi:OSGi;
       
@@ -45,9 +45,9 @@ package package_11
          super();
       }
       
-      public function start(rootContainer:DisplayObjectContainer, urlParams:name_19, libraryInfos:Vector.<name_24>, connectionParameters:name_25, startupLogStrings:Vector.<String>) : void
+      public function start(rootContainer:DisplayObjectContainer, urlParams:name_19, libraryInfos:Vector.<LibraryInfo>, connectionParameters:ConnectionParameters, startupLogStrings:Vector.<String>) : void
       {
-         var libraryInfo:name_24 = null;
+         var libraryInfo:LibraryInfo = null;
          this.osgi = OSGi.name_8();
          this.method_191(urlParams,startupLogStrings);
          this.method_6(rootContainer.stage,urlParams);

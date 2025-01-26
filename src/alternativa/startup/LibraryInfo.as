@@ -1,9 +1,9 @@
-package package_8
+package alternativa.startup
 {
    import flash.display.Loader;
    import package_15.name_19;
    
-   public class name_24
+   public class LibraryInfo
    {
       public var name:String;
       
@@ -17,7 +17,7 @@ package package_8
       
       public var size:int;
       
-      public function name_24(name:String, resourceId:String, resourceVersion:String, manifestProperties:name_19, size:int)
+      public function LibraryInfo(name:String, resourceId:String, resourceVersion:String, manifestProperties:name_19, size:int)
       {
          super();
          this.name = name;

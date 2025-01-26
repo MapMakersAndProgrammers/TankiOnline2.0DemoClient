@@ -1,6 +1,6 @@
-package package_8
+package alternativa.startup
 {
-   public class name_25
+   public class ConnectionParameters
    {
       public var serverAddress:String;
       
@@ -8,7 +8,7 @@ package package_8
       
       public var resourcesRootURL:String;
       
-      public function name_25(serverAddress:String, serverPorts:Vector.<int>, resourcesRootURL:String)
+      public function ConnectionParameters(serverAddress:String, serverPorts:Vector.<int>, resourcesRootURL:String)
       {
          super();
          this.serverAddress = serverAddress;

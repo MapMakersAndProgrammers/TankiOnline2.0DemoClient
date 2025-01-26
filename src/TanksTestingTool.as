@@ -38,8 +38,8 @@ package
    import alternativa.osgi.service.console.IConsole;
    import alternativa.tanks.InitBattleTask;
    import alternativa.tanks.TankTestTask;
-   import package_8.name_24;
-   import package_8.name_25;
+   import alternativa.startup.LibraryInfo;
+   import alternativa.startup.ConnectionParameters;
    import package_9.name_20;
    import package_9.name_23;
    
@@ -184,7 +184,7 @@ package
       {
          new OSGi();
          this.var_2 = new name_16();
-         this.var_2.start(this,new name_19(loaderInfo.parameters),new Vector.<name_24>(),new name_25(null,null,null),new Vector.<String>());
+         this.var_2.start(this,new name_19(loaderInfo.parameters),new Vector.<LibraryInfo>(),new ConnectionParameters(null,null,null),new Vector.<String>());
          new name_26().start(OSGi.name_8());
          new package_17.name_21().start(OSGi.name_8());
          new package_14.name_21().start(OSGi.name_8());

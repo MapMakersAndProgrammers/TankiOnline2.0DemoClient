@@ -1,6 +1,6 @@
 package package_103
 {
-   import package_8.name_24;
+   import alternativa.startup.LibraryInfo;
    
    public interface name_365
    {
@@ -8,7 +8,7 @@ package package_103
       
       function get method_607() : Vector.<String>;
       
-      function get startupLibraryInfos() : Vector.<name_24>;
+      function get startupLibraryInfos() : Vector.<LibraryInfo>;
       
       function get method_609() : Boolean;
    }
