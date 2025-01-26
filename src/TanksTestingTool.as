@@ -21,7 +21,7 @@ package
    import alternativa.tanks.config.Config;
    import platform.client.a3d.osgi.Activator;
    import package_15.name_19;
-   import package_16.name_26;
+   import alternativa.protocol.osgi.ProtocolActivator;
    import package_17.Activator;
    import package_18.name_44;
    import package_2.name_2;
@@ -185,7 +185,7 @@ package
          new OSGi();
          this.var_2 = new ClientConfigurator();
          this.var_2.start(this,new name_19(loaderInfo.parameters),new Vector.<LibraryInfo>(),new ConnectionParameters(null,null,null),new Vector.<String>());
-         new name_26().start(OSGi.name_8());
+         new ProtocolActivator().start(OSGi.name_8());
          new package_17.Activator().start(OSGi.name_8());
          new platform.client.a3d.osgi.Activator().start(OSGi.name_8());
       }

@@ -1,4 +1,4 @@
-package package_16
+package alternativa.protocol.osgi
 {
    import package_31.class_6;
    import package_33.name_153;
@@ -20,9 +20,9 @@ package package_16
    import package_70.name_231;
    import package_70.name_232;
    
-   public class name_26 implements class_6
+   public class ProtocolActivator implements class_6
    {
-      public function name_26()
+      public function ProtocolActivator()
       {
          super();
       }
