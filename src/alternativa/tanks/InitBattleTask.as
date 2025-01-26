@@ -1,4 +1,4 @@
-package package_7
+package alternativa.tanks
 {
    import flash.display.DisplayObjectContainer;
    import package_10.class_1;
@@ -13,7 +13,7 @@ package package_7
    import package_2.A3DMapComponent;
    import package_9.name_20;
    
-   public class name_14 extends class_1
+   public class InitBattleTask extends class_1
    {
       private var gameKernel:name_17;
       
@@ -23,7 +23,7 @@ package package_7
       
       private var preloader:Preloader;
       
-      public function name_14(param1:name_17, param2:name_18, param3:DisplayObjectContainer, param4:Preloader)
+      public function InitBattleTask(param1:name_17, param2:name_18, param3:DisplayObjectContainer, param4:Preloader)
       {
          super(name_17.EVENT_SYSTEM_PRIORITY + 1);
          this.gameKernel = param1;
@@ -40,14 +40,14 @@ package package_7
          _loc2_.name_75(0,0,1000);
          _loc2_.name_76(0,2000,0);
          this.container.addChild(_loc1_.name_71());
-         var _loc3_:name_54 = this.method_23();
+         var _loc3_:name_54 = this.createMapEntity();
          this.gameKernel.name_73(_loc3_);
          this.preloader.name_69(0.75);
-         var_4.addTask(new name_43(name_17.INPUT_SYSTEM_PRIORITY + 1,this.config,this.gameKernel,_loc2_,this.preloader));
+         var_4.addTask(new TankTestTask(name_17.INPUT_SYSTEM_PRIORITY + 1,this.config,this.gameKernel,_loc2_,this.preloader));
          var_4.killTask(this);
       }
       
-      private function method_23() : name_54
+      private function createMapEntity() : name_54
       {
          var _loc2_:name_55 = null;
          var _loc6_:name_58 = null;

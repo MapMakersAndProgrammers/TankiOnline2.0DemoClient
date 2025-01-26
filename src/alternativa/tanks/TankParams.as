@@ -1,10 +1,10 @@
-package package_7
+package alternativa.tanks
 {
    import package_40.name_564;
    
-   public class name_238
+   public class TankParams
    {
-      public static const defaultTankParams:name_238 = method_472();
+      public static const defaultTankParams:TankParams = getDefaultTankParams();
       
       public var x:Number = 0;
       
@@ -26,14 +26,14 @@ package package_7
       
       public var isUser:Boolean = false;
       
-      public function name_238()
+      public function TankParams()
       {
          super();
       }
       
-      private static function method_472() : name_238
+      private static function getDefaultTankParams() : TankParams
       {
-         var _loc1_:name_238 = new name_238();
+         var _loc1_:TankParams = new TankParams();
          _loc1_.y = 1000;
          _loc1_.z = 1000;
          _loc1_.isUser = true;
@@ -42,9 +42,9 @@ package package_7
          return _loc1_;
       }
       
-      public static function name_317(param1:XML, param2:Boolean = false) : name_238
+      public static function name_317(param1:XML, param2:Boolean = false) : TankParams
       {
-         var _loc3_:name_238 = new name_238();
+         var _loc3_:TankParams = new TankParams();
          _loc3_.isUser = param2;
          var _loc4_:Array = name_564.name_565(XMLList(param1.xyz)[0]);
          if(_loc4_.length == 3)
@@ -66,9 +66,9 @@ package package_7
          return _loc3_;
       }
       
-      public static function name_322(param1:Array) : name_238
+      public static function name_322(param1:Array) : TankParams
       {
-         return new name_238();
+         return new TankParams();
       }
    }
 }

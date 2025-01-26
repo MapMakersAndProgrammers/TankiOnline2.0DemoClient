@@ -1,1 +1,2 @@
-package_1 alternativa/osgi/service/console/variables
+package_1 alternativa.osgi.service.console.variables
+package_7 alternativa.tanks

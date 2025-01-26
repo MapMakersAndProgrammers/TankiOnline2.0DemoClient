@@ -1,4 +1,4 @@
-package package_7
+package alternativa.tanks
 {
    import flash.display.BitmapData;
    import flash.utils.ByteArray;
@@ -9,7 +9,7 @@ package package_7
    import package_28.name_93;
    import package_79.name_326;
    
-   public class name_289 implements class_27
+   public class TextureResourceService implements ITextureResourceService
    {
       public var gameKernel:name_17;
       
@@ -23,7 +23,7 @@ package package_7
       
       private var var_456:Dictionary;
       
-      public function name_289(param1:name_17)
+      public function TextureResourceService(param1:name_17)
       {
          super();
          this.gameKernel = param1;
@@ -33,7 +33,7 @@ package package_7
       
       public function name_254(param1:ByteArray) : name_241
       {
-         var _loc2_:name_241 = this.method_437(param1,true);
+         var _loc2_:name_241 = this.getCompressedResourceSafe(param1,true);
          if(!_loc2_.isUploaded)
          {
             this.gameKernel.name_5().method_29(_loc2_);
@@ -43,7 +43,7 @@ package package_7
       
       public function method_435(param1:ByteArray) : void
       {
-         var _loc2_:name_241 = this.method_437(param1,false);
+         var _loc2_:name_241 = this.getCompressedResourceSafe(param1,false);
          if(_loc2_ != null)
          {
             this.gameKernel.name_5().method_28(_loc2_);
@@ -52,21 +52,21 @@ package package_7
       
       public function name_320(param1:BitmapData) : name_93
       {
-         var _loc2_:name_93 = this.method_436(param1,true);
+         var _loc2_:name_93 = this.getBitmapResourceSafe(param1,true);
          this.gameKernel.name_5().method_29(_loc2_);
          return _loc2_;
       }
       
       public function method_434(param1:BitmapData) : void
       {
-         var _loc2_:name_93 = this.method_436(param1,false);
+         var _loc2_:name_93 = this.getBitmapResourceSafe(param1,false);
          if(_loc2_ != null)
          {
             this.gameKernel.name_5().method_28(_loc2_);
          }
       }
       
-      private function method_437(param1:ByteArray, param2:Boolean) : name_241
+      private function getCompressedResourceSafe(param1:ByteArray, param2:Boolean) : name_241
       {
          var _loc3_:name_241 = this.var_457[param1];
          if(_loc3_ == null && param2)
@@ -77,7 +77,7 @@ package package_7
          return _loc3_;
       }
       
-      private function method_436(param1:BitmapData, param2:Boolean) : name_93
+      private function getBitmapResourceSafe(param1:BitmapData, param2:Boolean) : name_93
       {
          var _loc3_:name_93 = this.var_456[param1];
          if(_loc3_ == null && param2)

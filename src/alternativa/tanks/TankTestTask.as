@@ -1,4 +1,4 @@
-package package_7
+package alternativa.tanks
 {
    import alternativa.engine3d.alternativa3d;
    import alternativa.tanks.game.usertitle.component.name_245;
@@ -110,7 +110,7 @@ package package_7
    
    use namespace alternativa3d;
    
-   public class name_43 extends class_1 implements class_11
+   public class TankTestTask extends class_1 implements class_11
    {
       private static const DEAD_TEXTURE_ID:String = "dead";
       
@@ -168,7 +168,7 @@ package package_7
       
       private var var_64:MultiBitmapTextureResourceCache;
       
-      private var var_65:name_289;
+      private var var_65:TextureResourceService;
       
       private var var_71:name_294;
       
@@ -178,7 +178,7 @@ package package_7
       
       private var var_80:name_293 = new name_293();
       
-      public function name_43(param1:int, param2:name_18, param3:name_17, param4:name_20, param5:Preloader)
+      public function TankTestTask(param1:int, param2:name_18, param3:name_17, param4:name_20, param5:Preloader)
       {
          super(param1);
          this.preloader = param5;
@@ -192,14 +192,14 @@ package package_7
          this.var_68 = param4;
          this.var_61 = new TextureResourceCache(param2.var_37);
          this.var_64 = new MultiBitmapTextureResourceCache(param2.var_37);
-         this.var_65 = new name_289(param3);
+         this.var_65 = new TextureResourceService(param3);
          TanksTestingTool.testTask = this;
       }
       
       override public function start() : void
       {
          var _loc1_:name_87 = name_87(var_4.getTaskInterface(name_87));
-         _loc1_.name_94(name_83.KEY_DOWN,this.method_15);
+         _loc1_.name_94(name_83.KEY_DOWN,this.onKeyDown);
          var _loc2_:name_56 = name_56(var_4.getTaskInterface(name_56));
          _loc2_.addEventListener(name_253.TANK_CLICK,this);
          this.var_67 = new name_299(this.gameKernel.name_5().name_27(),this.gameKernel.method_112().name_246().collisionDetector,name_257.STATIC,_loc1_);
@@ -208,13 +208,13 @@ package package_7
          this.var_75 = new name_285();
          this.gameKernel.stage.addChild(this.var_75);
          var _loc3_:name_4 = name_4(name_3.name_8().name_30(name_4));
-         _loc3_.name_45("addtank",this.method_166);
+         _loc3_.name_45("addtank",this.consoleAddTankHandler);
          var _loc4_:XMLList = this.config.xml.elements("console-commands");
          if(_loc4_.length() > 0)
          {
-            this.method_159(_loc3_,this.config.xml.elements("console-commands")[0].toString());
+            this.executeConsoleCommands(_loc3_,this.config.xml.elements("console-commands")[0].toString());
          }
-         _loc3_.name_45("lstanks",this.method_157);
+         _loc3_.name_45("lstanks",this.listTanks);
          this.var_71 = new name_294(name_17.RENDER_SYSTEM_PRIORITY + 1,10,this.gameKernel.stage,0,0);
          this.gameKernel.addTask(this.var_71);
          this.gameKernel.name_61().addEventListener(name_57.MAP_COMPLETE,this);
@@ -225,7 +225,7 @@ package package_7
          return this.var_62 >= 0 ? this.tanks[this.var_62] : null;
       }
       
-      private function method_147(param1:int) : void
+      private function selectTank(param1:int) : void
       {
          if(param1 >= 0 && param1 < this.tanks.length)
          {
@@ -250,15 +250,15 @@ package package_7
       {
          if(this.tanks.length > 0)
          {
-            this.method_147((this.var_62 + 1) % this.tanks.length);
+            this.selectTank((this.var_62 + 1) % this.tanks.length);
          }
          if(this.var_68 != this.var_67)
          {
-            this.name_63(this.var_67);
+            this.setCameraController(this.var_67);
          }
       }
       
-      private function method_173() : void
+      private function selectPrevTank() : void
       {
          var _loc1_:int = 0;
          if(this.tanks.length > 0)
@@ -268,11 +268,11 @@ package package_7
             {
                _loc1_ = this.tanks.length - 1;
             }
-            this.method_147(_loc1_);
+            this.selectTank(_loc1_);
          }
       }
       
-      private function method_159(param1:name_4, param2:String) : void
+      private function executeConsoleCommands(param1:name_4, param2:String) : void
       {
          var _loc4_:String = null;
          var _loc3_:Array = param2.split(/\r*\n/);
@@ -282,12 +282,12 @@ package package_7
          }
       }
       
-      private function method_166(param1:name_4, param2:Array) : void
+      private function consoleAddTankHandler(param1:name_4, param2:Array) : void
       {
-         this.method_149(name_238.name_322(param2));
+         this.addTank(TankParams.name_322(param2));
       }
       
-      private function method_15(param1:name_83, param2:uint) : void
+      private function onKeyDown(param1:name_83, param2:uint) : void
       {
          var _loc3_:name_44 = null;
          var _loc4_:int = 0;
@@ -300,7 +300,7 @@ package package_7
                break;
             case Keyboard.M:
             case Keyboard.BACKSLASH:
-               this.method_165();
+               this.switchCameraController();
                break;
             case Keyboard.N:
                if(this.var_68 == this.freeCameraController)
@@ -309,14 +309,14 @@ package package_7
                   break;
                }
                name_20.targeted = true;
-               this.name_63(this.freeCameraController);
+               this.setCameraController(this.freeCameraController);
                break;
             case Keyboard.ENTER:
                this.include();
          }
       }
       
-      private function method_188() : void
+      private function jump() : void
       {
          var _loc1_:name_237 = null;
          var _loc2_:name_271 = null;
@@ -328,7 +328,7 @@ package package_7
          }
       }
       
-      private function method_182() : void
+      private function toggleTankTitle() : void
       {
          var _loc2_:name_245 = null;
          var _loc1_:name_54 = this.activeTank;
@@ -346,17 +346,17 @@ package package_7
          }
       }
       
-      private function method_184() : void
+      private function createRandomBattleMessage() : void
       {
          this.var_71.name_305("Message: " + Math.random(),name_275.random());
       }
       
-      private function method_186() : Boolean
+      private function controlKeyPressed() : Boolean
       {
          return this.gameKernel.name_66().name_346(Keyboard.CONTROL);
       }
       
-      private function method_177(param1:int, param2:Boolean) : void
+      private function startIndicator(param1:int, param2:Boolean) : void
       {
          var _loc3_:name_245 = null;
          if(this.activeTank != null)
@@ -373,7 +373,7 @@ package package_7
          }
       }
       
-      private function method_181() : void
+      private function createRandomAnimatedSprite() : void
       {
          var _loc3_:name_129 = null;
          var _loc4_:Vector.<class_4> = null;
@@ -400,7 +400,7 @@ package package_7
          _loc2_.method_37(_loc6_);
       }
       
-      private function method_178() : void
+      private function createThunderShotEffect() : void
       {
          var _loc1_:name_129 = this.var_61.getResource("smoky/diffuse");
          var _loc2_:name_129 = this.var_61.getResource("smoky/opacity");
@@ -412,41 +412,41 @@ package package_7
          _loc3_.method_37(_loc4_);
       }
       
-      private function method_179() : void
+      private function selectPrevTurret() : void
       {
          --this.var_66;
          if(this.var_66 < 0)
          {
             this.var_66 += this.config.tankParts.name_302;
          }
-         this.method_150();
+         this.rebuildActiveTank();
       }
       
-      private function method_172() : void
+      private function selectNextTurret() : void
       {
          this.var_66 = (this.var_66 + 1) % this.config.tankParts.name_302;
-         this.method_150();
+         this.rebuildActiveTank();
       }
       
-      private function method_170() : void
+      private function selectPrevHull() : void
       {
          --this.var_63;
          if(this.var_63 < 0)
          {
             this.var_63 += this.config.tankParts.name_300;
          }
-         this.method_150();
+         this.rebuildActiveTank();
       }
       
-      public function method_171() : void
+      public function selectNextHull() : void
       {
          this.var_63 = (this.var_63 + 1) % this.config.tankParts.name_300;
-         this.method_150();
+         this.rebuildActiveTank();
       }
       
-      private function method_150() : void
+      private function rebuildActiveTank() : void
       {
-         var _loc2_:name_238 = null;
+         var _loc2_:TankParams = null;
          var _loc3_:name_54 = null;
          var _loc4_:name_236 = null;
          var _loc5_:name_236 = null;
@@ -454,13 +454,13 @@ package package_7
          var _loc1_:name_54 = this.activeTank;
          if(_loc1_ != null)
          {
-            this.method_161();
-            _loc2_ = new name_238();
+            this.removeActiveTank();
+            _loc2_ = new TankParams();
             _loc2_.hull = this.config.tankParts.name_351(this.var_63).id;
             _loc2_.turret = this.config.tankParts.name_336(this.var_66).id;
             _loc2_.coloring = this.var_78;
-            _loc3_ = this.method_149(_loc2_);
-            this.method_147(this.tanks.length - 1);
+            _loc3_ = this.addTank(_loc2_);
+            this.selectTank(this.tanks.length - 1);
             _loc4_ = name_236(_loc1_.getComponentStrict(name_236));
             _loc5_ = name_236(_loc3_.getComponentStrict(name_236));
             _loc5_.getBody().name_352(_loc4_.getBody().state.orientation);
@@ -474,7 +474,7 @@ package package_7
       {
       }
       
-      private function method_174() : void
+      private function addDebugMessage() : void
       {
          var _loc1_:name_193 = null;
          if(this.activeTank != null)
@@ -483,7 +483,7 @@ package package_7
             {
                this.var_70 = name_268(this.gameKernel.method_108().name_110(name_268));
                _loc1_ = name_193(this.activeTank.getComponentStrict(name_193));
-               this.var_70.init(5000,_loc1_.name_329(),this.method_158);
+               this.var_70.init(5000,_loc1_.name_329(),this.onFloatingTextEffectDestroy);
                this.gameKernel.name_5().method_37(this.var_70);
             }
             this.var_70.name_305("Message " + Math.random(),65280);
@@ -495,7 +495,7 @@ package package_7
          var _loc3_:int = 0;
          var _loc4_:Vector.<name_77> = null;
          var _loc5_:Vector.<name_77> = null;
-         var _loc6_:name_238 = null;
+         var _loc6_:TankParams = null;
          var _loc7_:XMLList = null;
          var _loc8_:int = 0;
          var _loc9_:int = 0;
@@ -508,14 +508,14 @@ package package_7
                _loc3_ = int(this.tanks.indexOf(name_54(param2)));
                if(_loc3_ >= 0)
                {
-                  this.method_147(_loc3_);
+                  this.selectTank(_loc3_);
                }
                break;
             case name_57.MAP_COMPLETE:
-               this.name_63(this.var_67);
+               this.setCameraController(this.var_67);
                if(this.config.xml.user.length() > 0)
                {
-                  _loc6_ = name_238.name_317(this.config.xml.user[0],true);
+                  _loc6_ = TankParams.name_317(this.config.xml.user[0],true);
                   this.var_78 = _loc6_.coloring;
                   this.var_63 = this.config.tankParts.name_350(_loc6_.hull);
                   this.var_66 = this.config.tankParts.name_338(_loc6_.turret);
@@ -527,13 +527,13 @@ package package_7
                   {
                      throw new ArgumentError("bad turret: " + _loc6_.turret);
                   }
-                  this.method_149(_loc6_);
+                  this.addTank(_loc6_);
                }
                else
                {
-                  this.method_149(name_238.defaultTankParams);
+                  this.addTank(TankParams.defaultTankParams);
                }
-               this.method_147(this.tanks.length - 1);
+               this.selectTank(this.tanks.length - 1);
                if(this.config.xml.tanks.length() > 0)
                {
                   _loc7_ = this.config.xml.tanks[0].tank;
@@ -541,7 +541,7 @@ package package_7
                   _loc9_ = int(_loc7_.length());
                   while(_loc8_ < _loc9_)
                   {
-                     _loc10_ = this.method_149(name_238.name_317(_loc7_[_loc8_]));
+                     _loc10_ = this.addTank(TankParams.name_317(_loc7_[_loc8_]));
                      _loc10_.dispatchEvent(name_252.SET_ACTIVE_STATE);
                      _loc10_.dispatchEvent(name_252.SET_DISABLED_STATE);
                      _loc8_++;
@@ -559,7 +559,7 @@ package package_7
                   _loc11_.bottom = this.config.var_37.name_244("bottom_01") as BitmapData;
                   this.gameKernel.name_5().method_29(_loc11_);
                }
-               this.method_156();
+               this.createFire();
                this.config.clear();
                _loc5_ = this.gameKernel.name_5().method_62().getResources(true,name_241);
                for each(_loc12_ in _loc5_)
@@ -577,26 +577,26 @@ package package_7
          log.log("mouse","click pos %1 %2 %3",_loc2_.x.toFixed(),_loc2_.y.toFixed(),_loc2_.z.toFixed());
       }
       
-      private function method_183() : void
+      private function precacheTank() : void
       {
       }
       
-      private function method_187() : void
+      private function addCachedTank() : void
       {
          this.gameKernel.name_73(this.var_72);
          this.tanks.push(this.var_72);
-         this.method_147(this.tanks.length - 1);
+         this.selectTank(this.tanks.length - 1);
       }
       
-      private function method_149(param1:name_238) : name_54
+      private function addTank(param1:TankParams) : name_54
       {
-         var _loc2_:name_54 = this.method_155(param1);
+         var _loc2_:name_54 = this.createTank(param1);
          this.gameKernel.name_73(_loc2_);
          this.tanks.push(_loc2_);
          return _loc2_;
       }
       
-      private function method_155(param1:name_238) : name_54
+      private function createTank(param1:TankParams) : name_54
       {
          var _loc2_:name_249 = this.config.tankParts.name_353(param1.hull);
          var _loc3_:name_234 = this.config.tankParts.name_331(param1.turret);
@@ -610,9 +610,9 @@ package package_7
          _loc9_.name_201(new name_194(param1.x,param1.y,param1.z));
          _loc9_.body.name_332(param1.rotationX / 180 * Math.PI,param1.rotationY / 180 * Math.PI,param1.rotationZ / 180 * Math.PI);
          var _loc12_:name_253 = new name_253(_loc2_);
-         _loc12_.name_343(this.method_152(_loc2_,_loc4_,_loc5_,6,6));
-         _loc12_.name_342(this.method_163(_loc2_));
-         _loc12_.name_344(this.method_153(_loc2_));
+         _loc12_.name_343(this.getPartMaterials(_loc2_,_loc4_,_loc5_,6,6));
+         _loc12_.name_342(this.createTracksMaterial(_loc2_));
+         _loc12_.name_344(this.createShadowMaterial(_loc2_));
          _loc6_.name_60(_loc9_);
          _loc6_.name_60(_loc12_);
          _loc6_.name_60(new name_316(new name_312(this.config.soundsLibrary)));
@@ -622,21 +622,21 @@ package package_7
          _loc6_.name_60(new name_309());
          var _loc14_:name_276 = new name_276(_loc3_,1,2);
          var _loc15_:name_193 = new name_193(_loc3_);
-         _loc15_.name_348(this.method_152(_loc3_,_loc4_,_loc5_,3,3));
+         _loc15_.name_348(this.getPartMaterials(_loc3_,_loc4_,_loc5_,3,3));
          _loc6_.name_60(_loc14_);
          _loc6_.name_60(_loc15_);
          _loc6_.name_60(new name_311(new name_306(this.config.soundsLibrary)));
          if(_loc3_.id.indexOf("Smoky") >= 0)
          {
-            this.method_169(_loc6_);
+            this.createSmoky(_loc6_);
          }
          else if(_loc3_.id.indexOf("Thunder") >= 0)
          {
-            this.method_164(_loc6_);
+            this.createThunder(_loc6_);
          }
          else
          {
-            this.method_154(_loc6_);
+            this.createContinuousActionGun(_loc6_);
          }
          _loc6_.name_60(new name_315());
          if(conPysicsDebug.value == 1)
@@ -646,16 +646,16 @@ package package_7
          if(param1.isUser)
          {
          }
-         var _loc16_:Vector.<class_4> = this.method_148(this.var_64.getFrames("tank_explosion/shock_wave"));
-         var _loc17_:Vector.<class_4> = this.method_148(this.var_64.getFrames("tank_explosion/explosion"));
-         var _loc18_:Vector.<class_4> = this.method_148(this.var_64.getFrames("tank_explosion/smoke"));
+         var _loc16_:Vector.<class_4> = this.getFrameMaterials(this.var_64.getFrames("tank_explosion/shock_wave"));
+         var _loc17_:Vector.<class_4> = this.getFrameMaterials(this.var_64.getFrames("tank_explosion/explosion"));
+         var _loc18_:Vector.<class_4> = this.getFrameMaterials(this.var_64.getFrames("tank_explosion/smoke"));
          var _loc19_:name_284 = new name_284(1200,200,_loc16_,_loc17_,_loc18_);
          _loc6_.name_60(_loc19_);
          _loc6_.name_64();
          return _loc6_;
       }
       
-      private function method_185() : void
+      private function tracePos() : void
       {
          var _loc1_:name_237 = name_237(this.tanks[this.var_62].getComponent(name_237));
          var _loc2_:name_194 = new name_194();
@@ -667,7 +667,7 @@ package package_7
          log.log("tank","rotation %1 %2 %3",_loc2_.x.toFixed(),_loc2_.y.toFixed(),_loc2_.z.toFixed());
       }
       
-      private function method_156() : void
+      private function createFire() : void
       {
          var _loc4_:XMLList = null;
          var _loc5_:int = 0;
@@ -702,7 +702,7 @@ package package_7
          }
       }
       
-      private function method_163(param1:name_249) : name_33
+      private function createTracksMaterial(param1:name_249) : name_33
       {
          var _loc2_:name_55 = param1.textureData;
          var _loc3_:name_241 = this.var_65.name_254(_loc2_.name_248(name_243.KEY_TRACKS_DIFFUSE));
@@ -719,7 +719,7 @@ package package_7
          return _loc5_;
       }
       
-      private function method_153(param1:name_249) : name_29
+      private function createShadowMaterial(param1:name_249) : name_29
       {
          var _loc3_:name_241 = null;
          var _loc2_:name_55 = param1.textureData;
@@ -731,7 +731,7 @@ package package_7
          return null;
       }
       
-      private function method_169(param1:name_54) : void
+      private function createSmoky(param1:name_54) : void
       {
          var _loc9_:name_129 = null;
          var _loc10_:Vector.<class_4> = null;
@@ -774,7 +774,7 @@ package package_7
          param1.name_60(_loc17_);
       }
       
-      private function method_164(param1:name_54) : void
+      private function createThunder(param1:name_54) : void
       {
          var _loc9_:name_129 = null;
          var _loc10_:Vector.<class_4> = null;
@@ -816,14 +816,14 @@ package package_7
          param1.name_60(_loc17_);
       }
       
-      private function method_176(param1:name_54) : void
+      private function createRailgun(param1:name_54) : void
       {
          var _loc5_:name_256 = this.gameKernel.method_112().name_246().collisionDetector;
          var _loc6_:name_292 = new name_292();
          var _loc7_:name_291 = new name_291(Math.PI / 9,20,Math.PI / 9,20,_loc5_,_loc6_);
       }
       
-      private function method_175(param1:name_54) : void
+      private function createEnergyGun(param1:name_54) : void
       {
          var _loc9_:name_256 = this.gameKernel.method_112().name_246().collisionDetector;
          var _loc10_:name_240 = new name_240();
@@ -832,10 +832,10 @@ package package_7
          var _loc14_:name_327 = new name_267(2000,4000,0.5);
          var _loc15_:BitmapData = this.config.var_37.name_244("plasma/charge") as BitmapData;
          var _loc16_:Vector.<BitmapData> = name_251.name_272(_loc15_,_loc15_.height);
-         var _loc17_:Vector.<class_4> = this.method_151(_loc16_);
+         var _loc17_:Vector.<class_4> = this.getMaterialStrip(_loc16_);
          var _loc18_:BitmapData = this.config.var_37.name_244("plasma/explosion") as BitmapData;
          _loc16_ = name_251.name_272(_loc18_,_loc18_.height);
-         var _loc19_:Vector.<class_4> = this.method_151(_loc16_);
+         var _loc19_:Vector.<class_4> = this.getMaterialStrip(_loc16_);
          var _loc20_:ColorTransform = new ColorTransform(5);
          var _loc22_:name_349 = new name_301(this.gameKernel,_loc17_,_loc19_,_loc20_);
          var _loc23_:name_296 = new name_296(50,2000,100,_loc13_,_loc14_,_loc22_,null);
@@ -849,12 +849,12 @@ package package_7
          param1.name_60(_loc27_);
       }
       
-      private function method_154(param1:name_54) : void
+      private function createContinuousActionGun(param1:name_54) : void
       {
          var _loc5_:name_286 = new name_286(1000,1,15,true);
          param1.name_60(_loc5_);
          var _loc7_:Number = 30 * Math.PI / 180;
-         var _loc10_:name_262 = this.method_167();
+         var _loc10_:name_262 = this.getFlamethrowerSFXData();
          var _loc11_:name_265 = new name_265(3000,_loc7_,20,3000,_loc10_);
          param1.name_60(_loc11_);
          var _loc16_:name_44 = this.gameKernel.name_5();
@@ -871,7 +871,7 @@ package package_7
          param1.name_60(_loc23_);
       }
       
-      private function method_151(param1:Vector.<BitmapData>) : Vector.<class_4>
+      private function getMaterialStrip(param1:Vector.<BitmapData>) : Vector.<class_4>
       {
          var _loc3_:BitmapData = null;
          var _loc2_:Vector.<class_4> = new Vector.<class_4>();
@@ -881,7 +881,7 @@ package package_7
          return _loc2_;
       }
       
-      private function method_161() : void
+      private function removeActiveTank() : void
       {
          var _loc1_:name_54 = null;
          if(this.var_62 >= 0)
@@ -896,28 +896,28 @@ package package_7
             else
             {
                this.var_62--;
-               this.method_147(this.var_62);
+               this.selectTank(this.var_62);
             }
          }
       }
       
-      private function method_165() : void
+      private function switchCameraController() : void
       {
          if(this.var_68 == this.var_69)
          {
-            this.name_63(this.var_67);
+            this.setCameraController(this.var_67);
          }
          else if(this.var_68 == this.freeCameraController)
          {
-            this.name_63(this.var_69);
+            this.setCameraController(this.var_69);
          }
          else
          {
-            this.name_63(this.freeCameraController);
+            this.setCameraController(this.freeCameraController);
          }
       }
       
-      private function name_63(param1:name_102) : void
+      private function setCameraController(param1:name_102) : void
       {
          if(this.activeTank != null)
          {
@@ -934,11 +934,11 @@ package package_7
                this.freeCameraController.method_115(this.activeTank);
             }
          }
-         this.gameKernel.name_5().name_63(param1);
+         this.gameKernel.name_5().setCameraController(param1);
          this.var_68 = param1;
       }
       
-      private function method_152(param1:name_333, param2:BitmapData, param3:BitmapData, param4:Number, param5:Number) : name_277
+      private function getPartMaterials(param1:name_333, param2:BitmapData, param3:BitmapData, param4:Number, param5:Number) : name_277
       {
          var _loc15_:name_249 = null;
          var _loc16_:name_318 = null;
@@ -972,18 +972,18 @@ package package_7
          return new name_277(_loc13_,_loc14_);
       }
       
-      private function method_180() : void
+      private function showZeroMarker() : void
       {
          var _loc1_:name_279 = new name_279(20,20,20);
       }
       
-      private function method_158() : void
+      private function onFloatingTextEffectDestroy() : void
       {
          this.var_70 = null;
          null;
       }
       
-      private function method_167() : name_262
+      private function getFlamethrowerSFXData() : name_262
       {
          var _loc4_:BitmapData = null;
          var _loc5_:Vector.<name_242> = null;
@@ -1004,14 +1004,14 @@ package package_7
          return new name_262(_loc3_,_loc5_);
       }
       
-      private function method_189() : void
+      private function createTankExplostionEffects() : void
       {
-         this.method_162();
-         this.method_168();
-         this.method_160();
+         this.createShockWave();
+         this.createExplosion();
+         this.createExplosionSmoke();
       }
       
-      private function method_162() : void
+      private function createShockWave() : void
       {
          var _loc2_:name_256 = null;
          var _loc3_:name_236 = null;
@@ -1040,7 +1040,7 @@ package package_7
                   _loc7_.z = Math.atan2(-_loc5_.normal.x,_loc5_.normal.y);
                }
                _loc8_ = this.var_64.getFrames("tank_explosion/shock_wave");
-               _loc9_ = this.method_148(_loc8_);
+               _loc9_ = this.getFrameMaterials(_loc8_);
                _loc10_ = name_264(this.gameKernel.method_108().name_110(name_264));
                _loc10_.init(conShockSize.value,_loc6_,_loc7_,_loc9_,30,conShockSizeGrow.value);
                this.gameKernel.name_5().method_37(_loc10_);
@@ -1048,7 +1048,7 @@ package package_7
          }
       }
       
-      private function method_168() : void
+      private function createExplosion() : void
       {
          var _loc2_:Vector.<name_129> = null;
          var _loc3_:Vector.<class_4> = null;
@@ -1062,7 +1062,7 @@ package package_7
          if(_loc1_ != null)
          {
             _loc2_ = this.var_64.getFrames("tank_explosion/explosion");
-            _loc3_ = this.method_148(_loc2_);
+            _loc3_ = this.getFrameMaterials(_loc2_);
             _loc4_ = name_239(this.gameKernel.method_108().name_110(name_239));
             _loc5_ = name_236(this.activeTank.getComponentStrict(name_236));
             _loc6_ = _loc5_.getBody().state.position.clone();
@@ -1075,7 +1075,7 @@ package package_7
          }
       }
       
-      private function method_160() : void
+      private function createExplosionSmoke() : void
       {
          var _loc2_:Number = NaN;
          var _loc3_:Number = NaN;
@@ -1109,7 +1109,7 @@ package package_7
             _loc8_ = -1000;
             _loc9_ = 400;
             _loc10_ = this.var_64.getFrames("tank_explosion/smoke");
-            _loc11_ = this.method_148(_loc10_);
+            _loc11_ = this.getFrameMaterials(_loc10_);
             _loc12_ = name_236(this.activeTank.getComponentStrict(name_236));
             _loc13_ = _loc12_.getBody().state.position.clone();
             _loc13_.z = _loc13_.z + _loc2_;
@@ -1134,13 +1134,13 @@ package package_7
          }
       }
       
-      private function method_148(param1:Vector.<name_129>) : Vector.<class_4>
+      private function getFrameMaterials(param1:Vector.<name_129>) : Vector.<class_4>
       {
          FrameMaterialsFactory.INSTANCE.renderSystem = this.gameKernel.name_5();
          return this.var_80.method_84(param1,FrameMaterialsFactory.INSTANCE) as Vector.<class_4>;
       }
       
-      private function method_157(param1:name_4, param2:Array) : void
+      private function listTanks(param1:name_4, param2:Array) : void
       {
          var _loc3_:name_54 = null;
          var _loc4_:name_237 = null;

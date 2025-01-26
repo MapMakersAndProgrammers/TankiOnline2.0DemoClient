@@ -36,8 +36,8 @@ package
    import package_4.name_6;
    import package_5.name_3;
    import package_6.name_4;
-   import package_7.name_14;
-   import package_7.name_43;
+   import alternativa.tanks.InitBattleTask;
+   import alternativa.tanks.TankTestTask;
    import package_8.name_24;
    import package_8.name_25;
    import package_9.name_20;
@@ -46,7 +46,7 @@ package
    [SWF(backgroundColor="#333333",frameRate="100",width="1024",height="768")]
    public class TanksTestingTool extends Sprite
    {
-      public static var testTask:name_43;
+      public static var testTask:TankTestTask;
       
       private var config:name_18;
       
@@ -268,7 +268,7 @@ package
       {
          this.gameKernel = new name_17(stage,this.config.options);
          this.gameKernel.name_5().name_37(this.stage3D);
-         var _loc1_:name_14 = new name_14(this.gameKernel,this.config,this,this.preloader);
+         var _loc1_:InitBattleTask = new InitBattleTask(this.gameKernel,this.config,this,this.preloader);
          this.gameKernel.addTask(_loc1_);
          stage.addEventListener(Event.RESIZE,this.onResize);
          this.onResize(null);
