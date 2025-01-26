@@ -6,8 +6,8 @@ package package_7
    import flash.geom.ColorTransform;
    import flash.geom.Vector3D;
    import flash.ui.Keyboard;
-   import package_1.name_1;
-   import package_1.name_12;
+   import alternativa.osgi.service.console.variables.ConsoleVarFloat;
+   import alternativa.osgi.service.console.variables.ConsoleVarInt;
    import package_10.class_1;
    import package_10.name_17;
    import package_10.name_54;
@@ -114,13 +114,13 @@ package package_7
    {
       private static const DEAD_TEXTURE_ID:String = "dead";
       
-      private static var conShockSize:name_1 = new name_1("shock_size",1200,0,2000);
+      private static var conShockSize:ConsoleVarFloat = new ConsoleVarFloat("shock_size",1200,0,2000);
       
-      private static var conShockSizeGrow:name_1 = new name_1("shock_size_grow",200,0,2000);
+      private static var conShockSizeGrow:ConsoleVarFloat = new ConsoleVarFloat("shock_size_grow",200,0,2000);
       
-      private static var conPysicsDebug:name_12 = new name_12("physics_debug",0,0,1);
+      private static var conPysicsDebug:ConsoleVarInt = new ConsoleVarInt("physics_debug",0,0,1);
       
-      private static var conMaxSpeed:name_1 = new name_1("max_speed",800,0,2000);
+      private static var conMaxSpeed:ConsoleVarFloat = new ConsoleVarFloat("max_speed",800,0,2000);
       
       private static var log:name_160 = name_160(name_3.name_8().name_30(name_160));
       

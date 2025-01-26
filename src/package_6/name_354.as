@@ -13,7 +13,7 @@ package package_6
    import flash.text.TextFormat;
    import flash.ui.Keyboard;
    import flash.utils.setTimeout;
-   import package_1.name_22;
+   import alternativa.osgi.service.console.variables.ConsoleVar;
    import package_15.name_632;
    import package_15.name_634;
    import package_15.name_635;
@@ -111,7 +111,7 @@ package package_6
          this.name_45("varlistv",this.method_579);
       }
       
-      public function name_147(variable:name_22) : void
+      public function name_147(variable:ConsoleVar) : void
       {
          this.var_536[variable.name_32()] = variable;
       }
@@ -303,7 +303,7 @@ package package_6
          this.var_531 = len + 1;
          var tokens:Array = text.match(TOKENIZER);
          var commandName:String = tokens.shift();
-         var variable:name_22 = this.var_536[commandName];
+         var variable:ConsoleVar = this.var_536[commandName];
          if(variable != null)
          {
             variable.method_77(this,tokens);
@@ -813,7 +813,7 @@ package package_6
       private function method_562(start:String, showValues:Boolean) : void
       {
          var name:String = null;
-         var variable:name_22 = null;
+         var variable:ConsoleVar = null;
          var s:String = null;
          var vars:Array = [];
          for(name in this.var_536)

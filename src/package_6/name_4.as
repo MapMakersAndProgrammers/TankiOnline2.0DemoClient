@@ -1,6 +1,6 @@
 package package_6
 {
-   import package_1.name_22;
+   import alternativa.osgi.service.console.variables.ConsoleVar;
    
    public interface name_4
    {
@@ -46,7 +46,7 @@ package package_6
       
       function method_139(param1:String) : void;
       
-      function name_147(param1:name_22) : void;
+      function name_147(param1:ConsoleVar) : void;
       
       function name_146(param1:String) : void;
    }

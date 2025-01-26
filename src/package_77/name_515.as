@@ -1,6 +1,6 @@
 package package_77
 {
-   import package_1.name_1;
+   import alternativa.osgi.service.console.variables.ConsoleVarFloat;
    import package_27.name_501;
    import package_46.Matrix4;
    import package_46.name_194;
@@ -9,7 +9,7 @@ package package_77
    
    public class name_515
    {
-      private static var conSpeedDamping:name_1 = new name_1("track_damping",0,0,1000);
+      private static var conSpeedDamping:ConsoleVarFloat = new ConsoleVarFloat("track_damping",0,0,1000);
       
       public var chassisBody:name_271;
       

@@ -2,8 +2,8 @@ package package_9
 {
    import flash.ui.Keyboard;
    import flash.utils.getTimer;
-   import package_1.name_1;
-   import package_1.name_12;
+   import alternativa.osgi.service.console.variables.ConsoleVarFloat;
+   import alternativa.osgi.service.console.variables.ConsoleVarInt;
    import package_10.name_54;
    import package_18.name_102;
    import package_18.name_90;
@@ -31,13 +31,13 @@ package package_9
       
       public static var camSpeedThreshold:Number = 10;
       
-      private static var fixedPitch:name_1 = new name_1("cam_fixedpitch",10 * Math.PI / 180,-1,1);
+      private static var fixedPitch:ConsoleVarFloat = new ConsoleVarFloat("cam_fixedpitch",10 * Math.PI / 180,-1,1);
       
-      private static var noPitchCorrection:name_12 = new name_12("cam_nopitchcorrection",1,0,1);
+      private static var noPitchCorrection:ConsoleVarInt = new ConsoleVarInt("cam_nopitchcorrection",1,0,1);
       
-      private static var pitchCorrectionCoeff:name_1 = new name_1("cam_pitchcorrectioncoeff",1,0,10);
+      private static var pitchCorrectionCoeff:ConsoleVarFloat = new ConsoleVarFloat("cam_pitchcorrectioncoeff",1,0,10);
       
-      private static var reboundDelay:name_12 = new name_12("cam_rebound",1000,0,2000);
+      private static var reboundDelay:ConsoleVarInt = new ConsoleVarInt("cam_rebound",1000,0,2000);
       
       private static var elevationAngles:Vector.<Number> = new Vector.<Number>(1,true);
       

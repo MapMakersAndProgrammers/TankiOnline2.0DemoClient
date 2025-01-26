@@ -1,0 +1,1 @@
+package_1 alternativa/osgi/service/console/variables

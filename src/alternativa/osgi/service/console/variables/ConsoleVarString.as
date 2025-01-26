@@ -1,10 +1,10 @@
-package package_1
+package alternativa.osgi.service.console.variables
 {
-   public class name_13 extends name_22
+   public class ConsoleVarString extends ConsoleVar
    {
       public var value:String;
       
-      public function name_13(consoleVarName:String, initialValue:String, inputListener:Function = null)
+      public function ConsoleVarString(consoleVarName:String, initialValue:String, inputListener:Function = null)
       {
          super(consoleVarName,inputListener);
          this.value = initialValue;

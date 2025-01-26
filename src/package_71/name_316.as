@@ -1,7 +1,7 @@
 package package_71
 {
    import flash.ui.Keyboard;
-   import package_1.name_12;
+   import alternativa.osgi.service.console.variables.ConsoleVarInt;
    import package_10.class_17;
    import package_10.name_17;
    import package_10.name_57;
@@ -19,7 +19,7 @@ package package_71
       
       private static const KEY_RIGHT:uint = Keyboard.RIGHT;
       
-      private static var conReverseBackTurn:name_12 = new name_12("reverse_back_turn",1,0,1);
+      private static var conReverseBackTurn:ConsoleVarInt = new ConsoleVarInt("reverse_back_turn",1,0,1);
       
       private static const SYNC_INTERVAL:int = 4000;
       

@@ -1,7 +1,7 @@
 package package_81
 {
    import flash.geom.Vector3D;
-   import package_1.name_1;
+   import alternativa.osgi.service.console.variables.ConsoleVarFloat;
    import package_18.name_44;
    import package_18.name_85;
    import package_18.name_90;
@@ -26,7 +26,7 @@ package package_81
       
       private static const BARREL_INDEX:Number = 0;
       
-      private static var particleBaseSize:name_1 = new name_1("flame_base_size",100,1,1000);
+      private static var particleBaseSize:ConsoleVarFloat = new ConsoleVarFloat("flame_base_size",100,1,1000);
       
       private static var matrix:Matrix3 = new Matrix3();
       

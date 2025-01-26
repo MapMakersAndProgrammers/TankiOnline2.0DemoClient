@@ -1,15 +1,15 @@
-package package_1
+package alternativa.osgi.service.console.variables
 {
    import package_5.name_3;
    import package_6.name_4;
    
-   public class name_22
+   public class ConsoleVar
    {
       protected var varName:String;
       
       protected var inputListener:Function;
       
-      public function name_22(varName:String, inputListener:Function = null)
+      public function ConsoleVar(varName:String, inputListener:Function = null)
       {
          super();
          this.varName = varName;

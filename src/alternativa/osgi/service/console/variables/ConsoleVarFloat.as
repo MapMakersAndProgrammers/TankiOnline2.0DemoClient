@@ -1,6 +1,6 @@
-package package_1
+package alternativa.osgi.service.console.variables
 {
-   public class name_1 extends name_22
+   public class ConsoleVarFloat extends ConsoleVar
    {
       public var value:Number;
       
@@ -8,7 +8,7 @@ package package_1
       
       private var maxValue:Number;
       
-      public function name_1(consoleVarName:String, initialValue:Number, minValue:Number, maxValue:Number, changeListener:Function = null)
+      public function ConsoleVarFloat(consoleVarName:String, initialValue:Number, minValue:Number, maxValue:Number, changeListener:Function = null)
       {
          super(consoleVarName,changeListener);
          this.value = initialValue;
