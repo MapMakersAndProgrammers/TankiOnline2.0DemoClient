@@ -1,4 +1,4 @@
-package package_11
+package alternativa
 {
    import flash.display.DisplayObjectContainer;
    import flash.display.Stage;
@@ -28,7 +28,7 @@ package package_11
    import alternativa.startup.LibraryInfo;
    import alternativa.startup.ConnectionParameters;
    
-   public class name_16 implements IClientConfigurator
+   public class ClientConfigurator implements IClientConfigurator
    {
       private var osgi:OSGi;
       
@@ -40,7 +40,7 @@ package package_11
       
       private var var_84:KeyboardShortcut;
       
-      public function name_16()
+      public function ClientConfigurator()
       {
          super();
       }
@@ -49,8 +49,8 @@ package package_11
       {
          var libraryInfo:LibraryInfo = null;
          this.osgi = OSGi.name_8();
-         this.method_191(urlParams,startupLogStrings);
-         this.method_6(rootContainer.stage,urlParams);
+         this.initClientLog(urlParams,startupLogStrings);
+         this.initConsole(rootContainer.stage,urlParams);
          this.osgi.method_116(name_365,new name_361(urlParams,libraryInfos));
          this.osgi.method_116(name_363,new name_364(rootContainer));
          this.osgi.method_116(name_362,new name_369(connectionParameters.serverAddress,connectionParameters.serverPorts,connectionParameters.resourcesRootURL));
@@ -66,7 +66,7 @@ package package_11
          }
       }
       
-      private function method_191(urlParams:name_19, startupLogStrings:Vector.<String>) : void
+      private function initClientLog(urlParams:name_19, startupLogStrings:Vector.<String>) : void
       {
          var s:String = null;
          var logChannelBufferSize:int = int(int(urlParams.method_25("log_channel_buffer_size","1000")));
@@ -79,7 +79,7 @@ package package_11
          }
       }
       
-      private function method_6(stage:Stage, urlParams:name_19) : void
+      private function initConsole(stage:Stage, urlParams:name_19) : void
       {
          var channelName:String = null;
          this.console = new Console(stage,50,100,1,1);
@@ -87,7 +87,7 @@ package package_11
          var consoleParams:String = urlParams.method_24("console");
          if(Boolean(consoleParams))
          {
-            this.method_192(stage,this.console,consoleParams);
+            this.configureConsole(stage,this.console,consoleParams);
          }
          var clientLogConnector:ClientLogConnector = new ClientLogConnector(this.clientLog,this.console);
          this.console.name_45("log",clientLogConnector.name_371);
@@ -108,7 +108,7 @@ package package_11
          }
       }
       
-      private function method_192(stage:Stage, console:Console, consoleParams:String) : void
+      private function configureConsole(stage:Stage, console:Console, consoleParams:String) : void
       {
          var pair:String = null;
          var parts:Array = null;
@@ -143,12 +143,12 @@ package package_11
          {
             console.method_139("con_alpha " + params["alpha"]);
          }
-         this.var_83 = this.method_190(params["hsw"],Keyboard.LEFT,false,true,true);
-         this.var_84 = this.method_190(params["vsw"],Keyboard.UP,false,true,true);
-         stage.addEventListener(KeyboardEvent.KEY_DOWN,this.method_193,true);
+         this.var_83 = this.parseShortcut(params["hsw"],Keyboard.LEFT,false,true,true);
+         this.var_84 = this.parseShortcut(params["vsw"],Keyboard.UP,false,true,true);
+         stage.addEventListener(KeyboardEvent.KEY_DOWN,this.onKey,true);
       }
       
-      private function method_190(s:String, defKey:int, defAlt:Boolean, defCtrl:Boolean, defShift:Boolean) : KeyboardShortcut
+      private function parseShortcut(s:String, defKey:int, defAlt:Boolean, defCtrl:Boolean, defShift:Boolean) : KeyboardShortcut
       {
          if(s == null)
          {
@@ -157,7 +157,7 @@ package package_11
          return new KeyboardShortcut(parseInt(s),s.indexOf("a") > -1,s.indexOf("c") > -1,s.indexOf("s") > -1);
       }
       
-      private function method_193(e:KeyboardEvent) : void
+      private function onKey(e:KeyboardEvent) : void
       {
          switch(e.keyCode)
          {

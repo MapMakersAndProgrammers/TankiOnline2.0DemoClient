@@ -30,7 +30,7 @@ package package_21
    import flash.ui.Mouse;
    import flash.utils.Dictionary;
    import flash.utils.setTimeout;
-   import package_11.name_406;
+   import alternativa.Alternativa3D;
    import package_19.name_117;
    import package_28.name_119;
    import package_29.MouseEvent3D;
@@ -209,7 +209,7 @@ package package_21
          useHandCursor = false;
          tabEnabled = false;
          tabChildren = false;
-         item = new ContextMenuItem("Powered by Alternativa3D " + name_406.version);
+         item = new ContextMenuItem("Powered by Alternativa3D " + Alternativa3D.version);
          item.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT,function(e:ContextMenuEvent):void
          {
             try

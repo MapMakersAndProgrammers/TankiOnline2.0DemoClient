@@ -1,10 +1,10 @@
-package package_11
+package alternativa
 {
-   public class name_406
+   public class Alternativa3D
    {
       public static const version:String = "8.16.0";
       
-      public function name_406()
+      public function Alternativa3D()
       {
          super();
       }

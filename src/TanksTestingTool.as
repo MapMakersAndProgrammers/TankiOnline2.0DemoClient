@@ -16,7 +16,7 @@ package
    import alternativa.osgi.service.console.variables.ConsoleVarString;
    import alternativa.osgi.service.console.variables.ConsoleVar;
    import alternativa.tanks.game.GameKernel;
-   import package_11.name_16;
+   import alternativa.ClientConfigurator;
    import package_12.name_15;
    import alternativa.tanks.config.Config;
    import package_14.name_21;
@@ -56,7 +56,7 @@ package
       
       private var stage3D:Stage3D;
       
-      private var var_2:name_16;
+      private var var_2:ClientConfigurator;
       
       private var preloader:Preloader = new Preloader();
       
@@ -183,7 +183,7 @@ package
       private function initClient() : void
       {
          new OSGi();
-         this.var_2 = new name_16();
+         this.var_2 = new ClientConfigurator();
          this.var_2.start(this,new name_19(loaderInfo.parameters),new Vector.<LibraryInfo>(),new ConnectionParameters(null,null,null),new Vector.<String>());
          new name_26().start(OSGi.name_8());
          new package_17.name_21().start(OSGi.name_8());
