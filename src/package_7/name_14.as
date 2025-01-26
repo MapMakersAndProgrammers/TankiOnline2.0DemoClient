@@ -1,0 +1,92 @@
+package package_7
+{
+   import flash.display.DisplayObjectContainer;
+   import package_10.class_1;
+   import package_10.name_17;
+   import package_10.name_54;
+   import package_13.name_18;
+   import package_13.name_58;
+   import package_13.name_70;
+   import package_15.name_55;
+   import package_18.name_44;
+   import package_19.name_53;
+   import package_2.A3DMapComponent;
+   import package_9.name_20;
+   
+   public class name_14 extends class_1
+   {
+      private var gameKernel:name_17;
+      
+      private var config:name_18;
+      
+      private var container:DisplayObjectContainer;
+      
+      private var preloader:Preloader;
+      
+      public function name_14(param1:name_17, param2:name_18, param3:DisplayObjectContainer, param4:Preloader)
+      {
+         super(name_17.EVENT_SYSTEM_PRIORITY + 1);
+         this.gameKernel = param1;
+         this.config = param2;
+         this.preloader = param4;
+         this.container = param3;
+      }
+      
+      override public function run() : void
+      {
+         var _loc1_:name_44 = this.gameKernel.name_5();
+         var _loc2_:name_20 = new name_20(_loc1_.name_27(),this.gameKernel.name_66());
+         _loc1_.name_63(_loc2_);
+         _loc2_.name_75(0,0,1000);
+         _loc2_.name_76(0,2000,0);
+         this.container.addChild(_loc1_.name_71());
+         var _loc3_:name_54 = this.method_23();
+         this.gameKernel.name_73(_loc3_);
+         this.preloader.name_69(0.75);
+         var_4.addTask(new name_43(name_17.INPUT_SYSTEM_PRIORITY + 1,this.config,this.gameKernel,_loc2_,this.preloader));
+         var_4.killTask(this);
+      }
+      
+      private function method_23() : name_54
+      {
+         var _loc2_:name_55 = null;
+         var _loc6_:name_58 = null;
+         var _loc7_:String = null;
+         var _loc3_:name_70 = this.config.name_68.name_72("skybox");
+         if(_loc3_ != null)
+         {
+            _loc2_ = new name_55();
+            _loc6_ = _loc3_.name_62(this.config.name_67());
+            for each(_loc7_ in [name_53.BACK,name_53.BOTTOM,name_53.FRONT,name_53.LEFT,name_53.RIGHT,name_53.TOP])
+            {
+               _loc2_.name_59(_loc7_,_loc6_.name_65(_loc7_));
+            }
+         }
+         var _loc4_:name_54 = new name_54(name_54.name_74());
+         var _loc5_:A3DMapComponent = new A3DMapComponent(this.config.mapData,_loc2_,1000000,new MapListener(this.gameKernel.name_61()));
+         _loc4_.name_60(_loc5_);
+         _loc4_.name_64();
+         return _loc4_;
+      }
+   }
+}
+
+import package_10.name_57;
+import package_2.class_2;
+import package_20.name_56;
+
+class MapListener implements class_2
+{
+   private var eventSystem:name_56;
+   
+   public function MapListener(param1:name_56)
+   {
+      super();
+      this.eventSystem = param1;
+   }
+   
+   public function onA3DMapComplete() : void
+   {
+      this.eventSystem.dispatchEvent(name_57.MAP_COMPLETE,null);
+   }
+}

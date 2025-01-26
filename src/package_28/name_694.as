@@ -1,0 +1,248 @@
+package package_28
+{
+   import alternativa.engine3d.alternativa3d;
+   import flash.display3D.Context3D;
+   import flash.display3D.Context3DBlendFactor;
+   import flash.display3D.Context3DVertexBufferFormat;
+   import flash.display3D.IndexBuffer3D;
+   import flash.display3D.VertexBuffer3D;
+   import package_21.name_124;
+   import package_21.name_128;
+   import package_21.name_135;
+   import package_21.name_139;
+   import package_21.name_386;
+   import package_21.name_77;
+   import package_21.name_78;
+   import package_4.name_127;
+   
+   use namespace alternativa3d;
+   
+   public class name_694 extends name_77
+   {
+      private const const_6:uint = 65500;
+      
+      private const const_5:Number = 2 * Math.tan(Math.PI / 6);
+      
+      private const const_4:uint = 7;
+      
+      alternativa3d var vertexBuffers:Vector.<VertexBuffer3D>;
+      
+      alternativa3d var indexBuffers:Vector.<IndexBuffer3D>;
+      
+      private var var_688:Vector.<int>;
+      
+      private var vertices:Vector.<Vector.<Number>>;
+      
+      private var indices:Vector.<Vector.<uint>>;
+      
+      private var var_686:int = 0;
+      
+      private var var_687:uint = 0;
+      
+      public function name_694()
+      {
+         super();
+         this.alternativa3d::vertexBuffers = new Vector.<VertexBuffer3D>(1);
+         this.alternativa3d::indexBuffers = new Vector.<IndexBuffer3D>(1);
+         this.clear();
+      }
+      
+      override public function upload(context3D:Context3D) : void
+      {
+         var verts:Vector.<Number> = null;
+         var inds:Vector.<uint> = null;
+         var vBuffer:VertexBuffer3D = null;
+         var iBuffer:IndexBuffer3D = null;
+         for(var i:int = 0; i <= this.var_686; )
+         {
+            if(this.alternativa3d::vertexBuffers[i] != null)
+            {
+               this.alternativa3d::vertexBuffers[i].dispose();
+            }
+            if(this.alternativa3d::indexBuffers[i] != null)
+            {
+               this.alternativa3d::indexBuffers[i].dispose();
+            }
+            if(this.var_688[i] > 0)
+            {
+               verts = this.vertices[i];
+               inds = this.indices[i];
+               vBuffer = this.alternativa3d::vertexBuffers[i] = context3D.createVertexBuffer(verts.length / this.const_4,this.const_4);
+               vBuffer.uploadFromVector(verts,0,verts.length / this.const_4);
+               iBuffer = this.alternativa3d::indexBuffers[i] = context3D.createIndexBuffer(inds.length);
+               iBuffer.uploadFromVector(inds,0,inds.length);
+            }
+            i++;
+         }
+      }
+      
+      override public function dispose() : void
+      {
+         for(var i:int = 0; i <= this.var_686; )
+         {
+            if(this.alternativa3d::vertexBuffers[i] != null)
+            {
+               this.alternativa3d::vertexBuffers[i].dispose();
+               this.alternativa3d::vertexBuffers[i] = null;
+            }
+            if(this.alternativa3d::indexBuffers[i] != null)
+            {
+               this.alternativa3d::indexBuffers[i].dispose();
+               this.alternativa3d::indexBuffers[i] = null;
+            }
+            i++;
+         }
+      }
+      
+      override public function get isUploaded() : Boolean
+      {
+         for(var i:int = 0; i <= this.var_686; )
+         {
+            if(this.alternativa3d::vertexBuffers[i] == null)
+            {
+               return false;
+            }
+            if(this.alternativa3d::indexBuffers[i] == null)
+            {
+               return false;
+            }
+            i++;
+         }
+         return true;
+      }
+      
+      public function clear() : void
+      {
+         this.dispose();
+         this.vertices = new Vector.<Vector.<Number>>();
+         this.indices = new Vector.<Vector.<uint>>();
+         this.vertices[0] = new Vector.<Number>();
+         this.indices[0] = new Vector.<uint>();
+         this.var_688 = new Vector.<int>(1);
+         this.var_687 = 0;
+      }
+      
+      alternativa3d function updateBoundBox(boundBox:name_386, transform:name_139 = null) : void
+      {
+         var j:int = 0;
+         var vcount:int = 0;
+         var verts:Vector.<Number> = null;
+         var vx:Number = NaN;
+         var vy:Number = NaN;
+         var vz:Number = NaN;
+         var x:Number = NaN;
+         var y:Number = NaN;
+         var z:Number = NaN;
+         for(var i:int = 0,var count:int = int(this.vertices.length); i < count; i++)
+         {
+            for(j = 0,vcount = int(this.vertices[i].length); j < vcount; )
+            {
+               verts = this.vertices[i];
+               vx = verts[j];
+               vy = verts[int(j + 1)];
+               vz = verts[int(j + 2)];
+               if(transform != null)
+               {
+                  x = transform.a * vx + transform.b * vy + transform.c * vz + transform.d;
+                  y = transform.e * vx + transform.f * vy + transform.g * vz + transform.h;
+                  z = transform.i * vx + transform.j * vy + transform.k * vz + transform.l;
+               }
+               else
+               {
+                  x = vx;
+                  y = vy;
+                  z = vz;
+               }
+               if(x < boundBox.minX)
+               {
+                  boundBox.minX = x;
+               }
+               if(x > boundBox.maxX)
+               {
+                  boundBox.maxX = x;
+               }
+               if(y < boundBox.minY)
+               {
+                  boundBox.minY = y;
+               }
+               if(y > boundBox.maxY)
+               {
+                  boundBox.maxY = y;
+               }
+               if(z < boundBox.minZ)
+               {
+                  boundBox.minZ = z;
+               }
+               if(z > boundBox.maxZ)
+               {
+                  boundBox.maxZ = z;
+               }
+               j += this.const_4;
+            }
+         }
+      }
+      
+      alternativa3d function name_695(camera:name_124, color:Vector.<Number>, thickness:Number, object:name_78, shader:name_127) : void
+      {
+         var iBuffer:IndexBuffer3D = null;
+         var vBuffer:VertexBuffer3D = null;
+         var drawUnit:name_135 = null;
+         if(shader.program == null)
+         {
+            shader.upload(camera.alternativa3d::context3D);
+         }
+         for(var i:int = 0; i <= this.var_686; )
+         {
+            iBuffer = this.alternativa3d::indexBuffers[i];
+            vBuffer = this.alternativa3d::vertexBuffers[i];
+            if(iBuffer != null && vBuffer != null)
+            {
+               drawUnit = camera.alternativa3d::renderer.alternativa3d::name_137(object,shader.program,iBuffer,0,this.var_688[i],shader);
+               drawUnit.alternativa3d::setVertexBufferAt(0,vBuffer,0,Context3DVertexBufferFormat.FLOAT_4);
+               drawUnit.alternativa3d::setVertexBufferAt(1,vBuffer,4,Context3DVertexBufferFormat.FLOAT_3);
+               drawUnit.alternativa3d::name_144(0,0,1,-1,0.000001);
+               drawUnit.alternativa3d::name_144(1,-this.const_5 / camera.view.alternativa3d::_height,0,camera.nearClipping,thickness);
+               drawUnit.alternativa3d::name_412(2,object.alternativa3d::localToCameraTransform);
+               drawUnit.alternativa3d::name_136(camera,5);
+               drawUnit.alternativa3d::name_134(0,color[0],color[1],color[2],color[3]);
+               if(color[3] < 1)
+               {
+                  drawUnit.alternativa3d::blendSource = Context3DBlendFactor.SOURCE_ALPHA;
+                  drawUnit.alternativa3d::blendDestination = Context3DBlendFactor.ONE_MINUS_SOURCE_ALPHA;
+                  camera.alternativa3d::renderer.alternativa3d::name_130(drawUnit,name_128.TRANSPARENT_SORT);
+               }
+               else
+               {
+                  camera.alternativa3d::renderer.alternativa3d::name_130(drawUnit,name_128.OPAQUE);
+               }
+            }
+            i++;
+         }
+      }
+      
+      alternativa3d function method_558(v1x:Number, v1y:Number, v1z:Number, v2x:Number, v2y:Number, v2z:Number) : void
+      {
+         var currentVertices:Vector.<Number> = this.vertices[this.var_686];
+         var currentIndices:Vector.<uint> = this.indices[this.var_686];
+         var verticesCount:uint = currentVertices.length / this.const_4;
+         if(verticesCount > this.const_6 - 4)
+         {
+            this.var_687 = 0;
+            ++this.var_686;
+            this.var_688[this.var_686] = 0;
+            currentVertices = this.vertices[this.var_686] = new Vector.<Number>();
+            currentIndices = this.indices[this.var_686] = new Vector.<uint>();
+            this.alternativa3d::vertexBuffers.length = this.var_686 + 1;
+            this.alternativa3d::indexBuffers.length = this.var_686 + 1;
+         }
+         else
+         {
+            this.var_688[this.var_686] += 2;
+         }
+         currentVertices.push(v1x,v1y,v1z,0.5,v2x,v2y,v2z,v2x,v2y,v2z,-0.5,v1x,v1y,v1z,v1x,v1y,v1z,-0.5,v2x,v2y,v2z,v2x,v2y,v2z,0.5,v1x,v1y,v1z);
+         currentIndices.push(this.var_687,this.var_687 + 1,this.var_687 + 2,this.var_687 + 3,this.var_687 + 2,this.var_687 + 1);
+         this.var_687 += 4;
+      }
+   }
+}
+

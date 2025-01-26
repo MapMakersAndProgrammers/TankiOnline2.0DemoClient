@@ -1,0 +1,35 @@
+package package_13
+{
+   public class name_174
+   {
+      private var var_199:Object;
+      
+      public function name_174()
+      {
+         super();
+         this.var_199 = new Object();
+      }
+      
+      public function get method_327() : Vector.<String>
+      {
+         var _loc2_:String = null;
+         var _loc1_:Vector.<String> = new Vector.<String>();
+         for(_loc2_ in this.var_199)
+         {
+            _loc1_.push(_loc2_);
+         }
+         return _loc1_;
+      }
+      
+      public function name_72(param1:String) : name_70
+      {
+         return this.var_199[param1];
+      }
+      
+      public function method_326(param1:String, param2:name_70) : void
+      {
+         this.var_199[param1] = param2;
+      }
+   }
+}
+

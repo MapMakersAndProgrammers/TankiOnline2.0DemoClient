@@ -1,0 +1,298 @@
+package
+{
+   import flash.display.DisplayObject;
+   import flash.display.Sprite;
+   import flash.display.Stage3D;
+   import flash.display.StageAlign;
+   import flash.display.StageDisplayState;
+   import flash.display.StageQuality;
+   import flash.display.StageScaleMode;
+   import flash.events.Event;
+   import flash.events.FullScreenEvent;
+   import flash.events.KeyboardEvent;
+   import flash.ui.Keyboard;
+   import package_1.name_1;
+   import package_1.name_12;
+   import package_1.name_13;
+   import package_1.name_22;
+   import package_10.name_17;
+   import package_11.name_16;
+   import package_12.name_15;
+   import package_13.name_18;
+   import package_14.name_21;
+   import package_15.name_19;
+   import package_16.name_26;
+   import package_17.name_21;
+   import package_18.name_44;
+   import package_2.name_2;
+   import package_2.name_9;
+   import package_3.TankMaterial2;
+   import package_3.name_10;
+   import package_3.name_29;
+   import package_3.name_33;
+   import package_3.name_7;
+   import package_4.name_11;
+   import package_4.name_28;
+   import package_4.name_6;
+   import package_5.name_3;
+   import package_6.name_4;
+   import package_7.name_14;
+   import package_7.name_43;
+   import package_8.name_24;
+   import package_8.name_25;
+   import package_9.name_20;
+   import package_9.name_23;
+   
+   [SWF(backgroundColor="#333333",frameRate="100",width="1024",height="768")]
+   public class TanksTestingTool extends Sprite
+   {
+      public static var testTask:name_43;
+      
+      private var config:name_18;
+      
+      private var gameKernel:name_17;
+      
+      private var var_1:name_15;
+      
+      private var stage3D:Stage3D;
+      
+      private var var_2:name_16;
+      
+      private var preloader:Preloader = new Preloader();
+      
+      public function TanksTestingTool()
+      {
+         super();
+         mouseEnabled = false;
+         mouseChildren = false;
+         this.method_7();
+         this.method_16();
+         this.method_6();
+         this.method_11();
+         name_2.fadeRadius = 7000;
+         name_2.spotAngle = 140 * Math.PI / 180;
+         name_2.fallofAngle = 170 * Math.PI / 180;
+         this.stage3D = stage.stage3Ds[0];
+         this.stage3D.addEventListener(Event.CONTEXT3D_CREATE,this.method_10);
+         this.stage3D.requestContext3D();
+      }
+      
+      private function method_10(param1:Event) : void
+      {
+         switch(name_28.name_35(this.stage3D.context3D))
+         {
+            case name_6.DXT1:
+               this.method_3("cfg.dxt1.xml");
+               break;
+            case name_6.ETC1:
+               this.method_3("cfg.etc1.xml");
+               break;
+            case name_6.PVRTC:
+               this.method_3("cfg.pvrtc.xml");
+         }
+      }
+      
+      private function method_11() : void
+      {
+         new name_12("fog_mode",0,0,3,this.method_1);
+         new name_1("fog_near",0,0,1000000,this.method_1);
+         new name_1("fog_far",5000,0,1000000,this.method_1);
+         new name_1("fog_density",1,0,1,this.method_1);
+         new name_1("horizon_offset",0,-1000000,1000000,this.method_1);
+         new name_1("horizon_size",5000,0,1000000,this.method_1);
+         new name_13("fog_color","0x0",this.method_1);
+         var _loc1_:name_4 = name_4(name_3.name_8().name_30(name_4));
+         _loc1_.name_45("fog_texture",this.method_18);
+         new name_1("beam_distance",7000,0,1000000,this.method_2);
+         new name_1("beam_spot",140,0,180,this.method_2);
+         new name_1("beam_fallof",170,0,180,this.method_2);
+         new name_1("beam_fallof",170,0,180,this.method_2);
+         new name_1("camera_smoothing",20,0,200,this.method_17);
+         name_9.fogMode = name_9.DISABLED;
+         name_10.fogMode = name_10.DISABLED;
+         name_7.fogMode = name_7.DISABLED;
+         TankMaterial2.fogMode = name_7.DISABLED;
+         name_29.fogMode = name_11.DISABLED;
+         name_33.fogMode = name_11.DISABLED;
+      }
+      
+      private function method_17(param1:name_1) : void
+      {
+         name_20.smoothing = param1.value;
+      }
+      
+      private function method_2(param1:name_22) : void
+      {
+         switch(param1.name_32())
+         {
+            case "beam_distance":
+               name_2.fadeRadius = name_1(param1).value;
+               break;
+            case "beam_spot":
+               name_2.spotAngle = name_1(param1).value * Math.PI / 180;
+               break;
+            case "beam_fallof":
+               name_2.fallofAngle = name_1(param1).value * Math.PI / 180;
+         }
+      }
+      
+      private function method_1(param1:name_22) : void
+      {
+         var _loc3_:Number = NaN;
+         var _loc4_:Number = NaN;
+         var _loc5_:Number = NaN;
+         var _loc6_:name_44 = this.gameKernel.name_5();
+         switch(param1.name_32())
+         {
+            case "fog_mode":
+               _loc6_.name_41(name_12(param1).value);
+               break;
+            case "fog_near":
+               _loc6_.name_47(name_1(param1).value);
+               break;
+            case "fog_far":
+               _loc6_.name_48(name_1(param1).value);
+               break;
+            case "fog_density":
+               _loc6_.name_49(name_1(param1).value);
+               break;
+            case "horizon_size":
+               _loc6_.name_38(name_1(param1).value);
+               break;
+            case "horizon_offset":
+               _loc6_.name_34(name_1(param1).value);
+               break;
+            case "fog_color":
+               _loc6_.name_40(parseInt(name_13(param1).value,16));
+         }
+      }
+      
+      private function method_18(param1:name_4, param2:Array) : void
+      {
+         this.gameKernel.name_5().name_36(param2.join(" "));
+      }
+      
+      private function method_7() : void
+      {
+         stage.scaleMode = StageScaleMode.NO_SCALE;
+         stage.align = StageAlign.TOP_LEFT;
+         stage.quality = StageQuality.LOW;
+      }
+      
+      private function method_16() : void
+      {
+         new name_3();
+         this.var_2 = new name_16();
+         this.var_2.start(this,new name_19(loaderInfo.parameters),new Vector.<name_24>(),new name_25(null,null,null),new Vector.<String>());
+         new name_26().start(name_3.name_8());
+         new package_17.name_21().start(name_3.name_8());
+         new package_14.name_21().start(name_3.name_8());
+      }
+      
+      private function method_6() : void
+      {
+         var _loc1_:name_4 = name_4(name_3.name_8().name_30(name_4));
+         _loc1_.width = 100;
+         _loc1_.alpha = 0.8;
+         _loc1_.height = 30;
+      }
+      
+      private function method_3(param1:String) : void
+      {
+         addChild(this.preloader);
+         this.config = new name_18();
+         this.config.addEventListener(Event.COMPLETE,this.method_14);
+         this.config.load(param1,this.preloader);
+      }
+      
+      private function method_14(param1:Event) : void
+      {
+         this.method_8();
+         this.method_13();
+      }
+      
+      private function method_13() : void
+      {
+         this.var_1 = new name_15();
+         stage.addChild(this.var_1);
+         this.var_1.mouseChildren = true;
+         this.var_1.mouseEnabled = true;
+         this.var_1.addEventListener("CLICK_FULL_SCREEN_BUTTON",this.method_19);
+         this.var_1.addEventListener("CLICK_NEXT_TANK_BUTTON",this.method_9);
+         stage.addChild(this.preloader);
+         stage.addEventListener(KeyboardEvent.KEY_DOWN,this.method_15);
+         this.gameKernel.name_5().name_27().diagramVerticalMargin = 85;
+         this.gameKernel.name_5().name_27().diagramHorizontalMargin = 12;
+         this.method_4(null);
+      }
+      
+      private function method_15(param1:KeyboardEvent) : void
+      {
+         var _loc2_:DisplayObject = null;
+         if(param1.keyCode == Keyboard.G)
+         {
+            _loc2_ = this.gameKernel.name_5().name_39();
+            if(_loc2_.parent != null)
+            {
+               _loc2_.parent.removeChild(_loc2_);
+            }
+            else
+            {
+               stage.addChild(_loc2_);
+            }
+         }
+      }
+      
+      private function method_19(param1:Event) : void
+      {
+         stage.displayState = this.var_1.name_31 ? StageDisplayState.FULL_SCREEN : StageDisplayState.NORMAL;
+         stage.addEventListener(FullScreenEvent.FULL_SCREEN,this.method_5);
+      }
+      
+      private function method_5(param1:Event) : void
+      {
+         stage.removeEventListener(FullScreenEvent.FULL_SCREEN,this.method_5);
+         this.var_1.name_31 = stage.displayState != StageDisplayState.NORMAL;
+      }
+      
+      private function method_9(param1:Event) : void
+      {
+         if(testTask != null)
+         {
+            testTask.include();
+         }
+      }
+      
+      private function method_8() : void
+      {
+         this.gameKernel = new name_17(stage,this.config.options);
+         this.gameKernel.name_5().name_37(this.stage3D);
+         var _loc1_:name_14 = new name_14(this.gameKernel,this.config,this,this.preloader);
+         this.gameKernel.addTask(_loc1_);
+         stage.addEventListener(Event.RESIZE,this.method_4);
+         this.method_4(null);
+         stage.addEventListener(Event.ENTER_FRAME,this.method_12);
+      }
+      
+      private function method_12(param1:Event) : void
+      {
+         this.gameKernel.name_51();
+      }
+      
+      private function method_4(param1:Event) : void
+      {
+         var _loc2_:name_23 = null;
+         if(this.gameKernel != null)
+         {
+            this.gameKernel.name_5().name_46(0,0,stage.stageWidth,stage.stageHeight);
+            _loc2_ = this.gameKernel.name_5().name_42();
+            _loc2_.y = stage.stageHeight - _loc2_.size;
+         }
+         if(this.var_1 != null)
+         {
+            this.var_1.name_50(stage.stageWidth,stage.stageHeight);
+         }
+      }
+   }
+}
+
