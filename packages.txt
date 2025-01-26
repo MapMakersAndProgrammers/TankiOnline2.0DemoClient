@@ -6,3 +6,4 @@ package_8 alternativa.startup
 package_10 alternativa.tanks.game
 package_11 alternativa
 package_13 alternativa.tanks.config
+package_14 platform.client.a3d.osgi

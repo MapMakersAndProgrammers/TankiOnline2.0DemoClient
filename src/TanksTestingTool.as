@@ -19,10 +19,10 @@ package
    import alternativa.ClientConfigurator;
    import package_12.name_15;
    import alternativa.tanks.config.Config;
-   import package_14.name_21;
+   import platform.client.a3d.osgi.Activator;
    import package_15.name_19;
    import package_16.name_26;
-   import package_17.name_21;
+   import package_17.Activator;
    import package_18.name_44;
    import package_2.name_2;
    import package_2.name_9;
@@ -186,8 +186,8 @@ package
          this.var_2 = new ClientConfigurator();
          this.var_2.start(this,new name_19(loaderInfo.parameters),new Vector.<LibraryInfo>(),new ConnectionParameters(null,null,null),new Vector.<String>());
          new name_26().start(OSGi.name_8());
-         new package_17.name_21().start(OSGi.name_8());
-         new package_14.name_21().start(OSGi.name_8());
+         new package_17.Activator().start(OSGi.name_8());
+         new platform.client.a3d.osgi.Activator().start(OSGi.name_8());
       }
       
       private function initConsole() : void

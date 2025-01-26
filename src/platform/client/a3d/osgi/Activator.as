@@ -1,4 +1,4 @@
-package package_14
+package platform.client.a3d.osgi
 {
    import package_31.class_6;
    import package_32.name_148;
@@ -204,11 +204,11 @@ package package_14
    import package_69.VectorCodecParentIdLevel3;
    import package_69.name_215;
    
-   public class name_21 implements class_6
+   public class Activator implements class_6
    {
       public static var osgi:OSGi;
       
-      public function name_21()
+      public function Activator()
       {
          super();
       }

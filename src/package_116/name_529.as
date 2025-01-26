@@ -6,9 +6,9 @@ package package_116
    import flash.utils.ByteArray;
    import flash.utils.Dictionary;
    import flash.utils.Endian;
-   import package_14.name_21;
+   import platform.client.a3d.osgi.Activator;
    import package_16.name_26;
-   import package_17.name_21;
+   import package_17.Activator;
    import package_19.name_380;
    import package_19.name_528;
    import package_19.name_700;
@@ -338,8 +338,8 @@ package package_116
          var osgi:OSGi = new OSGi();
          osgi.method_116(name_160,new DummyClientLog());
          new name_26().start(osgi);
-         new package_14.name_21().start(osgi);
-         new package_17.name_21().start(osgi);
+         new platform.client.a3d.osgi.Activator().start(osgi);
+         new package_17.Activator().start(osgi);
          this.protocol = name_159(osgi.name_30(name_163));
          this.var_629 = true;
       }
