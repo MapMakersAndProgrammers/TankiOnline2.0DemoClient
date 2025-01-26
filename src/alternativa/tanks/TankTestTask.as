@@ -40,7 +40,7 @@ package alternativa.tanks
    import package_46.name_194;
    import package_47.name_193;
    import package_5.name_3;
-   import package_6.name_4;
+   import alternativa.osgi.service.console.IConsole;
    import package_71.name_234;
    import package_71.name_249;
    import package_71.name_252;
@@ -207,7 +207,7 @@ package alternativa.tanks
          this.var_81 = new name_290(this.gameKernel.name_5());
          this.var_75 = new name_285();
          this.gameKernel.stage.addChild(this.var_75);
-         var _loc3_:name_4 = name_4(name_3.name_8().name_30(name_4));
+         var _loc3_:IConsole = IConsole(name_3.name_8().name_30(IConsole));
          _loc3_.name_45("addtank",this.consoleAddTankHandler);
          var _loc4_:XMLList = this.config.xml.elements("console-commands");
          if(_loc4_.length() > 0)
@@ -272,7 +272,7 @@ package alternativa.tanks
          }
       }
       
-      private function executeConsoleCommands(param1:name_4, param2:String) : void
+      private function executeConsoleCommands(param1:IConsole, param2:String) : void
       {
          var _loc4_:String = null;
          var _loc3_:Array = param2.split(/\r*\n/);
@@ -282,7 +282,7 @@ package alternativa.tanks
          }
       }
       
-      private function consoleAddTankHandler(param1:name_4, param2:Array) : void
+      private function consoleAddTankHandler(param1:IConsole, param2:Array) : void
       {
          this.addTank(TankParams.name_322(param2));
       }
@@ -1140,7 +1140,7 @@ package alternativa.tanks
          return this.var_80.method_84(param1,FrameMaterialsFactory.INSTANCE) as Vector.<class_4>;
       }
       
-      private function listTanks(param1:name_4, param2:Array) : void
+      private function listTanks(param1:IConsole, param2:Array) : void
       {
          var _loc3_:Entity = null;
          var _loc4_:name_237 = null;

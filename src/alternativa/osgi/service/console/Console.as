@@ -1,4 +1,4 @@
-package package_6
+package alternativa.osgi.service.console
 {
    import flash.display.Graphics;
    import flash.display.Sprite;
@@ -18,7 +18,7 @@ package package_6
    import package_15.name_634;
    import package_15.name_635;
    
-   public class name_354 implements name_4
+   public class Console implements IConsole
    {
       private static const DEFAULT_BG_COLOR:uint = 16777215;
       
@@ -82,33 +82,33 @@ package package_6
       
       private var filter:String;
       
-      public function name_354(stage:Stage, widthPercent:int, heightPercent:int, hAlign:int, vAlign:int)
+      public function Console(stage:Stage, widthPercent:int, heightPercent:int, hAlign:int, vAlign:int)
       {
          super();
          this.stage = stage;
          this.buffer = new name_634(1000);
-         this.method_566(stage);
-         this.method_584();
-         this.method_580();
+         this.calcTextMetrics(stage);
+         this.initInput();
+         this.initOutput();
          this.method_140(widthPercent,heightPercent);
          this.method_138 = hAlign;
          this.method_137 = vAlign;
-         stage.addEventListener(KeyboardEvent.KEY_UP,this.method_233);
-         stage.addEventListener(Event.RESIZE,this.method_4);
-         this.name_45("hide",this.method_571);
-         this.name_45("copy",this.method_583);
-         this.name_45("clear",this.method_577);
-         this.name_45("cmdlist",this.method_574);
-         this.name_45("con_height",this.method_573);
-         this.name_45("con_width",this.method_564);
-         this.name_45("con_halign",this.method_575);
-         this.name_45("con_valign",this.method_572);
-         this.name_45("con_alpha",this.method_569);
-         this.name_45("con_bg",this.method_570);
-         this.name_45("con_fg",this.method_589);
-         this.name_45("filter",this.method_582);
-         this.name_45("varlist",this.method_565);
-         this.name_45("varlistv",this.method_579);
+         stage.addEventListener(KeyboardEvent.KEY_UP,this.onKeyUp);
+         stage.addEventListener(Event.RESIZE,this.onResize);
+         this.name_45("hide",this.onHide);
+         this.name_45("copy",this.copyConsoleContent);
+         this.name_45("clear",this.clearConsole);
+         this.name_45("cmdlist",this.listCommands);
+         this.name_45("con_height",this.onConsoleHeight);
+         this.name_45("con_width",this.onConsoleWidth);
+         this.name_45("con_halign",this.onHorizontalAlign);
+         this.name_45("con_valign",this.onVerticalAlign);
+         this.name_45("con_alpha",this.onAlpha);
+         this.name_45("con_bg",this.onBackgroundColor);
+         this.name_45("con_fg",this.onForegroundColor);
+         this.name_45("filter",this.onFilterCommand);
+         this.name_45("varlist",this.printVars);
+         this.name_45("varlistv",this.printVarsValues);
       }
       
       public function name_147(variable:ConsoleVar) : void
@@ -125,7 +125,7 @@ package package_6
       {
          value = this.clamp(value,1,3);
          this.align = this.align & ~3 | value;
-         this.method_556();
+         this.updateAlignment();
       }
       
       public function get method_138() : int
@@ -137,7 +137,7 @@ package package_6
       {
          value = this.clamp(value,1,3);
          this.align = this.align & ~0x0C | value << 2;
-         this.method_556();
+         this.updateAlignment();
       }
       
       public function get method_137() : int
@@ -148,20 +148,20 @@ package package_6
       public function name_145(text:String) : void
       {
          var needScroll:Boolean = this.buffer.size - this.var_530 <= this.var_529;
-         var linesAdded:int = this.method_558(text);
+         var linesAdded:int = this.addLine(text);
          if(needScroll)
          {
-            this.method_555(linesAdded);
+            this.scrollOutput(linesAdded);
          }
       }
       
       public function method_143(prefix:String, text:String) : void
       {
          var needScroll:Boolean = this.buffer.size - this.var_530 <= this.var_529;
-         var linesAdded:int = this.method_560(prefix,text);
+         var linesAdded:int = this.addPrefixedLine(prefix,text);
          if(needScroll)
          {
-            this.method_555(linesAdded);
+            this.scrollOutput(linesAdded);
          }
       }
       
@@ -172,11 +172,11 @@ package package_6
          var needScroll:Boolean = this.buffer.size - this.var_530 <= this.var_529;
          for each(line in lines)
          {
-            linesAdded += this.method_558(line);
+            linesAdded += this.addLine(line);
          }
          if(needScroll)
          {
-            this.method_555(linesAdded);
+            this.scrollOutput(linesAdded);
          }
       }
       
@@ -187,11 +187,11 @@ package package_6
          var needScroll:Boolean = this.buffer.size - this.var_530 <= this.var_529;
          for each(line in lines)
          {
-            linesAdded += this.method_560(prefix,line);
+            linesAdded += this.addPrefixedLine(prefix,line);
          }
          if(needScroll)
          {
-            this.method_555(linesAdded);
+            this.scrollOutput(linesAdded);
          }
       }
       
@@ -204,8 +204,8 @@ package package_6
          this.stage.addChild(this.container);
          this.stage.focus = this.input;
          this.visible = true;
-         this.method_4(null);
-         this.method_555(0);
+         this.onResize(null);
+         this.scrollOutput(0);
       }
       
       public function hide() : void
@@ -237,8 +237,8 @@ package package_6
          }
          this.var_535 = widthPercent;
          this.var_534 = heightPercent;
-         this.method_557();
-         this.method_556();
+         this.updateSize();
+         this.updateAlignment();
       }
       
       public function set width(widthPercent:int) : void
@@ -321,7 +321,7 @@ package package_6
       public function set alpha(value:Number) : void
       {
          this.var_541 = value;
-         this.method_557();
+         this.updateSize();
       }
       
       public function get alpha() : Number
@@ -329,7 +329,7 @@ package package_6
          return this.var_541;
       }
       
-      private function method_566(stage:Stage) : void
+      private function calcTextMetrics(stage:Stage) : void
       {
          var tf:TextField = new TextField();
          tf.defaultTextFormat = DEFAULT_TEXT_FORMAT;
@@ -340,7 +340,7 @@ package package_6
          stage.removeChild(tf);
       }
       
-      private function method_584() : void
+      private function initInput() : void
       {
          this.input = new TextField();
          this.input.defaultTextFormat = DEFAULT_TEXT_FORMAT;
@@ -350,25 +350,25 @@ package package_6
          this.input.backgroundColor = DEFAULT_BG_COLOR;
          this.input.border = true;
          this.input.borderColor = DEFAULT_FONT_COLOR;
-         this.input.addEventListener(KeyboardEvent.KEY_DOWN,this.method_568);
-         this.input.addEventListener(KeyboardEvent.KEY_UP,this.method_585);
-         this.input.addEventListener(TextEvent.TEXT_INPUT,this.method_567);
+         this.input.addEventListener(KeyboardEvent.KEY_DOWN,this.onInputKeyDown);
+         this.input.addEventListener(KeyboardEvent.KEY_UP,this.onInputKeyUp);
+         this.input.addEventListener(TextEvent.TEXT_INPUT,this.onTextInput);
          this.container.addChild(this.input);
       }
       
-      private function method_580() : void
+      private function initOutput() : void
       {
          this.var_538 = new Sprite();
          this.var_538.addEventListener(MouseEvent.MOUSE_WHEEL,this.onMouseWheel);
          this.container.addChild(this.var_538);
       }
       
-      private function method_578(w:int, h:int) : void
+      private function resizeOutput(w:int, h:int) : void
       {
          this.var_529 = h / (this.var_543 + this.var_545);
          this.var_542 = w / this.var_546 - 1;
-         this.method_581(w);
-         this.method_555(0);
+         this.updateTextFields(w);
+         this.scrollOutput(0);
          var g:Graphics = this.var_538.graphics;
          g.clear();
          g.beginFill(this.var_539,this.var_541);
@@ -376,7 +376,7 @@ package package_6
          g.endFill();
       }
       
-      private function method_581(w:int) : void
+      private function updateTextFields(w:int) : void
       {
          for(var tf:TextField = null; this.var_532.length > this.var_529; )
          {
@@ -384,7 +384,7 @@ package package_6
          }
          while(this.var_532.length < this.var_529)
          {
-            this.method_457();
+            this.createTextField();
          }
          var lineHeight:int = this.var_543 + this.var_545;
          for(var i:int = 0; i < this.var_532.length; i++)
@@ -395,7 +395,7 @@ package package_6
          }
       }
       
-      private function method_457() : void
+      private function createTextField() : void
       {
          var tf:TextField = new TextField();
          tf.height = this.var_543;
@@ -406,7 +406,7 @@ package package_6
          this.var_532.push(tf);
       }
       
-      private function method_555(delta:int) : void
+      private function scrollOutput(delta:int) : void
       {
          this.var_530 += delta;
          if(this.var_530 + this.var_529 > this.buffer.size)
@@ -417,18 +417,18 @@ package package_6
          {
             this.var_530 = 0;
          }
-         this.method_576();
+         this.updateOutput();
       }
       
-      private function method_576() : void
+      private function updateOutput() : void
       {
          if(this.container.parent != null)
          {
-            this.method_588();
+            this.printPage();
          }
       }
       
-      private function method_588() : void
+      private function printPage() : void
       {
          var pageLineIndex:int = 0;
          var iterator:name_632 = this.buffer.name_633(this.var_530);
@@ -442,16 +442,16 @@ package package_6
          }
       }
       
-      private function method_568(e:KeyboardEvent) : void
+      private function onInputKeyDown(e:KeyboardEvent) : void
       {
-         if(this.method_559(e))
+         if(this.isToggleKey(e))
          {
             this.var_544 = true;
          }
          switch(e.keyCode)
          {
             case Keyboard.ENTER:
-               this.method_587();
+               this.processInput();
                break;
             case Keyboard.ESCAPE:
                if(this.input.text != "")
@@ -462,29 +462,29 @@ package package_6
                this.method_561(50);
                break;
             case Keyboard.UP:
-               this.method_563();
+               this.historyUp();
                break;
             case Keyboard.DOWN:
-               this.method_586();
+               this.historyDown();
                break;
             case Keyboard.PAGE_UP:
-               this.method_555(-this.var_529);
+               this.scrollOutput(-this.var_529);
                break;
             case Keyboard.PAGE_DOWN:
-               this.method_555(this.var_529);
+               this.scrollOutput(this.var_529);
          }
          e.stopPropagation();
       }
       
-      private function method_585(e:KeyboardEvent) : void
+      private function onInputKeyUp(e:KeyboardEvent) : void
       {
-         if(!this.method_559(e))
+         if(!this.isToggleKey(e))
          {
             e.stopPropagation();
          }
       }
       
-      private function method_567(e:TextEvent) : void
+      private function onTextInput(e:TextEvent) : void
       {
          if(this.var_544)
          {
@@ -493,21 +493,21 @@ package package_6
          }
       }
       
-      private function method_559(e:KeyboardEvent) : Boolean
+      private function isToggleKey(e:KeyboardEvent) : Boolean
       {
          return e.keyCode == 75 && Boolean(e.ctrlKey) && Boolean(e.shiftKey);
       }
       
-      private function method_587() : void
+      private function processInput() : void
       {
-         this.method_555(this.buffer.size);
+         this.scrollOutput(this.buffer.size);
          var text:String = this.input.text;
          this.input.text = "";
          this.name_145("> " + text);
          this.method_139(text);
       }
       
-      private function method_563() : void
+      private function historyUp() : void
       {
          if(this.var_531 == 0)
          {
@@ -518,7 +518,7 @@ package package_6
          this.input.text = command == null ? "" : command;
       }
       
-      private function method_586() : void
+      private function historyDown() : void
       {
          ++this.var_531;
          if(this.var_531 >= this.var_533.length)
@@ -532,9 +532,9 @@ package package_6
          }
       }
       
-      private function method_233(e:KeyboardEvent) : void
+      private function onKeyUp(e:KeyboardEvent) : void
       {
-         if(this.method_559(e))
+         if(this.isToggleKey(e))
          {
             if(this.visible)
             {
@@ -547,13 +547,13 @@ package package_6
          }
       }
       
-      private function method_4(event:Event) : void
+      private function onResize(event:Event) : void
       {
-         this.method_557();
-         this.method_556();
+         this.updateSize();
+         this.updateAlignment();
       }
       
-      private function method_558(s:String) : int
+      private function addLine(s:String) : int
       {
          var linesAdded:int = 0;
          var line:String = null;
@@ -574,7 +574,7 @@ package package_6
          return linesAdded;
       }
       
-      private function method_560(prefix:String, s:String) : int
+      private function addPrefixedLine(prefix:String, s:String) : int
       {
          var linesAdded:int = 0;
          var line:String = null;
@@ -598,7 +598,7 @@ package package_6
       
       private function onMouseWheel(event:MouseEvent) : void
       {
-         this.method_555(-event.delta);
+         this.scrollOutput(-event.delta);
       }
       
       private function clamp(value:int, min:int, max:int) : int
@@ -614,17 +614,17 @@ package package_6
          return value;
       }
       
-      private function method_557() : void
+      private function updateSize() : void
       {
          var pixelHeight:int = 0.01 * this.var_534 * this.stage.stageHeight;
          var pixelWidth:int = 0.01 * this.var_535 * this.stage.stageWidth;
          var outputHeight:int = pixelHeight - INPUT_HEIGHT;
-         this.method_578(pixelWidth,outputHeight);
+         this.resizeOutput(pixelWidth,outputHeight);
          this.input.y = outputHeight;
          this.input.width = pixelWidth;
       }
       
-      private function method_556() : void
+      private function updateAlignment() : void
       {
          var hAlign:int = this.align & 3;
          switch(hAlign)
@@ -652,12 +652,12 @@ package package_6
          }
       }
       
-      private function method_571(console:name_4, params:Array) : void
+      private function onHide(console:IConsole, params:Array) : void
       {
          this.method_561(100);
       }
       
-      private function method_583(console:name_4, params:Array) : void
+      private function copyConsoleContent(console:IConsole, params:Array) : void
       {
          var iterator:name_632 = this.buffer.name_633(0);
          var result:String = "Console content:\n";
@@ -669,13 +669,13 @@ package package_6
          this.name_145("Content has been copied to clipboard");
       }
       
-      private function method_577(console:name_4, params:Array) : void
+      private function clearConsole(console:IConsole, params:Array) : void
       {
          this.buffer.clear();
-         this.method_555(0);
+         this.scrollOutput(0);
       }
       
-      private function method_574(console:name_4, params:Array) : void
+      private function listCommands(console:IConsole, params:Array) : void
       {
          var commandName:String = null;
          var list:Array = [];
@@ -690,7 +690,7 @@ package package_6
          }
       }
       
-      private function method_575(console:name_4, params:Array) : void
+      private function onHorizontalAlign(console:IConsole, params:Array) : void
       {
          if(params.length == 0)
          {
@@ -702,7 +702,7 @@ package package_6
          }
       }
       
-      private function method_572(console:name_4, params:Array) : void
+      private function onVerticalAlign(console:IConsole, params:Array) : void
       {
          if(params.length == 0)
          {
@@ -714,7 +714,7 @@ package package_6
          }
       }
       
-      private function method_564(console:name_4, params:Array) : void
+      private function onConsoleWidth(console:IConsole, params:Array) : void
       {
          if(params.length == 0)
          {
@@ -726,7 +726,7 @@ package package_6
          }
       }
       
-      private function method_573(console:name_4, params:Array) : void
+      private function onConsoleHeight(console:IConsole, params:Array) : void
       {
          if(params.length == 0)
          {
@@ -738,7 +738,7 @@ package package_6
          }
       }
       
-      private function method_569(console:name_4, params:Array) : void
+      private function onAlpha(console:IConsole, params:Array) : void
       {
          if(params.length == 0)
          {
@@ -750,7 +750,7 @@ package package_6
          }
       }
       
-      private function method_570(console:name_4, params:Array) : void
+      private function onBackgroundColor(console:IConsole, params:Array) : void
       {
          if(params.length == 0)
          {
@@ -759,13 +759,13 @@ package package_6
          else
          {
             this.var_539 = uint(params[0]);
-            this.method_557();
+            this.updateSize();
             this.input.backgroundColor = this.var_539;
             this.name_145("Background color set to " + this.var_539);
          }
       }
       
-      private function method_589(console:name_4, params:Array) : void
+      private function onForegroundColor(console:IConsole, params:Array) : void
       {
          var tf:TextField = null;
          if(params.length == 0)
@@ -787,7 +787,7 @@ package package_6
          }
       }
       
-      private function method_582(console:name_4, params:Array) : void
+      private function onFilterCommand(console:IConsole, params:Array) : void
       {
          if(params.length < 2)
          {
@@ -795,22 +795,22 @@ package package_6
             return;
          }
          this.filter = params.shift();
-         this.method_558("filter: " + this.filter);
+         this.addLine("filter: " + this.filter);
          this.method_139(params.join(" "));
          this.filter = null;
       }
       
-      private function method_565(console:name_4, args:Array) : void
+      private function printVars(console:IConsole, args:Array) : void
       {
-         this.method_562(args[0],false);
+         this.printVariables(args[0],false);
       }
       
-      private function method_579(console:name_4, args:Array) : void
+      private function printVarsValues(console:IConsole, args:Array) : void
       {
-         this.method_562(args[0],true);
+         this.printVariables(args[0],true);
       }
       
-      private function method_562(start:String, showValues:Boolean) : void
+      private function printVariables(start:String, showValues:Boolean) : void
       {
          var name:String = null;
          var variable:ConsoleVar = null;

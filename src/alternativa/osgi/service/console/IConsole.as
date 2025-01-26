@@ -1,8 +1,8 @@
-package package_6
+package alternativa.osgi.service.console
 {
    import alternativa.osgi.service.console.variables.ConsoleVar;
    
-   public interface name_4
+   public interface IConsole
    {
       function show() : void;
       

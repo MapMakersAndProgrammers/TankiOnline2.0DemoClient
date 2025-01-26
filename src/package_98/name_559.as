@@ -3,7 +3,7 @@ package package_98
    import package_18.name_44;
    import package_21.name_116;
    import package_24.DirectionalLight;
-   import package_6.name_4;
+   import alternativa.osgi.service.console.IConsole;
    
    public class name_559 extends name_557
    {
@@ -17,7 +17,7 @@ package package_98
          return Vector.<name_116>(renderSystem.lights.directionalLigths.lights);
       }
       
-      override protected function del(param1:name_4, param2:String) : name_116
+      override protected function del(param1:IConsole, param2:String) : name_116
       {
          var _loc3_:DirectionalLight = this.method_762(param2);
          if(_loc3_ != null)

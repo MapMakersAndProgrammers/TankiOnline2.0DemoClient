@@ -4,7 +4,7 @@ package package_98
    import package_18.name_44;
    import package_21.name_116;
    import package_24.SpotLight;
-   import package_6.name_4;
+   import alternativa.osgi.service.console.IConsole;
    
    public class name_561 extends name_557
    {
@@ -19,7 +19,7 @@ package package_98
          return name_718.name_719("SpotLight color: 0x%1, attenuationBegin: %2, attenuationEnd: %3, hotspot: %4, falloff: %5, x: %6, y: %7, z: %8",_loc2_.color.toString(16),_loc2_.attenuationBegin.toFixed(2),_loc2_.attenuationEnd.toFixed(2),_loc2_.hotspot.toFixed(2),_loc2_.falloff.toFixed(2),_loc2_.x.toFixed(2),_loc2_.y.toFixed(2),_loc2_.z.toFixed(2));
       }
       
-      override protected function modify(param1:name_4, param2:String, param3:Array) : name_116
+      override protected function modify(param1:IConsole, param2:String, param3:Array) : name_116
       {
          var _loc6_:Number = NaN;
          var _loc7_:Number = NaN;
@@ -62,7 +62,7 @@ package package_98
          return _loc4_;
       }
       
-      override protected function create(param1:name_4, param2:Array, param3:int) : name_116
+      override protected function create(param1:IConsole, param2:Array, param3:int) : name_116
       {
          if(param2.length == 0)
          {
@@ -95,7 +95,7 @@ package package_98
          return Vector.<name_116>(renderSystem.lights.spotLights.lights);
       }
       
-      override protected function del(param1:name_4, param2:String) : name_116
+      override protected function del(param1:IConsole, param2:String) : name_116
       {
          var _loc3_:SpotLight = this.method_762(param2);
          if(_loc3_ != null)

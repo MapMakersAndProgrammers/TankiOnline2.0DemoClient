@@ -2,7 +2,7 @@ package package_102
 {
    import flash.utils.Dictionary;
    import package_5.name_3;
-   import package_6.name_4;
+   import alternativa.osgi.service.console.IConsole;
    
    public class name_359 implements name_355
    {
@@ -16,7 +16,7 @@ package package_102
       {
          super();
          this.osgi = osgi;
-         var console:name_4 = name_4(osgi.name_30(name_4));
+         var console:IConsole = IConsole(osgi.name_30(IConsole));
          console.name_45("dump",this.method_594);
          this.var_548 = new Dictionary(false);
          this.var_547 = new Vector.<name_636>();
@@ -89,7 +89,7 @@ package package_102
          return s;
       }
       
-      private function method_594(console:name_4, params:Array) : void
+      private function method_594(console:IConsole, params:Array) : void
       {
          var dumperName:String = params.shift();
          console.name_145(this.dump(dumperName,params));

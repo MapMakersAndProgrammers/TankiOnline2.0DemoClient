@@ -1,17 +1,17 @@
-package package_6
+package alternativa.osgi.service.console
 {
    import package_39.name_160;
    import package_39.name_450;
    
-   public class name_356 implements name_450
+   public class ClientLogConnector implements name_450
    {
       private static const ALL_CHANNELS:String = "all";
       
       private var clientLog:name_160;
       
-      private var console:name_4;
+      private var console:IConsole;
       
-      public function name_356(clientLog:name_160, console:name_4)
+      public function ClientLogConnector(clientLog:name_160, console:IConsole)
       {
          super();
          this.clientLog = clientLog;
@@ -23,7 +23,7 @@ package package_6
          this.console.method_143(channelName + " ",logText);
       }
       
-      public function name_371(console:name_4, args:Array) : void
+      public function name_371(console:IConsole, args:Array) : void
       {
          if(args.length < 1)
          {
@@ -35,11 +35,11 @@ package package_6
          {
             case "c":
             case "connect":
-               this.method_624(args);
+               this.connectChannels(args);
                break;
             case "d":
             case "disconnect":
-               this.method_625(args);
+               this.disconnectChannels(args);
                break;
             case "show":
                if(args.length == 0)
@@ -47,7 +47,7 @@ package package_6
                   console.name_145("Usage: log show channel_name [filter_string]");
                   break;
                }
-               this.method_623(console,args[0],args[1]);
+               this.printFilteredLines(console,args[0],args[1]);
                break;
             case "ls":
             case "list":
@@ -56,7 +56,7 @@ package package_6
          }
       }
       
-      private function method_623(console:name_4, channelName:String, filterString:String) : void
+      private function printFilteredLines(console:IConsole, channelName:String, filterString:String) : void
       {
          var filteredStrings:Vector.<String> = null;
          var channelStrings:Vector.<String> = this.clientLog.getChannelStrings(channelName);
@@ -82,7 +82,7 @@ package package_6
          }
       }
       
-      private function method_624(channels:Array) : void
+      private function connectChannels(channels:Array) : void
       {
          var channelName:String = null;
          if(channels.length == 0)
@@ -108,7 +108,7 @@ package package_6
          }
       }
       
-      private function method_625(channels:Array) : void
+      private function disconnectChannels(channels:Array) : void
       {
          var channelName:String = null;
          if(channels.length == 0)

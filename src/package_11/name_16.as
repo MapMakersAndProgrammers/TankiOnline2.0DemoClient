@@ -21,9 +21,9 @@ package package_11
    import package_39.name_160;
    import package_39.name_368;
    import package_5.name_3;
-   import package_6.name_354;
-   import package_6.name_356;
-   import package_6.name_4;
+   import alternativa.osgi.service.console.Console;
+   import alternativa.osgi.service.console.ClientLogConnector;
+   import alternativa.osgi.service.console.IConsole;
    import package_8.class_16;
    import package_8.name_24;
    import package_8.name_25;
@@ -34,7 +34,7 @@ package package_11
       
       private var clientLog:name_160;
       
-      private var console:name_354;
+      private var console:Console;
       
       private var var_83:KeyboardShortcut;
       
@@ -82,14 +82,14 @@ package package_11
       private function method_6(stage:Stage, urlParams:name_19) : void
       {
          var channelName:String = null;
-         this.console = new name_354(stage,50,100,1,1);
-         this.osgi.method_116(name_4,this.console);
+         this.console = new Console(stage,50,100,1,1);
+         this.osgi.method_116(IConsole,this.console);
          var consoleParams:String = urlParams.method_24("console");
          if(Boolean(consoleParams))
          {
             this.method_192(stage,this.console,consoleParams);
          }
-         var clientLogConnector:name_356 = new name_356(this.clientLog,this.console);
+         var clientLogConnector:ClientLogConnector = new ClientLogConnector(this.clientLog,this.console);
          this.console.name_45("log",clientLogConnector.name_371);
          var logChannels:String = urlParams.method_24("showlog");
          if(Boolean(logChannels))
@@ -108,7 +108,7 @@ package package_11
          }
       }
       
-      private function method_192(stage:Stage, console:name_354, consoleParams:String) : void
+      private function method_192(stage:Stage, console:Console, consoleParams:String) : void
       {
          var pair:String = null;
          var parts:Array = null;

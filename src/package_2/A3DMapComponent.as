@@ -37,7 +37,7 @@ package package_2
    import package_46.Matrix4;
    import package_46.name_194;
    import package_5.name_3;
-   import package_6.name_4;
+   import alternativa.osgi.service.console.IConsole;
    import package_76.name_235;
    import package_96.name_279;
    
@@ -405,7 +405,7 @@ package package_2
          {
             decal.offset = this.var_90;
          }
-         name_4(name_3.name_8().name_30(name_4)).name_145("Decals offset: " + this.var_90);
+         IConsole(name_3.name_8().name_30(IConsole)).name_145("Decals offset: " + this.var_90);
       }
       
       private function method_212(containerId:String) : void

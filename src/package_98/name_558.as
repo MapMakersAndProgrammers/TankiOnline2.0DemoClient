@@ -3,7 +3,7 @@ package package_98
    import package_18.name_44;
    import package_21.name_116;
    import package_24.name_376;
-   import package_6.name_4;
+   import alternativa.osgi.service.console.IConsole;
    
    public class name_558 extends name_557
    {
@@ -17,7 +17,7 @@ package package_98
          return "AmbientLight color: 0x" + name_376(param1).color.toString(16);
       }
       
-      override protected function create(param1:name_4, param2:Array, param3:int) : name_116
+      override protected function create(param1:IConsole, param2:Array, param3:int) : name_116
       {
          var _loc4_:uint = 0;
          var _loc5_:name_376 = null;
@@ -33,7 +33,7 @@ package package_98
          return _loc5_;
       }
       
-      override protected function modify(param1:name_4, param2:String, param3:Array) : name_116
+      override protected function modify(param1:IConsole, param2:String, param3:Array) : name_116
       {
          var _loc4_:name_376 = renderSystem.lights.ambientLight;
          if(_loc4_ != null)
@@ -56,7 +56,7 @@ package package_98
          return Vector.<name_116>([renderSystem.lights.ambientLight]);
       }
       
-      override protected function del(param1:name_4, param2:String) : name_116
+      override protected function del(param1:IConsole, param2:String) : name_116
       {
          var _loc3_:name_376 = renderSystem.lights.ambientLight;
          renderSystem.lights.ambientLight = null;

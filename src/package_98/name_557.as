@@ -2,7 +2,7 @@ package package_98
 {
    import package_18.name_44;
    import package_21.name_116;
-   import package_6.name_4;
+   import alternativa.osgi.service.console.IConsole;
    
    public class name_557
    {
@@ -16,7 +16,7 @@ package package_98
          this.renderSystem = param1;
       }
       
-      final public function name_562(param1:name_4, param2:Array) : void
+      final public function name_562(param1:IConsole, param2:Array) : void
       {
          var _loc4_:int = 0;
          var _loc5_:name_116 = null;
@@ -66,7 +66,7 @@ package package_98
          }
       }
       
-      private function clear(param1:name_4) : void
+      private function clear(param1:IConsole) : void
       {
          var _loc3_:Vector.<String> = null;
          var _loc4_:name_116 = null;
@@ -86,7 +86,7 @@ package package_98
          }
       }
       
-      private function list(param1:name_4) : void
+      private function list(param1:IConsole) : void
       {
          var _loc3_:name_116 = null;
          var _loc2_:Vector.<name_116> = this.getLigts();
@@ -106,17 +106,17 @@ package package_98
          return "[None]";
       }
       
-      protected function modify(param1:name_4, param2:String, param3:Array) : name_116
+      protected function modify(param1:IConsole, param2:String, param3:Array) : name_116
       {
          throw new Error("Not implemented");
       }
       
-      protected function create(param1:name_4, param2:Array, param3:int) : name_116
+      protected function create(param1:IConsole, param2:Array, param3:int) : name_116
       {
          throw new Error("Not implemented");
       }
       
-      protected function del(param1:name_4, param2:String) : name_116
+      protected function del(param1:IConsole, param2:String) : name_116
       {
          throw new Error("Not implemented");
       }

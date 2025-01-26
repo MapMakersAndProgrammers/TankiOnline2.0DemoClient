@@ -35,7 +35,7 @@ package
    import package_4.name_28;
    import package_4.name_6;
    import package_5.name_3;
-   import package_6.name_4;
+   import alternativa.osgi.service.console.IConsole;
    import alternativa.tanks.InitBattleTask;
    import alternativa.tanks.TankTestTask;
    import package_8.name_24;
@@ -102,7 +102,7 @@ package
          new ConsoleVarFloat("horizon_offset",0,-1000000,1000000,this.onFogSettingsChange);
          new ConsoleVarFloat("horizon_size",5000,0,1000000,this.onFogSettingsChange);
          new ConsoleVarString("fog_color","0x0",this.onFogSettingsChange);
-         var _loc1_:name_4 = name_4(name_3.name_8().name_30(name_4));
+         var _loc1_:IConsole = IConsole(name_3.name_8().name_30(IConsole));
          _loc1_.name_45("fog_texture",this.onFogTextureChange);
          new ConsoleVarFloat("beam_distance",7000,0,1000000,this.onLightSettingsChange);
          new ConsoleVarFloat("beam_spot",140,0,180,this.onLightSettingsChange);
@@ -168,7 +168,7 @@ package
          }
       }
       
-      private function onFogTextureChange(param1:name_4, param2:Array) : void
+      private function onFogTextureChange(param1:IConsole, param2:Array) : void
       {
          this.gameKernel.name_5().name_36(param2.join(" "));
       }
@@ -192,7 +192,7 @@ package
       
       private function initConsole() : void
       {
-         var _loc1_:name_4 = name_4(name_3.name_8().name_30(name_4));
+         var _loc1_:IConsole = IConsole(name_3.name_8().name_30(IConsole));
          _loc1_.width = 100;
          _loc1_.alpha = 0.8;
          _loc1_.height = 30;

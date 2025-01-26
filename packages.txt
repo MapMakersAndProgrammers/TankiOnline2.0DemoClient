@@ -1,4 +1,5 @@
 package_1 alternativa.osgi.service.console.variables
+package_6 alternativa.osgi.service.console
 package_7 alternativa.tanks
 package_10 alternativa.tanks.game
 package_13 alternativa.tanks.config

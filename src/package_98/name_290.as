@@ -2,7 +2,7 @@ package package_98
 {
    import package_18.name_44;
    import package_5.name_3;
-   import package_6.name_4;
+   import alternativa.osgi.service.console.IConsole;
    
    public class name_290
    {
@@ -22,7 +22,7 @@ package package_98
       {
          super();
          this.renderSystem = param1;
-         var _loc2_:name_4 = name_4(name_3.name_8().name_30(name_4));
+         var _loc2_:IConsole = IConsole(name_3.name_8().name_30(IConsole));
          _loc2_.name_45("light",this.method_469);
          this.var_471[LIGHT_TYPE_AMBIENT] = new name_558(param1);
          this.var_471[LIGHT_TYPE_DIRECTIONAL] = new name_559(param1);
@@ -30,7 +30,7 @@ package package_98
          this.var_471[LIGHT_TYPE_SPOT] = new name_561(param1);
       }
       
-      private function method_469(param1:name_4, param2:Array) : void
+      private function method_469(param1:IConsole, param2:Array) : void
       {
          var _loc3_:String = null;
          var _loc4_:name_557 = null;
