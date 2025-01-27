@@ -26,11 +26,11 @@ package
    import package_18.name_44;
    import alternativa.tanks.game.entities.map.VisibleLightMaterial;
    import alternativa.tanks.game.entities.map.MapMaterial;
-   import package_3.TankMaterial2;
-   import package_3.name_10;
-   import package_3.name_29;
-   import package_3.name_33;
-   import package_3.name_7;
+   import alternativa.tanks.game.entities.tank.graphics.materials.TankMaterial2;
+   import alternativa.tanks.game.entities.tank.graphics.materials.TreesMaterial;
+   import alternativa.tanks.game.entities.tank.graphics.materials.GiShadowMaterial;
+   import alternativa.tanks.game.entities.tank.graphics.materials.TracksMaterial2;
+   import alternativa.tanks.game.entities.tank.graphics.materials.TankMaterial;
    import package_4.name_11;
    import package_4.name_28;
    import package_4.name_6;
@@ -110,11 +110,11 @@ package
          new ConsoleVarFloat("beam_fallof",170,0,180,this.onLightSettingsChange);
          new ConsoleVarFloat("camera_smoothing",20,0,200,this.onControllerSettingsChange);
          MapMaterial.fogMode = MapMaterial.DISABLED;
-         name_10.fogMode = name_10.DISABLED;
-         name_7.fogMode = name_7.DISABLED;
-         TankMaterial2.fogMode = name_7.DISABLED;
-         name_29.fogMode = name_11.DISABLED;
-         name_33.fogMode = name_11.DISABLED;
+         TreesMaterial.fogMode = TreesMaterial.DISABLED;
+         TankMaterial.fogMode = TankMaterial.DISABLED;
+         TankMaterial2.fogMode = TankMaterial.DISABLED;
+         GiShadowMaterial.fogMode = name_11.DISABLED;
+         TracksMaterial2.fogMode = name_11.DISABLED;
       }
       
       private function onControllerSettingsChange(param1:ConsoleVarFloat) : void

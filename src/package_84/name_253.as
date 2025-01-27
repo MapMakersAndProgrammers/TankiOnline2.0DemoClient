@@ -12,8 +12,8 @@ package package_84
    import package_21.name_78;
    import package_23.name_208;
    import package_29.MouseEvent3D;
-   import package_3.name_29;
-   import package_3.name_33;
+   import alternativa.tanks.game.entities.tank.graphics.materials.GiShadowMaterial;
+   import alternativa.tanks.game.entities.tank.graphics.materials.TracksMaterial2;
    import package_4.class_5;
    import package_45.name_182;
    import package_46.Matrix4;
@@ -79,15 +79,15 @@ package package_84
          return this.hull;
       }
       
-      public function name_342(tracksMaterial:name_33) : void
+      public function name_342(tracksMaterial:TracksMaterial2) : void
       {
-         this.var_489.material = name_33(tracksMaterial.clone());
+         this.var_489.material = TracksMaterial2(tracksMaterial.clone());
          this.name_337.setMaterialToAllSurfaces(this.var_489.material);
-         this.var_490.material = name_33(tracksMaterial.clone());
+         this.var_490.material = TracksMaterial2(tracksMaterial.clone());
          this.name_340.setMaterialToAllSurfaces(this.var_490.material);
       }
       
-      public function name_344(material:name_29) : void
+      public function name_344(material:GiShadowMaterial) : void
       {
          if(this.shadow != null)
          {

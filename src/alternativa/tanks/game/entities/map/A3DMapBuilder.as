@@ -21,7 +21,7 @@ package alternativa.tanks.game.entities.map
    import package_28.name_241;
    import package_28.name_259;
    import package_28.name_93;
-   import package_3.name_10;
+   import alternativa.tanks.game.entities.tank.graphics.materials.TreesMaterial;
    import package_4.name_643;
    import package_76.name_235;
    import package_86.name_257;
@@ -265,7 +265,7 @@ package alternativa.tanks.game.entities.map
          var diffuse:name_129 = null;
          var bump:name_129 = null;
          var opacity:name_129 = null;
-         var trMaterial:name_10 = null;
+         var trMaterial:TreesMaterial = null;
          if(data != null)
          {
             parser = new name_529();
@@ -285,7 +285,7 @@ package alternativa.tanks.game.entities.map
                         diffuse = this.getCompressedTextureResource(material.textures["diffuse"],resourceCache,this.mapFiles);
                         bump = this.getCompressedTextureResource(material.textures["bump"],resourceCache,this.mapFiles);
                         opacity = this.getCompressedTextureResource(material.textures["transparent"],resourceCache,this.mapFiles);
-                        trMaterial = new name_10(diffuse,fakeBumpTextureResource,null,null,opacity);
+                        trMaterial = new TreesMaterial(diffuse,fakeBumpTextureResource,null,null,opacity);
                         trMaterial.var_25 = 0;
                         trMaterial.alphaThreshold = 0.2;
                         surface.material = trMaterial;

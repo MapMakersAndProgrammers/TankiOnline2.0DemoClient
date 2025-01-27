@@ -29,11 +29,11 @@ package package_18
    import package_27.name_95;
    import package_28.name_93;
    import package_29.MouseEvent3D;
-   import package_3.TankMaterial2;
-   import package_3.name_10;
-   import package_3.name_29;
-   import package_3.name_33;
-   import package_3.name_7;
+   import alternativa.tanks.game.entities.tank.graphics.materials.TankMaterial2;
+   import alternativa.tanks.game.entities.tank.graphics.materials.TreesMaterial;
+   import alternativa.tanks.game.entities.tank.graphics.materials.GiShadowMaterial;
+   import alternativa.tanks.game.entities.tank.graphics.materials.TracksMaterial2;
+   import alternativa.tanks.game.entities.tank.graphics.materials.TankMaterial;
    import package_9.name_23;
    
    use namespace alternativa3d;
@@ -176,12 +176,12 @@ package package_18
       public function name_41(mode:int) : void
       {
          MapMaterial.fogMode = mode;
-         name_7.fogMode = mode;
+         TankMaterial.fogMode = mode;
          TankMaterial2.fogMode = mode;
-         name_33.fogMode = mode;
-         name_10.fogMode = mode;
+         TracksMaterial2.fogMode = mode;
+         TreesMaterial.fogMode = mode;
          name_79.fogMode = mode;
-         name_29.fogMode = mode;
+         GiShadowMaterial.fogMode = mode;
          if(mode == 1)
          {
             this.var_5.fogFar = MapMaterial.fogFar;
@@ -195,34 +195,34 @@ package package_18
       public function name_47(value:Number) : void
       {
          MapMaterial.fogNear = value;
-         name_7.fogNear = value;
+         TankMaterial.fogNear = value;
          TankMaterial2.fogNear = value;
-         name_33.fogNear = value;
-         name_10.fogNear = value;
-         name_29.fogNear = value;
+         TracksMaterial2.fogNear = value;
+         TreesMaterial.fogNear = value;
+         GiShadowMaterial.fogNear = value;
          this.var_5.fogNear = value;
       }
       
       public function name_48(value:Number) : void
       {
          MapMaterial.fogFar = value;
-         name_7.fogFar = value;
+         TankMaterial.fogFar = value;
          TankMaterial2.fogFar = value;
-         name_33.fogFar = value;
-         name_10.fogFar = value;
-         name_29.fogFar = value;
+         TracksMaterial2.fogFar = value;
+         TreesMaterial.fogFar = value;
+         GiShadowMaterial.fogFar = value;
          this.var_5.fogFar = value;
       }
       
       public function name_49(value:Number) : void
       {
          MapMaterial.fogMaxDensity = value;
-         name_7.fogMaxDensity = value;
+         TankMaterial.fogMaxDensity = value;
          TankMaterial2.fogMaxDensity = value;
-         name_33.fogMaxDensity = value;
-         name_10.fogMaxDensity = value;
+         TracksMaterial2.fogMaxDensity = value;
+         TreesMaterial.fogMaxDensity = value;
          name_79.fogMaxDensity = value;
-         name_29.fogMaxDensity = value;
+         GiShadowMaterial.fogMaxDensity = value;
          this.var_5.fogMaxDensity = value;
       }
       
@@ -234,24 +234,24 @@ package package_18
          MapMaterial.fogColorR = r;
          MapMaterial.fogColorG = g;
          MapMaterial.fogColorB = b;
-         name_7.fogColorR = r;
-         name_7.fogColorG = g;
-         name_7.fogColorB = b;
+         TankMaterial.fogColorR = r;
+         TankMaterial.fogColorG = g;
+         TankMaterial.fogColorB = b;
          TankMaterial2.fogColorR = r;
          TankMaterial2.fogColorG = g;
          TankMaterial2.fogColorB = b;
-         name_33.fogColorR = r;
-         name_33.fogColorG = g;
-         name_33.fogColorB = b;
-         name_10.fogColorR = r;
-         name_10.fogColorG = g;
-         name_10.fogColorB = b;
+         TracksMaterial2.fogColorR = r;
+         TracksMaterial2.fogColorG = g;
+         TracksMaterial2.fogColorB = b;
+         TreesMaterial.fogColorR = r;
+         TreesMaterial.fogColorG = g;
+         TreesMaterial.fogColorB = b;
          name_79.fogColorR = r;
          name_79.fogColorG = g;
          name_79.fogColorB = b;
-         name_29.fogColorR = r;
-         name_29.fogColorG = g;
-         name_29.fogColorB = b;
+         GiShadowMaterial.fogColorR = r;
+         GiShadowMaterial.fogColorG = g;
+         GiShadowMaterial.fogColorB = b;
          this.var_5.name_107 = color;
       }
       
@@ -292,11 +292,11 @@ package package_18
          this.var_6 = new name_93(bitmapData);
          this.method_29(this.var_6);
          MapMaterial.method_33(this.var_6);
-         name_7.method_33(this.var_6);
+         TankMaterial.method_33(this.var_6);
          TankMaterial2.method_33(this.var_6);
-         name_29.method_33(this.var_6);
-         name_33.method_33(this.var_6);
-         name_10.method_33(this.var_6);
+         GiShadowMaterial.method_33(this.var_6);
+         TracksMaterial2.method_33(this.var_6);
+         TreesMaterial.method_33(this.var_6);
          name_79.method_33(this.var_6);
       }
       

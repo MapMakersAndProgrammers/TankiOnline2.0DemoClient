@@ -3,12 +3,12 @@ package package_84
    import package_19.name_380;
    import package_19.name_528;
    import package_21.name_78;
-   import package_3.name_33;
+   import alternativa.tanks.game.entities.tank.graphics.materials.TracksMaterial2;
    import package_75.name_236;
    
    public class name_595
    {
-      public var material:name_33;
+      public var material:TracksMaterial2;
       
       public var physicsComponent:name_236;
       

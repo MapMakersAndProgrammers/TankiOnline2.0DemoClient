@@ -1,4 +1,4 @@
-package package_3
+package alternativa.tanks.game.entities.tank.graphics.materials
 {
    import alternativa.engine3d.alternativa3d;
    import flash.display.BitmapData;
@@ -33,7 +33,7 @@ package package_3
    
    use namespace alternativa3d;
    
-   public class TankMaterial2 extends class_5
+   public class TracksMaterial2 extends class_5
    {
       private static var fogTexture:name_129;
       
@@ -71,9 +71,9 @@ package package_3
       
       private static const actualLigths:Vector.<name_116> = new Vector.<name_116>();
       
-      private static const passUVProcedure:name_114 = new name_114(["#a0=aUV","#v0=vUV","mov v0, a0"],"passUVProcedure");
+      private static const passUVProcedure:name_114 = name_114.name_140(["#a0=aUV","#v0=vUV","#c0=cUVOffsets","add v0, a0, c0"]);
       
-      private static const diffuseProcedure:name_114 = name_114.name_140(["#v0=vUV","#c0=cTiling","#s0=sColormap","#s1=sDiffuse","#s2=sSurface","mul t0, v0, c0","tex t1, t0, s0 <2d, repeat, linear, miplinear>","tex t0, v0, s1 <2d, clamp, linear, miplinear>","add t2, t0, t0","mul t2, t2, t1","tex t1, v0, s2 <2d, clamp, linear, miplinear>","mul t2, t2, t1.x","add t2, t2, t0","mul t0, t0, t1.x","sub o0, t2, t0"],"diffuse");
+      private static const diffuseProcedure:name_114 = name_114.name_140(["#v0=vUV","#s0=sDiffuse","tex t0, v0, s0 <2d, repeat, linear, miplinear>","mov o0, t0"],"diffuse");
       
       private static const setColorProcedure:name_114 = new name_114(["mov o0, i0"],"setColorProcedure");
       
@@ -83,19 +83,17 @@ package package_3
       
       private static const passVaryingsProcedure:name_114 = new name_114(["#c0=cCamera","#v0=vPosition","#v1=vViewVector","mov v0, i0","sub t0, c0, i0","mov v1.xyz, t0.xyz","mov v1.w, c0.w"],"passVaryingsProcedure");
       
-      private static const getNormalAndViewProcedure:name_114 = new name_114(["#v0=vUV","#v1=vViewVector","#c0=cSurface","#s0=sBump","tex t0, v0, s0 <2d,clamp,linear,miplinear>","add t0, t0, t0","sub t0.xyz, t0.xyz, c0.www","neg t0.y, t0.y","nrm o0.xyz, t0.xyz","nrm o1.xyz, v1"],"getNormalAndViewProcedure");
+      private static const passTBNRightProcedure:name_114 = getPassTBNProcedure(true);
       
-      private static const getSpecularOptionsProcedure:name_114 = new name_114(["#v0=vUV","#c0=cSurface","#s0=sSurface","tex t0, v0, s0 <2d, clamp, linear, miplinear>","mul i0.w, c0.y, t0.z","mul i1.w, c0.z, t0.y"],"getSpecularOptionsProcedure");
+      private static const passTBNLeftProcedure:name_114 = getPassTBNProcedure(false);
       
-      public var diffuse:name_129;
+      private static const getNormalAndViewProcedure:name_114 = new name_114(["#v0=vTangent","#v1=vBinormal","#v2=vNormal","#v3=vUV","#v4=vViewVector","#c0=cSurface","#s0=sBump","tex t0, v3, s0 <2d,repeat,linear,miplinear>","add t0, t0, t0","sub t0.xyz, t0.xyz, c0.www","nrm t1.xyz, v0.xyz","dp3 o0.x, t0.xyz, t1.xyz","nrm t1.xyz, v1.xyz","dp3 o0.y, t0.xyz, t1.xyz","nrm t1.xyz, v2.xyz","dp3 o0.z, t0.xyz, t1.xyz","nrm o0.xyz, o0.xyz","nrm o1.xyz, v4"],"getNormalAndViewProcedure");
       
-      public var colorMap:name_129;
+      private static const getSpecularOptionsConstProcedure:name_114 = new name_114(["#c0=cSurface","mov i0.w, c0.y","mov i1.w, c0.z"],"getSpecularOptionsConstProcedure");
       
-      public var surfaceMap:name_129;
+      public var uOffset:Number = 0;
       
-      public var var_26:Number = 1;
-      
-      public var var_24:Number = 1;
+      public var vOffset:Number = 0;
       
       public var normalMap:name_129;
       
@@ -105,18 +103,22 @@ package package_3
       
       private const outputWithSpecularProcedure:name_114 = new name_114(["mul t0.xyz, i0.xyz, i1.xyz","add t0.xyz, t0.xyz, i2.xyz","mov t0.w, i1.w","mov o0, t0"],"outputWithSpecularProcedure");
       
-      public function TankMaterial2(colorMap:name_129 = null, diffuse:name_129 = null, normalMap:name_129 = null, surfaceMap:name_129 = null)
+      public function TracksMaterial2(diffuse:name_129 = null, normalMap:name_129 = null)
       {
          super();
-         this.colorMap = colorMap;
-         this.diffuse = diffuse;
+         this.diffuseMap = diffuse;
          this.normalMap = normalMap;
-         this.surfaceMap = surfaceMap;
       }
       
       public static function method_33(texture:name_129) : void
       {
          fogTexture = texture;
+      }
+      
+      private static function getPassTBNProcedure(right:Boolean) : name_114
+      {
+         var crsInSpace:String = right ? "crs t1.xyz, i0, i1" : "crs t1.xyz, i1, i0";
+         return new name_114(["#v0=vTangent","#v1=vBinormal","#v2=vNormal",crsInSpace,"mul t1.xyz, t1.xyz, i0.w","mov v0.x, i0.x","mov v0.y, t1.x","mov v0.z, i1.x","mov v0.w, i1.w","mov v1.x, i0.y","mov v1.y, t1.y","mov v1.z, i1.y","mov v1.w, i1.w","mov v2.x, i0.z","mov v2.y, t1.z","mov v2.z, i1.z","mov v2.w, i1.w"],"passTBNProcedure");
       }
       
       private static function directionalProcedure(light:name_116, add:Boolean) : name_114
@@ -132,21 +134,13 @@ package package_3
       override alternativa3d function fillResources(resources:Dictionary, resourceType:Class) : void
       {
          super.alternativa3d::fillResources(resources,resourceType);
-         if(this.diffuse != null && Boolean(name_28.alternativa3d::name_131(getDefinitionByName(getQualifiedClassName(this.diffuse)) as Class,resourceType)))
+         if(diffuseMap != null && Boolean(name_28.alternativa3d::name_131(getDefinitionByName(getQualifiedClassName(diffuseMap)) as Class,resourceType)))
          {
-            resources[this.diffuse] = true;
-         }
-         if(this.colorMap != null && Boolean(name_28.alternativa3d::name_131(getDefinitionByName(getQualifiedClassName(this.colorMap)) as Class,resourceType)))
-         {
-            resources[this.colorMap] = true;
+            resources[diffuseMap] = true;
          }
          if(this.normalMap != null && Boolean(name_28.alternativa3d::name_131(getDefinitionByName(getQualifiedClassName(this.normalMap)) as Class,resourceType)))
          {
             resources[this.normalMap] = true;
-         }
-         if(this.surfaceMap != null && Boolean(name_28.alternativa3d::name_131(getDefinitionByName(getQualifiedClassName(this.surfaceMap)) as Class,resourceType)))
-         {
-            resources[this.surfaceMap] = true;
          }
       }
       
@@ -156,20 +150,20 @@ package package_3
          var light:name_116 = null;
          var shadowedLight:DirectionalLight = null;
          var drawUnit:name_135 = null;
-         var shadowOrAmbientProgram:ShadowOrAmbientProgram = null;
-         var lightingProgram:LightingProgram = null;
+         var program:name_127 = null;
          var numShadows:int = 0;
          var shadow:name_103 = null;
          var lightsPrograms:Dictionary = null;
-         var fogProgram:FogProgram = null;
-         if(this.diffuse == null || this.colorMap == null || this.normalMap == null || this.surfaceMap == null || this.diffuse.alternativa3d::_texture == null || this.colorMap.alternativa3d::_texture == null || this.normalMap.alternativa3d::_texture == null || this.surfaceMap.alternativa3d::_texture == null)
+         if(diffuseMap == null || this.normalMap == null || diffuseMap.alternativa3d::_texture == null || this.normalMap.alternativa3d::_texture == null)
          {
             return;
          }
          var object:name_78 = surface.alternativa3d::object;
          var positionBuffer:VertexBuffer3D = geometry.alternativa3d::getVertexBuffer(name_126.POSITION);
          var uvBuffer:VertexBuffer3D = geometry.alternativa3d::getVertexBuffer(name_126.TEXCOORDS[0]);
-         if(positionBuffer == null || uvBuffer == null)
+         var tangentBuffer:VertexBuffer3D = geometry.alternativa3d::getVertexBuffer(name_126.TANGENT4);
+         var normalBuffer:VertexBuffer3D = geometry.alternativa3d::getVertexBuffer(name_126.NORMAL);
+         if(positionBuffer == null || uvBuffer == null || tangentBuffer == null || normalBuffer == null)
          {
             return;
          }
@@ -198,25 +192,25 @@ package package_3
          }
          if(shadowedLight != null)
          {
-            shadowOrAmbientProgram = programs[0];
-            if(shadowOrAmbientProgram == null)
+            program = programs[0];
+            if(program == null)
             {
-               shadowOrAmbientProgram = this.method_125(object,shadowedLight.shadow,true);
-               shadowOrAmbientProgram.upload(camera.alternativa3d::context3D);
-               programs[0] = shadowOrAmbientProgram;
+               program = this.setupShadowOrAmbient(object,shadowedLight.shadow,true);
+               program.upload(camera.alternativa3d::context3D);
+               programs[0] = program;
             }
-            drawUnit = this.method_126(shadowOrAmbientProgram,shadowedLight.shadow,true,camera,object,surface,geometry);
+            drawUnit = this.getShadowOrAmbientDrawUnit(program,shadowedLight.shadow,true,camera,object,surface,geometry);
          }
          else
          {
-            shadowOrAmbientProgram = programs[1];
-            if(shadowOrAmbientProgram == null)
+            program = programs[1];
+            if(program == null)
             {
-               shadowOrAmbientProgram = this.method_125(object,null,true);
-               shadowOrAmbientProgram.upload(camera.alternativa3d::context3D);
-               programs[1] = shadowOrAmbientProgram;
+               program = this.setupShadowOrAmbient(object,null,true);
+               program.upload(camera.alternativa3d::context3D);
+               programs[1] = program;
             }
-            drawUnit = this.method_126(shadowOrAmbientProgram,null,true,camera,object,surface,geometry);
+            drawUnit = this.getShadowOrAmbientDrawUnit(program,null,true,camera,object,surface,geometry);
          }
          drawUnit.alternativa3d::blendSource = Context3DBlendFactor.ONE;
          drawUnit.alternativa3d::blendDestination = Context3DBlendFactor.ZERO;
@@ -229,29 +223,29 @@ package package_3
                shadow = object.alternativa3d::shadowRenderers[i];
                if(shadow is name_208)
                {
-                  shadowOrAmbientProgram = programs[2];
-                  if(shadowOrAmbientProgram == null)
+                  program = programs[2];
+                  if(program == null)
                   {
-                     shadowOrAmbientProgram = this.method_125(object,shadow,false);
-                     shadowOrAmbientProgram.upload(camera.alternativa3d::context3D);
-                     programs[2] = shadowOrAmbientProgram;
+                     program = this.setupShadowOrAmbient(object,shadow,false);
+                     program.upload(camera.alternativa3d::context3D);
+                     programs[2] = program;
                   }
-                  drawUnit = this.method_126(shadowOrAmbientProgram,shadow,false,camera,object,surface,geometry);
+                  drawUnit = this.getShadowOrAmbientDrawUnit(program,shadow,false,camera,object,surface,geometry);
                   drawUnit.alternativa3d::blendSource = Context3DBlendFactor.ZERO;
                   drawUnit.alternativa3d::blendDestination = Context3DBlendFactor.SOURCE_COLOR;
                   camera.alternativa3d::renderer.alternativa3d::name_130(drawUnit,name_128.SHADOWS);
                }
                i++;
             }
-            lightingProgram = programs[3];
-            if(lightingProgram == null)
+            program = programs[3];
+            if(program == null)
             {
                lightContainer[0] = shadowedLight;
-               lightingProgram = this.method_127(object,lightContainer,1);
-               lightingProgram.upload(camera.alternativa3d::context3D);
-               programs[3] = lightingProgram;
+               program = this.setupLighting(object,lightContainer,1);
+               program.upload(camera.alternativa3d::context3D);
+               programs[3] = program;
             }
-            drawUnit = this.method_128(lightingProgram,lightContainer,1,camera,object,surface,geometry);
+            drawUnit = this.getLightingDrawUnit(program,lightContainer,1,camera,object,surface,geometry);
             drawUnit.alternativa3d::blendSource = Context3DBlendFactor.DESTINATION_ALPHA;
             drawUnit.alternativa3d::blendDestination = Context3DBlendFactor.ONE;
             camera.alternativa3d::renderer.alternativa3d::name_130(drawUnit,name_128.SHADOWED_LIGHTS);
@@ -264,28 +258,28 @@ package package_3
                lightsPrograms = new Dictionary(false);
                programs[4] = lightsPrograms;
             }
-            lightingProgram = lightsPrograms[lightsKey];
-            if(lightingProgram == null)
+            program = lightsPrograms[lightsKey];
+            if(program == null)
             {
-               lightingProgram = this.method_127(object,actualLigths,actualLightsLength);
-               lightingProgram.upload(camera.alternativa3d::context3D);
-               lightsPrograms[lightsKey] = lightingProgram;
+               program = this.setupLighting(object,actualLigths,actualLightsLength);
+               program.upload(camera.alternativa3d::context3D);
+               lightsPrograms[lightsKey] = program;
             }
-            drawUnit = this.method_128(lightingProgram,actualLigths,actualLightsLength,camera,object,surface,geometry);
+            drawUnit = this.getLightingDrawUnit(program,actualLigths,actualLightsLength,camera,object,surface,geometry);
             drawUnit.alternativa3d::blendSource = Context3DBlendFactor.ONE;
             drawUnit.alternativa3d::blendDestination = Context3DBlendFactor.ONE;
             camera.alternativa3d::renderer.alternativa3d::name_130(drawUnit,name_128.LIGHTS);
          }
          if(fogMode == SIMPLE || fogMode == ADVANCED)
          {
-            fogProgram = programs[int(fogMode + 4)];
-            if(fogProgram == null)
+            program = programs[int(fogMode + 4)];
+            if(program == null)
             {
-               fogProgram = this.method_129(object);
-               fogProgram.upload(camera.alternativa3d::context3D);
-               programs[int(fogMode + 4)] = fogProgram;
+               program = this.setupFog(object);
+               program.upload(camera.alternativa3d::context3D);
+               programs[int(fogMode + 4)] = program;
             }
-            drawUnit = this.method_130(fogProgram,camera,object,surface,geometry);
+            drawUnit = this.getFogDrawUnit(program,camera,object,surface,geometry);
             drawUnit.alternativa3d::blendSource = Context3DBlendFactor.ONE;
             drawUnit.alternativa3d::blendDestination = Context3DBlendFactor.SOURCE_ALPHA;
             camera.alternativa3d::renderer.alternativa3d::name_130(drawUnit,name_128.FOG);
@@ -293,7 +287,7 @@ package package_3
          actualLigths.length = 0;
       }
       
-      private function method_125(object:name_78, shadow:name_103, ambient:Boolean) : ShadowOrAmbientProgram
+      private function setupShadowOrAmbient(object:name_78, shadow:name_103, ambient:Boolean) : name_127
       {
          var shadowProc:name_114 = null;
          var vertexLinker:name_121 = new name_121(Context3DProgramType.VERTEX);
@@ -337,32 +331,30 @@ package package_3
             fragmentLinker.name_118(outputProcedure,"tLight");
          }
          fragmentLinker.name_133(vertexLinker);
-         return new ShadowOrAmbientProgram(vertexLinker,fragmentLinker);
+         return new name_127(vertexLinker,fragmentLinker);
       }
       
-      private function method_126(program:ShadowOrAmbientProgram, shadow:name_103, ambient:Boolean, camera:name_124, object:name_78, surface:name_117, geometry:name_119) : name_135
+      private function getShadowOrAmbientDrawUnit(program:name_127, shadow:name_103, ambient:Boolean, camera:name_124, object:name_78, surface:name_117, geometry:name_119) : name_135
       {
          var positionBuffer:VertexBuffer3D = geometry.alternativa3d::getVertexBuffer(name_126.POSITION);
          var uvBuffer:VertexBuffer3D = geometry.alternativa3d::getVertexBuffer(name_126.TEXCOORDS[0]);
          var drawUnit:name_135 = camera.alternativa3d::renderer.alternativa3d::name_137(object,program.program,geometry.alternativa3d::name_132,surface.indexBegin,surface.numTriangles,program);
-         drawUnit.alternativa3d::setVertexBufferAt(program.aPosition,positionBuffer,geometry.alternativa3d::_attributesOffsets[name_126.POSITION],name_126.alternativa3d::FORMATS[name_126.POSITION]);
+         drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aPosition"),positionBuffer,geometry.alternativa3d::_attributesOffsets[name_126.POSITION],name_126.alternativa3d::FORMATS[name_126.POSITION]);
          if(ambient)
          {
-            drawUnit.alternativa3d::setVertexBufferAt(program.aUV,uvBuffer,geometry.alternativa3d::_attributesOffsets[name_126.TEXCOORDS[0]],name_126.alternativa3d::FORMATS[name_126.TEXCOORDS[0]]);
+            drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aUV"),uvBuffer,geometry.alternativa3d::_attributesOffsets[name_126.TEXCOORDS[0]],name_126.alternativa3d::FORMATS[name_126.TEXCOORDS[0]]);
          }
          object.alternativa3d::setTransformConstants(drawUnit,surface,program.vertexShader,camera);
-         drawUnit.alternativa3d::name_136(camera,program.cProjMatrix,object.alternativa3d::localToCameraTransform);
+         drawUnit.alternativa3d::name_136(camera,program.vertexShader.getVariableIndex("cProjMatrix"),object.alternativa3d::localToCameraTransform);
          if(ambient)
          {
-            drawUnit.alternativa3d::name_134(program.cAmbient,camera.alternativa3d::ambient[0],camera.alternativa3d::ambient[1],camera.alternativa3d::ambient[2],1);
-            drawUnit.alternativa3d::name_134(program.cTiling,this.var_26,this.var_24,0,0);
-            drawUnit.alternativa3d::setTextureAt(program.sDiffuse,this.diffuse.alternativa3d::_texture);
-            drawUnit.alternativa3d::setTextureAt(program.sColormap,this.colorMap.alternativa3d::_texture);
-            drawUnit.alternativa3d::setTextureAt(program.sSurface,this.surfaceMap.alternativa3d::_texture);
+            drawUnit.alternativa3d::name_144(program.vertexShader.getVariableIndex("cUVOffsets"),-this.uOffset,this.vOffset,0,0);
+            drawUnit.alternativa3d::name_134(program.fragmentShader.getVariableIndex("cAmbient"),camera.alternativa3d::ambient[0],camera.alternativa3d::ambient[1],camera.alternativa3d::ambient[2],1);
+            drawUnit.alternativa3d::setTextureAt(program.fragmentShader.getVariableIndex("sDiffuse"),diffuseMap.alternativa3d::_texture);
          }
          else
          {
-            drawUnit.alternativa3d::name_134(program.cShadow,1,1,1,1);
+            drawUnit.alternativa3d::name_134(program.fragmentShader.getVariableIndex("cShadow"),1,1,1,1);
          }
          if(shadow != null)
          {
@@ -371,7 +363,7 @@ package package_3
          return drawUnit;
       }
       
-      private function method_127(object:name_78, lights:Vector.<name_116>, lightsLength:int) : LightingProgram
+      private function setupLighting(object:name_78, lights:Vector.<name_116>, lightsLength:int) : name_127
       {
          var procedure:name_114 = null;
          var light:name_116 = null;
@@ -388,12 +380,16 @@ package package_3
          vertexLinker.name_123(passUVProcedure);
          vertexLinker.name_123(passVaryingsProcedure);
          vertexLinker.name_118(passVaryingsProcedure,positionVar);
+         vertexLinker.name_120("aTangent",name_115.ATTRIBUTE);
+         vertexLinker.name_120("aNormal",name_115.ATTRIBUTE);
+         vertexLinker.name_123(passTBNRightProcedure);
+         vertexLinker.name_118(passTBNRightProcedure,"aTangent","aNormal");
          fragmentLinker.name_120("tNormal");
          fragmentLinker.name_120("tView");
          fragmentLinker.name_123(getNormalAndViewProcedure);
          fragmentLinker.name_125(getNormalAndViewProcedure,"tNormal","tView");
-         fragmentLinker.name_123(getSpecularOptionsProcedure);
-         fragmentLinker.name_118(getSpecularOptionsProcedure,"tNormal","tView");
+         fragmentLinker.name_123(getSpecularOptionsConstProcedure);
+         fragmentLinker.name_118(getSpecularOptionsConstProcedure,"tNormal","tView");
          fragmentLinker.name_120("tLight");
          fragmentLinker.name_120("tHLight");
          var first:Boolean = true;
@@ -430,10 +426,10 @@ package package_3
          fragmentLinker.name_123(this.outputWithSpecularProcedure);
          fragmentLinker.name_118(this.outputWithSpecularProcedure,"outColor","tLight","tHLight");
          fragmentLinker.name_133(vertexLinker);
-         return new LightingProgram(vertexLinker,fragmentLinker);
+         return new name_127(vertexLinker,fragmentLinker);
       }
       
-      private function method_128(program:LightingProgram, lights:Vector.<name_116>, lightsLength:int, camera:name_124, object:name_78, surface:name_117, geometry:name_119) : name_135
+      private function getLightingDrawUnit(program:name_127, lights:Vector.<name_116>, lightsLength:int, camera:name_124, object:name_78, surface:name_117, geometry:name_119) : name_135
       {
          var rScale:Number = NaN;
          var transform:name_139 = null;
@@ -442,12 +438,17 @@ package package_3
          var omni:OmniLight = null;
          var positionBuffer:VertexBuffer3D = geometry.alternativa3d::getVertexBuffer(name_126.POSITION);
          var uvBuffer:VertexBuffer3D = geometry.alternativa3d::getVertexBuffer(name_126.TEXCOORDS[0]);
+         var tangentBuffer:VertexBuffer3D = geometry.alternativa3d::getVertexBuffer(name_126.TANGENT4);
+         var normalBuffer:VertexBuffer3D = geometry.alternativa3d::getVertexBuffer(name_126.NORMAL);
          var drawUnit:name_135 = camera.alternativa3d::renderer.alternativa3d::name_137(object,program.program,geometry.alternativa3d::name_132,surface.indexBegin,surface.numTriangles,program);
-         drawUnit.alternativa3d::setVertexBufferAt(program.aPosition,positionBuffer,geometry.alternativa3d::_attributesOffsets[name_126.POSITION],name_126.alternativa3d::FORMATS[name_126.POSITION]);
-         drawUnit.alternativa3d::setVertexBufferAt(program.aUV,uvBuffer,geometry.alternativa3d::_attributesOffsets[name_126.TEXCOORDS[0]],name_126.alternativa3d::FORMATS[name_126.TEXCOORDS[0]]);
+         drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aPosition"),positionBuffer,geometry.alternativa3d::_attributesOffsets[name_126.POSITION],name_126.alternativa3d::FORMATS[name_126.POSITION]);
+         drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aUV"),uvBuffer,geometry.alternativa3d::_attributesOffsets[name_126.TEXCOORDS[0]],name_126.alternativa3d::FORMATS[name_126.TEXCOORDS[0]]);
+         drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aTangent"),tangentBuffer,geometry.alternativa3d::_attributesOffsets[name_126.TANGENT4],name_126.alternativa3d::FORMATS[name_126.TANGENT4]);
+         drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aNormal"),normalBuffer,geometry.alternativa3d::_attributesOffsets[name_126.NORMAL],name_126.alternativa3d::FORMATS[name_126.NORMAL]);
          object.alternativa3d::setTransformConstants(drawUnit,surface,program.vertexShader,camera);
-         drawUnit.alternativa3d::name_136(camera,program.cProjMatrix,object.alternativa3d::localToCameraTransform);
-         drawUnit.alternativa3d::name_144(program.cCamera,object.alternativa3d::cameraToLocalTransform.d,object.alternativa3d::cameraToLocalTransform.h,object.alternativa3d::cameraToLocalTransform.l,1);
+         drawUnit.alternativa3d::name_136(camera,program.vertexShader.getVariableIndex("cProjMatrix"),object.alternativa3d::localToCameraTransform);
+         drawUnit.alternativa3d::name_144(program.vertexShader.getVariableIndex("cCamera"),object.alternativa3d::cameraToLocalTransform.d,object.alternativa3d::cameraToLocalTransform.h,object.alternativa3d::cameraToLocalTransform.l,1);
+         drawUnit.alternativa3d::name_144(program.vertexShader.getVariableIndex("cUVOffsets"),-this.uOffset,this.vOffset,0,0);
          for(var i:int = 0; i < lightsLength; )
          {
             light = lights[i];
@@ -472,16 +473,13 @@ package package_3
             }
             i++;
          }
-         drawUnit.alternativa3d::name_134(program.cSurface,0,this.glossiness,this.var_25,1);
-         drawUnit.alternativa3d::name_134(program.cTiling,this.var_26,this.var_24,0,0);
-         drawUnit.alternativa3d::setTextureAt(program.sDiffuse,this.diffuse.alternativa3d::_texture);
-         drawUnit.alternativa3d::setTextureAt(program.sColormap,this.colorMap.alternativa3d::_texture);
-         drawUnit.alternativa3d::setTextureAt(program.sSurface,this.surfaceMap.alternativa3d::_texture);
-         drawUnit.alternativa3d::setTextureAt(program.sBump,this.normalMap.alternativa3d::_texture);
+         drawUnit.alternativa3d::name_134(program.fragmentShader.getVariableIndex("cSurface"),0,this.glossiness,this.var_25,1);
+         drawUnit.alternativa3d::setTextureAt(program.fragmentShader.getVariableIndex("sDiffuse"),diffuseMap.alternativa3d::_texture);
+         drawUnit.alternativa3d::setTextureAt(program.fragmentShader.getVariableIndex("sBump"),this.normalMap.alternativa3d::_texture);
          return drawUnit;
       }
       
-      private function method_129(object:name_78) : FogProgram
+      private function setupFog(object:name_78) : name_127
       {
          var vertexLinker:name_121 = new name_121(Context3DProgramType.VERTEX);
          var fragmentLinker:name_121 = new name_121(Context3DProgramType.FRAGMENT);
@@ -508,10 +506,10 @@ package package_3
             fragmentLinker.name_123(outputWithAdvancedFogProcedure);
          }
          fragmentLinker.name_133(vertexLinker);
-         return new FogProgram(vertexLinker,fragmentLinker);
+         return new name_127(vertexLinker,fragmentLinker);
       }
       
-      private function method_130(program:FogProgram, camera:name_124, object:name_78, surface:name_117, geometry:name_119) : name_135
+      private function getFogDrawUnit(program:name_127, camera:name_124, object:name_78, surface:name_117, geometry:name_119) : name_135
       {
          var lm:name_139 = null;
          var dist:Number = NaN;
@@ -531,19 +529,19 @@ package package_3
          var i:int = 0;
          var positionBuffer:VertexBuffer3D = geometry.alternativa3d::getVertexBuffer(name_126.POSITION);
          var drawUnit:name_135 = camera.alternativa3d::renderer.alternativa3d::name_137(object,program.program,geometry.alternativa3d::name_132,surface.indexBegin,surface.numTriangles,program);
-         drawUnit.alternativa3d::setVertexBufferAt(program.aPosition,positionBuffer,geometry.alternativa3d::_attributesOffsets[name_126.POSITION],name_126.alternativa3d::FORMATS[name_126.POSITION]);
+         drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aPosition"),positionBuffer,geometry.alternativa3d::_attributesOffsets[name_126.POSITION],name_126.alternativa3d::FORMATS[name_126.POSITION]);
          object.alternativa3d::setTransformConstants(drawUnit,surface,program.vertexShader,camera);
-         drawUnit.alternativa3d::name_136(camera,program.cProjMatrix,object.alternativa3d::localToCameraTransform);
+         drawUnit.alternativa3d::name_136(camera,program.vertexShader.getVariableIndex("cProjMatrix"),object.alternativa3d::localToCameraTransform);
          if(fogMode == SIMPLE || fogMode == ADVANCED)
          {
             lm = object.alternativa3d::localToCameraTransform;
             dist = fogFar - fogNear;
-            drawUnit.alternativa3d::name_144(program.cFogSpace,lm.i / dist,lm.j / dist,lm.k / dist,(lm.l - fogNear) / dist);
-            drawUnit.alternativa3d::name_134(program.cFogRange,fogMaxDensity,1,0,1 - fogMaxDensity);
+            drawUnit.alternativa3d::name_144(program.vertexShader.getVariableIndex("cFogSpace"),lm.i / dist,lm.j / dist,lm.k / dist,(lm.l - fogNear) / dist);
+            drawUnit.alternativa3d::name_134(program.fragmentShader.getVariableIndex("cFogRange"),fogMaxDensity,1,0,1 - fogMaxDensity);
          }
          if(fogMode == SIMPLE)
          {
-            drawUnit.alternativa3d::name_134(program.cFogColor,fogColorR,fogColorG,fogColorB);
+            drawUnit.alternativa3d::name_134(program.fragmentShader.getVariableIndex("cFogColor"),fogColorR,fogColorG,fogColorB);
          }
          if(fogMode == ADVANCED)
          {
@@ -577,15 +575,15 @@ package package_3
             rightY /= lens;
             uScale = Math.acos(leftX * rightX + leftY * rightY) / Math.PI / 2;
             uRight = angle / Math.PI / 2;
-            drawUnit.alternativa3d::name_134(program.cFogConsts,0.5 * uScale,0.5 - uRight,0);
-            drawUnit.alternativa3d::setTextureAt(program.sFogTexture,fogTexture.alternativa3d::_texture);
+            drawUnit.alternativa3d::name_134(program.fragmentShader.getVariableIndex("cFogConsts"),0.5 * uScale,0.5 - uRight,0);
+            drawUnit.alternativa3d::setTextureAt(program.fragmentShader.getVariableIndex("sFogTexture"),fogTexture.alternativa3d::_texture);
          }
          return drawUnit;
       }
       
       override public function clone() : class_4
       {
-         var cloned:TankMaterial2 = new TankMaterial2(this.colorMap,this.diffuse,this.normalMap,this.surfaceMap);
+         var cloned:TracksMaterial2 = new TracksMaterial2(diffuseMap,this.normalMap);
          cloned.var_25 = this.var_25;
          cloned.glossiness = this.glossiness;
          return cloned;
@@ -593,107 +591,3 @@ package package_3
    }
 }
 
-import package_30.name_121;
-import package_4.name_127;
-
-class ShadowOrAmbientProgram extends name_127
-{
-   public var aPosition:int;
-   
-   public var aUV:int;
-   
-   public var cProjMatrix:int;
-   
-   public var cAmbient:int;
-   
-   public var cTiling:int;
-   
-   public var sDiffuse:int;
-   
-   public var sColormap:int;
-   
-   public var sSurface:int;
-   
-   public var cShadow:int;
-   
-   public function ShadowOrAmbientProgram(vertex:name_121, fragment:name_121)
-   {
-      super(vertex,fragment);
-      this.aPosition = vertex.name_207("aPosition");
-      this.aUV = vertex.name_207("aUV");
-      this.cProjMatrix = vertex.name_207("cProjMatrix");
-      this.cAmbient = fragment.name_207("cAmbient");
-      this.cTiling = fragment.name_207("cTiling");
-      this.sDiffuse = fragment.name_207("sDiffuse");
-      this.sColormap = fragment.name_207("sColormap");
-      this.sSurface = fragment.name_207("sSurface");
-      this.cShadow = fragment.name_207("cShadow");
-   }
-}
-
-class LightingProgram extends name_127
-{
-   public var aPosition:int;
-   
-   public var aUV:int;
-   
-   public var cProjMatrix:int;
-   
-   public var cCamera:int;
-   
-   public var cSurface:int;
-   
-   public var cTiling:int;
-   
-   public var sDiffuse:int;
-   
-   public var sColormap:int;
-   
-   public var sSurface:int;
-   
-   public var sBump:int;
-   
-   public function LightingProgram(vertex:name_121, fragment:name_121)
-   {
-      super(vertex,fragment);
-      this.aPosition = vertex.name_207("aPosition");
-      this.aUV = vertex.name_207("aUV");
-      this.cProjMatrix = vertex.name_207("cProjMatrix");
-      this.cCamera = vertex.name_207("cCamera");
-      this.cSurface = fragment.name_207("cSurface");
-      this.cTiling = fragment.name_207("cTiling");
-      this.sDiffuse = fragment.name_207("sDiffuse");
-      this.sColormap = fragment.name_207("sColormap");
-      this.sSurface = fragment.name_207("sSurface");
-      this.sBump = fragment.name_207("sBump");
-   }
-}
-
-class FogProgram extends name_127
-{
-   public var aPosition:int;
-   
-   public var cProjMatrix:int;
-   
-   public var cFogSpace:int;
-   
-   public var cFogRange:int;
-   
-   public var cFogColor:int;
-   
-   public var cFogConsts:int;
-   
-   public var sFogTexture:int;
-   
-   public function FogProgram(vertex:name_121, fragment:name_121)
-   {
-      super(vertex,fragment);
-      this.aPosition = vertex.name_207("aPosition");
-      this.cProjMatrix = vertex.name_207("cProjMatrix");
-      this.cFogSpace = vertex.name_207("cFogSpace");
-      this.cFogRange = fragment.name_207("cFogRange");
-      this.cFogColor = fragment.name_207("cFogColor");
-      this.cFogConsts = fragment.name_207("cFogConsts");
-      this.sFogTexture = fragment.name_207("sFogTexture");
-   }
-}

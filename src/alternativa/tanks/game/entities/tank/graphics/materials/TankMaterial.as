@@ -1,4 +1,4 @@
-package package_3
+package alternativa.tanks.game.entities.tank.graphics.materials
 {
    import alternativa.engine3d.alternativa3d;
    import flash.display.BitmapData;
@@ -31,7 +31,7 @@ package package_3
    
    use namespace alternativa3d;
    
-   public class name_7 extends class_5
+   public class TankMaterial extends class_5
    {
       private static var fogTexture:name_129;
       
@@ -109,7 +109,7 @@ package package_3
       
       alternativa3d var var_23:Boolean = false;
       
-      public function name_7(colorMap:name_129 = null, diffuseMap:name_129 = null, normalMap:name_129 = null, surfaceMap:name_129 = null)
+      public function TankMaterial(colorMap:name_129 = null, diffuseMap:name_129 = null, normalMap:name_129 = null, surfaceMap:name_129 = null)
       {
          super(diffuseMap);
          this.colorMap = colorMap;
@@ -131,7 +131,7 @@ package package_3
       {
       }
       
-      private function method_75(targetObject:name_78, lights:Vector.<name_116>, directional:DirectionalLight, lightsLength:int) : name_127
+      private function setupProgram(targetObject:name_78, lights:Vector.<name_116>, directional:DirectionalLight, lightsLength:int) : name_127
       {
          var i:int = 0;
          var procedure:name_114 = null;
@@ -216,7 +216,7 @@ package package_3
                if(dirMulShadowProcedure == null)
                {
                   dirMulShadowProcedure = new name_114(null,"DirectionalLightWithShadow");
-                  this.method_76(dirMulShadowProcedure,directional,true);
+                  this.formDirectionalProcedure(dirMulShadowProcedure,directional,true);
                }
                fragmentLinker.name_123(dirMulShadowProcedure);
                fragmentLinker.name_118(dirMulShadowProcedure,"tNormal","tViewVector","tTotalLight","cAmbientColor");
@@ -233,7 +233,7 @@ package package_3
                      lightFragmentProcedure = new name_114();
                      if(light is DirectionalLight)
                      {
-                        this.method_76(lightFragmentProcedure,light,false);
+                        this.formDirectionalProcedure(lightFragmentProcedure,light,false);
                         lightFragmentProcedure.name = i + "DirectionalLight";
                      }
                      else if(light is OmniLight)
@@ -298,7 +298,7 @@ package package_3
          return new name_127(vertexLinker,fragmentLinker);
       }
       
-      private function method_76(procedure:name_114, light:name_116, useShadow:Boolean) : void
+      private function formDirectionalProcedure(procedure:name_114, light:name_116, useShadow:Boolean) : void
       {
          var source:Array = ["#c0=c" + light.alternativa3d::name_138 + "Direction","#c1=c" + light.alternativa3d::name_138 + "Color","add t0.xyz, i1.xyz, c0.xyz","mov t0.w, c0.w","nrm t0.xyz,t0.xyz","dp3 t0.w, t0.xyz, i0.xyz","pow t0.w, t0.w, o1.w","dp3 t0.x, i0, c0.xyz","sat t0.x, t0.x"];
          if(useShadow)
@@ -408,7 +408,7 @@ package package_3
          {
             dict = new Dictionary();
             _programs[object.alternativa3d::transformProcedure] = dict;
-            program = this.method_75(object,lights,directional,lightsLength);
+            program = this.setupProgram(object,lights,directional,lightsLength);
             program.upload(camera.alternativa3d::context3D);
             dict[key] = program;
          }
@@ -417,7 +417,7 @@ package package_3
             program = dict[key];
             if(program == null)
             {
-               program = this.method_75(object,lights,directional,lightsLength);
+               program = this.setupProgram(object,lights,directional,lightsLength);
                program.upload(camera.alternativa3d::context3D);
                dict[key] = program;
             }

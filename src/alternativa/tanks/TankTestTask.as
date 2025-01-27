@@ -30,9 +30,9 @@ package alternativa.tanks
    import package_28.name_259;
    import package_28.name_93;
    import package_29.MouseEvent3D;
-   import package_3.TankMaterial2;
-   import package_3.name_29;
-   import package_3.name_33;
+   import alternativa.tanks.game.entities.tank.graphics.materials.TankMaterial2;
+   import alternativa.tanks.game.entities.tank.graphics.materials.GiShadowMaterial;
+   import alternativa.tanks.game.entities.tank.graphics.materials.TracksMaterial2;
    import package_39.name_160;
    import package_4.class_4;
    import package_4.class_5;
@@ -702,12 +702,12 @@ package alternativa.tanks
          }
       }
       
-      private function createTracksMaterial(param1:name_249) : name_33
+      private function createTracksMaterial(param1:name_249) : TracksMaterial2
       {
          var _loc2_:name_55 = param1.textureData;
          var _loc3_:name_241 = this.var_65.name_254(_loc2_.name_248(name_243.KEY_TRACKS_DIFFUSE));
          var _loc4_:name_241 = this.var_65.name_254(_loc2_.name_248(name_243.KEY_TRACKS_NORMAL));
-         var _loc5_:name_33 = new name_33();
+         var _loc5_:TracksMaterial2 = new TracksMaterial2();
          _loc5_.glossiness = 65;
          _loc5_.var_25 = 0.6;
          _loc5_.diffuseMap = _loc3_;
@@ -719,14 +719,14 @@ package alternativa.tanks
          return _loc5_;
       }
       
-      private function createShadowMaterial(param1:name_249) : name_29
+      private function createShadowMaterial(param1:name_249) : GiShadowMaterial
       {
          var _loc3_:name_241 = null;
          var _loc2_:name_55 = param1.textureData;
          if(_loc2_.name_248(name_243.KEY_SHADOW) != null)
          {
             _loc3_ = this.var_65.name_254(_loc2_.name_248(name_243.KEY_SHADOW));
-            return new name_29(_loc3_);
+            return new GiShadowMaterial(_loc3_);
          }
          return null;
       }

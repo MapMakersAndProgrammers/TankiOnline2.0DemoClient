@@ -1,4 +1,4 @@
-package package_3
+package alternativa.tanks.game.entities.tank.graphics.materials
 {
    import alternativa.engine3d.alternativa3d;
    import flash.display.BitmapData;
@@ -29,7 +29,7 @@ package package_3
    
    use namespace alternativa3d;
    
-   public class name_29 extends class_4
+   public class GiShadowMaterial extends class_4
    {
       public static var fogTexture:name_129;
       
@@ -63,7 +63,7 @@ package package_3
       
       public var texture:name_129;
       
-      public function name_29(texture:name_129)
+      public function GiShadowMaterial(texture:name_129)
       {
          super();
          this.texture = texture;
@@ -83,7 +83,7 @@ package package_3
          }
       }
       
-      private function method_75(object:name_78) : name_127
+      private function setupProgram(object:name_78) : name_127
       {
          var vertexLinker:name_121 = new name_121(Context3DProgramType.VERTEX);
          var positionVar:String = "aPosition";
@@ -152,7 +152,7 @@ package package_3
          if(programs == null)
          {
             programs = new Vector.<name_127>(3,true);
-            program = this.method_75(object);
+            program = this.setupProgram(object);
             program.upload(camera.alternativa3d::context3D);
             programs[fogMode] = program;
             _programs[object.alternativa3d::transformProcedure] = programs;
@@ -162,7 +162,7 @@ package package_3
             program = programs[fogMode];
             if(program == null)
             {
-               program = this.method_75(object);
+               program = this.setupProgram(object);
                program.upload(camera.alternativa3d::context3D);
                programs[fogMode] = program;
             }
@@ -235,7 +235,7 @@ package package_3
       
       override public function clone() : class_4
       {
-         return new name_29(this.texture);
+         return new GiShadowMaterial(this.texture);
       }
    }
 }

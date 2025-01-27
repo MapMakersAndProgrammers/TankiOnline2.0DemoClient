@@ -1,4 +1,4 @@
-package package_3
+package alternativa.tanks.game.entities.tank.graphics.materials
 {
    import alternativa.engine3d.alternativa3d;
    import package_19.name_117;
@@ -15,7 +15,7 @@ package package_3
    
    use namespace alternativa3d;
    
-   public class name_10 extends class_9
+   public class TreesMaterial extends class_9
    {
       public static const DISABLED:int = 0;
       
@@ -31,7 +31,7 @@ package package_3
       
       public var vOffset:Number = 0;
       
-      public function name_10(diffuseMap:name_129 = null, normalMap:name_129 = null, specularMap:name_129 = null, glossinessMap:name_129 = null, opacityMap:name_129 = null, alphaThreshold:Number = 1)
+      public function TreesMaterial(diffuseMap:name_129 = null, normalMap:name_129 = null, specularMap:name_129 = null, glossinessMap:name_129 = null, opacityMap:name_129 = null, alphaThreshold:Number = 1)
       {
          super(diffuseMap,normalMap,specularMap,glossinessMap,opacityMap);
          alternativa3d::outputAlpha = new name_114(["#c0=cSurface","sub t0.w, i0.w, c0.w","kil t0.w","mov o0, i0"],"outputAlpha");
@@ -135,7 +135,7 @@ package package_3
       
       override public function clone() : class_4
       {
-         var cloned:name_10 = new name_10(diffuseMap,normalMap,specularMap,glossinessMap);
+         var cloned:TreesMaterial = new TreesMaterial(diffuseMap,normalMap,specularMap,glossinessMap);
          cloned.opacityMap = opacityMap;
          cloned.alpha = alpha;
          cloned.var_21 = var_21;
