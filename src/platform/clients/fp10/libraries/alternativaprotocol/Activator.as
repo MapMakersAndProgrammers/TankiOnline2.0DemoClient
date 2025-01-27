@@ -1,4 +1,4 @@
-package package_17
+package platform.clients.fp10.libraries.alternativaprotocol
 {
    import package_31.class_6;
    import package_32.name_148;
@@ -44,11 +44,11 @@ package package_17
    import package_39.name_160;
    import alternativa.osgi.OSGi;
    
-   public class name_21 implements class_6
+   public class Activator implements class_6
    {
       public static var osgi:OSGi;
       
-      public function name_21()
+      public function Activator()
       {
          super();
       }

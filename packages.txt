@@ -8,3 +8,4 @@ package_11 alternativa
 package_13 alternativa.tanks.config
 package_14 platform.client.a3d.osgi
 package_16 alternativa.protocol.osgi
+package_17 platform.clients.fp10.libraries.alternativaprotocol

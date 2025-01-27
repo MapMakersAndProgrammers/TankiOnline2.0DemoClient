@@ -22,7 +22,7 @@ package
    import platform.client.a3d.osgi.Activator;
    import package_15.name_19;
    import alternativa.protocol.osgi.ProtocolActivator;
-   import package_17.Activator;
+   import platform.clients.fp10.libraries.alternativaprotocol.Activator;
    import package_18.name_44;
    import package_2.name_2;
    import package_2.name_9;
@@ -186,7 +186,7 @@ package
          this.var_2 = new ClientConfigurator();
          this.var_2.start(this,new name_19(loaderInfo.parameters),new Vector.<LibraryInfo>(),new ConnectionParameters(null,null,null),new Vector.<String>());
          new ProtocolActivator().start(OSGi.name_8());
-         new package_17.Activator().start(OSGi.name_8());
+         new platform.clients.fp10.libraries.alternativaprotocol.Activator().start(OSGi.name_8());
          new platform.client.a3d.osgi.Activator().start(OSGi.name_8());
       }
       

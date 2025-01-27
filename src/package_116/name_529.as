@@ -8,7 +8,7 @@ package package_116
    import flash.utils.Endian;
    import platform.client.a3d.osgi.Activator;
    import alternativa.protocol.osgi.ProtocolActivator;
-   import package_17.Activator;
+   import platform.clients.fp10.libraries.alternativaprotocol.Activator;
    import package_19.name_380;
    import package_19.name_528;
    import package_19.name_700;
@@ -339,7 +339,7 @@ package package_116
          osgi.method_116(name_160,new DummyClientLog());
          new ProtocolActivator().start(osgi);
          new platform.client.a3d.osgi.Activator().start(osgi);
-         new package_17.Activator().start(osgi);
+         new platform.clients.fp10.libraries.alternativaprotocol.Activator().start(osgi);
          this.protocol = name_159(osgi.name_30(name_163));
          this.var_629 = true;
       }
