@@ -11,4 +11,4 @@ package_13 alternativa.tanks.config
 package_14 platform.client.a3d.osgi
 package_16 alternativa.protocol.osgi
 package_17 platform.clients.fp10.libraries.alternativaprotocol
-package_22 
+package_22 alternativa.tanks.game.subsystems.inputsystem
