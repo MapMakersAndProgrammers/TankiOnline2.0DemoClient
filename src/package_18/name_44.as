@@ -34,7 +34,7 @@ package package_18
    import alternativa.tanks.game.entities.tank.graphics.materials.GiShadowMaterial;
    import alternativa.tanks.game.entities.tank.graphics.materials.TracksMaterial2;
    import alternativa.tanks.game.entities.tank.graphics.materials.TankMaterial;
-   import package_9.name_23;
+   import alternativa.tanks.game.camera.AxisIndicator;
    
    use namespace alternativa3d;
    
@@ -74,7 +74,7 @@ package package_18
       
       private var var_13:name_102;
       
-      private var axisIndicator:name_23;
+      private var axisIndicator:AxisIndicator;
       
       private var renderers:name_86;
       
@@ -148,7 +148,7 @@ package package_18
          this.var_5.gravity = new Vector3D(0,0,-1);
          this.var_5.wind = new Vector3D(1,0,0);
          this.rootContainer.addChild(this.var_5);
-         this.axisIndicator = new name_23(100);
+         this.axisIndicator = new AxisIndicator(100);
          this.resourceManager = new name_101();
          this.var_9 = new name_92();
          this.staticShadowRenderer = new name_97(null,1024,4);
@@ -470,7 +470,7 @@ package package_18
          }
       }
       
-      public function name_42() : name_23
+      public function name_42() : AxisIndicator
       {
          return this.axisIndicator;
       }

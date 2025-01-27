@@ -40,8 +40,8 @@ package
    import alternativa.tanks.TankTestTask;
    import alternativa.startup.LibraryInfo;
    import alternativa.startup.ConnectionParameters;
-   import package_9.name_20;
-   import package_9.name_23;
+   import alternativa.tanks.game.camera.FreeCameraController;
+   import alternativa.tanks.game.camera.AxisIndicator;
    
    [SWF(backgroundColor="#333333",frameRate="100",width="1024",height="768")]
    public class TanksTestingTool extends Sprite
@@ -119,7 +119,7 @@ package
       
       private function onControllerSettingsChange(param1:ConsoleVarFloat) : void
       {
-         name_20.smoothing = param1.value;
+         FreeCameraController.smoothing = param1.value;
       }
       
       private function onLightSettingsChange(param1:ConsoleVar) : void
@@ -282,7 +282,7 @@ package
       
       private function onResize(param1:Event) : void
       {
-         var _loc2_:name_23 = null;
+         var _loc2_:AxisIndicator = null;
          if(this.gameKernel != null)
          {
             this.gameKernel.name_5().name_46(0,0,stage.stageWidth,stage.stageHeight);

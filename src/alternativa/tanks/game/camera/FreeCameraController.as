@@ -1,4 +1,4 @@
-package package_9
+package alternativa.tanks.game.camera
 {
    import flash.geom.Vector3D;
    import alternativa.tanks.game.ObjectController;
@@ -14,7 +14,7 @@ package package_9
    import package_46.name_194;
    import package_47.name_193;
    
-   public class name_20 implements name_102
+   public class FreeCameraController implements name_102
    {
       public static var smoothing:Number = 20;
       
@@ -62,7 +62,7 @@ package package_9
       
       private var var_45:Matrix4 = new Matrix4();
       
-      public function name_20(camera:name_90, input:IInput)
+      public function FreeCameraController(camera:name_90, input:IInput)
       {
          super();
          this.input = input;
@@ -179,7 +179,7 @@ package package_9
          }
          if(targeted && this.target != null)
          {
-            this.method_114();
+            this.updateTargetState();
             dx = this.var_45.d - object.x;
             dy = this.var_45.h - object.y;
             dz = this.var_45.l - object.z;
@@ -189,14 +189,14 @@ package package_9
          }
       }
       
-      private function method_114() : void
+      private function updateTargetState() : void
       {
-         this.method_113(this.target.parent,this.parentMatrix);
-         this.method_113(this.target,this.var_45);
+         this.setMatrixFromObject(this.target.parent,this.parentMatrix);
+         this.setMatrixFromObject(this.target,this.var_45);
          this.var_45.append(this.parentMatrix);
       }
       
-      private function method_113(object:name_78, matrix:Matrix4) : void
+      private function setMatrixFromObject(object:name_78, matrix:Matrix4) : void
       {
          matrix.name_196(object.rotationX,object.rotationY,object.rotationZ);
          matrix.name_75(object.x,object.y,object.z);

@@ -93,9 +93,9 @@ package alternativa.tanks
    import package_87.name_267;
    import package_88.name_268;
    import package_89.name_266;
-   import package_9.name_20;
-   import package_9.name_298;
-   import package_9.name_299;
+   import alternativa.tanks.game.camera.FreeCameraController;
+   import alternativa.tanks.game.camera.OrbitCameraController;
+   import alternativa.tanks.game.camera.FollowCameraController;
    import package_90.name_273;
    import package_91.name_296;
    import package_91.name_349;
@@ -144,11 +144,11 @@ package alternativa.tanks
       
       private var var_73:BitmapData;
       
-      private var var_67:name_299;
+      private var var_67:FollowCameraController;
       
-      private var var_69:name_298;
+      private var var_69:OrbitCameraController;
       
-      private var freeCameraController:name_20;
+      private var freeCameraController:FreeCameraController;
       
       private var var_68:name_102;
       
@@ -178,7 +178,7 @@ package alternativa.tanks
       
       private var var_80:name_293 = new name_293();
       
-      public function TankTestTask(param1:int, param2:Config, param3:GameKernel, param4:name_20, param5:Preloader)
+      public function TankTestTask(param1:int, param2:Config, param3:GameKernel, param4:FreeCameraController, param5:Preloader)
       {
          super(param1);
          this.preloader = param5;
@@ -202,8 +202,8 @@ package alternativa.tanks
          _loc1_.name_94(KeyboardEventType.KEY_DOWN,this.onKeyDown);
          var _loc2_:name_56 = name_56(var_4.getTaskInterface(name_56));
          _loc2_.addEventListener(name_253.TANK_CLICK,this);
-         this.var_67 = new name_299(this.gameKernel.name_5().name_27(),this.gameKernel.method_112().name_246().collisionDetector,name_257.STATIC,_loc1_);
-         this.var_69 = new name_298(this.gameKernel.name_5().name_27(),this.gameKernel.method_112().name_246().collisionDetector,name_257.STATIC,_loc1_);
+         this.var_67 = new FollowCameraController(this.gameKernel.name_5().name_27(),this.gameKernel.method_112().name_246().collisionDetector,name_257.STATIC,_loc1_);
+         this.var_69 = new OrbitCameraController(this.gameKernel.name_5().name_27(),this.gameKernel.method_112().name_246().collisionDetector,name_257.STATIC,_loc1_);
          this.var_81 = new name_290(this.gameKernel.name_5());
          this.var_75 = new name_285();
          this.gameKernel.stage.addChild(this.var_75);
@@ -305,10 +305,10 @@ package alternativa.tanks
             case Keyboard.N:
                if(this.var_68 == this.freeCameraController)
                {
-                  name_20.targeted = !name_20.targeted;
+                  FreeCameraController.targeted = !FreeCameraController.targeted;
                   break;
                }
-               name_20.targeted = true;
+               FreeCameraController.targeted = true;
                this.setCameraController(this.freeCameraController);
                break;
             case Keyboard.ENTER:

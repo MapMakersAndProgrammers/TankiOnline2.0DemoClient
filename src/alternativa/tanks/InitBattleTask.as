@@ -11,7 +11,7 @@ package alternativa.tanks
    import package_18.name_44;
    import package_19.name_53;
    import alternativa.tanks.game.entities.map.A3DMapComponent;
-   import package_9.name_20;
+   import alternativa.tanks.game.camera.FreeCameraController;
    
    public class InitBattleTask extends GameTask
    {
@@ -35,7 +35,7 @@ package alternativa.tanks
       override public function run() : void
       {
          var _loc1_:name_44 = this.gameKernel.name_5();
-         var _loc2_:name_20 = new name_20(_loc1_.name_27(),this.gameKernel.name_66());
+         var _loc2_:FreeCameraController = new FreeCameraController(_loc1_.name_27(),this.gameKernel.name_66());
          _loc1_.name_63(_loc2_);
          _loc2_.name_75(0,0,1000);
          _loc2_.name_76(0,2000,0);

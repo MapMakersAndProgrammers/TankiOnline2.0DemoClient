@@ -1,13 +1,13 @@
-package package_9
+package alternativa.tanks.game.camera
 {
    import package_18.name_90;
    import package_46.name_194;
    
-   public class class_32
+   public class CameraControllerBase
    {
       protected var camera:name_90;
       
-      public function class_32()
+      public function CameraControllerBase()
       {
          super();
       }

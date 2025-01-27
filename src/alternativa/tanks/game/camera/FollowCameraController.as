@@ -1,4 +1,4 @@
-package package_9
+package alternativa.tanks.game.camera
 {
    import flash.ui.Keyboard;
    import flash.utils.getTimer;
@@ -19,7 +19,7 @@ package package_9
    import package_76.name_256;
    import package_90.name_273;
    
-   public class name_299 extends class_32 implements name_102
+   public class FollowCameraController extends CameraControllerBase implements name_102
    {
       private static var parentMatrix:Matrix4 = new Matrix4();
       
@@ -117,7 +117,7 @@ package package_9
       
       private var var_515:name_380;
       
-      public function name_299(camera:name_90, collisionDetector:name_256, collisionMask:int, input:IInput)
+      public function FollowCameraController(camera:name_90, collisionDetector:name_256, collisionMask:int, input:IInput)
       {
          super();
          this.camera = camera;
@@ -162,9 +162,9 @@ package package_9
          this.targetPosition.copy(targetPosition);
          this.targetDirection.copy(targetDirection);
          this.var_522 = 0;
-         this.method_540(targetPosition,targetDirection,false,10000,this.cameraPositionData);
+         this.getCameraPositionData(targetPosition,targetDirection,false,10000,this.cameraPositionData);
          this.position.copy(this.cameraPositionData.position);
-         this.rotation.x = this.method_542(this.cameraPositionData) - 0.5 * Math.PI;
+         this.rotation.x = this.getPitchAngle(this.cameraPositionData) - 0.5 * Math.PI;
          this.rotation.z = Math.atan2(-targetDirection.x,targetDirection.y);
          name_201(this.position);
          name_352(this.rotation);
@@ -191,17 +191,17 @@ package package_9
          {
             dt = 0.1;
          }
-         this.method_538();
+         this.updateHeight();
          if(!this.locked)
          {
-            this.method_114();
+            this.updateTargetState();
          }
-         this.method_540(this.targetPosition,this.targetDirection,true,dt,this.cameraPositionData);
+         this.getCameraPositionData(this.targetPosition,this.targetDirection,true,dt,this.cameraPositionData);
          positionDelta.method_366(this.cameraPositionData.position,this.position);
          var positionError:Number = positionDelta.length();
          if(positionError > maxPositionError)
          {
-            this.var_526 = this.method_539(positionError - maxPositionError);
+            this.var_526 = this.getLinearSpeed(positionError - maxPositionError);
          }
          var distance:Number = this.var_526 * dt;
          if(distance > positionError)
@@ -209,27 +209,27 @@ package package_9
             distance = positionError;
          }
          positionDelta.normalize().scale(distance);
-         var targetPitchAngle:Number = this.method_542(this.cameraPositionData);
+         var targetPitchAngle:Number = this.getPitchAngle(this.cameraPositionData);
          var targetYawAngle:Number = Number(Math.atan2(-this.targetDirection.x,this.targetDirection.y));
          var currentPitchAngle:Number = name_501.name_506(this.rotation.x + 0.5 * Math.PI);
          var currentYawAngle:Number = name_501.name_506(this.rotation.z);
          var pitchError:Number = name_501.name_628(targetPitchAngle - currentPitchAngle);
-         this.var_525 = this.method_537(pitchError,this.var_525);
+         this.var_525 = this.getAngularSpeed(pitchError,this.var_525);
          var deltaPitch:Number = this.var_525 * dt;
          if(pitchError > 0 && deltaPitch > pitchError || pitchError < 0 && deltaPitch < pitchError)
          {
             deltaPitch = pitchError;
          }
          var yawError:Number = name_501.name_628(targetYawAngle - currentYawAngle);
-         this.var_527 = this.method_537(yawError,this.var_527);
+         this.var_527 = this.getAngularSpeed(yawError,this.var_527);
          var deltaYaw:Number = this.var_527 * dt;
          if(yawError > 0 && deltaYaw > yawError || yawError < 0 && deltaYaw < yawError)
          {
             deltaYaw = yawError;
          }
-         this.var_526 = this.method_541(this.var_526,0,camSpeedThreshold);
-         this.var_525 = this.method_541(this.var_525,0,camSpeedThreshold);
-         this.var_527 = this.method_541(this.var_527,0,camSpeedThreshold);
+         this.var_526 = this.snap(this.var_526,0,camSpeedThreshold);
+         this.var_525 = this.snap(this.var_525,0,camSpeedThreshold);
+         this.var_527 = this.snap(this.var_527,0,camSpeedThreshold);
          this.position.add(positionDelta);
          this.rotation.x += deltaPitch;
          this.rotation.z += deltaYaw;
@@ -252,7 +252,7 @@ package package_9
       public function set method_534(value:Number) : void
       {
          this.var_510 = name_501.clamp(value,MIN_HEIGHT,MAX_HEIGHT);
-         var d:Number = this.method_535(this.var_510);
+         var d:Number = this.getCamDistance(this.var_510);
          this.var_521 = Math.atan2(this.var_510,d);
          this.var_511 = Math.sqrt(this.var_510 * this.var_510 + d * d);
          this.var_522 = 0;
@@ -260,13 +260,13 @@ package package_9
       
       public function method_546(targetPosition:name_194, targetDirection:name_194, resultingPosition:name_194, resultingAngles:name_194) : void
       {
-         this.method_540(targetPosition,targetDirection,false,10000,this.cameraPositionData);
-         resultingAngles.x = this.method_542(this.cameraPositionData) - 0.5 * Math.PI;
+         this.getCameraPositionData(targetPosition,targetDirection,false,10000,this.cameraPositionData);
+         resultingAngles.x = this.getPitchAngle(this.cameraPositionData) - 0.5 * Math.PI;
          resultingAngles.z = Math.atan2(-targetDirection.x,targetDirection.y);
          resultingPosition.copy(this.cameraPositionData.position);
       }
       
-      private function method_540(targetPosition:name_194, targetDirection:name_194, useReboundDelay:Boolean, dt:Number, result:CameraPositionData) : void
+      private function getCameraPositionData(targetPosition:name_194, targetDirection:name_194, useReboundDelay:Boolean, dt:Number, result:CameraPositionData) : void
       {
          var angle:Number = NaN;
          var now:int = 0;
@@ -295,7 +295,7 @@ package package_9
          {
             rotationMatrix.method_344(axis,-angle);
             rotationMatrix.method_345(flatDirection,rayDirection);
-            minCollisionDistance = this.method_543(rayOrigin,rayDirection,this.var_511,minCollisionDistance);
+            minCollisionDistance = this.getCollisionDistance(rayOrigin,rayDirection,this.var_511,minCollisionDistance);
          }
          if(useReboundDelay)
          {
@@ -342,7 +342,7 @@ package package_9
          }
       }
       
-      private function method_543(rayOrigin:name_194, rayDirection:name_194, rayLength:Number, minCollisionDistance:Number) : Number
+      private function getCollisionDistance(rayOrigin:name_194, rayDirection:name_194, rayLength:Number, minCollisionDistance:Number) : Number
       {
          var distance:Number = NaN;
          if(this.collisionDetector.raycast(rayOrigin,rayDirection,this.collisionMask,rayLength,null,rayHit))
@@ -364,7 +364,7 @@ package package_9
          return minCollisionDistance;
       }
       
-      private function method_114() : void
+      private function updateTargetState() : void
       {
          this.setMatrix(this.var_515.parent,parentMatrix);
          this.setMatrix(this.var_515,matrix);
@@ -379,7 +379,7 @@ package package_9
          matrix.name_75(object.x,object.y,object.z);
       }
       
-      private function method_538() : void
+      private function updateHeight() : void
       {
          var heightChangeDir:int = this.input.name_192(KEY_CAMERA_UP) - this.input.name_192(KEY_CAMERA_DOWN);
          if(heightChangeDir != 0)
@@ -388,7 +388,7 @@ package package_9
          }
       }
       
-      private function method_535(h:Number) : Number
+      private function getCamDistance(h:Number) : Number
       {
          var hMid:Number = 0.5 * (3300 + 200);
          var a:Number = hMid;
@@ -397,12 +397,12 @@ package package_9
          return -k * (h - a) * (h - a) + 1300;
       }
       
-      private function method_539(positionError:Number) : Number
+      private function getLinearSpeed(positionError:Number) : Number
       {
          return 3 * positionError;
       }
       
-      private function method_537(angleError:Number, currentSpeed:Number) : Number
+      private function getAngularSpeed(angleError:Number, currentSpeed:Number) : Number
       {
          if(angleError < -maxAngleError)
          {
@@ -415,7 +415,7 @@ package package_9
          return currentSpeed;
       }
       
-      private function method_541(value:Number, snapValue:Number, epsilon:Number) : Number
+      private function snap(value:Number, snapValue:Number, epsilon:Number) : Number
       {
          if(value > snapValue - epsilon && value < snapValue + epsilon)
          {
@@ -424,7 +424,7 @@ package package_9
          return value;
       }
       
-      private function method_542(cameraPositionData:CameraPositionData) : Number
+      private function getPitchAngle(cameraPositionData:CameraPositionData) : Number
       {
          var angle:Number = this.var_521 - fixedPitch.value;
          if(angle < 0)
@@ -439,7 +439,7 @@ package package_9
          return cameraPositionData.extraPitch - Math.atan2(t * this.var_510,pitchCorrectionCoeff.value * this.var_510 * (1 / Math.tan(angle) - (1 - t) / Math.tan(this.var_521)));
       }
       
-      private function method_547(value:Number, targetValue:Number, delta:Number) : Number
+      private function moveValueTowards(value:Number, targetValue:Number, delta:Number) : Number
       {
          if(value < targetValue)
          {

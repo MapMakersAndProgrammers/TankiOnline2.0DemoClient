@@ -1,15 +1,15 @@
-package package_9
+package alternativa.tanks.game.camera
 {
    import flash.display.Shape;
    import package_18.name_90;
    
-   public class name_23 extends Shape
+   public class AxisIndicator extends Shape
    {
       private var var_32:int;
       
       private var axis:Vector.<Number> = Vector.<Number>([0,0,0,0,0,0]);
       
-      public function name_23(size:int)
+      public function AxisIndicator(size:int)
       {
          super();
          this.var_32 = size;
