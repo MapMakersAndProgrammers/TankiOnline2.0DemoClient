@@ -25,7 +25,7 @@ package package_18
    import package_24.DirectionalLight;
    import package_25.name_113;
    import package_25.name_98;
-   import package_26.name_100;
+   import alternativa.tanks.game.utils.objectpool.ObjectPoolManager;
    import package_27.name_95;
    import package_28.name_93;
    import package_29.MouseEvent3D;
@@ -94,7 +94,7 @@ package package_18
       
       private var var_18:Boolean;
       
-      private var objectPoolManager:name_100 = new name_100();
+      private var objectPoolManager:ObjectPoolManager = new ObjectPoolManager();
       
       private var var_19:Vector.<name_80>;
       

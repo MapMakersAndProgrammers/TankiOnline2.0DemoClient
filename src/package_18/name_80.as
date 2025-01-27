@@ -6,10 +6,10 @@ package package_18
    import flash.text.TextFieldAutoSize;
    import flash.text.TextFormat;
    import package_21.name_78;
-   import package_26.class_18;
-   import package_26.name_402;
+   import alternativa.tanks.game.utils.objectpool.PooledObject;
+   import alternativa.tanks.game.utils.objectpool.ObjectPool;
    
-   public class name_80 extends class_18 implements name_85
+   public class name_80 extends PooledObject implements name_85
    {
       private static const DEFAULT_TEXT_FORMAT:TextFormat = new TextFormat("Tahoma",12,16777215);
       
@@ -23,7 +23,7 @@ package package_18
       
       private var anchor:name_78;
       
-      public function name_80(objectPool:name_402)
+      public function name_80(objectPool:ObjectPool)
       {
          super(objectPool);
          this.tf = new TextField();

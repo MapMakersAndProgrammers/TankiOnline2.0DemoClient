@@ -1,10 +1,10 @@
-package package_26
+package alternativa.tanks.game.utils.objectpool
 {
-   public class class_18
+   public class PooledObject
    {
-      protected var objectPool:name_402;
+      protected var objectPool:ObjectPool;
       
-      public function class_18(objectPool:name_402)
+      public function PooledObject(objectPool:ObjectPool)
       {
          super();
          this.objectPool = objectPool;

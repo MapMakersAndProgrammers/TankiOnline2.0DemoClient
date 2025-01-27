@@ -1,6 +1,6 @@
-package package_26
+package alternativa.tanks.game.utils.objectpool
 {
-   public class name_402
+   public class ObjectPool
    {
       private var objectClass:Class;
       
@@ -8,7 +8,7 @@ package package_26
       
       private var numObjects:int;
       
-      public function name_402(objectClass:Class)
+      public function ObjectPool(objectClass:Class)
       {
          super();
          this.objectClass = objectClass;

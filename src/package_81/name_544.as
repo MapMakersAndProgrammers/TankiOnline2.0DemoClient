@@ -6,8 +6,8 @@ package package_81
    import package_18.name_85;
    import package_18.name_90;
    import package_25.name_250;
-   import package_26.class_18;
-   import package_26.name_402;
+   import alternativa.tanks.game.utils.objectpool.PooledObject;
+   import alternativa.tanks.game.utils.objectpool.ObjectPool;
    import package_46.Matrix3;
    import package_46.name_194;
    import package_75.class_15;
@@ -16,7 +16,7 @@ package package_81
    import package_86.name_257;
    import package_90.name_273;
    
-   public class name_544 extends class_18 implements name_85
+   public class name_544 extends PooledObject implements name_85
    {
       private static const ANIMATION_FPS:Number = 30;
       
@@ -90,7 +90,7 @@ package package_81
       
       private var dir:Vector3D = new Vector3D();
       
-      public function name_544(objectPool:name_402)
+      public function name_544(objectPool:ObjectPool)
       {
          super(objectPool);
       }

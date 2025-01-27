@@ -3,7 +3,7 @@ package package_44
    import flash.utils.getTimer;
    import alternativa.tanks.game.GameTask;
    import package_113.name_469;
-   import package_26.name_100;
+   import alternativa.tanks.game.utils.objectpool.ObjectPoolManager;
    import package_43.name_190;
    import package_45.name_182;
    import package_46.name_194;
@@ -43,9 +43,9 @@ package package_44
       
       private var var_10:name_190;
       
-      private var objectPoolManager:name_100;
+      private var objectPoolManager:ObjectPoolManager;
       
-      public function name_178(priority:int, objectPoolManager:name_100)
+      public function name_178(priority:int, objectPoolManager:ObjectPoolManager)
       {
          super(priority);
          this.objectPoolManager = objectPoolManager;
@@ -273,8 +273,8 @@ package package_44
    }
 }
 
-import package_26.class_18;
-import package_26.name_402;
+import alternativa.tanks.game.utils.objectpool.PooledObject;
+import alternativa.tanks.game.utils.objectpool.ObjectPool;
 import package_43.name_190;
 
 class DeferredAction extends name_190
@@ -283,7 +283,7 @@ class DeferredAction extends name_190
    
    public var controller:name_465;
    
-   public function DeferredAction(objectPool:name_402)
+   public function DeferredAction(objectPool:ObjectPool)
    {
       super(objectPool);
    }
@@ -302,7 +302,7 @@ class DeferredAction extends name_190
 
 class DeferredActionAddBefore extends DeferredAction
 {
-   public function DeferredActionAddBefore(objectPool:name_402)
+   public function DeferredActionAddBefore(objectPool:ObjectPool)
    {
       super(objectPool);
    }
@@ -315,7 +315,7 @@ class DeferredActionAddBefore extends DeferredAction
 
 class DeferredActionAddAfter extends DeferredAction
 {
-   public function DeferredActionAddAfter(objectPool:name_402)
+   public function DeferredActionAddAfter(objectPool:ObjectPool)
    {
       super(objectPool);
    }
@@ -328,7 +328,7 @@ class DeferredActionAddAfter extends DeferredAction
 
 class DeferredActionRemoveBefore extends DeferredAction
 {
-   public function DeferredActionRemoveBefore(objectPool:name_402)
+   public function DeferredActionRemoveBefore(objectPool:ObjectPool)
    {
       super(objectPool);
    }
@@ -341,7 +341,7 @@ class DeferredActionRemoveBefore extends DeferredAction
 
 class DeferredActionRemoveAfter extends DeferredAction
 {
-   public function DeferredActionRemoveAfter(objectPool:name_402)
+   public function DeferredActionRemoveAfter(objectPool:ObjectPool)
    {
       super(objectPool);
    }

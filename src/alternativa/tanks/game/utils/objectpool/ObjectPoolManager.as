@@ -1,27 +1,27 @@
-package package_26
+package alternativa.tanks.game.utils.objectpool
 {
    import flash.utils.Dictionary;
    
-   public class name_100
+   public class ObjectPoolManager
    {
       private var var_103:Dictionary = new Dictionary();
       
-      public function name_100()
+      public function ObjectPoolManager()
       {
          super();
       }
       
       public function name_110(objectClass:Class) : Object
       {
-         return this.method_220(objectClass).name_110();
+         return this.getPool(objectClass).name_110();
       }
       
-      private function method_220(objectClass:Class) : name_402
+      private function getPool(objectClass:Class) : ObjectPool
       {
-         var pool:name_402 = this.var_103[objectClass];
+         var pool:ObjectPool = this.var_103[objectClass];
          if(pool == null)
          {
-            pool = new name_402(objectClass);
+            pool = new ObjectPool(objectClass);
             this.var_103[objectClass] = pool;
          }
          return pool;

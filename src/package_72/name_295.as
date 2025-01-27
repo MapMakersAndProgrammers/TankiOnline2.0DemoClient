@@ -53,8 +53,8 @@ import package_18.name_44;
 import package_18.name_85;
 import package_18.name_90;
 import package_19.name_380;
-import package_26.class_18;
-import package_26.name_402;
+import alternativa.tanks.game.utils.objectpool.PooledObject;
+import alternativa.tanks.game.utils.objectpool.ObjectPool;
 import package_27.name_519;
 import package_28.name_129;
 import package_4.class_5;
@@ -64,7 +64,7 @@ import package_75.class_15;
 
 use namespace alternativa3d;
 
-class SimpleWeaponShotEffect extends class_18 implements name_85
+class SimpleWeaponShotEffect extends PooledObject implements name_85
 {
    private static var muzzlePosition:name_194 = new name_194();
    
@@ -80,7 +80,7 @@ class SimpleWeaponShotEffect extends class_18 implements name_85
    
    private var barrelIndex:int;
    
-   public function SimpleWeaponShotEffect(objectPool:name_402)
+   public function SimpleWeaponShotEffect(objectPool:ObjectPool)
    {
       super(objectPool);
       this.mesh = new name_520(40,250,0,250 / 2);

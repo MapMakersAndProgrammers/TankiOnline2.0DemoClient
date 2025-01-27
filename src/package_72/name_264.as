@@ -5,8 +5,8 @@ package package_72
    import package_18.name_85;
    import package_18.name_90;
    import package_19.name_380;
-   import package_26.class_18;
-   import package_26.name_402;
+   import alternativa.tanks.game.utils.objectpool.PooledObject;
+   import alternativa.tanks.game.utils.objectpool.ObjectPool;
    import package_28.name_119;
    import package_4.class_4;
    import package_45.name_182;
@@ -14,7 +14,7 @@ package package_72
    
    use namespace alternativa3d;
    
-   public class name_264 extends class_18 implements name_85
+   public class name_264 extends PooledObject implements name_85
    {
       private static var geometry:name_119;
       
@@ -34,7 +34,7 @@ package package_72
       
       private var renderSystem:name_44;
       
-      public function name_264(objectPool:name_402)
+      public function name_264(objectPool:ObjectPool)
       {
          super(objectPool);
          if(geometry == null)

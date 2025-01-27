@@ -79,8 +79,8 @@ package package_42
    }
 }
 
-import package_26.class_18;
-import package_26.name_402;
+import alternativa.tanks.game.utils.objectpool.PooledObject;
+import alternativa.tanks.game.utils.objectpool.ObjectPool;
 import package_43.name_190;
 
 class DeferredAction extends name_190
@@ -89,7 +89,7 @@ class DeferredAction extends name_190
    
    public var unit:name_477;
    
-   public function DeferredAction(objectPool:name_402)
+   public function DeferredAction(objectPool:ObjectPool)
    {
       super(objectPool);
    }
@@ -108,7 +108,7 @@ class DeferredAction extends name_190
 
 class ActionAddUnit extends DeferredAction
 {
-   public function ActionAddUnit(objectPool:name_402)
+   public function ActionAddUnit(objectPool:ObjectPool)
    {
       super(objectPool);
    }
@@ -121,7 +121,7 @@ class ActionAddUnit extends DeferredAction
 
 class ActionRemoveUnit extends DeferredAction
 {
-   public function ActionRemoveUnit(objectPool:name_402)
+   public function ActionRemoveUnit(objectPool:ObjectPool)
    {
       super(objectPool);
    }

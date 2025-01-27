@@ -5,13 +5,13 @@ package package_72
    import package_18.name_85;
    import package_18.name_90;
    import package_19.name_494;
-   import package_26.class_18;
-   import package_26.name_402;
+   import alternativa.tanks.game.utils.objectpool.PooledObject;
+   import alternativa.tanks.game.utils.objectpool.ObjectPool;
    import package_4.class_4;
    import package_45.name_182;
    import package_46.name_194;
    
-   public class name_260 extends class_18 implements name_85
+   public class name_260 extends PooledObject implements name_85
    {
       private var sprite:name_494;
       
@@ -31,7 +31,7 @@ package package_72
       
       private var acceleration:Number;
       
-      public function name_260(objectPool:name_402)
+      public function name_260(objectPool:ObjectPool)
       {
          super(objectPool);
       }

@@ -5,13 +5,13 @@ package package_72
    import package_18.name_85;
    import package_18.name_90;
    import package_19.name_494;
-   import package_26.class_18;
-   import package_26.name_402;
+   import alternativa.tanks.game.utils.objectpool.PooledObject;
+   import alternativa.tanks.game.utils.objectpool.ObjectPool;
    import package_4.class_4;
    import package_45.name_182;
    import package_46.name_194;
    
-   public class name_239 extends class_18 implements name_85
+   public class name_239 extends PooledObject implements name_85
    {
       private static var toCamera:name_194 = new name_194();
       
@@ -31,7 +31,7 @@ package package_72
       
       private var loop:Boolean;
       
-      public function name_239(objectPool:name_402)
+      public function name_239(objectPool:ObjectPool)
       {
          super(objectPool);
       }

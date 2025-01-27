@@ -8,13 +8,13 @@ package package_88
    import package_18.name_85;
    import package_18.name_90;
    import package_21.name_78;
-   import package_26.class_18;
-   import package_26.name_402;
+   import alternativa.tanks.game.utils.objectpool.PooledObject;
+   import alternativa.tanks.game.utils.objectpool.ObjectPool;
    import package_45.name_182;
    
    use namespace alternativa3d;
    
-   public class name_268 extends class_18 implements name_85
+   public class name_268 extends PooledObject implements name_85
    {
       private static var vector1:Vector3D = new Vector3D();
       
@@ -30,7 +30,7 @@ package package_88
       
       private var var_467:Function;
       
-      public function name_268(objectPool:name_402)
+      public function name_268(objectPool:ObjectPool)
       {
          super(objectPool);
          this.var_435 = new Vector.<Message>();

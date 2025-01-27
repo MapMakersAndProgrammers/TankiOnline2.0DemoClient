@@ -9,8 +9,8 @@ package package_89
    import package_19.name_380;
    import package_19.name_494;
    import package_21.name_78;
-   import package_26.class_18;
-   import package_26.name_402;
+   import alternativa.tanks.game.utils.objectpool.PooledObject;
+   import alternativa.tanks.game.utils.objectpool.ObjectPool;
    import package_28.name_129;
    import package_4.name_313;
    import package_45.name_182;
@@ -20,7 +20,7 @@ package package_89
    
    use namespace alternativa3d;
    
-   public class name_266 extends class_18 implements name_85
+   public class name_266 extends PooledObject implements name_85
    {
       private static const BARREL_INDEX:int = 0;
       
@@ -88,7 +88,7 @@ package package_89
       
       private var timeToLive:int;
       
-      public function name_266(objectPool:name_402)
+      public function name_266(objectPool:ObjectPool)
       {
          super(objectPool);
          this.var_427 = new name_495();

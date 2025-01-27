@@ -6,7 +6,7 @@ package alternativa.tanks.game
    import alternativa.tanks.game.subsystems.eventsystem.IEventSystem;
    import alternativa.tanks.game.subsystems.inputsystem.InputSystem;
    import alternativa.tanks.game.subsystems.inputsystem.IInput;
-   import package_26.name_100;
+   import alternativa.tanks.game.utils.objectpool.ObjectPoolManager;
    import package_27.name_180;
    import package_42.name_177;
    import package_42.name_184;
@@ -63,7 +63,7 @@ package alternativa.tanks.game
       
       private var var_38:int;
       
-      private var var_40:name_100;
+      private var var_40:ObjectPoolManager;
       
       public function GameKernel(stage:Stage, options:Object)
       {
@@ -71,7 +71,7 @@ package alternativa.tanks.game
          this.var_43 = stage;
          this.var_36 = options || {};
          this.var_39 = new Vector.<Entity>();
-         this.var_40 = new name_100();
+         this.var_40 = new ObjectPoolManager();
          this.var_4 = new TaskManager();
          this.var_44 = new name_182(TIME_SYSTEM_PRIORITY);
          this.var_4.addTask(this.var_44);
@@ -120,7 +120,7 @@ package alternativa.tanks.game
          this.var_42.name_187(command);
       }
       
-      public function method_108() : name_100
+      public function method_108() : ObjectPoolManager
       {
          return this.var_40;
       }
