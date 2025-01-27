@@ -1,4 +1,4 @@
-package package_100
+package alternativa.tanks.game.weapons.ammunition.plasma
 {
    import flash.geom.ColorTransform;
    import alternativa.tanks.game.GameKernel;
@@ -8,7 +8,7 @@ package package_100
    import package_91.name_349;
    import package_91.name_522;
    
-   public class name_301 implements name_349
+   public class PlasmaRoundEffectsFactory implements name_349
    {
       private static const EFFECT_SIZE:Number = 300;
       
@@ -26,7 +26,7 @@ package package_100
       
       private var colorTransform:ColorTransform;
       
-      public function name_301(gameKernel:GameKernel, roundFrames:Vector.<class_4>, explosionFrames:Vector.<class_4>, colorTransform:ColorTransform)
+      public function PlasmaRoundEffectsFactory(gameKernel:GameKernel, roundFrames:Vector.<class_4>, explosionFrames:Vector.<class_4>, colorTransform:ColorTransform)
       {
          super();
          this.gameKernel = gameKernel;
@@ -37,7 +37,7 @@ package package_100
       
       public function method_414() : name_522
       {
-         var effect:name_625 = name_625(this.gameKernel.method_108().name_110(name_625));
+         var effect:PlasmaRoundEffect = PlasmaRoundEffect(this.gameKernel.method_108().name_110(PlasmaRoundEffect));
          var rotation:Number = Math.random() * Math.PI;
          effect.init(EFFECT_SIZE,EFFECT_SIZE,this.roundFrames,name_194.ZERO,rotation,50,EFFECT_FPS,true,0.5,0.5);
          this.gameKernel.name_5().method_37(effect);

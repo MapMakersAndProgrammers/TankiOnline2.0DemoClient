@@ -12,7 +12,7 @@ package alternativa.tanks
    import alternativa.tanks.game.GameKernel;
    import alternativa.tanks.game.Entity;
    import alternativa.tanks.game.GameEvents;
-   import package_100.name_301;
+   import alternativa.tanks.game.weapons.ammunition.plasma.PlasmaRoundEffectsFactory;
    import alternativa.tanks.config.Config;
    import package_15.name_275;
    import package_15.name_55;
@@ -837,7 +837,7 @@ package alternativa.tanks
          _loc16_ = name_251.name_272(_loc18_,_loc18_.height);
          var _loc19_:Vector.<class_4> = this.getMaterialStrip(_loc16_);
          var _loc20_:ColorTransform = new ColorTransform(5);
-         var _loc22_:name_349 = new name_301(this.gameKernel,_loc17_,_loc19_,_loc20_);
+         var _loc22_:name_349 = new PlasmaRoundEffectsFactory(this.gameKernel,_loc17_,_loc19_,_loc20_);
          var _loc23_:name_296 = new name_296(50,2000,100,_loc13_,_loc14_,_loc22_,null);
          param1.name_60(_loc23_);
          var _loc24_:name_283 = new name_283(1000,1000,1000,1000,0,8000,_loc11_,null,true);
