@@ -4,9 +4,9 @@ package package_71
    import alternativa.tanks.game.EntityComponent;
    import alternativa.tanks.game.GameKernel;
    import alternativa.tanks.game.GameEvents;
-   import package_20.class_11;
+   import alternativa.tanks.game.subsystems.eventsystem.IGameEventListener;
    
-   public class name_278 extends EntityComponent implements class_11
+   public class name_278 extends EntityComponent implements IGameEventListener
    {
       private static var stateEvents:Dictionary;
       

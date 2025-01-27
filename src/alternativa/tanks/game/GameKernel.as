@@ -2,8 +2,8 @@ package alternativa.tanks.game
 {
    import flash.display.Stage;
    import package_18.name_44;
-   import package_20.name_179;
-   import package_20.name_56;
+   import alternativa.tanks.game.subsystems.eventsystem.EventSystem;
+   import alternativa.tanks.game.subsystems.eventsystem.IEventSystem;
    import alternativa.tanks.game.subsystems.inputsystem.InputSystem;
    import alternativa.tanks.game.subsystems.inputsystem.IInput;
    import package_26.name_100;
@@ -47,7 +47,7 @@ package alternativa.tanks.game
       
       private var inputSystem:InputSystem;
       
-      private var eventSystem:name_179;
+      private var eventSystem:EventSystem;
       
       private var logicSystem1:name_177;
       
@@ -77,7 +77,7 @@ package alternativa.tanks.game
          this.var_4.addTask(this.var_44);
          this.inputSystem = new InputSystem(INPUT_SYSTEM_PRIORITY,stage);
          this.var_4.addTask(this.inputSystem);
-         this.eventSystem = new name_179(EVENT_SYSTEM_PRIORITY);
+         this.eventSystem = new EventSystem(EVENT_SYSTEM_PRIORITY);
          this.var_4.addTask(this.eventSystem);
          this.logicSystem1 = new name_177(LOGIC_SYSTEM_1_PRIORITY,this);
          this.var_4.addTask(this.logicSystem1);
@@ -163,7 +163,7 @@ package alternativa.tanks.game
          return this.inputSystem;
       }
       
-      public function name_61() : name_56
+      public function name_61() : IEventSystem
       {
          return this.eventSystem;
       }

@@ -18,8 +18,8 @@ package alternativa.tanks
    import package_15.name_55;
    import package_18.name_102;
    import package_18.name_44;
-   import package_20.class_11;
-   import package_20.name_56;
+   import alternativa.tanks.game.subsystems.eventsystem.IGameEventListener;
+   import alternativa.tanks.game.subsystems.eventsystem.IEventSystem;
    import package_21.name_77;
    import package_21.name_78;
    import alternativa.tanks.game.subsystems.inputsystem.KeyboardEventType;
@@ -110,7 +110,7 @@ package alternativa.tanks
    
    use namespace alternativa3d;
    
-   public class TankTestTask extends GameTask implements class_11
+   public class TankTestTask extends GameTask implements IGameEventListener
    {
       private static const DEAD_TEXTURE_ID:String = "dead";
       
@@ -200,7 +200,7 @@ package alternativa.tanks
       {
          var _loc1_:IInput = IInput(var_4.getTaskInterface(IInput));
          _loc1_.name_94(KeyboardEventType.KEY_DOWN,this.onKeyDown);
-         var _loc2_:name_56 = name_56(var_4.getTaskInterface(name_56));
+         var _loc2_:IEventSystem = IEventSystem(var_4.getTaskInterface(IEventSystem));
          _loc2_.addEventListener(name_253.TANK_CLICK,this);
          this.var_67 = new FollowCameraController(this.gameKernel.name_5().name_27(),this.gameKernel.method_112().name_246().collisionDetector,name_257.STATIC,_loc1_);
          this.var_69 = new OrbitCameraController(this.gameKernel.name_5().name_27(),this.gameKernel.method_112().name_246().collisionDetector,name_257.STATIC,_loc1_);

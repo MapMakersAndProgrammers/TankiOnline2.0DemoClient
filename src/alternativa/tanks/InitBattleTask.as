@@ -73,13 +73,13 @@ package alternativa.tanks
 
 import alternativa.tanks.game.GameEvents;
 import alternativa.tanks.game.entities.map.IA3DMapComponentListener;
-import package_20.name_56;
+import alternativa.tanks.game.subsystems.eventsystem.IEventSystem;
 
 class MapListener implements IA3DMapComponentListener
 {
-   private var eventSystem:name_56;
+   private var eventSystem:IEventSystem;
    
-   public function MapListener(param1:name_56)
+   public function MapListener(param1:IEventSystem)
    {
       super();
       this.eventSystem = param1;
