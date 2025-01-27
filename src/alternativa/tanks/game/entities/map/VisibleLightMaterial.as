@@ -1,4 +1,4 @@
-package package_2
+package alternativa.tanks.game.entities.map
 {
    import alternativa.engine3d.alternativa3d;
    import flash.display3D.Context3DBlendFactor;
@@ -26,7 +26,7 @@ package package_2
    
    use namespace alternativa3d;
    
-   public class name_2 extends class_4
+   public class VisibleLightMaterial extends class_4
    {
       public static var fadeRadius:Number = 100;
       
@@ -42,7 +42,7 @@ package package_2
       
       public var texture:name_129;
       
-      public function name_2(texture:name_129)
+      public function VisibleLightMaterial(texture:name_129)
       {
          super();
          this.texture = texture;
@@ -57,7 +57,7 @@ package package_2
          }
       }
       
-      private function method_75(targetObject:name_78) : name_127
+      private function setupProgram(targetObject:name_78) : name_127
       {
          var vertexLinker:name_121 = new name_121(Context3DProgramType.VERTEX);
          var fragmentLinker:name_121 = new name_121(Context3DProgramType.FRAGMENT);
@@ -105,7 +105,7 @@ package package_2
          var program:name_127 = _programs[object.alternativa3d::transformProcedure];
          if(program == null)
          {
-            program = this.method_75(object);
+            program = this.setupProgram(object);
             program.upload(camera.alternativa3d::context3D);
             _programs[object.alternativa3d::transformProcedure] = program;
          }

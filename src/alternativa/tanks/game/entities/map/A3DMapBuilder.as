@@ -1,4 +1,4 @@
-package package_2
+package alternativa.tanks.game.entities.map
 {
    import alternativa.engine3d.alternativa3d;
    import flash.display.BitmapData;
@@ -95,18 +95,18 @@ package package_2
       {
          var geometryFileName:String = null;
          this.mapFiles = mapFiles;
-         var mapGeometryFiles:Vector.<String> = this.method_636(mapFiles);
+         var mapGeometryFiles:Vector.<String> = this.getMapGeometryFiles(mapFiles);
          this.collector = new Vector.<name_78>();
          this.var_570 = new name_170();
          for each(geometryFileName in mapGeometryFiles)
          {
             this.var_570.addTask(new GeometryBuildTask(mapFiles.name_248(geometryFileName),this.collector));
          }
-         this.var_570.addEventListener(Event.COMPLETE,this.method_632);
+         this.var_570.addEventListener(Event.COMPLETE,this.onGeometryComplete);
          this.var_570.run();
       }
       
-      private function method_632(event:Event) : void
+      private function onGeometryComplete(event:Event) : void
       {
          var surface:name_117 = null;
          var object:name_78 = null;
@@ -138,21 +138,21 @@ package package_2
                   this.var_406.push(decal);
                }
                mesh.calculateBoundBox();
-               this.method_634(mesh,resourceCache);
+               this.setupMaterials(mesh,resourceCache);
                this.var_346.push(mesh);
             }
          }
          this.collector = null;
          this.var_570 = null;
-         this.method_635(this.mapFiles.name_248(TREES_FILE));
-         this.method_638(this.mapFiles.name_248(MARKET_FILE));
-         this.method_637(this.mapFiles.name_248(BEAMS_FILE));
-         this.method_631(this.mapFiles.name_248(LIGHTS_FILE));
-         this.method_633(this.mapFiles.name_248(PHYSICS_FILE));
+         this.parseTrees(this.mapFiles.name_248(TREES_FILE));
+         this.parseReflections(this.mapFiles.name_248(MARKET_FILE));
+         this.parseBeams(this.mapFiles.name_248(BEAMS_FILE));
+         this.parseLights(this.mapFiles.name_248(LIGHTS_FILE));
+         this.parseCollisionGeometry(this.mapFiles.name_248(PHYSICS_FILE));
          dispatchEvent(new Event(Event.COMPLETE));
       }
       
-      private function method_638(data:ByteArray) : void
+      private function parseReflections(data:ByteArray) : void
       {
          var parser:name_529 = null;
          var resourceCache:Object = null;
@@ -185,20 +185,20 @@ package package_2
                      {
                         material = name_641(surface.material);
                         diffName = name_167(material.textures["diffuse"]).url;
-                        diffuse = this.name_254(material.textures["diffuse"],resourceCache,this.mapFiles);
-                        bump = this.name_254(material.textures["bump"],resourceCache,this.mapFiles);
-                        opacity = this.name_254(material.textures["transparent"],resourceCache,this.mapFiles);
-                        emission = this.name_254(material.textures["emission"],resourceCache,this.mapFiles);
+                        diffuse = this.getCompressedTextureResource(material.textures["diffuse"],resourceCache,this.mapFiles);
+                        bump = this.getCompressedTextureResource(material.textures["bump"],resourceCache,this.mapFiles);
+                        opacity = this.getCompressedTextureResource(material.textures["transparent"],resourceCache,this.mapFiles);
+                        emission = this.getCompressedTextureResource(material.textures["emission"],resourceCache,this.mapFiles);
                         if(diffName.indexOf("vetrino01") >= 0)
                         {
-                           reflection = this.name_254(new name_167("vetrino_rfl.atf"),resourceCache,this.mapFiles);
+                           reflection = this.getCompressedTextureResource(new name_167("vetrino_rfl.atf"),resourceCache,this.mapFiles);
                            envMaterial = new name_643(diffuse,this.var_571,null,reflection,emission,opacity);
                            envMaterial.reflection = 0.4;
                            surface.material = envMaterial;
                         }
                         else
                         {
-                           surface.material = new name_9(diffuse,emission,1,opacity);
+                           surface.material = new MapMaterial(diffuse,emission,1,opacity);
                         }
                      }
                      i++;
@@ -209,36 +209,36 @@ package package_2
          }
       }
       
-      private function method_634(mesh:name_380, resourceCache:Object) : void
+      private function setupMaterials(mesh:name_380, resourceCache:Object) : void
       {
          var surface:name_117 = null;
          var parserMaterial:name_641 = null;
          var diffuseTextureResource:name_129 = null;
          var emissionTextureResource:name_129 = null;
          var opacityTextureResource:name_129 = null;
-         var material:name_9 = null;
+         var material:MapMaterial = null;
          for each(surface in mesh.alternativa3d::var_92)
          {
             parserMaterial = surface.material as name_641;
             if(parserMaterial != null)
             {
-               diffuseTextureResource = this.name_254(parserMaterial.textures["diffuse"],resourceCache,this.mapFiles);
-               emissionTextureResource = this.name_254(parserMaterial.textures["emission"],resourceCache,this.mapFiles);
-               opacityTextureResource = this.name_254(parserMaterial.textures["transparent"],resourceCache,this.mapFiles);
+               diffuseTextureResource = this.getCompressedTextureResource(parserMaterial.textures["diffuse"],resourceCache,this.mapFiles);
+               emissionTextureResource = this.getCompressedTextureResource(parserMaterial.textures["emission"],resourceCache,this.mapFiles);
+               opacityTextureResource = this.getCompressedTextureResource(parserMaterial.textures["transparent"],resourceCache,this.mapFiles);
                if(emissionTextureResource == null)
                {
-                  material = new name_9(diffuseTextureResource,fakeEmissionTextureResource,0,opacityTextureResource);
+                  material = new MapMaterial(diffuseTextureResource,fakeEmissionTextureResource,0,opacityTextureResource);
                }
                else
                {
-                  material = new name_9(diffuseTextureResource,emissionTextureResource,1,opacityTextureResource);
+                  material = new MapMaterial(diffuseTextureResource,emissionTextureResource,1,opacityTextureResource);
                }
                surface.material = material;
             }
          }
       }
       
-      private function method_636(mapFiles:name_55) : Vector.<String>
+      private function getMapGeometryFiles(mapFiles:name_55) : Vector.<String>
       {
          var name:String = null;
          var names:Vector.<String> = new Vector.<String>();
@@ -253,7 +253,7 @@ package package_2
          return names;
       }
       
-      private function method_635(data:ByteArray) : void
+      private function parseTrees(data:ByteArray) : void
       {
          var parser:name_529 = null;
          var resourceCache:Object = null;
@@ -282,9 +282,9 @@ package package_2
                      if(surface.material != null)
                      {
                         material = name_641(surface.material);
-                        diffuse = this.name_254(material.textures["diffuse"],resourceCache,this.mapFiles);
-                        bump = this.name_254(material.textures["bump"],resourceCache,this.mapFiles);
-                        opacity = this.name_254(material.textures["transparent"],resourceCache,this.mapFiles);
+                        diffuse = this.getCompressedTextureResource(material.textures["diffuse"],resourceCache,this.mapFiles);
+                        bump = this.getCompressedTextureResource(material.textures["bump"],resourceCache,this.mapFiles);
+                        opacity = this.getCompressedTextureResource(material.textures["transparent"],resourceCache,this.mapFiles);
                         trMaterial = new name_10(diffuse,fakeBumpTextureResource,null,null,opacity);
                         trMaterial.var_25 = 0;
                         trMaterial.alphaThreshold = 0.2;
@@ -298,7 +298,7 @@ package package_2
          }
       }
       
-      private function method_637(data:ByteArray) : void
+      private function parseBeams(data:ByteArray) : void
       {
          var object:name_78 = null;
          var mesh:name_380 = null;
@@ -325,9 +325,9 @@ package package_2
                   if(surface.material != null)
                   {
                      material = name_641(surface.material);
-                     diffuse = this.name_254(material.textures["diffuse"],resourceCache,this.mapFiles);
-                     opacity = this.name_254(material.textures["transparent"],resourceCache,this.mapFiles);
-                     surface.material = new name_2(opacity);
+                     diffuse = this.getCompressedTextureResource(material.textures["diffuse"],resourceCache,this.mapFiles);
+                     opacity = this.getCompressedTextureResource(material.textures["transparent"],resourceCache,this.mapFiles);
+                     surface.material = new VisibleLightMaterial(opacity);
                   }
                   i++;
                }
@@ -336,7 +336,7 @@ package package_2
          }
       }
       
-      private function method_631(lightsData:ByteArray) : void
+      private function parseLights(lightsData:ByteArray) : void
       {
          var parserCollada:name_530 = null;
          var numLights:uint = 0;
@@ -355,7 +355,7 @@ package package_2
          }
       }
       
-      private function name_254(fileTextureResource:name_167, resourceCache:Object, mapFiles:name_55) : name_241
+      private function getCompressedTextureResource(fileTextureResource:name_167, resourceCache:Object, mapFiles:name_55) : name_241
       {
          var textureName:String = null;
          var resource:name_241 = null;
@@ -381,7 +381,7 @@ package package_2
          return null;
       }
       
-      private function method_633(a3dData:ByteArray) : void
+      private function parseCollisionGeometry(a3dData:ByteArray) : void
       {
          var object:name_78 = null;
          var objectName:String = null;

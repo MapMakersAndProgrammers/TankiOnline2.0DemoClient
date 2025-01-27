@@ -1,4 +1,4 @@
-package package_2
+package alternativa.tanks.game.entities.map
 {
    import alternativa.engine3d.alternativa3d;
    import avmplus.getQualifiedClassName;
@@ -28,7 +28,7 @@ package package_2
    
    use namespace alternativa3d;
    
-   public class name_9 extends class_4
+   public class MapMaterial extends class_4
    {
       private static var fogTexture:name_129;
       
@@ -90,7 +90,7 @@ package package_2
       
       public var alpha:Number = 1;
       
-      public function name_9(diffuseMap:name_129, lightMap:name_129, lightMapChannel:uint = 0, opacityMap:name_129 = null)
+      public function MapMaterial(diffuseMap:name_129, lightMap:name_129, lightMapChannel:uint = 0, opacityMap:name_129 = null)
       {
          super();
          this.diffuseMap = diffuseMap;
@@ -121,7 +121,7 @@ package package_2
          }
       }
       
-      private function method_75(targetObject:name_78, shadows:Vector.<name_103>, numShadows:int) : MapMaterialProgram
+      private function setupProgram(targetObject:name_78, shadows:Vector.<name_103>, numShadows:int) : MapMaterialProgram
       {
          var i:int = 0;
          var renderer:name_103 = null;
@@ -257,7 +257,7 @@ package package_2
          var program:MapMaterialProgram = optionsPrograms[index];
          if(program == null)
          {
-            program = this.method_75(object,object.alternativa3d::shadowRenderers,numShadows);
+            program = this.setupProgram(object,object.alternativa3d::shadowRenderers,numShadows);
             program.upload(camera.alternativa3d::context3D);
             optionsPrograms[index] = program;
          }

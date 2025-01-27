@@ -13,7 +13,7 @@ package package_18
    import flash.ui.Keyboard;
    import alternativa.tanks.game.GameTask;
    import package_19.name_91;
-   import package_2.name_9;
+   import alternativa.tanks.game.entities.map.MapMaterial;
    import package_21.name_77;
    import package_21.name_78;
    import package_21.name_81;
@@ -175,7 +175,7 @@ package package_18
       
       public function name_41(mode:int) : void
       {
-         name_9.fogMode = mode;
+         MapMaterial.fogMode = mode;
          name_7.fogMode = mode;
          TankMaterial2.fogMode = mode;
          name_33.fogMode = mode;
@@ -184,7 +184,7 @@ package package_18
          name_29.fogMode = mode;
          if(mode == 1)
          {
-            this.var_5.fogFar = name_9.fogFar;
+            this.var_5.fogFar = MapMaterial.fogFar;
          }
          else
          {
@@ -194,7 +194,7 @@ package package_18
       
       public function name_47(value:Number) : void
       {
-         name_9.fogNear = value;
+         MapMaterial.fogNear = value;
          name_7.fogNear = value;
          TankMaterial2.fogNear = value;
          name_33.fogNear = value;
@@ -205,7 +205,7 @@ package package_18
       
       public function name_48(value:Number) : void
       {
-         name_9.fogFar = value;
+         MapMaterial.fogFar = value;
          name_7.fogFar = value;
          TankMaterial2.fogFar = value;
          name_33.fogFar = value;
@@ -216,7 +216,7 @@ package package_18
       
       public function name_49(value:Number) : void
       {
-         name_9.fogMaxDensity = value;
+         MapMaterial.fogMaxDensity = value;
          name_7.fogMaxDensity = value;
          TankMaterial2.fogMaxDensity = value;
          name_33.fogMaxDensity = value;
@@ -231,9 +231,9 @@ package package_18
          var r:Number = (color >> 16 & 0xFF) / 255;
          var g:Number = (color >> 8 & 0xFF) / 255;
          var b:Number = (color & 0xFF) / 255;
-         name_9.fogColorR = r;
-         name_9.fogColorG = g;
-         name_9.fogColorB = b;
+         MapMaterial.fogColorR = r;
+         MapMaterial.fogColorG = g;
+         MapMaterial.fogColorB = b;
          name_7.fogColorR = r;
          name_7.fogColorG = g;
          name_7.fogColorB = b;
@@ -291,7 +291,7 @@ package package_18
          }
          this.var_6 = new name_93(bitmapData);
          this.method_29(this.var_6);
-         name_9.method_33(this.var_6);
+         MapMaterial.method_33(this.var_6);
          name_7.method_33(this.var_6);
          TankMaterial2.method_33(this.var_6);
          name_29.method_33(this.var_6);

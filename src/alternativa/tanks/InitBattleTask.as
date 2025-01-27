@@ -10,7 +10,7 @@ package alternativa.tanks
    import package_15.name_55;
    import package_18.name_44;
    import package_19.name_53;
-   import package_2.A3DMapComponent;
+   import alternativa.tanks.game.entities.map.A3DMapComponent;
    import package_9.name_20;
    
    public class InitBattleTask extends GameTask
@@ -72,10 +72,10 @@ package alternativa.tanks
 }
 
 import alternativa.tanks.game.GameEvents;
-import package_2.class_2;
+import alternativa.tanks.game.entities.map.IA3DMapComponentListener;
 import package_20.name_56;
 
-class MapListener implements class_2
+class MapListener implements IA3DMapComponentListener
 {
    private var eventSystem:name_56;
    

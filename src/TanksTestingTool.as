@@ -24,8 +24,8 @@ package
    import alternativa.protocol.osgi.ProtocolActivator;
    import platform.clients.fp10.libraries.alternativaprotocol.Activator;
    import package_18.name_44;
-   import package_2.name_2;
-   import package_2.name_9;
+   import alternativa.tanks.game.entities.map.VisibleLightMaterial;
+   import alternativa.tanks.game.entities.map.MapMaterial;
    import package_3.TankMaterial2;
    import package_3.name_10;
    import package_3.name_29;
@@ -69,9 +69,9 @@ package
          this.initClient();
          this.initConsole();
          this.initOptionsSupport();
-         name_2.fadeRadius = 7000;
-         name_2.spotAngle = 140 * Math.PI / 180;
-         name_2.fallofAngle = 170 * Math.PI / 180;
+         VisibleLightMaterial.fadeRadius = 7000;
+         VisibleLightMaterial.spotAngle = 140 * Math.PI / 180;
+         VisibleLightMaterial.fallofAngle = 170 * Math.PI / 180;
          this.stage3D = stage.stage3Ds[0];
          this.stage3D.addEventListener(Event.CONTEXT3D_CREATE,this.onContextCreate);
          this.stage3D.requestContext3D();
@@ -109,7 +109,7 @@ package
          new ConsoleVarFloat("beam_fallof",170,0,180,this.onLightSettingsChange);
          new ConsoleVarFloat("beam_fallof",170,0,180,this.onLightSettingsChange);
          new ConsoleVarFloat("camera_smoothing",20,0,200,this.onControllerSettingsChange);
-         name_9.fogMode = name_9.DISABLED;
+         MapMaterial.fogMode = MapMaterial.DISABLED;
          name_10.fogMode = name_10.DISABLED;
          name_7.fogMode = name_7.DISABLED;
          TankMaterial2.fogMode = name_7.DISABLED;
@@ -127,13 +127,13 @@ package
          switch(param1.name_32())
          {
             case "beam_distance":
-               name_2.fadeRadius = ConsoleVarFloat(param1).value;
+               VisibleLightMaterial.fadeRadius = ConsoleVarFloat(param1).value;
                break;
             case "beam_spot":
-               name_2.spotAngle = ConsoleVarFloat(param1).value * Math.PI / 180;
+               VisibleLightMaterial.spotAngle = ConsoleVarFloat(param1).value * Math.PI / 180;
                break;
             case "beam_fallof":
-               name_2.fallofAngle = ConsoleVarFloat(param1).value * Math.PI / 180;
+               VisibleLightMaterial.fallofAngle = ConsoleVarFloat(param1).value * Math.PI / 180;
          }
       }
       

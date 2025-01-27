@@ -1,4 +1,4 @@
-package package_2
+package alternativa.tanks.game.entities.map
 {
    import alternativa.engine3d.alternativa3d;
    import flash.display.BitmapData;
@@ -59,11 +59,11 @@ package package_2
       
       private var var_90:Number = 1.5;
       
-      private var listener:class_2;
+      private var listener:IA3DMapComponentListener;
       
       private var var_91:Boolean = true;
       
-      public function A3DMapComponent(files:name_55, skyboxFiles:name_55, skyboxSize:Number, listener:class_2)
+      public function A3DMapComponent(files:name_55, skyboxFiles:name_55, skyboxSize:Number, listener:IA3DMapComponentListener)
       {
          super();
          this.files = files;
@@ -79,19 +79,19 @@ package package_2
       override public function addToGame(gameKernel:GameKernel) : void
       {
          this.gameKernel = gameKernel;
-         this.method_205();
-         gameKernel.name_66().name_94(name_83.KEY_DOWN,this.method_15);
-         if(gameKernel.options[name_379.FAKE_MAP] != null)
+         this.createSkybox();
+         gameKernel.name_66().name_94(name_83.KEY_DOWN,this.onKeyDown);
+         if(gameKernel.options[MapOptions.FAKE_MAP] != null)
          {
-            this.method_204();
+            this.buildFakeMap();
          }
          else
          {
-            this.method_202();
+            this.buildRealMap();
          }
       }
       
-      private function method_205() : void
+      private function createSkybox() : void
       {
          var skyBox:name_53 = null;
          var surfaceIds:Array = null;
@@ -149,22 +149,22 @@ package package_2
                lights.omniLigths.remove(OmniLight(light));
             }
          }
-         gameKernel.name_66().name_384(name_83.KEY_DOWN,this.method_15);
+         gameKernel.name_66().name_384(name_83.KEY_DOWN,this.onKeyDown);
          this.gameKernel = null;
       }
       
-      private function method_202() : void
+      private function buildRealMap() : void
       {
          this.var_89 = new A3DMapBuilder();
-         this.var_89.addEventListener(Event.COMPLETE,this.method_200);
+         this.var_89.addEventListener(Event.COMPLETE,this.onBuildingComplete);
          this.var_89.name_385(this.files);
       }
       
-      private function method_200(event:Event) : void
+      private function onBuildingComplete(event:Event) : void
       {
-         var staticShadowLight:DirectionalLight = this.method_207();
-         this.method_206(staticShadowLight);
-         this.method_208();
+         var staticShadowLight:DirectionalLight = this.initLights();
+         this.initGraphics(staticShadowLight);
+         this.initPhysics();
          this.complete();
       }
       
@@ -177,13 +177,13 @@ package package_2
          }
       }
       
-      private function method_207() : DirectionalLight
+      private function initLights() : DirectionalLight
       {
          var staticShadowLight:DirectionalLight = null;
          var light:name_116 = null;
          if(Boolean(this.gameKernel.options["fakelight"]))
          {
-            this.method_210();
+            this.initFakeLight();
             return null;
          }
          var renderSystem:name_44 = this.gameKernel.name_5();
@@ -226,12 +226,12 @@ package package_2
          return staticShadowLight;
       }
       
-      private function method_210() : void
+      private function initFakeLight() : void
       {
          this.gameKernel.name_5().lights.ambientLight = new name_376(16777215);
       }
       
-      private function method_206(staticShadowLight:DirectionalLight) : void
+      private function initGraphics(staticShadowLight:DirectionalLight) : void
       {
          var object:name_78 = null;
          var renderSystem:name_44 = this.gameKernel.name_5();
@@ -247,22 +247,22 @@ package package_2
          }
       }
       
-      private function method_208() : void
+      private function initPhysics() : void
       {
          var renderSystem:name_44 = null;
          var physicsContainer:name_78 = null;
          var physicsSystem:name_178 = this.gameKernel.method_112();
          physicsSystem.name_382(this.var_89.collisionPrimitives);
-         if(this.gameKernel.options[name_379.VISUALIZE_PHYSICS] != null)
+         if(this.gameKernel.options[MapOptions.VISUALIZE_PHYSICS] != null)
          {
             renderSystem = this.gameKernel.name_5();
-            physicsContainer = this.method_199(this.var_89.collisionPrimitives);
+            physicsContainer = this.createPhysicsVisualObjects(this.var_89.collisionPrimitives);
             physicsContainer.visible = false;
             renderSystem.method_47(PHYSICS_GEOMETRY,physicsContainer,true);
          }
       }
       
-      private function method_199(collisionPrimitives:Vector.<name_235>) : name_78
+      private function createPhysicsVisualObjects(collisionPrimitives:Vector.<name_235>) : name_78
       {
          var collisionPrimitive:name_235 = null;
          var physicsVisualContainer:name_78 = new name_78();
@@ -274,27 +274,27 @@ package package_2
             collisionPrimitive = collisionPrimitives[i];
             if(collisionPrimitive is name_377)
             {
-               physicsVisualContainer.addChild(this.method_211(name_377(collisionPrimitive),boxMaterial));
+               physicsVisualContainer.addChild(this.createPhysicsVisualBox(name_377(collisionPrimitive),boxMaterial));
             }
             else if(collisionPrimitive is name_378)
             {
-               physicsVisualContainer.addChild(this.method_209(name_378(collisionPrimitive),triangleMaterial));
+               physicsVisualContainer.addChild(this.createPhysicsVisualTriangle(name_378(collisionPrimitive),triangleMaterial));
             }
             i++;
          }
          return physicsVisualContainer;
       }
       
-      private function method_211(collisionBox:name_377, material:class_4) : name_279
+      private function createPhysicsVisualBox(collisionBox:name_377, material:class_4) : name_279
       {
          var size:name_194 = collisionBox.hs.clone().scale(2);
          var box:name_279 = new name_279(size.x,size.y,size.z);
          box.setMaterialToAllSurfaces(material);
-         this.method_198(collisionBox,box);
+         this.setPhysicsTransform(collisionBox,box);
          return box;
       }
       
-      private function method_209(collisionTriangle:name_378, material:class_4) : name_380
+      private function createPhysicsVisualTriangle(collisionTriangle:name_378, material:class_4) : name_380
       {
          var mesh:name_380 = new name_380();
          var geometry:name_119 = new name_119();
@@ -319,11 +319,11 @@ package package_2
          mesh.geometry = geometry;
          mesh.addSurface(material,0,1);
          mesh.calculateBoundBox();
-         this.method_198(collisionTriangle,mesh);
+         this.setPhysicsTransform(collisionTriangle,mesh);
          return mesh;
       }
       
-      private function method_198(collisionPrimitive:name_235, object:name_78) : void
+      private function setPhysicsTransform(collisionPrimitive:name_235, object:name_78) : void
       {
          var t:Matrix4 = collisionPrimitive.transform;
          var eulerAngles:name_194 = new name_194();
@@ -336,14 +336,14 @@ package package_2
          object.rotationZ = eulerAngles.z;
       }
       
-      private function method_204() : void
+      private function buildFakeMap() : void
       {
          var collisionRect:name_381 = new name_381(new name_194(20000,20000),1,255);
          var collisionPrimitives:Vector.<name_235> = Vector.<name_235>([collisionRect]);
          this.gameKernel.method_112().name_382(collisionPrimitives);
          var renderSystem:name_44 = this.gameKernel.name_5();
          renderSystem.method_40(name_44.LIGHTS_CONTAINER_ID).addChild(new name_376(16777215));
-         this.method_201(renderSystem);
+         this.addZeroMarker(renderSystem);
          var bitmapData:BitmapData = new BitmapData(512,512);
          bitmapData.perlinNoise(10,10,3,13,false,true);
          var bitmapTextureResource:name_93 = new name_93(bitmapData);
@@ -355,7 +355,7 @@ package package_2
          setTimeout(this.complete,0);
       }
       
-      private function method_201(renderSystem:name_44) : void
+      private function addZeroMarker(renderSystem:name_44) : void
       {
          var resource:name_77 = null;
          var box:name_279 = new name_279(50,50,50);
@@ -367,7 +367,7 @@ package package_2
          renderSystem.method_68().addChild(box);
       }
       
-      private function method_15(eventType:name_83, keyCode:uint) : void
+      private function onKeyDown(eventType:name_83, keyCode:uint) : void
       {
          switch(keyCode)
          {
@@ -382,7 +382,7 @@ package package_2
          }
       }
       
-      private function method_213() : void
+      private function toggleDecals() : void
       {
          var d:name_91 = null;
          this.var_91 = !this.var_91;
@@ -392,12 +392,12 @@ package package_2
          }
       }
       
-      private function get method_203() : Number
+      private function get decalsOffset() : Number
       {
          return this.var_90;
       }
       
-      private function set method_203(value:Number) : void
+      private function set decalsOffset(value:Number) : void
       {
          var decal:name_91 = null;
          this.var_90 = value;
@@ -408,7 +408,7 @@ package package_2
          IConsole(OSGi.name_8().name_30(IConsole)).name_145("Decals offset: " + this.var_90);
       }
       
-      private function method_212(containerId:String) : void
+      private function toggleGeometry(containerId:String) : void
       {
          var container:name_78 = this.gameKernel.name_5().method_40(containerId);
          if(container != null)
