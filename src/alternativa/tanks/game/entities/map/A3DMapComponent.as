@@ -22,7 +22,7 @@ package alternativa.tanks.game.entities.map
    import package_21.name_126;
    import package_21.name_77;
    import package_21.name_78;
-   import package_22.name_83;
+   import alternativa.tanks.game.subsystems.inputsystem.KeyboardEventType;
    import package_24.DirectionalLight;
    import package_24.OmniLight;
    import package_24.SpotLight;
@@ -80,7 +80,7 @@ package alternativa.tanks.game.entities.map
       {
          this.gameKernel = gameKernel;
          this.createSkybox();
-         gameKernel.name_66().name_94(name_83.KEY_DOWN,this.onKeyDown);
+         gameKernel.name_66().name_94(KeyboardEventType.KEY_DOWN,this.onKeyDown);
          if(gameKernel.options[MapOptions.FAKE_MAP] != null)
          {
             this.buildFakeMap();
@@ -149,7 +149,7 @@ package alternativa.tanks.game.entities.map
                lights.omniLigths.remove(OmniLight(light));
             }
          }
-         gameKernel.name_66().name_384(name_83.KEY_DOWN,this.onKeyDown);
+         gameKernel.name_66().name_384(KeyboardEventType.KEY_DOWN,this.onKeyDown);
          this.gameKernel = null;
       }
       
@@ -367,7 +367,7 @@ package alternativa.tanks.game.entities.map
          renderSystem.method_68().addChild(box);
       }
       
-      private function onKeyDown(eventType:name_83, keyCode:uint) : void
+      private function onKeyDown(eventType:KeyboardEventType, keyCode:uint) : void
       {
          switch(keyCode)
          {

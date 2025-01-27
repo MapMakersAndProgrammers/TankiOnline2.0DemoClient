@@ -4,8 +4,8 @@ package alternativa.tanks.game
    import package_18.name_44;
    import package_20.name_179;
    import package_20.name_56;
-   import package_22.name_181;
-   import package_22.name_87;
+   import alternativa.tanks.game.subsystems.inputsystem.InputSystem;
+   import alternativa.tanks.game.subsystems.inputsystem.IInput;
    import package_26.name_100;
    import package_27.name_180;
    import package_42.name_177;
@@ -45,7 +45,7 @@ package alternativa.tanks.game
       
       private var var_44:name_182;
       
-      private var inputSystem:name_181;
+      private var inputSystem:InputSystem;
       
       private var eventSystem:name_179;
       
@@ -75,7 +75,7 @@ package alternativa.tanks.game
          this.var_4 = new TaskManager();
          this.var_44 = new name_182(TIME_SYSTEM_PRIORITY);
          this.var_4.addTask(this.var_44);
-         this.inputSystem = new name_181(INPUT_SYSTEM_PRIORITY,stage);
+         this.inputSystem = new InputSystem(INPUT_SYSTEM_PRIORITY,stage);
          this.var_4.addTask(this.inputSystem);
          this.eventSystem = new name_179(EVENT_SYSTEM_PRIORITY);
          this.var_4.addTask(this.eventSystem);
@@ -158,7 +158,7 @@ package alternativa.tanks.game
          entity.removeFromGame(this);
       }
       
-      public function name_66() : name_87
+      public function name_66() : IInput
       {
          return this.inputSystem;
       }

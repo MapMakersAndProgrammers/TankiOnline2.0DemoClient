@@ -4,8 +4,8 @@ package package_71
    import alternativa.tanks.game.GameKernel;
    import alternativa.tanks.game.GameEvents;
    import package_15.name_191;
-   import package_22.name_83;
-   import package_22.name_87;
+   import alternativa.tanks.game.subsystems.inputsystem.KeyboardEventType;
+   import alternativa.tanks.game.subsystems.inputsystem.IInput;
    import package_42.name_477;
    import package_75.class_15;
    
@@ -27,7 +27,7 @@ package package_71
       
       private var center:Boolean;
       
-      private var input:name_87;
+      private var input:IInput;
       
       public function name_311(callback:class_10)
       {
@@ -54,13 +54,13 @@ package package_71
       {
          this.gameKernel = gameKernel;
          this.input = gameKernel.name_66();
-         this.input.name_94(name_83.KEY_DOWN,this.method_15,KEY_CENTER);
+         this.input.name_94(KeyboardEventType.KEY_DOWN,this.method_15,KEY_CENTER);
       }
       
       override public function removeFromGame(gameKernel:GameKernel) : void
       {
          this.method_409();
-         this.input.name_384(name_83.KEY_DOWN,this.method_15,KEY_CENTER);
+         this.input.name_384(KeyboardEventType.KEY_DOWN,this.method_15,KEY_CENTER);
       }
       
       public function runLogic() : void
@@ -111,7 +111,7 @@ package package_71
          this.method_409();
       }
       
-      private function method_15(eventType:name_83, keyCode:uint) : void
+      private function method_15(eventType:KeyboardEventType, keyCode:uint) : void
       {
       }
    }

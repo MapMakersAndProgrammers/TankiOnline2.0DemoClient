@@ -9,7 +9,7 @@ package package_9
    import package_18.name_90;
    import package_19.name_380;
    import package_21.name_78;
-   import package_22.name_87;
+   import alternativa.tanks.game.subsystems.inputsystem.IInput;
    import package_27.name_501;
    import package_45.name_182;
    import package_46.Matrix3;
@@ -109,7 +109,7 @@ package package_9
       
       private var var_521:Number;
       
-      private var input:name_87;
+      private var input:IInput;
       
       private var var_515:name_380;
       
@@ -137,7 +137,7 @@ package package_9
       
       private var var_523:name_194 = new name_194();
       
-      public function name_298(camera:name_90, collisionDetector:name_256, collisionMask:int, input:name_87)
+      public function name_298(camera:name_90, collisionDetector:name_256, collisionMask:int, input:IInput)
       {
          super();
          this.camera = camera;

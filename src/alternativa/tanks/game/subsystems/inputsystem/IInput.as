@@ -1,10 +1,10 @@
-package package_22
+package alternativa.tanks.game.subsystems.inputsystem
 {
-   public interface name_87
+   public interface IInput
    {
-      function name_94(param1:name_83, param2:Function, param3:uint = 0) : void;
+      function name_94(param1:KeyboardEventType, param2:Function, param3:uint = 0) : void;
       
-      function name_384(param1:name_83, param2:Function, param3:uint = 0) : void;
+      function name_384(param1:KeyboardEventType, param2:Function, param3:uint = 0) : void;
       
       function name_192(param1:uint) : int;
       

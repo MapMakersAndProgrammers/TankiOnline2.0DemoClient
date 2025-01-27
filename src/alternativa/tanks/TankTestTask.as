@@ -22,8 +22,8 @@ package alternativa.tanks
    import package_20.name_56;
    import package_21.name_77;
    import package_21.name_78;
-   import package_22.name_83;
-   import package_22.name_87;
+   import alternativa.tanks.game.subsystems.inputsystem.KeyboardEventType;
+   import alternativa.tanks.game.subsystems.inputsystem.IInput;
    import package_25.name_250;
    import package_28.name_129;
    import package_28.name_241;
@@ -198,8 +198,8 @@ package alternativa.tanks
       
       override public function start() : void
       {
-         var _loc1_:name_87 = name_87(var_4.getTaskInterface(name_87));
-         _loc1_.name_94(name_83.KEY_DOWN,this.onKeyDown);
+         var _loc1_:IInput = IInput(var_4.getTaskInterface(IInput));
+         _loc1_.name_94(KeyboardEventType.KEY_DOWN,this.onKeyDown);
          var _loc2_:name_56 = name_56(var_4.getTaskInterface(name_56));
          _loc2_.addEventListener(name_253.TANK_CLICK,this);
          this.var_67 = new name_299(this.gameKernel.name_5().name_27(),this.gameKernel.method_112().name_246().collisionDetector,name_257.STATIC,_loc1_);
@@ -287,7 +287,7 @@ package alternativa.tanks
          this.addTank(TankParams.name_322(param2));
       }
       
-      private function onKeyDown(param1:name_83, param2:uint) : void
+      private function onKeyDown(param1:KeyboardEventType, param2:uint) : void
       {
          var _loc3_:name_44 = null;
          var _loc4_:int = 0;

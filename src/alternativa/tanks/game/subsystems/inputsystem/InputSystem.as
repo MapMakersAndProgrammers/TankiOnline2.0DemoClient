@@ -1,4 +1,4 @@
-package package_22
+package alternativa.tanks.game.subsystems.inputsystem
 {
    import flash.display.InteractiveObject;
    import flash.events.KeyboardEvent;
@@ -6,7 +6,7 @@ package package_22
    import alternativa.tanks.game.GameTask;
    import package_27.name_479;
    
-   public class name_181 extends GameTask implements name_87
+   public class InputSystem extends GameTask implements IInput
    {
       private static const NUM_KEYS:int = 256;
       
@@ -46,7 +46,7 @@ package package_22
       
       private var var_222:KeybardEventQueue;
       
-      public function name_181(priority:int, eventSource:InteractiveObject)
+      public function InputSystem(priority:int, eventSource:InteractiveObject)
       {
          super(priority);
          this.eventSource = eventSource;
@@ -58,48 +58,48 @@ package package_22
          this.var_222 = new KeybardEventQueue();
       }
       
-      public function name_94(eventType:name_83, listener:Function, keyCode:uint = 0) : void
+      public function name_94(eventType:KeyboardEventType, listener:Function, keyCode:uint = 0) : void
       {
          switch(eventType)
          {
-            case name_83.KEY_DOWN:
+            case KeyboardEventType.KEY_DOWN:
                if(keyCode == 0)
                {
-                  this.method_335(this.var_219,listener);
+                  this.addKeyListener(this.var_219,listener);
                   break;
                }
-               this.method_337(this.var_220,keyCode,listener);
+               this.addDistinctKeyListener(this.var_220,keyCode,listener);
                break;
-            case name_83.KEY_UP:
+            case KeyboardEventType.KEY_UP:
                if(keyCode == 0)
                {
-                  this.method_335(this.var_218,listener);
+                  this.addKeyListener(this.var_218,listener);
                   break;
                }
-               this.method_337(this.var_217,keyCode,listener);
+               this.addDistinctKeyListener(this.var_217,keyCode,listener);
                break;
          }
       }
       
-      public function name_384(eventType:name_83, listener:Function, keyCode:uint = 0) : void
+      public function name_384(eventType:KeyboardEventType, listener:Function, keyCode:uint = 0) : void
       {
          switch(eventType)
          {
-            case name_83.KEY_DOWN:
+            case KeyboardEventType.KEY_DOWN:
                if(keyCode == 0)
                {
-                  this.method_339(this.var_219,listener);
+                  this.removeKeyListener(this.var_219,listener);
                   break;
                }
-               this.method_334(this.var_220,keyCode,listener);
+               this.removeDistinctKeyListener(this.var_220,keyCode,listener);
                break;
-            case name_83.KEY_UP:
+            case KeyboardEventType.KEY_UP:
                if(keyCode == 0)
                {
-                  this.method_339(this.var_218,listener);
+                  this.removeKeyListener(this.var_218,listener);
                   break;
                }
-               this.method_334(this.var_217,keyCode,listener);
+               this.removeDistinctKeyListener(this.var_217,keyCode,listener);
                break;
          }
       }
@@ -114,7 +114,7 @@ package package_22
          return this.var_216.name_478(keyCode) == 1;
       }
       
-      private function method_337(keyTypeListeners:Vector.<Vector.<Function>>, keyCode:uint, listener:Function) : void
+      private function addDistinctKeyListener(keyTypeListeners:Vector.<Vector.<Function>>, keyCode:uint, listener:Function) : void
       {
          var listeners:Vector.<Function> = keyTypeListeners[keyCode];
          if(listeners == null)
@@ -129,7 +129,7 @@ package package_22
          }
       }
       
-      private function method_334(keyTypeListeners:Vector.<Vector.<Function>>, keyCode:uint, listener:Function) : void
+      private function removeDistinctKeyListener(keyTypeListeners:Vector.<Vector.<Function>>, keyCode:uint, listener:Function) : void
       {
          var index:int = 0;
          var newLength:int = 0;
@@ -146,7 +146,7 @@ package package_22
          }
       }
       
-      private function method_335(listeners:Vector.<Function>, listener:Function) : void
+      private function addKeyListener(listeners:Vector.<Function>, listener:Function) : void
       {
          if(listeners.indexOf(listener) < 0)
          {
@@ -154,7 +154,7 @@ package package_22
          }
       }
       
-      private function method_339(listeners:Vector.<Function>, listener:Function) : void
+      private function removeKeyListener(listeners:Vector.<Function>, listener:Function) : void
       {
          var newLength:int = 0;
          var index:int = int(listeners.indexOf(listener));
@@ -195,39 +195,39 @@ package package_22
       {
          this.var_224 = new CleanupTask(int.MAX_VALUE,this);
          var_4.addTask(this.var_224);
-         this.eventSource.addEventListener(KeyboardEvent.KEY_DOWN,this.method_15);
-         this.eventSource.addEventListener(KeyboardEvent.KEY_UP,this.method_233);
+         this.eventSource.addEventListener(KeyboardEvent.KEY_DOWN,this.onKeyDown);
+         this.eventSource.addEventListener(KeyboardEvent.KEY_UP,this.onKeyUp);
          this.eventSource.addEventListener(MouseEvent.MOUSE_MOVE,this.onMouseMove);
          this.eventSource.addEventListener(MouseEvent.MOUSE_WHEEL,this.onMouseWheel);
          this.eventSource.addEventListener(MouseEvent.MOUSE_DOWN,this.onMouseDown);
-         this.eventSource.addEventListener(MouseEvent.MOUSE_UP,this.method_338);
+         this.eventSource.addEventListener(MouseEvent.MOUSE_UP,this.onMouseUp);
       }
       
       override public function stop() : void
       {
          var_4.killTask(this.var_224);
-         this.eventSource.removeEventListener(KeyboardEvent.KEY_DOWN,this.method_15);
-         this.eventSource.removeEventListener(KeyboardEvent.KEY_UP,this.method_233);
+         this.eventSource.removeEventListener(KeyboardEvent.KEY_DOWN,this.onKeyDown);
+         this.eventSource.removeEventListener(KeyboardEvent.KEY_UP,this.onKeyUp);
          this.eventSource.removeEventListener(MouseEvent.MOUSE_MOVE,this.onMouseMove);
          this.eventSource.removeEventListener(MouseEvent.MOUSE_WHEEL,this.onMouseWheel);
          this.eventSource.removeEventListener(MouseEvent.MOUSE_DOWN,this.onMouseDown);
-         this.eventSource.removeEventListener(MouseEvent.MOUSE_UP,this.method_338);
+         this.eventSource.removeEventListener(MouseEvent.MOUSE_UP,this.onMouseUp);
       }
       
       override public function run() : void
       {
          this.var_229 = this.mouseX - this.var_227;
          this.var_228 = this.mouseY - this.var_226;
-         this.method_340();
+         this.dispatchKeyboardEvents();
       }
       
-      private function method_340() : void
+      private function dispatchKeyboardEvents() : void
       {
          var distinctListeners:Vector.<Function> = null;
          var listeners:Vector.<Function> = null;
          var event:KeyboardEventItem = null;
          var keyCode:uint = 0;
-         var eventType:name_83 = null;
+         var eventType:KeyboardEventType = null;
          while(true)
          {
             event = this.var_222.poll();
@@ -239,27 +239,27 @@ package package_22
             eventType = event.type;
             switch(eventType)
             {
-               case name_83.KEY_DOWN:
+               case KeyboardEventType.KEY_DOWN:
                   distinctListeners = this.var_220[keyCode];
                   listeners = this.var_219;
                   break;
-               case name_83.KEY_UP:
+               case KeyboardEventType.KEY_UP:
                   distinctListeners = this.var_217[keyCode];
                   listeners = this.var_218;
             }
             if(distinctListeners != null)
             {
-               this.method_336(distinctListeners,eventType,keyCode);
+               this.dispatchKeyboardEvent(distinctListeners,eventType,keyCode);
             }
             if(listeners != null)
             {
-               this.method_336(listeners,eventType,keyCode);
+               this.dispatchKeyboardEvent(listeners,eventType,keyCode);
             }
             event.destroy();
          }
       }
       
-      private function method_336(listeners:Vector.<Function>, eventType:name_83, keyCode:uint) : void
+      private function dispatchKeyboardEvent(listeners:Vector.<Function>, eventType:KeyboardEventType, keyCode:uint) : void
       {
          var func:Function = null;
          var numListeners:int = int(listeners.length);
@@ -279,7 +279,7 @@ package package_22
          this.var_223 = 0;
       }
       
-      private function method_15(event:KeyboardEvent) : void
+      private function onKeyDown(event:KeyboardEvent) : void
       {
          var keyCode:uint = uint(event.keyCode);
          if(keyCode < NUM_KEYS)
@@ -287,12 +287,12 @@ package package_22
             if(this.var_216.name_478(keyCode) == 0)
             {
                this.var_216.name_480(keyCode,true);
-               this.var_222.add(keyCode,name_83.KEY_DOWN);
+               this.var_222.add(keyCode,KeyboardEventType.KEY_DOWN);
             }
          }
       }
       
-      private function method_233(event:KeyboardEvent) : void
+      private function onKeyUp(event:KeyboardEvent) : void
       {
          var keyCode:uint = uint(event.keyCode);
          if(keyCode < NUM_KEYS)
@@ -300,7 +300,7 @@ package package_22
             if(this.var_216.name_478(keyCode) == 1)
             {
                this.var_216.name_480(keyCode,false);
-               this.var_222.add(keyCode,name_83.KEY_UP);
+               this.var_222.add(keyCode,KeyboardEventType.KEY_UP);
             }
          }
       }
@@ -322,7 +322,7 @@ package package_22
          this.var_225 = true;
       }
       
-      private function method_338(event:MouseEvent) : void
+      private function onMouseUp(event:MouseEvent) : void
       {
          this.var_221 = false;
       }
@@ -333,9 +333,9 @@ import alternativa.tanks.game.GameTask;
 
 class CleanupTask extends GameTask
 {
-   private var inputSystem:name_181;
+   private var inputSystem:InputSystem;
    
-   public function CleanupTask(priority:int, inputSystem:name_181)
+   public function CleanupTask(priority:int, inputSystem:InputSystem)
    {
       super(priority);
       this.inputSystem = inputSystem;
@@ -351,7 +351,7 @@ class KeyboardEventItem
 {
    private static var pool:KeyboardEventItem;
    
-   public var type:name_83;
+   public var type:KeyboardEventType;
    
    public var keyCode:uint;
    
@@ -392,7 +392,7 @@ class KeybardEventQueue
       super();
    }
    
-   public function add(keyCode:uint, type:name_83) : void
+   public function add(keyCode:uint, type:KeyboardEventType) : void
    {
       var keyItem:KeyboardEventItem = KeyboardEventItem.create();
       keyItem.keyCode = keyCode;

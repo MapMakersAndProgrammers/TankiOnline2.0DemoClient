@@ -4,8 +4,8 @@ package package_71
    import alternativa.tanks.game.GameKernel;
    import alternativa.tanks.game.GameEvents;
    import package_15.name_191;
-   import package_22.name_83;
-   import package_22.name_87;
+   import alternativa.tanks.game.subsystems.inputsystem.KeyboardEventType;
+   import alternativa.tanks.game.subsystems.inputsystem.IInput;
    import package_42.name_477;
    import package_74.class_24;
    
@@ -42,17 +42,17 @@ package package_71
       override public function addToGame(gameKernel:GameKernel) : void
       {
          this.gameKernel = gameKernel;
-         var inputSystem:name_87 = gameKernel.name_66();
-         inputSystem.name_94(name_83.KEY_DOWN,this.method_193,KEY_FIRE);
-         inputSystem.name_94(name_83.KEY_UP,this.method_193,KEY_FIRE);
+         var inputSystem:IInput = gameKernel.name_66();
+         inputSystem.name_94(KeyboardEventType.KEY_DOWN,this.method_193,KEY_FIRE);
+         inputSystem.name_94(KeyboardEventType.KEY_UP,this.method_193,KEY_FIRE);
       }
       
       override public function removeFromGame(gameKernel:GameKernel) : void
       {
          this.method_409();
-         var inputSystem:name_87 = gameKernel.name_66();
-         inputSystem.name_384(name_83.KEY_DOWN,this.method_193,KEY_FIRE);
-         inputSystem.name_384(name_83.KEY_UP,this.method_193,KEY_FIRE);
+         var inputSystem:IInput = gameKernel.name_66();
+         inputSystem.name_384(KeyboardEventType.KEY_DOWN,this.method_193,KEY_FIRE);
+         inputSystem.name_384(KeyboardEventType.KEY_UP,this.method_193,KEY_FIRE);
       }
       
       public function runLogic() : void
@@ -73,18 +73,18 @@ package package_71
          this.var_507 = false;
       }
       
-      private function method_193(eventType:name_83, keyCode:uint) : void
+      private function method_193(eventType:KeyboardEventType, keyCode:uint) : void
       {
          switch(eventType)
          {
-            case name_83.KEY_DOWN:
+            case KeyboardEventType.KEY_DOWN:
                this.var_508 = true;
                if(!this.name_308)
                {
                   this.var_507 = false;
                }
                break;
-            case name_83.KEY_UP:
+            case KeyboardEventType.KEY_UP:
                this.var_507 = true;
                if(!this.name_308)
                {

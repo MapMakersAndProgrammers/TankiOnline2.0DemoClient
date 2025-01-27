@@ -17,8 +17,8 @@ package package_18
    import package_21.name_77;
    import package_21.name_78;
    import package_21.name_81;
-   import package_22.name_83;
-   import package_22.name_87;
+   import alternativa.tanks.game.subsystems.inputsystem.KeyboardEventType;
+   import alternativa.tanks.game.subsystems.inputsystem.IInput;
    import package_23.name_103;
    import package_23.name_92;
    import package_23.name_97;
@@ -612,10 +612,10 @@ package package_18
       
       override public function start() : void
       {
-         var input:name_87 = name_87(var_4.getTaskInterface(name_87));
-         input.name_94(name_83.KEY_DOWN,this.method_36,Keyboard.F7);
-         input.name_94(name_83.KEY_DOWN,this.method_36,Keyboard.F8);
-         input.name_94(name_83.KEY_DOWN,this.method_36,Keyboard.TAB);
+         var input:IInput = IInput(var_4.getTaskInterface(IInput));
+         input.name_94(KeyboardEventType.KEY_DOWN,this.method_36,Keyboard.F7);
+         input.name_94(KeyboardEventType.KEY_DOWN,this.method_36,Keyboard.F8);
+         input.name_94(KeyboardEventType.KEY_DOWN,this.method_36,Keyboard.TAB);
       }
       
       override public function stop() : void
@@ -733,7 +733,7 @@ package package_18
          this.var_10 = null;
       }
       
-      private function method_36(eventType:name_83, keyCode:uint) : void
+      private function method_36(eventType:KeyboardEventType, keyCode:uint) : void
       {
          switch(keyCode)
          {

@@ -5,7 +5,7 @@ package package_71
    import alternativa.tanks.game.EntityComponent;
    import alternativa.tanks.game.GameKernel;
    import alternativa.tanks.game.GameEvents;
-   import package_22.name_87;
+   import alternativa.tanks.game.subsystems.inputsystem.IInput;
    import package_42.name_477;
    import package_45.name_182;
    
@@ -23,7 +23,7 @@ package package_71
       
       private static const SYNC_INTERVAL:int = 4000;
       
-      private var input:name_87;
+      private var input:IInput;
       
       private var physicsComponent:class_30;
       

@@ -7,7 +7,7 @@ package package_9
    import package_18.name_102;
    import package_18.name_90;
    import package_21.name_78;
-   import package_22.name_87;
+   import alternativa.tanks.game.subsystems.inputsystem.IInput;
    import package_45.name_182;
    import package_46.Matrix3;
    import package_46.Matrix4;
@@ -52,7 +52,7 @@ package package_9
       
       private var currentPosition:Vector3D = new Vector3D();
       
-      private var input:name_87;
+      private var input:IInput;
       
       private var controller:ObjectController;
       
@@ -62,7 +62,7 @@ package package_9
       
       private var var_45:Matrix4 = new Matrix4();
       
-      public function name_20(camera:name_90, input:name_87)
+      public function name_20(camera:name_90, input:IInput)
       {
          super();
          this.input = input;
