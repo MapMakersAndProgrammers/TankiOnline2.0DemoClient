@@ -1,20 +1,20 @@
 package package_85
 {
-   import package_18.name_44;
-   import package_18.name_84;
+   import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
+   import alternativa.tanks.game.subsystems.rendersystem.IShadowRendererConstructor;
    import package_21.name_78;
    import package_23.name_208;
    import package_24.DirectionalLight;
    
-   public class name_596 implements name_84
+   public class name_596 implements IShadowRendererConstructor
    {
       private var object:name_78;
       
-      private var renderSystem:name_44;
+      private var renderSystem:RenderSystem;
       
       private var consumer:class_31;
       
-      public function name_596(object:name_78, renderSystem:name_44, consumer:class_31)
+      public function name_596(object:name_78, renderSystem:RenderSystem, consumer:class_31)
       {
          super();
          this.object = object;

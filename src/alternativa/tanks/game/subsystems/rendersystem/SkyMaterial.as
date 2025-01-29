@@ -1,4 +1,4 @@
-package package_18
+package alternativa.tanks.game.subsystems.rendersystem
 {
    import alternativa.engine3d.alternativa3d;
    import flash.display.BitmapData;
@@ -28,7 +28,7 @@ package package_18
    
    use namespace alternativa3d;
    
-   public class name_79 extends class_4
+   public class SkyMaterial extends class_4
    {
       private static var fogTexture:name_129;
       
@@ -78,7 +78,7 @@ package package_18
       
       public var var_21:Boolean = false;
       
-      public function name_79(diffuseMap:name_129 = null, opacityMap:name_129 = null, alpha:Number = 1)
+      public function SkyMaterial(diffuseMap:name_129 = null, opacityMap:name_129 = null, alpha:Number = 1)
       {
          super();
          this.diffuseMap = diffuseMap;
@@ -104,7 +104,7 @@ package package_18
          }
       }
       
-      private function method_75(targetObject:name_78, key:int, fogMode:int) : name_127
+      private function setupProgram(targetObject:name_78, key:int, fogMode:int) : name_127
       {
          var outputProcedure:name_114 = null;
          var vertexLinker:name_121 = new name_121(Context3DProgramType.VERTEX);
@@ -214,7 +214,7 @@ package package_18
          program = optionsPrograms[key];
          if(program == null)
          {
-            program = this.method_75(object,key,fogMode);
+            program = this.setupProgram(object,key,fogMode);
             program.upload(camera.alternativa3d::context3D);
             optionsPrograms[key] = program;
          }

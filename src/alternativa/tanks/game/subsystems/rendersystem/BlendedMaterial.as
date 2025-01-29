@@ -1,4 +1,4 @@
-package package_18
+package alternativa.tanks.game.subsystems.rendersystem
 {
    import alternativa.engine3d.alternativa3d;
    import package_19.name_117;
@@ -10,13 +10,13 @@ package package_18
    
    use namespace alternativa3d;
    
-   public class name_495 extends class_5
+   public class BlendedMaterial extends class_5
    {
       public var blendModeSource:String = "one";
       
       public var blendModeDestination:String = "zero";
       
-      public function name_495(diffuseMap:name_129 = null, opacityMap:name_129 = null, alpha:Number = 1, blendModeSource:String = "one", blendModeDestination:String = "zero")
+      public function BlendedMaterial(diffuseMap:name_129 = null, opacityMap:name_129 = null, alpha:Number = 1, blendModeSource:String = "one", blendModeDestination:String = "zero")
       {
          super(diffuseMap,opacityMap,alpha);
          this.blendModeSource = blendModeSource;

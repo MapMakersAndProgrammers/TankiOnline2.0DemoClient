@@ -4,7 +4,7 @@ package package_84
    import flash.geom.Point;
    import alternativa.tanks.game.EntityComponent;
    import alternativa.tanks.game.GameKernel;
-   import package_18.name_44;
+   import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
    import package_19.name_380;
    import package_19.name_528;
    import package_19.name_91;
@@ -259,7 +259,7 @@ package package_84
       
       public function addToScene() : void
       {
-         var renderSystem:name_44 = null;
+         var renderSystem:RenderSystem = null;
          if(this.container == null)
          {
             renderSystem = this.gameKernel.name_5();
@@ -309,7 +309,7 @@ package package_84
       override public function addToGame(gameKernel:GameKernel) : void
       {
          this.gameKernel = gameKernel;
-         var renderSystem:name_44 = gameKernel.name_5();
+         var renderSystem:RenderSystem = gameKernel.name_5();
          this.var_491 = new name_596(this.var_488,renderSystem,this);
          if(renderSystem.method_57())
          {

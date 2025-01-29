@@ -3,7 +3,7 @@ package package_47
    import alternativa.engine3d.alternativa3d;
    import alternativa.tanks.game.EntityComponent;
    import alternativa.tanks.game.GameKernel;
-   import package_18.name_44;
+   import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
    import package_19.name_380;
    import package_21.name_78;
    import package_4.class_5;
@@ -32,7 +32,7 @@ package package_47
       
       private var var_233:class_5;
       
-      private var renderSystem:name_44;
+      private var renderSystem:RenderSystem;
       
       public function name_193(turret:name_234)
       {

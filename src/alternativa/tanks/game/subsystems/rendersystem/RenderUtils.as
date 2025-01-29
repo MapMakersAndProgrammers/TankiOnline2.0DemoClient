@@ -1,10 +1,10 @@
-package package_18
+package alternativa.tanks.game.subsystems.rendersystem
 {
    import flash.display.BitmapData;
    
-   public class name_104
+   public class RenderUtils
    {
-      public function name_104()
+      public function RenderUtils()
       {
          super();
       }
@@ -21,7 +21,7 @@ package package_18
          if(paramValues.length > 1)
          {
             bitmapData = new BitmapData(textureWidth,1,false,16777215);
-            paramValues.sort(method_274);
+            paramValues.sort(compareByAngle);
             angles = new Vector.<Number>(paramValues.length);
             colors = new Vector.<uint>(paramValues.length);
             for(i = 0; i < paramValues.length; i++)
@@ -34,7 +34,7 @@ package package_18
             for(i = 0; i < textureWidth; i++)
             {
                angle = i / textureWidth * 360;
-               color = method_273(angle,angles,colors);
+               color = getColor(angle,angles,colors);
                bitmapData.setPixel(i,0,color);
             }
          }
@@ -46,14 +46,14 @@ package package_18
          return bitmapData;
       }
       
-      private static function method_274(a:String, b:String) : int
+      private static function compareByAngle(a:String, b:String) : int
       {
          var valA:Number = Number(parseFloat(a.substr(0,a.indexOf(":"))));
          var valB:Number = Number(parseFloat(b.substr(0,b.indexOf(":"))));
          return valA > valB ? 1 : (valA < valB ? -1 : 0);
       }
       
-      private static function method_273(currAngle:Number, angles:Vector.<Number>, colors:Vector.<uint>) : uint
+      private static function getColor(currAngle:Number, angles:Vector.<Number>, colors:Vector.<uint>) : uint
       {
          var leftAngle:Number = NaN;
          var rightAngle:Number = NaN;

@@ -1,17 +1,17 @@
-package package_18
+package alternativa.tanks.game.subsystems.rendersystem
 {
-   public class name_86
+   public class RendererList
    {
-      public var renderers:Vector.<name_82> = new Vector.<name_82>();
+      public var renderers:Vector.<IRenderer> = new Vector.<IRenderer>();
       
       public var numRenderers:int;
       
-      public function name_86()
+      public function RendererList()
       {
          super();
       }
       
-      public function add(renderer:name_82) : void
+      public function add(renderer:IRenderer) : void
       {
          if(this.renderers.indexOf(renderer) >= 0)
          {
@@ -21,7 +21,7 @@ package package_18
          this.renderers[_loc2_] = renderer;
       }
       
-      public function remove(renderer:name_82) : void
+      public function remove(renderer:IRenderer) : void
       {
          var index:int = int(this.renderers.indexOf(renderer));
          if(index < 0)

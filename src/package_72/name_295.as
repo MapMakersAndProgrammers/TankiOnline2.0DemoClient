@@ -49,9 +49,9 @@ package package_72
 }
 
 import alternativa.engine3d.alternativa3d;
-import package_18.name_44;
-import package_18.name_85;
-import package_18.name_90;
+import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
+import alternativa.tanks.game.subsystems.rendersystem.IGraphicEffect;
+import alternativa.tanks.game.subsystems.rendersystem.GameCamera;
 import package_19.name_380;
 import alternativa.tanks.game.utils.objectpool.PooledObject;
 import alternativa.tanks.game.utils.objectpool.ObjectPool;
@@ -64,7 +64,7 @@ import package_75.class_15;
 
 use namespace alternativa3d;
 
-class SimpleWeaponShotEffect extends PooledObject implements name_85
+class SimpleWeaponShotEffect extends PooledObject implements IGraphicEffect
 {
    private static var muzzlePosition:name_194 = new name_194();
    
@@ -97,13 +97,13 @@ class SimpleWeaponShotEffect extends PooledObject implements name_85
       this.material.diffuseMap = textureResource;
    }
    
-   public function addedToRenderSystem(system:name_44) : void
+   public function addedToRenderSystem(system:RenderSystem) : void
    {
       system.method_29(this.mesh.geometry);
       system.method_60().addChild(this.mesh);
    }
    
-   public function play(camera:name_90) : Boolean
+   public function play(camera:GameCamera) : Boolean
    {
       if(this.timeToLive < 0)
       {

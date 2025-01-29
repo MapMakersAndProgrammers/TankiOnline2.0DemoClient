@@ -1,10 +1,10 @@
-package package_18
+package alternativa.tanks.game.subsystems.rendersystem
 {
    import package_21.name_124;
    import package_46.Matrix3;
    import package_46.name_194;
    
-   public class name_90 extends name_124
+   public class GameCamera extends name_124
    {
       private static var matrix3:Matrix3 = new Matrix3();
       
@@ -16,7 +16,7 @@ package package_18
       
       public var zAxis:name_194 = new name_194();
       
-      public function name_90(nearClipping:Number, farClipping:Number)
+      public function GameCamera(nearClipping:Number, farClipping:Number)
       {
          super(nearClipping,farClipping);
       }

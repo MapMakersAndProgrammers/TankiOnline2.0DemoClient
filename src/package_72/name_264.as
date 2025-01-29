@@ -1,9 +1,9 @@
 package package_72
 {
    import alternativa.engine3d.alternativa3d;
-   import package_18.name_44;
-   import package_18.name_85;
-   import package_18.name_90;
+   import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
+   import alternativa.tanks.game.subsystems.rendersystem.IGraphicEffect;
+   import alternativa.tanks.game.subsystems.rendersystem.GameCamera;
    import package_19.name_380;
    import alternativa.tanks.game.utils.objectpool.PooledObject;
    import alternativa.tanks.game.utils.objectpool.ObjectPool;
@@ -14,7 +14,7 @@ package package_72
    
    use namespace alternativa3d;
    
-   public class name_264 extends PooledObject implements name_85
+   public class name_264 extends PooledObject implements IGraphicEffect
    {
       private static var geometry:name_119;
       
@@ -32,7 +32,7 @@ package package_72
       
       private var size:Number;
       
-      private var renderSystem:name_44;
+      private var renderSystem:RenderSystem;
       
       public function name_264(objectPool:ObjectPool)
       {
@@ -65,14 +65,14 @@ package package_72
          this.plane.rotationZ = rotation.z;
       }
       
-      public function addedToRenderSystem(renderSystem:name_44) : void
+      public function addedToRenderSystem(renderSystem:RenderSystem) : void
       {
          this.renderSystem = renderSystem;
          renderSystem.method_29(geometry);
          renderSystem.method_60().addChild(this.plane);
       }
       
-      public function play(camera:name_90) : Boolean
+      public function play(camera:GameCamera) : Boolean
       {
          if(this.var_472 >= this.numFrames)
          {

@@ -4,9 +4,9 @@ package package_88
    import flash.display.DisplayObjectContainer;
    import flash.display.Sprite;
    import flash.geom.Vector3D;
-   import package_18.name_44;
-   import package_18.name_85;
-   import package_18.name_90;
+   import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
+   import alternativa.tanks.game.subsystems.rendersystem.IGraphicEffect;
+   import alternativa.tanks.game.subsystems.rendersystem.GameCamera;
    import package_21.name_78;
    import alternativa.tanks.game.utils.objectpool.PooledObject;
    import alternativa.tanks.game.utils.objectpool.ObjectPool;
@@ -14,7 +14,7 @@ package package_88
    
    use namespace alternativa3d;
    
-   public class name_268 extends PooledObject implements name_85
+   public class name_268 extends PooledObject implements IGraphicEffect
    {
       private static var vector1:Vector3D = new Vector3D();
       
@@ -54,12 +54,12 @@ package package_88
          this.var_466.addChild(message);
       }
       
-      public function addedToRenderSystem(system:name_44) : void
+      public function addedToRenderSystem(system:RenderSystem) : void
       {
          system.method_41("debug_messages").addChild(this.var_466);
       }
       
-      public function play(camera:name_90) : Boolean
+      public function play(camera:GameCamera) : Boolean
       {
          var i:int = 0;
          var message:Message = null;

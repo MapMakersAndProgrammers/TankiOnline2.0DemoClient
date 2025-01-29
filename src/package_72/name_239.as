@@ -1,9 +1,9 @@
 package package_72
 {
    import alternativa.engine3d.alternativa3d;
-   import package_18.name_44;
-   import package_18.name_85;
-   import package_18.name_90;
+   import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
+   import alternativa.tanks.game.subsystems.rendersystem.IGraphicEffect;
+   import alternativa.tanks.game.subsystems.rendersystem.GameCamera;
    import package_19.name_494;
    import alternativa.tanks.game.utils.objectpool.PooledObject;
    import alternativa.tanks.game.utils.objectpool.ObjectPool;
@@ -11,7 +11,7 @@ package package_72
    import package_45.name_182;
    import package_46.name_194;
    
-   public class name_239 extends PooledObject implements name_85
+   public class name_239 extends PooledObject implements IGraphicEffect
    {
       private static var toCamera:name_194 = new name_194();
       
@@ -53,12 +53,12 @@ package package_72
          this.position.copy(position);
       }
       
-      public function addedToRenderSystem(system:name_44) : void
+      public function addedToRenderSystem(system:RenderSystem) : void
       {
          system.method_62().addChild(this.sprite);
       }
       
-      public function play(camera:name_90) : Boolean
+      public function play(camera:GameCamera) : Boolean
       {
          if(!this.loop && this.currFrame >= this.numFrames)
          {

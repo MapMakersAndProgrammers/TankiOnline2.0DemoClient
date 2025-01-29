@@ -1,6 +1,6 @@
 package package_98
 {
-   import package_18.name_44;
+   import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
    import alternativa.osgi.OSGi;
    import alternativa.osgi.service.console.IConsole;
    
@@ -14,11 +14,11 @@ package package_98
       
       private static const LIGHT_TYPE_SPOT:String = "s";
       
-      private var renderSystem:name_44;
+      private var renderSystem:RenderSystem;
       
       private var var_471:Object = {};
       
-      public function name_290(param1:name_44)
+      public function name_290(param1:RenderSystem)
       {
          super();
          this.renderSystem = param1;

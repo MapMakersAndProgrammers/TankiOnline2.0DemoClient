@@ -5,8 +5,8 @@ package alternativa.tanks.game.camera
    import alternativa.osgi.service.console.variables.ConsoleVarFloat;
    import alternativa.osgi.service.console.variables.ConsoleVarInt;
    import alternativa.tanks.game.Entity;
-   import package_18.name_102;
-   import package_18.name_90;
+   import alternativa.tanks.game.subsystems.rendersystem.ICameraController;
+   import alternativa.tanks.game.subsystems.rendersystem.GameCamera;
    import package_19.name_380;
    import package_21.name_78;
    import alternativa.tanks.game.subsystems.inputsystem.IInput;
@@ -19,7 +19,7 @@ package alternativa.tanks.game.camera
    import package_76.name_256;
    import package_90.name_273;
    
-   public class FollowCameraController extends CameraControllerBase implements name_102
+   public class FollowCameraController extends CameraControllerBase implements ICameraController
    {
       private static var parentMatrix:Matrix4 = new Matrix4();
       
@@ -117,7 +117,7 @@ package alternativa.tanks.game.camera
       
       private var var_515:name_380;
       
-      public function FollowCameraController(camera:name_90, collisionDetector:name_256, collisionMask:int, input:IInput)
+      public function FollowCameraController(camera:GameCamera, collisionDetector:name_256, collisionMask:int, input:IInput)
       {
          super();
          this.camera = camera;

@@ -1,7 +1,7 @@
 package alternativa.tanks.game.camera
 {
    import flash.display.Shape;
-   import package_18.name_90;
+   import alternativa.tanks.game.subsystems.rendersystem.GameCamera;
    
    public class AxisIndicator extends Shape
    {
@@ -15,7 +15,7 @@ package alternativa.tanks.game.camera
          this.var_32 = size;
       }
       
-      public function update(camera:name_90) : void
+      public function update(camera:GameCamera) : void
       {
          var kx:Number = NaN;
          var ky:Number = NaN;

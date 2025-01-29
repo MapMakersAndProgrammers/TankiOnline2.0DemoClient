@@ -16,8 +16,8 @@ package alternativa.tanks
    import alternativa.tanks.config.Config;
    import alternativa.utils.ColorUtils;
    import alternativa.utils.ByteArrayMap;
-   import package_18.name_102;
-   import package_18.name_44;
+   import alternativa.tanks.game.subsystems.rendersystem.ICameraController;
+   import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
    import alternativa.tanks.game.subsystems.eventsystem.IGameEventListener;
    import alternativa.tanks.game.subsystems.eventsystem.IEventSystem;
    import package_21.name_77;
@@ -150,7 +150,7 @@ package alternativa.tanks
       
       private var freeCameraController:FreeCameraController;
       
-      private var var_68:name_102;
+      private var var_68:ICameraController;
       
       private var var_81:name_290;
       
@@ -289,7 +289,7 @@ package alternativa.tanks
       
       private function onKeyDown(param1:KeyboardEventType, param2:uint) : void
       {
-         var _loc3_:name_44 = null;
+         var _loc3_:RenderSystem = null;
          var _loc4_:int = 0;
          switch(param2)
          {
@@ -380,7 +380,7 @@ package alternativa.tanks
          var _loc5_:int = 0;
          var _loc8_:class_5 = null;
          var _loc1_:Vector.<name_129> = this.var_64.getFrames("thunder/explosion");
-         var _loc2_:name_44 = this.gameKernel.name_5();
+         var _loc2_:RenderSystem = this.gameKernel.name_5();
          for each(_loc3_ in _loc1_)
          {
             _loc2_.method_29(_loc3_);
@@ -404,7 +404,7 @@ package alternativa.tanks
       {
          var _loc1_:name_129 = this.var_61.getResource("smoky/diffuse");
          var _loc2_:name_129 = this.var_61.getResource("smoky/opacity");
-         var _loc3_:name_44 = this.gameKernel.name_5();
+         var _loc3_:RenderSystem = this.gameKernel.name_5();
          _loc3_.method_29(_loc1_);
          _loc3_.method_29(_loc2_);
          var _loc4_:name_266 = name_266(this.gameKernel.method_108().name_110(name_266));
@@ -677,7 +677,7 @@ package alternativa.tanks
          var _loc9_:Array = null;
          var _loc1_:name_129 = this.var_61.getResource("fire/diffuse");
          var _loc2_:name_129 = this.var_61.getResource("fire/opacity");
-         var _loc3_:name_44 = this.gameKernel.name_5();
+         var _loc3_:RenderSystem = this.gameKernel.name_5();
          _loc3_.method_29(_loc1_);
          _loc3_.method_29(_loc2_);
          this.var_74 = new name_250(_loc1_,_loc2_,8,8,0,16,30,true);
@@ -744,7 +744,7 @@ package alternativa.tanks
          _loc6_.name_310(this.gameKernel.method_112().name_246().collisionDetector);
          _loc6_.name_303(new SimpleTargetEvaluator());
          var _loc7_:Vector.<name_129> = this.var_64.getFrames("thunder/explosion");
-         var _loc8_:name_44 = this.gameKernel.name_5();
+         var _loc8_:RenderSystem = this.gameKernel.name_5();
          for each(_loc9_ in _loc7_)
          {
             _loc8_.method_29(_loc9_);
@@ -786,7 +786,7 @@ package alternativa.tanks
          _loc6_.name_310(this.gameKernel.method_112().name_246().collisionDetector);
          _loc6_.name_303(new SimpleTargetEvaluator());
          var _loc7_:Vector.<name_129> = this.var_64.getFrames("thunder/explosion");
-         var _loc8_:name_44 = this.gameKernel.name_5();
+         var _loc8_:RenderSystem = this.gameKernel.name_5();
          for each(_loc9_ in _loc7_)
          {
             _loc8_.method_29(_loc9_);
@@ -857,7 +857,7 @@ package alternativa.tanks
          var _loc10_:name_262 = this.getFlamethrowerSFXData();
          var _loc11_:name_265 = new name_265(3000,_loc7_,20,3000,_loc10_);
          param1.name_60(_loc11_);
-         var _loc16_:name_44 = this.gameKernel.name_5();
+         var _loc16_:RenderSystem = this.gameKernel.name_5();
          var _loc17_:name_129 = this.var_61.getResource("firebird/diffuse");
          var _loc18_:name_129 = this.var_61.getResource("firebird/opacity");
          _loc16_.method_29(_loc17_);
@@ -917,7 +917,7 @@ package alternativa.tanks
          }
       }
       
-      private function setCameraController(param1:name_102) : void
+      private function setCameraController(param1:ICameraController) : void
       {
          if(this.activeTank != null)
          {
@@ -942,7 +942,7 @@ package alternativa.tanks
       {
          var _loc15_:name_249 = null;
          var _loc16_:name_318 = null;
-         var _loc6_:name_44 = this.gameKernel.name_5();
+         var _loc6_:RenderSystem = this.gameKernel.name_5();
          var _loc7_:ByteArrayMap = param1.textureData;
          var _loc8_:name_241 = this.var_65.name_254(_loc7_.name_248(name_258.KEY_DIFFUSE_MAP));
          var _loc9_:name_241 = this.var_65.name_254(_loc7_.name_248(name_258.KEY_NORMAL_MAP));
@@ -1166,7 +1166,7 @@ import alternativa.tanks.game.GameKernel;
 import package_101.name_304;
 import alternativa.tanks.config.TextureLibrary;
 import alternativa.utils.ColorUtils;
-import package_18.name_44;
+import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
 import package_28.name_129;
 import package_28.name_241;
 import package_28.name_93;
@@ -1191,7 +1191,7 @@ class FrameMaterialsFactory implements class_13
 {
    public static const INSTANCE:FrameMaterialsFactory = new FrameMaterialsFactory();
    
-   public var renderSystem:name_44;
+   public var renderSystem:RenderSystem;
    
    public function FrameMaterialsFactory()
    {

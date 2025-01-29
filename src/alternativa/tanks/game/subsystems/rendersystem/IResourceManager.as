@@ -1,8 +1,8 @@
-package package_18
+package alternativa.tanks.game.subsystems.rendersystem
 {
    import package_21.name_77;
    
-   public interface class_3
+   public interface IResourceManager
    {
       function method_29(param1:name_77) : void;
       

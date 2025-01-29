@@ -1,15 +1,15 @@
-package package_18
+package alternativa.tanks.game.subsystems.rendersystem
 {
    import package_21.name_78;
    import package_24.OmniLight;
    
-   public class name_424
+   public class OmniLightList
    {
       private var container:name_78;
       
       private var var_16:Vector.<OmniLight>;
       
-      public function name_424(container:name_78)
+      public function OmniLightList(container:name_78)
       {
          super();
          this.container = container;

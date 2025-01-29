@@ -1,4 +1,4 @@
-package package_18
+package alternativa.tanks.game.subsystems.rendersystem
 {
    import alternativa.engine3d.alternativa3d;
    import flash.display.BitmapData;
@@ -38,7 +38,7 @@ package package_18
    
    use namespace alternativa3d;
    
-   public class name_44 extends GameTask implements class_3
+   public class RenderSystem extends GameTask implements IResourceManager
    {
       public static const SKYBOX_CONTAINER_ID:String = "skyboxContainer";
       
@@ -70,17 +70,17 @@ package package_18
       
       private var view:name_81;
       
-      private var camera:name_90;
+      private var camera:GameCamera;
       
-      private var var_13:name_102;
+      private var var_13:ICameraController;
       
       private var axisIndicator:AxisIndicator;
       
-      private var renderers:name_86;
+      private var renderers:RendererList;
       
-      private var var_11:name_86;
+      private var var_11:RendererList;
       
-      private var effects:Vector.<name_85>;
+      private var effects:Vector.<IGraphicEffect>;
       
       private var numEffects:int;
       
@@ -88,7 +88,7 @@ package package_18
       
       private var var_8:Object = {};
       
-      private var var_16:name_89;
+      private var var_16:Lights;
       
       private var var_20:Boolean;
       
@@ -96,7 +96,7 @@ package package_18
       
       private var objectPoolManager:ObjectPoolManager = new ObjectPoolManager();
       
-      private var var_19:Vector.<name_80>;
+      private var var_19:Vector.<TextMarker>;
       
       private var var_17:name_95 = new name_95();
       
@@ -104,15 +104,15 @@ package package_18
       
       private var stage3d:Stage3D;
       
-      private var resourceManager:name_101;
+      private var resourceManager:ResourceManager;
       
       private var var_9:name_92;
       
       private var staticShadowRenderer:name_97;
       
-      private var var_10:Vector.<name_88>;
+      private var var_10:Vector.<IDeferredAction>;
       
-      private var var_7:Vector.<name_84>;
+      private var var_7:Vector.<IShadowRendererConstructor>;
       
       private var var_15:Boolean;
       
@@ -120,24 +120,24 @@ package package_18
       
       private var var_5:name_98;
       
-      public function name_44(priority:int, stage:Stage)
+      public function RenderSystem(priority:int, stage:Stage)
       {
          super(priority);
          this.stage = stage;
-         this.renderers = new name_86();
-         this.var_11 = new name_86();
-         this.effects = new Vector.<name_85>();
+         this.renderers = new RendererList();
+         this.var_11 = new RendererList();
+         this.effects = new Vector.<IGraphicEffect>();
          this.rootContainer = new name_78();
          this.rootContainer.name = "root";
-         this.skyboxContainer = this.method_34(SKYBOX_CONTAINER_ID);
-         this.mapGeometryContainer = this.method_34(MAP_GEOMETRY_CONTAINER_ID);
-         this.lightsContainer = this.method_34(LIGHTS_CONTAINER_ID);
-         this.dynamicObjectsContainer = this.method_34(DYNAMIC_OBJECTS_CONTAINER_ID);
-         this.effectsContainer = this.method_34(EFFECTS_CONTAINER_ID);
-         this.var_16 = new name_89(this.lightsContainer);
+         this.skyboxContainer = this.createContainer(SKYBOX_CONTAINER_ID);
+         this.mapGeometryContainer = this.createContainer(MAP_GEOMETRY_CONTAINER_ID);
+         this.lightsContainer = this.createContainer(LIGHTS_CONTAINER_ID);
+         this.dynamicObjectsContainer = this.createContainer(DYNAMIC_OBJECTS_CONTAINER_ID);
+         this.effectsContainer = this.createContainer(EFFECTS_CONTAINER_ID);
+         this.var_16 = new Lights(this.lightsContainer);
          this.view = new name_81(100,100,false,6710886,1,4);
          this.view.name_106();
-         this.camera = new name_90(10,50000);
+         this.camera = new GameCamera(10,50000);
          this.camera.nearClipping = 1;
          this.camera.view = this.view;
          this.rootContainer.addChild(this.camera);
@@ -149,10 +149,10 @@ package package_18
          this.var_5.wind = new Vector3D(1,0,0);
          this.rootContainer.addChild(this.var_5);
          this.axisIndicator = new AxisIndicator(100);
-         this.resourceManager = new name_101();
+         this.resourceManager = new ResourceManager();
          this.var_9 = new name_92();
          this.staticShadowRenderer = new name_97(null,1024,4);
-         this.var_10 = new Vector.<name_88>();
+         this.var_10 = new Vector.<IDeferredAction>();
          this.rootContainer.addEventListener(MouseEvent3D.CLICK,this.onClick);
       }
       
@@ -168,7 +168,7 @@ package package_18
          }
       }
       
-      public function get lights() : name_89
+      public function get lights() : Lights
       {
          return this.var_16;
       }
@@ -180,7 +180,7 @@ package package_18
          TankMaterial2.fogMode = mode;
          TracksMaterial2.fogMode = mode;
          TreesMaterial.fogMode = mode;
-         name_79.fogMode = mode;
+         SkyMaterial.fogMode = mode;
          GiShadowMaterial.fogMode = mode;
          if(mode == 1)
          {
@@ -221,7 +221,7 @@ package package_18
          TankMaterial2.fogMaxDensity = value;
          TracksMaterial2.fogMaxDensity = value;
          TreesMaterial.fogMaxDensity = value;
-         name_79.fogMaxDensity = value;
+         SkyMaterial.fogMaxDensity = value;
          GiShadowMaterial.fogMaxDensity = value;
          this.var_5.fogMaxDensity = value;
       }
@@ -246,9 +246,9 @@ package package_18
          TreesMaterial.fogColorR = r;
          TreesMaterial.fogColorG = g;
          TreesMaterial.fogColorB = b;
-         name_79.fogColorR = r;
-         name_79.fogColorG = g;
-         name_79.fogColorB = b;
+         SkyMaterial.fogColorR = r;
+         SkyMaterial.fogColorG = g;
+         SkyMaterial.fogColorB = b;
          GiShadowMaterial.fogColorR = r;
          GiShadowMaterial.fogColorG = g;
          GiShadowMaterial.fogColorB = b;
@@ -257,19 +257,19 @@ package package_18
       
       public function name_38(value:Number) : void
       {
-         name_79.fogHeight = value;
+         SkyMaterial.fogHeight = value;
       }
       
       public function name_34(value:Number) : void
       {
-         name_79.fogOffset = value;
+         SkyMaterial.fogOffset = value;
       }
       
       public function name_36(textureParams:String) : void
       {
-         var fogBitmap:BitmapData = name_104.name_109(textureParams,128);
-         var fogInitializator:name_99 = new name_99(fogBitmap,this);
-         if(this.method_35())
+         var fogBitmap:BitmapData = RenderUtils.name_109(textureParams,128);
+         var fogInitializator:FogInitializator = new FogInitializator(fogBitmap,this);
+         if(this.isContext3DAvailable())
          {
             fogInitializator.execute(this.stage3d);
          }
@@ -281,7 +281,7 @@ package package_18
       
       public function method_33(bitmapData:BitmapData) : void
       {
-         if(!this.method_35())
+         if(!this.isContext3DAvailable())
          {
             throw new Error("Context3D is not available. Use setFogTextureParams() instead.");
          }
@@ -297,7 +297,7 @@ package package_18
          GiShadowMaterial.method_33(this.var_6);
          TracksMaterial2.method_33(this.var_6);
          TreesMaterial.method_33(this.var_6);
-         name_79.method_33(this.var_6);
+         SkyMaterial.method_33(this.var_6);
       }
       
       public function method_57() : Boolean
@@ -307,7 +307,7 @@ package package_18
       
       public function method_58() : void
       {
-         var shadowRendererConstructor:name_84 = null;
+         var shadowRendererConstructor:IShadowRendererConstructor = null;
          this.var_15 = true;
          if(this.var_7 != null)
          {
@@ -319,7 +319,7 @@ package package_18
          }
       }
       
-      public function method_59(shadowRendererConstructor:name_84) : void
+      public function method_59(shadowRendererConstructor:IShadowRendererConstructor) : void
       {
          if(shadowRendererConstructor == null)
          {
@@ -331,7 +331,7 @@ package package_18
          }
          if(this.var_7 == null)
          {
-            this.var_7 = new Vector.<name_84>();
+            this.var_7 = new Vector.<IShadowRendererConstructor>();
          }
          var index:int = int(this.var_7.indexOf(shadowRendererConstructor));
          if(index < 0)
@@ -340,7 +340,7 @@ package package_18
          }
       }
       
-      public function method_49(shadowRendererConstructor:name_84) : void
+      public function method_49(shadowRendererConstructor:IShadowRendererConstructor) : void
       {
          var index:int = 0;
          if(this.var_7 != null)
@@ -392,13 +392,13 @@ package package_18
       public function name_37(stage3d:Stage3D) : void
       {
          this.stage3d = stage3d;
-         this.method_38(stage3d.context3D);
+         this.initContext(stage3d.context3D);
       }
       
       public function requestContext3D() : void
       {
          this.stage3d = this.stage.stage3Ds[0];
-         this.stage3d.addEventListener(Event.CONTEXT3D_CREATE,this.method_39);
+         this.stage3d.addEventListener(Event.CONTEXT3D_CREATE,this.onContext3DCreate);
          this.stage3d.requestContext3D(Context3DRenderMode.AUTO);
       }
       
@@ -525,27 +525,27 @@ package package_18
          }
       }
       
-      public function method_63(renderer:name_82) : void
+      public function method_63(renderer:IRenderer) : void
       {
          this.renderers.add(renderer);
       }
       
-      public function method_64(renderer:name_82) : void
+      public function method_64(renderer:IRenderer) : void
       {
          this.renderers.remove(renderer);
       }
       
-      public function method_56(renderer:name_82) : void
+      public function method_56(renderer:IRenderer) : void
       {
          this.var_11.add(renderer);
       }
       
-      public function method_53(renderer:name_82) : void
+      public function method_53(renderer:IRenderer) : void
       {
          this.var_11.remove(renderer);
       }
       
-      public function method_37(effect:name_85) : void
+      public function method_37(effect:IGraphicEffect) : void
       {
          if(this.effects.indexOf(effect) >= 0)
          {
@@ -561,7 +561,7 @@ package package_18
          this.var_5.method_37(effect);
       }
       
-      public function name_63(controller:name_102) : void
+      public function name_63(controller:ICameraController) : void
       {
          if(this.var_13 == controller)
          {
@@ -571,7 +571,7 @@ package package_18
          controller.name_108();
       }
       
-      public function name_27() : name_90
+      public function name_27() : GameCamera
       {
          return this.camera;
       }
@@ -613,9 +613,9 @@ package package_18
       override public function start() : void
       {
          var input:IInput = IInput(var_4.getTaskInterface(IInput));
-         input.name_94(KeyboardEventType.KEY_DOWN,this.method_36,Keyboard.F7);
-         input.name_94(KeyboardEventType.KEY_DOWN,this.method_36,Keyboard.F8);
-         input.name_94(KeyboardEventType.KEY_DOWN,this.method_36,Keyboard.TAB);
+         input.name_94(KeyboardEventType.KEY_DOWN,this.onToggleDebugKey,Keyboard.F7);
+         input.name_94(KeyboardEventType.KEY_DOWN,this.onToggleDebugKey,Keyboard.F8);
+         input.name_94(KeyboardEventType.KEY_DOWN,this.onToggleDebugKey,Keyboard.TAB);
       }
       
       override public function stop() : void
@@ -637,8 +637,8 @@ package package_18
       {
          var i:int = 0;
          var overlay:Sprite = null;
-         var renderer:name_82 = null;
-         var effect:name_85 = null;
+         var renderer:IRenderer = null;
+         var effect:IGraphicEffect = null;
          if(this.stage3d == null || this.stage3d.context3D == null)
          {
             return;
@@ -688,8 +688,8 @@ package package_18
       
       public function method_71(mainDirectionalLight:DirectionalLight) : void
       {
-         var staticShadowInitializer:name_96 = new name_96(this.staticShadowRenderer,this.mapGeometryContainer,mainDirectionalLight);
-         if(this.method_35())
+         var staticShadowInitializer:StaticShadowInitializer = new StaticShadowInitializer(this.staticShadowRenderer,this.mapGeometryContainer,mainDirectionalLight);
+         if(this.isContext3DAvailable())
          {
             staticShadowInitializer.execute(this.method_42());
          }
@@ -699,12 +699,12 @@ package package_18
          }
       }
       
-      private function method_35() : Boolean
+      private function isContext3DAvailable() : Boolean
       {
          return this.stage3d != null && this.stage3d.context3D != null;
       }
       
-      private function method_34(id:String) : name_78
+      private function createContainer(id:String) : name_78
       {
          var container:name_78 = new name_78();
          container.name = id;
@@ -713,14 +713,14 @@ package package_18
          return container;
       }
       
-      private function method_39(event:Event) : void
+      private function onContext3DCreate(event:Event) : void
       {
-         this.method_38(this.stage3d.context3D);
+         this.initContext(this.stage3d.context3D);
       }
       
-      private function method_38(context3D:Context3D) : void
+      private function initContext(context3D:Context3D) : void
       {
-         var deferredAction:name_88 = null;
+         var deferredAction:IDeferredAction = null;
          context3D.enableErrorChecking = false;
          this.resourceManager.name_105(context3D);
          this.staticShadowRenderer.context = context3D;
@@ -733,7 +733,7 @@ package package_18
          this.var_10 = null;
       }
       
-      private function method_36(eventType:KeyboardEventType, keyCode:uint) : void
+      private function onToggleDebugKey(eventType:KeyboardEventType, keyCode:uint) : void
       {
          switch(keyCode)
          {
@@ -743,19 +743,19 @@ package package_18
          }
       }
       
-      private function addObject3DMarkers(objects:Vector.<name_78>) : Vector.<name_80>
+      private function addObject3DMarkers(objects:Vector.<name_78>) : Vector.<TextMarker>
       {
          var object:name_78 = null;
-         var textMarker:name_80 = null;
+         var textMarker:TextMarker = null;
          if(objects == null)
          {
-            return new Vector.<name_80>();
+            return new Vector.<TextMarker>();
          }
-         var markers:Vector.<name_80> = new Vector.<name_80>(objects.length);
+         var markers:Vector.<TextMarker> = new Vector.<TextMarker>(objects.length);
          for(var i:int = 0; i < objects.length; i++)
          {
             object = objects[i];
-            textMarker = name_80(this.objectPoolManager.name_110(name_80));
+            textMarker = TextMarker(this.objectPoolManager.name_110(TextMarker));
             textMarker.init(this.method_41("markers"),object.name || "[none]",object);
             this.method_37(textMarker);
             markers[i] = textMarker;
@@ -763,20 +763,20 @@ package package_18
          return markers;
       }
       
-      private function method_67() : void
+      private function switchMapView() : void
       {
       }
       
-      private function method_61() : void
+      private function updateDebugMode() : void
       {
          this.camera.debug = this.var_17.flags != 0;
       }
       
-      private function method_50() : void
+      private function toggleLightDebug() : void
       {
       }
       
-      private function method_44() : void
+      private function toggleGraphicsDebug() : void
       {
       }
       

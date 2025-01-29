@@ -4,8 +4,8 @@ package package_85
    import alternativa.tanks.game.EntityComponent;
    import alternativa.tanks.game.GameKernel;
    import package_109.name_377;
-   import package_18.name_44;
-   import package_18.name_82;
+   import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
+   import alternativa.tanks.game.subsystems.rendersystem.IRenderer;
    import package_19.name_509;
    import package_21.name_78;
    import package_4.name_313;
@@ -23,7 +23,7 @@ package package_85
    
    use namespace alternativa3d;
    
-   public class name_319 extends EntityComponent implements name_82
+   public class name_319 extends EntityComponent implements IRenderer
    {
       private static var material:name_313 = new name_313(11141120);
       
@@ -100,7 +100,7 @@ package package_85
       {
          var collisionPrimitive3D:CollisionPrimitive3D = null;
          var rayEntry:RayEntry = null;
-         var renderSystem:name_44 = gameKernel.name_5();
+         var renderSystem:RenderSystem = gameKernel.name_5();
          for each(collisionPrimitive3D in this.var_444)
          {
             this.method_404(renderSystem,collisionPrimitive3D.skin);
@@ -118,7 +118,7 @@ package package_85
       {
          var collisionPrimitive3D:CollisionPrimitive3D = null;
          var rayEntry:RayEntry = null;
-         var renderSystem:name_44 = gameKernel.name_5();
+         var renderSystem:RenderSystem = gameKernel.name_5();
          for each(collisionPrimitive3D in this.var_444)
          {
             this.method_405(renderSystem,collisionPrimitive3D.skin);
@@ -132,13 +132,13 @@ package package_85
          gameKernel.name_5().method_64(this);
       }
       
-      private function method_404(renderSystem:name_44, object:name_78) : void
+      private function method_404(renderSystem:RenderSystem, object:name_78) : void
       {
          renderSystem.method_46().addChild(object);
          renderSystem.method_32(object.getResources());
       }
       
-      private function method_405(renderSystem:name_44, object:name_78) : void
+      private function method_405(renderSystem:RenderSystem, object:name_78) : void
       {
          object.alternativa3d::removeFromParent();
          renderSystem.method_31(object.getResources());

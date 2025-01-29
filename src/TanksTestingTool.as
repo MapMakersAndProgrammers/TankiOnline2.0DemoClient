@@ -23,7 +23,7 @@ package
    import alternativa.utils.Properties;
    import alternativa.protocol.osgi.ProtocolActivator;
    import platform.clients.fp10.libraries.alternativaprotocol.Activator;
-   import package_18.name_44;
+   import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
    import alternativa.tanks.game.entities.map.VisibleLightMaterial;
    import alternativa.tanks.game.entities.map.MapMaterial;
    import alternativa.tanks.game.entities.tank.graphics.materials.TankMaterial2;
@@ -142,7 +142,7 @@ package
          var _loc3_:Number = NaN;
          var _loc4_:Number = NaN;
          var _loc5_:Number = NaN;
-         var _loc6_:name_44 = this.gameKernel.name_5();
+         var _loc6_:RenderSystem = this.gameKernel.name_5();
          switch(param1.name_32())
          {
             case "fog_mode":

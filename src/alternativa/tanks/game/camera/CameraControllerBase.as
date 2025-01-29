@@ -1,11 +1,11 @@
 package alternativa.tanks.game.camera
 {
-   import package_18.name_90;
+   import alternativa.tanks.game.subsystems.rendersystem.GameCamera;
    import package_46.name_194;
    
    public class CameraControllerBase
    {
-      protected var camera:name_90;
+      protected var camera:GameCamera;
       
       public function CameraControllerBase()
       {

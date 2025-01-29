@@ -1,13 +1,13 @@
 package package_98
 {
-   import package_18.name_44;
+   import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
    import package_21.name_116;
    import package_24.name_376;
    import alternativa.osgi.service.console.IConsole;
    
    public class name_558 extends name_557
    {
-      public function name_558(param1:name_44)
+      public function name_558(param1:RenderSystem)
       {
          super(param1);
       }

@@ -1,9 +1,9 @@
 package package_91
 {
-   import package_18.name_85;
+   import alternativa.tanks.game.subsystems.rendersystem.IGraphicEffect;
    import package_46.name_194;
    
-   public interface name_522 extends name_85
+   public interface name_522 extends IGraphicEffect
    {
       function method_255() : void;
       

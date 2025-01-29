@@ -2,10 +2,10 @@ package package_89
 {
    import alternativa.engine3d.alternativa3d;
    import flash.display3D.Context3DBlendFactor;
-   import package_18.name_44;
-   import package_18.name_495;
-   import package_18.name_85;
-   import package_18.name_90;
+   import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
+   import alternativa.tanks.game.subsystems.rendersystem.BlendedMaterial;
+   import alternativa.tanks.game.subsystems.rendersystem.IGraphicEffect;
+   import alternativa.tanks.game.subsystems.rendersystem.GameCamera;
    import package_19.name_380;
    import package_19.name_494;
    import package_21.name_78;
@@ -20,7 +20,7 @@ package package_89
    
    use namespace alternativa3d;
    
-   public class name_266 extends PooledObject implements name_85
+   public class name_266 extends PooledObject implements IGraphicEffect
    {
       private static const BARREL_INDEX:int = 0;
       
@@ -58,7 +58,7 @@ package package_89
       
       private var sprite3:name_494;
       
-      private var var_427:name_495;
+      private var var_427:BlendedMaterial;
       
       private var var_428:name_313 = new name_313(16563726,0.1);
       
@@ -91,7 +91,7 @@ package package_89
       public function name_266(objectPool:ObjectPool)
       {
          super(objectPool);
-         this.var_427 = new name_495();
+         this.var_427 = new BlendedMaterial();
          this.var_427.var_21 = true;
          this.var_427.blendModeSource = Context3DBlendFactor.ONE;
          this.var_427.blendModeDestination = Context3DBlendFactor.ONE;
@@ -103,7 +103,7 @@ package package_89
          this.turret = turret;
       }
       
-      public function addedToRenderSystem(system:name_44) : void
+      public function addedToRenderSystem(system:RenderSystem) : void
       {
          var container:name_78 = system.method_62();
          container.addChild(this.sprite1);
@@ -111,7 +111,7 @@ package package_89
          container.addChild(this.sprite3);
       }
       
-      public function play(camera:name_90) : Boolean
+      public function play(camera:GameCamera) : Boolean
       {
          if(this.timeToLive <= 0)
          {

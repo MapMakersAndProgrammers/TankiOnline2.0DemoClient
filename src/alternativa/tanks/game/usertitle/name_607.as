@@ -8,7 +8,7 @@ package alternativa.tanks.game.usertitle
    import flash.geom.Rectangle;
    import flash.utils.Dictionary;
    import package_126.name_723;
-   import package_18.class_3;
+   import alternativa.tanks.game.subsystems.rendersystem.IResourceManager;
    import package_19.name_494;
    import package_21.name_78;
    import package_28.name_93;
@@ -121,7 +121,7 @@ package alternativa.tanks.game.usertitle
       
       private var teamType:name_723 = name_723.NONE;
       
-      private var resourceManager:class_3;
+      private var resourceManager:IResourceManager;
       
       public function name_607(maxHealth:int, rankIcon:name_613, label:name_617)
       {
@@ -139,7 +139,7 @@ package alternativa.tanks.game.usertitle
          this.setDeadState();
       }
       
-      public function name_612(resourceManager:class_3) : void
+      public function name_612(resourceManager:IResourceManager) : void
       {
          this.resourceManager = resourceManager;
       }

@@ -1,6 +1,6 @@
 package package_98
 {
-   import package_18.name_44;
+   import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
    import package_21.name_116;
    import alternativa.osgi.service.console.IConsole;
    
@@ -8,9 +8,9 @@ package package_98
    {
       protected var lastId:int;
       
-      protected var renderSystem:name_44;
+      protected var renderSystem:RenderSystem;
       
-      public function name_557(param1:name_44)
+      public function name_557(param1:RenderSystem)
       {
          super();
          this.renderSystem = param1;

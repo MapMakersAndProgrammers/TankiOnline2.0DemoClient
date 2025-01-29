@@ -1,15 +1,15 @@
-package package_18
+package alternativa.tanks.game.subsystems.rendersystem
 {
    import flash.display.BitmapData;
    import flash.display.Stage3D;
    
-   public class name_99 implements name_88
+   public class FogInitializator implements IDeferredAction
    {
       private var fogBitmap:BitmapData;
       
-      private var renderSystem:name_44;
+      private var renderSystem:RenderSystem;
       
-      public function name_99(fogBitmap:BitmapData, renderSystem:name_44)
+      public function FogInitializator(fogBitmap:BitmapData, renderSystem:RenderSystem)
       {
          super();
          this.fogBitmap = fogBitmap;

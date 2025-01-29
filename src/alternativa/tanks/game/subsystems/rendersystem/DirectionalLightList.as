@@ -1,15 +1,15 @@
-package package_18
+package alternativa.tanks.game.subsystems.rendersystem
 {
    import package_21.name_78;
    import package_24.DirectionalLight;
    
-   public class name_423
+   public class DirectionalLightList
    {
       private var container:name_78;
       
       private var var_16:Vector.<DirectionalLight>;
       
-      public function name_423(container:name_78)
+      public function DirectionalLightList(container:name_78)
       {
          super();
          this.container = container;

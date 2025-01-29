@@ -4,8 +4,8 @@ package alternativa.tanks.game.camera
    import alternativa.tanks.game.ObjectController;
    import alternativa.tanks.game.Entity;
    import alternativa.utils.KeyboardUtils;
-   import package_18.name_102;
-   import package_18.name_90;
+   import alternativa.tanks.game.subsystems.rendersystem.ICameraController;
+   import alternativa.tanks.game.subsystems.rendersystem.GameCamera;
    import package_21.name_78;
    import alternativa.tanks.game.subsystems.inputsystem.IInput;
    import package_45.name_182;
@@ -14,7 +14,7 @@ package alternativa.tanks.game.camera
    import package_46.name_194;
    import package_47.name_193;
    
-   public class FreeCameraController implements name_102
+   public class FreeCameraController implements ICameraController
    {
       public static var smoothing:Number = 20;
       
@@ -62,7 +62,7 @@ package alternativa.tanks.game.camera
       
       private var var_45:Matrix4 = new Matrix4();
       
-      public function FreeCameraController(camera:name_90, input:IInput)
+      public function FreeCameraController(camera:GameCamera, input:IInput)
       {
          super();
          this.input = input;

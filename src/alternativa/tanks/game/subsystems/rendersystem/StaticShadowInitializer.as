@@ -1,11 +1,11 @@
-package package_18
+package alternativa.tanks.game.subsystems.rendersystem
 {
    import flash.display3D.Context3D;
    import package_21.name_78;
    import package_23.name_97;
    import package_24.DirectionalLight;
    
-   public class name_96
+   public class StaticShadowInitializer
    {
       private var staticShadowRenderer:name_97;
       
@@ -13,7 +13,7 @@ package package_18
       
       private var light:DirectionalLight;
       
-      public function name_96(staticShadowRenderer:name_97, container:name_78, light:DirectionalLight)
+      public function StaticShadowInitializer(staticShadowRenderer:name_97, container:name_78, light:DirectionalLight)
       {
          super();
          this.staticShadowRenderer = staticShadowRenderer;

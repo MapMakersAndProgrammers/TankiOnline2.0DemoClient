@@ -1,9 +1,9 @@
 package package_85
 {
-   import package_18.name_82;
+   import alternativa.tanks.game.subsystems.rendersystem.IRenderer;
    import package_21.name_78;
    
-   public interface class_22 extends name_82
+   public interface class_22 extends IRenderer
    {
       function addToScene() : void;
       

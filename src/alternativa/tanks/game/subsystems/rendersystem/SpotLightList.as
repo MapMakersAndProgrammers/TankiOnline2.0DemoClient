@@ -1,15 +1,15 @@
-package package_18
+package alternativa.tanks.game.subsystems.rendersystem
 {
    import package_21.name_78;
    import package_24.SpotLight;
    
-   public class name_422
+   public class SpotLightList
    {
       private var container:name_78;
       
       private var var_16:Vector.<SpotLight>;
       
-      public function name_422(container:name_78)
+      public function SpotLightList(container:name_78)
       {
          super();
          this.container = container;

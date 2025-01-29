@@ -1,10 +1,10 @@
-package package_18
+package alternativa.tanks.game.subsystems.rendersystem
 {
    import flash.display3D.Context3D;
    import flash.utils.Dictionary;
    import package_21.name_77;
    
-   public class name_101 implements class_3
+   public class ResourceManager implements IResourceManager
    {
       private var context:Context3D;
       
@@ -12,7 +12,7 @@ package package_18
       
       private var var_105:Vector.<name_77>;
       
-      public function name_101()
+      public function ResourceManager()
       {
          super();
          this.var_106 = new Dictionary();
@@ -22,9 +22,9 @@ package package_18
       {
          if(this.context == null)
          {
-            if(this.method_224(resource) < 0)
+            if(this.getQueuedIndex(resource) < 0)
             {
-               this.method_223(resource);
+               this.queue(resource);
             }
          }
          else
@@ -51,7 +51,7 @@ package package_18
          {
             if(refCount == 1)
             {
-               this.method_225(resource);
+               this.doRelease(resource);
             }
             else
             {
@@ -73,7 +73,7 @@ package package_18
       {
          if(this.context == null)
          {
-            this.method_223(resource);
+            this.queue(resource);
          }
          else
          {
@@ -109,13 +109,13 @@ package package_18
          this.var_106 = new Dictionary();
       }
       
-      private function method_225(resource:name_77) : void
+      private function doRelease(resource:name_77) : void
       {
          var index:int = 0;
          var num:int = 0;
          if(this.context == null)
          {
-            index = this.method_224(resource);
+            index = this.getQueuedIndex(resource);
             if(index >= 0)
             {
                num = int(this.var_105.length);
@@ -137,7 +137,7 @@ package package_18
          }
       }
       
-      private function method_224(resource:name_77) : int
+      private function getQueuedIndex(resource:name_77) : int
       {
          if(this.var_105 == null)
          {
@@ -146,7 +146,7 @@ package package_18
          return this.var_105.indexOf(resource);
       }
       
-      private function method_223(resource:name_77) : void
+      private function queue(resource:name_77) : void
       {
          if(this.var_105 == null)
          {

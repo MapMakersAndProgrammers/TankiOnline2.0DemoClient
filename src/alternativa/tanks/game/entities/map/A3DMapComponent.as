@@ -12,9 +12,9 @@ package alternativa.tanks.game.entities.map
    import package_109.name_378;
    import package_109.name_381;
    import alternativa.utils.ByteArrayMap;
-   import package_18.name_44;
-   import package_18.name_79;
-   import package_18.name_89;
+   import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
+   import alternativa.tanks.game.subsystems.rendersystem.SkyMaterial;
+   import alternativa.tanks.game.subsystems.rendersystem.Lights;
    import package_19.name_380;
    import package_19.name_53;
    import package_19.name_91;
@@ -96,7 +96,7 @@ package alternativa.tanks.game.entities.map
          var skyBox:name_53 = null;
          var surfaceIds:Array = null;
          var surfaceId:String = null;
-         var renderSystem:name_44 = null;
+         var renderSystem:RenderSystem = null;
          var container:name_78 = null;
          var texture:ByteArray = null;
          var textureResource:name_241 = null;
@@ -108,11 +108,11 @@ package alternativa.tanks.game.entities.map
             {
                texture = this.skyboxFiles.name_248(surfaceId);
                textureResource = new name_241(texture);
-               skyBox.name_383(surfaceId).material = new name_79(textureResource);
+               skyBox.name_383(surfaceId).material = new SkyMaterial(textureResource);
             }
             renderSystem = this.gameKernel.name_5();
             renderSystem.method_32(skyBox.getResources(true));
-            container = renderSystem.method_40(name_44.SKYBOX_CONTAINER_ID);
+            container = renderSystem.method_40(RenderSystem.SKYBOX_CONTAINER_ID);
             container.addChild(skyBox);
          }
       }
@@ -120,9 +120,9 @@ package alternativa.tanks.game.entities.map
       override public function removeFromGame(gameKernel:GameKernel) : void
       {
          var object:name_78 = null;
-         var lights:name_89 = null;
+         var lights:Lights = null;
          var light:name_116 = null;
-         var renderSystem:name_44 = gameKernel.name_5();
+         var renderSystem:RenderSystem = gameKernel.name_5();
          var mapGeometryContainer:name_78 = renderSystem.method_68();
          for each(object in this.var_89.objects)
          {
@@ -186,8 +186,8 @@ package alternativa.tanks.game.entities.map
             this.initFakeLight();
             return null;
          }
-         var renderSystem:name_44 = this.gameKernel.name_5();
-         var lights:name_89 = renderSystem.lights;
+         var renderSystem:RenderSystem = this.gameKernel.name_5();
+         var lights:Lights = renderSystem.lights;
          for each(light in this.var_89.lights)
          {
             if(light is DirectionalLight)
@@ -234,7 +234,7 @@ package alternativa.tanks.game.entities.map
       private function initGraphics(staticShadowLight:DirectionalLight) : void
       {
          var object:name_78 = null;
-         var renderSystem:name_44 = this.gameKernel.name_5();
+         var renderSystem:RenderSystem = this.gameKernel.name_5();
          var mapGeometryContainer:name_78 = renderSystem.method_68();
          for each(object in this.var_89.objects)
          {
@@ -249,7 +249,7 @@ package alternativa.tanks.game.entities.map
       
       private function initPhysics() : void
       {
-         var renderSystem:name_44 = null;
+         var renderSystem:RenderSystem = null;
          var physicsContainer:name_78 = null;
          var physicsSystem:name_178 = this.gameKernel.method_112();
          physicsSystem.name_382(this.var_89.collisionPrimitives);
@@ -341,8 +341,8 @@ package alternativa.tanks.game.entities.map
          var collisionRect:name_381 = new name_381(new name_194(20000,20000),1,255);
          var collisionPrimitives:Vector.<name_235> = Vector.<name_235>([collisionRect]);
          this.gameKernel.method_112().name_382(collisionPrimitives);
-         var renderSystem:name_44 = this.gameKernel.name_5();
-         renderSystem.method_40(name_44.LIGHTS_CONTAINER_ID).addChild(new name_376(16777215));
+         var renderSystem:RenderSystem = this.gameKernel.name_5();
+         renderSystem.method_40(RenderSystem.LIGHTS_CONTAINER_ID).addChild(new name_376(16777215));
          this.addZeroMarker(renderSystem);
          var bitmapData:BitmapData = new BitmapData(512,512);
          bitmapData.perlinNoise(10,10,3,13,false,true);
@@ -355,7 +355,7 @@ package alternativa.tanks.game.entities.map
          setTimeout(this.complete,0);
       }
       
-      private function addZeroMarker(renderSystem:name_44) : void
+      private function addZeroMarker(renderSystem:RenderSystem) : void
       {
          var resource:name_77 = null;
          var box:name_279 = new name_279(50,50,50);

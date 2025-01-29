@@ -8,7 +8,7 @@ package alternativa.tanks
    import alternativa.tanks.config.BlobGroup;
    import alternativa.tanks.config.BlobCategory;
    import alternativa.utils.ByteArrayMap;
-   import package_18.name_44;
+   import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
    import package_19.name_53;
    import alternativa.tanks.game.entities.map.A3DMapComponent;
    import alternativa.tanks.game.camera.FreeCameraController;
@@ -34,7 +34,7 @@ package alternativa.tanks
       
       override public function run() : void
       {
-         var _loc1_:name_44 = this.gameKernel.name_5();
+         var _loc1_:RenderSystem = this.gameKernel.name_5();
          var _loc2_:FreeCameraController = new FreeCameraController(_loc1_.name_27(),this.gameKernel.name_66());
          _loc1_.name_63(_loc2_);
          _loc2_.name_75(0,0,1000);

@@ -2,7 +2,7 @@ package package_83
 {
    import flash.geom.Vector3D;
    import alternativa.tanks.game.GameKernel;
-   import package_18.name_44;
+   import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
    import package_25.name_250;
    import package_28.name_129;
    import package_4.class_4;
@@ -48,7 +48,7 @@ package package_83
       
       public function createEffects(position:name_194, weakeningCoefficient:Number, radius:Number) : void
       {
-         var renderSystem:name_44 = this.gameKernel.name_5();
+         var renderSystem:RenderSystem = this.gameKernel.name_5();
          var explosion:name_543 = new name_543(smokeAtlas,fireAtlas,flashAtlas,glowAtlas,sparkAtlas,fragmentAtlas);
          tempVector.x = position.x;
          tempVector.y = position.y;

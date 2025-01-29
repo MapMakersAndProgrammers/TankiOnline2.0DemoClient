@@ -1,14 +1,14 @@
 package package_98
 {
    import alternativa.utils.TextUtils;
-   import package_18.name_44;
+   import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
    import package_21.name_116;
    import package_24.OmniLight;
    import alternativa.osgi.service.console.IConsole;
    
    public class name_560 extends name_557
    {
-      public function name_560(param1:name_44)
+      public function name_560(param1:RenderSystem)
       {
          super(param1);
       }

@@ -2,9 +2,9 @@ package package_81
 {
    import flash.geom.Vector3D;
    import alternativa.osgi.service.console.variables.ConsoleVarFloat;
-   import package_18.name_44;
-   import package_18.name_85;
-   import package_18.name_90;
+   import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
+   import alternativa.tanks.game.subsystems.rendersystem.IGraphicEffect;
+   import alternativa.tanks.game.subsystems.rendersystem.GameCamera;
    import package_25.name_250;
    import alternativa.tanks.game.utils.objectpool.PooledObject;
    import alternativa.tanks.game.utils.objectpool.ObjectPool;
@@ -16,7 +16,7 @@ package package_81
    import package_86.name_257;
    import package_90.name_273;
    
-   public class name_544 extends PooledObject implements name_85
+   public class name_544 extends PooledObject implements IGraphicEffect
    {
       private static const ANIMATION_FPS:Number = 30;
       
@@ -78,7 +78,7 @@ package package_81
       
       private var var_636:Number;
       
-      private var renderSystem:name_44;
+      private var renderSystem:RenderSystem;
       
       private var turret:class_15;
       
@@ -95,7 +95,7 @@ package package_81
          super(objectPool);
       }
       
-      public function addedToRenderSystem(system:name_44) : void
+      public function addedToRenderSystem(system:RenderSystem) : void
       {
          this.renderSystem = system;
          this.turret.getGunData(BARREL_INDEX,this.origin,this.direction,this.sideAxis);
@@ -119,7 +119,7 @@ package package_81
          this.flame.name = "firebird";
       }
       
-      public function play(camera:name_90) : Boolean
+      public function play(camera:GameCamera) : Boolean
       {
          if(this.flame == null)
          {

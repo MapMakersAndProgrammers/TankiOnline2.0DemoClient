@@ -1,27 +1,27 @@
-package package_18
+package alternativa.tanks.game.subsystems.rendersystem
 {
    import package_21.name_78;
    import package_24.name_376;
    
-   public class name_89
+   public class Lights
    {
       private var container:name_78;
       
       private var var_142:name_376;
       
-      private var var_143:name_423;
+      private var var_143:DirectionalLightList;
       
-      private var var_144:name_424;
+      private var var_144:OmniLightList;
       
-      private var var_145:name_422;
+      private var var_145:SpotLightList;
       
-      public function name_89(container:name_78)
+      public function Lights(container:name_78)
       {
          super();
          this.container = container;
-         this.var_143 = new name_423(container);
-         this.var_144 = new name_424(container);
-         this.var_145 = new name_422(container);
+         this.var_143 = new DirectionalLightList(container);
+         this.var_144 = new OmniLightList(container);
+         this.var_145 = new SpotLightList(container);
       }
       
       public function set ambientLight(light:name_376) : void
@@ -45,17 +45,17 @@ package package_18
          return this.var_142;
       }
       
-      public function get directionalLigths() : name_423
+      public function get directionalLigths() : DirectionalLightList
       {
          return this.var_143;
       }
       
-      public function get omniLigths() : name_424
+      public function get omniLigths() : OmniLightList
       {
          return this.var_144;
       }
       
-      public function get spotLights() : name_422
+      public function get spotLights() : SpotLightList
       {
          return this.var_145;
       }

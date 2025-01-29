@@ -1,6 +1,6 @@
-package package_18
+package alternativa.tanks.game.subsystems.rendersystem
 {
-   public interface name_102
+   public interface ICameraController
    {
       function update() : void;
       

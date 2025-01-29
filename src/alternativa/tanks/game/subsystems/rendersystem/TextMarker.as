@@ -1,4 +1,4 @@
-package package_18
+package alternativa.tanks.game.subsystems.rendersystem
 {
    import flash.display.DisplayObjectContainer;
    import flash.geom.Vector3D;
@@ -9,7 +9,7 @@ package package_18
    import alternativa.tanks.game.utils.objectpool.PooledObject;
    import alternativa.tanks.game.utils.objectpool.ObjectPool;
    
-   public class name_80 extends PooledObject implements name_85
+   public class TextMarker extends PooledObject implements IGraphicEffect
    {
       private static const DEFAULT_TEXT_FORMAT:TextFormat = new TextFormat("Tahoma",12,16777215);
       
@@ -23,7 +23,7 @@ package package_18
       
       private var anchor:name_78;
       
-      public function name_80(objectPool:ObjectPool)
+      public function TextMarker(objectPool:ObjectPool)
       {
          super(objectPool);
          this.tf = new TextField();
@@ -45,7 +45,7 @@ package package_18
          this.var_146 = false;
       }
       
-      public function play(camera:name_90) : Boolean
+      public function play(camera:GameCamera) : Boolean
       {
          point1.x = this.anchor.x;
          point1.y = this.anchor.y;
@@ -63,7 +63,7 @@ package package_18
          return this.var_146;
       }
       
-      public function addedToRenderSystem(system:name_44) : void
+      public function addedToRenderSystem(system:RenderSystem) : void
       {
       }
       

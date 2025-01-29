@@ -1,7 +1,7 @@
 package alternativa.tanks.game
 {
    import flash.display.Stage;
-   import package_18.name_44;
+   import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
    import alternativa.tanks.game.subsystems.eventsystem.EventSystem;
    import alternativa.tanks.game.subsystems.eventsystem.IEventSystem;
    import alternativa.tanks.game.subsystems.inputsystem.InputSystem;
@@ -55,7 +55,7 @@ package alternativa.tanks.game
       
       private var physicsSystem:name_178;
       
-      private var renderSystem:name_44;
+      private var renderSystem:RenderSystem;
       
       private var var_42:name_183;
       
@@ -85,7 +85,7 @@ package alternativa.tanks.game
          this.var_4.addTask(this.logicSystem2);
          this.physicsSystem = new name_178(PHYSICS_SYSTEM_PRIORITY,this.var_40);
          this.var_4.addTask(this.physicsSystem);
-         this.renderSystem = new name_44(RENDER_SYSTEM_PRIORITY,stage);
+         this.renderSystem = new RenderSystem(RENDER_SYSTEM_PRIORITY,stage);
          this.var_4.addTask(this.renderSystem);
          this.var_42 = new name_183(CLEANUP_SYSTEM_PRIORITY);
          this.var_4.addTask(this.var_42);
@@ -183,7 +183,7 @@ package alternativa.tanks.game
          return this.physicsSystem;
       }
       
-      public function name_5() : name_44
+      public function name_5() : RenderSystem
       {
          return this.renderSystem;
       }

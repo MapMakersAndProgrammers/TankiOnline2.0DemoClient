@@ -5,14 +5,14 @@ package package_85
    import alternativa.tanks.game.GameKernel;
    import package_114.name_488;
    import package_114.name_489;
-   import package_18.name_44;
-   import package_18.name_82;
+   import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
+   import alternativa.tanks.game.subsystems.rendersystem.IRenderer;
    import package_45.name_182;
    import package_71.name_252;
    
    use namespace alternativa3d;
    
-   public class name_314 extends EntityComponent implements name_82
+   public class name_314 extends EntityComponent implements IRenderer
    {
       private var var_424:name_488;
       
@@ -51,7 +51,7 @@ package package_85
       public function addToScene() : void
       {
          var tankGraphicsComponent:class_22 = null;
-         var renderSystem:name_44 = null;
+         var renderSystem:RenderSystem = null;
          if(!this.var_426)
          {
             for each(tankGraphicsComponent in this.components)
