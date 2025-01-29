@@ -1,9 +1,9 @@
-package package_74
+package alternativa.tanks.game.weapons
 {
    import package_46.name_194;
    import package_92.name_271;
    
-   public class name_553
+   public class WeaponHit
    {
       public var distance:Number;
       
@@ -15,7 +15,7 @@ package package_74
       
       public var normal:name_194 = new name_194();
       
-      public function name_553()
+      public function WeaponHit()
       {
          super();
       }

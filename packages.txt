@@ -15,4 +15,5 @@ package_17 platform.clients.fp10.libraries.alternativaprotocol
 package_20 alternativa.tanks.game.subsystems.eventsystem
 package_22 alternativa.tanks.game.subsystems.inputsystem
 package_26 alternativa.tanks.game.utils.objectpool
+package_74 alternativa.tanks.game.weapons
 package_100 alternativa.tanks.game.weapons.ammunition.plasma

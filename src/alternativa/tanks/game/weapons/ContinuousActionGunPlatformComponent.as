@@ -1,4 +1,4 @@
-package package_74
+package alternativa.tanks.game.weapons
 {
    import alternativa.tanks.game.EntityComponent;
    import alternativa.tanks.game.GameKernel;
@@ -10,7 +10,7 @@ package package_74
    import alternativa.osgi.OSGi;
    import package_71.name_252;
    
-   public class name_286 extends EntityComponent implements class_25, class_24, name_477
+   public class ContinuousActionGunPlatformComponent extends EntityComponent implements IWeapon, IBasicWeapon, name_477
    {
       private var energyCapacity:Number;
       
@@ -18,7 +18,7 @@ package package_74
       
       private var energyRecoveryRate:Number;
       
-      private var var_442:name_508;
+      private var var_442:IContinuousActionWeapon;
       
       private var baseTime:Number;
       
@@ -36,7 +36,7 @@ package package_74
       
       private var var_440:name_184;
       
-      public function name_286(energyCapacity:Number, energyDrainRate:Number, energyRecoveryRate:Number, isLocal:Boolean)
+      public function ContinuousActionGunPlatformComponent(energyCapacity:Number, energyDrainRate:Number, energyRecoveryRate:Number, isLocal:Boolean)
       {
          super();
          this.energyCapacity = energyCapacity;
@@ -60,30 +60,30 @@ package package_74
             {
                if(this.var_438)
                {
-                  this.method_397().log("gun","ContinuousActionGunPlatformComponent::enabled() activating");
-                  this.method_402();
-                  this.method_403();
+                  this.getLogger().log("gun","ContinuousActionGunPlatformComponent::enabled() activating");
+                  this.activate();
+                  this.enableLogic();
                }
             }
             else
             {
-               this.method_397().log("gun","ContinuousActionGunPlatformComponent::enabled() deactivating");
-               this.method_399();
-               this.method_401();
+               this.getLogger().log("gun","ContinuousActionGunPlatformComponent::enabled() deactivating");
+               this.deactivate();
+               this.disableLogic();
             }
          }
       }
       
       override public function initComponent() : void
       {
-         this.var_442 = name_508(entity.getComponentStrict(name_508));
+         this.var_442 = IContinuousActionWeapon(entity.getComponentStrict(IContinuousActionWeapon));
          if(this.isLocal)
          {
             entity.addEventHandler(name_252.SET_ACTIVE_STATE,this.setActiveState);
             entity.addEventHandler(name_252.SET_ACTIVATING_STATE,this.setActivatingState);
-            entity.addEventHandler(name_252.SET_DEAD_STATE,this.method_400);
-            entity.addEventHandler(name_252.SET_RESPAWN_STATE,this.method_400);
-            entity.addEventHandler(GameEvents.BATTLE_FINISHED,this.method_400);
+            entity.addEventHandler(name_252.SET_DEAD_STATE,this.setInactiveState);
+            entity.addEventHandler(name_252.SET_RESPAWN_STATE,this.setInactiveState);
+            entity.addEventHandler(GameEvents.BATTLE_FINISHED,this.setInactiveState);
          }
       }
       
@@ -101,17 +101,17 @@ package package_74
       
       public function method_396() : Number
       {
-         return this.method_398(name_182.timeSeconds,this.var_437) / this.energyCapacity;
+         return this.getCurrentEnergy(name_182.timeSeconds,this.var_437) / this.energyCapacity;
       }
       
       public function method_394() : void
       {
          if(!this.var_438)
          {
-            this.method_397().log("gun","ContinuousActionGunPlatformComponent::pullTrigger()");
+            this.getLogger().log("gun","ContinuousActionGunPlatformComponent::pullTrigger()");
             this.var_438 = true;
-            this.method_402();
-            this.method_403();
+            this.activate();
+            this.enableLogic();
          }
       }
       
@@ -119,14 +119,14 @@ package package_74
       {
          if(this.var_438)
          {
-            this.method_397().log("gun","ContinuousActionGunPlatformComponent::releaseTrigger()");
+            this.getLogger().log("gun","ContinuousActionGunPlatformComponent::releaseTrigger()");
             this.var_438 = false;
-            this.method_399();
-            this.method_401();
+            this.deactivate();
+            this.disableLogic();
          }
       }
       
-      private function method_397() : name_160
+      private function getLogger() : name_160
       {
          return name_160(OSGi.name_8().name_30(name_160));
       }
@@ -137,19 +137,19 @@ package package_74
       
       public function runLogic() : void
       {
-         var currentEnergy:Number = this.method_398(name_182.timeSeconds,this.var_437);
+         var currentEnergy:Number = this.getCurrentEnergy(name_182.timeSeconds,this.var_437);
          if(currentEnergy > 0)
          {
             this.var_442.update();
          }
          else
          {
-            this.method_399();
-            this.method_401();
+            this.deactivate();
+            this.disableLogic();
          }
       }
       
-      private function method_398(time:Number, active:Boolean) : Number
+      private function getCurrentEnergy(time:Number, active:Boolean) : Number
       {
          var energy:Number = NaN;
          if(active)
@@ -171,7 +171,7 @@ package package_74
          return energy;
       }
       
-      private function method_403() : void
+      private function enableLogic() : void
       {
          if(!this.var_441 && this.var_439)
          {
@@ -180,7 +180,7 @@ package package_74
          }
       }
       
-      private function method_401() : void
+      private function disableLogic() : void
       {
          if(this.var_441)
          {
@@ -189,7 +189,7 @@ package package_74
          }
       }
       
-      private function method_402() : void
+      private function activate() : void
       {
          var now:Number = NaN;
          var currentEnergy:Number = NaN;
@@ -198,12 +198,12 @@ package package_74
             this.var_437 = true;
             this.var_442.start();
             now = name_182.timeSeconds;
-            currentEnergy = this.method_398(now,false);
+            currentEnergy = this.getCurrentEnergy(now,false);
             this.baseTime = now - (this.energyCapacity - currentEnergy) / this.energyDrainRate;
          }
       }
       
-      private function method_399() : void
+      private function deactivate() : void
       {
          var now:Number = NaN;
          if(this.var_437)
@@ -211,7 +211,7 @@ package package_74
             this.var_437 = false;
             this.var_442.stop();
             now = name_182.timeSeconds;
-            this.baseTime = now - this.method_398(now,true) / this.energyRecoveryRate;
+            this.baseTime = now - this.getCurrentEnergy(now,true) / this.energyRecoveryRate;
          }
       }
       
@@ -220,7 +220,7 @@ package package_74
          this.name_308 = true;
       }
       
-      private function method_400(eventType:String, eventData:*) : void
+      private function setInactiveState(eventType:String, eventData:*) : void
       {
          this.name_308 = false;
       }

@@ -1,9 +1,9 @@
 package package_80
 {
    import flash.media.Sound;
-   import package_74.name_523;
+   import alternativa.tanks.game.weapons.IInstantShotWeaponCallback;
    
-   public class name_274 implements name_523
+   public class name_274 implements IInstantShotWeaponCallback
    {
       private var shotSound:Sound;
       

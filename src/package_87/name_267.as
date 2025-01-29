@@ -1,8 +1,8 @@
 package package_87
 {
-   import package_74.name_327;
+   import alternativa.tanks.game.weapons.IWeaponDistanceWeakening;
    
-   public class name_267 implements name_327
+   public class name_267 implements IWeaponDistanceWeakening
    {
       private var maximumDamageRadius:Number;
       

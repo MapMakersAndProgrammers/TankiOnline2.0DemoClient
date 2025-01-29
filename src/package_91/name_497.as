@@ -8,8 +8,8 @@ package package_91
    import package_45.name_182;
    import package_46.Matrix3;
    import package_46.name_194;
-   import package_74.name_233;
-   import package_74.name_496;
+   import alternativa.tanks.game.weapons.IGenericRound;
+   import alternativa.tanks.game.weapons.EnergyShotType;
    import package_76.name_235;
    import package_76.name_256;
    import package_76.name_631;
@@ -17,7 +17,7 @@ package package_91
    import package_90.name_273;
    import package_92.name_271;
    
-   public class name_497 extends EntityComponent implements name_465, name_233, name_631
+   public class name_497 extends EntityComponent implements name_465, IGenericRound, name_631
    {
       private static const NUM_PERIPHERAL_RAYS:int = 8;
       
@@ -55,7 +55,7 @@ package package_91
       
       private var effect:name_522;
       
-      private var shotType:name_496;
+      private var shotType:EnergyShotType;
       
       private var ricochetCount:int;
       
@@ -73,7 +73,7 @@ package package_91
          }
       }
       
-      public function init(shotType:name_496, roundData:name_498, maxRange:Number, effectsFactory:name_349, callback:name_499) : void
+      public function init(shotType:EnergyShotType, roundData:name_498, maxRange:Number, effectsFactory:name_349, callback:name_499) : void
       {
          this.shotType = shotType;
          this.roundData = roundData;
@@ -93,7 +93,7 @@ package package_91
          var physicsSystem:name_178 = gameKernel.method_112();
          this.collisionDetector = physicsSystem.name_246().collisionDetector;
          physicsSystem.addControllerBefore(this);
-         if(this.shotType == name_496.NORMAL_SHOT)
+         if(this.shotType == EnergyShotType.NORMAL_SHOT)
          {
             physicsSystem.method_330(this);
             this.effect = this.effectsFactory.method_414();
@@ -232,10 +232,10 @@ package package_91
          this.var_621 = 0;
          switch(this.shotType)
          {
-            case name_496.CLOSE_SHOT:
+            case EnergyShotType.CLOSE_SHOT:
                this.var_620.copy(barrelOrigin);
                break;
-            case name_496.NORMAL_SHOT:
+            case EnergyShotType.NORMAL_SHOT:
                this.var_620.copy(muzzlePosition);
          }
          this.method_705(this.var_620,shotDirection,this.roundData.radius);

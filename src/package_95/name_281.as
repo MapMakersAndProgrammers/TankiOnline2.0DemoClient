@@ -4,12 +4,12 @@ package package_95
    import alternativa.tanks.game.EntityComponent;
    import alternativa.tanks.game.GameKernel;
    import package_46.name_194;
-   import package_74.name_508;
+   import alternativa.tanks.game.weapons.IContinuousActionWeapon;
    import package_75.class_15;
    import package_75.name_236;
    import package_79.name_282;
    
-   public class name_281 extends EntityComponent implements name_508
+   public class name_281 extends EntityComponent implements IContinuousActionWeapon
    {
       private static var barrelOrigin:name_194 = new name_194();
       

@@ -7,7 +7,7 @@ package package_71
    import alternativa.tanks.game.subsystems.inputsystem.KeyboardEventType;
    import alternativa.tanks.game.subsystems.inputsystem.IInput;
    import package_42.name_477;
-   import package_74.class_24;
+   import alternativa.tanks.game.weapons.IBasicWeapon;
    
    public class name_315 extends EntityComponent implements name_477
    {
@@ -17,7 +17,7 @@ package package_71
       
       private var name_308:Boolean;
       
-      private var var_442:class_24;
+      private var var_442:IBasicWeapon;
       
       private var var_508:Boolean;
       
@@ -30,7 +30,7 @@ package package_71
       
       override public function initComponent() : void
       {
-         this.var_442 = class_24(entity.getComponentStrict(class_24));
+         this.var_442 = IBasicWeapon(entity.getComponentStrict(IBasicWeapon));
          entity.addEventHandler(name_252.SET_ACTIVATING_STATE,this.method_408);
          entity.addEventHandler(name_252.SET_DEAD_STATE,this.method_408);
          entity.addEventHandler(name_252.SET_RESPAWN_STATE,this.method_408);

@@ -1,13 +1,13 @@
-package package_74
+package alternativa.tanks.game.weapons
 {
    import package_79.name_326;
    import package_92.name_271;
    
-   public class name_240 implements name_326
+   public class SimpleTargetEvaluator implements name_326
    {
-      public static const INSTANCE:name_240 = new name_240();
+      public static const INSTANCE:SimpleTargetEvaluator = new SimpleTargetEvaluator();
       
-      public function name_240()
+      public function SimpleTargetEvaluator()
       {
          super();
       }

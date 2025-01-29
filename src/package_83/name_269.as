@@ -4,12 +4,12 @@ package package_83
    import package_118.name_550;
    import package_119.name_552;
    import package_4.class_4;
-   import package_74.class_14;
-   import package_74.name_233;
+   import alternativa.tanks.game.weapons.IGenericAmmunition;
+   import alternativa.tanks.game.weapons.IGenericRound;
    import package_86.name_468;
    import package_87.name_267;
    
-   public class name_269 implements class_14
+   public class name_269 implements IGenericAmmunition
    {
       private var var_468:name_550;
       
@@ -25,7 +25,7 @@ package package_83
          this.var_468.method_383(callback);
       }
       
-      public function getRound() : name_233
+      public function getRound() : IGenericRound
       {
          return this.var_468;
       }

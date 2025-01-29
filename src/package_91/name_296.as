@@ -2,12 +2,12 @@ package package_91
 {
    import alternativa.tanks.game.EntityComponent;
    import alternativa.tanks.game.Entity;
-   import package_74.class_23;
-   import package_74.name_233;
-   import package_74.name_327;
-   import package_74.name_496;
+   import alternativa.tanks.game.weapons.IEnergyAmmunition;
+   import alternativa.tanks.game.weapons.IGenericRound;
+   import alternativa.tanks.game.weapons.IWeaponDistanceWeakening;
+   import alternativa.tanks.game.weapons.EnergyShotType;
    
-   public class name_296 extends EntityComponent implements class_23
+   public class name_296 extends EntityComponent implements IEnergyAmmunition
    {
       private static var poolSize:int;
       
@@ -19,7 +19,7 @@ package package_91
       
       private var effectsFactory:name_349;
       
-      public function name_296(radius:Number, roundSpeed:Number, maxRicochets:uint, impactForce:Number, weakening:name_327, effectsFactory:name_349, callback:name_499)
+      public function name_296(radius:Number, roundSpeed:Number, maxRicochets:uint, impactForce:Number, weakening:IWeaponDistanceWeakening, effectsFactory:name_349, callback:name_499)
       {
          super();
          this.roundData = new name_498(radius,roundSpeed,maxRicochets,impactForce,weakening);
@@ -33,7 +33,7 @@ package package_91
          pool[_loc2_] = entity;
       }
       
-      public function getRound(shotType:name_496, maxRange:Number) : name_233
+      public function getRound(shotType:EnergyShotType, maxRange:Number) : IGenericRound
       {
          var roundEntity:Entity = null;
          if(poolSize == 0)

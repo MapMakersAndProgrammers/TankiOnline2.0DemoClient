@@ -1,10 +1,10 @@
-package package_74
+package alternativa.tanks.game.weapons
 {
-   public class name_307
+   public class WeaponConst
    {
       public static const BASE_FORCE:Number = 5000000;
       
-      public function name_307()
+      public function WeaponConst()
       {
          super();
       }

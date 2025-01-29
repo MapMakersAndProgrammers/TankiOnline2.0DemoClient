@@ -1,4 +1,4 @@
-package package_74
+package alternativa.tanks.game.weapons
 {
    import alternativa.tanks.game.EntityComponent;
    import alternativa.tanks.game.GameKernel;
@@ -14,7 +14,7 @@ package package_74
    import package_75.name_236;
    import package_92.name_271;
    
-   public class name_263 extends EntityComponent implements class_25, class_24, name_477
+   public class InstantShotWeaponComponent extends EntityComponent implements IWeapon, IBasicWeapon, name_477
    {
       private static var barrelOrigin:name_194 = new name_194();
       
@@ -34,11 +34,11 @@ package package_74
       
       private var recoilForce:Number;
       
-      private var targetingSystem:name_524;
+      private var targetingSystem:IGenericTargetingSystem;
       
-      private var ammunition:class_14;
+      private var ammunition:IGenericAmmunition;
       
-      private var callback:name_523;
+      private var callback:IInstantShotWeaponCallback;
       
       private var var_446:int;
       
@@ -62,7 +62,7 @@ package package_74
       
       private var isActive:Boolean;
       
-      public function name_263(reloadTime:int, recoilForce:Number, targetingSystem:name_524, ammunition:class_14, callback:name_523, isActive:Boolean)
+      public function InstantShotWeaponComponent(reloadTime:int, recoilForce:Number, targetingSystem:IGenericTargetingSystem, ammunition:IGenericAmmunition, callback:IInstantShotWeaponCallback, isActive:Boolean)
       {
          super();
          this.reloadTime = reloadTime;
@@ -81,10 +81,10 @@ package package_74
          if(this.isActive)
          {
             entity.addEventHandler(name_252.SET_ACTIVE_STATE,this.setActiveState);
-            entity.addEventHandler(name_252.SET_ACTIVATING_STATE,this.method_400);
-            entity.addEventHandler(name_252.SET_DEAD_STATE,this.method_400);
-            entity.addEventHandler(name_252.SET_RESPAWN_STATE,this.method_400);
-            entity.addEventHandler(GameEvents.BATTLE_FINISHED,this.method_400);
+            entity.addEventHandler(name_252.SET_ACTIVATING_STATE,this.setInactiveState);
+            entity.addEventHandler(name_252.SET_DEAD_STATE,this.setInactiveState);
+            entity.addEventHandler(name_252.SET_RESPAWN_STATE,this.setInactiveState);
+            entity.addEventHandler(GameEvents.BATTLE_FINISHED,this.setInactiveState);
          }
       }
       
@@ -93,7 +93,7 @@ package package_74
          this.name_308 = true;
       }
       
-      private function method_400(eventType:String, eventData:*) : void
+      private function setInactiveState(eventType:String, eventData:*) : void
       {
          this.name_308 = false;
       }
@@ -123,7 +123,7 @@ package package_74
             this.var_438 = true;
             if(this.var_439)
             {
-               this.method_403();
+               this.enableLogic();
             }
          }
       }
@@ -133,7 +133,7 @@ package package_74
          if(this.var_438)
          {
             this.var_438 = false;
-            this.method_401();
+            this.disableLogic();
          }
       }
       
@@ -156,11 +156,11 @@ package package_74
          this.var_445.getGunData(BARREL_INDEX,barrelOrigin,gunDirection,gunElevationAxis);
          var barrelLength:Number = Number(this.var_445.getBarrelLength(BARREL_INDEX));
          muzzlePosition.copy(barrelOrigin).method_362(barrelLength,gunDirection);
-         this.method_415(barrelOrigin,muzzlePosition,gunDirection,gunElevationAxis);
+         this.doShowShotEffects(barrelOrigin,muzzlePosition,gunDirection,gunElevationAxis);
          var shotId:int = this.var_448++;
          var shooterBody:name_271 = this.chassisComponent.getBody();
          this.targetingSystem.name_527(shooterBody,muzzlePosition,barrelOrigin,gunDirection,barrelLength,gunElevationAxis,name_501.BIG_VALUE,shotDirection);
-         var round:name_233 = this.ammunition.getRound();
+         var round:IGenericRound = this.ammunition.getRound();
          round.method_372(this.gameKernel,shotId,shooterBody,barrelOrigin,barrelLength,shotDirection,muzzlePosition);
       }
       
@@ -178,12 +178,12 @@ package package_74
             {
                if(this.var_438)
                {
-                  this.method_403();
+                  this.enableLogic();
                }
             }
             else
             {
-               this.method_401();
+               this.disableLogic();
             }
          }
       }
@@ -192,17 +192,17 @@ package package_74
       {
          this.var_445.getGunData(BARREL_INDEX,barrelOrigin,gunDirection,gunElevationAxis);
          muzzlePosition.copy(barrelOrigin).method_362(this.var_445.getBarrelLength(BARREL_INDEX),gunDirection);
-         this.method_415(barrelOrigin,muzzlePosition,gunDirection,gunElevationAxis);
+         this.doShowShotEffects(barrelOrigin,muzzlePosition,gunDirection,gunElevationAxis);
       }
       
-      private function method_415(barrelOrigin:name_194, muzzlePosition:name_194, gunDirection:name_194, gunElevationAxis:name_194) : void
+      private function doShowShotEffects(barrelOrigin:name_194, muzzlePosition:name_194, gunDirection:name_194, gunElevationAxis:name_194) : void
       {
          recoilForceVector.copy(gunDirection).scale(-this.recoilForce);
          this.chassisComponent.getBody().name_525(barrelOrigin,recoilForceVector);
          this.var_447.method_411(BARREL_INDEX,barrelOrigin,muzzlePosition,gunDirection,gunElevationAxis);
       }
       
-      private function method_403() : void
+      private function enableLogic() : void
       {
          if(!this.var_441)
          {
@@ -211,7 +211,7 @@ package package_74
          }
       }
       
-      private function method_401() : void
+      private function disableLogic() : void
       {
          if(this.var_441)
          {

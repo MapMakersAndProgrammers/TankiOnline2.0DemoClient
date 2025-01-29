@@ -58,13 +58,13 @@ package alternativa.tanks
    import package_72.name_264;
    import package_72.name_295;
    import package_73.name_293;
-   import package_74.class_14;
-   import package_74.name_240;
-   import package_74.name_263;
-   import package_74.name_283;
-   import package_74.name_286;
-   import package_74.name_307;
-   import package_74.name_327;
+   import alternativa.tanks.game.weapons.IGenericAmmunition;
+   import alternativa.tanks.game.weapons.SimpleTargetEvaluator;
+   import alternativa.tanks.game.weapons.InstantShotWeaponComponent;
+   import alternativa.tanks.game.weapons.EnergyShotWeaponComponent;
+   import alternativa.tanks.game.weapons.ContinuousActionGunPlatformComponent;
+   import alternativa.tanks.game.weapons.WeaponConst;
+   import alternativa.tanks.game.weapons.IWeaponDistanceWeakening;
    import package_75.name_236;
    import package_75.name_309;
    import package_76.name_256;
@@ -739,10 +739,10 @@ package alternativa.tanks
          var _loc18_:class_5 = null;
          var _loc3_:Number = 10000000 / 3;
          var _loc4_:name_256 = this.gameKernel.method_112().name_246().collisionDetector;
-         var _loc5_:name_240 = new name_240();
+         var _loc5_:SimpleTargetEvaluator = new SimpleTargetEvaluator();
          var _loc6_:name_261 = new name_261(Math.PI / 9,20,Math.PI / 9,20,_loc4_,_loc5_);
          _loc6_.name_310(this.gameKernel.method_112().name_246().collisionDetector);
-         _loc6_.name_303(new name_240());
+         _loc6_.name_303(new SimpleTargetEvaluator());
          var _loc7_:Vector.<name_129> = this.var_64.getFrames("thunder/explosion");
          var _loc8_:name_44 = this.gameKernel.name_5();
          for each(_loc9_ in _loc7_)
@@ -763,8 +763,8 @@ package alternativa.tanks
          _loc8_.method_29(_loc12_);
          _loc8_.method_29(_loc13_);
          name_270.init(_loc12_,_loc13_);
-         var _loc14_:class_14 = new name_269(this.gameKernel,1000,10000000,200,100,0.5,null,_loc10_);
-         var _loc15_:name_263 = new name_263(1000,_loc3_,_loc6_,_loc14_,new name_274(this.config.soundsLibrary.name_297("smoky/shot")),true);
+         var _loc14_:IGenericAmmunition = new name_269(this.gameKernel,1000,10000000,200,100,0.5,null,_loc10_);
+         var _loc15_:InstantShotWeaponComponent = new InstantShotWeaponComponent(1000,_loc3_,_loc6_,_loc14_,new name_274(this.config.soundsLibrary.name_297("smoky/shot")),true);
          _loc15_.name_308 = true;
          param1.name_60(_loc15_);
          var _loc16_:BitmapData = new BitmapData(20,20,false,0);
@@ -781,10 +781,10 @@ package alternativa.tanks
          var _loc11_:int = 0;
          var _loc18_:class_5 = null;
          var _loc4_:name_256 = this.gameKernel.method_112().name_246().collisionDetector;
-         var _loc5_:name_240 = new name_240();
+         var _loc5_:SimpleTargetEvaluator = new SimpleTargetEvaluator();
          var _loc6_:name_261 = new name_261(Math.PI / 9,20,Math.PI / 9,20,_loc4_,_loc5_);
          _loc6_.name_310(this.gameKernel.method_112().name_246().collisionDetector);
-         _loc6_.name_303(new name_240());
+         _loc6_.name_303(new SimpleTargetEvaluator());
          var _loc7_:Vector.<name_129> = this.var_64.getFrames("thunder/explosion");
          var _loc8_:name_44 = this.gameKernel.name_5();
          for each(_loc9_ in _loc7_)
@@ -805,8 +805,8 @@ package alternativa.tanks
          _loc8_.method_29(_loc12_);
          _loc8_.method_29(_loc13_);
          name_270.init(_loc12_,_loc13_);
-         var _loc14_:class_14 = new name_269(this.gameKernel,1000,10000000,200,100,0.5,null,_loc10_);
-         var _loc15_:name_263 = new name_263(1000,3333333.3333333335,_loc6_,_loc14_,new name_274(this.config.soundsLibrary.name_297("thunder/shot")),true);
+         var _loc14_:IGenericAmmunition = new name_269(this.gameKernel,1000,10000000,200,100,0.5,null,_loc10_);
+         var _loc15_:InstantShotWeaponComponent = new InstantShotWeaponComponent(1000,3333333.3333333335,_loc6_,_loc14_,new name_274(this.config.soundsLibrary.name_297("thunder/shot")),true);
          _loc15_.name_308 = true;
          param1.name_60(_loc15_);
          var _loc16_:BitmapData = new BitmapData(20,20,false,0);
@@ -826,10 +826,10 @@ package alternativa.tanks
       private function createEnergyGun(param1:Entity) : void
       {
          var _loc9_:name_256 = this.gameKernel.method_112().name_246().collisionDetector;
-         var _loc10_:name_240 = new name_240();
+         var _loc10_:SimpleTargetEvaluator = new SimpleTargetEvaluator();
          var _loc11_:name_280 = new name_280(Math.PI / 4,20,Math.PI / 4,20,100,_loc9_,_loc10_);
-         var _loc13_:Number = name_307.BASE_FORCE;
-         var _loc14_:name_327 = new name_267(2000,4000,0.5);
+         var _loc13_:Number = WeaponConst.BASE_FORCE;
+         var _loc14_:IWeaponDistanceWeakening = new name_267(2000,4000,0.5);
          var _loc15_:BitmapData = this.config.var_37.name_244("plasma/charge") as BitmapData;
          var _loc16_:Vector.<BitmapData> = name_251.name_272(_loc15_,_loc15_.height);
          var _loc17_:Vector.<class_4> = this.getMaterialStrip(_loc16_);
@@ -840,7 +840,7 @@ package alternativa.tanks
          var _loc22_:name_349 = new PlasmaRoundEffectsFactory(this.gameKernel,_loc17_,_loc19_,_loc20_);
          var _loc23_:name_296 = new name_296(50,2000,100,_loc13_,_loc14_,_loc22_,null);
          param1.name_60(_loc23_);
-         var _loc24_:name_283 = new name_283(1000,1000,1000,1000,0,8000,_loc11_,null,true);
+         var _loc24_:EnergyShotWeaponComponent = new EnergyShotWeaponComponent(1000,1000,1000,1000,0,8000,_loc11_,null,true);
          param1.name_60(_loc24_);
          var _loc25_:BitmapData = new BitmapData(20,20,false,0);
          _loc25_.perlinNoise(20,20,3,13,false,true);
@@ -851,7 +851,7 @@ package alternativa.tanks
       
       private function createContinuousActionGun(param1:Entity) : void
       {
-         var _loc5_:name_286 = new name_286(1000,1,15,true);
+         var _loc5_:ContinuousActionGunPlatformComponent = new ContinuousActionGunPlatformComponent(1000,1,15,true);
          param1.name_60(_loc5_);
          var _loc7_:Number = 30 * Math.PI / 180;
          var _loc10_:name_262 = this.getFlamethrowerSFXData();
@@ -864,7 +864,7 @@ package alternativa.tanks
          _loc16_.method_29(_loc18_);
          name_265.init(_loc17_,_loc18_);
          var _loc19_:name_256 = this.gameKernel.method_112().name_246().collisionDetector;
-         var _loc20_:name_326 = name_240.INSTANCE;
+         var _loc20_:name_326 = SimpleTargetEvaluator.INSTANCE;
          var _loc21_:name_282 = new name_282(3000,_loc7_,10,10,_loc19_,_loc20_);
          var _loc22_:name_287 = new name_287(this.config.soundsLibrary.name_297("flamethrower/shot"));
          var _loc23_:name_281 = new name_281(1000,100,_loc21_,_loc22_,true,false);
@@ -1181,8 +1181,8 @@ import package_71.name_234;
 import package_72.class_12;
 import package_72.name_239;
 import package_73.class_13;
-import package_74.class_14;
-import package_74.name_233;
+import alternativa.tanks.game.weapons.IGenericAmmunition;
+import alternativa.tanks.game.weapons.IGenericRound;
 import package_75.class_15;
 import package_76.name_235;
 import package_87.name_267;
@@ -1229,7 +1229,7 @@ class DummyTurretCallback implements class_10
    }
 }
 
-class PointHitRoundAmmo implements class_14
+class PointHitRoundAmmo implements IGenericAmmunition
 {
    private var impactForce:Number;
    
@@ -1254,7 +1254,7 @@ class PointHitRoundAmmo implements class_14
       this.weaponHitEffects = new WeaponHitEffects(null,_loc2_,param1);
    }
    
-   public function getRound() : name_233
+   public function getRound() : IGenericRound
    {
       return new name_304(this.impactForce,this.weaponDistanceWeakening,this.weaponHitEffects);
    }

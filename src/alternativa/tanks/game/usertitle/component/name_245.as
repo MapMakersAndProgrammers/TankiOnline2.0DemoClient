@@ -11,7 +11,7 @@ package alternativa.tanks.game.usertitle.component
    import package_45.name_182;
    import package_46.name_194;
    import package_71.name_252;
-   import package_74.class_25;
+   import alternativa.tanks.game.weapons.IWeapon;
    import package_75.name_236;
    
    public class name_245 extends EntityComponent implements name_82
@@ -24,7 +24,7 @@ package alternativa.tanks.game.usertitle.component
       
       private var chassisComponent:name_236;
       
-      private var var_442:class_25;
+      private var var_442:IWeapon;
       
       private var localPlayer:Boolean;
       
@@ -76,7 +76,7 @@ package alternativa.tanks.game.usertitle.component
       override public function initComponent() : void
       {
          this.chassisComponent = name_236(entity.getComponentStrict(name_236));
-         this.var_442 = class_25(entity.getComponent(class_25));
+         this.var_442 = IWeapon(entity.getComponent(IWeapon));
          this.var_424 = new name_488();
          this.var_506 = new name_609(this);
          this.var_424.name_486(entity,name_252.SET_ACTIVATING_STATE,this.var_506);

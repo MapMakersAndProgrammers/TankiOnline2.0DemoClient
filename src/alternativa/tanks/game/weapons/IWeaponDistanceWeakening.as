@@ -1,6 +1,6 @@
-package package_74
+package alternativa.tanks.game.weapons
 {
-   public interface name_327
+   public interface IWeaponDistanceWeakening
    {
       function name_554(param1:Number) : Number;
       

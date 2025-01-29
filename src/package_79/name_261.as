@@ -2,14 +2,14 @@ package package_79
 {
    import package_46.Matrix3;
    import package_46.name_194;
-   import package_74.name_524;
+   import alternativa.tanks.game.weapons.IGenericTargetingSystem;
    import package_76.name_256;
    import package_86.name_257;
    import package_86.name_540;
    import package_90.name_273;
    import package_92.name_271;
    
-   public class name_261 implements name_524
+   public class name_261 implements IGenericTargetingSystem
    {
       private static var collisionMask:int = name_257.STATIC | name_257.WEAPON;
       

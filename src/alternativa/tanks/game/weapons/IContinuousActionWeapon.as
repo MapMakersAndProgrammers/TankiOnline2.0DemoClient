@@ -1,6 +1,6 @@
-package package_74
+package alternativa.tanks.game.weapons
 {
-   public interface name_508
+   public interface IContinuousActionWeapon
    {
       function start() : void;
       

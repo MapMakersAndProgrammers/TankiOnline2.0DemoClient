@@ -5,9 +5,9 @@ package package_118
    import package_27.name_501;
    import package_46.name_194;
    import package_72.class_12;
-   import package_74.name_233;
-   import package_74.name_327;
-   import package_74.name_553;
+   import alternativa.tanks.game.weapons.IGenericRound;
+   import alternativa.tanks.game.weapons.IWeaponDistanceWeakening;
+   import alternativa.tanks.game.weapons.WeaponHit;
    import package_86.name_257;
    import package_86.name_468;
    import package_86.name_540;
@@ -15,7 +15,7 @@ package package_118
    import package_90.name_273;
    import package_92.name_271;
    
-   public class name_550 implements name_233
+   public class name_550 implements IGenericRound
    {
       private static const HIT_POINT_CORRECTION:Number = 1;
       
@@ -23,17 +23,17 @@ package package_118
       
       private static var force:name_194 = new name_194();
       
-      private static var splashHits:Vector.<name_553> = new Vector.<name_553>();
+      private static var splashHits:Vector.<WeaponHit> = new Vector.<WeaponHit>();
       
       private static var rayHit:name_273 = new name_273();
       
       private static var filter:name_540 = new name_540();
       
-      private static var hitInfo:name_553 = new name_553();
+      private static var hitInfo:WeaponHit = new WeaponHit();
       
       private var directImpactForce:Number;
       
-      private var weakening:name_327;
+      private var weakening:IWeaponDistanceWeakening;
       
       private var splashDamage:class_37;
       
@@ -45,7 +45,7 @@ package package_118
       
       private var callback:name_552;
       
-      public function name_550(directImpactForce:Number, weakening:name_327, splashDamage:class_37, effects:class_12, collisionDetector:name_468, splashTargetFilter:class_38)
+      public function name_550(directImpactForce:Number, weakening:IWeaponDistanceWeakening, splashDamage:class_37, effects:class_12, collisionDetector:name_468, splashTargetFilter:class_38)
       {
          super();
          this.directImpactForce = directImpactForce;
@@ -114,12 +114,12 @@ package package_118
          this.effects.createEffects(hitPosition,weakeningCoefficient,this.splashDamage.radius);
       }
       
-      private function method_760(hitPosition:name_194, primaryTarget:name_271, impactForce:Number, splashHits:Vector.<name_553>) : void
+      private function method_760(hitPosition:name_194, primaryTarget:name_271, impactForce:Number, splashHits:Vector.<WeaponHit>) : void
       {
          var bodyDistance:name_654 = null;
          var targetBody:name_271 = null;
          var splashImpactForce:Number = NaN;
-         var weaponHit:name_553 = null;
+         var weaponHit:WeaponHit = null;
          this.splashTargetFilter.method_759(primaryTarget);
          var objectsInRadius:Vector.<name_654> = this.collisionDetector.method_651(hitPosition,this.splashDamage.radius,this.splashTargetFilter);
          this.splashTargetFilter.method_759(null);
@@ -133,7 +133,7 @@ package package_118
                targetBody.name_585(force);
                if(splashHits != null)
                {
-                  weaponHit = new name_553();
+                  weaponHit = new WeaponHit();
                   weaponHit.distance = bodyDistance.distance;
                   weaponHit.body = targetBody;
                   splashHits.push(weaponHit);

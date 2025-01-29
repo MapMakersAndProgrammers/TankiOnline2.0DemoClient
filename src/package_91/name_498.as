@@ -1,6 +1,6 @@
 package package_91
 {
-   import package_74.name_327;
+   import alternativa.tanks.game.weapons.IWeaponDistanceWeakening;
    
    public class name_498
    {
@@ -12,9 +12,9 @@ package package_91
       
       public var impactForce:Number;
       
-      public var weakening:name_327;
+      public var weakening:IWeaponDistanceWeakening;
       
-      public function name_498(radius:Number, speed:Number, maxRicochets:uint, impactForce:Number, weakening:name_327)
+      public function name_498(radius:Number, speed:Number, maxRicochets:uint, impactForce:Number, weakening:IWeaponDistanceWeakening)
       {
          super();
          this.radius = radius;

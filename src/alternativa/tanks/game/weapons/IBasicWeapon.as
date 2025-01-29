@@ -1,6 +1,6 @@
-package package_74
+package alternativa.tanks.game.weapons
 {
-   public interface class_24
+   public interface IBasicWeapon
    {
       function method_394() : void;
       

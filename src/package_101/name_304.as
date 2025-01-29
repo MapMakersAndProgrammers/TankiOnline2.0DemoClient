@@ -5,16 +5,16 @@ package package_101
    import package_27.name_501;
    import package_46.name_194;
    import package_72.class_12;
-   import package_74.name_233;
-   import package_74.name_327;
-   import package_74.name_553;
+   import alternativa.tanks.game.weapons.IGenericRound;
+   import alternativa.tanks.game.weapons.IWeaponDistanceWeakening;
+   import alternativa.tanks.game.weapons.WeaponHit;
    import package_76.name_256;
    import package_86.name_257;
    import package_86.name_540;
    import package_90.name_273;
    import package_92.name_271;
    
-   public class name_304 implements name_233
+   public class name_304 implements IGenericRound
    {
       private static const COLLISION_MASK:int = name_257.STATIC | name_257.WEAPON;
       
@@ -24,17 +24,17 @@ package package_101
       
       private static var rayHit:name_273 = new name_273();
       
-      private static var hitInfo:name_553 = new name_553();
+      private static var hitInfo:WeaponHit = new WeaponHit();
       
       private var impactForce:Number;
       
-      private var weakening:name_327;
+      private var weakening:IWeaponDistanceWeakening;
       
       private var effects:class_12;
       
       private var callback:name_552;
       
-      public function name_304(impactForce:Number, weakening:name_327, effects:class_12)
+      public function name_304(impactForce:Number, weakening:IWeaponDistanceWeakening, effects:class_12)
       {
          super();
          this.impactForce = impactForce;
