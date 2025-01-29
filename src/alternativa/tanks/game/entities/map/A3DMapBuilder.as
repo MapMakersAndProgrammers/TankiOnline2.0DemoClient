@@ -8,7 +8,7 @@ package alternativa.tanks.game.entities.map
    import package_116.name_529;
    import package_116.name_530;
    import package_116.name_641;
-   import package_15.name_55;
+   import alternativa.utils.ByteArrayMap;
    import package_19.name_117;
    import package_19.name_380;
    import package_19.name_91;
@@ -60,7 +60,7 @@ package alternativa.tanks.game.entities.map
       
       private var var_570:name_170;
       
-      private var mapFiles:name_55;
+      private var mapFiles:ByteArrayMap;
       
       private var collector:Vector.<name_78>;
       
@@ -91,7 +91,7 @@ package alternativa.tanks.game.entities.map
          return this.var_406;
       }
       
-      public function name_385(mapFiles:name_55) : void
+      public function name_385(mapFiles:ByteArrayMap) : void
       {
          var geometryFileName:String = null;
          this.mapFiles = mapFiles;
@@ -238,7 +238,7 @@ package alternativa.tanks.game.entities.map
          }
       }
       
-      private function getMapGeometryFiles(mapFiles:name_55) : Vector.<String>
+      private function getMapGeometryFiles(mapFiles:ByteArrayMap) : Vector.<String>
       {
          var name:String = null;
          var names:Vector.<String> = new Vector.<String>();
@@ -355,7 +355,7 @@ package alternativa.tanks.game.entities.map
          }
       }
       
-      private function getCompressedTextureResource(fileTextureResource:name_167, resourceCache:Object, mapFiles:name_55) : name_241
+      private function getCompressedTextureResource(fileTextureResource:name_167, resourceCache:Object, mapFiles:ByteArrayMap) : name_241
       {
          var textureName:String = null;
          var resource:name_241 = null;

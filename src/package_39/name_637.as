@@ -1,12 +1,12 @@
 package package_39
 {
-   import package_15.name_634;
+   import alternativa.utils.CircularStringBuffer;
    
    public class name_637
    {
       private var _name:String;
       
-      private var buffer:name_634;
+      private var buffer:CircularStringBuffer;
       
       private var listeners:Vector.<name_450> = new Vector.<name_450>();
       
@@ -14,7 +14,7 @@ package package_39
       {
          super();
          this._name = name;
-         this.buffer = new name_634(bufferSize);
+         this.buffer = new CircularStringBuffer(bufferSize);
       }
       
       public function get name() : String

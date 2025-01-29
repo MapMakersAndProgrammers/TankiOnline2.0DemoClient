@@ -3,7 +3,7 @@ package alternativa.tanks.config
    import flash.events.Event;
    import flash.events.EventDispatcher;
    import flash.utils.ByteArray;
-   import package_15.name_55;
+   import alternativa.utils.ByteArrayMap;
    import package_40.class_7;
    import package_40.name_169;
    import package_40.name_170;
@@ -14,7 +14,7 @@ package alternativa.tanks.config
    [Event(name="complete",type="flash.events.Event")]
    public class Config extends EventDispatcher
    {
-      public var mapData:name_55;
+      public var mapData:ByteArrayMap;
       
       public var var_37:TextureLibrary;
       
@@ -114,7 +114,7 @@ package alternativa.tanks.config
       private function setMapData(param1:ByteArray) : void
       {
          var _loc2_:name_171 = new name_171(param1);
-         this.mapData = new name_55(_loc2_.data);
+         this.mapData = new ByteArrayMap(_loc2_.data);
       }
       
       private function parseOptions() : void

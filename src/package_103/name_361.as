@@ -1,15 +1,15 @@
 package package_103
 {
-   import package_15.name_19;
+   import alternativa.utils.Properties;
    import alternativa.startup.LibraryInfo;
    
    public class name_361 implements name_365
    {
-      private var urlParams:name_19;
+      private var urlParams:Properties;
       
       private var var_553:Vector.<LibraryInfo>;
       
-      public function name_361(urlParams:name_19, startupLibraryInfos:Vector.<LibraryInfo>)
+      public function name_361(urlParams:Properties, startupLibraryInfos:Vector.<LibraryInfo>)
       {
          super();
          this.urlParams = urlParams;

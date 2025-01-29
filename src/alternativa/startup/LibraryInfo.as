@@ -1,7 +1,7 @@
 package alternativa.startup
 {
    import flash.display.Loader;
-   import package_15.name_19;
+   import alternativa.utils.Properties;
    
    public class LibraryInfo
    {
@@ -11,13 +11,13 @@ package alternativa.startup
       
       public var resourceVersion:String;
       
-      public var manifestProperties:name_19;
+      public var manifestProperties:Properties;
       
       public var loader:Loader;
       
       public var size:int;
       
-      public function LibraryInfo(name:String, resourceId:String, resourceVersion:String, manifestProperties:name_19, size:int)
+      public function LibraryInfo(name:String, resourceId:String, resourceVersion:String, manifestProperties:Properties, size:int)
       {
          super();
          this.name = name;

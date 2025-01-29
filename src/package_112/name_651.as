@@ -1,7 +1,7 @@
 package package_112
 {
    import flash.events.Event;
-   import package_15.name_55;
+   import alternativa.utils.ByteArrayMap;
    import package_40.class_7;
    import package_40.name_170;
    import package_71.name_333;
@@ -12,7 +12,7 @@ package package_112
       
       protected var var_673:String;
       
-      private var files:name_55;
+      private var files:ByteArrayMap;
       
       private var var_672:name_170;
       
@@ -33,7 +33,7 @@ package package_112
       override public function run() : void
       {
          var _loc2_:XML = null;
-         this.files = new name_55();
+         this.files = new ByteArrayMap();
          this.var_672 = new name_170();
          var _loc1_:String = this.baseUrl + this.partXML.modelFile[0].toString();
          this.var_673 = "main." + this.partXML.modelFile[0].@type;
@@ -46,7 +46,7 @@ package package_112
          this.var_672.run();
       }
       
-      public function parseModelData(param1:name_55) : name_333
+      public function parseModelData(param1:ByteArrayMap) : name_333
       {
          throw new Error("Not implemented");
       }
@@ -67,20 +67,20 @@ import flash.events.EventDispatcher;
 import flash.net.URLLoader;
 import flash.net.URLLoaderDataFormat;
 import flash.net.URLRequest;
-import package_15.name_55;
+import alternativa.utils.ByteArrayMap;
 import package_40.class_7;
 
 class BlobLoadTask extends class_7
 {
    public var blobId:String;
    
-   private var collector:name_55;
+   private var collector:ByteArrayMap;
    
    private var blobUrl:String;
    
    private var loader:URLLoader;
    
-   public function BlobLoadTask(param1:String, param2:String, param3:name_55)
+   public function BlobLoadTask(param1:String, param2:String, param3:ByteArrayMap)
    {
       super();
       this.collector = param3;

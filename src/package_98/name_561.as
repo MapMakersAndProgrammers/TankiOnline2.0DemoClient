@@ -1,6 +1,6 @@
 package package_98
 {
-   import package_15.name_718;
+   import alternativa.utils.TextUtils;
    import package_18.name_44;
    import package_21.name_116;
    import package_24.SpotLight;
@@ -16,7 +16,7 @@ package package_98
       override protected function lightToString(param1:name_116) : String
       {
          var _loc2_:SpotLight = SpotLight(param1);
-         return name_718.name_719("SpotLight color: 0x%1, attenuationBegin: %2, attenuationEnd: %3, hotspot: %4, falloff: %5, x: %6, y: %7, z: %8",_loc2_.color.toString(16),_loc2_.attenuationBegin.toFixed(2),_loc2_.attenuationEnd.toFixed(2),_loc2_.hotspot.toFixed(2),_loc2_.falloff.toFixed(2),_loc2_.x.toFixed(2),_loc2_.y.toFixed(2),_loc2_.z.toFixed(2));
+         return TextUtils.name_719("SpotLight color: 0x%1, attenuationBegin: %2, attenuationEnd: %3, hotspot: %4, falloff: %5, x: %6, y: %7, z: %8",_loc2_.color.toString(16),_loc2_.attenuationBegin.toFixed(2),_loc2_.attenuationEnd.toFixed(2),_loc2_.hotspot.toFixed(2),_loc2_.falloff.toFixed(2),_loc2_.x.toFixed(2),_loc2_.y.toFixed(2),_loc2_.z.toFixed(2));
       }
       
       override protected function modify(param1:IConsole, param2:String, param3:Array) : name_116

@@ -14,9 +14,9 @@ package alternativa.osgi.service.console
    import flash.ui.Keyboard;
    import flash.utils.setTimeout;
    import alternativa.osgi.service.console.variables.ConsoleVar;
-   import package_15.name_632;
-   import package_15.name_634;
-   import package_15.name_635;
+   import alternativa.utils.IStringBufferIterator;
+   import alternativa.utils.CircularStringBuffer;
+   import alternativa.utils.ICircularStringBuffer;
    
    public class Console implements IConsole
    {
@@ -66,7 +66,7 @@ package alternativa.osgi.service.console
       
       private var var_530:int;
       
-      private var buffer:name_635;
+      private var buffer:ICircularStringBuffer;
       
       private var var_535:int;
       
@@ -86,7 +86,7 @@ package alternativa.osgi.service.console
       {
          super();
          this.stage = stage;
-         this.buffer = new name_634(1000);
+         this.buffer = new CircularStringBuffer(1000);
          this.calcTextMetrics(stage);
          this.initInput();
          this.initOutput();
@@ -431,7 +431,7 @@ package alternativa.osgi.service.console
       private function printPage() : void
       {
          var pageLineIndex:int = 0;
-         var iterator:name_632 = this.buffer.name_633(this.var_530);
+         var iterator:IStringBufferIterator = this.buffer.name_633(this.var_530);
          while(pageLineIndex < this.var_529 && Boolean(iterator.hasNext()))
          {
             TextField(this.var_532[pageLineIndex++]).text = iterator.getNext();
@@ -659,7 +659,7 @@ package alternativa.osgi.service.console
       
       private function copyConsoleContent(console:IConsole, params:Array) : void
       {
-         var iterator:name_632 = this.buffer.name_633(0);
+         var iterator:IStringBufferIterator = this.buffer.name_633(0);
          var result:String = "Console content:\n";
          while(iterator.hasNext())
          {

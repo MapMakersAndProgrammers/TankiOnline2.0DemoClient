@@ -1,6 +1,6 @@
-package package_15
+package alternativa.utils
 {
-   public class name_191
+   public class KeyboardUtils
    {
       public static const A:uint = 65;
       
@@ -198,7 +198,7 @@ package package_15
       
       public static const F15:uint = 126;
       
-      public function name_191()
+      public function KeyboardUtils()
       {
          super();
       }

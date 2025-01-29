@@ -1,12 +1,12 @@
-package package_15
+package alternativa.utils
 {
    import flash.utils.ByteArray;
    
-   public class name_55
+   public class ByteArrayMap
    {
       private var var_102:Object;
       
-      public function name_55(data:Object = null)
+      public function ByteArrayMap(data:Object = null)
       {
          super();
          this.var_102 = data == null ? {} : data;

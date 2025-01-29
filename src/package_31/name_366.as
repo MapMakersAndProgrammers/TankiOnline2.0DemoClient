@@ -1,7 +1,7 @@
 package package_31
 {
    import flash.system.ApplicationDomain;
-   import package_15.name_19;
+   import alternativa.utils.Properties;
    import package_39.name_160;
    import alternativa.osgi.OSGi;
    
@@ -15,15 +15,15 @@ package package_31
       
       private var var_566:Vector.<class_6>;
       
-      private var var_567:name_19;
+      private var var_567:Properties;
       
-      public function name_366(properties:name_19)
+      public function name_366(properties:Properties)
       {
          var activatorClassName:String = null;
          var isActivatorExists:Boolean = false;
          var activatorClass:Class = null;
          super();
-         this.var_567 = properties || new name_19();
+         this.var_567 = properties || new Properties();
          this._name = properties.method_24("Bundle-Name");
          clientLog.log(LOG_CHANNEL,"BundleDescriptor: Bundle name: %1",this._name);
          var activatorClassNames:Array = [properties.method_24("Bundle-Activator")];
@@ -58,7 +58,7 @@ package package_31
          return this.var_566;
       }
       
-      public function get properties() : name_19
+      public function get properties() : Properties
       {
          return this.var_567;
       }

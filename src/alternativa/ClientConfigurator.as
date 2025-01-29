@@ -16,7 +16,7 @@ package alternativa
    import package_106.name_367;
    import package_107.name_362;
    import package_107.name_369;
-   import package_15.name_19;
+   import alternativa.utils.Properties;
    import package_31.name_366;
    import package_39.name_160;
    import package_39.name_368;
@@ -45,7 +45,7 @@ package alternativa
          super();
       }
       
-      public function start(rootContainer:DisplayObjectContainer, urlParams:name_19, libraryInfos:Vector.<LibraryInfo>, connectionParameters:ConnectionParameters, startupLogStrings:Vector.<String>) : void
+      public function start(rootContainer:DisplayObjectContainer, urlParams:Properties, libraryInfos:Vector.<LibraryInfo>, connectionParameters:ConnectionParameters, startupLogStrings:Vector.<String>) : void
       {
          var libraryInfo:LibraryInfo = null;
          this.osgi = OSGi.name_8();
@@ -66,7 +66,7 @@ package alternativa
          }
       }
       
-      private function initClientLog(urlParams:name_19, startupLogStrings:Vector.<String>) : void
+      private function initClientLog(urlParams:Properties, startupLogStrings:Vector.<String>) : void
       {
          var s:String = null;
          var logChannelBufferSize:int = int(int(urlParams.method_25("log_channel_buffer_size","1000")));
@@ -79,7 +79,7 @@ package alternativa
          }
       }
       
-      private function initConsole(stage:Stage, urlParams:name_19) : void
+      private function initConsole(stage:Stage, urlParams:Properties) : void
       {
          var channelName:String = null;
          this.console = new Console(stage,50,100,1,1);

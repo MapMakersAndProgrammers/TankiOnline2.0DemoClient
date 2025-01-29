@@ -3,7 +3,7 @@ package alternativa.tanks.game.camera
    import flash.geom.Vector3D;
    import alternativa.tanks.game.ObjectController;
    import alternativa.tanks.game.Entity;
-   import package_15.name_191;
+   import alternativa.utils.KeyboardUtils;
    import package_18.name_102;
    import package_18.name_90;
    import package_21.name_78;
@@ -20,19 +20,19 @@ package alternativa.tanks.game.camera
       
       public static var targeted:Boolean = false;
       
-      private static const KEY_FORWARD:int = name_191.W;
+      private static const KEY_FORWARD:int = KeyboardUtils.W;
       
-      private static const KEY_BACK:int = name_191.S;
+      private static const KEY_BACK:int = KeyboardUtils.S;
       
-      private static const KEY_LEFT:int = name_191.A;
+      private static const KEY_LEFT:int = KeyboardUtils.A;
       
-      private static const KEY_RIGHT:int = name_191.D;
+      private static const KEY_RIGHT:int = KeyboardUtils.D;
       
-      private static const KEY_UP:int = name_191.E;
+      private static const KEY_UP:int = KeyboardUtils.E;
       
-      private static const KEY_DOWN:int = name_191.C;
+      private static const KEY_DOWN:int = KeyboardUtils.C;
       
-      private static const KEY_SPEED:int = name_191.SHIFT;
+      private static const KEY_SPEED:int = KeyboardUtils.SHIFT;
       
       private static var matrix:Matrix3 = new Matrix3();
       

@@ -2,7 +2,7 @@ package package_78
 {
    import package_116.name_529;
    import package_116.name_530;
-   import package_15.name_55;
+   import alternativa.utils.ByteArrayMap;
    import package_19.name_528;
    import package_21.name_78;
    import package_71.name_333;
@@ -20,7 +20,7 @@ package package_78
          super();
       }
       
-      public function method_314(byteArrayMap:name_55, mainFile:String) : name_333
+      public function method_314(byteArrayMap:ByteArrayMap, mainFile:String) : name_333
       {
          var objects:Vector.<name_78> = null;
          var parserA3D:name_529 = null;
@@ -89,7 +89,7 @@ package package_78
          return {};
       }
       
-      protected function doParse(objects:Vector.<name_78>, tankPart:name_333, byteArrayMap:name_55) : void
+      protected function doParse(objects:Vector.<name_78>, tankPart:name_333, byteArrayMap:ByteArrayMap) : void
       {
          var object:name_78 = null;
          var key:String = null;

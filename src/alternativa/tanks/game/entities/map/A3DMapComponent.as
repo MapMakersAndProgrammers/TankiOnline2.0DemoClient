@@ -11,7 +11,7 @@ package alternativa.tanks.game.entities.map
    import package_109.name_377;
    import package_109.name_378;
    import package_109.name_381;
-   import package_15.name_55;
+   import alternativa.utils.ByteArrayMap;
    import package_18.name_44;
    import package_18.name_79;
    import package_18.name_89;
@@ -47,9 +47,9 @@ package alternativa.tanks.game.entities.map
    {
       public static const PHYSICS_GEOMETRY:String = "physicsGeometry";
       
-      private var files:name_55;
+      private var files:ByteArrayMap;
       
-      private var skyboxFiles:name_55;
+      private var skyboxFiles:ByteArrayMap;
       
       private var skyboxSize:Number;
       
@@ -63,7 +63,7 @@ package alternativa.tanks.game.entities.map
       
       private var var_91:Boolean = true;
       
-      public function A3DMapComponent(files:name_55, skyboxFiles:name_55, skyboxSize:Number, listener:IA3DMapComponentListener)
+      public function A3DMapComponent(files:ByteArrayMap, skyboxFiles:ByteArrayMap, skyboxSize:Number, listener:IA3DMapComponentListener)
       {
          super();
          this.files = files;

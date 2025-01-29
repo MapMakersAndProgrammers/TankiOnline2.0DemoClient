@@ -1,8 +1,8 @@
-package package_15
+package alternativa.utils
 {
    import flash.geom.ColorTransform;
    
-   public class name_275
+   public class ColorUtils
    {
       public static const BLACK:uint = 0;
       
@@ -34,7 +34,7 @@ package package_15
       
       public static const WHITE:uint = 16777215;
       
-      public function name_275()
+      public function ColorUtils()
       {
          super();
       }
@@ -94,7 +94,7 @@ package package_15
       
       public static function random(redMin:uint = 0, redMax:uint = 255, greenMin:uint = 0, greenMax:uint = 255, blueMin:uint = 0, blueMax:uint = 255) : uint
       {
-         return name_345(name_629.random(redMin,redMax),name_629.random(greenMin,greenMax),name_629.random(blueMin,blueMax));
+         return name_345(MathUtils.random(redMin,redMax),MathUtils.random(greenMin,greenMax),MathUtils.random(blueMin,blueMax));
       }
       
       public static function name_345(red:int, green:int, blue:int) : uint

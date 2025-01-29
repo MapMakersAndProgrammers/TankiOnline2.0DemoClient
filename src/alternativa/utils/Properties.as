@@ -1,10 +1,10 @@
-package package_15
+package alternativa.utils
 {
-   public class name_19
+   public class Properties
    {
       private var data:Object;
       
-      public function name_19(data:Object = null)
+      public function Properties(data:Object = null)
       {
          super();
          this.data = data || new Object();

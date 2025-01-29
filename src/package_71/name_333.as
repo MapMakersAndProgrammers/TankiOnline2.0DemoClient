@@ -1,6 +1,6 @@
 package package_71
 {
-   import package_15.name_55;
+   import alternativa.utils.ByteArrayMap;
    import package_28.name_119;
    
    public class name_333
@@ -9,7 +9,7 @@ package package_71
       
       public var geometry:name_119;
       
-      public var textureData:name_55 = new name_55();
+      public var textureData:ByteArrayMap = new ByteArrayMap();
       
       public function name_333()
       {

@@ -1,8 +1,8 @@
-package package_15
+package alternativa.utils
 {
-   public class name_718
+   public class TextUtils
    {
-      public function name_718()
+      public function TextUtils()
       {
          super();
       }

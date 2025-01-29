@@ -1,6 +1,6 @@
 package package_78
 {
-   import package_15.name_55;
+   import alternativa.utils.ByteArrayMap;
    import package_19.name_380;
    import package_19.name_528;
    import package_21.name_78;
@@ -38,13 +38,13 @@ package package_78
          super();
       }
       
-      override protected function doParse(objects:Vector.<name_78>, tankPart:name_333, files:name_55) : void
+      override protected function doParse(objects:Vector.<name_78>, tankPart:name_333, files:ByteArrayMap) : void
       {
          super.doParse(objects,tankPart,files);
          this.method_423(tankPart,files);
       }
       
-      private function method_423(tankPart:name_333, files:name_55) : void
+      private function method_423(tankPart:name_333, files:ByteArrayMap) : void
       {
          tankPart.textureData.name_59(KEY_TRACKS_NORMAL,files.name_248(TRACKS_NORMALMAP_ATF));
          tankPart.textureData.name_59(KEY_TRACKS_DIFFUSE,files.name_248(TRACKS_DIFFUSEMAP_ATF));

@@ -3,7 +3,7 @@ package package_71
    import alternativa.tanks.game.EntityComponent;
    import alternativa.tanks.game.GameKernel;
    import alternativa.tanks.game.GameEvents;
-   import package_15.name_191;
+   import alternativa.utils.KeyboardUtils;
    import alternativa.tanks.game.subsystems.inputsystem.KeyboardEventType;
    import alternativa.tanks.game.subsystems.inputsystem.IInput;
    import package_42.name_477;
@@ -11,7 +11,7 @@ package package_71
    
    public class name_315 extends EntityComponent implements name_477
    {
-      private static const KEY_FIRE:uint = name_191.SPACE;
+      private static const KEY_FIRE:uint = KeyboardUtils.SPACE;
       
       private var gameKernel:GameKernel;
       

@@ -1,6 +1,6 @@
-package package_15
+package alternativa.utils
 {
-   public class name_634 implements name_635
+   public class CircularStringBuffer implements ICircularStringBuffer
    {
       public var strings:Vector.<String>;
       
@@ -10,7 +10,7 @@ package package_15
       
       private var var_666:int;
       
-      public function name_634(capacity:int)
+      public function CircularStringBuffer(capacity:int)
       {
          super();
          this.var_666 = capacity;
@@ -68,7 +68,7 @@ package package_15
          throw new Error("Unimplemented");
       }
       
-      public function name_633(startIndex:int) : name_632
+      public function name_633(startIndex:int) : IStringBufferIterator
       {
          return new Iterator(this,startIndex);
       }
@@ -80,13 +80,13 @@ package package_15
    }
 }
 
-class Iterator implements name_632
+class Iterator implements IStringBufferIterator
 {
-   private var buffer:name_634;
+   private var buffer:CircularStringBuffer;
    
    private var index:int;
    
-   public function Iterator(buffer:name_634, startIndex:int)
+   public function Iterator(buffer:CircularStringBuffer, startIndex:int)
    {
       super();
       if(startIndex < 0 || startIndex > buffer.size)

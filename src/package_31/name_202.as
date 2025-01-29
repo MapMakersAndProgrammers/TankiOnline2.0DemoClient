@@ -1,6 +1,6 @@
 package package_31
 {
-   import package_15.name_19;
+   import alternativa.utils.Properties;
    
    public interface name_202
    {
@@ -8,7 +8,7 @@ package package_31
       
       function get activators() : Vector.<class_6>;
       
-      function get properties() : name_19;
+      function get properties() : Properties;
    }
 }
 

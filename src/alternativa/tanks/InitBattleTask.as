@@ -7,7 +7,7 @@ package alternativa.tanks
    import alternativa.tanks.config.Config;
    import alternativa.tanks.config.BlobGroup;
    import alternativa.tanks.config.BlobCategory;
-   import package_15.name_55;
+   import alternativa.utils.ByteArrayMap;
    import package_18.name_44;
    import package_19.name_53;
    import alternativa.tanks.game.entities.map.A3DMapComponent;
@@ -49,13 +49,13 @@ package alternativa.tanks
       
       private function createMapEntity() : Entity
       {
-         var _loc2_:name_55 = null;
+         var _loc2_:ByteArrayMap = null;
          var _loc6_:BlobGroup = null;
          var _loc7_:String = null;
          var _loc3_:BlobCategory = this.config.name_68.name_72("skybox");
          if(_loc3_ != null)
          {
-            _loc2_ = new name_55();
+            _loc2_ = new ByteArrayMap();
             _loc6_ = _loc3_.name_62(this.config.name_67());
             for each(_loc7_ in [name_53.BACK,name_53.BOTTOM,name_53.FRONT,name_53.LEFT,name_53.RIGHT,name_53.TOP])
             {

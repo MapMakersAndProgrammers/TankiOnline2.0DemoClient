@@ -1,6 +1,6 @@
-package package_15
+package alternativa.utils
 {
-   public interface name_635
+   public interface ICircularStringBuffer
    {
       function add(param1:String) : void;
       
@@ -12,7 +12,7 @@ package package_15
       
       function set capacity(param1:int) : void;
       
-      function name_633(param1:int) : name_632;
+      function name_633(param1:int) : IStringBufferIterator;
    }
 }
 

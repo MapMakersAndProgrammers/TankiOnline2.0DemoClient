@@ -14,8 +14,8 @@ package alternativa.tanks
    import alternativa.tanks.game.GameEvents;
    import alternativa.tanks.game.weapons.ammunition.plasma.PlasmaRoundEffectsFactory;
    import alternativa.tanks.config.Config;
-   import package_15.name_275;
-   import package_15.name_55;
+   import alternativa.utils.ColorUtils;
+   import alternativa.utils.ByteArrayMap;
    import package_18.name_102;
    import package_18.name_44;
    import alternativa.tanks.game.subsystems.eventsystem.IGameEventListener;
@@ -348,7 +348,7 @@ package alternativa.tanks
       
       private function createRandomBattleMessage() : void
       {
-         this.var_71.name_305("Message: " + Math.random(),name_275.random());
+         this.var_71.name_305("Message: " + Math.random(),ColorUtils.random());
       }
       
       private function controlKeyPressed() : Boolean
@@ -704,7 +704,7 @@ package alternativa.tanks
       
       private function createTracksMaterial(param1:name_249) : TracksMaterial2
       {
-         var _loc2_:name_55 = param1.textureData;
+         var _loc2_:ByteArrayMap = param1.textureData;
          var _loc3_:name_241 = this.var_65.name_254(_loc2_.name_248(name_243.KEY_TRACKS_DIFFUSE));
          var _loc4_:name_241 = this.var_65.name_254(_loc2_.name_248(name_243.KEY_TRACKS_NORMAL));
          var _loc5_:TracksMaterial2 = new TracksMaterial2();
@@ -722,7 +722,7 @@ package alternativa.tanks
       private function createShadowMaterial(param1:name_249) : GiShadowMaterial
       {
          var _loc3_:name_241 = null;
-         var _loc2_:name_55 = param1.textureData;
+         var _loc2_:ByteArrayMap = param1.textureData;
          if(_loc2_.name_248(name_243.KEY_SHADOW) != null)
          {
             _loc3_ = this.var_65.name_254(_loc2_.name_248(name_243.KEY_SHADOW));
@@ -943,7 +943,7 @@ package alternativa.tanks
          var _loc15_:name_249 = null;
          var _loc16_:name_318 = null;
          var _loc6_:name_44 = this.gameKernel.name_5();
-         var _loc7_:name_55 = param1.textureData;
+         var _loc7_:ByteArrayMap = param1.textureData;
          var _loc8_:name_241 = this.var_65.name_254(_loc7_.name_248(name_258.KEY_DIFFUSE_MAP));
          var _loc9_:name_241 = this.var_65.name_254(_loc7_.name_248(name_258.KEY_NORMAL_MAP));
          var _loc10_:name_241 = this.var_65.name_254(_loc7_.name_248(name_258.KEY_SURFACE_MAP));
@@ -1165,7 +1165,7 @@ import flash.utils.ByteArray;
 import alternativa.tanks.game.GameKernel;
 import package_101.name_304;
 import alternativa.tanks.config.TextureLibrary;
-import package_15.name_275;
+import alternativa.utils.ColorUtils;
 import package_18.name_44;
 import package_28.name_129;
 import package_28.name_241;
@@ -1248,7 +1248,7 @@ class PointHitRoundAmmo implements IGenericAmmunition
       while(_loc4_ < 20)
       {
          _loc5_ = 255 - 255 / (20 - 1) * _loc4_;
-         _loc2_.push(new name_313(name_275.name_345(_loc5_,_loc5_,_loc5_),_loc5_ / 255 + 0.5));
+         _loc2_.push(new name_313(ColorUtils.name_345(_loc5_,_loc5_,_loc5_),_loc5_ / 255 + 0.5));
          _loc4_++;
       }
       this.weaponHitEffects = new WeaponHitEffects(null,_loc2_,param1);

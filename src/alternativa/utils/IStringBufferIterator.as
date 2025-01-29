@@ -1,6 +1,6 @@
-package package_15
+package alternativa.utils
 {
-   public interface name_632
+   public interface IStringBufferIterator
    {
       function hasNext() : Boolean;
       

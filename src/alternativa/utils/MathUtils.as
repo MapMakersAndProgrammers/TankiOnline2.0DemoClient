@@ -1,8 +1,8 @@
-package package_15
+package alternativa.utils
 {
    import flash.geom.Point;
    
-   public final class name_629
+   public final class MathUtils
    {
       private static const toRad:Number = Math.PI / 180;
       
@@ -26,7 +26,7 @@ package package_15
       
       public static const DEG360:Number = Math.PI + Math.PI;
       
-      public function name_629()
+      public function MathUtils()
       {
          super();
       }

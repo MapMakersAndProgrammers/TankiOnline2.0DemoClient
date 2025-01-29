@@ -3,7 +3,7 @@ package package_71
    import alternativa.tanks.game.EntityComponent;
    import alternativa.tanks.game.GameKernel;
    import alternativa.tanks.game.GameEvents;
-   import package_15.name_191;
+   import alternativa.utils.KeyboardUtils;
    import alternativa.tanks.game.subsystems.inputsystem.KeyboardEventType;
    import alternativa.tanks.game.subsystems.inputsystem.IInput;
    import package_42.name_477;
@@ -11,11 +11,11 @@ package package_71
    
    public class name_311 extends EntityComponent implements name_477
    {
-      private static const KEY_LEFT:int = name_191.Z;
+      private static const KEY_LEFT:int = KeyboardUtils.Z;
       
-      private static const KEY_RIGHT:int = name_191.X;
+      private static const KEY_RIGHT:int = KeyboardUtils.X;
       
-      private static const KEY_CENTER:int = name_191.C;
+      private static const KEY_CENTER:int = KeyboardUtils.C;
       
       private var callback:class_10;
       
