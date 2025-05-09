@@ -8,17 +8,17 @@ package alternativa.osgi.service.console
       
       function hide() : void;
       
-      function method_141() : Boolean;
+      function isVisible() : Boolean;
       
-      function name_145(param1:String) : void;
+      function addText(param1:String) : void;
       
-      function method_143(param1:String, param2:String) : void;
+      function addPrefixedText(param1:String, param2:String) : void;
       
-      function method_145(param1:Vector.<String>) : void;
+      function addLines(param1:Vector.<String>) : void;
       
-      function method_142(param1:String, param2:Vector.<String>) : void;
+      function addPrefixedLines(param1:String, param2:Vector.<String>) : void;
       
-      function method_140(param1:int, param2:int) : void;
+      function setSize(param1:int, param2:int) : void;
       
       function set width(param1:int) : void;
       
@@ -28,27 +28,27 @@ package alternativa.osgi.service.console
       
       function get height() : int;
       
-      function set method_138(param1:int) : void;
+      function set horizontalAlignment(param1:int) : void;
       
-      function get method_138() : int;
+      function get horizontalAlignment() : int;
       
-      function set method_137(param1:int) : void;
+      function set vericalAlignment(param1:int) : void;
       
-      function get method_137() : int;
+      function get vericalAlignment() : int;
       
       function set alpha(param1:Number) : void;
       
       function get alpha() : Number;
       
-      function name_45(param1:String, param2:Function) : void;
+      function setCommandHandler(param1:String, param2:Function) : void;
       
-      function method_144(param1:String) : void;
+      function removeCommandHandler(param1:String) : void;
       
-      function method_139(param1:String) : void;
+      function executeCommand(param1:String) : void;
       
-      function name_147(param1:ConsoleVar) : void;
+      function addVariable(param1:ConsoleVar) : void;
       
-      function name_146(param1:String) : void;
+      function removeVariable(param1:String) : void;
    }
 }
 

@@ -4,7 +4,7 @@ package alternativa.tanks.game.subsystems.rendersystem
    {
       function update() : void;
       
-      function name_108() : void;
+      function enable() : void;
    }
 }
 

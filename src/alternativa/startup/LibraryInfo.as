@@ -1,7 +1,7 @@
 package alternativa.startup
 {
-   import flash.display.Loader;
    import alternativa.utils.Properties;
+   import flash.display.Loader;
    
    public class LibraryInfo
    {

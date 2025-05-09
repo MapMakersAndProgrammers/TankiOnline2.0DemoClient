@@ -1,13 +1,13 @@
 package alternativa.tanks.game.subsystems.rendersystem
 {
+   import alternativa.engine3d.core.Object3D;
+   import alternativa.tanks.game.utils.objectpool.ObjectPool;
+   import alternativa.tanks.game.utils.objectpool.PooledObject;
    import flash.display.DisplayObjectContainer;
    import flash.geom.Vector3D;
    import flash.text.TextField;
    import flash.text.TextFieldAutoSize;
    import flash.text.TextFormat;
-   import package_21.name_78;
-   import alternativa.tanks.game.utils.objectpool.PooledObject;
-   import alternativa.tanks.game.utils.objectpool.ObjectPool;
    
    public class TextMarker extends PooledObject implements IGraphicEffect
    {
@@ -19,9 +19,9 @@ package alternativa.tanks.game.subsystems.rendersystem
       
       private var tf:TextField;
       
-      private var var_146:Boolean;
+      private var §_-Ee§:Boolean;
       
-      private var anchor:name_78;
+      private var anchor:Object3D;
       
       public function TextMarker(objectPool:ObjectPool)
       {
@@ -31,18 +31,18 @@ package alternativa.tanks.game.subsystems.rendersystem
          this.tf.autoSize = TextFieldAutoSize.LEFT;
       }
       
-      public function init(overlay:DisplayObjectContainer, text:String, anchor:name_78) : void
+      public function init(overlay:DisplayObjectContainer, text:String, anchor:Object3D) : void
       {
          overlay.addChild(this.tf);
          this.tf.visible = false;
          this.anchor = anchor;
          this.tf.text = text;
-         this.var_146 = true;
+         this.§_-Ee§ = true;
       }
       
-      public function method_255() : void
+      public function kill() : void
       {
-         this.var_146 = false;
+         this.§_-Ee§ = false;
       }
       
       public function play(camera:GameCamera) : Boolean
@@ -60,7 +60,7 @@ package alternativa.tanks.game.subsystems.rendersystem
          {
             this.tf.visible = false;
          }
-         return this.var_146;
+         return this.§_-Ee§;
       }
       
       public function addedToRenderSystem(system:RenderSystem) : void
@@ -75,7 +75,7 @@ package alternativa.tanks.game.subsystems.rendersystem
          }
          this.anchor = null;
          this.tf.text = "";
-         method_254();
+         storeInPool();
       }
    }
 }

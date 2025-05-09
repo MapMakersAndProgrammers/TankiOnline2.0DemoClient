@@ -31,23 +31,23 @@ package alternativa.utils
          super();
       }
       
-      public static function method_806(angle:Number) : Number
+      public static function toRadian(angle:Number) : Number
       {
          return angle * toRad;
       }
       
-      public static function method_801(angle:Number) : Number
+      public static function toDegree(angle:Number) : Number
       {
          return angle * toDeg;
       }
       
-      public static function method_802(angle:Number) : Number
+      public static function limitAngle(angle:Number) : Number
       {
          var res:Number = angle % DEG360;
          return res > 0 ? (res > DEG180 ? res - DEG360 : res) : (res < -DEG180 ? res + DEG360 : res);
       }
       
-      public static function method_805(a:Number, b:Number) : Number
+      public static function deltaAngle(a:Number, b:Number) : Number
       {
          var delta:Number = b - a;
          if(delta > DEG180)
@@ -74,17 +74,17 @@ package alternativa.utils
          return Math.random() * (b - a) + a;
       }
       
-      public static function method_807() : Number
+      public static function randomAngle() : Number
       {
          return Math.random() * DEG360;
       }
       
-      public static function method_803(a:Number, b:Number, threshold:Number = 0) : Boolean
+      public static function equals(a:Number, b:Number, threshold:Number = 0) : Boolean
       {
          return b - a <= threshold && b - a >= -threshold;
       }
       
-      public static function method_809(first:Point, second:Point, point:Point) : Number
+      public static function segmentDistance(first:Point, second:Point, point:Point) : Number
       {
          var dx:Number = second.x - first.x;
          var dy:Number = second.y - first.y;
@@ -93,13 +93,13 @@ package alternativa.utils
          return (dx * py - dy * px) / Math.sqrt(dx * dx + dy * dy);
       }
       
-      public static function method_804(a:Point, b:Point, c:Point, point:Point) : Boolean
+      public static function triangleHasPoint(a:Point, b:Point, c:Point, point:Point) : Boolean
       {
-         if(method_799(c.subtract(a),point.subtract(a)) <= 0)
+         if(vectorCross(c.subtract(a),point.subtract(a)) <= 0)
          {
-            if(method_799(b.subtract(c),point.subtract(c)) <= 0)
+            if(vectorCross(b.subtract(c),point.subtract(c)) <= 0)
             {
-               if(method_799(a.subtract(b),point.subtract(b)) <= 0)
+               if(vectorCross(a.subtract(b),point.subtract(b)) <= 0)
                {
                   return true;
                }
@@ -110,26 +110,26 @@ package alternativa.utils
          return false;
       }
       
-      public static function method_799(a:Point, b:Point) : Number
+      public static function vectorCross(a:Point, b:Point) : Number
       {
          return a.x * b.y - a.y * b.x;
       }
       
-      public static function method_800(a:Point, b:Point) : Number
+      public static function vectorDot(a:Point, b:Point) : Number
       {
          return a.x * b.x + a.y * b.y;
       }
       
-      public static function method_810(a:Point, b:Point) : Number
+      public static function vectorAngle(a:Point, b:Point) : Number
       {
          var len:Number = a.length * b.length;
-         var cos:Number = len != 0 ? method_800(a,b) / len : 1;
+         var cos:Number = len != 0 ? vectorDot(a,b) / len : 1;
          return Math.acos(cos);
       }
       
-      public static function method_808(a:Point, b:Point) : Number
+      public static function vectorAngleFast(a:Point, b:Point) : Number
       {
-         var dot:Number = method_800(a,b);
+         var dot:Number = vectorDot(a,b);
          if(Math.abs(dot) > 1)
          {
             dot = dot > 0 ? 1 : -1;

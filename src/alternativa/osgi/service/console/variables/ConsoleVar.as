@@ -14,43 +14,43 @@ package alternativa.osgi.service.console.variables
          super();
          this.varName = varName;
          this.inputListener = inputListener;
-         var console:IConsole = IConsole(OSGi.name_8().name_30(IConsole));
+         var console:IConsole = IConsole(OSGi.getInstance().getService(IConsole));
          if(console != null)
          {
-            console.name_147(this);
+            console.addVariable(this);
          }
       }
       
-      public function name_32() : String
+      public function getName() : String
       {
          return this.varName;
       }
       
       public function destroy() : void
       {
-         var console:IConsole = IConsole(OSGi.name_8().name_30(IConsole));
+         var console:IConsole = IConsole(OSGi.getInstance().getService(IConsole));
          if(console != null)
          {
-            console.name_146(this.varName);
+            console.removeVariable(this.varName);
          }
          this.inputListener = null;
       }
       
-      public function method_77(console:IConsole, params:Array) : void
+      public function processConsoleInput(console:IConsole, params:Array) : void
       {
-         var oldValue:String = null;
-         var errorText:String = null;
+         var _loc3_:String = null;
+         var _loc4_:String = null;
          if(params.length == 0)
          {
-            console.name_145(this.varName + " = " + this.toString());
+            console.addText(this.varName + " = " + this.toString());
          }
          else
          {
-            oldValue = this.toString();
-            errorText = this.acceptInput(params[0]);
-            if(errorText == null)
+            _loc3_ = this.toString();
+            _loc4_ = this.acceptInput(params[0]);
+            if(_loc4_ == null)
             {
-               console.name_145(this.varName + " is set to " + this.toString() + " (was " + oldValue + ")");
+               console.addText(this.varName + " is set to " + this.toString() + " (was " + _loc3_ + ")");
                if(this.inputListener != null)
                {
                   this.inputListener.call(null,this);
@@ -58,7 +58,7 @@ package alternativa.osgi.service.console.variables
             }
             else
             {
-               console.name_145(errorText);
+               console.addText(_loc4_);
             }
          }
       }

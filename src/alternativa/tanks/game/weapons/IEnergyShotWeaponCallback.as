@@ -1,10 +1,10 @@
 package alternativa.tanks.game.weapons
 {
-   import package_46.name_194;
+   import alternativa.math.Vector3;
    
    public interface IEnergyShotWeaponCallback
    {
-      function name_623(param1:int, param2:EnergyShotType, param3:name_194, param4:int) : void;
+      function onEnergyShotWeaponFire(param1:int, param2:EnergyShotType, param3:Vector3, param4:int) : void;
    }
 }
 

@@ -1,8 +1,8 @@
 package alternativa.tanks.config
 {
-   import package_40.class_7;
+   import alternativa.tanks.utils.Task;
    
-   public class ResourceLoader extends class_7
+   public class ResourceLoader extends Task
    {
       public var config:Config;
       

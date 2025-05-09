@@ -1,7 +1,7 @@
 package alternativa.tanks.game.camera
 {
+   import alternativa.math.Vector3;
    import alternativa.tanks.game.subsystems.rendersystem.GameCamera;
-   import package_46.name_194;
    
    public class CameraControllerBase
    {
@@ -12,35 +12,35 @@ package alternativa.tanks.game.camera
          super();
       }
       
-      protected function name_201(position:name_194) : void
+      protected function setPosition(position:Vector3) : void
       {
          this.camera.x = position.x;
          this.camera.y = position.y;
          this.camera.z = position.z;
       }
       
-      protected function name_352(eulerAngles:name_194) : void
+      protected function setOrientation(eulerAngles:Vector3) : void
       {
          this.camera.rotationX = eulerAngles.x;
          this.camera.rotationY = eulerAngles.y;
          this.camera.rotationZ = eulerAngles.z;
       }
       
-      protected function method_479(rx:Number, ry:Number, rz:Number) : void
+      protected function setOrientationXYZ(rx:Number, ry:Number, rz:Number) : void
       {
          this.camera.rotationX = rx;
          this.camera.rotationY = ry;
          this.camera.rotationZ = rz;
       }
       
-      protected function method_532(dx:Number, dy:Number, dz:Number) : void
+      protected function moveBy(dx:Number, dy:Number, dz:Number) : void
       {
          this.camera.x += dx;
          this.camera.y += dy;
          this.camera.z += dz;
       }
       
-      protected function method_533(rx:Number, ry:Number, rz:Number) : void
+      protected function rotateBy(rx:Number, ry:Number, rz:Number) : void
       {
          this.camera.rotationX += rx;
          this.camera.rotationY += ry;

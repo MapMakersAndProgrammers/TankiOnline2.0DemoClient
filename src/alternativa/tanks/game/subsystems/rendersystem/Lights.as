@@ -1,63 +1,63 @@
 package alternativa.tanks.game.subsystems.rendersystem
 {
-   import package_21.name_78;
-   import package_24.name_376;
+   import alternativa.engine3d.core.Object3D;
+   import alternativa.engine3d.lights.AmbientLight;
    
    public class Lights
    {
-      private var container:name_78;
+      private var container:Object3D;
       
-      private var var_142:name_376;
+      private var §_-e8§:AmbientLight;
       
-      private var var_143:DirectionalLightList;
+      private var §_-qW§:DirectionalLightList;
       
-      private var var_144:OmniLightList;
+      private var §_-hD§:OmniLightList;
       
-      private var var_145:SpotLightList;
+      private var §_-pd§:SpotLightList;
       
-      public function Lights(container:name_78)
+      public function Lights(container:Object3D)
       {
          super();
          this.container = container;
-         this.var_143 = new DirectionalLightList(container);
-         this.var_144 = new OmniLightList(container);
-         this.var_145 = new SpotLightList(container);
+         this.§_-qW§ = new DirectionalLightList(container);
+         this.§_-hD§ = new OmniLightList(container);
+         this.§_-pd§ = new SpotLightList(container);
       }
       
-      public function set ambientLight(light:name_376) : void
+      public function set ambientLight(light:AmbientLight) : void
       {
-         if(this.var_142 != light)
+         if(this.§_-e8§ != light)
          {
-            if(this.var_142 != null)
+            if(this.§_-e8§ != null)
             {
-               this.container.removeChild(this.var_142);
+               this.container.removeChild(this.§_-e8§);
             }
-            this.var_142 = light;
-            if(this.var_142 != null)
+            this.§_-e8§ = light;
+            if(this.§_-e8§ != null)
             {
-               this.container.addChild(this.var_142);
+               this.container.addChild(this.§_-e8§);
             }
          }
       }
       
-      public function get ambientLight() : name_376
+      public function get ambientLight() : AmbientLight
       {
-         return this.var_142;
+         return this.§_-e8§;
       }
       
       public function get directionalLigths() : DirectionalLightList
       {
-         return this.var_143;
+         return this.§_-qW§;
       }
       
       public function get omniLigths() : OmniLightList
       {
-         return this.var_144;
+         return this.§_-hD§;
       }
       
       public function get spotLights() : SpotLightList
       {
-         return this.var_145;
+         return this.§_-pd§;
       }
    }
 }

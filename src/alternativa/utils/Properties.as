@@ -10,17 +10,17 @@ package alternativa.utils
          this.data = data || new Object();
       }
       
-      public function method_24(key:String) : String
+      public function getProperty(key:String) : String
       {
          return this.data[key];
       }
       
-      public function method_25(key:String, defaultValue:String) : String
+      public function getPropertyDef(key:String, defaultValue:String) : String
       {
          return this.data[key] || defaultValue;
       }
       
-      public function method_27(key:String, value:String) : void
+      public function setProperty(key:String, value:String) : void
       {
          if(!value)
          {
@@ -29,7 +29,7 @@ package alternativa.utils
          this.data[key] = value;
       }
       
-      public function get method_26() : Vector.<String>
+      public function get propertyNames() : Vector.<String>
       {
          var name:String = null;
          var names:Vector.<String> = new Vector.<String>();

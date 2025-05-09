@@ -1,6 +1,6 @@
 package alternativa.tanks
 {
-   import package_40.name_564;
+   import alternativa.tanks.utils.XMLHelper;
    
    public class TankParams
    {
@@ -42,18 +42,18 @@ package alternativa.tanks
          return _loc1_;
       }
       
-      public static function name_317(param1:XML, param2:Boolean = false) : TankParams
+      public static function fromXML(param1:XML, param2:Boolean = false) : TankParams
       {
          var _loc3_:TankParams = new TankParams();
          _loc3_.isUser = param2;
-         var _loc4_:Array = name_564.name_565(XMLList(param1.xyz)[0]);
+         var _loc4_:Array = XMLHelper.parseStringArray(XMLList(param1.xyz)[0]);
          if(_loc4_.length == 3)
          {
             _loc3_.x = Number(_loc4_[0]);
             _loc3_.y = Number(_loc4_[1]);
             _loc3_.z = Number(_loc4_[2]);
          }
-         _loc4_ = name_564.name_565(XMLList(param1.rotation)[0]);
+         _loc4_ = XMLHelper.parseStringArray(XMLList(param1.rotation)[0]);
          if(_loc4_.length == 3)
          {
             _loc3_.rotationX = Number(_loc4_[0]);
@@ -66,7 +66,7 @@ package alternativa.tanks
          return _loc3_;
       }
       
-      public static function name_322(param1:Array) : TankParams
+      public static function fromArray(param1:Array) : TankParams
       {
          return new TankParams();
       }

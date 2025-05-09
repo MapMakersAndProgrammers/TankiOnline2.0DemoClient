@@ -1,7 +1,7 @@
 package alternativa.startup
 {
-   import flash.display.DisplayObjectContainer;
    import alternativa.utils.Properties;
+   import flash.display.DisplayObjectContainer;
    
    public interface IClientConfigurator
    {

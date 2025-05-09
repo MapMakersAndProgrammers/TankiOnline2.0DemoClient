@@ -18,7 +18,7 @@ package alternativa.tanks.game.subsystems.rendersystem
       
       public function execute(stage3d:Stage3D) : void
       {
-         this.renderSystem.method_33(this.fogBitmap);
+         this.renderSystem.setFogTexture(this.fogBitmap);
       }
    }
 }

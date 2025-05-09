@@ -7,7 +7,7 @@ package alternativa.utils
          super();
       }
       
-      public static function name_719(msg:String, ... args) : String
+      public static function replaceVars(msg:String, ... args) : String
       {
          var len:int = int(args.length);
          for(var i:int = 0; i < len; i++)

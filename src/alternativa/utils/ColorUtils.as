@@ -55,12 +55,12 @@ package alternativa.utils
          return (red < 0 ? 0 : red) + (green < 0 ? 0 : green) + (blue < 0 ? 0 : blue);
       }
       
-      public static function method_552(color:uint, multiplier:Number) : uint
+      public static function multiply(color:uint, multiplier:Number) : uint
       {
          var red:int = ((color & 0xFF0000) >>> 16) * multiplier;
          var green:int = ((color & 0xFF00) >>> 8) * multiplier;
          var blue:int = (color & 0xFF) * multiplier;
-         return name_345(red,green,blue);
+         return rgb(red,green,blue);
       }
       
       public static function interpolate(a:uint, b:uint, k:Number = 0.5) : uint
@@ -71,10 +71,10 @@ package alternativa.utils
          green += (((b & 0xFF00) >>> 8) - green) * k;
          var blue:int = a & 0xFF;
          blue += ((b & 0xFF) - blue) * k;
-         return name_345(red,green,blue);
+         return rgb(red,green,blue);
       }
       
-      public static function method_551(fromColor:ColorTransform, toColor:ColorTransform, progress:Number, result:ColorTransform = null) : ColorTransform
+      public static function interpolateTransform(fromColor:ColorTransform, toColor:ColorTransform, progress:Number, result:ColorTransform = null) : ColorTransform
       {
          if(result == null)
          {
@@ -94,10 +94,10 @@ package alternativa.utils
       
       public static function random(redMin:uint = 0, redMax:uint = 255, greenMin:uint = 0, greenMax:uint = 255, blueMin:uint = 0, blueMax:uint = 255) : uint
       {
-         return name_345(MathUtils.random(redMin,redMax),MathUtils.random(greenMin,greenMax),MathUtils.random(blueMin,blueMax));
+         return rgb(MathUtils.random(redMin,redMax),MathUtils.random(greenMin,greenMax),MathUtils.random(blueMin,blueMax));
       }
       
-      public static function name_345(red:int, green:int, blue:int) : uint
+      public static function rgb(red:int, green:int, blue:int) : uint
       {
          return (red < 0 ? 0 : (Boolean(red >>> 8) ? 16711680 : red << 16)) + (green < 0 ? 0 : (Boolean(green >>> 8) ? 65280 : green << 8)) + (blue < 0 ? 0 : (Boolean(blue >>> 8) ? 255 : blue));
       }

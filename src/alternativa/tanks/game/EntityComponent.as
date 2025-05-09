@@ -9,7 +9,7 @@ package alternativa.tanks.game
          super();
       }
       
-      public function method_197(entity:Entity) : void
+      public function setEntity(entity:Entity) : void
       {
          this.entity = entity;
       }

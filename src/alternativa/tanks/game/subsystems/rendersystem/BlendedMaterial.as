@@ -1,29 +1,29 @@
 package alternativa.tanks.game.subsystems.rendersystem
 {
    import alternativa.engine3d.alternativa3d;
-   import package_19.name_117;
-   import package_21.name_116;
-   import package_21.name_124;
-   import package_28.name_119;
-   import package_28.name_129;
-   import package_4.class_5;
+   import alternativa.engine3d.core.Camera3D;
+   import alternativa.engine3d.core.Light3D;
+   import alternativa.engine3d.materials.TextureMaterial;
+   import alternativa.engine3d.objects.Surface;
+   import alternativa.engine3d.resources.Geometry;
+   import alternativa.engine3d.resources.TextureResource;
    
    use namespace alternativa3d;
    
-   public class BlendedMaterial extends class_5
+   public class BlendedMaterial extends TextureMaterial
    {
       public var blendModeSource:String = "one";
       
       public var blendModeDestination:String = "zero";
       
-      public function BlendedMaterial(diffuseMap:name_129 = null, opacityMap:name_129 = null, alpha:Number = 1, blendModeSource:String = "one", blendModeDestination:String = "zero")
+      public function BlendedMaterial(diffuseMap:TextureResource = null, opacityMap:TextureResource = null, alpha:Number = 1, blendModeSource:String = "one", blendModeDestination:String = "zero")
       {
          super(diffuseMap,opacityMap,alpha);
          this.blendModeSource = blendModeSource;
          this.blendModeDestination = blendModeDestination;
       }
       
-      override alternativa3d function collectDraws(camera:name_124, surface:name_117, geometry:name_119, lights:Vector.<name_116>, lightsLength:int, objectRenderPriority:int = -1) : void
+      override alternativa3d function collectDraws(camera:Camera3D, surface:Surface, geometry:Geometry, lights:Vector.<Light3D>, lightsLength:int, objectRenderPriority:int = -1) : void
       {
       }
    }

@@ -1,5 +1,36 @@
 package
 {
+   import §_-1c§.§_-0F§;
+   import §_-5U§.§_-Kr§;
+   import §_-FM§.§_-fl§;
+   import §_-GD§.§_-6A§;
+   import §_-I0§.§_-Jv§;
+   import §_-I0§.§_-VT§;
+   import §_-KT§.§_-6L§;
+   import §_-KT§.§_-Ju§;
+   import §_-KT§.§_-UT§;
+   import §_-KT§.§_-mN§;
+   import §_-O5§.§_-c-§;
+   import §_-RG§.§_-Au§;
+   import §_-RG§.§_-pE§;
+   import §_-TX§.§_-R3§;
+   import §_-Uy§.§_-oP§;
+   import §_-Vh§.§_-Pt§;
+   import §_-Vh§.§_-Wn§;
+   import §_-Vh§.§_-dn§;
+   import §_-YQ§.§_-A3§;
+   import §_-YQ§.§_-DN§;
+   import §_-Yj§.TankMaterial2;
+   import §_-Yj§.§_-4X§;
+   import §_-Yj§.§_-as§;
+   import §_-Yj§.§_-bZ§;
+   import §_-Yj§.§_-jj§;
+   import §_-aA§.§_-1O§;
+   import §_-aA§.§_-a-§;
+   import §_-az§.§_-AG§;
+   import §_-cv§.§_-YU§;
+   import §_-d8§.§_-R3§;
+   import §_-e6§.§_-1I§;
    import flash.display.DisplayObject;
    import flash.display.Sprite;
    import flash.display.Stage3D;
@@ -11,52 +42,21 @@ package
    import flash.events.FullScreenEvent;
    import flash.events.KeyboardEvent;
    import flash.ui.Keyboard;
-   import alternativa.osgi.service.console.variables.ConsoleVarFloat;
-   import alternativa.osgi.service.console.variables.ConsoleVarInt;
-   import alternativa.osgi.service.console.variables.ConsoleVarString;
-   import alternativa.osgi.service.console.variables.ConsoleVar;
-   import alternativa.tanks.game.GameKernel;
-   import alternativa.ClientConfigurator;
-   import package_12.name_15;
-   import alternativa.tanks.config.Config;
-   import platform.client.a3d.osgi.Activator;
-   import alternativa.utils.Properties;
-   import alternativa.protocol.osgi.ProtocolActivator;
-   import platform.clients.fp10.libraries.alternativaprotocol.Activator;
-   import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
-   import alternativa.tanks.game.entities.map.VisibleLightMaterial;
-   import alternativa.tanks.game.entities.map.MapMaterial;
-   import alternativa.tanks.game.entities.tank.graphics.materials.TankMaterial2;
-   import alternativa.tanks.game.entities.tank.graphics.materials.TreesMaterial;
-   import alternativa.tanks.game.entities.tank.graphics.materials.GiShadowMaterial;
-   import alternativa.tanks.game.entities.tank.graphics.materials.TracksMaterial2;
-   import alternativa.tanks.game.entities.tank.graphics.materials.TankMaterial;
-   import package_4.name_11;
-   import package_4.name_28;
-   import package_4.name_6;
-   import alternativa.osgi.OSGi;
-   import alternativa.osgi.service.console.IConsole;
-   import alternativa.tanks.InitBattleTask;
-   import alternativa.tanks.TankTestTask;
-   import alternativa.startup.LibraryInfo;
-   import alternativa.startup.ConnectionParameters;
-   import alternativa.tanks.game.camera.FreeCameraController;
-   import alternativa.tanks.game.camera.AxisIndicator;
    
    [SWF(backgroundColor="#333333",frameRate="100",width="1024",height="768")]
    public class TanksTestingTool extends Sprite
    {
-      public static var testTask:TankTestTask;
+      public static var testTask:§_-A3§;
       
-      private var config:Config;
+      private var config:§_-YU§;
       
-      private var gameKernel:GameKernel;
+      private var gameKernel:§_-AG§;
       
-      private var var_1:name_15;
+      private var §_-6s§:§_-0F§;
       
       private var stage3D:Stage3D;
       
-      private var var_2:ClientConfigurator;
+      private var §_-nZ§:§_-Kr§;
       
       private var preloader:Preloader = new Preloader();
       
@@ -65,174 +65,173 @@ package
          super();
          mouseEnabled = false;
          mouseChildren = false;
-         this.initStage();
-         this.initClient();
-         this.initConsole();
-         this.initOptionsSupport();
-         VisibleLightMaterial.fadeRadius = 7000;
-         VisibleLightMaterial.spotAngle = 140 * Math.PI / 180;
-         VisibleLightMaterial.fallofAngle = 170 * Math.PI / 180;
+         this.§_-PK§();
+         this.§_-l2§();
+         this.§_-33§();
+         this.§_-5D§();
+         §_-Au§.fadeRadius = 7000;
+         §_-Au§.spotAngle = 140 * Math.PI / 180;
+         §_-Au§.fallofAngle = 170 * Math.PI / 180;
          this.stage3D = stage.stage3Ds[0];
-         this.stage3D.addEventListener(Event.CONTEXT3D_CREATE,this.onContextCreate);
+         this.stage3D.addEventListener(Event.CONTEXT3D_CREATE,this.§_-9x§);
          this.stage3D.requestContext3D();
       }
       
-      private function onContextCreate(param1:Event) : void
+      private function §_-9x§(param1:Event) : void
       {
-         switch(name_28.name_35(this.stage3D.context3D))
+         switch(§_-Pt§.§_-OP§(this.stage3D.context3D))
          {
-            case name_6.DXT1:
-               this.loadConfig("cfg.dxt1.xml");
+            case §_-Wn§.DXT1:
+               this.§_-Bw§("cfg.dxt1.xml");
                break;
-            case name_6.ETC1:
-               this.loadConfig("cfg.etc1.xml");
+            case §_-Wn§.ETC1:
+               this.§_-Bw§("cfg.etc1.xml");
                break;
-            case name_6.PVRTC:
-               this.loadConfig("cfg.pvrtc.xml");
-         }         }
-
-      }
-      
-      private function initOptionsSupport() : void
-      {
-         new ConsoleVarInt("fog_mode",0,0,3,this.onFogSettingsChange);
-         new ConsoleVarFloat("fog_near",0,0,1000000,this.onFogSettingsChange);
-         new ConsoleVarFloat("fog_far",5000,0,1000000,this.onFogSettingsChange);
-         new ConsoleVarFloat("fog_density",1,0,1,this.onFogSettingsChange);
-         new ConsoleVarFloat("horizon_offset",0,-1000000,1000000,this.onFogSettingsChange);
-         new ConsoleVarFloat("horizon_size",5000,0,1000000,this.onFogSettingsChange);
-         new ConsoleVarString("fog_color","0x0",this.onFogSettingsChange);
-         var _loc1_:IConsole = IConsole(OSGi.name_8().name_30(IConsole));
-         _loc1_.name_45("fog_texture",this.onFogTextureChange);
-         new ConsoleVarFloat("beam_distance",7000,0,1000000,this.onLightSettingsChange);
-         new ConsoleVarFloat("beam_spot",140,0,180,this.onLightSettingsChange);
-         new ConsoleVarFloat("beam_fallof",170,0,180,this.onLightSettingsChange);
-         new ConsoleVarFloat("beam_fallof",170,0,180,this.onLightSettingsChange);
-         new ConsoleVarFloat("camera_smoothing",20,0,200,this.onControllerSettingsChange);
-         MapMaterial.fogMode = MapMaterial.DISABLED;
-         TreesMaterial.fogMode = TreesMaterial.DISABLED;
-         TankMaterial.fogMode = TankMaterial.DISABLED;
-         TankMaterial2.fogMode = TankMaterial.DISABLED;
-         GiShadowMaterial.fogMode = name_11.DISABLED;
-         TracksMaterial2.fogMode = name_11.DISABLED;
-      }
-      
-      private function onControllerSettingsChange(param1:ConsoleVarFloat) : void
-      {
-         FreeCameraController.smoothing = param1.value;
-      }
-      
-      private function onLightSettingsChange(param1:ConsoleVar) : void
-      {
-         switch(param1.name_32())
-         {
-            case "beam_distance":
-               VisibleLightMaterial.fadeRadius = ConsoleVarFloat(param1).value;
-               break;
-            case "beam_spot":
-               VisibleLightMaterial.spotAngle = ConsoleVarFloat(param1).value * Math.PI / 180;
-               break;
-            case "beam_fallof":
-               VisibleLightMaterial.fallofAngle = ConsoleVarFloat(param1).value * Math.PI / 180;
+            case §_-Wn§.PVRTC:
+               this.§_-Bw§("cfg.pvrtc.xml");
          }
       }
       
-      private function onFogSettingsChange(param1:ConsoleVar) : void
+      private function §_-5D§() : void
+      {
+         new §_-UT§("fog_mode",0,0,3,this.§_-JG§);
+         new §_-Ju§("fog_near",0,0,1000000,this.§_-JG§);
+         new §_-Ju§("fog_far",5000,0,1000000,this.§_-JG§);
+         new §_-Ju§("fog_density",1,0,1,this.§_-JG§);
+         new §_-Ju§("horizon_offset",0,-1000000,1000000,this.§_-JG§);
+         new §_-Ju§("horizon_size",5000,0,1000000,this.§_-JG§);
+         new §_-mN§("fog_color","0x0",this.§_-JG§);
+         var _loc1_:§_-6A§ = §_-6A§(§_-oP§.§_-nQ§().§_-N6§(§_-6A§));
+         _loc1_.§_-0j§("fog_texture",this.§_-nx§);
+         new §_-Ju§("beam_distance",7000,0,1000000,this.§_-1B§);
+         new §_-Ju§("beam_spot",140,0,180,this.§_-1B§);
+         new §_-Ju§("beam_fallof",170,0,180,this.§_-1B§);
+         new §_-Ju§("beam_fallof",170,0,180,this.§_-1B§);
+         new §_-Ju§("camera_smoothing",20,0,200,this.§_-27§);
+         §_-pE§.fogMode = §_-pE§.DISABLED;
+         §_-4X§.fogMode = §_-4X§.DISABLED;
+         §_-as§.fogMode = §_-as§.DISABLED;
+         TankMaterial2.fogMode = §_-as§.DISABLED;
+         §_-jj§.fogMode = §_-dn§.DISABLED;
+         §_-bZ§.fogMode = §_-dn§.DISABLED;
+      }
+      
+      private function §_-27§(param1:§_-Ju§) : void
+      {
+         §_-Jv§.smoothing = param1.value;
+      }
+      
+      private function §_-1B§(param1:§_-6L§) : void
+      {
+         switch(param1.§_-cC§())
+         {
+            case "beam_distance":
+               §_-Au§.fadeRadius = §_-Ju§(param1).value;
+               break;
+            case "beam_spot":
+               §_-Au§.spotAngle = §_-Ju§(param1).value * Math.PI / 180;
+               break;
+            case "beam_fallof":
+               §_-Au§.fallofAngle = §_-Ju§(param1).value * Math.PI / 180;
+         }
+      }
+      
+      private function §_-JG§(param1:§_-6L§) : void
       {
          var _loc3_:Number = NaN;
          var _loc4_:Number = NaN;
          var _loc5_:Number = NaN;
-         var _loc6_:RenderSystem = this.gameKernel.name_5();
-         switch(param1.name_32())
+         var _loc6_:§_-1I§ = this.gameKernel.§_-DZ§();
+         switch(param1.§_-cC§())
          {
             case "fog_mode":
-               _loc6_.name_41(ConsoleVarInt(param1).value);
+               _loc6_.§_-ev§(§_-UT§(param1).value);
                break;
             case "fog_near":
-               _loc6_.name_47(ConsoleVarFloat(param1).value);
+               _loc6_.§_-9g§(§_-Ju§(param1).value);
                break;
             case "fog_far":
-               _loc6_.name_48(ConsoleVarFloat(param1).value);
+               _loc6_.§_-H9§(§_-Ju§(param1).value);
                break;
             case "fog_density":
-               _loc6_.name_49(ConsoleVarFloat(param1).value);
+               _loc6_.§_-J0§(§_-Ju§(param1).value);
                break;
             case "horizon_size":
-               _loc6_.name_38(ConsoleVarFloat(param1).value);
+               _loc6_.§_-Jk§(§_-Ju§(param1).value);
                break;
             case "horizon_offset":
-               _loc6_.name_34(ConsoleVarFloat(param1).value);
+               _loc6_.§_-Dd§(§_-Ju§(param1).value);
                break;
             case "fog_color":
-               _loc6_.name_40(parseInt(ConsoleVarString(param1).value,16));
+               _loc6_.§_-5d§(parseInt(§_-mN§(param1).value,16));
          }
       }
       
-      private function onFogTextureChange(param1:IConsole, param2:Array) : void
+      private function §_-nx§(param1:§_-6A§, param2:Array) : void
       {
-         this.gameKernel.name_5().name_36(param2.join(" "));
+         this.gameKernel.§_-DZ§().§_-FZ§(param2.join(" "));
       }
       
-      private function initStage() : void
+      private function §_-PK§() : void
       {
          stage.scaleMode = StageScaleMode.NO_SCALE;
          stage.align = StageAlign.TOP_LEFT;
          stage.quality = StageQuality.LOW;
       }
       
-      private function initClient() : void
+      private function §_-l2§() : void
       {
-         new OSGi();
-         this.var_2 = new ClientConfigurator();
-         this.var_2.start(this,new Properties(loaderInfo.parameters),new Vector.<LibraryInfo>(),new ConnectionParameters(null,null,null),new Vector.<String>());
-         new ProtocolActivator().start(OSGi.name_8());
-         new platform.clients.fp10.libraries.alternativaprotocol.Activator().start(OSGi.name_8());
-         new platform.client.a3d.osgi.Activator().start(OSGi.name_8());
+         new §_-oP§();
+         this.§_-nZ§ = new §_-Kr§();
+         this.§_-nZ§.start(this,new §_-c-§(loaderInfo.parameters),new Vector.<§_-a-§>(),new §_-1O§(null,null,null),new Vector.<String>());
+         new §_-fl§().start(§_-oP§.§_-nQ§());
+         new §_-TX§.§_-R3§().start(§_-oP§.§_-nQ§());
+         new §_-d8§.§_-R3§().start(§_-oP§.§_-nQ§());
       }
       
-      private function initConsole() : void
+      private function §_-33§() : void
       {
-         var _loc1_:IConsole = IConsole(OSGi.name_8().name_30(IConsole));
+         var _loc1_:§_-6A§ = §_-6A§(§_-oP§.§_-nQ§().§_-N6§(§_-6A§));
          _loc1_.width = 100;
          _loc1_.alpha = 0.8;
          _loc1_.height = 30;
       }
       
-      private function loadConfig(param1:String) : void
+      private function §_-Bw§(param1:String) : void
       {
          addChild(this.preloader);
-         this.config = new Config();
-         this.config.addEventListener(Event.COMPLETE,this.onConfigLoadingComplete);
+         this.config = new §_-YU§();
+         this.config.addEventListener(Event.COMPLETE,this.§_-JY§);
          this.config.load(param1,this.preloader);
       }
       
-      private function onConfigLoadingComplete(param1:Event) : void
+      private function §_-JY§(param1:Event) : void
       {
-         this.initGame();
-         this.initHUD();
+         this.§_-G-§();
+         this.§_-lN§();
       }
       
-      private function initHUD() : void
+      private function §_-lN§() : void
       {
-         this.var_1 = new name_15();
-         stage.addChild(this.var_1);
-         this.var_1.mouseChildren = true;
-         this.var_1.mouseEnabled = true;
-         this.var_1.addEventListener("CLICK_FULL_SCREEN_BUTTON",this.onClickFullScreenButton);
-         this.var_1.addEventListener("CLICK_NEXT_TANK_BUTTON",this.onClickNextTankButton);
+         this.§_-6s§ = new §_-0F§();
+         stage.addChild(this.§_-6s§);
+         this.§_-6s§.mouseChildren = true;
+         this.§_-6s§.mouseEnabled = true;
+         this.§_-6s§.addEventListener("CLICK_FULL_SCREEN_BUTTON",this.§_-GO§);
+         this.§_-6s§.addEventListener("CLICK_NEXT_TANK_BUTTON",this.§_-gC§);
          stage.addChild(this.preloader);
-         stage.addEventListener(KeyboardEvent.KEY_DOWN,this.onKeyDown);
-         this.gameKernel.name_5().name_27().diagramVerticalMargin = 85;
-         this.gameKernel.name_5().name_27().diagramHorizontalMargin = 12;
-         this.onResize(null);
+         stage.addEventListener(KeyboardEvent.KEY_DOWN,this.§_-Ze§);
+         this.gameKernel.§_-DZ§().§_-GW§().diagramVerticalMargin = 85;
+         this.gameKernel.§_-DZ§().§_-GW§().diagramHorizontalMargin = 12;
+         this.§_-7B§(null);
       }
       
-      private function onKeyDown(param1:KeyboardEvent) : void
+      private function §_-Ze§(param1:KeyboardEvent) : void
       {
          var _loc2_:DisplayObject = null;
          if(param1.keyCode == Keyboard.G)
          {
-            _loc2_ = this.gameKernel.name_5().name_39();
+            _loc2_ = this.gameKernel.§_-DZ§().§_-G§();
             if(_loc2_.parent != null)
             {
                _loc2_.parent.removeChild(_loc2_);
@@ -244,19 +243,19 @@ package
          }
       }
       
-      private function onClickFullScreenButton(param1:Event) : void
+      private function §_-GO§(param1:Event) : void
       {
-         stage.displayState = this.var_1.name_31 ? StageDisplayState.FULL_SCREEN : StageDisplayState.NORMAL;
-         stage.addEventListener(FullScreenEvent.FULL_SCREEN,this.onFullScreenChange);
+         stage.displayState = !!this.§_-6s§.§_-8F§ ? StageDisplayState.FULL_SCREEN : StageDisplayState.NORMAL;
+         stage.addEventListener(FullScreenEvent.FULL_SCREEN,this.§_-Tp§);
       }
       
-      private function onFullScreenChange(param1:Event) : void
+      private function §_-Tp§(param1:Event) : void
       {
-         stage.removeEventListener(FullScreenEvent.FULL_SCREEN,this.onFullScreenChange);
-         this.var_1.name_31 = stage.displayState != StageDisplayState.NORMAL;
+         stage.removeEventListener(FullScreenEvent.FULL_SCREEN,this.§_-Tp§);
+         this.§_-6s§.§_-8F§ = stage.displayState != StageDisplayState.NORMAL;
       }
       
-      private function onClickNextTankButton(param1:Event) : void
+      private function §_-gC§(param1:Event) : void
       {
          if(testTask != null)
          {
@@ -264,34 +263,34 @@ package
          }
       }
       
-      private function initGame() : void
+      private function §_-G-§() : void
       {
-         this.gameKernel = new GameKernel(stage,this.config.options);
-         this.gameKernel.name_5().name_37(this.stage3D);
-         var _loc1_:InitBattleTask = new InitBattleTask(this.gameKernel,this.config,this,this.preloader);
+         this.gameKernel = new §_-AG§(stage,this.config.options);
+         this.gameKernel.§_-DZ§().§_-X4§(this.stage3D);
+         var _loc1_:§_-DN§ = new §_-DN§(this.gameKernel,this.config,this,this.preloader);
          this.gameKernel.addTask(_loc1_);
-         stage.addEventListener(Event.RESIZE,this.onResize);
-         this.onResize(null);
-         stage.addEventListener(Event.ENTER_FRAME,this.onEnterFrame);
+         stage.addEventListener(Event.RESIZE,this.§_-7B§);
+         this.§_-7B§(null);
+         stage.addEventListener(Event.ENTER_FRAME,this.§_-ba§);
       }
       
-      private function onEnterFrame(param1:Event) : void
+      private function §_-ba§(param1:Event) : void
       {
-         this.gameKernel.name_51();
+         this.gameKernel.§_-Kf§();
       }
       
-      private function onResize(param1:Event) : void
+      private function §_-7B§(param1:Event) : void
       {
-         var _loc2_:AxisIndicator = null;
+         var _loc2_:§_-VT§ = null;
          if(this.gameKernel != null)
          {
-            this.gameKernel.name_5().name_46(0,0,stage.stageWidth,stage.stageHeight);
-            _loc2_ = this.gameKernel.name_5().name_42();
+            this.gameKernel.§_-DZ§().§_-3N§(0,0,stage.stageWidth,stage.stageHeight);
+            _loc2_ = this.gameKernel.§_-DZ§().§_-MG§();
             _loc2_.y = stage.stageHeight - _loc2_.size;
          }
-         if(this.var_1 != null)
+         if(this.§_-6s§ != null)
          {
-            this.var_1.name_50(stage.stageWidth,stage.stageHeight);
+            this.§_-6s§.§_-K6§(stage.stageWidth,stage.stageHeight);
          }
       }
    }

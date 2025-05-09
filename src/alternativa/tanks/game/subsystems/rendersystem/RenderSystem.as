@@ -1,6 +1,30 @@
 package alternativa.tanks.game.subsystems.rendersystem
 {
    import alternativa.engine3d.alternativa3d;
+   import alternativa.engine3d.core.Object3D;
+   import alternativa.engine3d.core.Resource;
+   import alternativa.engine3d.core.View;
+   import alternativa.engine3d.core.events.MouseEvent3D;
+   import alternativa.engine3d.effects.ParticleSystem;
+   import alternativa.engine3d.effects.§_-SG§;
+   import alternativa.engine3d.lights.DirectionalLight;
+   import alternativa.engine3d.objects.Decal;
+   import alternativa.engine3d.resources.BitmapTextureResource;
+   import alternativa.engine3d.shadows.ShadowRenderer;
+   import alternativa.engine3d.shadows.ShadowsSystem;
+   import alternativa.engine3d.shadows.StaticShadowRenderer;
+   import alternativa.tanks.game.GameTask;
+   import alternativa.tanks.game.camera.AxisIndicator;
+   import alternativa.tanks.game.entities.map.MapMaterial;
+   import alternativa.tanks.game.entities.tank.graphics.materials.GiShadowMaterial;
+   import alternativa.tanks.game.entities.tank.graphics.materials.TankMaterial;
+   import alternativa.tanks.game.entities.tank.graphics.materials.TankMaterial2;
+   import alternativa.tanks.game.entities.tank.graphics.materials.TracksMaterial2;
+   import alternativa.tanks.game.entities.tank.graphics.materials.TreesMaterial;
+   import alternativa.tanks.game.subsystems.inputsystem.IInput;
+   import alternativa.tanks.game.subsystems.inputsystem.KeyboardEventType;
+   import alternativa.tanks.game.utils.BitFlags;
+   import alternativa.tanks.game.utils.objectpool.ObjectPoolManager;
    import flash.display.BitmapData;
    import flash.display.DisplayObject;
    import flash.display.Sprite;
@@ -11,30 +35,6 @@ package alternativa.tanks.game.subsystems.rendersystem
    import flash.events.Event;
    import flash.geom.Vector3D;
    import flash.ui.Keyboard;
-   import alternativa.tanks.game.GameTask;
-   import package_19.name_91;
-   import alternativa.tanks.game.entities.map.MapMaterial;
-   import package_21.name_77;
-   import package_21.name_78;
-   import package_21.name_81;
-   import alternativa.tanks.game.subsystems.inputsystem.KeyboardEventType;
-   import alternativa.tanks.game.subsystems.inputsystem.IInput;
-   import package_23.name_103;
-   import package_23.name_92;
-   import package_23.name_97;
-   import package_24.DirectionalLight;
-   import package_25.name_113;
-   import package_25.name_98;
-   import alternativa.tanks.game.utils.objectpool.ObjectPoolManager;
-   import package_27.name_95;
-   import package_28.name_93;
-   import package_29.MouseEvent3D;
-   import alternativa.tanks.game.entities.tank.graphics.materials.TankMaterial2;
-   import alternativa.tanks.game.entities.tank.graphics.materials.TreesMaterial;
-   import alternativa.tanks.game.entities.tank.graphics.materials.GiShadowMaterial;
-   import alternativa.tanks.game.entities.tank.graphics.materials.TracksMaterial2;
-   import alternativa.tanks.game.entities.tank.graphics.materials.TankMaterial;
-   import alternativa.tanks.game.camera.AxisIndicator;
    
    use namespace alternativa3d;
    
@@ -54,51 +54,51 @@ package alternativa.tanks.game.subsystems.rendersystem
       
       private static const BIT_DEBUG_LIGHTS:int = 1 << 1;
       
-      private var rootContainer:name_78;
+      private var rootContainer:Object3D;
       
-      private var skyboxContainer:name_78;
+      private var skyboxContainer:Object3D;
       
-      private var mapGeometryContainer:name_78;
+      private var mapGeometryContainer:Object3D;
       
-      private var lightsContainer:name_78;
+      private var lightsContainer:Object3D;
       
-      private var dynamicObjectsContainer:name_78;
+      private var dynamicObjectsContainer:Object3D;
       
-      private var effectsContainer:name_78;
+      private var effectsContainer:Object3D;
       
-      private var var_12:Object = {};
+      private var §_-jy§:Object = {};
       
-      private var view:name_81;
+      private var view:View;
       
       private var camera:GameCamera;
       
-      private var var_13:ICameraController;
+      private var §_-lk§:ICameraController;
       
       private var axisIndicator:AxisIndicator;
       
       private var renderers:RendererList;
       
-      private var var_11:RendererList;
+      private var §_-WV§:RendererList;
       
       private var effects:Vector.<IGraphicEffect>;
       
       private var numEffects:int;
       
-      private var var_14:Boolean = true;
+      private var §_-EX§:Boolean = true;
       
-      private var var_8:Object = {};
+      private var §_-qH§:Object = {};
       
-      private var var_16:Lights;
+      private var §_-9k§:Lights;
       
-      private var var_20:Boolean;
+      private var §for§:Boolean;
       
-      private var var_18:Boolean;
+      private var §_-7w§:Boolean;
       
       private var objectPoolManager:ObjectPoolManager = new ObjectPoolManager();
       
-      private var var_19:Vector.<TextMarker>;
+      private var §_-1h§:Vector.<TextMarker>;
       
-      private var var_17:name_95 = new name_95();
+      private var §_-i6§:BitFlags = new BitFlags();
       
       private var stage:Stage;
       
@@ -106,37 +106,37 @@ package alternativa.tanks.game.subsystems.rendersystem
       
       private var resourceManager:ResourceManager;
       
-      private var var_9:name_92;
+      private var §_-aD§:ShadowsSystem;
       
-      private var staticShadowRenderer:name_97;
+      private var staticShadowRenderer:StaticShadowRenderer;
       
-      private var var_10:Vector.<IDeferredAction>;
+      private var §_-pR§:Vector.<IDeferredAction>;
       
-      private var var_7:Vector.<IShadowRendererConstructor>;
+      private var §_-MI§:Vector.<IShadowRendererConstructor>;
       
-      private var var_15:Boolean;
+      private var §_-qS§:Boolean;
       
-      private var var_6:name_93;
+      private var §_-Qk§:BitmapTextureResource;
       
-      private var var_5:name_98;
+      private var §_-Ta§:ParticleSystem;
       
       public function RenderSystem(priority:int, stage:Stage)
       {
          super(priority);
          this.stage = stage;
          this.renderers = new RendererList();
-         this.var_11 = new RendererList();
+         this.§_-WV§ = new RendererList();
          this.effects = new Vector.<IGraphicEffect>();
-         this.rootContainer = new name_78();
+         this.rootContainer = new Object3D();
          this.rootContainer.name = "root";
          this.skyboxContainer = this.createContainer(SKYBOX_CONTAINER_ID);
          this.mapGeometryContainer = this.createContainer(MAP_GEOMETRY_CONTAINER_ID);
          this.lightsContainer = this.createContainer(LIGHTS_CONTAINER_ID);
          this.dynamicObjectsContainer = this.createContainer(DYNAMIC_OBJECTS_CONTAINER_ID);
          this.effectsContainer = this.createContainer(EFFECTS_CONTAINER_ID);
-         this.var_16 = new Lights(this.lightsContainer);
-         this.view = new name_81(100,100,false,6710886,1,4);
-         this.view.name_106();
+         this.§_-9k§ = new Lights(this.lightsContainer);
+         this.view = new View(100,100,false,6710886,1,4);
+         this.view.hideLogo();
          this.camera = new GameCamera(10,50000);
          this.camera.nearClipping = 1;
          this.camera.view = this.view;
@@ -144,23 +144,23 @@ package alternativa.tanks.game.subsystems.rendersystem
          var giLight:DirectionalLight = new DirectionalLight(9222892);
          giLight.intensity = 0.5;
          giLight.rotationX = Math.PI;
-         this.var_5 = new name_98();
-         this.var_5.gravity = new Vector3D(0,0,-1);
-         this.var_5.wind = new Vector3D(1,0,0);
-         this.rootContainer.addChild(this.var_5);
+         this.§_-Ta§ = new ParticleSystem();
+         this.§_-Ta§.gravity = new Vector3D(0,0,-1);
+         this.§_-Ta§.wind = new Vector3D(1,0,0);
+         this.rootContainer.addChild(this.§_-Ta§);
          this.axisIndicator = new AxisIndicator(100);
          this.resourceManager = new ResourceManager();
-         this.var_9 = new name_92();
-         this.staticShadowRenderer = new name_97(null,1024,4);
-         this.var_10 = new Vector.<IDeferredAction>();
+         this.§_-aD§ = new ShadowsSystem();
+         this.staticShadowRenderer = new StaticShadowRenderer(null,1024,4);
+         this.§_-pR§ = new Vector.<IDeferredAction>();
          this.rootContainer.addEventListener(MouseEvent3D.CLICK,this.onClick);
       }
       
       private function onClick(e:MouseEvent3D) : void
       {
-         if(e.target is name_91)
+         if(e.target is Decal)
          {
-            trace(e.target,e.target.name,name_91(e.target).offset,e.target.scaleX,e.target.scaleY,e.target.scaleZ);
+            trace(e.target,e.target.name,Decal(e.target).offset,e.target.scaleX,e.target.scaleY,e.target.scaleZ);
          }
          else
          {
@@ -170,10 +170,10 @@ package alternativa.tanks.game.subsystems.rendersystem
       
       public function get lights() : Lights
       {
-         return this.var_16;
+         return this.§_-9k§;
       }
       
-      public function name_41(mode:int) : void
+      public function setFogMode(mode:int) : void
       {
          MapMaterial.fogMode = mode;
          TankMaterial.fogMode = mode;
@@ -184,15 +184,15 @@ package alternativa.tanks.game.subsystems.rendersystem
          GiShadowMaterial.fogMode = mode;
          if(mode == 1)
          {
-            this.var_5.fogFar = MapMaterial.fogFar;
+            this.§_-Ta§.fogFar = MapMaterial.fogFar;
          }
          else
          {
-            this.var_5.fogFar = 0;
+            this.§_-Ta§.fogFar = 0;
          }
       }
       
-      public function name_47(value:Number) : void
+      public function setFogNear(value:Number) : void
       {
          MapMaterial.fogNear = value;
          TankMaterial.fogNear = value;
@@ -200,10 +200,10 @@ package alternativa.tanks.game.subsystems.rendersystem
          TracksMaterial2.fogNear = value;
          TreesMaterial.fogNear = value;
          GiShadowMaterial.fogNear = value;
-         this.var_5.fogNear = value;
+         this.§_-Ta§.fogNear = value;
       }
       
-      public function name_48(value:Number) : void
+      public function setFogFar(value:Number) : void
       {
          MapMaterial.fogFar = value;
          TankMaterial.fogFar = value;
@@ -211,10 +211,10 @@ package alternativa.tanks.game.subsystems.rendersystem
          TracksMaterial2.fogFar = value;
          TreesMaterial.fogFar = value;
          GiShadowMaterial.fogFar = value;
-         this.var_5.fogFar = value;
+         this.§_-Ta§.fogFar = value;
       }
       
-      public function name_49(value:Number) : void
+      public function setMaxFogDensity(value:Number) : void
       {
          MapMaterial.fogMaxDensity = value;
          TankMaterial.fogMaxDensity = value;
@@ -223,10 +223,10 @@ package alternativa.tanks.game.subsystems.rendersystem
          TreesMaterial.fogMaxDensity = value;
          SkyMaterial.fogMaxDensity = value;
          GiShadowMaterial.fogMaxDensity = value;
-         this.var_5.fogMaxDensity = value;
+         this.§_-Ta§.fogMaxDensity = value;
       }
       
-      public function name_40(color:uint) : void
+      public function setFogColor(color:uint) : void
       {
          var r:Number = (color >> 16 & 0xFF) / 255;
          var g:Number = (color >> 8 & 0xFF) / 255;
@@ -252,22 +252,22 @@ package alternativa.tanks.game.subsystems.rendersystem
          GiShadowMaterial.fogColorR = r;
          GiShadowMaterial.fogColorG = g;
          GiShadowMaterial.fogColorB = b;
-         this.var_5.name_107 = color;
+         this.§_-Ta§.§_-IN§ = color;
       }
       
-      public function name_38(value:Number) : void
+      public function setFogHorizonSize(value:Number) : void
       {
          SkyMaterial.fogHeight = value;
       }
       
-      public function name_34(value:Number) : void
+      public function setFogHorizonOffset(value:Number) : void
       {
          SkyMaterial.fogOffset = value;
       }
       
-      public function name_36(textureParams:String) : void
+      public function setFogTextureParams(textureParams:String) : void
       {
-         var fogBitmap:BitmapData = RenderUtils.name_109(textureParams,128);
+         var fogBitmap:BitmapData = RenderUtils.getFogBitmap(textureParams,128);
          var fogInitializator:FogInitializator = new FogInitializator(fogBitmap,this);
          if(this.isContext3DAvailable())
          {
@@ -275,121 +275,121 @@ package alternativa.tanks.game.subsystems.rendersystem
          }
          else
          {
-            this.var_10.push(fogInitializator);
+            this.§_-pR§.push(fogInitializator);
          }
       }
       
-      public function method_33(bitmapData:BitmapData) : void
+      public function setFogTexture(bitmapData:BitmapData) : void
       {
          if(!this.isContext3DAvailable())
          {
             throw new Error("Context3D is not available. Use setFogTextureParams() instead.");
          }
-         if(this.var_6 != null)
+         if(this.§_-Qk§ != null)
          {
-            this.method_28(this.var_6);
+            this.releaseResource(this.§_-Qk§);
          }
-         this.var_6 = new name_93(bitmapData);
-         this.method_29(this.var_6);
-         MapMaterial.method_33(this.var_6);
-         TankMaterial.method_33(this.var_6);
-         TankMaterial2.method_33(this.var_6);
-         GiShadowMaterial.method_33(this.var_6);
-         TracksMaterial2.method_33(this.var_6);
-         TreesMaterial.method_33(this.var_6);
-         SkyMaterial.method_33(this.var_6);
+         this.§_-Qk§ = new BitmapTextureResource(bitmapData);
+         this.useResource(this.§_-Qk§);
+         MapMaterial.setFogTexture(this.§_-Qk§);
+         TankMaterial.setFogTexture(this.§_-Qk§);
+         TankMaterial2.setFogTexture(this.§_-Qk§);
+         GiShadowMaterial.setFogTexture(this.§_-Qk§);
+         TracksMaterial2.setFogTexture(this.§_-Qk§);
+         TreesMaterial.setFogTexture(this.§_-Qk§);
+         SkyMaterial.setFogTexture(this.§_-Qk§);
       }
       
-      public function method_57() : Boolean
+      public function isShadowSystemReady() : Boolean
       {
-         return this.var_15;
+         return this.§_-qS§;
       }
       
-      public function method_58() : void
+      public function setShadowSystemReady() : void
       {
          var shadowRendererConstructor:IShadowRendererConstructor = null;
-         this.var_15 = true;
-         if(this.var_7 != null)
+         this.§_-qS§ = true;
+         if(this.§_-MI§ != null)
          {
-            for each(shadowRendererConstructor in this.var_7)
+            for each(shadowRendererConstructor in this.§_-MI§)
             {
-               shadowRendererConstructor.name_111();
+               shadowRendererConstructor.createShadowRenderer();
             }
-            this.var_7 = null;
+            this.§_-MI§ = null;
          }
       }
       
-      public function method_59(shadowRendererConstructor:IShadowRendererConstructor) : void
+      public function addShadowRendererConstructor(shadowRendererConstructor:IShadowRendererConstructor) : void
       {
          if(shadowRendererConstructor == null)
          {
             throw new ArgumentError("Parameter shadowRendererConstructor is null");
          }
-         if(this.var_15)
+         if(this.§_-qS§)
          {
             throw new Error("Cannot add constructor: shadow system is ready");
          }
-         if(this.var_7 == null)
+         if(this.§_-MI§ == null)
          {
-            this.var_7 = new Vector.<IShadowRendererConstructor>();
+            this.§_-MI§ = new Vector.<IShadowRendererConstructor>();
          }
-         var index:int = int(this.var_7.indexOf(shadowRendererConstructor));
+         var index:int = int(this.§_-MI§.indexOf(shadowRendererConstructor));
          if(index < 0)
          {
-            this.var_7.push(shadowRendererConstructor);
+            this.§_-MI§.push(shadowRendererConstructor);
          }
       }
       
-      public function method_49(shadowRendererConstructor:IShadowRendererConstructor) : void
+      public function removeShadowRendererConstructor(shadowRendererConstructor:IShadowRendererConstructor) : void
       {
          var index:int = 0;
-         if(this.var_7 != null)
+         if(this.§_-MI§ != null)
          {
-            index = int(this.var_7.indexOf(shadowRendererConstructor));
+            index = int(this.§_-MI§.indexOf(shadowRendererConstructor));
             if(index >= 0)
             {
-               this.var_7.splice(index,1);
+               this.§_-MI§.splice(index,1);
             }
          }
       }
       
-      public function method_55() : name_92
+      public function getShadowSystem() : ShadowsSystem
       {
-         return this.var_9;
+         return this.§_-aD§;
       }
       
-      public function method_54(value:int) : void
+      public function setAntialiasing(value:int) : void
       {
          this.view.antiAlias = value;
       }
       
-      public function method_72() : int
+      public function getAnitaliasing() : int
       {
          return this.view.antiAlias;
       }
       
-      public function method_70(renderer:name_103) : void
+      public function addShadowRenderer(renderer:ShadowRenderer) : void
       {
          if(renderer == null)
          {
             throw new ArgumentError("Parameter renderer is null");
          }
-         if(this.var_9.renderers.indexOf(renderer) < 0)
+         if(this.§_-aD§.renderers.indexOf(renderer) < 0)
          {
-            this.var_9.renderers.push(renderer);
+            this.§_-aD§.renderers.push(renderer);
          }
       }
       
-      public function method_65(renderer:name_103) : void
+      public function removeShadowRenderer(renderer:ShadowRenderer) : void
       {
-         var index:int = int(this.var_9.renderers.indexOf(renderer));
+         var index:int = int(this.§_-aD§.renderers.indexOf(renderer));
          if(index >= 0)
          {
-            this.var_9.renderers.splice(index,1);
+            this.§_-aD§.renderers.splice(index,1);
          }
       }
       
-      public function name_37(stage3d:Stage3D) : void
+      public function setStage3D(stage3d:Stage3D) : void
       {
          this.stage3d = stage3d;
          this.initContext(stage3d.context3D);
@@ -402,87 +402,87 @@ package alternativa.tanks.game.subsystems.rendersystem
          this.stage3d.requestContext3D(Context3DRenderMode.AUTO);
       }
       
-      public function method_29(resource:name_77) : void
+      public function useResource(resource:Resource) : void
       {
-         this.resourceManager.method_29(resource);
+         this.resourceManager.useResource(resource);
       }
       
-      public function method_32(resources:Vector.<name_77>) : void
+      public function useResources(resources:Vector.<Resource>) : void
       {
-         this.resourceManager.method_32(resources);
+         this.resourceManager.useResources(resources);
       }
       
-      public function method_28(resource:name_77) : void
+      public function releaseResource(resource:Resource) : void
       {
-         this.resourceManager.method_28(resource);
+         this.resourceManager.releaseResource(resource);
       }
       
-      public function method_31(resources:Vector.<name_77>) : void
+      public function releaseResources(resources:Vector.<Resource>) : void
       {
-         this.resourceManager.method_31(resources);
+         this.resourceManager.releaseResources(resources);
       }
       
       public function clear() : void
       {
       }
       
-      public function method_62() : name_78
+      public function getRootContainer() : Object3D
       {
          return this.rootContainer;
       }
       
-      public function method_68() : name_78
+      public function getMapGeometryContainer() : Object3D
       {
          return this.mapGeometryContainer;
       }
       
-      public function method_46() : name_78
+      public function getDynamicObjectsContainer() : Object3D
       {
          return this.dynamicObjectsContainer;
       }
       
-      public function method_60() : name_78
+      public function getEffectsContainer() : Object3D
       {
          return this.effectsContainer;
       }
       
-      public function method_40(containerId:String) : name_78
+      public function getContainer(containerId:String) : Object3D
       {
-         return this.var_12[containerId];
+         return this.§_-jy§[containerId];
       }
       
-      public function method_30(resource:name_77) : void
+      public function uploadResource(resource:Resource) : void
       {
-         this.resourceManager.method_30(resource);
+         this.resourceManager.uploadResource(resource);
       }
       
-      public function method_47(containerId:String, container:name_78, uploadResources:Boolean) : void
+      public function addContainer(containerId:String, container:Object3D, uploadResources:Boolean) : void
       {
-         if(this.method_40(containerId) != null)
+         if(this.getContainer(containerId) != null)
          {
             throw new Error("Container with id \"" + containerId + "\" already exists");
          }
-         this.var_12[containerId] = container;
+         this.§_-jy§[containerId] = container;
          this.rootContainer.addChild(container);
          if(uploadResources)
          {
-            this.resourceManager.method_32(container.getResources(true));
+            this.resourceManager.useResources(container.getResources(true));
          }
       }
       
-      public function name_42() : AxisIndicator
+      public function getAxisIndicator() : AxisIndicator
       {
          return this.axisIndicator;
       }
       
-      public function method_41(name:String) : Sprite
+      public function getOverlay(name:String) : Sprite
       {
-         var view:name_81 = null;
-         var overlay:Sprite = this.var_8[name];
+         var view:View = null;
+         var overlay:Sprite = this.§_-qH§[name];
          if(overlay == null)
          {
             overlay = new Sprite();
-            this.var_8[name] = overlay;
+            this.§_-qH§[name] = overlay;
             view = this.camera.view;
             overlay.x = view.x + (view.width >> 1);
             overlay.y = view.y + (view.height >> 1);
@@ -491,61 +491,61 @@ package alternativa.tanks.game.subsystems.rendersystem
          return overlay;
       }
       
-      public function method_51(name:String) : void
+      public function removeOverlay(name:String) : void
       {
-         var overlay:Sprite = this.var_8[name];
+         var overlay:Sprite = this.§_-qH§[name];
          if(overlay != null)
          {
-            delete this.var_8[name];
+            delete this.§_-qH§[name];
             overlay.parent.removeChild(overlay);
          }
       }
       
-      public function addObject(object:name_78) : void
+      public function addObject(object:Object3D) : void
       {
          this.rootContainer.addChild(object);
-         this.resourceManager.method_32(object.getResources());
+         this.resourceManager.useResources(object.getResources());
       }
       
-      public function name_71() : name_81
+      public function getView() : View
       {
          return this.view;
       }
       
-      public function name_39() : DisplayObject
+      public function getCameraDiagram() : DisplayObject
       {
          return this.camera.diagram;
       }
       
-      public function method_43(objects:Vector.<name_78>) : void
+      public function setPhysicsVisualObjects(objects:Vector.<Object3D>) : void
       {
-         var object3D:name_78 = null;
+         var object3D:Object3D = null;
          for each(object3D in objects)
          {
          }
       }
       
-      public function method_63(renderer:IRenderer) : void
+      public function addRenderer(renderer:IRenderer) : void
       {
          this.renderers.add(renderer);
       }
       
-      public function method_64(renderer:IRenderer) : void
+      public function removeRenderer(renderer:IRenderer) : void
       {
          this.renderers.remove(renderer);
       }
       
-      public function method_56(renderer:IRenderer) : void
+      public function addPostRenderer(renderer:IRenderer) : void
       {
-         this.var_11.add(renderer);
+         this.§_-WV§.add(renderer);
       }
       
-      public function method_53(renderer:IRenderer) : void
+      public function removePostRenderer(renderer:IRenderer) : void
       {
-         this.var_11.remove(renderer);
+         this.§_-WV§.remove(renderer);
       }
       
-      public function method_37(effect:IGraphicEffect) : void
+      public function each(effect:IGraphicEffect) : void
       {
          if(this.effects.indexOf(effect) >= 0)
          {
@@ -556,47 +556,47 @@ package alternativa.tanks.game.subsystems.rendersystem
          effect.addedToRenderSystem(this);
       }
       
-      public function method_48(effect:name_113) : void
+      public function addA3DEffect(effect:§_-SG§) : void
       {
-         this.var_5.method_37(effect);
+         this.§_-Ta§.each(effect);
       }
       
-      public function name_63(controller:ICameraController) : void
+      public function setCameraController(controller:ICameraController) : void
       {
-         if(this.var_13 == controller)
+         if(this.§_-lk§ == controller)
          {
             return;
          }
-         this.var_13 = controller;
-         controller.name_108();
+         this.§_-lk§ = controller;
+         controller.enable();
       }
       
-      public function name_27() : GameCamera
+      public function getCamera() : GameCamera
       {
          return this.camera;
       }
       
-      public function method_45() : void
+      public function disableCameraController() : void
       {
-         this.var_14 = false;
+         this.§_-EX§ = false;
          false;
       }
       
-      public function method_69() : void
+      public function enableCameraController() : void
       {
-         this.var_14 = true;
+         this.§_-EX§ = true;
          true;
       }
       
-      public function name_46(x:int, y:int, width:int, height:int) : void
+      public function setViewRect(x:int, y:int, width:int, height:int) : void
       {
          var overlay:Sprite = null;
-         var view:name_81 = this.camera.view;
+         var view:View = this.camera.view;
          view.x = x;
          view.y = y;
          view.width = width;
          view.height = height;
-         for each(var _loc9_ in this.var_8)
+         for each(var _loc9_ in this.§_-qH§)
          {
             overlay = _loc9_;
             _loc9_;
@@ -605,23 +605,23 @@ package alternativa.tanks.game.subsystems.rendersystem
          }
       }
       
-      public function method_42() : Context3D
+      public function getContext3D() : Context3D
       {
          return this.stage3d.context3D;
       }
       
       override public function start() : void
       {
-         var input:IInput = IInput(var_4.getTaskInterface(IInput));
-         input.name_94(KeyboardEventType.KEY_DOWN,this.onToggleDebugKey,Keyboard.F7);
-         input.name_94(KeyboardEventType.KEY_DOWN,this.onToggleDebugKey,Keyboard.F8);
-         input.name_94(KeyboardEventType.KEY_DOWN,this.onToggleDebugKey,Keyboard.TAB);
+         var input:IInput = IInput(§_-Uw§.getTaskInterface(IInput));
+         input.addKeyboardListener(KeyboardEventType.KEY_DOWN,this.onToggleDebugKey,Keyboard.F7);
+         input.addKeyboardListener(KeyboardEventType.KEY_DOWN,this.onToggleDebugKey,Keyboard.F8);
+         input.addKeyboardListener(KeyboardEventType.KEY_DOWN,this.onToggleDebugKey,Keyboard.TAB);
       }
       
       override public function stop() : void
       {
          var overlay:Sprite = null;
-         for each(var _loc4_ in this.var_8)
+         for each(var _loc4_ in this.§_-qH§)
          {
             overlay = _loc4_;
             _loc4_;
@@ -643,7 +643,7 @@ package alternativa.tanks.game.subsystems.rendersystem
          {
             return;
          }
-         for each(var _loc7_ in this.var_8)
+         for each(var _loc7_ in this.§_-qH§)
          {
             overlay = _loc7_;
             _loc7_;
@@ -654,14 +654,14 @@ package alternativa.tanks.game.subsystems.rendersystem
             renderer = this.renderers.renderers[i];
             renderer.render();
          }
-         if(this.var_13 != null && this.var_14)
+         if(this.§_-lk§ != null && this.§_-EX§)
          {
-            this.var_13.update();
+            this.§_-lk§.update();
          }
-         this.camera.name_112();
-         for(i = 0; i < this.var_11.numRenderers; i++)
+         this.camera.calculateAxis();
+         for(i = 0; i < this.§_-WV§.numRenderers; i++)
          {
-            renderer = this.var_11.renderers[i];
+            renderer = this.§_-WV§.renderers[i];
             renderer.render();
          }
          for(i = 0; i < this.numEffects; )
@@ -681,21 +681,21 @@ package alternativa.tanks.game.subsystems.rendersystem
             this.axisIndicator.update(this.camera);
          }
          this.camera.startTimer();
-         this.var_9.update(this.rootContainer);
+         this.§_-aD§.update(this.rootContainer);
          this.camera.render(this.stage3d);
          this.camera.stopTimer();
       }
       
-      public function method_71(mainDirectionalLight:DirectionalLight) : void
+      public function initStaticShadow(mainDirectionalLight:DirectionalLight) : void
       {
          var staticShadowInitializer:StaticShadowInitializer = new StaticShadowInitializer(this.staticShadowRenderer,this.mapGeometryContainer,mainDirectionalLight);
          if(this.isContext3DAvailable())
          {
-            staticShadowInitializer.execute(this.method_42());
+            staticShadowInitializer.execute(this.getContext3D());
          }
          else
          {
-            this.var_10.push(staticShadowInitializer);
+            this.§_-pR§.push(staticShadowInitializer);
          }
       }
       
@@ -704,11 +704,11 @@ package alternativa.tanks.game.subsystems.rendersystem
          return this.stage3d != null && this.stage3d.context3D != null;
       }
       
-      private function createContainer(id:String) : name_78
+      private function createContainer(id:String) : Object3D
       {
-         var container:name_78 = new name_78();
+         var container:Object3D = new Object3D();
          container.name = id;
-         this.var_12[id] = container;
+         this.§_-jy§[id] = container;
          this.rootContainer.addChild(container);
          return container;
       }
@@ -722,15 +722,15 @@ package alternativa.tanks.game.subsystems.rendersystem
       {
          var deferredAction:IDeferredAction = null;
          context3D.enableErrorChecking = false;
-         this.resourceManager.name_105(context3D);
+         this.resourceManager.setContext(context3D);
          this.staticShadowRenderer.context = context3D;
-         for each(var _loc5_ in this.var_10)
+         for each(var _loc5_ in this.§_-pR§)
          {
             deferredAction = _loc5_;
             _loc5_;
             deferredAction.execute(this.stage3d);
          }
-         this.var_10 = null;
+         this.§_-pR§ = null;
       }
       
       private function onToggleDebugKey(eventType:KeyboardEventType, keyCode:uint) : void
@@ -743,9 +743,9 @@ package alternativa.tanks.game.subsystems.rendersystem
          }
       }
       
-      private function addObject3DMarkers(objects:Vector.<name_78>) : Vector.<TextMarker>
+      private function addObject3DMarkers(objects:Vector.<Object3D>) : Vector.<TextMarker>
       {
-         var object:name_78 = null;
+         var object:Object3D = null;
          var textMarker:TextMarker = null;
          if(objects == null)
          {
@@ -755,9 +755,9 @@ package alternativa.tanks.game.subsystems.rendersystem
          for(var i:int = 0; i < objects.length; i++)
          {
             object = objects[i];
-            textMarker = TextMarker(this.objectPoolManager.name_110(TextMarker));
-            textMarker.init(this.method_41("markers"),object.name || "[none]",object);
-            this.method_37(textMarker);
+            textMarker = TextMarker(this.objectPoolManager.getObject(TextMarker));
+            textMarker.init(this.getOverlay("markers"),object.name || "[none]",object);
+            this.each(textMarker);
             markers[i] = textMarker;
          }
          return markers;
@@ -769,7 +769,7 @@ package alternativa.tanks.game.subsystems.rendersystem
       
       private function updateDebugMode() : void
       {
-         this.camera.debug = this.var_17.flags != 0;
+         this.camera.debug = this.§_-i6§.flags != 0;
       }
       
       private function toggleLightDebug() : void
@@ -780,7 +780,7 @@ package alternativa.tanks.game.subsystems.rendersystem
       {
       }
       
-      public function method_66() : void
+      public function hideView() : void
       {
          if(this.stage3d != null)
          {
@@ -789,7 +789,7 @@ package alternativa.tanks.game.subsystems.rendersystem
          }
       }
       
-      public function method_52() : void
+      public function showView() : void
       {
       }
    }

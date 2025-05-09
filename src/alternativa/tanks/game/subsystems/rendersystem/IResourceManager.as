@@ -1,18 +1,18 @@
 package alternativa.tanks.game.subsystems.rendersystem
 {
-   import package_21.name_77;
+   import alternativa.engine3d.core.Resource;
    
    public interface IResourceManager
    {
-      function method_29(param1:name_77) : void;
+      function useResource(param1:Resource) : void;
       
-      function method_32(param1:Vector.<name_77>) : void;
+      function useResources(param1:Vector.<Resource>) : void;
       
-      function method_28(param1:name_77) : void;
+      function releaseResource(param1:Resource) : void;
       
-      function method_31(param1:Vector.<name_77>) : void;
+      function releaseResources(param1:Vector.<Resource>) : void;
       
-      function method_30(param1:name_77) : void;
+      function uploadResource(param1:Resource) : void;
    }
 }
 

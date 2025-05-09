@@ -1,9 +1,9 @@
 package alternativa.tanks.game.weapons
 {
-   import package_79.name_326;
-   import package_92.name_271;
+   import alternativa.physics.Body;
+   import alternativa.tanks.game.weapons.targeting.IGenericTargetEvaluator;
    
-   public class SimpleTargetEvaluator implements name_326
+   public class SimpleTargetEvaluator implements IGenericTargetEvaluator
    {
       public static const INSTANCE:SimpleTargetEvaluator = new SimpleTargetEvaluator();
       
@@ -12,7 +12,7 @@ package alternativa.tanks.game.weapons
          super();
       }
       
-      public function name_541(shooter:name_271, target:name_271, distance:Number, angle:Number) : Number
+      public function getTargetPriority(shooter:Body, target:Body, distance:Number, angle:Number) : Number
       {
          return 1;
       }

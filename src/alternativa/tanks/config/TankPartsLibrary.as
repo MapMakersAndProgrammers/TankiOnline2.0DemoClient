@@ -1,81 +1,81 @@
 package alternativa.tanks.config
 {
+   import alternativa.tanks.config.loaders.ImageSequenceLoader;
+   import alternativa.tanks.config.loaders.TankPartsBatchLoader;
+   import alternativa.tanks.config.loaders.tankparts.TankHullLoaderFactory;
+   import alternativa.tanks.config.loaders.tankparts.TankTurretLoaderFactory;
+   import alternativa.tanks.game.entities.tank.TankHull;
+   import alternativa.tanks.game.entities.tank.TankPart;
+   import alternativa.tanks.game.entities.tank.TankTurret;
+   import alternativa.tanks.utils.TaskEvent;
    import flash.display.BitmapData;
    import flash.events.Event;
-   import package_112.name_463;
-   import package_112.name_464;
-   import package_40.name_169;
-   import package_41.name_461;
-   import package_41.name_462;
-   import package_71.name_234;
-   import package_71.name_249;
-   import package_71.name_333;
    
    public class TankPartsLibrary extends ResourceLoader
    {
-      private var var_196:Vector.<name_333>;
+      private var §_-SB§:Vector.<TankPart>;
       
-      private var var_197:Vector.<name_333>;
+      private var §_-dl§:Vector.<TankPart>;
       
-      private var var_198:Vector.<BitmapData>;
+      private var §_-cy§:Vector.<BitmapData>;
       
-      private var var_194:name_461;
+      private var §_-Ic§:TankPartsBatchLoader;
       
-      private var var_195:name_462;
+      private var §_-1D§:ImageSequenceLoader;
       
       public function TankPartsLibrary(param1:Config)
       {
          super("Tank parts library",param1);
       }
       
-      public function get name_300() : int
+      public function get numHulls() : int
       {
-         return this.var_196.length;
+         return this.§_-SB§.length;
       }
       
-      public function name_351(param1:int) : name_249
+      public function getHull(param1:int) : TankHull
       {
-         return name_249(this.var_196[param1]);
+         return TankHull(this.§_-SB§[param1]);
       }
       
-      public function name_353(param1:String) : name_249
+      public function getHullByID(param1:String) : TankHull
       {
-         return this.findPartByID(param1,this.var_196) as name_249;
+         return this.findPartByID(param1,this.§_-SB§) as TankHull;
       }
       
-      public function name_350(param1:String) : int
+      public function getHullIndex(param1:String) : int
       {
-         return this.getPartIndex(param1,this.var_196);
+         return this.getPartIndex(param1,this.§_-SB§);
       }
       
-      public function get name_302() : int
+      public function get numTurrets() : int
       {
-         return this.var_197.length;
+         return this.§_-dl§.length;
       }
       
-      public function name_336(param1:int) : name_234
+      public function getTurret(param1:int) : TankTurret
       {
-         return name_234(this.var_197[param1]);
+         return TankTurret(this.§_-dl§[param1]);
       }
       
-      public function name_331(param1:String) : name_234
+      public function getTurretByID(param1:String) : TankTurret
       {
-         return this.findPartByID(param1,this.var_197) as name_234;
+         return this.findPartByID(param1,this.§_-dl§) as TankTurret;
       }
       
-      public function name_338(param1:String) : int
+      public function getTurretIndex(param1:String) : int
       {
-         return this.getPartIndex(param1,this.var_197);
+         return this.getPartIndex(param1,this.§_-dl§);
       }
       
-      public function get method_325() : int
+      public function get numColormaps() : int
       {
-         return this.var_198.length;
+         return this.§_-cy§.length;
       }
       
-      public function name_347(param1:int) : BitmapData
+      public function getColormap(param1:int) : BitmapData
       {
-         return this.var_198[param1];
+         return this.§_-cy§[param1];
       }
       
       override public function run() : void
@@ -83,9 +83,9 @@ package alternativa.tanks.config
          this.loadHulls();
       }
       
-      private function findPartByID(param1:String, param2:Vector.<name_333>) : name_333
+      private function findPartByID(param1:String, param2:Vector.<TankPart>) : TankPart
       {
-         var _loc3_:name_333 = null;
+         var _loc3_:TankPart = null;
          for each(_loc3_ in param2)
          {
             if(_loc3_.id == param1)
@@ -96,9 +96,9 @@ package alternativa.tanks.config
          return null;
       }
       
-      private function getPartIndex(param1:String, param2:Vector.<name_333>) : int
+      private function getPartIndex(param1:String, param2:Vector.<TankPart>) : int
       {
-         var _loc4_:name_333 = null;
+         var _loc4_:TankPart = null;
          var _loc3_:int = 0;
          while(_loc3_ < param2.length)
          {
@@ -114,53 +114,53 @@ package alternativa.tanks.config
       
       private function loadHulls() : void
       {
-         this.var_194 = new name_461();
-         this.var_194.addEventListener(Event.COMPLETE,this.onHullsLoadingComplete);
-         this.var_194.load(this.getBaseUrl(),config.xml.tankParts.hull,new name_463());
+         this.§_-Ic§ = new TankPartsBatchLoader();
+         this.§_-Ic§.addEventListener(Event.COMPLETE,this.onHullsLoadingComplete);
+         this.§_-Ic§.load(this.getBaseUrl(),config.xml.tankParts.hull,new TankHullLoaderFactory());
       }
       
       private function onHullsLoadingComplete(param1:Event) : void
       {
-         dispatchEvent(new name_169(name_169.TASK_PROGRESS,1,3));
-         this.var_194.removeEventListener(Event.COMPLETE,this.onHullsLoadingComplete);
-         this.var_196 = this.var_194.parts;
+         dispatchEvent(new TaskEvent(TaskEvent.TASK_PROGRESS,1,3));
+         this.§_-Ic§.removeEventListener(Event.COMPLETE,this.onHullsLoadingComplete);
+         this.§_-SB§ = this.§_-Ic§.parts;
          this.loadTurrets();
       }
       
       private function loadTurrets() : void
       {
-         this.var_194.addEventListener(Event.COMPLETE,this.onTurretsLoadingComplete);
-         this.var_194.load(this.getBaseUrl(),config.xml.tankParts.turret,new name_464());
+         this.§_-Ic§.addEventListener(Event.COMPLETE,this.onTurretsLoadingComplete);
+         this.§_-Ic§.load(this.getBaseUrl(),config.xml.tankParts.turret,new TankTurretLoaderFactory());
       }
       
       private function onTurretsLoadingComplete(param1:Event) : void
       {
-         dispatchEvent(new name_169(name_169.TASK_PROGRESS,1,3));
-         this.var_194.removeEventListener(Event.COMPLETE,this.onTurretsLoadingComplete);
-         this.var_197 = this.var_194.parts;
-         this.var_194 = null;
+         dispatchEvent(new TaskEvent(TaskEvent.TASK_PROGRESS,1,3));
+         this.§_-Ic§.removeEventListener(Event.COMPLETE,this.onTurretsLoadingComplete);
+         this.§_-dl§ = this.§_-Ic§.parts;
+         this.§_-Ic§ = null;
          this.loadColormaps();
       }
       
       private function loadColormaps() : void
       {
-         this.var_195 = new name_462();
-         this.var_195.addEventListener(Event.COMPLETE,this.onColormapsLoadingComplete);
-         this.var_195.load(StringUtils.name_460(config.xml.colorings.@baseUrl),config.xml.colorings.image);
+         this.§_-1D§ = new ImageSequenceLoader();
+         this.§_-1D§.addEventListener(Event.COMPLETE,this.onColormapsLoadingComplete);
+         this.§_-1D§.load(StringUtils.makeCorrectBaseUrl(config.xml.colorings.@baseUrl),config.xml.colorings.image);
       }
       
       private function onColormapsLoadingComplete(param1:Event) : void
       {
-         dispatchEvent(new name_169(name_169.TASK_PROGRESS,1,3));
-         this.var_198 = this.var_195.images;
-         this.var_195.removeEventListener(Event.COMPLETE,this.onColormapsLoadingComplete);
-         this.var_195 = null;
-         method_102();
+         dispatchEvent(new TaskEvent(TaskEvent.TASK_PROGRESS,1,3));
+         this.§_-cy§ = this.§_-1D§.images;
+         this.§_-1D§.removeEventListener(Event.COMPLETE,this.onColormapsLoadingComplete);
+         this.§_-1D§ = null;
+         completeTask();
       }
       
       private function getBaseUrl() : String
       {
-         return StringUtils.name_460(config.xml.tankParts.@baseUrl);
+         return StringUtils.makeCorrectBaseUrl(config.xml.tankParts.@baseUrl);
       }
    }
 }

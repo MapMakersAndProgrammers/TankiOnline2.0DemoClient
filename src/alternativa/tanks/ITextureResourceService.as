@@ -1,17 +1,17 @@
 package alternativa.tanks
 {
+   import alternativa.engine3d.resources.ATFTextureResource;
+   import alternativa.engine3d.resources.BitmapTextureResource;
    import flash.display.BitmapData;
    import flash.utils.ByteArray;
-   import package_28.name_241;
-   import package_28.name_93;
    
    public interface ITextureResourceService
    {
-      function getCompressedTextureResource(param1:ByteArray) : name_241;
+      function getCompressedTextureResource(param1:ByteArray) : ATFTextureResource;
       
       function releaseCompressedTextureResource(param1:ByteArray) : void;
       
-      function getBitmapTextureResource(param1:BitmapData) : name_93;
+      function getBitmapTextureResource(param1:BitmapData) : BitmapTextureResource;
       
       function releaseBitmapTextureResource(param1:BitmapData) : void;
    }

@@ -12,7 +12,7 @@ package alternativa.utils
       
       function set capacity(param1:int) : void;
       
-      function name_633(param1:int) : IStringBufferIterator;
+      function getIterator(param1:int) : IStringBufferIterator;
    }
 }
 

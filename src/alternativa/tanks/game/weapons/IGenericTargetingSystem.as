@@ -1,11 +1,11 @@
 package alternativa.tanks.game.weapons
 {
-   import package_46.name_194;
-   import package_92.name_271;
+   import alternativa.math.Vector3;
+   import alternativa.physics.Body;
    
    public interface IGenericTargetingSystem
    {
-      function name_527(param1:name_271, param2:name_194, param3:name_194, param4:name_194, param5:Number, param6:name_194, param7:Number, param8:name_194) : void;
+      function calculateShotDirection(param1:Body, param2:Vector3, param3:Vector3, param4:Vector3, param5:Number, param6:Vector3, param7:Number, param8:Vector3) : void;
    }
 }
 

@@ -9,7 +9,7 @@ package alternativa.tanks.game.subsystems.rendersystem
          super();
       }
       
-      public static function name_109(textureParams:String, textureWidth:int) : BitmapData
+      public static function getFogBitmap(textureParams:String, textureWidth:int) : BitmapData
       {
          var i:int = 0;
          var angle:Number = NaN;
@@ -60,7 +60,7 @@ package alternativa.tanks.game.subsystems.rendersystem
          var leftColor:uint = 0;
          var rightColor:uint = 0;
          var weight:Number = NaN;
-         var i:int = 0;
+         var _loc18_:int = 0;
          if(currAngle <= angles[0] || currAngle >= angles[angles.length - 1])
          {
             leftAngle = angles[angles.length - 1];
@@ -79,13 +79,13 @@ package alternativa.tanks.game.subsystems.rendersystem
          else
          {
             leftAngle = angles[0];
-            for(i = 1; i < angles.length; i++)
+            for(_loc18_ = 1; _loc18_ < angles.length; _loc18_++)
             {
-               rightAngle = angles[i];
+               rightAngle = angles[_loc18_];
                if(currAngle >= leftAngle && currAngle <= rightAngle)
                {
-                  leftColor = colors[i - 1];
-                  rightColor = colors[i];
+                  leftColor = colors[_loc18_ - 1];
+                  rightColor = colors[_loc18_];
                   weight = (currAngle - leftAngle) / (rightAngle - leftAngle);
                   break;
                }

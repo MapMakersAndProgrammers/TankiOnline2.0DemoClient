@@ -1,29 +1,29 @@
 package alternativa.tanks.game.subsystems.rendersystem
 {
-   import package_21.name_124;
-   import package_46.Matrix3;
-   import package_46.name_194;
+   import alternativa.engine3d.core.Camera3D;
+   import alternativa.math.Matrix3;
+   import alternativa.math.Vector3;
    
-   public class GameCamera extends name_124
+   public class GameCamera extends Camera3D
    {
       private static var matrix3:Matrix3 = new Matrix3();
       
-      public var position:name_194 = new name_194();
+      public var position:Vector3 = new Vector3();
       
-      public var xAxis:name_194 = new name_194();
+      public var xAxis:Vector3 = new Vector3();
       
-      public var yAxis:name_194 = new name_194();
+      public var yAxis:Vector3 = new Vector3();
       
-      public var zAxis:name_194 = new name_194();
+      public var zAxis:Vector3 = new Vector3();
       
       public function GameCamera(nearClipping:Number, farClipping:Number)
       {
          super(nearClipping,farClipping);
       }
       
-      public function name_112() : void
+      public function calculateAxis() : void
       {
-         matrix3.name_196(rotationX,rotationY,rotationZ);
+         matrix3.setRotationMatrix(rotationX,rotationY,rotationZ);
          this.position.x = x;
          this.position.y = y;
          this.position.z = z;

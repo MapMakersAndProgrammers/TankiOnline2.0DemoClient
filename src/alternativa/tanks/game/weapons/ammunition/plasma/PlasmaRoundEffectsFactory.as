@@ -1,14 +1,14 @@
 package alternativa.tanks.game.weapons.ammunition.plasma
 {
-   import flash.geom.ColorTransform;
+   import alternativa.engine3d.materials.Material;
+   import alternativa.math.Vector3;
    import alternativa.tanks.game.GameKernel;
-   import package_4.class_4;
-   import package_46.name_194;
-   import package_72.name_239;
-   import package_91.name_349;
-   import package_91.name_522;
+   import alternativa.tanks.game.effects.AnimatedSpriteEffect;
+   import alternativa.tanks.game.weapons.ammunition.energy.IEnergyRoundEffect;
+   import alternativa.tanks.game.weapons.ammunition.energy.IEnergyRoundEffectsFactory;
+   import flash.geom.ColorTransform;
    
-   public class PlasmaRoundEffectsFactory implements name_349
+   public class PlasmaRoundEffectsFactory implements IEnergyRoundEffectsFactory
    {
       private static const EFFECT_SIZE:Number = 300;
       
@@ -20,13 +20,13 @@ package alternativa.tanks.game.weapons.ammunition.plasma
       
       private var gameKernel:GameKernel;
       
-      private var roundFrames:Vector.<class_4>;
+      private var roundFrames:Vector.<Material>;
       
-      private var explosionFrames:Vector.<class_4>;
+      private var explosionFrames:Vector.<Material>;
       
       private var colorTransform:ColorTransform;
       
-      public function PlasmaRoundEffectsFactory(gameKernel:GameKernel, roundFrames:Vector.<class_4>, explosionFrames:Vector.<class_4>, colorTransform:ColorTransform)
+      public function PlasmaRoundEffectsFactory(gameKernel:GameKernel, roundFrames:Vector.<Material>, explosionFrames:Vector.<Material>, colorTransform:ColorTransform)
       {
          super();
          this.gameKernel = gameKernel;
@@ -35,24 +35,24 @@ package alternativa.tanks.game.weapons.ammunition.plasma
          this.colorTransform = colorTransform;
       }
       
-      public function method_414() : name_522
+      public function createEnergyRoundEffect() : IEnergyRoundEffect
       {
-         var effect:PlasmaRoundEffect = PlasmaRoundEffect(this.gameKernel.method_108().name_110(PlasmaRoundEffect));
+         var effect:PlasmaRoundEffect = PlasmaRoundEffect(this.gameKernel.getObjectPoolManager().getObject(PlasmaRoundEffect));
          var rotation:Number = Math.random() * Math.PI;
-         effect.init(EFFECT_SIZE,EFFECT_SIZE,this.roundFrames,name_194.ZERO,rotation,50,EFFECT_FPS,true,0.5,0.5);
-         this.gameKernel.name_5().method_37(effect);
+         effect.init(EFFECT_SIZE,EFFECT_SIZE,this.roundFrames,Vector3.ZERO,rotation,50,EFFECT_FPS,true,0.5,0.5);
+         this.gameKernel.getRenderSystem().each(effect);
          return effect;
       }
       
-      public function method_413(position:name_194) : void
+      public function createExplosionEffects(position:Vector3) : void
       {
-         var explosionEffect:name_239 = name_239(this.gameKernel.method_108().name_110(name_239));
+         var explosionEffect:AnimatedSpriteEffect = AnimatedSpriteEffect(this.gameKernel.getObjectPoolManager().getObject(AnimatedSpriteEffect));
          var rotation:Number = Math.random() * Math.PI;
          explosionEffect.init(EXPLOSION_EFFECT_SIZE,EXPLOSION_EFFECT_SIZE,this.explosionFrames,position,rotation,50,EXPLOSION_FPS,false,0.5,0.5);
-         this.gameKernel.name_5().method_37(explosionEffect);
+         this.gameKernel.getRenderSystem().each(explosionEffect);
       }
       
-      public function method_412(position:name_194, normal:name_194, direction:name_194) : void
+      public function createRicochetEffects(position:Vector3, normal:Vector3, direction:Vector3) : void
       {
       }
    }

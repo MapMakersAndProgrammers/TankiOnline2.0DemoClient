@@ -12,7 +12,7 @@ package alternativa.tanks.config
          this.blobs = new Object();
       }
       
-      public function get method_219() : Vector.<String>
+      public function get blobIds() : Vector.<String>
       {
          var _loc2_:String = null;
          var _loc1_:Vector.<String> = new Vector.<String>();
@@ -23,12 +23,12 @@ package alternativa.tanks.config
          return _loc1_;
       }
       
-      public function name_65(param1:String) : ByteArray
+      public function getBlob(param1:String) : ByteArray
       {
          return this.blobs[param1];
       }
       
-      public function method_218(param1:String, param2:ByteArray) : void
+      public function setBlob(param1:String, param2:ByteArray) : void
       {
          this.blobs[param1] = param2;
       }

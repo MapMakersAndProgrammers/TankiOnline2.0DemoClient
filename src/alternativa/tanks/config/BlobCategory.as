@@ -10,7 +10,7 @@ package alternativa.tanks.config
          this.groups = new Object();
       }
       
-      public function get method_215() : Vector.<String>
+      public function get groupIds() : Vector.<String>
       {
          var _loc2_:String = null;
          var _loc1_:Vector.<String> = new Vector.<String>();
@@ -21,12 +21,12 @@ package alternativa.tanks.config
          return _loc1_;
       }
       
-      public function name_62(param1:String) : BlobGroup
+      public function getGroup(param1:String) : BlobGroup
       {
          return this.groups[param1];
       }
       
-      public function method_214(param1:String, param2:BlobGroup) : void
+      public function setGroup(param1:String, param2:BlobGroup) : void
       {
          this.groups[param1] = param2;
       }

@@ -10,9 +10,9 @@ package alternativa.tanks.game.utils.objectpool
          this.objectPool = objectPool;
       }
       
-      final public function method_254() : void
+      final public function storeInPool() : void
       {
-         this.objectPool.name_425(this);
+         this.objectPool.putObject(this);
       }
    }
 }

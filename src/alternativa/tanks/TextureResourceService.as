@@ -1,89 +1,89 @@
 package alternativa.tanks
 {
+   import alternativa.engine3d.resources.ATFTextureResource;
+   import alternativa.engine3d.resources.BitmapTextureResource;
+   import alternativa.tanks.game.GameKernel;
+   import alternativa.tanks.game.weapons.railgun.IRailgunTargetEvaluator;
+   import alternativa.tanks.game.weapons.targeting.IGenericTargetEvaluator;
    import flash.display.BitmapData;
    import flash.utils.ByteArray;
    import flash.utils.Dictionary;
-   import alternativa.tanks.game.GameKernel;
-   import package_117.name_542;
-   import package_28.name_241;
-   import package_28.name_93;
-   import package_79.name_326;
    
    public class TextureResourceService implements ITextureResourceService
    {
       public var gameKernel:GameKernel;
       
-      private var var_455:name_326;
+      private var §_-9P§:IGenericTargetEvaluator;
       
-      private var var_453:name_542;
+      private var §_-bW§:IRailgunTargetEvaluator;
       
-      private var var_454:name_326;
+      private var §_-ci§:IGenericTargetEvaluator;
       
-      private var var_457:Dictionary;
+      private var §_-L1§:Dictionary;
       
-      private var var_456:Dictionary;
+      private var §_-ee§:Dictionary;
       
       public function TextureResourceService(param1:GameKernel)
       {
          super();
          this.gameKernel = param1;
-         this.var_457 = new Dictionary();
-         this.var_456 = new Dictionary();
+         this.§_-L1§ = new Dictionary();
+         this.§_-ee§ = new Dictionary();
       }
       
-      public function name_254(param1:ByteArray) : name_241
+      public function getCompressedTextureResource(param1:ByteArray) : ATFTextureResource
       {
-         var _loc2_:name_241 = this.getCompressedResourceSafe(param1,true);
+         var _loc2_:ATFTextureResource = this.getCompressedResourceSafe(param1,true);
          if(!_loc2_.isUploaded)
          {
-            this.gameKernel.name_5().method_29(_loc2_);
+            this.gameKernel.getRenderSystem().useResource(_loc2_);
          }
          return _loc2_;
       }
       
-      public function method_435(param1:ByteArray) : void
+      public function releaseCompressedTextureResource(param1:ByteArray) : void
       {
-         var _loc2_:name_241 = this.getCompressedResourceSafe(param1,false);
+         var _loc2_:ATFTextureResource = this.getCompressedResourceSafe(param1,false);
          if(_loc2_ != null)
          {
-            this.gameKernel.name_5().method_28(_loc2_);
+            this.gameKernel.getRenderSystem().releaseResource(_loc2_);
          }
       }
       
-      public function name_320(param1:BitmapData) : name_93
+      public function getBitmapTextureResource(param1:BitmapData) : BitmapTextureResource
       {
-         var _loc2_:name_93 = this.getBitmapResourceSafe(param1,true);
-         this.gameKernel.name_5().method_29(_loc2_);
+         var _loc2_:BitmapTextureResource = this.getBitmapResourceSafe(param1,true);
+         this.gameKernel.getRenderSystem().useResource(_loc2_);
          return _loc2_;
       }
       
-      public function method_434(param1:BitmapData) : void
+      public function releaseBitmapTextureResource(param1:BitmapData) : void
       {
-         var _loc2_:name_93 = this.getBitmapResourceSafe(param1,false);
+         var _loc2_:BitmapTextureResource = this.getBitmapResourceSafe(param1,false);
          if(_loc2_ != null)
          {
-            this.gameKernel.name_5().method_28(_loc2_);
+            this.gameKernel.getRenderSystem().releaseResource(_loc2_);
          }
       }
       
-      private function getCompressedResourceSafe(param1:ByteArray, param2:Boolean) : name_241
+      private function getCompressedResourceSafe(param1:ByteArray, param2:Boolean) : ATFTextureResource
       {
-         var _loc3_:name_241 = this.var_457[param1];
+         var _loc3_:ATFTextureResource = this.§_-L1§[param1];
          if(_loc3_ == null && param2)
          {
-            _loc3_ = new name_241(param1);
-            this.var_457[param1] = _loc3_;
+            _loc3_ = new ATFTextureResource(param1);
+            this.§_-L1§[param1] = _loc3_;
          }
          return _loc3_;
       }
       
-      private function getBitmapResourceSafe(param1:BitmapData, param2:Boolean) : name_93
+      private function getBitmapResourceSafe(param1:BitmapData, param2:Boolean) : BitmapTextureResource
       {
-         var _loc3_:name_93 = this.var_456[param1];
+         var _loc3_:BitmapTextureResource = this.§_-ee§[param1];
          if(_loc3_ == null && param2)
          {
-            _loc3_ = new name_93(param1);
-            this.var_456[param1] = _loc3_;
+            _loc3_ = new BitmapTextureResource(param1);
+            this.§_-ee§[param1] = _loc3_;
          }
          return _loc3_;
       }
@@ -91,51 +91,51 @@ package alternativa.tanks
       public function clear() : void
       {
          this.gameKernel = null;
-         this.var_455 = null;
-         this.var_453 = null;
-         this.var_454 = null;
+         this.§_-9P§ = null;
+         this.§_-bW§ = null;
+         this.§_-ci§ = null;
       }
       
-      public function method_440() : name_326
+      public function getGenericTargetEvaluator() : IGenericTargetEvaluator
       {
-         if(this.var_455 == null)
+         if(this.§_-9P§ == null)
          {
             throw new Error("Generic target evaluator is not set");
          }
-         return this.var_455;
+         return this.§_-9P§;
       }
       
-      public function method_439(param1:name_326) : void
+      public function setGenericTargetEvaluator(param1:IGenericTargetEvaluator) : void
       {
-         this.var_455 = param1;
+         this.§_-9P§ = param1;
       }
       
-      public function method_443() : name_542
+      public function getRailgunTargetEvaluator() : IRailgunTargetEvaluator
       {
-         if(this.var_453 == null)
+         if(this.§_-bW§ == null)
          {
             throw new Error("Railgun target evaluator is not set");
          }
-         return this.var_453;
+         return this.§_-bW§;
       }
       
-      public function method_438(param1:name_542) : void
+      public function setRailgunTargetEvaluator(param1:IRailgunTargetEvaluator) : void
       {
-         this.var_453 = param1;
+         this.§_-bW§ = param1;
       }
       
-      public function method_441() : name_326
+      public function getFlamethrowerTargetEvaluator() : IGenericTargetEvaluator
       {
-         if(this.var_454 == null)
+         if(this.§_-ci§ == null)
          {
             throw new Error("Flame/freeze target evaluator is not set");
          }
-         return this.var_454;
+         return this.§_-ci§;
       }
       
-      public function method_442(param1:name_326) : void
+      public function setFlamethrowerTargetEvaluator(param1:IGenericTargetEvaluator) : void
       {
-         this.var_454 = param1;
+         this.§_-ci§ = param1;
       }
    }
 }

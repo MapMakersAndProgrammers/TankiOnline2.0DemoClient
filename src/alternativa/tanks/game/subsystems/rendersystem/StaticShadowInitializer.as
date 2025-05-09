@@ -1,19 +1,19 @@
 package alternativa.tanks.game.subsystems.rendersystem
 {
+   import alternativa.engine3d.core.Object3D;
+   import alternativa.engine3d.lights.DirectionalLight;
+   import alternativa.engine3d.shadows.StaticShadowRenderer;
    import flash.display3D.Context3D;
-   import package_21.name_78;
-   import package_23.name_97;
-   import package_24.DirectionalLight;
    
    public class StaticShadowInitializer
    {
-      private var staticShadowRenderer:name_97;
+      private var staticShadowRenderer:StaticShadowRenderer;
       
-      private var container:name_78;
+      private var container:Object3D;
       
       private var light:DirectionalLight;
       
-      public function StaticShadowInitializer(staticShadowRenderer:name_97, container:name_78, light:DirectionalLight)
+      public function StaticShadowInitializer(staticShadowRenderer:StaticShadowRenderer, container:Object3D, light:DirectionalLight)
       {
          super();
          this.staticShadowRenderer = staticShadowRenderer;
@@ -24,7 +24,7 @@ package alternativa.tanks.game.subsystems.rendersystem
       public function execute(context3D:Context3D) : void
       {
          context3D.configureBackBuffer(50,50,0);
-         this.staticShadowRenderer.name_401(this.container,this.light,5,3,1000);
+         this.staticShadowRenderer.calculateShadows(this.container,this.light,5,3,1000);
          this.light.shadow = this.staticShadowRenderer;
       }
    }

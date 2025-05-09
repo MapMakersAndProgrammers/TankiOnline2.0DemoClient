@@ -2,23 +2,23 @@ package alternativa.tanks.game.subsystems.inputsystem
 {
    public interface IInput
    {
-      function name_94(param1:KeyboardEventType, param2:Function, param3:uint = 0) : void;
+      function addKeyboardListener(param1:KeyboardEventType, param2:Function, param3:uint = 0) : void;
       
-      function name_384(param1:KeyboardEventType, param2:Function, param3:uint = 0) : void;
+      function removeKeyboardListener(param1:KeyboardEventType, param2:Function, param3:uint = 0) : void;
       
-      function name_192(param1:uint) : int;
+      function getKeyState(param1:uint) : int;
       
-      function name_346(param1:uint) : Boolean;
+      function keyPressed(param1:uint) : Boolean;
       
-      function name_199() : Boolean;
+      function mouseButtonPressed() : Boolean;
       
-      function method_261() : int;
+      function getMouseWheelDelta() : int;
       
-      function method_262() : Boolean;
+      function wasMouseButtonPressed() : Boolean;
       
-      function name_197() : int;
+      function getMouseDeltaX() : int;
       
-      function name_200() : int;
+      function getMouseDeltaY() : int;
    }
 }
 

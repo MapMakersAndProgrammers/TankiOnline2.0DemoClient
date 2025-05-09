@@ -2,11 +2,11 @@ package alternativa.tanks.game.weapons
 {
    public interface IBasicWeapon
    {
-      function method_394() : void;
+      function pullTrigger() : void;
       
-      function method_393() : void;
+      function releaseTrigger() : void;
       
-      function method_395() : void;
+      function forceUpdate() : void;
    }
 }
 

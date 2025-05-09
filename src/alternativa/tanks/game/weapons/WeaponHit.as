@@ -1,19 +1,19 @@
 package alternativa.tanks.game.weapons
 {
-   import package_46.name_194;
-   import package_92.name_271;
+   import alternativa.math.Vector3;
+   import alternativa.physics.Body;
    
    public class WeaponHit
    {
       public var distance:Number;
       
-      public var body:name_271;
+      public var body:Body;
       
-      public var position:name_194 = new name_194();
+      public var position:Vector3 = new Vector3();
       
-      public var direction:name_194 = new name_194();
+      public var direction:Vector3 = new Vector3();
       
-      public var normal:name_194 = new name_194();
+      public var normal:Vector3 = new Vector3();
       
       public function WeaponHit()
       {

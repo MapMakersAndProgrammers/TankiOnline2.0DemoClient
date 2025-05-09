@@ -1,18 +1,18 @@
 package alternativa.tanks.game.camera
 {
-   import flash.geom.Vector3D;
-   import alternativa.tanks.game.ObjectController;
+   import alternativa.engine3d.core.Object3D;
+   import alternativa.math.Matrix3;
+   import alternativa.math.Matrix4;
+   import alternativa.math.Vector3;
    import alternativa.tanks.game.Entity;
-   import alternativa.utils.KeyboardUtils;
-   import alternativa.tanks.game.subsystems.rendersystem.ICameraController;
-   import alternativa.tanks.game.subsystems.rendersystem.GameCamera;
-   import package_21.name_78;
+   import alternativa.tanks.game.ObjectController;
+   import alternativa.tanks.game.entities.tank.graphics.turret.TurretGraphicsComponent;
    import alternativa.tanks.game.subsystems.inputsystem.IInput;
-   import package_45.name_182;
-   import package_46.Matrix3;
-   import package_46.Matrix4;
-   import package_46.name_194;
-   import package_47.name_193;
+   import alternativa.tanks.game.subsystems.rendersystem.GameCamera;
+   import alternativa.tanks.game.subsystems.rendersystem.ICameraController;
+   import alternativa.tanks.game.subsystems.timesystem.TimeSystem;
+   import alternativa.utils.KeyboardUtils;
+   import flash.geom.Vector3D;
    
    public class FreeCameraController implements ICameraController
    {
@@ -36,19 +36,19 @@ package alternativa.tanks.game.camera
       
       private static var matrix:Matrix3 = new Matrix3();
       
-      private static var vector:name_194 = new name_194();
+      private static var vector:Vector3 = new Vector3();
       
-      public var var_50:Number = 0.01;
+      public var §_-eX§:Number = 0.01;
       
-      public var var_48:Number = 0.01;
+      public var §_-ma§:Number = 0.01;
       
       public var speed:Number = 500;
       
-      public var var_49:Number = 3;
+      public var §_-NF§:Number = 3;
       
-      private var var_47:Number = 0;
+      private var §_-ls§:Number = 0;
       
-      private var var_46:Number = 0;
+      private var §_-Z3§:Number = 0;
       
       private var currentPosition:Vector3D = new Vector3D();
       
@@ -56,11 +56,11 @@ package alternativa.tanks.game.camera
       
       private var controller:ObjectController;
       
-      private var target:name_78;
+      private var target:Object3D;
       
       private var parentMatrix:Matrix4 = new Matrix4();
       
-      private var var_45:Matrix4 = new Matrix4();
+      private var §_-Kj§:Matrix4 = new Matrix4();
       
       public function FreeCameraController(camera:GameCamera, input:IInput)
       {
@@ -68,39 +68,39 @@ package alternativa.tanks.game.camera
          this.input = input;
          this.controller = new ObjectController();
          this.controller.object = camera;
-         this.var_46 = camera.rotationX;
-         this.var_47 = camera.rotationZ;
+         this.§_-Z3§ = camera.rotationX;
+         this.§_-ls§ = camera.rotationZ;
          this.currentPosition.x = camera.x;
          this.currentPosition.y = camera.y;
          this.currentPosition.z = camera.z;
       }
       
-      public function name_108() : void
+      public function enable() : void
       {
-         var object:name_78 = this.controller.object;
-         this.var_46 = object.rotationX;
-         this.var_47 = object.rotationZ;
+         var object:Object3D = this.controller.object;
+         this.§_-Z3§ = object.rotationX;
+         this.§_-ls§ = object.rotationZ;
          this.currentPosition.x = object.x;
          this.currentPosition.y = object.y;
          this.currentPosition.z = object.z;
       }
       
-      public function name_75(x:Number, y:Number, z:Number) : void
+      public function setPositionXYZ(x:Number, y:Number, z:Number) : void
       {
-         this.controller.name_201(x,y,z);
+         this.controller.setPosition(x,y,z);
          this.currentPosition.x = this.controller.object.x;
          this.currentPosition.y = this.controller.object.y;
          this.currentPosition.z = this.controller.object.z;
       }
       
-      public function name_76(x:Number, y:Number, z:Number) : void
+      public function lookAtXYZ(x:Number, y:Number, z:Number) : void
       {
-         this.controller.name_76(x,y,z);
-         this.var_46 = this.controller.object.rotationX;
-         this.var_47 = this.controller.object.rotationZ;
+         this.controller.lookAtXYZ(x,y,z);
+         this.§_-Z3§ = this.controller.object.rotationX;
+         this.§_-ls§ = this.controller.object.rotationZ;
       }
       
-      public function method_115(value:Entity) : void
+      public function setTarget(value:Entity) : void
       {
          if(value == null)
          {
@@ -108,7 +108,7 @@ package alternativa.tanks.game.camera
          }
          else
          {
-            this.target = name_193(value.getComponentStrict(name_193)).name_198;
+            this.target = TurretGraphicsComponent(value.getComponentStrict(TurretGraphicsComponent)).turretMesh;
          }
       }
       
@@ -120,22 +120,22 @@ package alternativa.tanks.game.camera
          var k:Number = NaN;
          var yaw:Number = NaN;
          var pitch:Number = NaN;
-         var timeDelta:Number = name_182.timeDeltaSeconds;
+         var timeDelta:Number = TimeSystem.timeDeltaSeconds;
          if(smoothing > 0)
          {
             k = 100 / smoothing * timeDelta;
             k = k > 1 ? 1 : k;
          }
-         if(this.input.name_199())
+         if(this.input.mouseButtonPressed())
          {
-            yaw = -this.input.name_197() * this.var_50;
-            pitch = -this.input.name_200() * this.var_48;
-            this.var_47 += yaw;
-            this.var_46 += pitch;
+            yaw = -this.input.getMouseDeltaX() * this.§_-eX§;
+            pitch = -this.input.getMouseDeltaY() * this.§_-ma§;
+            this.§_-ls§ += yaw;
+            this.§_-Z3§ += pitch;
          }
-         var object:name_78 = this.controller.object;
-         var drX:Number = this.var_46 - object.rotationX;
-         var drZ:Number = this.var_47 - object.rotationZ;
+         var object:Object3D = this.controller.object;
+         var drX:Number = this.§_-Z3§ - object.rotationX;
+         var drZ:Number = this.§_-ls§ - object.rotationZ;
          if(drX != 0 || drZ != 0)
          {
             if(smoothing > 0)
@@ -146,16 +146,16 @@ package alternativa.tanks.game.camera
             object.rotationX += drX;
             object.rotationZ += drZ;
          }
-         vector.x = this.input.name_192(KEY_RIGHT) - this.input.name_192(KEY_LEFT);
-         vector.y = this.input.name_192(KEY_DOWN) - this.input.name_192(KEY_UP);
-         vector.z = this.input.name_192(KEY_FORWARD) - this.input.name_192(KEY_BACK);
+         vector.x = this.input.getKeyState(KEY_RIGHT) - this.input.getKeyState(KEY_LEFT);
+         vector.y = this.input.getKeyState(KEY_DOWN) - this.input.getKeyState(KEY_UP);
+         vector.z = this.input.getKeyState(KEY_FORWARD) - this.input.getKeyState(KEY_BACK);
          var moved:Boolean = vector.x != 0 || vector.y != 0 || vector.z != 0;
          if(moved)
          {
             vector.normalize();
-            vector.scale(this.speed * timeDelta * (1 + this.input.name_192(KEY_SPEED) * (this.var_49 - 1)));
+            vector.scale(this.speed * timeDelta * (1 + this.input.getKeyState(KEY_SPEED) * (this.§_-NF§ - 1)));
          }
-         matrix.name_196(object.rotationX,object.rotationY,object.rotationZ);
+         matrix.setRotationMatrix(object.rotationX,object.rotationY,object.rotationZ);
          vector.reset(vector.x,vector.y,vector.z);
          vector.transform3(matrix);
          this.currentPosition.x += vector.x;
@@ -180,9 +180,9 @@ package alternativa.tanks.game.camera
          if(targeted && this.target != null)
          {
             this.updateTargetState();
-            dx = this.var_45.d - object.x;
-            dy = this.var_45.h - object.y;
-            dz = this.var_45.l - object.z;
+            dx = this.§_-Kj§.d - object.x;
+            dy = this.§_-Kj§.h - object.y;
+            dz = this.§_-Kj§.l - object.z;
             object.rotationX = Math.atan2(dz,Math.sqrt(dx * dx + dy * dy)) - 0.5 * Math.PI;
             object.rotationY = 0;
             object.rotationZ = -Math.atan2(dx,dy);
@@ -192,14 +192,14 @@ package alternativa.tanks.game.camera
       private function updateTargetState() : void
       {
          this.setMatrixFromObject(this.target.parent,this.parentMatrix);
-         this.setMatrixFromObject(this.target,this.var_45);
-         this.var_45.append(this.parentMatrix);
+         this.setMatrixFromObject(this.target,this.§_-Kj§);
+         this.§_-Kj§.append(this.parentMatrix);
       }
       
-      private function setMatrixFromObject(object:name_78, matrix:Matrix4) : void
+      private function setMatrixFromObject(object:Object3D, matrix:Matrix4) : void
       {
-         matrix.name_196(object.rotationX,object.rotationY,object.rotationZ);
-         matrix.name_75(object.x,object.y,object.z);
+         matrix.setRotationMatrix(object.rotationX,object.rotationY,object.rotationZ);
+         matrix.setPositionXYZ(object.x,object.y,object.z);
       }
    }
 }

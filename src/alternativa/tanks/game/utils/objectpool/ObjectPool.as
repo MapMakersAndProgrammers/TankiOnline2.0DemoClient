@@ -14,7 +14,7 @@ package alternativa.tanks.game.utils.objectpool
          this.objectClass = objectClass;
       }
       
-      public function name_110() : Object
+      public function getObject() : Object
       {
          if(this.numObjects == 0)
          {
@@ -31,7 +31,7 @@ package alternativa.tanks.game.utils.objectpool
          this.numObjects = 0;
       }
       
-      internal function name_425(object:Object) : void
+      internal function putObject(object:Object) : void
       {
          var _loc2_:* = this.numObjects++;
          this.objects[_loc2_] = object;

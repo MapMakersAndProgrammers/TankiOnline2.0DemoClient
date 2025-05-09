@@ -1,24 +1,24 @@
 package alternativa.tanks.game.subsystems.rendersystem
 {
+   import alternativa.engine3d.core.Resource;
    import flash.display3D.Context3D;
    import flash.utils.Dictionary;
-   import package_21.name_77;
    
    public class ResourceManager implements IResourceManager
    {
       private var context:Context3D;
       
-      private var var_106:Dictionary;
+      private var §_-hg§:Dictionary;
       
-      private var var_105:Vector.<name_77>;
+      private var §_-Wf§:Vector.<Resource>;
       
       public function ResourceManager()
       {
          super();
-         this.var_106 = new Dictionary();
+         this.§_-hg§ = new Dictionary();
       }
       
-      public function method_29(resource:name_77) : void
+      public function useResource(resource:Resource) : void
       {
          if(this.context == null)
          {
@@ -31,22 +31,22 @@ package alternativa.tanks.game.subsystems.rendersystem
          {
             resource.upload(this.context);
          }
-         var refCount:int = int(this.var_106[resource]);
-         this.var_106[resource] = refCount + 1;
+         var refCount:int = int(this.§_-hg§[resource]);
+         this.§_-hg§[resource] = refCount + 1;
       }
       
-      public function method_32(resources:Vector.<name_77>) : void
+      public function useResources(resources:Vector.<Resource>) : void
       {
-         var resource:name_77 = null;
+         var resource:Resource = null;
          for each(resource in resources)
          {
-            this.method_29(resource);
+            this.useResource(resource);
          }
       }
       
-      public function method_28(resource:name_77) : void
+      public function releaseResource(resource:Resource) : void
       {
-         var refCount:int = int(this.var_106[resource]);
+         var refCount:int = int(this.§_-hg§[resource]);
          if(refCount > 0)
          {
             if(refCount == 1)
@@ -55,21 +55,21 @@ package alternativa.tanks.game.subsystems.rendersystem
             }
             else
             {
-               this.var_106[resource] = refCount - 1;
+               this.§_-hg§[resource] = refCount - 1;
             }
          }
       }
       
-      public function method_31(resources:Vector.<name_77>) : void
+      public function releaseResources(resources:Vector.<Resource>) : void
       {
-         var resource:name_77 = null;
+         var resource:Resource = null;
          for each(resource in resources)
          {
-            this.method_28(resource);
+            this.releaseResource(resource);
          }
       }
       
-      public function method_30(resource:name_77) : void
+      public function uploadResource(resource:Resource) : void
       {
          if(this.context == null)
          {
@@ -81,17 +81,17 @@ package alternativa.tanks.game.subsystems.rendersystem
          }
       }
       
-      public function name_105(context:Context3D) : void
+      public function setContext(context:Context3D) : void
       {
-         var resource:name_77 = null;
+         var resource:Resource = null;
          this.context = context;
-         if(this.var_105 != null)
+         if(this.§_-Wf§ != null)
          {
-            for each(resource in this.var_105)
+            for each(resource in this.§_-Wf§)
             {
                resource.upload(context);
             }
-            this.var_105 = null;
+            this.§_-Wf§ = null;
          }
       }
       
@@ -100,16 +100,16 @@ package alternativa.tanks.game.subsystems.rendersystem
          var resource:* = undefined;
          if(this.context != null)
          {
-            for(resource in this.var_106)
+            for(resource in this.§_-hg§)
             {
-               name_77(resource).dispose();
+               Resource(resource).dispose();
             }
          }
-         this.var_105 = null;
-         this.var_106 = new Dictionary();
+         this.§_-Wf§ = null;
+         this.§_-hg§ = new Dictionary();
       }
       
-      private function doRelease(resource:name_77) : void
+      private function doRelease(resource:Resource) : void
       {
          var index:int = 0;
          var num:int = 0;
@@ -118,41 +118,41 @@ package alternativa.tanks.game.subsystems.rendersystem
             index = this.getQueuedIndex(resource);
             if(index >= 0)
             {
-               num = int(this.var_105.length);
+               num = int(this.§_-Wf§.length);
                if(num == 1)
                {
-                  this.var_105 = null;
+                  this.§_-Wf§ = null;
                }
                else
                {
-                  this.var_105[index] = this.var_105[--num];
-                  this.var_105.length = num;
+                  this.§_-Wf§[index] = this.§_-Wf§[--num];
+                  this.§_-Wf§.length = num;
                }
             }
          }
          else
          {
             resource.dispose();
-            delete this.var_106[resource];
+            delete this.§_-hg§[resource];
          }
       }
       
-      private function getQueuedIndex(resource:name_77) : int
+      private function getQueuedIndex(resource:Resource) : int
       {
-         if(this.var_105 == null)
+         if(this.§_-Wf§ == null)
          {
             return -1;
          }
-         return this.var_105.indexOf(resource);
+         return this.§_-Wf§.indexOf(resource);
       }
       
-      private function queue(resource:name_77) : void
+      private function queue(resource:Resource) : void
       {
-         if(this.var_105 == null)
+         if(this.§_-Wf§ == null)
          {
-            this.var_105 = new Vector.<name_77>();
+            this.§_-Wf§ = new Vector.<Resource>();
          }
-         this.var_105.push(resource);
+         this.§_-Wf§.push(resource);
       }
    }
 }
