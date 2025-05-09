@@ -4,48 +4,48 @@ package versions.version1.a3d.objects
    
    public class A3DSurface
    {
-      private var §_-50§:int;
+      private var var_300:int;
       
-      private var §_-pS§:Id;
+      private var var_301:Id;
       
-      private var §_-4C§:int;
+      private var var_299:int;
       
       public function A3DSurface(indexBegin:int, materialId:Id, numTriangles:int)
       {
          super();
-         this.§_-50§ = indexBegin;
-         this.§_-pS§ = materialId;
-         this.§_-4C§ = numTriangles;
+         this.var_300 = indexBegin;
+         this.var_301 = materialId;
+         this.var_299 = numTriangles;
       }
       
       public function get indexBegin() : int
       {
-         return this.§_-50§;
+         return this.var_300;
       }
       
       public function set indexBegin(value:int) : void
       {
-         this.§_-50§ = value;
+         this.var_300 = value;
       }
       
       public function get materialId() : Id
       {
-         return this.§_-pS§;
+         return this.var_301;
       }
       
       public function set materialId(value:Id) : void
       {
-         this.§_-pS§ = value;
+         this.var_301 = value;
       }
       
       public function get numTriangles() : int
       {
-         return this.§_-4C§;
+         return this.var_299;
       }
       
       public function set numTriangles(value:int) : void
       {
-         this.§_-4C§ = value;
+         this.var_299 = value;
       }
       
       public function toString() : String

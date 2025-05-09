@@ -1,44 +1,44 @@
 package
 {
-   import §_-1z§.§_-b1§;
-   import §_-1z§.§_-n4§;
-   import §_-1z§.§_-pi§;
    import flash.display.Bitmap;
    import flash.display.BitmapData;
    import flash.display.Shape;
    import flash.display.Sprite;
    import flash.display3D.Context3D;
    import flash.events.Event;
+   import package_21.name_84;
+   import package_21.name_85;
+   import package_21.name_86;
    
    public class Preloader extends Sprite
    {
-      private static const EmbedPreloader:Class = §_-Lz§;
+      private static const EmbedPreloader:Class = name_82;
       
-      private static const EmbedPreloaderA:Class = §_-9C§;
+      private static const EmbedPreloaderA:Class = name_81;
       
-      private static const EmbedProgress:Class = §_-M9§;
+      private static const EmbedProgress:Class = name_83;
       
       private var area:Shape = new Shape();
       
-      private var §_-1q§:Bitmap = new EmbedPreloader();
+      private var var_27:Bitmap = new EmbedPreloader();
       
-      private var §_-Za§:Bitmap = new EmbedPreloaderA();
+      private var var_28:Bitmap = new EmbedPreloaderA();
       
       private var progress:Bitmap = new EmbedProgress();
       
       private var context:Context3D;
       
-      public var maps:Vector.<§_-n4§>;
+      public var maps:Vector.<name_85>;
       
-      private var §_-dH§:int;
+      private var var_31:int;
       
       private var counter:int;
       
       private var baseURL:String;
       
-      private var §_-m§:§_-pi§ = new §_-b1§(new BitmapData(1,1,false,8355711));
+      private var var_30:name_86 = new name_84(new BitmapData(1,1,false,8355711));
       
-      private var §_-UB§:Number = 0.09803921568627451;
+      private var var_29:Number = 0.09803921568627451;
       
       public function Preloader()
       {
@@ -46,61 +46,61 @@ package
          addChild(this.area);
          this.area.alpha = 1;
          this.progress.alpha = 1;
-         this.§_-1q§.alpha = 1;
-         addChild(this.§_-1q§);
-         addChild(this.§_-Za§);
+         this.var_27.alpha = 1;
+         addChild(this.var_27);
+         addChild(this.var_28);
          addChild(this.progress);
-         addEventListener(Event.ADDED_TO_STAGE,this.§_-Id§);
-         addEventListener(Event.REMOVED_FROM_STAGE,this.§_-99§);
+         addEventListener(Event.ADDED_TO_STAGE,this.method_26);
+         addEventListener(Event.REMOVED_FROM_STAGE,this.method_25);
          this.progress.scaleX = 0.025;
       }
       
-      public function §_-QU§(param1:Number) : void
+      public function name_68(param1:Number) : void
       {
          this.progress.scaleX = param1;
          if(this.progress.scaleX >= 1)
          {
-            this.§_-Dq§();
+            this.method_23();
          }
       }
       
-      private function §_-Dq§() : void
+      private function method_23() : void
       {
-         addEventListener(Event.ENTER_FRAME,this.§_-ba§);
+         addEventListener(Event.ENTER_FRAME,this.method_15);
       }
       
-      public function §_-fE§(param1:Number) : void
+      public function method_27(param1:Number) : void
       {
          this.progress.scaleX += param1;
          if(this.progress.scaleX > 0.5)
          {
-            addEventListener(Event.ENTER_FRAME,this.§_-MO§);
+            addEventListener(Event.ENTER_FRAME,this.method_24);
          }
          if(this.progress.scaleX >= 1)
          {
-            this.§_-Dq§();
+            this.method_23();
          }
       }
       
-      private function §_-Id§(param1:Event) : void
+      private function method_26(param1:Event) : void
       {
-         stage.addEventListener(Event.RESIZE,this.§_-7B§);
-         this.§_-7B§();
+         stage.addEventListener(Event.RESIZE,this.method_3);
+         this.method_3();
       }
       
-      private function §_-99§(param1:Event) : void
+      private function method_25(param1:Event) : void
       {
-         stage.removeEventListener(Event.RESIZE,this.§_-7B§);
+         stage.removeEventListener(Event.RESIZE,this.method_3);
       }
       
-      private function §_-ba§(param1:Event) : void
+      private function method_15(param1:Event) : void
       {
-         this.area.alpha -= this.§_-UB§;
-         this.§_-1q§.alpha -= this.§_-UB§;
-         this.progress.alpha -= this.§_-UB§;
+         this.area.alpha -= this.var_29;
+         this.var_27.alpha -= this.var_29;
+         this.progress.alpha -= this.var_29;
          if(this.area.alpha <= 0)
          {
-            removeEventListener(Event.ENTER_FRAME,this.§_-ba§);
+            removeEventListener(Event.ENTER_FRAME,this.method_15);
             if(parent != null)
             {
                parent.removeChild(this);
@@ -109,29 +109,29 @@ package
          }
       }
       
-      private function §_-MO§(param1:Event) : void
+      private function method_24(param1:Event) : void
       {
-         this.§_-Za§.alpha -= this.§_-UB§ * 1.5;
-         if(this.§_-Za§.alpha <= 0)
+         this.var_28.alpha -= this.var_29 * 1.5;
+         if(this.var_28.alpha <= 0)
          {
-            removeEventListener(Event.ENTER_FRAME,this.§_-MO§);
+            removeEventListener(Event.ENTER_FRAME,this.method_24);
          }
       }
       
-      private function §_-7B§(param1:Event = null) : void
+      private function method_3(param1:Event = null) : void
       {
          this.area.graphics.clear();
-         this.§_-1q§.x = Math.round(stage.stageWidth / 2 - this.§_-1q§.width / 2);
-         this.§_-1q§.y = Math.round(stage.stageHeight / 2 - this.§_-1q§.height / 2) - 30;
-         this.§_-Za§.x = this.§_-1q§.x;
-         this.§_-Za§.y = this.§_-1q§.y;
-         this.progress.x = this.§_-1q§.x + 2;
-         this.progress.y = this.§_-1q§.y + 221;
+         this.var_27.x = Math.round(stage.stageWidth / 2 - this.var_27.width / 2);
+         this.var_27.y = Math.round(stage.stageHeight / 2 - this.var_27.height / 2) - 30;
+         this.var_28.x = this.var_27.x;
+         this.var_28.y = this.var_27.y;
+         this.progress.x = this.var_27.x + 2;
+         this.progress.y = this.var_27.y + 221;
          this.area.graphics.beginFill(0);
-         this.area.graphics.drawRect(0,0,this.§_-1q§.x,stage.stageHeight);
-         this.area.graphics.drawRect(this.§_-1q§.x,0,this.§_-1q§.width,this.§_-1q§.y);
-         this.area.graphics.drawRect(this.§_-1q§.x + this.§_-1q§.width,0,stage.stageWidth - this.§_-1q§.width - this.§_-1q§.x,stage.stageHeight);
-         this.area.graphics.drawRect(this.§_-1q§.x,this.§_-1q§.y + this.§_-1q§.height,this.§_-1q§.width,stage.stageHeight - this.§_-1q§.height - this.§_-1q§.y);
+         this.area.graphics.drawRect(0,0,this.var_27.x,stage.stageHeight);
+         this.area.graphics.drawRect(this.var_27.x,0,this.var_27.width,this.var_27.y);
+         this.area.graphics.drawRect(this.var_27.x + this.var_27.width,0,stage.stageWidth - this.var_27.width - this.var_27.x,stage.stageHeight);
+         this.area.graphics.drawRect(this.var_27.x,this.var_27.y + this.var_27.height,this.var_27.width,stage.stageHeight - this.var_27.height - this.var_27.y);
       }
    }
 }

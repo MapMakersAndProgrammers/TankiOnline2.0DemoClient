@@ -19,7 +19,7 @@ package alternativa.tanks.game.subsystems.rendersystem
       
       private var tf:TextField;
       
-      private var §_-Ee§:Boolean;
+      private var var_146:Boolean;
       
       private var anchor:Object3D;
       
@@ -37,12 +37,12 @@ package alternativa.tanks.game.subsystems.rendersystem
          this.tf.visible = false;
          this.anchor = anchor;
          this.tf.text = text;
-         this.§_-Ee§ = true;
+         this.var_146 = true;
       }
       
       public function kill() : void
       {
-         this.§_-Ee§ = false;
+         this.var_146 = false;
       }
       
       public function play(camera:GameCamera) : Boolean
@@ -60,7 +60,7 @@ package alternativa.tanks.game.subsystems.rendersystem
          {
             this.tf.visible = false;
          }
-         return this.§_-Ee§;
+         return this.var_146;
       }
       
       public function addedToRenderSystem(system:RenderSystem) : void

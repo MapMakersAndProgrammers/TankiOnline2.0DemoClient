@@ -50,7 +50,7 @@ package alternativa.engine3d.materials.compiler
          {
             regmask = 228;
          }
-         §_-0J§ = regmask << 24 | index;
+         name_345 = regmask << 24 | index;
          switch(strType)
          {
             case "a":
@@ -74,12 +74,12 @@ package alternativa.engine3d.materials.compiler
             default:
                throw new ArgumentError("Wrong source register type, must be \"a\" or \"c\" or \"t\" or \"o\" or \"v\" or \"i\", var = " + source);
          }
-         §_-oc§ = type;
+         name_346 = type;
          if(isRel)
          {
             this.relative = new RelativeVariable(relreg[0]);
-            §_-0J§ |= this.relative.§_-0J§;
-            §_-oc§ |= this.relative.§_-oc§;
+            name_345 |= this.relative.name_345;
+            name_346 |= this.relative.name_346;
             isRelative = true;
          }
       }

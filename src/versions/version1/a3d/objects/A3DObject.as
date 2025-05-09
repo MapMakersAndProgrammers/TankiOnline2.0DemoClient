@@ -5,63 +5,63 @@ package versions.version1.a3d.objects
    
    public class A3DObject
    {
-      private var §_-jD§:Id;
+      private var var_270:Id;
       
-      private var §_-16§:Id;
+      private var var_335:Id;
       
-      private var §_-3I§:Id;
+      private var var_101:Id;
       
       private var _name:String;
       
-      private var §_-fP§:ParentId;
+      private var var_269:ParentId;
       
-      private var §_-eW§:Vector.<A3DSurface>;
+      private var var_92:Vector.<A3DSurface>;
       
-      private var §_-UJ§:A3DTransformation;
+      private var var_336:A3DTransformation;
       
-      private var §_-1u§:Boolean;
+      private var var_261:Boolean;
       
       public function A3DObject(boundBoxId:Id, geometryId:Id, id:Id, name:String, parentId:ParentId, surfaces:Vector.<A3DSurface>, transformation:A3DTransformation, visible:Boolean)
       {
          super();
-         this.§_-jD§ = boundBoxId;
-         this.§_-16§ = geometryId;
-         this.§_-3I§ = id;
+         this.var_270 = boundBoxId;
+         this.var_335 = geometryId;
+         this.var_101 = id;
          this._name = name;
-         this.§_-fP§ = parentId;
-         this.§_-eW§ = surfaces;
-         this.§_-UJ§ = transformation;
-         this.§_-1u§ = visible;
+         this.var_269 = parentId;
+         this.var_92 = surfaces;
+         this.var_336 = transformation;
+         this.var_261 = visible;
       }
       
       public function get boundBoxId() : Id
       {
-         return this.§_-jD§;
+         return this.var_270;
       }
       
       public function set boundBoxId(value:Id) : void
       {
-         this.§_-jD§ = value;
+         this.var_270 = value;
       }
       
       public function get geometryId() : Id
       {
-         return this.§_-16§;
+         return this.var_335;
       }
       
       public function set geometryId(value:Id) : void
       {
-         this.§_-16§ = value;
+         this.var_335 = value;
       }
       
       public function get id() : Id
       {
-         return this.§_-3I§;
+         return this.var_101;
       }
       
       public function set id(value:Id) : void
       {
-         this.§_-3I§ = value;
+         this.var_101 = value;
       }
       
       public function get name() : String
@@ -76,42 +76,42 @@ package versions.version1.a3d.objects
       
       public function get parentId() : ParentId
       {
-         return this.§_-fP§;
+         return this.var_269;
       }
       
       public function set parentId(value:ParentId) : void
       {
-         this.§_-fP§ = value;
+         this.var_269 = value;
       }
       
       public function get surfaces() : Vector.<A3DSurface>
       {
-         return this.§_-eW§;
+         return this.var_92;
       }
       
       public function set surfaces(value:Vector.<A3DSurface>) : void
       {
-         this.§_-eW§ = value;
+         this.var_92 = value;
       }
       
       public function get transformation() : A3DTransformation
       {
-         return this.§_-UJ§;
+         return this.var_336;
       }
       
       public function set transformation(value:A3DTransformation) : void
       {
-         this.§_-UJ§ = value;
+         this.var_336 = value;
       }
       
       public function get visible() : Boolean
       {
-         return this.§_-1u§;
+         return this.var_261;
       }
       
       public function set visible(value:Boolean) : void
       {
-         this.§_-1u§ = value;
+         this.var_261 = value;
       }
       
       public function toString() : String

@@ -8,48 +8,48 @@ package alternativa.tanks.sounds
    
    public class ChassisSoundCallback implements IChassisManualControlCallback
    {
-      private var §_-9N§:Sound;
+      private var var_462:Sound;
       
-      private var §_-dF§:Sound;
+      private var var_465:Sound;
       
-      private var §_-ik§:Sound;
+      private var var_464:Sound;
       
-      private var §_-QG§:Sound;
+      private var var_463:Sound;
       
-      private var §_-qB§:SoundChannel;
+      private var var_460:SoundChannel;
       
-      private var §_-kx§:Boolean = false;
+      private var var_461:Boolean = false;
       
       public function ChassisSoundCallback(param1:SoundsLibrary)
       {
          super();
-         this.§_-9N§ = param1.getSound("startmoving");
-         this.§_-dF§ = param1.getSound("endmoving");
-         this.§_-ik§ = param1.getSound("move");
-         this.§_-QG§ = param1.getSound("idle");
+         this.var_462 = param1.getSound("startmoving");
+         this.var_465 = param1.getSound("endmoving");
+         this.var_464 = param1.getSound("move");
+         this.var_463 = param1.getSound("idle");
          this.idleLoop();
       }
       
       public function onControlChanged(param1:int, param2:int, param3:Boolean) : void
       {
          var _loc4_:Boolean = param1 != 0 || param2 != 0;
-         if(_loc4_ && !this.§_-kx§)
+         if(_loc4_ && !this.var_461)
          {
-            if(this.§_-qB§ != null)
+            if(this.var_460 != null)
             {
-               this.§_-qB§.stop();
+               this.var_460.stop();
             }
             this.startMoving();
          }
-         else if(!_loc4_ && this.§_-kx§)
+         else if(!_loc4_ && this.var_461)
          {
-            if(this.§_-qB§ != null)
+            if(this.var_460 != null)
             {
-               this.§_-qB§.stop();
+               this.var_460.stop();
             }
             this.stopMoving();
          }
-         this.§_-kx§ = _loc4_;
+         this.var_461 = _loc4_;
       }
       
       private function stopMoving() : void
@@ -59,47 +59,47 @@ package alternativa.tanks.sounds
       
       private function onStopMoveComplete(param1:Event) : void
       {
-         this.§_-qB§.removeEventListener(Event.SOUND_COMPLETE,this.onStopMoveComplete);
+         this.var_460.removeEventListener(Event.SOUND_COMPLETE,this.onStopMoveComplete);
          this.idleLoop();
       }
       
       private function startMoving() : void
       {
-         if(this.§_-qB§ != null)
+         if(this.var_460 != null)
          {
-            this.§_-qB§.stop();
+            this.var_460.stop();
          }
-         this.§_-qB§ = this.§_-9N§.play();
-         this.§_-qB§.addEventListener(Event.SOUND_COMPLETE,this.onStartMoveComplete);
+         this.var_460 = this.var_462.play();
+         this.var_460.addEventListener(Event.SOUND_COMPLETE,this.onStartMoveComplete);
       }
       
       private function onStartMoveComplete(param1:Event) : void
       {
-         this.§_-qB§.stop();
+         this.var_460.stop();
          this.moveLoop();
       }
       
       private function moveLoop() : void
       {
-         this.§_-qB§ = this.§_-ik§.play(0);
-         this.§_-qB§.addEventListener(Event.SOUND_COMPLETE,this.onMoveLoop);
+         this.var_460 = this.var_464.play(0);
+         this.var_460.addEventListener(Event.SOUND_COMPLETE,this.onMoveLoop);
       }
       
       private function onMoveLoop(param1:Event) : void
       {
-         this.§_-qB§.removeEventListener(Event.SOUND_COMPLETE,this.onMoveLoop);
+         this.var_460.removeEventListener(Event.SOUND_COMPLETE,this.onMoveLoop);
          this.moveLoop();
       }
       
       private function idleLoop() : void
       {
-         this.§_-qB§ = this.§_-QG§.play(0);
-         this.§_-qB§.addEventListener(Event.SOUND_COMPLETE,this.onIdleLoop);
+         this.var_460 = this.var_463.play(0);
+         this.var_460.addEventListener(Event.SOUND_COMPLETE,this.onIdleLoop);
       }
       
       private function onIdleLoop(param1:Event) : void
       {
-         this.§_-qB§.removeEventListener(Event.SOUND_COMPLETE,this.onIdleLoop);
+         this.var_460.removeEventListener(Event.SOUND_COMPLETE,this.onIdleLoop);
          this.idleLoop();
       }
       

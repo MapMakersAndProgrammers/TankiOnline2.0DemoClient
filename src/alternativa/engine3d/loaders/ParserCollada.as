@@ -1,8 +1,8 @@
 package alternativa.engine3d.loaders
 {
    import alternativa.engine3d.alternativa3d;
-   import alternativa.engine3d.animation.§_-FA§;
-   import alternativa.engine3d.animation.keys.§_-Np§;
+   import alternativa.engine3d.animation.keys.name_552;
+   import alternativa.engine3d.animation.name_550;
    import alternativa.engine3d.core.Light3D;
    import alternativa.engine3d.core.Object3D;
    import alternativa.engine3d.loaders.collada.DaeDocument;
@@ -24,30 +24,30 @@ package alternativa.engine3d.loaders
       
       public var materials:Vector.<ParserMaterial>;
       
-      public var §_-eL§:Vector.<§_-FA§>;
+      public var var_635:Vector.<name_550>;
       
-      private var §_-W6§:Dictionary;
+      private var var_634:Dictionary;
       
       public function ParserCollada()
       {
          super();
       }
       
-      public static function parseAnimation(data:XML) : §_-FA§
+      public static function parseAnimation(data:XML) : name_550
       {
          var document:DaeDocument = new DaeDocument(data,0);
-         var clip:§_-FA§ = new §_-FA§();
+         var clip:name_550 = new name_550();
          collectAnimation(clip,document.scene.nodes);
          return clip.numTracks > 0 ? clip : null;
       }
       
-      private static function collectAnimation(clip:§_-FA§, nodes:Vector.<DaeNode>) : void
+      private static function collectAnimation(clip:name_550, nodes:Vector.<DaeNode>) : void
       {
          var node:DaeNode = null;
-         var animation:§_-FA§ = null;
+         var animation:name_550 = null;
          var t:int = 0;
          var numTracks:int = 0;
-         var track:§_-Np§ = null;
+         var track:name_552 = null;
          for(var i:int = 0,var count:int = int(nodes.length); i < count; i++)
          {
             node = nodes[i];
@@ -56,13 +56,13 @@ package alternativa.engine3d.loaders
             {
                for(t = 0,numTracks = int(animation.numTracks); t < numTracks; t++)
                {
-                  track = animation.§_-QA§(t);
-                  clip.§_-nn§(track);
+                  track = animation.name_553(t);
+                  clip.name_551(track);
                }
             }
             else
             {
-               clip.§_-nn§(node.createStaticTransformTrack());
+               clip.name_551(node.createStaticTransformTrack());
             }
             collectAnimation(clip,node.nodes);
          }
@@ -73,14 +73,14 @@ package alternativa.engine3d.loaders
          this.objects = null;
          this.hierarchy = null;
          this.lights = null;
-         this.§_-eL§ = null;
+         this.var_635 = null;
          this.materials = null;
-         this.§_-W6§ = null;
+         this.var_634 = null;
       }
       
       public function getObjectLayer(object:Object3D) : String
       {
-         return this.§_-W6§[object];
+         return this.var_634[object];
       }
       
       private function init(data:XML, units:Number) : DaeDocument
@@ -89,9 +89,9 @@ package alternativa.engine3d.loaders
          this.objects = new Vector.<Object3D>();
          this.hierarchy = new Vector.<Object3D>();
          this.lights = new Vector.<Light3D>();
-         this.§_-eL§ = new Vector.<§_-FA§>();
+         this.var_635 = new Vector.<name_550>();
          this.materials = new Vector.<ParserMaterial>();
-         this.§_-W6§ = new Dictionary(true);
+         this.var_634 = new Dictionary(true);
          return new DaeDocument(data,units);
       }
       
@@ -129,11 +129,11 @@ package alternativa.engine3d.loaders
          }
          if(animatedObject.animation != null)
          {
-            this.§_-eL§.push(animatedObject.animation);
+            this.var_635.push(animatedObject.animation);
          }
          if(Boolean(layer))
          {
-            this.§_-W6§[object] = layer;
+            this.var_634[object] = layer;
          }
          return object;
       }
@@ -421,13 +421,13 @@ package alternativa.engine3d.loaders
          return null;
       }
       
-      public function getAnimationByObject(object:Object) : §_-FA§
+      public function getAnimationByObject(object:Object) : name_550
       {
-         var animation:§_-FA§ = null;
+         var animation:name_550 = null;
          var objects:Array = null;
-         for each(animation in this.§_-eL§)
+         for each(animation in this.var_635)
          {
-            objects = animation.alternativa3d::_-Kq;
+            objects = animation.alternativa3d::var_348;
             if(objects.indexOf(object) >= 0)
             {
                return animation;

@@ -5,14 +5,14 @@ package alternativa.tanks.game.camera
    
    public class AxisIndicator extends Shape
    {
-      private var §_-RS§:int;
+      private var var_32:int;
       
       private var axis:Vector.<Number> = Vector.<Number>([0,0,0,0,0,0]);
       
       public function AxisIndicator(size:int)
       {
          super();
-         this.§_-RS§ = size;
+         this.var_32 = size;
       }
       
       public function update(camera:GameCamera) : void
@@ -26,7 +26,7 @@ package alternativa.tanks.game.camera
          this.axis[3] = camera.yAxis.y;
          this.axis[4] = camera.xAxis.z;
          this.axis[5] = camera.yAxis.z;
-         var halfSize:int = this.§_-RS§ / 2;
+         var halfSize:int = this.var_32 / 2;
          for(var i:int = 0,var bitOffset:int = 16; i < 6; i += 2,bitOffset -= 8)
          {
             kx = this.axis[i] + 1;
@@ -39,7 +39,7 @@ package alternativa.tanks.game.camera
       
       public function get size() : int
       {
-         return this.§_-RS§;
+         return this.var_32;
       }
    }
 }

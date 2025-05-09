@@ -12,9 +12,9 @@ package alternativa.engine3d.core
       
       public var intensity:Number = 1;
       
-      alternativa3d var §_-cl§:Transform3D = new Transform3D();
+      alternativa3d var name_80:Transform3D = new Transform3D();
       
-      alternativa3d var §_-oG§:String;
+      alternativa3d var name_79:String;
       
       alternativa3d var red:Number;
       
@@ -25,7 +25,7 @@ package alternativa.engine3d.core
       public function Light3D()
       {
          super();
-         this.alternativa3d::_-oG = "l" + lastLightNumber.toString(16);
+         this.alternativa3d::name_79 = "l" + lastLightNumber.toString(16);
          name = "L" + (lastLightNumber++).toString();
       }
       

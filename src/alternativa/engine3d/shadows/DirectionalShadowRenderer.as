@@ -49,31 +49,31 @@ package alternativa.engine3d.shadows
       
       public var offset:Vector3D = new Vector3D();
       
-      public var §_-qg§:Object3D;
+      public var var_235:Object3D;
       
       private var context:Context3D;
       
       private var shadowMap:Texture;
       
-      private var §_-FQ§:Number;
+      private var var_236:Number;
       
       private var light:DirectionalLight;
       
-      alternativa3d var §_-UK§:Matrix3D = new Matrix3D();
+      alternativa3d var var_238:Matrix3D = new Matrix3D();
       
       private var debugObject:Mesh;
       
-      public var §_-Vg§:TextureMaterial = new TextureMaterial();
+      public var var_237:TextureMaterial = new TextureMaterial();
       
-      private var §_-Ez§:TextureResource = new ExternalTextureResource("null");
+      private var var_239:TextureResource = new ExternalTextureResource("null");
       
-      private var §_-M§:Number = 0;
+      private var var_164:Number = 0;
       
       private var pcfOffsets:Vector.<Number>;
       
-      private var §_-1a§:Boolean = false;
+      private var var_167:Boolean = false;
       
-      private var §_-bD§:Matrix3D = new Matrix3D();
+      private var var_169:Matrix3D = new Matrix3D();
       
       private var uvMatrix:Matrix3D = new Matrix3D();
       
@@ -85,18 +85,18 @@ package alternativa.engine3d.shadows
       {
          super();
          this.context = context;
-         this.§_-FQ§ = worldSize;
-         this.§_-M§ = pcfSize / worldSize / 255;
-         if(this.§_-M§ > 0)
+         this.var_236 = worldSize;
+         this.var_164 = pcfSize / worldSize / 255;
+         if(this.var_164 > 0)
          {
-            this.pcfOffsets = Vector.<Number>([-this.§_-M§,-this.§_-M§,0,1 / 4,-this.§_-M§,this.§_-M§,0,1,this.§_-M§,-this.§_-M§,0,1,this.§_-M§,this.§_-M§,0,1]);
+            this.pcfOffsets = Vector.<Number>([-this.var_164,-this.var_164,0,1 / 4,-this.var_164,this.var_164,0,1,this.var_164,-this.var_164,0,1,this.var_164,this.var_164,0,1]);
          }
          this.shadowMap = context.createTexture(size,size,Context3DTextureFormat.BGRA,true);
-         this.§_-Ez§.alternativa3d::_texture = this.shadowMap;
-         this.§_-Vg§.diffuseMap = this.§_-Ez§;
-         this.§_-Vg§.alpha = 0.9;
-         this.§_-Vg§.§_-L4§ = true;
-         this.debugObject = new Box(worldSize,worldSize,1,1,1,1,false,this.§_-Vg§);
+         this.var_239.alternativa3d::_texture = this.shadowMap;
+         this.var_237.diffuseMap = this.var_239;
+         this.var_237.alpha = 0.9;
+         this.var_237.var_21 = true;
+         this.debugObject = new Box(worldSize,worldSize,1,1,1,1,false,this.var_237);
          this.debugObject.geometry.upload(context);
       }
       
@@ -161,12 +161,12 @@ package alternativa.engine3d.shadows
          context.setProgramConstantsFromVector(Context3DProgramType.VERTEX,4,Vector.<Number>([255,0,0,1]));
          context.setProgramConstantsFromVector(Context3DProgramType.FRAGMENT,0,Vector.<Number>([1 / 255,0,0,1]));
          context.setCulling(Context3DTriangleFace.BACK);
-         for(var i:int = 0; i < mesh.alternativa3d::_-Oy; i++)
+         for(var i:int = 0; i < mesh.alternativa3d::var_93; i++)
          {
-            surface = mesh.alternativa3d::_-eW[i];
+            surface = mesh.alternativa3d::var_92[i];
             if(!(surface.material == null || !surface.material.alternativa3d::canDrawInShadowMap))
             {
-               context.drawTriangles(mesh.geometry.alternativa3d::_-EM,surface.indexBegin,surface.numTriangles);
+               context.drawTriangles(mesh.geometry.alternativa3d::name_78,surface.indexBegin,surface.numTriangles);
             }
          }
          context.setVertexBufferAt(0,null);
@@ -299,13 +299,13 @@ package alternativa.engine3d.shadows
       
       public function get worldSize() : Number
       {
-         return this.§_-FQ§;
+         return this.var_236;
       }
       
       public function set worldSize(value:Number) : void
       {
-         this.§_-FQ§ = value;
-         var newDebug:Mesh = new Box(this.§_-FQ§,this.§_-FQ§,1,1,1,1,false,this.§_-Vg§);
+         this.var_236 = value;
+         var newDebug:Mesh = new Box(this.var_236,this.var_236,1,1,1,1,false,this.var_237);
          newDebug.geometry.upload(this.context);
          if(this.debugObject.alternativa3d::_parent != null)
          {
@@ -318,7 +318,7 @@ package alternativa.engine3d.shadows
       public function setLight(value:DirectionalLight) : void
       {
          this.light = value;
-         if(this.§_-1a§)
+         if(this.var_167)
          {
             this.light.addChild(this.debugObject);
          }
@@ -326,13 +326,13 @@ package alternativa.engine3d.shadows
       
       override public function get debug() : Boolean
       {
-         return this.§_-1a§;
+         return this.var_167;
       }
       
       override public function set debug(value:Boolean) : void
       {
-         this.§_-1a§ = value;
-         if(this.§_-1a§)
+         this.var_167 = value;
+         if(this.var_167)
          {
             if(this.light != null)
             {
@@ -348,7 +348,7 @@ package alternativa.engine3d.shadows
       override alternativa3d function cullReciever(boundBox:BoundBox, object:Object3D) : Boolean
       {
          alternativa3d::copyMatrixFromTransform(matrix,object.alternativa3d::localToGlobalTransform);
-         matrix.append(this.alternativa3d::_-UK);
+         matrix.append(this.alternativa3d::var_238);
          return alternativa3d::cullObjectImplementation(boundBox,matrix);
       }
       
@@ -356,12 +356,12 @@ package alternativa.engine3d.shadows
       {
          var root:Object3D = null;
          active = true;
-         this.§_-qg§.alternativa3d::localToCameraTransform.compose(this.§_-qg§.alternativa3d::_x,this.§_-qg§.alternativa3d::_y,this.§_-qg§.alternativa3d::_z,this.§_-qg§.alternativa3d::_rotationX,this.§_-qg§.alternativa3d::_rotationY,this.§_-qg§.alternativa3d::_rotationZ,this.§_-qg§.alternativa3d::_scaleX,this.§_-qg§.alternativa3d::_scaleY,this.§_-qg§.alternativa3d::_scaleZ);
-         for(root = this.§_-qg§; root.alternativa3d::_parent != null; )
+         this.var_235.alternativa3d::localToCameraTransform.compose(this.var_235.alternativa3d::_x,this.var_235.alternativa3d::_y,this.var_235.alternativa3d::_z,this.var_235.alternativa3d::_rotationX,this.var_235.alternativa3d::_rotationY,this.var_235.alternativa3d::_rotationZ,this.var_235.alternativa3d::_scaleX,this.var_235.alternativa3d::_scaleY,this.var_235.alternativa3d::_scaleZ);
+         for(root = this.var_235; root.alternativa3d::_parent != null; )
          {
             root = root.alternativa3d::_parent;
             root.alternativa3d::localToGlobalTransform.compose(root.alternativa3d::_x,root.alternativa3d::_y,root.alternativa3d::_z,root.alternativa3d::_rotationX,root.alternativa3d::_rotationY,root.alternativa3d::_rotationZ,root.alternativa3d::_scaleX,root.alternativa3d::_scaleY,root.alternativa3d::_scaleZ);
-            this.§_-qg§.alternativa3d::localToCameraTransform.append(root.alternativa3d::localToGlobalTransform);
+            this.var_235.alternativa3d::localToCameraTransform.append(root.alternativa3d::localToGlobalTransform);
          }
          this.light.alternativa3d::localToGlobalTransform.compose(this.light.alternativa3d::_x,this.light.alternativa3d::_y,this.light.alternativa3d::_z,this.light.alternativa3d::_rotationX,this.light.alternativa3d::_rotationY,this.light.alternativa3d::_rotationZ,this.light.alternativa3d::_scaleX,this.light.alternativa3d::_scaleY,this.light.alternativa3d::_scaleZ);
          for(root = this.light; root.alternativa3d::_parent != null; )
@@ -372,25 +372,25 @@ package alternativa.engine3d.shadows
          }
          this.light.alternativa3d::globalToLocalTransform.copy(this.light.alternativa3d::localToGlobalTransform);
          this.light.alternativa3d::globalToLocalTransform.invert();
-         this.§_-qg§.alternativa3d::localToCameraTransform.append(this.light.alternativa3d::globalToLocalTransform);
-         var t:Transform3D = this.§_-qg§.alternativa3d::localToCameraTransform;
+         this.var_235.alternativa3d::localToCameraTransform.append(this.light.alternativa3d::globalToLocalTransform);
+         var t:Transform3D = this.var_235.alternativa3d::localToCameraTransform;
          this.center.x = t.a * this.offset.x + t.b * this.offset.y + t.c * this.offset.z + t.d;
          this.center.y = t.e * this.offset.x + t.f * this.offset.y + t.g * this.offset.z + t.h;
          this.center.z = t.i * this.offset.x + t.j * this.offset.y + t.k * this.offset.z + t.l;
-         this.calculateShadowMapProjection(this.§_-bD§,this.uvMatrix,this.center,this.§_-FQ§,this.§_-FQ§,this.§_-FQ§);
-         alternativa3d::copyMatrixFromTransform(this.alternativa3d::_-UK,this.light.alternativa3d::globalToLocalTransform);
-         this.alternativa3d::_-UK.append(this.uvMatrix);
+         this.calculateShadowMapProjection(this.var_169,this.uvMatrix,this.center,this.var_236,this.var_236,this.var_236);
+         alternativa3d::copyMatrixFromTransform(this.alternativa3d::var_238,this.light.alternativa3d::globalToLocalTransform);
+         this.alternativa3d::var_238.append(this.uvMatrix);
          this.debugObject.x = this.center.x;
          this.debugObject.y = this.center.y;
-         this.debugObject.z = this.center.z - this.§_-FQ§ / 2;
-         this.§_-Vg§.diffuseMap = null;
+         this.debugObject.z = this.center.z - this.var_236 / 2;
+         this.var_237.diffuseMap = null;
          this.context.setRenderToTexture(this.shadowMap,true,0,0);
          this.context.clear(1,1,1,1);
          cleanContext(this.context);
-         alternativa3d::drawObjectToShadowMap(this.context,this.§_-qg§,this.light,this.§_-bD§);
+         alternativa3d::drawObjectToShadowMap(this.context,this.var_235,this.light,this.var_169);
          this.context.setRenderToBackBuffer();
          cleanContext(this.context);
-         this.§_-Vg§.diffuseMap = this.§_-Ez§;
+         this.var_237.diffuseMap = this.var_239;
       }
       
       private function calculateShadowMapProjection(matrix:Matrix3D, uvMatrix:Matrix3D, offset:Vector3D, width:Number, height:Number, length:Number) : void
@@ -426,19 +426,19 @@ package alternativa.engine3d.shadows
       
       override public function getFShader(index:int = 0) : Procedure
       {
-         return initFShader(false,this.§_-M§ > 0,index);
+         return initFShader(false,this.var_164 > 0,index);
       }
       
       override public function getFIntensityShader() : Procedure
       {
-         return initFShader(false,this.§_-M§ > 0,0,true);
+         return initFShader(false,this.var_164 > 0,0,true);
       }
       
       override public function applyShader(drawUnit:DrawUnit, program:ShaderProgram, object:Object3D, camera:Camera3D, index:int = 0) : void
       {
          localToGlobal.combine(camera.alternativa3d::localToGlobalTransform,object.alternativa3d::localToCameraTransform);
          alternativa3d::copyMatrixFromTransform(objectToShadowMap,localToGlobal);
-         objectToShadowMap.append(this.alternativa3d::_-UK);
+         objectToShadowMap.append(this.alternativa3d::var_238);
          objectToShadowMap.copyRawDataTo(vector,0,true);
          drawUnit.alternativa3d::setVertexConstantsFromVector(program.vertexShader.getVariableIndex(index + "cTOSHADOW"),vector,4);
          drawUnit.alternativa3d::setFragmentConstantsFromVector(program.fragmentShader.getVariableIndex(index + "cConstants"),constants,1);
@@ -446,7 +446,7 @@ package alternativa.engine3d.shadows
          {
             drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex(index + "cShadowColor"),camera.alternativa3d::ambient[0] / 2,camera.alternativa3d::ambient[1] / 2,camera.alternativa3d::ambient[2] / 2,1);
          }
-         if(this.§_-M§ > 0)
+         if(this.var_164 > 0)
          {
             drawUnit.alternativa3d::setFragmentConstantsFromVector(program.fragmentShader.getVariableIndex("cDPCF0"),this.pcfOffsets,this.pcfOffsets.length / 4);
          }

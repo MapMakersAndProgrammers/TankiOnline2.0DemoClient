@@ -2,48 +2,48 @@ package versions.version2.a3d.materials
 {
    public class A3D2Map
    {
-      private var §_-9y§:uint;
+      private var var_337:uint;
       
-      private var §_-3I§:int;
+      private var var_101:int;
       
-      private var §_-JE§:int;
+      private var var_338:int;
       
       public function A3D2Map(channel:uint, id:int, imageId:int)
       {
          super();
-         this.§_-9y§ = channel;
-         this.§_-3I§ = id;
-         this.§_-JE§ = imageId;
+         this.var_337 = channel;
+         this.var_101 = id;
+         this.var_338 = imageId;
       }
       
       public function get channel() : uint
       {
-         return this.§_-9y§;
+         return this.var_337;
       }
       
       public function set channel(value:uint) : void
       {
-         this.§_-9y§ = value;
+         this.var_337 = value;
       }
       
       public function get id() : int
       {
-         return this.§_-3I§;
+         return this.var_101;
       }
       
       public function set id(value:int) : void
       {
-         this.§_-3I§ = value;
+         this.var_101 = value;
       }
       
       public function get imageId() : int
       {
-         return this.§_-JE§;
+         return this.var_338;
       }
       
       public function set imageId(value:int) : void
       {
-         this.§_-JE§ = value;
+         this.var_338 = value;
       }
       
       public function toString() : String

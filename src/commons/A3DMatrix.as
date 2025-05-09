@@ -2,95 +2,95 @@ package commons
 {
    public class A3DMatrix
    {
-      private var §_-Cw§:Number;
+      private var var_311:Number;
       
-      private var §_-gS§:Number;
+      private var var_317:Number;
       
-      private var §_-ne§:Number;
+      private var var_320:Number;
       
-      private var §_-72§:Number;
+      private var var_310:Number;
       
-      private var §_-mV§:Number;
+      private var var_319:Number;
       
       private var _f:Number;
       
-      private var §_-eD§:Number;
+      private var var_316:Number;
       
-      private var §_-ih§:Number;
+      private var var_318:Number;
       
-      private var §_-Lu§:Number;
+      private var var_312:Number;
       
-      private var §_-cJ§:Number;
+      private var var_315:Number;
       
-      private var §_-SO§:Number;
+      private var var_313:Number;
       
-      private var §_-UI§:Number;
+      private var var_314:Number;
       
       public function A3DMatrix(a:Number, b:Number, c:Number, d:Number, e:Number, f:Number, g:Number, h:Number, i:Number, j:Number, k:Number, l:Number)
       {
          super();
-         this.§_-Cw§ = a;
-         this.§_-gS§ = b;
-         this.§_-ne§ = c;
-         this.§_-72§ = d;
-         this.§_-mV§ = e;
+         this.var_311 = a;
+         this.var_317 = b;
+         this.var_320 = c;
+         this.var_310 = d;
+         this.var_319 = e;
          this._f = f;
-         this.§_-eD§ = g;
-         this.§_-ih§ = h;
-         this.§_-Lu§ = i;
-         this.§_-cJ§ = j;
-         this.§_-SO§ = k;
-         this.§_-UI§ = l;
+         this.var_316 = g;
+         this.var_318 = h;
+         this.var_312 = i;
+         this.var_315 = j;
+         this.var_313 = k;
+         this.var_314 = l;
       }
       
       public function get a() : Number
       {
-         return this.§_-Cw§;
+         return this.var_311;
       }
       
       public function set a(value:Number) : void
       {
-         this.§_-Cw§ = value;
+         this.var_311 = value;
       }
       
       public function get b() : Number
       {
-         return this.§_-gS§;
+         return this.var_317;
       }
       
       public function set b(value:Number) : void
       {
-         this.§_-gS§ = value;
+         this.var_317 = value;
       }
       
       public function get c() : Number
       {
-         return this.§_-ne§;
+         return this.var_320;
       }
       
       public function set c(value:Number) : void
       {
-         this.§_-ne§ = value;
+         this.var_320 = value;
       }
       
       public function get d() : Number
       {
-         return this.§_-72§;
+         return this.var_310;
       }
       
       public function set d(value:Number) : void
       {
-         this.§_-72§ = value;
+         this.var_310 = value;
       }
       
       public function get e() : Number
       {
-         return this.§_-mV§;
+         return this.var_319;
       }
       
       public function set e(value:Number) : void
       {
-         this.§_-mV§ = value;
+         this.var_319 = value;
       }
       
       public function get f() : Number
@@ -105,62 +105,62 @@ package commons
       
       public function get g() : Number
       {
-         return this.§_-eD§;
+         return this.var_316;
       }
       
       public function set g(value:Number) : void
       {
-         this.§_-eD§ = value;
+         this.var_316 = value;
       }
       
       public function get h() : Number
       {
-         return this.§_-ih§;
+         return this.var_318;
       }
       
       public function set h(value:Number) : void
       {
-         this.§_-ih§ = value;
+         this.var_318 = value;
       }
       
       public function get i() : Number
       {
-         return this.§_-Lu§;
+         return this.var_312;
       }
       
       public function set i(value:Number) : void
       {
-         this.§_-Lu§ = value;
+         this.var_312 = value;
       }
       
       public function get j() : Number
       {
-         return this.§_-cJ§;
+         return this.var_315;
       }
       
       public function set j(value:Number) : void
       {
-         this.§_-cJ§ = value;
+         this.var_315 = value;
       }
       
       public function get k() : Number
       {
-         return this.§_-SO§;
+         return this.var_313;
       }
       
       public function set k(value:Number) : void
       {
-         this.§_-SO§ = value;
+         this.var_313 = value;
       }
       
       public function get l() : Number
       {
-         return this.§_-UI§;
+         return this.var_314;
       }
       
       public function set l(value:Number) : void
       {
-         this.§_-UI§ = value;
+         this.var_314 = value;
       }
       
       public function toString() : String

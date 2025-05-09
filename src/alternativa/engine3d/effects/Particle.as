@@ -30,13 +30,13 @@ package alternativa.engine3d.effects
       
       public var originY:Number;
       
-      public var §_-q§:Number;
+      public var name_333:Number;
       
-      public var §_-Ts§:Number;
+      public var name_330:Number;
       
-      public var §_-ej§:Number;
+      public var name_332:Number;
       
-      public var §_-W5§:Number;
+      public var name_331:Number;
       
       public var red:Number;
       

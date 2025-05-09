@@ -13,7 +13,7 @@ package alternativa.engine3d.loaders.collada
    
    public class DaeGeometry extends DaeElement
    {
-      internal var §_-FV§:Vector.<DaeVertex>;
+      internal var var_715:Vector.<DaeVertex>;
       
       internal var primitives:Vector.<DaePrimitive>;
       
@@ -53,9 +53,9 @@ package alternativa.engine3d.loaders.collada
          {
             this.parsePrimitives();
             this.vertices.parse();
-            numVertices = this.vertices.§_-E6§.numbers.length / this.vertices.§_-E6§.stride;
+            numVertices = this.vertices.name_597.numbers.length / this.vertices.name_597.stride;
             this.geometry = new Geometry();
-            this.§_-FV§ = new Vector.<DaeVertex>(numVertices);
+            this.var_715 = new Vector.<DaeVertex>(numVertices);
             channels = 0;
             for(i = 0; i < this.primitives.length; )
             {
@@ -63,8 +63,8 @@ package alternativa.engine3d.loaders.collada
                p.parse();
                if(p.verticesEquals(this.vertices))
                {
-                  numVertices = int(this.§_-FV§.length);
-                  channels |= p.fillGeometry(this.geometry,this.§_-FV§);
+                  numVertices = int(this.var_715.length);
+                  channels |= p.fillGeometry(this.geometry,this.var_715);
                }
                i++;
             }
@@ -105,14 +105,14 @@ package alternativa.engine3d.loaders.collada
                i++;
             }
             this.geometry.addVertexStream(attributes);
-            numVertices = int(this.§_-FV§.length);
+            numVertices = int(this.var_715.length);
             data = new ByteArray();
             data.endian = Endian.LITTLE_ENDIAN;
             numMappings = int(attributes.length);
             data.length = 4 * numMappings * numVertices;
             for(i = 0; i < numVertices; )
             {
-               vertex = this.§_-FV§[i];
+               vertex = this.var_715[i];
                if(vertex != null)
                {
                   data.position = 4 * numMappings * i;
@@ -125,12 +125,12 @@ package alternativa.engine3d.loaders.collada
                      data.writeFloat(vertex.normal.y);
                      data.writeFloat(vertex.normal.z);
                   }
-                  if(vertex.§_-hC§ != null)
+                  if(vertex.name_596 != null)
                   {
-                     data.writeFloat(vertex.§_-hC§.x);
-                     data.writeFloat(vertex.§_-hC§.y);
-                     data.writeFloat(vertex.§_-hC§.z);
-                     data.writeFloat(vertex.§_-hC§.w);
+                     data.writeFloat(vertex.name_596.x);
+                     data.writeFloat(vertex.name_596.y);
+                     data.writeFloat(vertex.name_596.z);
+                     data.writeFloat(vertex.name_596.w);
                   }
                   for(j = 0; j < vertex.uvs.length; )
                   {

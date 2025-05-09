@@ -1,8 +1,8 @@
 package alternativa.tanks.config.loaders.tankparts
 {
-   import § var§.TankTurretParser;
    import alternativa.tanks.game.entities.tank.TankPart;
    import alternativa.utils.ByteArrayMap;
+   import package_43.TankTurretParser;
    
    public class TankTurretLoader extends TankPartLoader
    {
@@ -14,7 +14,7 @@ package alternativa.tanks.config.loaders.tankparts
       override public function parseModelData(param1:ByteArrayMap) : TankPart
       {
          var _loc2_:TankTurretParser = new TankTurretParser();
-         return _loc2_.parse(param1,§_-P9§);
+         return _loc2_.parse(param1,var_673);
       }
    }
 }

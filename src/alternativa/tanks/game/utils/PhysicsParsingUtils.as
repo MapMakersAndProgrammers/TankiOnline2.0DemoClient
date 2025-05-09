@@ -7,7 +7,7 @@ package alternativa.tanks.game.utils
    import alternativa.physics.collision.CollisionPrimitive;
    import alternativa.physics.collision.primitives.CollisionRect;
    import alternativa.physics.collision.primitives.CollisionTriangle;
-   import alternativa.physics.collision.primitives.§_-m3§;
+   import alternativa.physics.collision.primitives.name_311;
    
    public class PhysicsParsingUtils
    {
@@ -30,7 +30,7 @@ package alternativa.tanks.game.utils
          halfSize.y = maxY - minY;
          halfSize.z = maxZ - minZ;
          halfSize.scale(0.5);
-         var collisionBox:§_-m3§ = new §_-m3§(halfSize,collisionGroup,collisionMask);
+         var collisionBox:name_311 = new name_311(halfSize,collisionGroup,collisionMask);
          collisionBox.transform.setMatrix(mesh.x,mesh.y,mesh.z,mesh.rotationX,mesh.rotationY,mesh.rotationZ);
          var midPoint:Vector3 = new Vector3(0.5 * (maxX + minX),0.5 * (maxY + minY),0.5 * (maxZ + minZ));
          midPoint.transform4(collisionBox.transform);

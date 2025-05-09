@@ -2,35 +2,35 @@ package versions.version2.a3d.materials
 {
    public class A3D2Image
    {
-      private var §_-3I§:int;
+      private var var_101:int;
       
-      private var §_-6D§:String;
+      private var var_274:String;
       
       public function A3D2Image(id:int, url:String)
       {
          super();
-         this.§_-3I§ = id;
-         this.§_-6D§ = url;
+         this.var_101 = id;
+         this.var_274 = url;
       }
       
       public function get id() : int
       {
-         return this.§_-3I§;
+         return this.var_101;
       }
       
       public function set id(value:int) : void
       {
-         this.§_-3I§ = value;
+         this.var_101 = value;
       }
       
       public function get url() : String
       {
-         return this.§_-6D§;
+         return this.var_274;
       }
       
       public function set url(value:String) : void
       {
-         this.§_-6D§ = value;
+         this.var_274 = value;
       }
       
       public function toString() : String

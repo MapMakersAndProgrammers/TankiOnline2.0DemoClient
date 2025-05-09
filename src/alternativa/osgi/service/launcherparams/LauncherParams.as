@@ -7,13 +7,13 @@ package alternativa.osgi.service.launcherparams
    {
       private var urlParams:Properties;
       
-      private var §_-QJ§:Vector.<LibraryInfo>;
+      private var var_553:Vector.<LibraryInfo>;
       
       public function LauncherParams(urlParams:Properties, startupLibraryInfos:Vector.<LibraryInfo>)
       {
          super();
          this.urlParams = urlParams;
-         this.§_-QJ§ = startupLibraryInfos;
+         this.var_553 = startupLibraryInfos;
       }
       
       public function getParameter(parameterName:String) : String
@@ -28,7 +28,7 @@ package alternativa.osgi.service.launcherparams
       
       public function get startupLibraryInfos() : Vector.<LibraryInfo>
       {
-         return this.§_-QJ§;
+         return this.var_553;
       }
       
       public function get isDebug() : Boolean

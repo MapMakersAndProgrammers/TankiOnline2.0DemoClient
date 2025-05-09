@@ -2,22 +2,22 @@ package versions.version1.a3d.id
 {
    public class ParentId
    {
-      private var §_-3I§:uint;
+      private var var_101:uint;
       
       public function ParentId(id:uint)
       {
          super();
-         this.§_-3I§ = id;
+         this.var_101 = id;
       }
       
       public function get id() : uint
       {
-         return this.§_-3I§;
+         return this.var_101;
       }
       
       public function set id(value:uint) : void
       {
-         this.§_-3I§ = value;
+         this.var_101 = value;
       }
       
       public function toString() : String

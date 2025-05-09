@@ -34,9 +34,9 @@ package alternativa.protocol.impl
       
       public static var defaultInstance:IProtocol = new Protocol();
       
-      private var §_-5c§:Object = new Object();
+      private var var_190:Object = new Object();
       
-      private var §_-RY§:Dictionary = new Dictionary(false);
+      private var var_191:Dictionary = new Dictionary(false);
       
       public function Protocol()
       {
@@ -67,26 +67,26 @@ package alternativa.protocol.impl
       
       public function registerCodec(codecInfo:ICodecInfo, codec:ICodec) : void
       {
-         this.§_-5c§[codecInfo] = codec;
+         this.var_190[codecInfo] = codec;
       }
       
       public function registerCodecForType(type:Class, codec:ICodec) : void
       {
-         this.§_-5c§[new TypeCodecInfo(type,false)] = codec;
-         this.§_-5c§[new TypeCodecInfo(type,true)] = new OptionalCodecDecorator(codec);
+         this.var_190[new TypeCodecInfo(type,false)] = codec;
+         this.var_190[new TypeCodecInfo(type,true)] = new OptionalCodecDecorator(codec);
       }
       
       public function getCodec(codecInfo:ICodecInfo) : ICodec
       {
-         var result:ICodec = this.§_-5c§[codecInfo];
+         var result:ICodec = this.var_190[codecInfo];
          if(result == null)
          {
             throw Error("Codec not found for  " + codecInfo);
          }
-         if(this.§_-RY§[result] == null)
+         if(this.var_191[result] == null)
          {
             result.init(this);
-            this.§_-RY§[result] = result;
+            this.var_191[result] = result;
          }
          return result;
       }

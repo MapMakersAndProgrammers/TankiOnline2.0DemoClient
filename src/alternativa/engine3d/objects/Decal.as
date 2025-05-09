@@ -29,9 +29,9 @@ package alternativa.engine3d.objects
       {
          var surface:Surface = null;
          var debug:int = 0;
-         for(var i:int = 0; i < alternativa3d::_-Oy; )
+         for(var i:int = 0; i < alternativa3d::var_93; )
          {
-            surface = alternativa3d::_-eW[i];
+            surface = alternativa3d::var_92[i];
             if(surface.material != null)
             {
                surface.material.alternativa3d::collectDraws(camera,surface,geometry,lights,lightsLength,RenderPriority.DECALS);

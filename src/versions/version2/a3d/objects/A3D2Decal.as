@@ -4,69 +4,69 @@ package versions.version2.a3d.objects
    
    public class A3D2Decal
    {
-      private var §_-jD§:int;
+      private var var_270:int;
       
-      private var §_-3I§:Long;
+      private var var_101:Long;
       
-      private var §_-Hc§:int;
+      private var var_277:int;
       
       private var _name:String;
       
-      private var §_-3D§:Number;
+      private var var_285:Number;
       
-      private var §_-fP§:Long;
+      private var var_269:Long;
       
-      private var §_-eW§:Vector.<A3D2Surface>;
+      private var var_92:Vector.<A3D2Surface>;
       
-      private var §_-bP§:A3D2Transform;
+      private var var_268:A3D2Transform;
       
-      private var §_-0B§:Vector.<int>;
+      private var var_276:Vector.<int>;
       
-      private var §_-1u§:Boolean;
+      private var var_261:Boolean;
       
       public function A3D2Decal(boundBoxId:int, id:Long, indexBufferId:int, name:String, offset:Number, parentId:Long, surfaces:Vector.<A3D2Surface>, transform:A3D2Transform, vertexBuffers:Vector.<int>, visible:Boolean)
       {
          super();
-         this.§_-jD§ = boundBoxId;
-         this.§_-3I§ = id;
-         this.§_-Hc§ = indexBufferId;
+         this.var_270 = boundBoxId;
+         this.var_101 = id;
+         this.var_277 = indexBufferId;
          this._name = name;
-         this.§_-3D§ = offset;
-         this.§_-fP§ = parentId;
-         this.§_-eW§ = surfaces;
-         this.§_-bP§ = transform;
-         this.§_-0B§ = vertexBuffers;
-         this.§_-1u§ = visible;
+         this.var_285 = offset;
+         this.var_269 = parentId;
+         this.var_92 = surfaces;
+         this.var_268 = transform;
+         this.var_276 = vertexBuffers;
+         this.var_261 = visible;
       }
       
       public function get boundBoxId() : int
       {
-         return this.§_-jD§;
+         return this.var_270;
       }
       
       public function set boundBoxId(value:int) : void
       {
-         this.§_-jD§ = value;
+         this.var_270 = value;
       }
       
       public function get id() : Long
       {
-         return this.§_-3I§;
+         return this.var_101;
       }
       
       public function set id(value:Long) : void
       {
-         this.§_-3I§ = value;
+         this.var_101 = value;
       }
       
       public function get indexBufferId() : int
       {
-         return this.§_-Hc§;
+         return this.var_277;
       }
       
       public function set indexBufferId(value:int) : void
       {
-         this.§_-Hc§ = value;
+         this.var_277 = value;
       }
       
       public function get name() : String
@@ -81,62 +81,62 @@ package versions.version2.a3d.objects
       
       public function get offset() : Number
       {
-         return this.§_-3D§;
+         return this.var_285;
       }
       
       public function set offset(value:Number) : void
       {
-         this.§_-3D§ = value;
+         this.var_285 = value;
       }
       
       public function get parentId() : Long
       {
-         return this.§_-fP§;
+         return this.var_269;
       }
       
       public function set parentId(value:Long) : void
       {
-         this.§_-fP§ = value;
+         this.var_269 = value;
       }
       
       public function get surfaces() : Vector.<A3D2Surface>
       {
-         return this.§_-eW§;
+         return this.var_92;
       }
       
       public function set surfaces(value:Vector.<A3D2Surface>) : void
       {
-         this.§_-eW§ = value;
+         this.var_92 = value;
       }
       
       public function get transform() : A3D2Transform
       {
-         return this.§_-bP§;
+         return this.var_268;
       }
       
       public function set transform(value:A3D2Transform) : void
       {
-         this.§_-bP§ = value;
+         this.var_268 = value;
       }
       
       public function get vertexBuffers() : Vector.<int>
       {
-         return this.§_-0B§;
+         return this.var_276;
       }
       
       public function set vertexBuffers(value:Vector.<int>) : void
       {
-         this.§_-0B§ = value;
+         this.var_276 = value;
       }
       
       public function get visible() : Boolean
       {
-         return this.§_-1u§;
+         return this.var_261;
       }
       
       public function set visible(value:Boolean) : void
       {
-         this.§_-1u§ = value;
+         this.var_261 = value;
       }
       
       public function toString() : String

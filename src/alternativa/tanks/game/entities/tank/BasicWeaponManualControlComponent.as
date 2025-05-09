@@ -17,11 +17,11 @@ package alternativa.tanks.game.entities.tank
       
       private var enabled:Boolean;
       
-      private var §_-lp§:IBasicWeapon;
+      private var var_442:IBasicWeapon;
       
-      private var §_-89§:Boolean;
+      private var var_508:Boolean;
       
-      private var §_-ZM§:Boolean;
+      private var var_507:Boolean;
       
       public function BasicWeaponManualControlComponent()
       {
@@ -30,7 +30,7 @@ package alternativa.tanks.game.entities.tank
       
       override public function initComponent() : void
       {
-         this.§_-lp§ = IBasicWeapon(entity.getComponentStrict(IBasicWeapon));
+         this.var_442 = IBasicWeapon(entity.getComponentStrict(IBasicWeapon));
          entity.addEventHandler(TankEvents.SET_ACTIVATING_STATE,this.onSetInactiveState);
          entity.addEventHandler(TankEvents.SET_DEAD_STATE,this.onSetInactiveState);
          entity.addEventHandler(TankEvents.SET_RESPAWN_STATE,this.onSetInactiveState);
@@ -57,20 +57,20 @@ package alternativa.tanks.game.entities.tank
       
       public function runLogic() : void
       {
-         if(this.§_-89§)
+         if(this.var_508)
          {
-            this.§_-lp§.pullTrigger();
-            if(this.§_-ZM§)
+            this.var_442.pullTrigger();
+            if(this.var_507)
             {
-               this.§_-lp§.forceUpdate();
+               this.var_442.forceUpdate();
             }
          }
-         if(this.§_-ZM§)
+         if(this.var_507)
          {
-            this.§_-lp§.releaseTrigger();
+            this.var_442.releaseTrigger();
          }
-         this.§_-89§ = false;
-         this.§_-ZM§ = false;
+         this.var_508 = false;
+         this.var_507 = false;
       }
       
       private function onKey(eventType:KeyboardEventType, keyCode:uint) : void
@@ -78,18 +78,18 @@ package alternativa.tanks.game.entities.tank
          switch(eventType)
          {
             case KeyboardEventType.KEY_DOWN:
-               this.§_-89§ = true;
+               this.var_508 = true;
                if(!this.enabled)
                {
-                  this.§_-ZM§ = false;
+                  this.var_507 = false;
                }
                break;
             case KeyboardEventType.KEY_UP:
-               this.§_-ZM§ = true;
+               this.var_507 = true;
                if(!this.enabled)
                {
-                  this.§_-lp§.releaseTrigger();
-                  this.§_-89§ = false;
+                  this.var_442.releaseTrigger();
+                  this.var_508 = false;
                   break;
                }
          }

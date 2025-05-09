@@ -4,7 +4,7 @@ package alternativa.tanks.game.utils.objectpool
    
    public class ObjectPoolManager
    {
-      private var §_-Jm§:Dictionary = new Dictionary();
+      private var var_103:Dictionary = new Dictionary();
       
       public function ObjectPoolManager()
       {
@@ -18,11 +18,11 @@ package alternativa.tanks.game.utils.objectpool
       
       private function getPool(objectClass:Class) : ObjectPool
       {
-         var pool:ObjectPool = this.§_-Jm§[objectClass];
+         var pool:ObjectPool = this.var_103[objectClass];
          if(pool == null)
          {
             pool = new ObjectPool(objectClass);
-            this.§_-Jm§[objectClass] = pool;
+            this.var_103[objectClass] = pool;
          }
          return pool;
       }

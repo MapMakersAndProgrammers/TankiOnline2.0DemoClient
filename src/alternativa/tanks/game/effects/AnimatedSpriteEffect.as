@@ -19,7 +19,7 @@ package alternativa.tanks.game.effects
       
       private var offsetToCamera:Number;
       
-      private var §_-iD§:Number;
+      private var var_458:Number;
       
       private var currFrame:Number;
       
@@ -41,7 +41,7 @@ package alternativa.tanks.game.effects
          this.initSprite(width,height,rotation,originX,originY);
          this.frames = frames;
          this.offsetToCamera = offsetToCamera;
-         this.§_-iD§ = 0.001 * fps;
+         this.var_458 = 0.001 * fps;
          this.position.copy(position);
          this.loop = loop;
          this.numFrames = frames.length;
@@ -72,7 +72,7 @@ package alternativa.tanks.game.effects
          this.sprite.y = this.position.y + this.offsetToCamera * toCamera.y;
          this.sprite.z = this.position.z + this.offsetToCamera * toCamera.z;
          this.sprite.material = this.frames[int(this.currFrame)];
-         this.currFrame += this.§_-iD§ * TimeSystem.timeDelta;
+         this.currFrame += this.var_458 * TimeSystem.timeDelta;
          if(this.loop)
          {
             while(this.currFrame >= this.numFrames)

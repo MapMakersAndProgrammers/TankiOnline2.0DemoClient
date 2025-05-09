@@ -14,9 +14,9 @@ package _codec.versions.version2.a3d.objects
    {
       public static var log:IClientLog = IClientLog(OSGi.getInstance().getService(IClientLog));
       
-      private var §_-Ov§:ICodec;
+      private var var_380:ICodec;
       
-      private var §_-2o§:ICodec;
+      private var var_243:ICodec;
       
       public function CodecA3D2JointBindTransform()
       {
@@ -25,16 +25,16 @@ package _codec.versions.version2.a3d.objects
       
       public function init(protocol:IProtocol) : void
       {
-         this.§_-Ov§ = protocol.getCodec(new TypeCodecInfo(A3D2Transform,false));
-         this.§_-2o§ = protocol.getCodec(new TypeCodecInfo(Long,false));
+         this.var_380 = protocol.getCodec(new TypeCodecInfo(A3D2Transform,false));
+         this.var_243 = protocol.getCodec(new TypeCodecInfo(Long,false));
       }
       
       public function decode(protocolBuffer:ProtocolBuffer) : Object
       {
          log = IClientLog(OSGi.getInstance().getService(IClientLog));
-         var value_bindPoseTransform:A3D2Transform = this.§_-Ov§.decode(protocolBuffer) as A3D2Transform;
+         var value_bindPoseTransform:A3D2Transform = this.var_380.decode(protocolBuffer) as A3D2Transform;
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.objects.A3D2JointBindTransform","bindPoseTransform",value_bindPoseTransform);
-         var value_id:Long = this.§_-2o§.decode(protocolBuffer) as Long;
+         var value_id:Long = this.var_243.decode(protocolBuffer) as Long;
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.objects.A3D2JointBindTransform","id",value_id);
          return new A3D2JointBindTransform(value_bindPoseTransform,value_id);
       }
@@ -46,8 +46,8 @@ package _codec.versions.version2.a3d.objects
             throw new Error("Object is null. Use @ProtocolOptional annotation.");
          }
          var struct:A3D2JointBindTransform = A3D2JointBindTransform(object);
-         this.§_-Ov§.encode(protocolBuffer,struct.bindPoseTransform);
-         this.§_-2o§.encode(protocolBuffer,struct.id);
+         this.var_380.encode(protocolBuffer,struct.bindPoseTransform);
+         this.var_243.encode(protocolBuffer,struct.id);
       }
    }
 }

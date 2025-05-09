@@ -79,7 +79,7 @@ package alternativa.tanks.game.weapons.flamethrower
          this.effect = FlamethrowerGraphicEffect(this.gameKernel.getObjectPoolManager().getObject(FlamethrowerGraphicEffect));
          var collisionDetector:ICollisionDetector = this.gameKernel.getPhysicsSystem().getPhysicsScene().collisionDetector;
          this.effect.init(this.turret,flamethrowerSmokeAtlas,flamethrowerFlashAtlas,flamethrowerFireAtlas);
-         this.gameKernel.getRenderSystem().each(this.effect);
+         this.gameKernel.getRenderSystem().method_21(this.effect);
       }
       
       public function stop() : void

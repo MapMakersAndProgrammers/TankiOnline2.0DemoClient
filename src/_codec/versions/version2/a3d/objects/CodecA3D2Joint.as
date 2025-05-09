@@ -14,17 +14,17 @@ package _codec.versions.version2.a3d.objects
    {
       public static var log:IClientLog = IClientLog(OSGi.getInstance().getService(IClientLog));
       
-      private var §_-Dh§:ICodec;
+      private var var_245:ICodec;
       
-      private var §_-2o§:ICodec;
+      private var var_243:ICodec;
       
-      private var §_-XW§:ICodec;
+      private var var_251:ICodec;
       
-      private var §_-jk§:ICodec;
+      private var var_254:ICodec;
       
-      private var §_-S2§:ICodec;
+      private var var_249:ICodec;
       
-      private var §_-h9§:ICodec;
+      private var var_253:ICodec;
       
       public function CodecA3D2Joint()
       {
@@ -33,28 +33,28 @@ package _codec.versions.version2.a3d.objects
       
       public function init(protocol:IProtocol) : void
       {
-         this.§_-Dh§ = protocol.getCodec(new TypeCodecInfo(int,true));
-         this.§_-2o§ = protocol.getCodec(new TypeCodecInfo(Long,false));
-         this.§_-XW§ = protocol.getCodec(new TypeCodecInfo(String,true));
-         this.§_-jk§ = protocol.getCodec(new TypeCodecInfo(Long,true));
-         this.§_-S2§ = protocol.getCodec(new TypeCodecInfo(A3D2Transform,true));
-         this.§_-h9§ = protocol.getCodec(new TypeCodecInfo(Boolean,false));
+         this.var_245 = protocol.getCodec(new TypeCodecInfo(int,true));
+         this.var_243 = protocol.getCodec(new TypeCodecInfo(Long,false));
+         this.var_251 = protocol.getCodec(new TypeCodecInfo(String,true));
+         this.var_254 = protocol.getCodec(new TypeCodecInfo(Long,true));
+         this.var_249 = protocol.getCodec(new TypeCodecInfo(A3D2Transform,true));
+         this.var_253 = protocol.getCodec(new TypeCodecInfo(Boolean,false));
       }
       
       public function decode(protocolBuffer:ProtocolBuffer) : Object
       {
          log = IClientLog(OSGi.getInstance().getService(IClientLog));
-         var value_boundBoxId:int = int(this.§_-Dh§.decode(protocolBuffer) as int);
+         var value_boundBoxId:int = int(this.var_245.decode(protocolBuffer) as int);
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.objects.A3D2Joint","boundBoxId",value_boundBoxId);
-         var value_id:Long = this.§_-2o§.decode(protocolBuffer) as Long;
+         var value_id:Long = this.var_243.decode(protocolBuffer) as Long;
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.objects.A3D2Joint","id",value_id);
-         var value_name:String = this.§_-XW§.decode(protocolBuffer) as String;
+         var value_name:String = this.var_251.decode(protocolBuffer) as String;
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.objects.A3D2Joint","name",value_name);
-         var value_parentId:Long = this.§_-jk§.decode(protocolBuffer) as Long;
+         var value_parentId:Long = this.var_254.decode(protocolBuffer) as Long;
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.objects.A3D2Joint","parentId",value_parentId);
-         var value_transform:A3D2Transform = this.§_-S2§.decode(protocolBuffer) as A3D2Transform;
+         var value_transform:A3D2Transform = this.var_249.decode(protocolBuffer) as A3D2Transform;
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.objects.A3D2Joint","transform",value_transform);
-         var value_visible:Boolean = Boolean(this.§_-h9§.decode(protocolBuffer) as Boolean);
+         var value_visible:Boolean = Boolean(this.var_253.decode(protocolBuffer) as Boolean);
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.objects.A3D2Joint","visible",value_visible);
          return new A3D2Joint(value_boundBoxId,value_id,value_name,value_parentId,value_transform,value_visible);
       }
@@ -66,12 +66,12 @@ package _codec.versions.version2.a3d.objects
             throw new Error("Object is null. Use @ProtocolOptional annotation.");
          }
          var struct:A3D2Joint = A3D2Joint(object);
-         this.§_-Dh§.encode(protocolBuffer,struct.boundBoxId);
-         this.§_-2o§.encode(protocolBuffer,struct.id);
-         this.§_-XW§.encode(protocolBuffer,struct.name);
-         this.§_-jk§.encode(protocolBuffer,struct.parentId);
-         this.§_-S2§.encode(protocolBuffer,struct.transform);
-         this.§_-h9§.encode(protocolBuffer,struct.visible);
+         this.var_245.encode(protocolBuffer,struct.boundBoxId);
+         this.var_243.encode(protocolBuffer,struct.id);
+         this.var_251.encode(protocolBuffer,struct.name);
+         this.var_254.encode(protocolBuffer,struct.parentId);
+         this.var_249.encode(protocolBuffer,struct.transform);
+         this.var_253.encode(protocolBuffer,struct.visible);
       }
    }
 }

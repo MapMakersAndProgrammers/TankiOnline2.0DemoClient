@@ -4,100 +4,100 @@ package versions.version1.a3d.materials
    
    public class A3DMap
    {
-      private var §_-9y§:uint;
+      private var var_337:uint;
       
-      private var §_-3I§:Id;
+      private var var_101:Id;
       
-      private var §_-JE§:Id;
+      private var var_338:Id;
       
-      private var §_-0U§:Number;
+      private var var_413:Number;
       
-      private var §_-5k§:Number;
+      private var var_414:Number;
       
-      private var §_-JZ§:Number;
+      private var var_415:Number;
       
-      private var §_-XP§:Number;
+      private var var_416:Number;
       
       public function A3DMap(channel:uint, id:Id, imageId:Id, uOffset:Number, uScale:Number, vOffset:Number, vScale:Number)
       {
          super();
-         this.§_-9y§ = channel;
-         this.§_-3I§ = id;
-         this.§_-JE§ = imageId;
-         this.§_-0U§ = uOffset;
-         this.§_-5k§ = uScale;
-         this.§_-JZ§ = vOffset;
-         this.§_-XP§ = vScale;
+         this.var_337 = channel;
+         this.var_101 = id;
+         this.var_338 = imageId;
+         this.var_413 = uOffset;
+         this.var_414 = uScale;
+         this.var_415 = vOffset;
+         this.var_416 = vScale;
       }
       
       public function get channel() : uint
       {
-         return this.§_-9y§;
+         return this.var_337;
       }
       
       public function set channel(value:uint) : void
       {
-         this.§_-9y§ = value;
+         this.var_337 = value;
       }
       
       public function get id() : Id
       {
-         return this.§_-3I§;
+         return this.var_101;
       }
       
       public function set id(value:Id) : void
       {
-         this.§_-3I§ = value;
+         this.var_101 = value;
       }
       
       public function get imageId() : Id
       {
-         return this.§_-JE§;
+         return this.var_338;
       }
       
       public function set imageId(value:Id) : void
       {
-         this.§_-JE§ = value;
+         this.var_338 = value;
       }
       
       public function get uOffset() : Number
       {
-         return this.§_-0U§;
+         return this.var_413;
       }
       
       public function set uOffset(value:Number) : void
       {
-         this.§_-0U§ = value;
+         this.var_413 = value;
       }
       
       public function get uScale() : Number
       {
-         return this.§_-5k§;
+         return this.var_414;
       }
       
       public function set uScale(value:Number) : void
       {
-         this.§_-5k§ = value;
+         this.var_414 = value;
       }
       
       public function get vOffset() : Number
       {
-         return this.§_-JZ§;
+         return this.var_415;
       }
       
       public function set vOffset(value:Number) : void
       {
-         this.§_-JZ§ = value;
+         this.var_415 = value;
       }
       
       public function get vScale() : Number
       {
-         return this.§_-XP§;
+         return this.var_416;
       }
       
       public function set vScale(value:Number) : void
       {
-         this.§_-XP§ = value;
+         this.var_416 = value;
       }
       
       public function toString() : String

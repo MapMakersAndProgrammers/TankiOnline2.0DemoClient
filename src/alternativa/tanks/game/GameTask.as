@@ -2,11 +2,11 @@ package alternativa.tanks.game
 {
    public class GameTask
    {
-      public var §_-Uw§:TaskManager;
+      public var var_4:TaskManager;
       
       public var priority:int;
       
-      protected var §_-iS§:Boolean;
+      protected var var_3:Boolean;
       
       public function GameTask(priority:int)
       {
@@ -28,7 +28,7 @@ package alternativa.tanks.game
       
       final public function get paused() : Boolean
       {
-         return this.§_-iS§;
+         return this.var_3;
       }
       
       final public function set paused(value:Boolean) : void
@@ -45,18 +45,18 @@ package alternativa.tanks.game
       
       final public function pause() : void
       {
-         if(!this.§_-iS§)
+         if(!this.var_3)
          {
-            this.§_-iS§ = true;
+            this.var_3 = true;
             this.onPause();
          }
       }
       
       final public function resume() : void
       {
-         if(this.§_-iS§)
+         if(this.var_3)
          {
-            this.§_-iS§ = false;
+            this.var_3 = false;
             this.onResume();
          }
       }

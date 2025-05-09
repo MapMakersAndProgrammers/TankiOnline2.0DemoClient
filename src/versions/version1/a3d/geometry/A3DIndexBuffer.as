@@ -4,35 +4,35 @@ package versions.version1.a3d.geometry
    
    public class A3DIndexBuffer
    {
-      private var §_-79§:ByteArray;
+      private var var_271:ByteArray;
       
-      private var §_-m0§:int;
+      private var var_379:int;
       
       public function A3DIndexBuffer(byteBuffer:ByteArray, indexCount:int)
       {
          super();
-         this.§_-79§ = byteBuffer;
-         this.§_-m0§ = indexCount;
+         this.var_271 = byteBuffer;
+         this.var_379 = indexCount;
       }
       
       public function get byteBuffer() : ByteArray
       {
-         return this.§_-79§;
+         return this.var_271;
       }
       
       public function set byteBuffer(value:ByteArray) : void
       {
-         this.§_-79§ = value;
+         this.var_271 = value;
       }
       
       public function get indexCount() : int
       {
-         return this.§_-m0§;
+         return this.var_379;
       }
       
       public function set indexCount(value:int) : void
       {
-         this.§_-m0§ = value;
+         this.var_379 = value;
       }
       
       public function toString() : String

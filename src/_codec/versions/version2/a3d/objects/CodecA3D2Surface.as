@@ -12,11 +12,11 @@ package _codec.versions.version2.a3d.objects
    {
       public static var log:IClientLog = IClientLog(OSGi.getInstance().getService(IClientLog));
       
-      private var §_-AL§:ICodec;
+      private var var_302:ICodec;
       
-      private var §_-Av§:ICodec;
+      private var var_291:ICodec;
       
-      private var §_-pJ§:ICodec;
+      private var var_303:ICodec;
       
       public function CodecA3D2Surface()
       {
@@ -25,19 +25,19 @@ package _codec.versions.version2.a3d.objects
       
       public function init(protocol:IProtocol) : void
       {
-         this.§_-AL§ = protocol.getCodec(new TypeCodecInfo(int,false));
-         this.§_-Av§ = protocol.getCodec(new TypeCodecInfo(int,true));
-         this.§_-pJ§ = protocol.getCodec(new TypeCodecInfo(int,false));
+         this.var_302 = protocol.getCodec(new TypeCodecInfo(int,false));
+         this.var_291 = protocol.getCodec(new TypeCodecInfo(int,true));
+         this.var_303 = protocol.getCodec(new TypeCodecInfo(int,false));
       }
       
       public function decode(protocolBuffer:ProtocolBuffer) : Object
       {
          log = IClientLog(OSGi.getInstance().getService(IClientLog));
-         var value_indexBegin:int = int(this.§_-AL§.decode(protocolBuffer) as int);
+         var value_indexBegin:int = int(this.var_302.decode(protocolBuffer) as int);
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.objects.A3D2Surface","indexBegin",value_indexBegin);
-         var value_materialId:int = int(this.§_-Av§.decode(protocolBuffer) as int);
+         var value_materialId:int = int(this.var_291.decode(protocolBuffer) as int);
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.objects.A3D2Surface","materialId",value_materialId);
-         var value_numTriangles:int = int(this.§_-pJ§.decode(protocolBuffer) as int);
+         var value_numTriangles:int = int(this.var_303.decode(protocolBuffer) as int);
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.objects.A3D2Surface","numTriangles",value_numTriangles);
          return new A3D2Surface(value_indexBegin,value_materialId,value_numTriangles);
       }
@@ -49,9 +49,9 @@ package _codec.versions.version2.a3d.objects
             throw new Error("Object is null. Use @ProtocolOptional annotation.");
          }
          var struct:A3D2Surface = A3D2Surface(object);
-         this.§_-AL§.encode(protocolBuffer,struct.indexBegin);
-         this.§_-Av§.encode(protocolBuffer,struct.materialId);
-         this.§_-pJ§.encode(protocolBuffer,struct.numTriangles);
+         this.var_302.encode(protocolBuffer,struct.indexBegin);
+         this.var_291.encode(protocolBuffer,struct.materialId);
+         this.var_303.encode(protocolBuffer,struct.numTriangles);
       }
    }
 }

@@ -19,7 +19,7 @@ package alternativa.tanks.game.weapons.targeting
       
       private var range:Number;
       
-      private var §_-HN§:Number;
+      private var var_452:Number;
       
       private var numRays:int;
       
@@ -31,11 +31,11 @@ package alternativa.tanks.game.weapons.targeting
       
       private var rayDirection:Vector3 = new Vector3();
       
-      private var §_-84§:Vector3 = new Vector3();
+      private var var_449:Vector3 = new Vector3();
       
-      private var §_-2z§:Matrix3 = new Matrix3();
+      private var var_450:Matrix3 = new Matrix3();
       
-      private var §_-FX§:Matrix3 = new Matrix3();
+      private var var_451:Matrix3 = new Matrix3();
       
       private var targetToDistance:Dictionary;
       
@@ -45,7 +45,7 @@ package alternativa.tanks.game.weapons.targeting
       {
          super();
          this.range = range;
-         this.§_-HN§ = 0.5 * coneAngle;
+         this.var_452 = 0.5 * coneAngle;
          this.numRays = numRays;
          this.numSteps = numSteps;
          this.collisionDetector = collisionDetector;
@@ -74,16 +74,16 @@ package alternativa.tanks.game.weapons.targeting
          else
          {
             this.sideAxis.copy(gunElevationAxis);
-            this.§_-84§.copy(barrelOrigin).addScaled(barrelLength - originOffset,gunDirection);
+            this.var_449.copy(barrelOrigin).addScaled(barrelLength - originOffset,gunDirection);
             _loc11_ = this.range + originOffset;
-            this.checkDirection(shooter,this.§_-84§,gunDirection,_loc11_);
-            this.§_-FX§.fromAxisAngle(gunDirection,Math.PI / this.numSteps);
-            _loc12_ = this.§_-HN§ / this.numRays;
+            this.checkDirection(shooter,this.var_449,gunDirection,_loc11_);
+            this.var_451.fromAxisAngle(gunDirection,Math.PI / this.numSteps);
+            _loc12_ = this.var_452 / this.numRays;
             for(_loc13_ = 0; _loc13_ < this.numSteps; _loc13_++)
             {
-               this.processSector(shooter,this.§_-84§,_loc11_,gunDirection,this.sideAxis,this.numRays,_loc12_);
-               this.processSector(shooter,this.§_-84§,_loc11_,gunDirection,this.sideAxis,this.numRays,-_loc12_);
-               this.sideAxis.transform3(this.§_-FX§);
+               this.processSector(shooter,this.var_449,_loc11_,gunDirection,this.sideAxis,this.numRays,_loc12_);
+               this.processSector(shooter,this.var_449,_loc11_,gunDirection,this.sideAxis,this.numRays,-_loc12_);
+               this.sideAxis.transform3(this.var_451);
             }
          }
          for(key in targetToDistance)
@@ -101,11 +101,11 @@ package alternativa.tanks.game.weapons.targeting
       
       private function processSector(shooter:Body, rayOrigin:Vector3, rayLength:Number, gunDirection:Vector3, rotationAxis:Vector3, numRays:int, angleStep:Number) : void
       {
-         this.§_-2z§.fromAxisAngle(rotationAxis,angleStep);
+         this.var_450.fromAxisAngle(rotationAxis,angleStep);
          this.rayDirection.copy(gunDirection);
          for(var i:int = 0; i < numRays; i++)
          {
-            this.rayDirection.transform3(this.§_-2z§);
+            this.rayDirection.transform3(this.var_450);
             this.checkDirection(shooter,rayOrigin,this.rayDirection,rayLength);
          }
       }

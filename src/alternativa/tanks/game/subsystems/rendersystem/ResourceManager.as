@@ -8,14 +8,14 @@ package alternativa.tanks.game.subsystems.rendersystem
    {
       private var context:Context3D;
       
-      private var §_-hg§:Dictionary;
+      private var var_106:Dictionary;
       
-      private var §_-Wf§:Vector.<Resource>;
+      private var var_105:Vector.<Resource>;
       
       public function ResourceManager()
       {
          super();
-         this.§_-hg§ = new Dictionary();
+         this.var_106 = new Dictionary();
       }
       
       public function useResource(resource:Resource) : void
@@ -31,8 +31,8 @@ package alternativa.tanks.game.subsystems.rendersystem
          {
             resource.upload(this.context);
          }
-         var refCount:int = int(this.§_-hg§[resource]);
-         this.§_-hg§[resource] = refCount + 1;
+         var refCount:int = int(this.var_106[resource]);
+         this.var_106[resource] = refCount + 1;
       }
       
       public function useResources(resources:Vector.<Resource>) : void
@@ -46,7 +46,7 @@ package alternativa.tanks.game.subsystems.rendersystem
       
       public function releaseResource(resource:Resource) : void
       {
-         var refCount:int = int(this.§_-hg§[resource]);
+         var refCount:int = int(this.var_106[resource]);
          if(refCount > 0)
          {
             if(refCount == 1)
@@ -55,7 +55,7 @@ package alternativa.tanks.game.subsystems.rendersystem
             }
             else
             {
-               this.§_-hg§[resource] = refCount - 1;
+               this.var_106[resource] = refCount - 1;
             }
          }
       }
@@ -85,13 +85,13 @@ package alternativa.tanks.game.subsystems.rendersystem
       {
          var resource:Resource = null;
          this.context = context;
-         if(this.§_-Wf§ != null)
+         if(this.var_105 != null)
          {
-            for each(resource in this.§_-Wf§)
+            for each(resource in this.var_105)
             {
                resource.upload(context);
             }
-            this.§_-Wf§ = null;
+            this.var_105 = null;
          }
       }
       
@@ -100,13 +100,13 @@ package alternativa.tanks.game.subsystems.rendersystem
          var resource:* = undefined;
          if(this.context != null)
          {
-            for(resource in this.§_-hg§)
+            for(resource in this.var_106)
             {
                Resource(resource).dispose();
             }
          }
-         this.§_-Wf§ = null;
-         this.§_-hg§ = new Dictionary();
+         this.var_105 = null;
+         this.var_106 = new Dictionary();
       }
       
       private function doRelease(resource:Resource) : void
@@ -118,41 +118,41 @@ package alternativa.tanks.game.subsystems.rendersystem
             index = this.getQueuedIndex(resource);
             if(index >= 0)
             {
-               num = int(this.§_-Wf§.length);
+               num = int(this.var_105.length);
                if(num == 1)
                {
-                  this.§_-Wf§ = null;
+                  this.var_105 = null;
                }
                else
                {
-                  this.§_-Wf§[index] = this.§_-Wf§[--num];
-                  this.§_-Wf§.length = num;
+                  this.var_105[index] = this.var_105[--num];
+                  this.var_105.length = num;
                }
             }
          }
          else
          {
             resource.dispose();
-            delete this.§_-hg§[resource];
+            delete this.var_106[resource];
          }
       }
       
       private function getQueuedIndex(resource:Resource) : int
       {
-         if(this.§_-Wf§ == null)
+         if(this.var_105 == null)
          {
             return -1;
          }
-         return this.§_-Wf§.indexOf(resource);
+         return this.var_105.indexOf(resource);
       }
       
       private function queue(resource:Resource) : void
       {
-         if(this.§_-Wf§ == null)
+         if(this.var_105 == null)
          {
-            this.§_-Wf§ = new Vector.<Resource>();
+            this.var_105 = new Vector.<Resource>();
          }
-         this.§_-Wf§.push(resource);
+         this.var_105.push(resource);
       }
    }
 }

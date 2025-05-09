@@ -7,47 +7,47 @@ package alternativa.tanks.game.subsystems.rendersystem
    {
       private var container:Object3D;
       
-      private var §_-9k§:Vector.<OmniLight>;
+      private var var_16:Vector.<OmniLight>;
       
       public function OmniLightList(container:Object3D)
       {
          super();
          this.container = container;
-         this.§_-9k§ = new Vector.<OmniLight>();
+         this.var_16 = new Vector.<OmniLight>();
       }
       
       public function add(light:OmniLight) : void
       {
-         if(this.§_-9k§.indexOf(light) < 0)
+         if(this.var_16.indexOf(light) < 0)
          {
-            this.§_-9k§.push(light);
+            this.var_16.push(light);
             this.container.addChild(light);
          }
       }
       
       public function remove(light:OmniLight) : void
       {
-         var index:int = int(this.§_-9k§.indexOf(light));
+         var index:int = int(this.var_16.indexOf(light));
          if(index >= 0)
          {
-            this.§_-9k§[index] = this.§_-9k§[this.§_-9k§.length - 1];
-            this.§_-9k§.length -= 1;
+            this.var_16[index] = this.var_16[this.var_16.length - 1];
+            this.var_16.length -= 1;
          }
       }
       
       public function get size() : int
       {
-         return this.§_-9k§.length;
+         return this.var_16.length;
       }
       
       public function get lights() : Vector.<OmniLight>
       {
-         return Vector.<OmniLight>(this.§_-9k§);
+         return Vector.<OmniLight>(this.var_16);
       }
       
       public function getLightAt(i:int) : OmniLight
       {
-         return this.§_-9k§[i];
+         return this.var_16[i];
       }
    }
 }

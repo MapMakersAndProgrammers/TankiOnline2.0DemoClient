@@ -7,7 +7,7 @@ package alternativa.engine3d.loaders.collada
    
    public class DaeVertices extends DaeElement
    {
-      public var §_-E6§:DaeSource;
+      public var name_597:DaeSource;
       
       public function DaeVertices(data:XML, document:DaeDocument)
       {
@@ -20,8 +20,8 @@ package alternativa.engine3d.loaders.collada
          inputXML = data.input.(@semantic == "POSITION")[0];
          if(inputXML != null)
          {
-            this.§_-E6§ = new DaeInput(inputXML,document).prepareSource(3);
-            if(this.§_-E6§ != null)
+            this.name_597 = new DaeInput(inputXML,document).prepareSource(3);
+            if(this.name_597 != null)
             {
                return true;
             }

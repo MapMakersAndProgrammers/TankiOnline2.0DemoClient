@@ -15,7 +15,7 @@ package alternativa.tanks.game.effects
    {
       private var sprite:Sprite3D;
       
-      private var §_-iD§:Number;
+      private var var_458:Number;
       
       private var currFrame:Number;
       
@@ -40,7 +40,7 @@ package alternativa.tanks.game.effects
       {
          this.initSprite(width,height,rotation,originX,originY);
          this.frames = frames;
-         this.§_-iD§ = 0.001 * fps;
+         this.var_458 = 0.001 * fps;
          this.position.copy(position);
          this.velocity.copy(velocity);
          this.acceleration = acceleration;
@@ -86,7 +86,7 @@ package alternativa.tanks.game.effects
             this.velocity.z *= speed;
          }
          this.sprite.material = this.frames[int(this.currFrame)];
-         this.currFrame += this.§_-iD§ * TimeSystem.timeDelta;
+         this.currFrame += this.var_458 * TimeSystem.timeDelta;
          if(this.loop)
          {
             while(this.currFrame >= this.numFrames)

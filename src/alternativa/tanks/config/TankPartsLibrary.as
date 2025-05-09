@@ -13,15 +13,15 @@ package alternativa.tanks.config
    
    public class TankPartsLibrary extends ResourceLoader
    {
-      private var §_-SB§:Vector.<TankPart>;
+      private var var_196:Vector.<TankPart>;
       
-      private var §_-dl§:Vector.<TankPart>;
+      private var var_197:Vector.<TankPart>;
       
-      private var §_-cy§:Vector.<BitmapData>;
+      private var var_198:Vector.<BitmapData>;
       
-      private var §_-Ic§:TankPartsBatchLoader;
+      private var var_194:TankPartsBatchLoader;
       
-      private var §_-1D§:ImageSequenceLoader;
+      private var var_195:ImageSequenceLoader;
       
       public function TankPartsLibrary(param1:Config)
       {
@@ -30,52 +30,52 @@ package alternativa.tanks.config
       
       public function get numHulls() : int
       {
-         return this.§_-SB§.length;
+         return this.var_196.length;
       }
       
       public function getHull(param1:int) : TankHull
       {
-         return TankHull(this.§_-SB§[param1]);
+         return TankHull(this.var_196[param1]);
       }
       
       public function getHullByID(param1:String) : TankHull
       {
-         return this.findPartByID(param1,this.§_-SB§) as TankHull;
+         return this.findPartByID(param1,this.var_196) as TankHull;
       }
       
       public function getHullIndex(param1:String) : int
       {
-         return this.getPartIndex(param1,this.§_-SB§);
+         return this.getPartIndex(param1,this.var_196);
       }
       
       public function get numTurrets() : int
       {
-         return this.§_-dl§.length;
+         return this.var_197.length;
       }
       
       public function getTurret(param1:int) : TankTurret
       {
-         return TankTurret(this.§_-dl§[param1]);
+         return TankTurret(this.var_197[param1]);
       }
       
       public function getTurretByID(param1:String) : TankTurret
       {
-         return this.findPartByID(param1,this.§_-dl§) as TankTurret;
+         return this.findPartByID(param1,this.var_197) as TankTurret;
       }
       
       public function getTurretIndex(param1:String) : int
       {
-         return this.getPartIndex(param1,this.§_-dl§);
+         return this.getPartIndex(param1,this.var_197);
       }
       
       public function get numColormaps() : int
       {
-         return this.§_-cy§.length;
+         return this.var_198.length;
       }
       
       public function getColormap(param1:int) : BitmapData
       {
-         return this.§_-cy§[param1];
+         return this.var_198[param1];
       }
       
       override public function run() : void
@@ -114,47 +114,47 @@ package alternativa.tanks.config
       
       private function loadHulls() : void
       {
-         this.§_-Ic§ = new TankPartsBatchLoader();
-         this.§_-Ic§.addEventListener(Event.COMPLETE,this.onHullsLoadingComplete);
-         this.§_-Ic§.load(this.getBaseUrl(),config.xml.tankParts.hull,new TankHullLoaderFactory());
+         this.var_194 = new TankPartsBatchLoader();
+         this.var_194.addEventListener(Event.COMPLETE,this.onHullsLoadingComplete);
+         this.var_194.load(this.getBaseUrl(),config.xml.tankParts.hull,new TankHullLoaderFactory());
       }
       
       private function onHullsLoadingComplete(param1:Event) : void
       {
          dispatchEvent(new TaskEvent(TaskEvent.TASK_PROGRESS,1,3));
-         this.§_-Ic§.removeEventListener(Event.COMPLETE,this.onHullsLoadingComplete);
-         this.§_-SB§ = this.§_-Ic§.parts;
+         this.var_194.removeEventListener(Event.COMPLETE,this.onHullsLoadingComplete);
+         this.var_196 = this.var_194.parts;
          this.loadTurrets();
       }
       
       private function loadTurrets() : void
       {
-         this.§_-Ic§.addEventListener(Event.COMPLETE,this.onTurretsLoadingComplete);
-         this.§_-Ic§.load(this.getBaseUrl(),config.xml.tankParts.turret,new TankTurretLoaderFactory());
+         this.var_194.addEventListener(Event.COMPLETE,this.onTurretsLoadingComplete);
+         this.var_194.load(this.getBaseUrl(),config.xml.tankParts.turret,new TankTurretLoaderFactory());
       }
       
       private function onTurretsLoadingComplete(param1:Event) : void
       {
          dispatchEvent(new TaskEvent(TaskEvent.TASK_PROGRESS,1,3));
-         this.§_-Ic§.removeEventListener(Event.COMPLETE,this.onTurretsLoadingComplete);
-         this.§_-dl§ = this.§_-Ic§.parts;
-         this.§_-Ic§ = null;
+         this.var_194.removeEventListener(Event.COMPLETE,this.onTurretsLoadingComplete);
+         this.var_197 = this.var_194.parts;
+         this.var_194 = null;
          this.loadColormaps();
       }
       
       private function loadColormaps() : void
       {
-         this.§_-1D§ = new ImageSequenceLoader();
-         this.§_-1D§.addEventListener(Event.COMPLETE,this.onColormapsLoadingComplete);
-         this.§_-1D§.load(StringUtils.makeCorrectBaseUrl(config.xml.colorings.@baseUrl),config.xml.colorings.image);
+         this.var_195 = new ImageSequenceLoader();
+         this.var_195.addEventListener(Event.COMPLETE,this.onColormapsLoadingComplete);
+         this.var_195.load(StringUtils.makeCorrectBaseUrl(config.xml.colorings.@baseUrl),config.xml.colorings.image);
       }
       
       private function onColormapsLoadingComplete(param1:Event) : void
       {
          dispatchEvent(new TaskEvent(TaskEvent.TASK_PROGRESS,1,3));
-         this.§_-cy§ = this.§_-1D§.images;
-         this.§_-1D§.removeEventListener(Event.COMPLETE,this.onColormapsLoadingComplete);
-         this.§_-1D§ = null;
+         this.var_198 = this.var_195.images;
+         this.var_195.removeEventListener(Event.COMPLETE,this.onColormapsLoadingComplete);
+         this.var_195 = null;
          completeTask();
       }
       

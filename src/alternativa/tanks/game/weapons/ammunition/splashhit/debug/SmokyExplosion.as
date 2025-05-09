@@ -3,11 +3,11 @@ package alternativa.tanks.game.weapons.ammunition.splashhit.debug
    import alternativa.engine3d.core.BoundBox;
    import alternativa.engine3d.effects.ParticlePrototype;
    import alternativa.engine3d.effects.TextureAtlas;
-   import alternativa.engine3d.effects.§_-SG§;
+   import alternativa.engine3d.effects.name_77;
    import flash.display3D.Context3DBlendFactor;
    import flash.geom.Vector3D;
    
-   public class SmokyExplosion extends §_-SG§
+   public class SmokyExplosion extends name_77
    {
       private static var smokePrototype:ParticlePrototype;
       
@@ -107,7 +107,7 @@ package alternativa.tanks.game.weapons.ammunition.splashhit.debug
          addKey(3 * 0.03333333333333333,this.keyFrame4);
          addKey(4 * 0.03333333333333333,this.keyFrame5);
          addKey(4.7 * 0.03333333333333333,this.keyFrame6);
-         §_-DM§(§_-gV§[§_-kf§ - 1] + smokePrototype.lifeTime);
+         method_127(var_151[var_148 - 1] + smokePrototype.lifeTime);
       }
       
       private function keyFrame1(keyTime:Number, time:Number) : void
@@ -318,9 +318,9 @@ package alternativa.tanks.game.weapons.ammunition.splashhit.debug
       
       private function displacePosition(time:Number, factor:Number, result:Vector3D) : void
       {
-         result.x += time * windSpeed * §_-Ta§.wind.x;
-         result.y += time * windSpeed * §_-Ta§.wind.y;
-         result.z += time * windSpeed * §_-Ta§.wind.z + time * liftSpeed * factor;
+         result.x += time * windSpeed * var_6.wind.x;
+         result.y += time * windSpeed * var_6.wind.y;
+         result.z += time * windSpeed * var_6.wind.z + time * liftSpeed * factor;
       }
    }
 }

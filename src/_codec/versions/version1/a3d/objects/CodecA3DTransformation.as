@@ -13,7 +13,7 @@ package _codec.versions.version1.a3d.objects
    {
       public static var log:IClientLog = IClientLog(OSGi.getInstance().getService(IClientLog));
       
-      private var §_-dG§:ICodec;
+      private var var_411:ICodec;
       
       public function CodecA3DTransformation()
       {
@@ -22,13 +22,13 @@ package _codec.versions.version1.a3d.objects
       
       public function init(protocol:IProtocol) : void
       {
-         this.§_-dG§ = protocol.getCodec(new TypeCodecInfo(A3DMatrix,true));
+         this.var_411 = protocol.getCodec(new TypeCodecInfo(A3DMatrix,true));
       }
       
       public function decode(protocolBuffer:ProtocolBuffer) : Object
       {
          log = IClientLog(OSGi.getInstance().getService(IClientLog));
-         var value_matrix:A3DMatrix = this.§_-dG§.decode(protocolBuffer) as A3DMatrix;
+         var value_matrix:A3DMatrix = this.var_411.decode(protocolBuffer) as A3DMatrix;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.objects.A3DTransformation","matrix",value_matrix);
          return new A3DTransformation(value_matrix);
       }
@@ -40,7 +40,7 @@ package _codec.versions.version1.a3d.objects
             throw new Error("Object is null. Use @ProtocolOptional annotation.");
          }
          var struct:A3DTransformation = A3DTransformation(object);
-         this.§_-dG§.encode(protocolBuffer,struct.matrix);
+         this.var_411.encode(protocolBuffer,struct.matrix);
       }
    }
 }

@@ -9,11 +9,11 @@ package alternativa.engine3d.loaders.collada
    {
       public static var commonAlways:Boolean = false;
       
-      private var §_-3x§:Object;
+      private var var_717:Object;
       
-      private var §_-El§:Object;
+      private var var_718:Object;
       
-      private var §_-3H§:Object;
+      private var var_716:Object;
       
       private var diffuse:DaeEffectParam;
       
@@ -66,26 +66,26 @@ package alternativa.engine3d.loaders.collada
          var reflectiveXML:XML = null;
          var emissionXML:XML = null;
          var specularXML:XML = null;
-         this.§_-3x§ = new Object();
+         this.var_717 = new Object();
          for each(element in data.newparam)
          {
             param = new DaeParam(element,document);
-            this.§_-3x§[param.sid] = param;
+            this.var_717[param.sid] = param;
          }
-         this.§_-El§ = new Object();
+         this.var_718 = new Object();
          for each(element in data.profile_COMMON.newparam)
          {
             param = new DaeParam(element,document);
-            this.§_-El§[param.sid] = param;
+            this.var_718[param.sid] = param;
          }
-         this.§_-3H§ = new Object();
+         this.var_716 = new Object();
          technique = data.profile_COMMON.technique[0];
          if(technique != null)
          {
             for each(element in technique.newparam)
             {
                param = new DaeParam(element,document);
-               this.§_-3H§[param.sid] = param;
+               this.var_716[param.sid] = param;
             }
          }
          shader = data.profile_COMMON.technique.*.(localName() == "constant" || localName() == "lambert" || localName() == "phong" || localName() == "blinn")[0];
@@ -153,17 +153,17 @@ package alternativa.engine3d.loaders.collada
          {
             return param;
          }
-         param = this.§_-3H§[name];
+         param = this.var_716[name];
          if(param != null)
          {
             return param;
          }
-         param = this.§_-El§[name];
+         param = this.var_718[name];
          if(param != null)
          {
             return param;
          }
-         return this.§_-3x§[name];
+         return this.var_717[name];
       }
       
       private function float4ToUint(value:Array, alpha:Boolean = true) : uint

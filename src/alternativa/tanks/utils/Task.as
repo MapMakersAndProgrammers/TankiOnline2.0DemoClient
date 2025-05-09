@@ -4,7 +4,7 @@ package alternativa.tanks.utils
    
    public class Task extends EventDispatcher
    {
-      private var §_-UZ§:TaskSequence;
+      private var var_33:TaskSequence;
       
       public function Task()
       {
@@ -18,13 +18,13 @@ package alternativa.tanks.utils
       
       internal function set taskSequence(param1:TaskSequence) : void
       {
-         this.§_-UZ§ = param1;
+         this.var_33 = param1;
       }
       
       final protected function completeTask() : void
       {
          dispatchEvent(new TaskEvent(TaskEvent.TASK_COMPLETE,1,1));
-         this.§_-UZ§.taskComplete(this);
+         this.var_33.taskComplete(this);
       }
    }
 }

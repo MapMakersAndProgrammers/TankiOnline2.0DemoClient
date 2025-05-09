@@ -4,100 +4,100 @@ package versions.version1.a3d.materials
    
    public class A3DMaterial
    {
-      private var §_-9s§:Id;
+      private var var_339:Id;
       
-      private var §_-bl§:Id;
+      private var var_343:Id;
       
-      private var §_-3I§:Id;
+      private var var_101:Id;
       
-      private var §_-qf§:Id;
+      private var var_345:Id;
       
-      private var §_-QR§:Id;
+      private var var_342:Id;
       
-      private var §_-Jn§:Id;
+      private var var_340:Id;
       
-      private var §_-LA§:Id;
+      private var var_341:Id;
       
       public function A3DMaterial(diffuseMapId:Id, glossinessMapId:Id, id:Id, lightMapId:Id, normalMapId:Id, opacityMapId:Id, specularMapId:Id)
       {
          super();
-         this.§_-9s§ = diffuseMapId;
-         this.§_-bl§ = glossinessMapId;
-         this.§_-3I§ = id;
-         this.§_-qf§ = lightMapId;
-         this.§_-QR§ = normalMapId;
-         this.§_-Jn§ = opacityMapId;
-         this.§_-LA§ = specularMapId;
+         this.var_339 = diffuseMapId;
+         this.var_343 = glossinessMapId;
+         this.var_101 = id;
+         this.var_345 = lightMapId;
+         this.var_342 = normalMapId;
+         this.var_340 = opacityMapId;
+         this.var_341 = specularMapId;
       }
       
       public function get diffuseMapId() : Id
       {
-         return this.§_-9s§;
+         return this.var_339;
       }
       
       public function set diffuseMapId(value:Id) : void
       {
-         this.§_-9s§ = value;
+         this.var_339 = value;
       }
       
       public function get glossinessMapId() : Id
       {
-         return this.§_-bl§;
+         return this.var_343;
       }
       
       public function set glossinessMapId(value:Id) : void
       {
-         this.§_-bl§ = value;
+         this.var_343 = value;
       }
       
       public function get id() : Id
       {
-         return this.§_-3I§;
+         return this.var_101;
       }
       
       public function set id(value:Id) : void
       {
-         this.§_-3I§ = value;
+         this.var_101 = value;
       }
       
       public function get lightMapId() : Id
       {
-         return this.§_-qf§;
+         return this.var_345;
       }
       
       public function set lightMapId(value:Id) : void
       {
-         this.§_-qf§ = value;
+         this.var_345 = value;
       }
       
       public function get normalMapId() : Id
       {
-         return this.§_-QR§;
+         return this.var_342;
       }
       
       public function set normalMapId(value:Id) : void
       {
-         this.§_-QR§ = value;
+         this.var_342 = value;
       }
       
       public function get opacityMapId() : Id
       {
-         return this.§_-Jn§;
+         return this.var_340;
       }
       
       public function set opacityMapId(value:Id) : void
       {
-         this.§_-Jn§ = value;
+         this.var_340 = value;
       }
       
       public function get specularMapId() : Id
       {
-         return this.§_-LA§;
+         return this.var_341;
       }
       
       public function set specularMapId(value:Id) : void
       {
-         this.§_-LA§ = value;
+         this.var_341 = value;
       }
       
       public function toString() : String

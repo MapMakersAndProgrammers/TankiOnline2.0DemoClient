@@ -13,11 +13,11 @@ package _codec.versions.version2.a3d.materials
    {
       public static var log:IClientLog = IClientLog(OSGi.getInstance().getService(IClientLog));
       
-      private var §_-mC§:ICodec;
+      private var var_322:ICodec;
       
-      private var §_-2o§:ICodec;
+      private var var_243:ICodec;
       
-      private var §_-2N§:ICodec;
+      private var var_321:ICodec;
       
       public function CodecA3D2Map()
       {
@@ -26,19 +26,19 @@ package _codec.versions.version2.a3d.materials
       
       public function init(protocol:IProtocol) : void
       {
-         this.§_-mC§ = protocol.getCodec(new TypeCodecInfo(UShort,false));
-         this.§_-2o§ = protocol.getCodec(new TypeCodecInfo(int,false));
-         this.§_-2N§ = protocol.getCodec(new TypeCodecInfo(int,false));
+         this.var_322 = protocol.getCodec(new TypeCodecInfo(UShort,false));
+         this.var_243 = protocol.getCodec(new TypeCodecInfo(int,false));
+         this.var_321 = protocol.getCodec(new TypeCodecInfo(int,false));
       }
       
       public function decode(protocolBuffer:ProtocolBuffer) : Object
       {
          log = IClientLog(OSGi.getInstance().getService(IClientLog));
-         var value_channel:uint = uint(this.§_-mC§.decode(protocolBuffer) as uint);
+         var value_channel:uint = uint(this.var_322.decode(protocolBuffer) as uint);
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.materials.A3D2Map","channel",value_channel);
-         var value_id:int = int(this.§_-2o§.decode(protocolBuffer) as int);
+         var value_id:int = int(this.var_243.decode(protocolBuffer) as int);
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.materials.A3D2Map","id",value_id);
-         var value_imageId:int = int(this.§_-2N§.decode(protocolBuffer) as int);
+         var value_imageId:int = int(this.var_321.decode(protocolBuffer) as int);
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.materials.A3D2Map","imageId",value_imageId);
          return new A3D2Map(value_channel,value_id,value_imageId);
       }
@@ -50,9 +50,9 @@ package _codec.versions.version2.a3d.materials
             throw new Error("Object is null. Use @ProtocolOptional annotation.");
          }
          var struct:A3D2Map = A3D2Map(object);
-         this.§_-mC§.encode(protocolBuffer,struct.channel);
-         this.§_-2o§.encode(protocolBuffer,struct.id);
-         this.§_-2N§.encode(protocolBuffer,struct.imageId);
+         this.var_322.encode(protocolBuffer,struct.channel);
+         this.var_243.encode(protocolBuffer,struct.id);
+         this.var_321.encode(protocolBuffer,struct.imageId);
       }
    }
 }

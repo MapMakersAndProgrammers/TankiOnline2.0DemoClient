@@ -17,21 +17,21 @@ package _codec.versions.version1.a3d.objects
    {
       public static var log:IClientLog = IClientLog(OSGi.getInstance().getService(IClientLog));
       
-      private var §_-Dh§:ICodec;
+      private var var_245:ICodec;
       
-      private var §_-e§:ICodec;
+      private var var_256:ICodec;
       
-      private var §_-2o§:ICodec;
+      private var var_243:ICodec;
       
-      private var §_-XW§:ICodec;
+      private var var_251:ICodec;
       
-      private var §_-jk§:ICodec;
+      private var var_254:ICodec;
       
-      private var §_-Qr§:ICodec;
+      private var var_248:ICodec;
       
-      private var §_-9u§:ICodec;
+      private var var_255:ICodec;
       
-      private var §_-h9§:ICodec;
+      private var var_253:ICodec;
       
       public function CodecA3DObject()
       {
@@ -40,34 +40,34 @@ package _codec.versions.version1.a3d.objects
       
       public function init(protocol:IProtocol) : void
       {
-         this.§_-Dh§ = protocol.getCodec(new TypeCodecInfo(Id,true));
-         this.§_-e§ = protocol.getCodec(new TypeCodecInfo(Id,true));
-         this.§_-2o§ = protocol.getCodec(new TypeCodecInfo(Id,true));
-         this.§_-XW§ = protocol.getCodec(new TypeCodecInfo(String,true));
-         this.§_-jk§ = protocol.getCodec(new TypeCodecInfo(ParentId,true));
-         this.§_-Qr§ = protocol.getCodec(new CollectionCodecInfo(new TypeCodecInfo(A3DSurface,false),true,1));
-         this.§_-9u§ = protocol.getCodec(new TypeCodecInfo(A3DTransformation,true));
-         this.§_-h9§ = protocol.getCodec(new TypeCodecInfo(Boolean,true));
+         this.var_245 = protocol.getCodec(new TypeCodecInfo(Id,true));
+         this.var_256 = protocol.getCodec(new TypeCodecInfo(Id,true));
+         this.var_243 = protocol.getCodec(new TypeCodecInfo(Id,true));
+         this.var_251 = protocol.getCodec(new TypeCodecInfo(String,true));
+         this.var_254 = protocol.getCodec(new TypeCodecInfo(ParentId,true));
+         this.var_248 = protocol.getCodec(new CollectionCodecInfo(new TypeCodecInfo(A3DSurface,false),true,1));
+         this.var_255 = protocol.getCodec(new TypeCodecInfo(A3DTransformation,true));
+         this.var_253 = protocol.getCodec(new TypeCodecInfo(Boolean,true));
       }
       
       public function decode(protocolBuffer:ProtocolBuffer) : Object
       {
          log = IClientLog(OSGi.getInstance().getService(IClientLog));
-         var value_boundBoxId:Id = this.§_-Dh§.decode(protocolBuffer) as Id;
+         var value_boundBoxId:Id = this.var_245.decode(protocolBuffer) as Id;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.objects.A3DObject","boundBoxId",value_boundBoxId);
-         var value_geometryId:Id = this.§_-e§.decode(protocolBuffer) as Id;
+         var value_geometryId:Id = this.var_256.decode(protocolBuffer) as Id;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.objects.A3DObject","geometryId",value_geometryId);
-         var value_id:Id = this.§_-2o§.decode(protocolBuffer) as Id;
+         var value_id:Id = this.var_243.decode(protocolBuffer) as Id;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.objects.A3DObject","id",value_id);
-         var value_name:String = this.§_-XW§.decode(protocolBuffer) as String;
+         var value_name:String = this.var_251.decode(protocolBuffer) as String;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.objects.A3DObject","name",value_name);
-         var value_parentId:ParentId = this.§_-jk§.decode(protocolBuffer) as ParentId;
+         var value_parentId:ParentId = this.var_254.decode(protocolBuffer) as ParentId;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.objects.A3DObject","parentId",value_parentId);
-         var value_surfaces:Vector.<A3DSurface> = this.§_-Qr§.decode(protocolBuffer) as Vector.<A3DSurface>;
+         var value_surfaces:Vector.<A3DSurface> = this.var_248.decode(protocolBuffer) as Vector.<A3DSurface>;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.objects.A3DObject","surfaces",value_surfaces);
-         var value_transformation:A3DTransformation = this.§_-9u§.decode(protocolBuffer) as A3DTransformation;
+         var value_transformation:A3DTransformation = this.var_255.decode(protocolBuffer) as A3DTransformation;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.objects.A3DObject","transformation",value_transformation);
-         var value_visible:Boolean = Boolean(this.§_-h9§.decode(protocolBuffer) as Boolean);
+         var value_visible:Boolean = Boolean(this.var_253.decode(protocolBuffer) as Boolean);
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.objects.A3DObject","visible",value_visible);
          return new A3DObject(value_boundBoxId,value_geometryId,value_id,value_name,value_parentId,value_surfaces,value_transformation,value_visible);
       }
@@ -79,14 +79,14 @@ package _codec.versions.version1.a3d.objects
             throw new Error("Object is null. Use @ProtocolOptional annotation.");
          }
          var struct:A3DObject = A3DObject(object);
-         this.§_-Dh§.encode(protocolBuffer,struct.boundBoxId);
-         this.§_-e§.encode(protocolBuffer,struct.geometryId);
-         this.§_-2o§.encode(protocolBuffer,struct.id);
-         this.§_-XW§.encode(protocolBuffer,struct.name);
-         this.§_-jk§.encode(protocolBuffer,struct.parentId);
-         this.§_-Qr§.encode(protocolBuffer,struct.surfaces);
-         this.§_-9u§.encode(protocolBuffer,struct.transformation);
-         this.§_-h9§.encode(protocolBuffer,struct.visible);
+         this.var_245.encode(protocolBuffer,struct.boundBoxId);
+         this.var_256.encode(protocolBuffer,struct.geometryId);
+         this.var_243.encode(protocolBuffer,struct.id);
+         this.var_251.encode(protocolBuffer,struct.name);
+         this.var_254.encode(protocolBuffer,struct.parentId);
+         this.var_248.encode(protocolBuffer,struct.surfaces);
+         this.var_255.encode(protocolBuffer,struct.transformation);
+         this.var_253.encode(protocolBuffer,struct.visible);
       }
    }
 }

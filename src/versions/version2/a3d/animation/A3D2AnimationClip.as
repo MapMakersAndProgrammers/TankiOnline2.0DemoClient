@@ -4,44 +4,44 @@ package versions.version2.a3d.animation
    
    public class A3D2AnimationClip
    {
-      private var §_-3I§:int;
+      private var var_101:int;
       
-      private var §_-OV§:Boolean;
+      private var var_388:Boolean;
       
       private var _name:String;
       
-      private var §_-Cp§:Vector.<Long>;
+      private var var_387:Vector.<Long>;
       
-      private var §_-cT§:Vector.<int>;
+      private var var_389:Vector.<int>;
       
       public function A3D2AnimationClip(id:int, loop:Boolean, name:String, objectIDs:Vector.<Long>, tracks:Vector.<int>)
       {
          super();
-         this.§_-3I§ = id;
-         this.§_-OV§ = loop;
+         this.var_101 = id;
+         this.var_388 = loop;
          this._name = name;
-         this.§_-Cp§ = objectIDs;
-         this.§_-cT§ = tracks;
+         this.var_387 = objectIDs;
+         this.var_389 = tracks;
       }
       
       public function get id() : int
       {
-         return this.§_-3I§;
+         return this.var_101;
       }
       
       public function set id(value:int) : void
       {
-         this.§_-3I§ = value;
+         this.var_101 = value;
       }
       
       public function get loop() : Boolean
       {
-         return this.§_-OV§;
+         return this.var_388;
       }
       
       public function set loop(value:Boolean) : void
       {
-         this.§_-OV§ = value;
+         this.var_388 = value;
       }
       
       public function get name() : String
@@ -56,22 +56,22 @@ package versions.version2.a3d.animation
       
       public function get objectIDs() : Vector.<Long>
       {
-         return this.§_-Cp§;
+         return this.var_387;
       }
       
       public function set objectIDs(value:Vector.<Long>) : void
       {
-         this.§_-Cp§ = value;
+         this.var_387 = value;
       }
       
       public function get tracks() : Vector.<int>
       {
-         return this.§_-cT§;
+         return this.var_389;
       }
       
       public function set tracks(value:Vector.<int>) : void
       {
-         this.§_-cT§ = value;
+         this.var_389 = value;
       }
       
       public function toString() : String

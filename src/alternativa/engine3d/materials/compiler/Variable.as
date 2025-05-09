@@ -18,13 +18,13 @@ package alternativa.engine3d.materials.compiler
       
       public var next:Variable;
       
-      public var §_-0J§:uint;
+      public var name_345:uint;
       
-      public var §_-oc§:uint;
+      public var name_346:uint;
       
       public var isRelative:Boolean;
       
-      private var §_-RS§:uint = 1;
+      private var var_32:uint = 1;
       
       public function Variable()
       {
@@ -51,12 +51,12 @@ package alternativa.engine3d.materials.compiler
       
       public function get size() : uint
       {
-         return this.§_-RS§;
+         return this.var_32;
       }
       
       public function set size(value:uint) : void
       {
-         this.§_-RS§ = value;
+         this.var_32 = value;
       }
       
       public function writeToByteArray(byteCode:ByteArray, newIndex:int, newType:int) : void

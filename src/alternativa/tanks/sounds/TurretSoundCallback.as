@@ -11,22 +11,22 @@ package alternativa.tanks.sounds
    {
       private var soundLibrary:SoundsLibrary;
       
-      private var §_-At§:Sound;
+      private var var_474:Sound;
       
-      private var §_-ha§:SoundChannel = null;
+      private var var_473:SoundChannel = null;
       
       public function TurretSoundCallback(param1:SoundsLibrary)
       {
          super();
          this.soundLibrary = param1;
-         this.§_-At§ = param1.getSound("turret");
+         this.var_474 = param1.getSound("turret");
       }
       
       public function onTurretControlChanged(param1:int, param2:Boolean) : void
       {
-         if(this.§_-ha§ != null)
+         if(this.var_473 != null)
          {
-            this.§_-ha§.stop();
+            this.var_473.stop();
          }
          if(param1 != 0)
          {
@@ -36,18 +36,18 @@ package alternativa.tanks.sounds
       
       private function playMusic() : void
       {
-         if(this.§_-At§ != null)
+         if(this.var_474 != null)
          {
-            this.§_-ha§ = this.§_-At§.play(0,0,new SoundTransform(0.2));
-            this.§_-ha§.addEventListener(Event.SOUND_COMPLETE,this.loopMusic);
+            this.var_473 = this.var_474.play(0,0,new SoundTransform(0.2));
+            this.var_473.addEventListener(Event.SOUND_COMPLETE,this.loopMusic);
          }
       }
       
       private function loopMusic(param1:Event) : void
       {
-         if(this.§_-ha§ != null)
+         if(this.var_473 != null)
          {
-            this.§_-ha§.removeEventListener(Event.SOUND_COMPLETE,this.loopMusic);
+            this.var_473.removeEventListener(Event.SOUND_COMPLETE,this.loopMusic);
             this.playMusic();
          }
       }

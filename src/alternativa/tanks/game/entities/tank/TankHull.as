@@ -7,31 +7,31 @@ package alternativa.tanks.game.entities.tank
    
    public class TankHull extends TankPart
    {
-      public var §_-Sh§:Vector3 = new Vector3();
+      public var name_400:Vector3 = new Vector3();
       
-      public var §_-Rj§:Vector3 = new Vector3();
+      public var name_395:Vector3 = new Vector3();
       
-      public var §_-EN§:Vector3 = new Vector3();
+      public var name_398:Vector3 = new Vector3();
       
-      public var §_-eh§:BoxData;
+      public var name_388:BoxData;
       
-      public var §_-AE§:Vector.<BoxData> = new Vector.<BoxData>();
+      public var name_396:Vector.<BoxData> = new Vector.<BoxData>();
       
-      public var §_-KR§:Vector.<BoxData> = new Vector.<BoxData>();
+      public var name_397:Vector.<BoxData> = new Vector.<BoxData>();
       
-      public var §_-j9§:Vector.<Vector3> = new Vector.<Vector3>();
+      public var name_401:Vector.<Vector3> = new Vector.<Vector3>();
       
-      public var §_-Hd§:Vector.<Vector3> = new Vector.<Vector3>();
+      public var name_399:Vector.<Vector3> = new Vector.<Vector3>();
       
-      public var §_-DH§:Number = 1;
+      public var name_437:Number = 1;
       
-      public var §_-EY§:Vector.<TankWheel> = new Vector.<TankWheel>();
+      public var name_247:Vector.<TankWheel> = new Vector.<TankWheel>();
       
-      public var §_-M4§:Vector.<TankWheel> = new Vector.<TankWheel>();
+      public var name_245:Vector.<TankWheel> = new Vector.<TankWheel>();
       
-      public var §_-Ei§:Skin;
+      public var name_261:Skin;
       
-      public var §_-iA§:Skin;
+      public var name_266:Skin;
       
       public var shadow:Mesh;
       

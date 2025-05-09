@@ -57,7 +57,7 @@ package alternativa.tanks.game.entities.map
          }
       }
       
-      private function final(targetObject:Object3D) : ShaderProgram
+      private function method_22(targetObject:Object3D) : ShaderProgram
       {
          var vertexLinker:Linker = new Linker(Context3DProgramType.VERTEX);
          var fragmentLinker:Linker = new Linker(Context3DProgramType.FRAGMENT);
@@ -105,11 +105,11 @@ package alternativa.tanks.game.entities.map
          var program:ShaderProgram = _programs[object.alternativa3d::transformProcedure];
          if(program == null)
          {
-            program = this.final(object);
+            program = this.method_22(object);
             program.upload(camera.alternativa3d::context3D);
             _programs[object.alternativa3d::transformProcedure] = program;
          }
-         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.alternativa3d::_-EM,surface.indexBegin,surface.numTriangles,program);
+         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.alternativa3d::name_78,surface.indexBegin,surface.numTriangles,program);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aPosition"),positionBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.POSITION],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.POSITION]);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aUV"),uvBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.TEXCOORDS[0]],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.TEXCOORDS[0]]);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aNormal"),normalsBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.NORMAL],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.NORMAL]);

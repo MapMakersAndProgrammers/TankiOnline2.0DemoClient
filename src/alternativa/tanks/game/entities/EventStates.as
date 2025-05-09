@@ -4,34 +4,34 @@ package alternativa.tanks.game.entities
    
    public class EventStates
    {
-      public var §_-Ah§:IComponentState;
+      public var name_371:IComponentState;
       
-      private var §_-eB§:Object;
+      private var var_619:Object;
       
       public function EventStates()
       {
          super();
-         this.§_-eB§ = new Object();
+         this.var_619 = new Object();
       }
       
       public function setEventState(entity:Entity, eventType:String, eventState:IComponentState) : void
       {
-         if(this.§_-eB§[eventType] != null)
+         if(this.var_619[eventType] != null)
          {
             throw new Error("Duplicate event type: " + eventType);
          }
-         this.§_-eB§[eventType] = eventState;
+         this.var_619[eventType] = eventState;
          entity.addEventHandler(eventType,this.onEvent);
       }
       
       public function onEvent(eventName:String, data:*) : void
       {
-         var newState:IComponentState = this.§_-eB§[eventName];
-         if(newState != this.§_-Ah§)
+         var newState:IComponentState = this.var_619[eventName];
+         if(newState != this.name_371)
          {
-            this.§_-Ah§.stop();
-            this.§_-Ah§ = newState;
-            this.§_-Ah§.start(data);
+            this.name_371.stop();
+            this.name_371 = newState;
+            this.name_371.start(data);
          }
       }
    }

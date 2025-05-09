@@ -30,17 +30,17 @@ package alternativa.engine3d.objects
       
       private static var transformProcedureStatic:Procedure = new Procedure(["sub t0.xyz, i0.xyz, c0.xyz","mul t0.x, t0.x, c0.w","mul t0.y, t0.y, c0.w","mul t0.z, t0.z, c0.w","add o0.xyz, t0.xyz, c0.xyz","mov o0.w, i0.w","#c0=cTrans"]);
       
-      private var §_-gj§:Surface;
+      private var var_98:Surface;
       
-      private var §_-69§:Surface;
+      private var var_95:Surface;
       
-      private var §_-EB§:Surface;
+      private var var_96:Surface;
       
-      private var §_-iw§:Surface;
+      private var var_99:Surface;
       
-      private var §_-1V§:Surface;
+      private var var_94:Surface;
       
-      private var §_-Oz§:Surface;
+      private var var_97:Surface;
       
       private var size:Number;
       
@@ -60,21 +60,21 @@ package alternativa.engine3d.objects
          geometry.setAttributeValues(VertexAttributes.POSITION,Vector.<Number>([-size,-size,size,-size,-size,-size,-size,size,-size,-size,size,size,size,size,size,size,size,-size,size,-size,-size,size,-size,size,size,-size,size,size,-size,-size,-size,-size,-size,-size,-size,size,-size,size,size,-size,size,-size,size,size,-size,size,size,size,-size,size,-size,-size,-size,-size,size,-size,-size,size,size,-size,-size,-size,size,-size,size,size,size,size,size,size,-size,size]));
          geometry.setAttributeValues(VertexAttributes.TEXCOORDS[0],Vector.<Number>([uvPadding,uvPadding,uvPadding,1 - uvPadding,1 - uvPadding,1 - uvPadding,1 - uvPadding,uvPadding,uvPadding,uvPadding,uvPadding,1 - uvPadding,1 - uvPadding,1 - uvPadding,1 - uvPadding,uvPadding,uvPadding,uvPadding,uvPadding,1 - uvPadding,1 - uvPadding,1 - uvPadding,1 - uvPadding,uvPadding,uvPadding,uvPadding,uvPadding,1 - uvPadding,1 - uvPadding,1 - uvPadding,1 - uvPadding,uvPadding,uvPadding,uvPadding,uvPadding,1 - uvPadding,1 - uvPadding,1 - uvPadding,1 - uvPadding,uvPadding,uvPadding,uvPadding,uvPadding,1 - uvPadding,1 - uvPadding,1 - uvPadding,1 - uvPadding,uvPadding]));
          geometry.indices = Vector.<uint>([0,1,3,2,3,1,4,5,7,6,7,5,8,9,11,10,11,9,12,13,15,14,15,13,16,17,19,18,19,17,20,21,23,22,23,21]);
-         this.§_-gj§ = addSurface(left,0,2);
-         this.§_-69§ = addSurface(right,6,2);
-         this.§_-EB§ = addSurface(back,12,2);
-         this.§_-iw§ = addSurface(front,18,2);
-         this.§_-1V§ = addSurface(bottom,24,2);
-         this.§_-Oz§ = addSurface(top,30,2);
+         this.var_98 = addSurface(left,0,2);
+         this.var_95 = addSurface(right,6,2);
+         this.var_96 = addSurface(back,12,2);
+         this.var_99 = addSurface(front,18,2);
+         this.var_94 = addSurface(bottom,24,2);
+         this.var_97 = addSurface(top,30,2);
          alternativa3d::transformProcedure = transformProcedureStatic;
       }
       
       override alternativa3d function collectDraws(camera:Camera3D, lights:Vector.<Light3D>, lightsLength:int) : void
       {
          var surface:Surface = null;
-         for(var i:int = 0; i < alternativa3d::_-Oy; )
+         for(var i:int = 0; i < alternativa3d::var_93; )
          {
-            surface = alternativa3d::_-eW[i];
+            surface = alternativa3d::var_92[i];
             if(surface.material != null)
             {
                surface.material.alternativa3d::collectDraws(camera,surface,geometry,lights,lightsLength,RenderPriority.SKY);
@@ -166,17 +166,17 @@ package alternativa.engine3d.objects
          switch(side)
          {
             case LEFT:
-               return this.§_-gj§;
+               return this.var_98;
             case RIGHT:
-               return this.§_-69§;
+               return this.var_95;
             case BACK:
-               return this.§_-EB§;
+               return this.var_96;
             case FRONT:
-               return this.§_-iw§;
+               return this.var_99;
             case BOTTOM:
-               return this.§_-1V§;
+               return this.var_94;
             case TOP:
-               return this.§_-Oz§;
+               return this.var_97;
             default:
                return null;
          }
@@ -195,33 +195,33 @@ package alternativa.engine3d.objects
          var newSurface:Surface = null;
          super.clonePropertiesFrom(source);
          var src:SkyBox = source as SkyBox;
-         for(var i:int = 0; i < src.alternativa3d::_-Oy; )
+         for(var i:int = 0; i < src.alternativa3d::var_93; )
          {
-            surface = src.alternativa3d::_-eW[i];
-            newSurface = alternativa3d::_-eW[i];
-            if(surface == src.§_-gj§)
+            surface = src.alternativa3d::var_92[i];
+            newSurface = alternativa3d::var_92[i];
+            if(surface == src.var_98)
             {
-               this.§_-gj§ = newSurface;
+               this.var_98 = newSurface;
             }
-            else if(surface == src.§_-69§)
+            else if(surface == src.var_95)
             {
-               this.§_-69§ = newSurface;
+               this.var_95 = newSurface;
             }
-            else if(surface == src.§_-EB§)
+            else if(surface == src.var_96)
             {
-               this.§_-EB§ = newSurface;
+               this.var_96 = newSurface;
             }
-            else if(surface == src.§_-iw§)
+            else if(surface == src.var_99)
             {
-               this.§_-iw§ = newSurface;
+               this.var_99 = newSurface;
             }
-            else if(surface == src.§_-1V§)
+            else if(surface == src.var_94)
             {
-               this.§_-1V§ = newSurface;
+               this.var_94 = newSurface;
             }
-            else if(surface == src.§_-Oz§)
+            else if(surface == src.var_97)
             {
-               this.§_-Oz§ = newSurface;
+               this.var_97 = newSurface;
             }
             i++;
          }

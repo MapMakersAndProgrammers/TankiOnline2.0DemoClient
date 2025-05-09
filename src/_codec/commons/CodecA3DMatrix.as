@@ -13,29 +13,29 @@ package _codec.commons
    {
       public static var log:IClientLog = IClientLog(OSGi.getInstance().getService(IClientLog));
       
-      private var §_-Bx§:ICodec;
+      private var var_324:ICodec;
       
-      private var §_-Qh§:ICodec;
+      private var var_329:ICodec;
       
-      private var §_-ir§:ICodec;
+      private var var_332:ICodec;
       
-      private var §_-p§:ICodec;
+      private var var_333:ICodec;
       
-      private var §_-Kw§:ICodec;
+      private var var_326:ICodec;
       
-      private var §_-PP§:ICodec;
+      private var var_327:ICodec;
       
-      private var §_-e7§:ICodec;
+      private var var_331:ICodec;
       
-      private var §_-QE§:ICodec;
+      private var var_328:ICodec;
       
-      private var §_-SL§:ICodec;
+      private var var_330:ICodec;
       
-      private var §for §:ICodec;
+      private var var_334:ICodec;
       
-      private var §_-Hb§:ICodec;
+      private var var_325:ICodec;
       
-      private var §_-3B§:ICodec;
+      private var var_323:ICodec;
       
       public function CodecA3DMatrix()
       {
@@ -44,46 +44,46 @@ package _codec.commons
       
       public function init(protocol:IProtocol) : void
       {
-         this.§_-Bx§ = protocol.getCodec(new TypeCodecInfo(Float,false));
-         this.§_-Qh§ = protocol.getCodec(new TypeCodecInfo(Float,false));
-         this.§_-ir§ = protocol.getCodec(new TypeCodecInfo(Float,false));
-         this.§_-p§ = protocol.getCodec(new TypeCodecInfo(Float,false));
-         this.§_-Kw§ = protocol.getCodec(new TypeCodecInfo(Float,false));
-         this.§_-PP§ = protocol.getCodec(new TypeCodecInfo(Float,false));
-         this.§_-e7§ = protocol.getCodec(new TypeCodecInfo(Float,false));
-         this.§_-QE§ = protocol.getCodec(new TypeCodecInfo(Float,false));
-         this.§_-SL§ = protocol.getCodec(new TypeCodecInfo(Float,false));
-         this.§for § = protocol.getCodec(new TypeCodecInfo(Float,false));
-         this.§_-Hb§ = protocol.getCodec(new TypeCodecInfo(Float,false));
-         this.§_-3B§ = protocol.getCodec(new TypeCodecInfo(Float,false));
+         this.var_324 = protocol.getCodec(new TypeCodecInfo(Float,false));
+         this.var_329 = protocol.getCodec(new TypeCodecInfo(Float,false));
+         this.var_332 = protocol.getCodec(new TypeCodecInfo(Float,false));
+         this.var_333 = protocol.getCodec(new TypeCodecInfo(Float,false));
+         this.var_326 = protocol.getCodec(new TypeCodecInfo(Float,false));
+         this.var_327 = protocol.getCodec(new TypeCodecInfo(Float,false));
+         this.var_331 = protocol.getCodec(new TypeCodecInfo(Float,false));
+         this.var_328 = protocol.getCodec(new TypeCodecInfo(Float,false));
+         this.var_330 = protocol.getCodec(new TypeCodecInfo(Float,false));
+         this.var_334 = protocol.getCodec(new TypeCodecInfo(Float,false));
+         this.var_325 = protocol.getCodec(new TypeCodecInfo(Float,false));
+         this.var_323 = protocol.getCodec(new TypeCodecInfo(Float,false));
       }
       
       public function decode(protocolBuffer:ProtocolBuffer) : Object
       {
          log = IClientLog(OSGi.getInstance().getService(IClientLog));
-         var value_a:Number = Number(this.§_-Bx§.decode(protocolBuffer) as Number);
+         var value_a:Number = Number(this.var_324.decode(protocolBuffer) as Number);
          log.log("codec","struct %1 field %2 value %3","commons.A3DMatrix","a",value_a);
-         var value_b:Number = Number(this.§_-Qh§.decode(protocolBuffer) as Number);
+         var value_b:Number = Number(this.var_329.decode(protocolBuffer) as Number);
          log.log("codec","struct %1 field %2 value %3","commons.A3DMatrix","b",value_b);
-         var value_c:Number = Number(this.§_-ir§.decode(protocolBuffer) as Number);
+         var value_c:Number = Number(this.var_332.decode(protocolBuffer) as Number);
          log.log("codec","struct %1 field %2 value %3","commons.A3DMatrix","c",value_c);
-         var value_d:Number = Number(this.§_-p§.decode(protocolBuffer) as Number);
+         var value_d:Number = Number(this.var_333.decode(protocolBuffer) as Number);
          log.log("codec","struct %1 field %2 value %3","commons.A3DMatrix","d",value_d);
-         var value_e:Number = Number(this.§_-Kw§.decode(protocolBuffer) as Number);
+         var value_e:Number = Number(this.var_326.decode(protocolBuffer) as Number);
          log.log("codec","struct %1 field %2 value %3","commons.A3DMatrix","e",value_e);
-         var value_f:Number = Number(this.§_-PP§.decode(protocolBuffer) as Number);
+         var value_f:Number = Number(this.var_327.decode(protocolBuffer) as Number);
          log.log("codec","struct %1 field %2 value %3","commons.A3DMatrix","f",value_f);
-         var value_g:Number = Number(this.§_-e7§.decode(protocolBuffer) as Number);
+         var value_g:Number = Number(this.var_331.decode(protocolBuffer) as Number);
          log.log("codec","struct %1 field %2 value %3","commons.A3DMatrix","g",value_g);
-         var value_h:Number = Number(this.§_-QE§.decode(protocolBuffer) as Number);
+         var value_h:Number = Number(this.var_328.decode(protocolBuffer) as Number);
          log.log("codec","struct %1 field %2 value %3","commons.A3DMatrix","h",value_h);
-         var value_i:Number = Number(this.§_-SL§.decode(protocolBuffer) as Number);
+         var value_i:Number = Number(this.var_330.decode(protocolBuffer) as Number);
          log.log("codec","struct %1 field %2 value %3","commons.A3DMatrix","i",value_i);
-         var value_j:Number = Number(this.§for §.decode(protocolBuffer) as Number);
+         var value_j:Number = Number(this.var_334.decode(protocolBuffer) as Number);
          log.log("codec","struct %1 field %2 value %3","commons.A3DMatrix","j",value_j);
-         var value_k:Number = Number(this.§_-Hb§.decode(protocolBuffer) as Number);
+         var value_k:Number = Number(this.var_325.decode(protocolBuffer) as Number);
          log.log("codec","struct %1 field %2 value %3","commons.A3DMatrix","k",value_k);
-         var value_l:Number = Number(this.§_-3B§.decode(protocolBuffer) as Number);
+         var value_l:Number = Number(this.var_323.decode(protocolBuffer) as Number);
          log.log("codec","struct %1 field %2 value %3","commons.A3DMatrix","l",value_l);
          return new A3DMatrix(value_a,value_b,value_c,value_d,value_e,value_f,value_g,value_h,value_i,value_j,value_k,value_l);
       }
@@ -95,18 +95,18 @@ package _codec.commons
             throw new Error("Object is null. Use @ProtocolOptional annotation.");
          }
          var struct:A3DMatrix = A3DMatrix(object);
-         this.§_-Bx§.encode(protocolBuffer,struct.a);
-         this.§_-Qh§.encode(protocolBuffer,struct.b);
-         this.§_-ir§.encode(protocolBuffer,struct.c);
-         this.§_-p§.encode(protocolBuffer,struct.d);
-         this.§_-Kw§.encode(protocolBuffer,struct.e);
-         this.§_-PP§.encode(protocolBuffer,struct.f);
-         this.§_-e7§.encode(protocolBuffer,struct.g);
-         this.§_-QE§.encode(protocolBuffer,struct.h);
-         this.§_-SL§.encode(protocolBuffer,struct.i);
-         this.§for §.encode(protocolBuffer,struct.j);
-         this.§_-Hb§.encode(protocolBuffer,struct.k);
-         this.§_-3B§.encode(protocolBuffer,struct.l);
+         this.var_324.encode(protocolBuffer,struct.a);
+         this.var_329.encode(protocolBuffer,struct.b);
+         this.var_332.encode(protocolBuffer,struct.c);
+         this.var_333.encode(protocolBuffer,struct.d);
+         this.var_326.encode(protocolBuffer,struct.e);
+         this.var_327.encode(protocolBuffer,struct.f);
+         this.var_331.encode(protocolBuffer,struct.g);
+         this.var_328.encode(protocolBuffer,struct.h);
+         this.var_330.encode(protocolBuffer,struct.i);
+         this.var_334.encode(protocolBuffer,struct.j);
+         this.var_325.encode(protocolBuffer,struct.k);
+         this.var_323.encode(protocolBuffer,struct.l);
       }
    }
 }
