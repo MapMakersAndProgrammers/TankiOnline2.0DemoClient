@@ -1,10 +1,10 @@
-package §_-1e§
+package alternativa.physics.collision
 {
-   import §_-KA§.§_-FW§;
+   import alternativa.physics.collision.types.BoundBox;
    
    public class CollisionKdTree2D
    {
-      private static const nodeBoundBoxThreshold:§_-FW§ = new §_-FW§();
+      private static const nodeBoundBoxThreshold:BoundBox = new BoundBox();
       
       private static const splitCoordsX:Vector.<Number> = new Vector.<Number>();
       
@@ -20,11 +20,11 @@ package §_-1e§
       
       public var §_-eV§:int = 1;
       
-      public var parentTree:§_-D-§;
+      public var parentTree:CollisionKdTree;
       
-      public var parentNode:§_-oZ§;
+      public var parentNode:CollisionKdNode;
       
-      public var §_-5H§:§_-oZ§;
+      public var §_-5H§:CollisionKdNode;
       
       private var §_-94§:int;
       
@@ -32,16 +32,16 @@ package §_-1e§
       
       private var §_-P5§:Number;
       
-      public function CollisionKdTree2D(parentTree:§_-D-§, parentNode:§_-oZ§)
+      public function CollisionKdTree2D(parentTree:CollisionKdTree, parentNode:CollisionKdNode)
       {
          super();
          this.parentTree = parentTree;
          this.parentNode = parentNode;
       }
       
-      public function §_-J9§() : void
+      public function createTree() : void
       {
-         this.§_-5H§ = new §_-oZ§();
+         this.§_-5H§ = new CollisionKdNode();
          this.§_-5H§.boundBox = this.parentNode.boundBox.clone();
          this.§_-5H§.indices = new Vector.<int>();
          var numObjects:int = int(this.parentNode.§_-Xt§.length);
@@ -52,16 +52,16 @@ package §_-1e§
          splitCoordsX.length = splitCoordsY.length = splitCoordsZ.length = 0;
       }
       
-      private function splitNode(node:§_-oZ§) : void
+      private function splitNode(node:CollisionKdNode) : void
       {
          var objects:Vector.<int> = null;
          var i:int = 0;
          var j:int = 0;
-         var nodeBoundBox:§_-FW§ = null;
+         var nodeBoundBox:BoundBox = null;
          var numSplitCoordsX:int = 0;
          var numSplitCoordsY:int = 0;
          var numSplitCoordsZ:int = 0;
-         var bb:§_-FW§ = null;
+         var bb:BoundBox = null;
          var min:Number = NaN;
          var max:Number = NaN;
          if(node.indices.length <= this.§_-eV§)
@@ -77,7 +77,7 @@ package §_-1e§
          nodeBoundBoxThreshold.maxY = nodeBoundBox.maxY - this.threshold;
          nodeBoundBoxThreshold.maxZ = nodeBoundBox.maxZ - this.threshold;
          var doubleThreshold:Number = this.threshold * 2;
-         var staticBoundBoxes:Vector.<§_-FW§> = this.parentTree.staticBoundBoxes;
+         var staticBoundBoxes:Vector.<BoundBox> = this.parentTree.staticBoundBoxes;
          var numObjects:int = int(objects.length);
          for(i = 0; i < numObjects; )
          {
@@ -133,15 +133,15 @@ package §_-1e§
          _nodeBB[5] = nodeBoundBox.maxZ;
          if(this.parentNode.axis != 0)
          {
-            this.§_-1k§(node,0,numSplitCoordsX,splitCoordsX,_nodeBB);
+            this.checkNodeAxis(node,0,numSplitCoordsX,splitCoordsX,_nodeBB);
          }
          if(this.parentNode.axis != 1)
          {
-            this.§_-1k§(node,1,numSplitCoordsY,splitCoordsY,_nodeBB);
+            this.checkNodeAxis(node,1,numSplitCoordsY,splitCoordsY,_nodeBB);
          }
          if(this.parentNode.axis != 2)
          {
-            this.§_-1k§(node,2,numSplitCoordsZ,splitCoordsZ,_nodeBB);
+            this.checkNodeAxis(node,2,numSplitCoordsZ,splitCoordsZ,_nodeBB);
          }
          if(this.§_-94§ < 0)
          {
@@ -151,10 +151,10 @@ package §_-1e§
          var axisY:Boolean = this.§_-94§ == 1;
          node.axis = this.§_-94§;
          node.coord = this.§_-P5§;
-         node.§_-Gm§ = new §_-oZ§();
+         node.§_-Gm§ = new CollisionKdNode();
          node.§_-Gm§.parent = node;
          node.§_-Gm§.boundBox = nodeBoundBox.clone();
-         node.§_-75§ = new §_-oZ§();
+         node.§_-75§ = new CollisionKdNode();
          node.§_-75§.parent = node;
          node.§_-75§.boundBox = nodeBoundBox.clone();
          if(axisX)
@@ -229,7 +229,7 @@ package §_-1e§
          }
       }
       
-      private function §_-1k§(node:§_-oZ§, axis:int, numSplitCoords:int, splitCoords:Vector.<Number>, bb:Vector.<Number>) : void
+      private function checkNodeAxis(node:CollisionKdNode, axis:int, numSplitCoords:int, splitCoords:Vector.<Number>, bb:Vector.<Number>) : void
       {
          var currSplitCoord:Number = NaN;
          var minCoord:Number = NaN;
@@ -242,11 +242,11 @@ package §_-1e§
          var numObjects:int = 0;
          var j:int = 0;
          var cost:Number = NaN;
-         var boundBox:§_-FW§ = null;
+         var boundBox:BoundBox = null;
          var axis1:int = (axis + 1) % 3;
          var axis2:int = (axis + 2) % 3;
          var area:Number = (bb[axis1 + 3] - bb[axis1]) * (bb[axis2 + 3] - bb[axis2]);
-         var staticBoundBoxes:Vector.<§_-FW§> = this.parentTree.staticBoundBoxes;
+         var staticBoundBoxes:Vector.<BoundBox> = this.parentTree.staticBoundBoxes;
          for(var i:int = 0; i < numSplitCoords; i++)
          {
             currSplitCoord = splitCoords[i];

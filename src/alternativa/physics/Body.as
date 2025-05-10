@@ -292,7 +292,7 @@ package alternativa.physics
          this.§_-nX§.copy(this.invInertia).append(this.baseMatrix).prependTransposed(this.baseMatrix);
          if(this.collisionPrimitives != null)
          {
-            this.aabb.§_-GT§();
+            this.aabb.infinity();
             for(item = this.collisionPrimitives.head; item != null; )
             {
                primitive = item.primitive;
@@ -302,7 +302,7 @@ package alternativa.physics
                   primitive.transform.prepend(primitive.localTransform);
                }
                primitive.calculateAABB();
-               this.aabb.§_-EH§(primitive.aabb);
+               this.aabb.addBoundBox(primitive.aabb);
                item = item.next;
             }
          }

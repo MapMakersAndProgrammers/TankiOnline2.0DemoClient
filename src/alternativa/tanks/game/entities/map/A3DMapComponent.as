@@ -26,7 +26,7 @@ package alternativa.tanks.game.entities.map
    import alternativa.physics.collision.CollisionPrimitive;
    import alternativa.physics.collision.primitives.CollisionRect;
    import alternativa.physics.collision.primitives.CollisionTriangle;
-   import alternativa.physics.collision.primitives.§_-m3§;
+   import alternativa.physics.collision.primitives.CollisionBox;
    import alternativa.tanks.game.EntityComponent;
    import alternativa.tanks.game.GameKernel;
    import alternativa.tanks.game.subsystems.inputsystem.KeyboardEventType;
@@ -272,9 +272,9 @@ package alternativa.tanks.game.entities.map
          for(var i:int = 0; i < numCollisionPrimitives; )
          {
             collisionPrimitive = collisionPrimitives[i];
-            if(collisionPrimitive is §_-m3§)
+            if(collisionPrimitive is CollisionBox)
             {
-               physicsVisualContainer.addChild(this.createPhysicsVisualBox(§_-m3§(collisionPrimitive),boxMaterial));
+               physicsVisualContainer.addChild(this.createPhysicsVisualBox(CollisionBox(collisionPrimitive),boxMaterial));
             }
             else if(collisionPrimitive is CollisionTriangle)
             {
@@ -285,7 +285,7 @@ package alternativa.tanks.game.entities.map
          return physicsVisualContainer;
       }
       
-      private function createPhysicsVisualBox(collisionBox:§_-m3§, material:Material) : Box
+      private function createPhysicsVisualBox(collisionBox:CollisionBox, material:Material) : Box
       {
          var size:Vector3 = collisionBox.hs.clone().scale(2);
          var box:Box = new Box(size.x,size.y,size.z);

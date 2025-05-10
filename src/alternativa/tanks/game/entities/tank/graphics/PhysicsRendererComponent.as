@@ -9,7 +9,7 @@ package alternativa.tanks.game.entities.tank.graphics
    import alternativa.math.Vector3;
    import alternativa.physics.Body;
    import alternativa.physics.CollisionPrimitiveListItem;
-   import alternativa.physics.collision.primitives.§_-m3§;
+   import alternativa.physics.collision.primitives.CollisionBox;
    import alternativa.tanks.game.EntityComponent;
    import alternativa.tanks.game.GameKernel;
    import alternativa.tanks.game.entities.tank.TankHull;
@@ -48,7 +48,7 @@ package alternativa.tanks.game.entities.tank.graphics
       
       override public function initComponent() : void
       {
-         var collisionBox:§_-m3§ = null;
+         var collisionBox:CollisionBox = null;
          var hs:Vector3 = null;
          var box:Box = null;
          var wireFrame:WireFrame = null;
@@ -58,7 +58,7 @@ package alternativa.tanks.game.entities.tank.graphics
          var body:Body = this.chassis.getBody();
          for(var item:CollisionPrimitiveListItem = body.collisionPrimitives.head; item != null; )
          {
-            collisionBox = §_-m3§(item.primitive);
+            collisionBox = CollisionBox(item.primitive);
             hs = collisionBox.hs.clone().scale(2);
             box = new Box(hs.x,hs.y,hs.z);
             wireFrame = WireFrame.createEdges(box,16711680);

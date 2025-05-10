@@ -1,10 +1,10 @@
-package §_-1e§
+package alternativa.physics.collision
 {
-   import §_-KA§.§_-FW§;
+   import alternativa.physics.collision.types.BoundBox;
    
-   public class §_-D-§
+   public class CollisionKdTree
    {
-      private static const nodeBoundBoxThreshold:§_-FW§ = new §_-FW§();
+      private static const nodeBoundBoxThreshold:BoundBox = new BoundBox();
       
       private static const splitCoordsX:Vector.<Number> = new Vector.<Number>();
       
@@ -20,13 +20,13 @@ package §_-1e§
       
       public var §_-eV§:int = 1;
       
-      public var §_-5H§:§_-oZ§;
+      public var §_-5H§:CollisionKdNode;
       
-      public var §_-8A§:Vector.<§_-Nh§>;
+      public var §_-8A§:Vector.<CollisionPrimitive>;
       
       public var §_-TO§:int;
       
-      public var staticBoundBoxes:Vector.<§_-FW§> = new Vector.<§_-FW§>();
+      public var staticBoundBoxes:Vector.<BoundBox> = new Vector.<BoundBox>();
       
       private var §_-94§:int;
       
@@ -34,25 +34,25 @@ package §_-1e§
       
       private var §_-ou§:Number;
       
-      public function §_-D-§()
+      public function CollisionKdTree()
       {
          super();
       }
       
-      public function §_-J9§(collisionPrimitives:Vector.<§_-Nh§>, boundBox:§_-FW§ = null) : void
+      public function createTree(collisionPrimitives:Vector.<CollisionPrimitive>, boundBox:BoundBox = null) : void
       {
-         var child:§_-Nh§ = null;
-         var childBoundBox:§_-FW§ = null;
+         var child:CollisionPrimitive = null;
+         var childBoundBox:BoundBox = null;
          this.§_-8A§ = collisionPrimitives.concat();
          this.§_-TO§ = this.§_-8A§.length;
-         this.§_-5H§ = new §_-oZ§();
+         this.§_-5H§ = new CollisionKdNode();
          this.§_-5H§.indices = new Vector.<int>();
-         var rootNodeBoundBox:§_-FW§ = this.§_-5H§.boundBox = boundBox != null ? boundBox : new §_-FW§();
+         var rootNodeBoundBox:BoundBox = this.§_-5H§.boundBox = boundBox != null ? boundBox : new BoundBox();
          for(var i:int = 0; i < this.§_-TO§; i++)
          {
             child = this.§_-8A§[i];
             childBoundBox = this.staticBoundBoxes[i] = child.calculateAABB();
-            rootNodeBoundBox.§_-EH§(childBoundBox);
+            rootNodeBoundBox.addBoundBox(childBoundBox);
             this.§_-5H§.indices[i] = i;
          }
          this.staticBoundBoxes.length = this.§_-TO§;
@@ -60,12 +60,12 @@ package §_-1e§
          splitCoordsX.length = splitCoordsY.length = splitCoordsZ.length = 0;
       }
       
-      private function splitNode(node:§_-oZ§) : void
+      private function splitNode(node:CollisionKdNode) : void
       {
-         var nodeBoundBox:§_-FW§ = null;
+         var nodeBoundBox:BoundBox = null;
          var i:int = 0;
          var j:int = 0;
-         var boundBox:§_-FW§ = null;
+         var boundBox:BoundBox = null;
          var min:Number = NaN;
          var max:Number = NaN;
          var indices:Vector.<int> = node.indices;
@@ -191,9 +191,9 @@ package §_-1e§
          _nodeBB[3] = nodeBoundBox.maxX;
          _nodeBB[4] = nodeBoundBox.maxY;
          _nodeBB[5] = nodeBoundBox.maxZ;
-         this.§_-1k§(node,0,numSplitCoordsX,splitCoordsX,_nodeBB);
-         this.§_-1k§(node,1,numSplitCoordsY,splitCoordsY,_nodeBB);
-         this.§_-1k§(node,2,numSplitCoordsZ,splitCoordsZ,_nodeBB);
+         this.checkNodeAxis(node,0,numSplitCoordsX,splitCoordsX,_nodeBB);
+         this.checkNodeAxis(node,1,numSplitCoordsY,splitCoordsY,_nodeBB);
+         this.checkNodeAxis(node,2,numSplitCoordsZ,splitCoordsZ,_nodeBB);
          if(this.§_-94§ < 0)
          {
             return;
@@ -202,10 +202,10 @@ package §_-1e§
          var axisY:Boolean = this.§_-94§ == 1;
          node.axis = this.§_-94§;
          node.coord = this.§_-P5§;
-         node.§_-Gm§ = new §_-oZ§();
+         node.§_-Gm§ = new CollisionKdNode();
          node.§_-Gm§.parent = node;
          node.§_-Gm§.boundBox = nodeBoundBox.clone();
-         node.§_-75§ = new §_-oZ§();
+         node.§_-75§ = new CollisionKdNode();
          node.§_-75§.parent = node;
          node.§_-75§.boundBox = nodeBoundBox.clone();
          if(axisX)
@@ -279,7 +279,7 @@ package §_-1e§
          if(node.§_-Xt§ != null)
          {
             node.§_-da§ = new CollisionKdTree2D(this,node);
-            node.§_-da§.§_-J9§();
+            node.§_-da§.createTree();
          }
          if(node.§_-Gm§.indices != null)
          {
@@ -291,7 +291,7 @@ package §_-1e§
          }
       }
       
-      private function §_-1k§(node:§_-oZ§, axis:int, numSplitCoords:int, splitCoords:Vector.<Number>, bb:Vector.<Number>) : void
+      private function checkNodeAxis(node:CollisionKdNode, axis:int, numSplitCoords:int, splitCoords:Vector.<Number>, bb:Vector.<Number>) : void
       {
          var currSplitCoord:Number = NaN;
          var minCoord:Number = NaN;
@@ -304,7 +304,7 @@ package §_-1e§
          var numObjects:int = 0;
          var j:int = 0;
          var cost:Number = NaN;
-         var boundBox:§_-FW§ = null;
+         var boundBox:BoundBox = null;
          var axis1:int = (axis + 1) % 3;
          var axis2:int = (axis + 2) % 3;
          var area:Number = (bb[axis1 + 3] - bb[axis1]) * (bb[axis2 + 3] - bb[axis2]);
@@ -370,20 +370,20 @@ package §_-1e§
          }
       }
       
-      public function §_-YO§() : void
+      public function traceTree() : void
       {
-         this.§_-es§("",this.§_-5H§);
+         this.traceNode("",this.§_-5H§);
       }
       
-      private function §_-es§(str:String, node:§_-oZ§) : void
+      private function traceNode(str:String, node:CollisionKdNode) : void
       {
          if(node == null)
          {
             return;
          }
          trace(str,node.axis == -1 ? "end" : (node.axis == 0 ? "X" : (node.axis == 1 ? "Y" : "Z")),"splitCoord=" + this.§_-P5§,"bound",node.boundBox,"objs:",node.indices);
-         this.§_-es§(str + "-",node.§_-Gm§);
-         this.§_-es§(str + "+",node.§_-75§);
+         this.traceNode(str + "-",node.§_-Gm§);
+         this.traceNode(str + "+",node.§_-75§);
       }
    }
 }

@@ -6,7 +6,7 @@ package alternativa.physics.collision.colliders
    import alternativa.physics.ContactPoint;
    import alternativa.physics.collision.CollisionPrimitive;
    import alternativa.physics.collision.primitives.CollisionRect;
-   import alternativa.physics.collision.primitives.§_-m3§;
+   import alternativa.physics.collision.primitives.CollisionBox;
    
    public class BoxRectCollider extends BoxCollider
    {
@@ -53,10 +53,10 @@ package alternativa.physics.collision.colliders
          {
             return false;
          }
-         var box:§_-m3§ = prim1 as §_-m3§;
+         var box:CollisionBox = prim1 as CollisionBox;
          if(box == null)
          {
-            box = prim2 as §_-m3§;
+            box = prim2 as CollisionBox;
             rect = prim1 as CollisionRect;
          }
          else
@@ -91,14 +91,14 @@ package alternativa.physics.collision.colliders
       
       override public function haveCollision(prim1:CollisionPrimitive, prim2:CollisionPrimitive) : Boolean
       {
-         var box:§_-m3§ = null;
+         var box:CollisionBox = null;
          var rect:CollisionRect = null;
          var rectTransform:Matrix4 = null;
          this.§_-hK§ = 10000000000;
-         box = prim1 as §_-m3§;
+         box = prim1 as CollisionBox;
          if(box == null)
          {
-            box = prim2 as §_-m3§;
+            box = prim2 as CollisionBox;
             rect = prim1 as CollisionRect;
          }
          else
@@ -159,7 +159,7 @@ package alternativa.physics.collision.colliders
          return true;
       }
       
-      private function findFaceContactPoints(box:§_-m3§, rect:CollisionRect, vectorToBox:Vector3, faceAxisIdx:int, contact:Contact) : Boolean
+      private function findFaceContactPoints(box:CollisionBox, rect:CollisionRect, vectorToBox:Vector3, faceAxisIdx:int, contact:Contact) : Boolean
       {
          var pnum:int = 0;
          var i:int = 0;
@@ -392,7 +392,7 @@ package alternativa.physics.collision.colliders
          return clipHighY(hs.y,pnum,this.points2,this.points1,this.epsilon);
       }
       
-      private function findEdgesIntersection(box:§_-m3§, rect:CollisionRect, vectorToBox:Vector3, axisIdx1:int, axisIdx2:int, contact:Contact) : Boolean
+      private function findEdgesIntersection(box:CollisionBox, rect:CollisionRect, vectorToBox:Vector3, axisIdx1:int, axisIdx2:int, contact:Contact) : Boolean
       {
          var halfLen1:Number = NaN;
          var halfLen2:Number = NaN;
@@ -501,7 +501,7 @@ package alternativa.physics.collision.colliders
          return true;
       }
       
-      private function testMainAxis(box:§_-m3§, rect:CollisionRect, axis:Vector3, axisIndex:int, vectorToBox:Vector3) : Boolean
+      private function testMainAxis(box:CollisionBox, rect:CollisionRect, axis:Vector3, axisIndex:int, vectorToBox:Vector3) : Boolean
       {
          var overlap:Number = this.overlapOnAxis(box,rect,axis,vectorToBox);
          if(overlap < -this.epsilon)
@@ -516,7 +516,7 @@ package alternativa.physics.collision.colliders
          return true;
       }
       
-      private function testDerivedAxis(box:§_-m3§, rect:CollisionRect, axis1:Vector3, axis2:Vector3, axisIndex:int, vectorToBox:Vector3) : Boolean
+      private function testDerivedAxis(box:CollisionBox, rect:CollisionRect, axis1:Vector3, axis2:Vector3, axisIndex:int, vectorToBox:Vector3) : Boolean
       {
          this.axis.x = axis1.y * axis2.z - axis1.z * axis2.y;
          this.axis.y = axis1.z * axis2.x - axis1.x * axis2.z;
@@ -543,7 +543,7 @@ package alternativa.physics.collision.colliders
          return true;
       }
       
-      public function overlapOnAxis(box:§_-m3§, rect:CollisionRect, axis:Vector3, vectorToBox:Vector3) : Number
+      public function overlapOnAxis(box:CollisionBox, rect:CollisionRect, axis:Vector3, vectorToBox:Vector3) : Number
       {
          var m:Matrix4 = box.transform;
          var d:Number = (m.a * axis.x + m.e * axis.y + m.i * axis.z) * box.hs.x;

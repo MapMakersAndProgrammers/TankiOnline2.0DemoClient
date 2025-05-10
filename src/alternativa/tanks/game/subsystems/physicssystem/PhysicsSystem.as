@@ -6,7 +6,7 @@ package alternativa.tanks.game.subsystems.physicssystem
    import alternativa.physics.collision.types.BoundBox;
    import alternativa.tanks.game.GameTask;
    import alternativa.tanks.game.physics.ITanksCollisionDetector;
-   import alternativa.tanks.game.physics.§_-ZI§;
+   import alternativa.tanks.game.physics.TanksCollisionDetector;
    import alternativa.tanks.game.physics.collision.uniformgrid.UniformGridCollisionDetector;
    import alternativa.tanks.game.subsystems.deferredcommandssystem.DeferredCommand;
    import alternativa.tanks.game.subsystems.timesystem.TimeSystem;
@@ -64,7 +64,7 @@ package alternativa.tanks.game.subsystems.physicssystem
          }
          else
          {
-            this.physicsScene.collisionDetector = new §_-ZI§();
+            this.physicsScene.collisionDetector = new TanksCollisionDetector();
          }
       }
       
@@ -97,7 +97,7 @@ package alternativa.tanks.game.subsystems.physicssystem
       public function initCollisionGeometry(collisionPrimitives:Vector.<CollisionPrimitive>) : void
       {
          var gridCellSize:Number = NaN;
-         var _loc3_:§_-ZI§ = null;
+         var _loc3_:TanksCollisionDetector = null;
          var _loc4_:BoundBox = null;
          var _loc5_:Number = NaN;
          if(USE_GRID_COLLISION_DETECTOR)
@@ -107,11 +107,11 @@ package alternativa.tanks.game.subsystems.physicssystem
          }
          else
          {
-            _loc3_ = §_-ZI§(this.physicsScene.collisionDetector);
+            _loc3_ = TanksCollisionDetector(this.physicsScene.collisionDetector);
             _loc4_ = new BoundBox();
             _loc5_ = 20000;
             _loc4_.setSize(-_loc5_,-_loc5_,-_loc5_,_loc5_,_loc5_,_loc5_);
-            _loc3_.§_-Vy§(collisionPrimitives,_loc4_);
+            _loc3_.prepareForRaycasts(collisionPrimitives,_loc4_);
          }
       }
       

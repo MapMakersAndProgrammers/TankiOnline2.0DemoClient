@@ -2,9 +2,9 @@ package alternativa.tanks.game.physics
 {
    import alternativa.math.Matrix4;
    import alternativa.math.Vector3;
-   import alternativa.physics.collision.primitives.§_-m3§;
+   import alternativa.physics.collision.primitives.CollisionBox;
    
-   public class TurretCollisioinBox extends §_-m3§
+   public class TurretCollisioinBox extends CollisionBox
    {
       public var m:Matrix4;
       

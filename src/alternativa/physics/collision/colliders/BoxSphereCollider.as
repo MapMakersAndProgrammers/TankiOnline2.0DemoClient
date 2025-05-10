@@ -6,7 +6,7 @@ package alternativa.physics.collision.colliders
    import alternativa.physics.collision.CollisionPrimitive;
    import alternativa.physics.collision.ICollider;
    import alternativa.physics.collision.primitives.CollisionSphere;
-   import alternativa.physics.collision.primitives.§_-m3§;
+   import alternativa.physics.collision.primitives.CollisionBox;
    
    public class BoxSphereCollider implements ICollider
    {
@@ -25,16 +25,16 @@ package alternativa.physics.collision.colliders
       
       public function getContact(prim1:CollisionPrimitive, prim2:CollisionPrimitive, contact:Contact) : Boolean
       {
-         var box:§_-m3§ = null;
+         var box:CollisionBox = null;
          var sphere:CollisionSphere = prim1 as CollisionSphere;
          if(sphere == null)
          {
             sphere = prim2 as CollisionSphere;
-            box = prim1 as §_-m3§;
+            box = prim1 as CollisionBox;
          }
          else
          {
-            box = prim2 as §_-m3§;
+            box = prim2 as CollisionBox;
          }
          sphere.transform.getAxis(3,this.§_-dt§);
          box.transform.getAxis(3,this.bPos);
@@ -102,16 +102,16 @@ package alternativa.physics.collision.colliders
       
       public function haveCollision(prim1:CollisionPrimitive, prim2:CollisionPrimitive) : Boolean
       {
-         var box:§_-m3§ = null;
+         var box:CollisionBox = null;
          var sphere:CollisionSphere = prim1 as CollisionSphere;
          if(sphere == null)
          {
             sphere = prim2 as CollisionSphere;
-            box = prim1 as §_-m3§;
+            box = prim1 as CollisionBox;
          }
          else
          {
-            box = prim2 as §_-m3§;
+            box = prim2 as CollisionBox;
          }
          sphere.transform.getAxis(3,this.§_-dt§);
          box.transform.getAxis(3,this.bPos);

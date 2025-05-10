@@ -1,8 +1,8 @@
-package §_-KA§
+package alternativa.physics.collision.types
 {
-   import §_-nl§.§_-bj§;
+   import alternativa.math.Vector3;
    
-   public class §_-FW§
+   public class BoundBox
    {
       public var minX:Number = 1e+308;
       
@@ -16,12 +16,12 @@ package §_-KA§
       
       public var maxZ:Number = -1e+308;
       
-      public function §_-FW§()
+      public function BoundBox()
       {
          super();
       }
       
-      public function §_-k2§(minX:Number, minY:Number, minZ:Number, maxX:Number, maxY:Number, maxZ:Number) : void
+      public function setSize(minX:Number, minY:Number, minZ:Number, maxX:Number, maxY:Number, maxZ:Number) : void
       {
          this.minX = minX;
          this.minY = minY;
@@ -31,7 +31,7 @@ package §_-KA§
          this.maxZ = maxZ;
       }
       
-      public function §_-Gd§(delta:Number) : void
+      public function increase(delta:Number) : void
       {
          this.minX -= delta;
          this.minY -= delta;
@@ -41,7 +41,7 @@ package §_-KA§
          this.maxZ += delta;
       }
       
-      public function §_-EH§(boundBox:§_-FW§) : void
+      public function addBoundBox(boundBox:BoundBox) : void
       {
          this.minX = boundBox.minX < this.minX ? boundBox.minX : this.minX;
          this.minY = boundBox.minY < this.minY ? boundBox.minY : this.minY;
@@ -51,7 +51,7 @@ package §_-KA§
          this.maxZ = boundBox.maxZ > this.maxZ ? boundBox.maxZ : this.maxZ;
       }
       
-      public function §_-aW§(x:Number, y:Number, z:Number) : void
+      public function addPoint(x:Number, y:Number, z:Number) : void
       {
          if(x < this.minX)
          {
@@ -79,7 +79,7 @@ package §_-KA§
          }
       }
       
-      public function §_-GT§() : void
+      public function infinity() : void
       {
          this.minX = 1e+308;
          this.minY = 1e+308;
@@ -89,32 +89,32 @@ package §_-KA§
          this.maxZ = -1e+308;
       }
       
-      public function intersects(bb:§_-FW§, epsilon:Number) : Boolean
+      public function intersects(bb:BoundBox, epsilon:Number) : Boolean
       {
          return !(this.minX > bb.maxX + epsilon || this.maxX < bb.minX - epsilon || this.minY > bb.maxY + epsilon || this.maxY < bb.minY - epsilon || this.minZ > bb.maxZ + epsilon || this.maxZ < bb.minZ - epsilon);
       }
       
-      public function §_-Wu§(point:§_-bj§, epsilon:Number) : Boolean
+      public function containsPoint(point:Vector3, epsilon:Number) : Boolean
       {
          return point.x > this.minX - epsilon && point.x < this.maxX + epsilon && point.y > this.minY - epsilon && point.y < this.maxY + epsilon && point.z > this.minZ - epsilon && point.z < this.maxZ + epsilon;
       }
       
-      public function §_-ot§() : Number
+      public function getSizeX() : Number
       {
          return this.maxX - this.minX;
       }
       
-      public function §_-jP§() : Number
+      public function getSizeY() : Number
       {
          return this.maxY - this.minY;
       }
       
-      public function §_-Ix§() : Number
+      public function getSizeZ() : Number
       {
          return this.maxZ - this.minZ;
       }
       
-      public function copyFrom(boundBox:§_-FW§) : void
+      public function copyFrom(boundBox:BoundBox) : void
       {
          this.minX = boundBox.minX;
          this.minY = boundBox.minY;
@@ -124,9 +124,9 @@ package §_-KA§
          this.maxZ = boundBox.maxZ;
       }
       
-      public function clone() : §_-FW§
+      public function clone() : BoundBox
       {
-         var clone:§_-FW§ = new §_-FW§();
+         var clone:BoundBox = new BoundBox();
          clone.copyFrom(this);
          return clone;
       }

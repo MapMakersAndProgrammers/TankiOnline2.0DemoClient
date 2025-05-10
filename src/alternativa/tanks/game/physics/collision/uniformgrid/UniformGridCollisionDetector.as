@@ -8,8 +8,8 @@ package alternativa.tanks.game.physics.collision.uniformgrid
    import alternativa.physics.collision.IRaycastFilter;
    import alternativa.physics.collision.colliders.BoxBoxCollider;
    import alternativa.physics.collision.colliders.BoxRectCollider;
-   import alternativa.physics.collision.colliders.§_-hu§;
-   import alternativa.physics.collision.primitives.§_-m3§;
+   import alternativa.physics.collision.colliders.BoxTriangleCollider;
+   import alternativa.physics.collision.primitives.CollisionBox;
    import alternativa.physics.collision.types.BoundBox;
    import alternativa.physics.collision.types.RayHit;
    import alternativa.tanks.game.physics.*;
@@ -26,7 +26,7 @@ package alternativa.tanks.game.physics.collision.uniformgrid
       
       private static var normal:Vector3 = new Vector3();
       
-      private static var collisionBox:§_-m3§ = new §_-m3§(new Vector3(),4294967295,0);
+      private static var collisionBox:CollisionBox = new CollisionBox(new Vector3(),4294967295,0);
       
       private var cellSize:Number;
       
@@ -244,15 +244,15 @@ package alternativa.tanks.game.physics.collision.uniformgrid
       {
          var collisionPrimitive:CollisionPrimitive = null;
          this.cellSize = cellSize;
-         this.§_-aq§.§_-GT§();
+         this.§_-aq§.infinity();
          for each(collisionPrimitive in staticPrimitives)
          {
-            this.§_-aq§.§_-EH§(collisionPrimitive.calculateAABB());
+            this.§_-aq§.addBoundBox(collisionPrimitive.calculateAABB());
          }
-         this.§_-aq§.§_-Gd§(cellSize + EPSILON);
-         this.numCellsX = int(this.§_-aq§.§_-ot§() / cellSize) + 1;
-         this.numCellsY = int(this.§_-aq§.§_-jP§() / cellSize) + 1;
-         this.numCellsZ = int(this.§_-aq§.§_-Ix§() / cellSize) + 1;
+         this.§_-aq§.increase(cellSize + EPSILON);
+         this.numCellsX = int(this.§_-aq§.getSizeX() / cellSize) + 1;
+         this.numCellsY = int(this.§_-aq§.getSizeY() / cellSize) + 1;
+         this.numCellsZ = int(this.§_-aq§.getSizeZ() / cellSize) + 1;
          this.§_-00§ = this.numCellsX * this.numCellsY * this.numCellsZ;
          this.§_-aq§.maxX = this.§_-aq§.minX + this.numCellsX * cellSize;
          this.§_-aq§.maxY = this.§_-aq§.minY + this.numCellsY * cellSize;
@@ -653,7 +653,7 @@ package alternativa.tanks.game.physics.collision.uniformgrid
          var axis:int = -1;
          var entryTime:Number = 0;
          var p:Vector3 = new Vector3();
-         var pointInBounds:Boolean = Boolean(this.§_-aq§.§_-Wu§(origin,EPSILON));
+         var pointInBounds:Boolean = Boolean(this.§_-aq§.containsPoint(origin,EPSILON));
          if(!pointInBounds)
          {
             collisionBox.hs.reset(this.cellSize * this.numCellsX / 2,this.cellSize * this.numCellsY / 2,this.cellSize * this.numCellsZ / 2);
@@ -913,7 +913,7 @@ package alternativa.tanks.game.physics.collision.uniformgrid
          this.§_-P6§ = new Object();
          this.addCollider(CollisionPrimitive.BOX,CollisionPrimitive.BOX,new BoxBoxCollider());
          this.addCollider(CollisionPrimitive.BOX,CollisionPrimitive.RECT,new BoxRectCollider());
-         this.addCollider(CollisionPrimitive.BOX,CollisionPrimitive.TRIANGLE,new §_-hu§());
+         this.addCollider(CollisionPrimitive.BOX,CollisionPrimitive.TRIANGLE,new BoxTriangleCollider());
       }
    }
 }

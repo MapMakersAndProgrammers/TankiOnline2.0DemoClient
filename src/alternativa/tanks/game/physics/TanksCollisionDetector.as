@@ -1,77 +1,77 @@
-package §_-fT§
+package alternativa.tanks.game.physics
 {
-   import §_-1e§.§_-D-§;
-   import §_-1e§.§_-Nh§;
-   import §_-1e§.§_-hG§;
-   import §_-1e§.§_-jn§;
-   import §_-1e§.§_-oZ§;
-   import §_-KA§.§_-FW§;
-   import §_-KA§.§_-jr§;
-   import §_-US§.§_-4q§;
-   import §_-US§.§_-6h§;
-   import §_-US§.§_-BV§;
-   import §_-US§.§_-G2§;
-   import §_-nl§.§_-bj§;
-   import §while§.§_-GQ§;
-   import §while§.§_-Ph§;
-   import §while§.§_-hu§;
+   import alternativa.physics.collision.CollisionKdTree;
+   import alternativa.physics.collision.CollisionPrimitive;
+   import alternativa.physics.collision.ICollider;
+   import alternativa.physics.collision.IRaycastFilter;
+   import alternativa.physics.collision.CollisionKdNode;
+   import alternativa.physics.collision.types.BoundBox;
+   import alternativa.physics.collision.types.RayHit;
+   import alternativa.physics.CollisionPrimitiveListItem;
+   import alternativa.physics.Contact;
+   import alternativa.physics.Body;
+   import alternativa.physics.CollisionPrimitiveList;
+   import alternativa.math.Vector3;
+   import alternativa.physics.collision.colliders.BoxRectCollider;
+   import alternativa.physics.collision.colliders.BoxBoxCollider;
+   import alternativa.physics.collision.colliders.BoxTriangleCollider;
    
-   public class §_-ZI§ implements §_-Zm§
+   public class TanksCollisionDetector implements ITanksCollisionDetector
    {
-      public var §_-bw§:§_-D-§;
+      public var §_-bw§:CollisionKdTree;
       
       public var threshold:Number = 0.0001;
       
       private var §_-P6§:Object;
       
-      private var §_-Wj§:Vector.<§_-YY§>;
+      private var §_-Wj§:Vector.<BodyCollisionData>;
       
       private var §_-LK§:int;
       
-      private var §_-By§:Vector.<§_-BV§>;
+      private var §_-By§:Vector.<Body>;
       
       private var numBodies:int;
       
       private var §_-qC§:MinMax = new MinMax();
       
-      private var §_-k8§:§_-bj§ = new §_-bj§();
+      private var §_-k8§:Vector3 = new Vector3();
       
-      private var §_-0q§:§_-bj§ = new §_-bj§();
+      private var §_-0q§:Vector3 = new Vector3();
       
-      private var §_-2P§:§_-jr§ = new §_-jr§();
+      private var §_-2P§:RayHit = new RayHit();
       
-      private var _rayAABB:§_-FW§ = new §_-FW§();
+      private var _rayAABB:BoundBox = new BoundBox();
       
-      public function §_-ZI§()
+      public function TanksCollisionDetector()
       {
          super();
-         this.§_-bw§ = new §_-D-§();
-         this.§_-By§ = new Vector.<§_-BV§>();
-         this.§_-Wj§ = new Vector.<§_-YY§>();
+         this.§_-bw§ = new CollisionKdTree();
+         this.§_-By§ = new Vector.<Body>();
+         this.§_-Wj§ = new Vector.<BodyCollisionData>();
          this.§_-P6§ = new Object();
-         this.§_-c2§(§_-Nh§.BOX,§_-Nh§.BOX,new §_-Ph§());
-         this.§_-c2§(§_-Nh§.BOX,§_-Nh§.RECT,new §_-GQ§());
-         this.§_-c2§(§_-Nh§.BOX,§_-Nh§.TRIANGLE,new §_-hu§());
+         this.addCollider(CollisionPrimitive.BOX,CollisionPrimitive.BOX,new BoxBoxCollider());
+         this.addCollider(CollisionPrimitive.BOX,CollisionPrimitive.RECT,new BoxRectCollider());
+         this.addCollider(CollisionPrimitive.BOX,CollisionPrimitive.TRIANGLE,new BoxTriangleCollider());
       }
       
-      public function §_-oT§(primitive:§_-Nh§) : void
+      public function addStaticPrimitive(primitive:CollisionPrimitive) : void
       {
       }
       
-      public function §_-HZ§(primitive:§_-Nh§) : void
+      public function removeStaticPrimitive(primitive:CollisionPrimitive) : void
       {
       }
       
-      public function §_-9F§() : void
+      public function prepareForRaycasts() : void
       {
       }
       
-      public function §_-Vy§(collisionPrimitives:Vector.<§_-Nh§>, boundBox:§_-FW§ = null) : void
+      public function prepareForRaycasts(collisionPrimitives:Vector.<CollisionPrimitive>, boundBox:BoundBox = null) : void
       {
-         this.§_-bw§.§_-J9§(collisionPrimitives,boundBox);
+         this.§_-bw§.createTree(collisionPrimitives,boundBox);
       }
       
-      public function §_-pN§(tankPhysicsEntry:§_-YY§) : void
+      public function addBodyCollisionData(tankPhysicsEntry:BodyCollisionData) : void
       {
          if(this.§_-Wj§.indexOf(tankPhysicsEntry) >= 0)
          {
@@ -81,7 +81,7 @@ package §_-fT§
          this.§_-Wj§[_loc2_] = tankPhysicsEntry;
       }
       
-      public function §_-qP§(tankPhysicsEntry:§_-YY§) : void
+      public function removeBodyCollisionData(tankPhysicsEntry:BodyCollisionData) : void
       {
          var index:Number = Number(this.§_-Wj§.indexOf(tankPhysicsEntry));
          if(index < 0)
@@ -92,13 +92,13 @@ package §_-fT§
          this.§_-Wj§[this.§_-LK§] = null;
       }
       
-      public function §_-D8§(body:§_-BV§) : void
+      public function addBody(body:Body) : void
       {
          var _loc2_:* = this.numBodies++;
          this.§_-By§[_loc2_] = body;
       }
       
-      public function §_-2x§(body:§_-BV§) : void
+      public function removeBody(body:Body) : void
       {
          var index:int = int(this.§_-By§.indexOf(body));
          if(index < 0)
@@ -109,11 +109,11 @@ package §_-fT§
          this.§_-By§[this.numBodies] = null;
       }
       
-      public function §_-7u§(center:§_-bj§, radius:Number, filter:§_-VN§) : Vector.<§_-bB§>
+      public function getObjectsInRadius(center:Vector3, radius:Number, filter:IRadiusQueryFilter) : Vector.<BodyDistance>
       {
-         var result:Vector.<§_-bB§> = null;
-         var tankPhysicsEntry:§_-YY§ = null;
-         var position:§_-bj§ = null;
+         var result:Vector.<BodyDistance> = null;
+         var tankPhysicsEntry:BodyCollisionData = null;
+         var position:Vector3 = null;
          var dx:Number = NaN;
          var dy:Number = NaN;
          var dz:Number = NaN;
@@ -133,9 +133,9 @@ package §_-fT§
                {
                   if(result == null)
                   {
-                     result = new Vector.<§_-bB§>();
+                     result = new Vector.<BodyDistance>();
                   }
-                  result.push(new §_-bB§(tankPhysicsEntry.body,Math.sqrt(distance)));
+                  result.push(new BodyDistance(tankPhysicsEntry.body,Math.sqrt(distance)));
                }
             }
             i++;
@@ -143,18 +143,18 @@ package §_-fT§
          return result;
       }
       
-      public function §_-63§(contact:§_-6h§) : §_-6h§
+      public function getAllContacts(contact:Contact) : Contact
       {
-         return this.§_-Uu§(contact);
+         return this.getTankContacts(contact);
       }
       
-      public function getContact(prim1:§_-Nh§, prim2:§_-Nh§, contact:§_-6h§) : Boolean
+      public function getContact(prim1:CollisionPrimitive, prim2:CollisionPrimitive, contact:Contact) : Boolean
       {
          if((prim1.collisionMask & prim2.collisionGroup) == 0 || (prim2.collisionMask & prim1.collisionGroup) == 0 || !prim1.aabb.intersects(prim2.aabb,0.01))
          {
             return false;
          }
-         var collider:§_-hG§ = this.§_-P6§[prim1.type | prim2.type];
+         var collider:ICollider = this.§_-P6§[prim1.type | prim2.type];
          if(collider != null && Boolean(collider.getContact(prim1,prim2,contact)))
          {
             if(prim1.postCollisionFilter != null && !prim1.postCollisionFilter.§_-eZ§(prim1,prim2))
@@ -166,7 +166,7 @@ package §_-fT§
          return false;
       }
       
-      public function §_-A5§(prim1:§_-Nh§, prim2:§_-Nh§) : Boolean
+      public function testCollision(prim1:CollisionPrimitive, prim2:CollisionPrimitive) : Boolean
       {
          if((prim1.collisionMask & prim2.collisionGroup) == 0 || (prim2.collisionMask & prim1.collisionGroup) == 0)
          {
@@ -180,7 +180,7 @@ package §_-fT§
          {
             return false;
          }
-         var collider:§_-hG§ = this.§_-P6§[prim1.type | prim2.type];
+         var collider:ICollider = this.§_-P6§[prim1.type | prim2.type];
          if(collider != null && Boolean(collider.haveCollision(prim1,prim2)))
          {
             if(prim1.postCollisionFilter != null && !prim1.postCollisionFilter.§_-eZ§(prim1,prim2))
@@ -192,10 +192,10 @@ package §_-fT§
          return false;
       }
       
-      public function raycast(origin:§_-bj§, dir:§_-bj§, collisionMask:int, maxTime:Number, filter:§_-jn§, result:§_-jr§) : Boolean
+      public function raycast(origin:Vector3, dir:Vector3, collisionMask:int, maxTime:Number, filter:IRaycastFilter, result:RayHit) : Boolean
       {
-         var hasStaticIntersection:Boolean = this.§_-cX§(origin,dir,collisionMask,maxTime,filter,result);
-         var hasDynamicIntersection:Boolean = this.§_-eu§(origin,dir,collisionMask,maxTime,filter,this.§_-2P§);
+         var hasStaticIntersection:Boolean = this.raycastStatic(origin,dir,collisionMask,maxTime,filter,result);
+         var hasDynamicIntersection:Boolean = this.raycastTanks(origin,dir,collisionMask,maxTime,filter,this.§_-2P§);
          if(!(hasDynamicIntersection || hasStaticIntersection))
          {
             return false;
@@ -216,9 +216,9 @@ package §_-fT§
          return true;
       }
       
-      public function §_-cX§(origin:§_-bj§, dir:§_-bj§, collisionMask:int, maxTime:Number, filter:§_-jn§, result:§_-jr§) : Boolean
+      public function raycastStatic(origin:Vector3, dir:Vector3, collisionMask:int, maxTime:Number, filter:IRaycastFilter, result:RayHit) : Boolean
       {
-         if(!this.§_-oL§(origin,dir,this.§_-bw§.§_-5H§.boundBox,this.§_-qC§))
+         if(!this.getRayBoundBoxIntersection(origin,dir,this.§_-bw§.§_-5H§.boundBox,this.§_-qC§))
          {
             return false;
          }
@@ -243,34 +243,34 @@ package §_-fT§
          {
             this.§_-qC§.max = maxTime;
          }
-         var hasIntersection:Boolean = this.§_-NC§(this.§_-bw§.§_-5H§,origin,this.§_-0q§,dir,collisionMask,this.§_-qC§.min,this.§_-qC§.max,filter,result);
+         var hasIntersection:Boolean = this.testRayAgainstNode(this.§_-bw§.§_-5H§,origin,this.§_-0q§,dir,collisionMask,this.§_-qC§.min,this.§_-qC§.max,filter,result);
          return hasIntersection ? result.t <= maxTime : false;
       }
       
-      public function §_-TL§(primitive:§_-Nh§) : Boolean
+      public function testPrimitiveTreeCollision(primitive:CollisionPrimitive) : Boolean
       {
-         return this.§_-B8§(primitive,this.§_-bw§.§_-5H§);
+         return this.testPrimitiveNodeCollision(primitive,this.§_-bw§.§_-5H§);
       }
       
-      private function §_-c2§(type1:int, type2:int, collider:§_-hG§) : void
+      private function addCollider(type1:int, type2:int, collider:ICollider) : void
       {
          this.§_-P6§[type1 | type2] = collider;
       }
       
-      private function §_-Uu§(contact:§_-6h§) : §_-6h§
+      private function getTankContacts(contact:Contact) : Contact
       {
-         var tankEntry:§_-YY§ = null;
-         var body:§_-BV§ = null;
-         var listItem:§_-4q§ = null;
+         var tankEntry:BodyCollisionData = null;
+         var body:Body = null;
+         var listItem:CollisionPrimitiveListItem = null;
          var j:int = 0;
-         var otherTankEntry:§_-YY§ = null;
+         var otherTankEntry:BodyCollisionData = null;
          for(var i:int = 0; i < this.§_-LK§; i++)
          {
             tankEntry = this.§_-Wj§[i];
             body = tankEntry.body;
             for(listItem = body.collisionPrimitives.head; listItem != null; )
             {
-               contact = this.§_-m1§(this.§_-bw§.§_-5H§,listItem.primitive,contact);
+               contact = this.getPrimitiveNodeCollisions(this.§_-bw§.§_-5H§,listItem.primitive,contact);
                listItem = listItem.next;
             }
             for(j = i + 1; j < this.§_-LK§; )
@@ -278,7 +278,7 @@ package §_-fT§
                otherTankEntry = this.§_-Wj§[j];
                if(body.aabb.intersects(otherTankEntry.body.aabb,0.1))
                {
-                  contact = this.§_-4I§(tankEntry,otherTankEntry,contact);
+                  contact = this.getTanksCollision(tankEntry,otherTankEntry,contact);
                }
                j++;
             }
@@ -286,15 +286,15 @@ package §_-fT§
          return contact;
       }
       
-      private function §_-4I§(tankEntry1:§_-YY§, tankEntry2:§_-YY§, contact:§_-6h§) : §_-6h§
+      private function getTanksCollision(tankEntry1:BodyCollisionData, tankEntry2:BodyCollisionData, contact:Contact) : Contact
       {
-         var primitive1:§_-Nh§ = null;
+         var primitive1:CollisionPrimitive = null;
          var numSimplePrimitives2:int = 0;
          var j:int = 0;
-         var primitive2:§_-Nh§ = null;
+         var primitive2:CollisionPrimitive = null;
          var skipCollision:Boolean = false;
-         var body1:§_-BV§ = tankEntry1.body;
-         var body2:§_-BV§ = tankEntry2.body;
+         var body1:Body = tankEntry1.body;
+         var body2:Body = tankEntry2.body;
          var numSimplePrimitives1:int = int(tankEntry1.simplePrimitives.length);
          var firstFilterTest:Boolean = true;
          for(var i:int = 0; i < numSimplePrimitives1; i++)
@@ -331,14 +331,14 @@ package §_-fT§
          return contact;
       }
       
-      private function §_-AX§(primitives1:§_-G2§, primitives2:§_-G2§) : Boolean
+      private function testContacts2(primitives1:CollisionPrimitiveList, primitives2:CollisionPrimitiveList) : Boolean
       {
-         var item2:§_-4q§ = null;
-         for(var item1:§_-4q§ = primitives1.head; item1 != null; )
+         var item2:CollisionPrimitiveListItem = null;
+         for(var item1:CollisionPrimitiveListItem = primitives1.head; item1 != null; )
          {
             for(item2 = primitives2.head; item2 != null; )
             {
-               if(this.§_-A5§(item1.primitive,item2.primitive))
+               if(this.testCollision(item1.primitive,item2.primitive))
                {
                   return true;
                }
@@ -349,11 +349,11 @@ package §_-fT§
          return false;
       }
       
-      private function §_-bH§(primitives:§_-G2§) : Boolean
+      private function primitivesHaveCollision(primitives:CollisionPrimitiveList) : Boolean
       {
-         for(var item:§_-4q§ = primitives.head; item != null; )
+         for(var item:CollisionPrimitiveListItem = primitives.head; item != null; )
          {
-            if(this.§_-TL§(item.primitive))
+            if(this.testPrimitiveTreeCollision(item.primitive))
             {
                return true;
             }
@@ -362,11 +362,11 @@ package §_-fT§
          return false;
       }
       
-      private function §_-m1§(node:§_-oZ§, primitive:§_-Nh§, contact:§_-6h§) : §_-6h§
+      private function getPrimitiveNodeCollisions(node:CollisionKdNode, primitive:CollisionPrimitive, contact:Contact) : Contact
       {
          var min:Number = NaN;
          var max:Number = NaN;
-         var primitives:Vector.<§_-Nh§> = null;
+         var primitives:Vector.<CollisionPrimitive> = null;
          var indices:Vector.<int> = null;
          var i:int = 0;
          if(node.indices != null)
@@ -402,24 +402,24 @@ package §_-fT§
          }
          if(min < node.coord)
          {
-            contact = this.§_-m1§(node.§_-Gm§,primitive,contact);
+            contact = this.getPrimitiveNodeCollisions(node.§_-Gm§,primitive,contact);
          }
          if(max > node.coord)
          {
-            contact = this.§_-m1§(node.§_-75§,primitive,contact);
+            contact = this.getPrimitiveNodeCollisions(node.§_-75§,primitive,contact);
          }
          if(node.§_-da§ != null && min < node.coord && max > node.coord)
          {
-            contact = this.§_-m1§(node.§_-da§.§_-5H§,primitive,contact);
+            contact = this.getPrimitiveNodeCollisions(node.§_-da§.§_-5H§,primitive,contact);
          }
          return contact;
       }
       
-      private function §_-B8§(primitive:§_-Nh§, node:§_-oZ§) : Boolean
+      private function testPrimitiveNodeCollision(primitive:CollisionPrimitive, node:CollisionKdNode) : Boolean
       {
          var min:Number = NaN;
          var max:Number = NaN;
-         var primitives:Vector.<§_-Nh§> = null;
+         var primitives:Vector.<CollisionPrimitive> = null;
          var indices:Vector.<int> = null;
          var i:int = 0;
          if(node.indices != null)
@@ -428,7 +428,7 @@ package §_-fT§
             indices = node.indices;
             for(i = indices.length - 1; i >= 0; )
             {
-               if(this.§_-A5§(primitive,primitives[indices[i]]))
+               if(this.testCollision(primitive,primitives[indices[i]]))
                {
                   return true;
                }
@@ -455,21 +455,21 @@ package §_-fT§
          }
          if(node.§_-da§ != null && min < node.coord && max > node.coord)
          {
-            if(this.§_-B8§(primitive,node.§_-da§.§_-5H§))
+            if(this.testPrimitiveNodeCollision(primitive,node.§_-da§.§_-5H§))
             {
                return true;
             }
          }
          if(min < node.coord)
          {
-            if(this.§_-B8§(primitive,node.§_-Gm§))
+            if(this.testPrimitiveNodeCollision(primitive,node.§_-Gm§))
             {
                return true;
             }
          }
          if(max > node.coord)
          {
-            if(this.§_-B8§(primitive,node.§_-75§))
+            if(this.testPrimitiveNodeCollision(primitive,node.§_-75§))
             {
                return true;
             }
@@ -477,13 +477,13 @@ package §_-fT§
          return false;
       }
       
-      private function §_-eu§(origin:§_-bj§, dir:§_-bj§, collisionMask:int, maxTime:Number, filter:§_-jn§, result:§_-jr§) : Boolean
+      private function raycastTanks(origin:Vector3, dir:Vector3, collisionMask:int, maxTime:Number, filter:IRaycastFilter, result:RayHit) : Boolean
       {
-         var tankPhysicsEntry:§_-YY§ = null;
-         var body:§_-BV§ = null;
-         var aabb:§_-FW§ = null;
-         var collisionPrimitiveListItem:§_-4q§ = null;
-         var primitive:§_-Nh§ = null;
+         var tankPhysicsEntry:BodyCollisionData = null;
+         var body:Body = null;
+         var aabb:BoundBox = null;
+         var collisionPrimitiveListItem:CollisionPrimitiveListItem = null;
+         var primitive:CollisionPrimitive = null;
          var t:Number = NaN;
          var xx:Number = origin.x + dir.x * maxTime;
          var yy:Number = origin.y + dir.y * maxTime;
@@ -571,7 +571,7 @@ package §_-fT§
          return true;
       }
       
-      private function §_-oL§(origin:§_-bj§, dir:§_-bj§, bb:§_-FW§, time:MinMax) : Boolean
+      private function getRayBoundBoxIntersection(origin:Vector3, dir:Vector3, bb:BoundBox, time:MinMax) : Boolean
       {
          var t1:Number = NaN;
          var t2:Number = NaN;
@@ -648,15 +648,15 @@ package §_-fT§
          return true;
       }
       
-      private function §_-NC§(node:§_-oZ§, origin:§_-bj§, localOrigin:§_-bj§, dir:§_-bj§, collisionMask:int, t1:Number, t2:Number, filter:§_-jn§, result:§_-jr§) : Boolean
+      private function testRayAgainstNode(node:CollisionKdNode, origin:Vector3, localOrigin:Vector3, dir:Vector3, collisionMask:int, t1:Number, t2:Number, filter:IRaycastFilter, result:RayHit) : Boolean
       {
          var splitTime:Number = NaN;
-         var currChildNode:§_-oZ§ = null;
+         var currChildNode:CollisionKdNode = null;
          var intersects:Boolean = false;
-         var splitNode:§_-oZ§ = null;
+         var splitNode:CollisionKdNode = null;
          var i:int = 0;
-         var primitive:§_-Nh§ = null;
-         if(node.indices != null && this.§_-FH§(origin,dir,collisionMask,this.§_-bw§.§_-8A§,node.indices,filter,result))
+         var primitive:CollisionPrimitive = null;
+         if(node.indices != null && this.getRayNodeIntersection(origin,dir,collisionMask,this.§_-bw§.§_-8A§,node.indices,filter,result))
          {
             return true;
          }
@@ -701,9 +701,9 @@ package §_-fT§
          }
          if(splitTime < t1 || splitTime > t2)
          {
-            return this.§_-NC§(currChildNode,origin,localOrigin,dir,collisionMask,t1,t2,filter,result);
+            return this.testRayAgainstNode(currChildNode,origin,localOrigin,dir,collisionMask,t1,t2,filter,result);
          }
-         intersects = this.§_-NC§(currChildNode,origin,localOrigin,dir,collisionMask,t1,splitTime,filter,result);
+         intersects = this.testRayAgainstNode(currChildNode,origin,localOrigin,dir,collisionMask,t1,splitTime,filter,result);
          if(intersects)
          {
             return true;
@@ -751,12 +751,12 @@ package §_-fT§
                }
             }
          }
-         return this.§_-NC§(currChildNode == node.§_-Gm§ ? node.§_-75§ : node.§_-Gm§,origin,this.§_-0q§,dir,collisionMask,splitTime,t2,filter,result);
+         return this.testRayAgainstNode(currChildNode == node.§_-Gm§ ? node.§_-75§ : node.§_-Gm§,origin,this.§_-0q§,dir,collisionMask,splitTime,t2,filter,result);
       }
       
-      private function §_-FH§(origin:§_-bj§, dir:§_-bj§, collisionMask:int, primitives:Vector.<§_-Nh§>, indices:Vector.<int>, filter:§_-jn§, intersection:§_-jr§) : Boolean
+      private function getRayNodeIntersection(origin:Vector3, dir:Vector3, collisionMask:int, primitives:Vector.<CollisionPrimitive>, indices:Vector.<int>, filter:IRaycastFilter, intersection:RayHit) : Boolean
       {
-         var primitive:§_-Nh§ = null;
+         var primitive:CollisionPrimitive = null;
          var t:Number = NaN;
          var pnum:int = int(indices.length);
          var minTime:Number = 1e+308;
@@ -791,15 +791,15 @@ package §_-fT§
          return true;
       }
       
-      private function §_-Yu§(body1:§_-BV§, body2:§_-BV§, contact:§_-6h§) : §_-6h§
+      private function collideBodies(body1:Body, body2:Body, contact:Contact) : Contact
       {
-         return this.§_-bO§(body1.collisionPrimitives,body2.collisionPrimitives,contact);
+         return this.getContacts2(body1.collisionPrimitives,body2.collisionPrimitives,contact);
       }
       
-      private function §_-bO§(primitives1:§_-G2§, primitives2:§_-G2§, contact:§_-6h§) : §_-6h§
+      private function getContacts2(primitives1:CollisionPrimitiveList, primitives2:CollisionPrimitiveList, contact:Contact) : Contact
       {
-         var item2:§_-4q§ = null;
-         for(var item1:§_-4q§ = primitives1.head; item1 != null; )
+         var item2:CollisionPrimitiveListItem = null;
+         for(var item1:CollisionPrimitiveListItem = primitives1.head; item1 != null; )
          {
             for(item2 = primitives2.head; item2 != null; )
             {

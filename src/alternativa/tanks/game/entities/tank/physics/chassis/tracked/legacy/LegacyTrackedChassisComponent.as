@@ -10,7 +10,7 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
    import alternativa.physics.PhysicsScene;
    import alternativa.physics.PhysicsUtils;
    import alternativa.physics.collision.CollisionPrimitive;
-   import alternativa.physics.collision.primitives.§_-m3§;
+   import alternativa.physics.collision.primitives.CollisionBox;
    import alternativa.physics.collision.types.BoundBox;
    import alternativa.tanks.game.EntityComponent;
    import alternativa.tanks.game.GameEvents;
@@ -243,12 +243,12 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
       {
          var collisionPrimitive:CollisionPrimitive = null;
          var primitiveTransform:Matrix4 = null;
-         boundBox.§_-GT§();
+         boundBox.infinity();
          for each(collisionPrimitive in this.§_-DC§)
          {
             primitiveTransform = collisionPrimitive.transform;
             collisionPrimitive.transform = collisionPrimitive.localTransform || Matrix4.IDENTITY;
-            boundBox.§_-EH§(collisionPrimitive.calculateAABB());
+            boundBox.addBoundBox(collisionPrimitive.calculateAABB());
             collisionPrimitive.transform = primitiveTransform;
          }
       }
@@ -613,11 +613,11 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
       private function createPrimitives(geometryData:Vector.<BoxData>, primitives:Vector.<CollisionPrimitive>, collisionGroup:int, collisionMask:int) : void
       {
          var boxData:BoxData = null;
-         var primitive:§_-m3§ = null;
+         var primitive:CollisionBox = null;
          primitives.length = 0;
          for each(boxData in geometryData)
          {
-            primitive = new §_-m3§(boxData.hs,collisionGroup,collisionMask);
+            primitive = new CollisionBox(boxData.hs,collisionGroup,collisionMask);
             primitive.localTransform = boxData.matrix.clone();
             primitive.body = this.body;
             primitives.push(primitive);

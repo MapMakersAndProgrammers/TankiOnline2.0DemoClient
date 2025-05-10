@@ -1,14 +1,14 @@
-package §while§
+package alternativa.physics.collision.colliders
 {
-   import §_-1e§.§_-Nh§;
-   import §_-US§.§_-6h§;
-   import §_-US§.§_-cR§;
-   import §_-nl§.Matrix4;
-   import §_-nl§.§_-bj§;
-   import §_-pe§.§_-Pr§;
-   import §_-pe§.§_-m3§;
+   import alternativa.physics.collision.CollisionPrimitive;
+   import alternativa.physics.Contact;
+   import alternativa.physics.ContactPoint;
+   import alternativa.math.Matrix4;
+   import alternativa.math.Vector3;
+   import alternativa.physics.collision.primitives.CollisionTriangle;
+   import alternativa.physics.collision.primitives.CollisionBox;
    
-   public class §_-hu§ extends §_-dj§
+   public class BoxTriangleCollider extends BoxCollider
    {
       public var epsilon:Number = 0.001;
       
@@ -16,58 +16,58 @@ package §while§
       
       private var §_-hK§:Number;
       
-      private var toBox:§_-bj§ = new §_-bj§();
+      private var toBox:Vector3 = new Vector3();
       
-      private var axis:§_-bj§ = new §_-bj§();
+      private var axis:Vector3 = new Vector3();
       
-      private var §_-VZ§:§_-bj§ = new §_-bj§();
+      private var §_-VZ§:Vector3 = new Vector3();
       
-      private var axis10:§_-bj§ = new §_-bj§();
+      private var axis10:Vector3 = new Vector3();
       
-      private var axis11:§_-bj§ = new §_-bj§();
+      private var axis11:Vector3 = new Vector3();
       
-      private var axis12:§_-bj§ = new §_-bj§();
+      private var axis12:Vector3 = new Vector3();
       
-      private var axis20:§_-bj§ = new §_-bj§();
+      private var axis20:Vector3 = new Vector3();
       
-      private var axis21:§_-bj§ = new §_-bj§();
+      private var axis21:Vector3 = new Vector3();
       
-      private var axis22:§_-bj§ = new §_-bj§();
+      private var axis22:Vector3 = new Vector3();
       
-      private var points1:Vector.<§_-bj§> = new Vector.<§_-bj§>(8,true);
+      private var points1:Vector.<Vector3> = new Vector.<Vector3>(8,true);
       
-      private var points2:Vector.<§_-bj§> = new Vector.<§_-bj§>(8,true);
+      private var points2:Vector.<Vector3> = new Vector.<Vector3>(8,true);
       
-      public function §_-hu§()
+      public function BoxTriangleCollider()
       {
          super();
          for(var i:int = 0; i < 8; i++)
          {
-            this.points1[i] = new §_-bj§();
-            this.points2[i] = new §_-bj§();
+            this.points1[i] = new Vector3();
+            this.points2[i] = new Vector3();
          }
       }
       
-      override public function getContact(prim1:§_-Nh§, prim2:§_-Nh§, contact:§_-6h§) : Boolean
+      override public function getContact(prim1:CollisionPrimitive, prim2:CollisionPrimitive, contact:Contact) : Boolean
       {
-         var box:§_-m3§ = null;
+         var box:CollisionBox = null;
          if(!this.haveCollision(prim1,prim2))
          {
             return false;
          }
-         var tri:§_-Pr§ = prim1 as §_-Pr§;
+         var tri:CollisionTriangle = prim1 as CollisionTriangle;
          if(tri == null)
          {
-            box = §_-m3§(prim1);
-            tri = §_-Pr§(prim2);
+            box = CollisionBox(prim1);
+            tri = CollisionTriangle(prim2);
          }
          else
          {
-            box = §_-m3§(prim2);
+            box = CollisionBox(prim2);
          }
          if(this.§_-Wt§ < 4)
          {
-            if(!this.§_-NV§(box,tri,this.toBox,this.§_-Wt§,contact))
+            if(!this.findFaceContactPoints(box,tri,this.toBox,this.§_-Wt§,contact))
             {
                return false;
             }
@@ -75,7 +75,7 @@ package §while§
          else
          {
             this.§_-Wt§ -= 4;
-            if(!this.§_-og§(box,tri,this.toBox,this.§_-Wt§ % 3,int(this.§_-Wt§ / 3),contact))
+            if(!this.findEdgesIntersection(box,tri,this.toBox,this.§_-Wt§ % 3,int(this.§_-Wt§ / 3),contact))
             {
                return false;
             }
@@ -91,21 +91,21 @@ package §while§
          return true;
       }
       
-      override public function haveCollision(prim1:§_-Nh§, prim2:§_-Nh§) : Boolean
+      override public function haveCollision(prim1:CollisionPrimitive, prim2:CollisionPrimitive) : Boolean
       {
-         var tri:§_-Pr§ = null;
-         var box:§_-m3§ = null;
+         var tri:CollisionTriangle = null;
+         var box:CollisionBox = null;
          var triTransform:Matrix4 = null;
-         var v:§_-bj§ = null;
-         tri = prim1 as §_-Pr§;
+         var v:Vector3 = null;
+         tri = prim1 as CollisionTriangle;
          if(tri == null)
          {
-            box = §_-m3§(prim1);
-            tri = §_-Pr§(prim2);
+            box = CollisionBox(prim1);
+            tri = CollisionTriangle(prim2);
          }
          else
          {
-            box = §_-m3§(prim2);
+            box = CollisionBox(prim2);
          }
          var boxTransform:Matrix4 = box.transform;
          triTransform = tri.transform;
@@ -116,28 +116,28 @@ package §while§
          this.axis.x = triTransform.c;
          this.axis.y = triTransform.g;
          this.axis.z = triTransform.k;
-         if(!this.§_-mG§(box,tri,this.axis,0,this.toBox))
+         if(!this.testMainAxis(box,tri,this.axis,0,this.toBox))
          {
             return false;
          }
          this.axis10.x = boxTransform.a;
          this.axis10.y = boxTransform.e;
          this.axis10.z = boxTransform.i;
-         if(!this.§_-mG§(box,tri,this.axis10,1,this.toBox))
+         if(!this.testMainAxis(box,tri,this.axis10,1,this.toBox))
          {
             return false;
          }
          this.axis11.x = boxTransform.b;
          this.axis11.y = boxTransform.f;
          this.axis11.z = boxTransform.j;
-         if(!this.§_-mG§(box,tri,this.axis11,2,this.toBox))
+         if(!this.testMainAxis(box,tri,this.axis11,2,this.toBox))
          {
             return false;
          }
          this.axis12.x = boxTransform.c;
          this.axis12.y = boxTransform.g;
          this.axis12.z = boxTransform.k;
-         if(!this.§_-mG§(box,tri,this.axis12,3,this.toBox))
+         if(!this.testMainAxis(box,tri,this.axis12,3,this.toBox))
          {
             return false;
          }
@@ -145,15 +145,15 @@ package §while§
          this.axis20.x = triTransform.a * v.x + triTransform.b * v.y + triTransform.c * v.z;
          this.axis20.y = triTransform.e * v.x + triTransform.f * v.y + triTransform.g * v.z;
          this.axis20.z = triTransform.i * v.x + triTransform.j * v.y + triTransform.k * v.z;
-         if(!this.§_-kt§(box,tri,this.axis10,this.axis20,4,this.toBox))
+         if(!this.testDerivedAxis(box,tri,this.axis10,this.axis20,4,this.toBox))
          {
             return false;
          }
-         if(!this.§_-kt§(box,tri,this.axis11,this.axis20,5,this.toBox))
+         if(!this.testDerivedAxis(box,tri,this.axis11,this.axis20,5,this.toBox))
          {
             return false;
          }
-         if(!this.§_-kt§(box,tri,this.axis12,this.axis20,6,this.toBox))
+         if(!this.testDerivedAxis(box,tri,this.axis12,this.axis20,6,this.toBox))
          {
             return false;
          }
@@ -161,15 +161,15 @@ package §while§
          this.axis21.x = triTransform.a * v.x + triTransform.b * v.y + triTransform.c * v.z;
          this.axis21.y = triTransform.e * v.x + triTransform.f * v.y + triTransform.g * v.z;
          this.axis21.z = triTransform.i * v.x + triTransform.j * v.y + triTransform.k * v.z;
-         if(!this.§_-kt§(box,tri,this.axis10,this.axis21,7,this.toBox))
+         if(!this.testDerivedAxis(box,tri,this.axis10,this.axis21,7,this.toBox))
          {
             return false;
          }
-         if(!this.§_-kt§(box,tri,this.axis11,this.axis21,8,this.toBox))
+         if(!this.testDerivedAxis(box,tri,this.axis11,this.axis21,8,this.toBox))
          {
             return false;
          }
-         if(!this.§_-kt§(box,tri,this.axis12,this.axis21,9,this.toBox))
+         if(!this.testDerivedAxis(box,tri,this.axis12,this.axis21,9,this.toBox))
          {
             return false;
          }
@@ -177,24 +177,24 @@ package §while§
          this.axis22.x = triTransform.a * v.x + triTransform.b * v.y + triTransform.c * v.z;
          this.axis22.y = triTransform.e * v.x + triTransform.f * v.y + triTransform.g * v.z;
          this.axis22.z = triTransform.i * v.x + triTransform.j * v.y + triTransform.k * v.z;
-         if(!this.§_-kt§(box,tri,this.axis10,this.axis22,10,this.toBox))
+         if(!this.testDerivedAxis(box,tri,this.axis10,this.axis22,10,this.toBox))
          {
             return false;
          }
-         if(!this.§_-kt§(box,tri,this.axis11,this.axis22,11,this.toBox))
+         if(!this.testDerivedAxis(box,tri,this.axis11,this.axis22,11,this.toBox))
          {
             return false;
          }
-         if(!this.§_-kt§(box,tri,this.axis12,this.axis22,12,this.toBox))
+         if(!this.testDerivedAxis(box,tri,this.axis12,this.axis22,12,this.toBox))
          {
             return false;
          }
          return true;
       }
       
-      private function §_-mG§(box:§_-m3§, tri:§_-Pr§, axis:§_-bj§, axisIndex:int, toBox:§_-bj§) : Boolean
+      private function testMainAxis(box:CollisionBox, tri:CollisionTriangle, axis:Vector3, axisIndex:int, toBox:Vector3) : Boolean
       {
-         var overlap:Number = this.§true§(box,tri,axis,toBox);
+         var overlap:Number = this.overlapOnAxis(box,tri,axis,toBox);
          if(overlap < -this.epsilon)
          {
             return false;
@@ -207,7 +207,7 @@ package §while§
          return true;
       }
       
-      private function §_-kt§(box:§_-m3§, tri:§_-Pr§, axis1:§_-bj§, axis2:§_-bj§, axisIndex:int, toBox:§_-bj§) : Boolean
+      private function testDerivedAxis(box:CollisionBox, tri:CollisionTriangle, axis1:Vector3, axis2:Vector3, axisIndex:int, toBox:Vector3) : Boolean
       {
          var k:Number = NaN;
          this.axis.x = axis1.y * axis2.z - axis1.z * axis2.y;
@@ -222,7 +222,7 @@ package §while§
          this.axis.x *= k;
          this.axis.y *= k;
          this.axis.z *= k;
-         var overlap:Number = this.§true§(box,tri,this.axis,toBox);
+         var overlap:Number = this.overlapOnAxis(box,tri,this.axis,toBox);
          if(overlap < -this.epsilon)
          {
             return false;
@@ -235,7 +235,7 @@ package §while§
          return true;
       }
       
-      private function §true§(box:§_-m3§, tri:§_-Pr§, axis:§_-bj§, toBox:§_-bj§) : Number
+      private function overlapOnAxis(box:CollisionBox, tri:CollisionTriangle, axis:Vector3, toBox:Vector3) : Number
       {
          var t:Matrix4 = box.transform;
          var projection:Number = (t.a * axis.x + t.e * axis.y + t.i * axis.z) * box.hs.x;
@@ -294,23 +294,23 @@ package §while§
          return projection + max - vectorProjection;
       }
       
-      private function §_-NV§(box:§_-m3§, tri:§_-Pr§, toBox:§_-bj§, faceAxisIndex:int, contact:§_-6h§) : Boolean
+      private function findFaceContactPoints(box:CollisionBox, tri:CollisionTriangle, toBox:Vector3, faceAxisIndex:int, contact:Contact) : Boolean
       {
          if(faceAxisIndex == 0)
          {
-            return this.§_-hz§(box,tri,toBox,contact);
+            return this.getBoxToTriContact(box,tri,toBox,contact);
          }
-         return this.§_-C-§(box,tri,toBox,faceAxisIndex,contact);
+         return this.getTriToBoxContact(box,tri,toBox,faceAxisIndex,contact);
       }
       
-      private function §_-hz§(box:§_-m3§, tri:§_-Pr§, toBox:§_-bj§, contact:§_-6h§) : Boolean
+      private function getBoxToTriContact(box:CollisionBox, tri:CollisionTriangle, toBox:Vector3, contact:Contact) : Boolean
       {
-         var cp:§_-cR§ = null;
+         var cp:ContactPoint = null;
          var dot:Number = NaN;
          var absDot:Number = NaN;
-         var v:§_-bj§ = null;
-         var cpPos:§_-bj§ = null;
-         var r:§_-bj§ = null;
+         var v:Vector3 = null;
+         var cpPos:Vector3 = null;
+         var r:Vector3 = null;
          var boxTransform:Matrix4 = box.transform;
          var triTransform:Matrix4 = tri.transform;
          this.§_-VZ§.x = triTransform.c;
@@ -343,7 +343,7 @@ package §while§
          §_-ho§(box.hs,incFaceAxisIdx,negativeFace,this.points1);
          boxTransform.§_-ZK§(this.points1,this.points2,4);
          triTransform.§_-iX§(this.points2,this.points1,4);
-         var pnum:int = this.§_-MQ§(tri);
+         var pnum:int = this.clipByTriangle(tri);
          contact.§_-P3§ = 0;
          for(var i:int = 0; i < pnum; )
          {
@@ -373,12 +373,12 @@ package §while§
          return true;
       }
       
-      private function §_-C-§(box:§_-m3§, tri:§_-Pr§, toBox:§_-bj§, faceAxisIdx:int, contact:§_-6h§) : Boolean
+      private function getTriToBoxContact(box:CollisionBox, tri:CollisionTriangle, toBox:Vector3, faceAxisIdx:int, contact:Contact) : Boolean
       {
          var penetration:Number = NaN;
-         var cp:§_-cR§ = null;
-         var cpPos:§_-bj§ = null;
-         var r:§_-bj§ = null;
+         var cp:ContactPoint = null;
+         var cpPos:Vector3 = null;
+         var r:Vector3 = null;
          faceAxisIdx--;
          var boxTransform:Matrix4 = box.transform;
          var triTransform:Matrix4 = tri.transform;
@@ -390,7 +390,7 @@ package §while§
             this.§_-VZ§.y = -this.§_-VZ§.y;
             this.§_-VZ§.z = -this.§_-VZ§.z;
          }
-         var v:§_-bj§ = this.points1[0];
+         var v:Vector3 = this.points1[0];
          v.x = tri.v0.x;
          v.y = tri.v0.y;
          v.z = tri.v0.z;
@@ -404,12 +404,12 @@ package §while§
          v.z = tri.v2.z;
          triTransform.§_-ZK§(this.points1,this.points2,3);
          boxTransform.§_-iX§(this.points2,this.points1,3);
-         var pnum:int = this.§_-kk§(box.hs,faceAxisIdx);
+         var pnum:int = this.clipByBox(box.hs,faceAxisIdx);
          contact.§_-P3§ = 0;
          for(var i:int = 0; i < pnum; )
          {
             v = this.points1[i];
-            penetration = this.§_-iN§(box.hs,v,faceAxisIdx,negativeFace);
+            penetration = this.getPointBoxPenetration(box.hs,v,faceAxisIdx,negativeFace);
             if(penetration > -this.epsilon)
             {
                cp = contact.points[contact.§_-P3§++];
@@ -435,7 +435,7 @@ package §while§
          return true;
       }
       
-      private function §_-iN§(hs:§_-bj§, p:§_-bj§, faceAxisIdx:int, negativeFace:Boolean) : Number
+      private function getPointBoxPenetration(hs:Vector3, p:Vector3, faceAxisIdx:int, negativeFace:Boolean) : Number
       {
          switch(faceAxisIdx)
          {
@@ -465,7 +465,7 @@ package §while§
          }
       }
       
-      private function §_-kk§(hs:§_-bj§, faceAxisIdx:int) : int
+      private function clipByBox(hs:Vector3, faceAxisIdx:int) : int
       {
          var pnum:int = 3;
          switch(faceAxisIdx)
@@ -529,32 +529,32 @@ package §while§
          }
       }
       
-      private function §_-MQ§(tri:§_-Pr§) : int
+      private function clipByTriangle(tri:CollisionTriangle) : int
       {
          var vnum:int = 4;
-         vnum = this.§_-NG§(tri.v0,tri.e0,this.points1,vnum,this.points2);
+         vnum = this.clipByLine(tri.v0,tri.e0,this.points1,vnum,this.points2);
          if(vnum == 0)
          {
             return 0;
          }
-         vnum = this.§_-NG§(tri.v1,tri.e1,this.points2,vnum,this.points1);
+         vnum = this.clipByLine(tri.v1,tri.e1,this.points2,vnum,this.points1);
          if(vnum == 0)
          {
             return 0;
          }
-         return this.§_-NG§(tri.v2,tri.e2,this.points1,vnum,this.points2);
+         return this.clipByLine(tri.v2,tri.e2,this.points1,vnum,this.points2);
       }
       
-      private function §_-NG§(linePoint:§_-bj§, lineDir:§_-bj§, verticesIn:Vector.<§_-bj§>, vnum:int, verticesOut:Vector.<§_-bj§>) : int
+      private function clipByLine(linePoint:Vector3, lineDir:Vector3, verticesIn:Vector.<Vector3>, vnum:int, verticesOut:Vector.<Vector3>) : int
       {
          var t:Number = NaN;
-         var v:§_-bj§ = null;
-         var v2:§_-bj§ = null;
+         var v:Vector3 = null;
+         var v2:Vector3 = null;
          var offset2:Number = NaN;
          var nx:Number = -lineDir.y;
          var ny:Number = Number(lineDir.x);
          var offset:Number = linePoint.x * nx + linePoint.y * ny;
-         var v1:§_-bj§ = verticesIn[int(vnum - 1)];
+         var v1:Vector3 = verticesIn[int(vnum - 1)];
          var offset1:Number = v1.x * nx + v1.y * ny;
          var num:int = 0;
          for(var i:int = 0; i < vnum; i++)
@@ -596,7 +596,7 @@ package §while§
          return num;
       }
       
-      private function §_-og§(box:§_-m3§, tri:§_-Pr§, toBox:§_-bj§, boxAxisIdx:int, triAxisIdx:int, contact:§_-6h§) : Boolean
+      private function findEdgesIntersection(box:CollisionBox, tri:CollisionTriangle, toBox:Vector3, boxAxisIdx:int, triAxisIdx:int, contact:Contact) : Boolean
       {
          var tmpx1:Number = NaN;
          var tmpy1:Number = NaN;
@@ -641,7 +641,7 @@ package §while§
          var z2:Number = triTransform.i * tmpx2 + triTransform.j * tmpy2 + triTransform.k * tmpz2 + triTransform.l;
          var boxTransform:Matrix4 = box.transform;
          boxTransform.getAxis(boxAxisIdx,this.axis10);
-         var v:§_-bj§ = contact.normal;
+         var v:Vector3 = contact.normal;
          v.x = this.axis10.y * this.axis20.z - this.axis10.z * this.axis20.y;
          v.y = this.axis10.z * this.axis20.x - this.axis10.x * this.axis20.z;
          v.z = this.axis10.x * this.axis20.y - this.axis10.y * this.axis20.x;
@@ -698,13 +698,13 @@ package §while§
          var t1:Number = (c2 * k - c1) / det;
          var t2:Number = (c2 - c1 * k) / det;
          contact.§_-P3§ = 1;
-         var cp:§_-cR§ = contact.points[0];
+         var cp:ContactPoint = contact.points[0];
          cp.penetration = this.§_-hK§;
          v = cp.pos;
          v.x = 0.5 * (x1 + this.axis10.x * t1 + x2 + this.axis20.x * t2);
          v.y = 0.5 * (y1 + this.axis10.y * t1 + y2 + this.axis20.y * t2);
          v.z = 0.5 * (z1 + this.axis10.z * t1 + z2 + this.axis20.z * t2);
-         var r:§_-bj§ = cp.r1;
+         var r:Vector3 = cp.r1;
          r.x = v.x - boxTransform.d;
          r.y = v.y - boxTransform.h;
          r.z = v.z - boxTransform.l;

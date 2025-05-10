@@ -1,23 +1,23 @@
-package §_-1e§
+package alternativa.physics.collision
 {
-   import §_-KA§.§_-FW§;
-   import §_-KA§.§_-jr§;
-   import §_-US§.§_-6h§;
-   import §_-US§.§_-BV§;
-   import §_-nl§.§_-bj§;
-   import §while§.§_-6O§;
-   import §while§.§_-GQ§;
-   import §while§.§_-O8§;
-   import §while§.§_-Ph§;
-   import §while§.§_-hu§;
+   import alternativa.physics.collision.types.BoundBox;
+   import alternativa.physics.collision.types.RayHit;
+   import alternativa.physics.Contact;
+   import alternativa.physics.Body;
+   import alternativa.math.Vector3;
+   import alternativa.physics.collision.colliders.SphereSphereCollider;
+   import alternativa.physics.collision.colliders.BoxRectCollider;
+   import alternativa.physics.collision.colliders.BoxSphereCollider;
+   import alternativa.physics.collision.colliders.BoxBoxCollider;
+   import alternativa.physics.collision.colliders.BoxTriangleCollider;
    
-   public class §_-LG§ implements §_-fx§
+   public class KdTreeCollisionDetector implements ICollisionDetector
    {
-      private static var _rayAABB:§_-FW§ = new §_-FW§();
+      private static var _rayAABB:BoundBox = new BoundBox();
       
-      public var §_-bw§:§_-D-§;
+      public var §_-bw§:CollisionKdTree;
       
-      public var §_-Fz§:Vector.<§_-Nh§>;
+      public var §_-Fz§:Vector.<CollisionPrimitive>;
       
       public var §_-iH§:int;
       
@@ -27,45 +27,45 @@ package §_-1e§
       
       private var §_-qC§:MinMax = new MinMax();
       
-      private var §_-k8§:§_-bj§ = new §_-bj§();
+      private var §_-k8§:Vector3 = new Vector3();
       
-      private var §_-0q§:§_-bj§ = new §_-bj§();
+      private var §_-0q§:Vector3 = new Vector3();
       
-      private var §_-2P§:§_-jr§ = new §_-jr§();
+      private var §_-2P§:RayHit = new RayHit();
       
-      public function §_-LG§()
+      public function KdTreeCollisionDetector()
       {
          super();
-         this.§_-bw§ = new §_-D-§();
-         this.§_-Fz§ = new Vector.<§_-Nh§>();
-         this.§_-c2§(§_-Nh§.BOX,§_-Nh§.BOX,new §_-Ph§());
-         this.§_-c2§(§_-Nh§.BOX,§_-Nh§.SPHERE,new §_-O8§());
-         this.§_-c2§(§_-Nh§.BOX,§_-Nh§.RECT,new §_-GQ§());
-         this.§_-c2§(§_-Nh§.BOX,§_-Nh§.TRIANGLE,new §_-hu§());
-         this.§_-c2§(§_-Nh§.SPHERE,§_-Nh§.SPHERE,new §_-6O§());
+         this.§_-bw§ = new CollisionKdTree();
+         this.§_-Fz§ = new Vector.<CollisionPrimitive>();
+         this.addCollider(CollisionPrimitive.BOX,CollisionPrimitive.BOX,new BoxBoxCollider());
+         this.addCollider(CollisionPrimitive.BOX,CollisionPrimitive.SPHERE,new BoxSphereCollider());
+         this.addCollider(CollisionPrimitive.BOX,CollisionPrimitive.RECT,new BoxRectCollider());
+         this.addCollider(CollisionPrimitive.BOX,CollisionPrimitive.TRIANGLE,new BoxTriangleCollider());
+         this.addCollider(CollisionPrimitive.SPHERE,CollisionPrimitive.SPHERE,new SphereSphereCollider());
       }
       
-      public function §_-6v§(primitive:§_-Nh§, isStatic:Boolean = true) : Boolean
+      public function addPrimitive(primitive:CollisionPrimitive, isStatic:Boolean = true) : Boolean
       {
          return true;
       }
       
-      public function §_-2V§(primitive:§_-Nh§, isStatic:Boolean = true) : Boolean
+      public function removePrimitive(primitive:CollisionPrimitive, isStatic:Boolean = true) : Boolean
       {
          return true;
       }
       
-      public function init(collisionPrimitives:Vector.<§_-Nh§>) : void
+      public function init(collisionPrimitives:Vector.<CollisionPrimitive>) : void
       {
-         this.§_-bw§.§_-J9§(collisionPrimitives);
+         this.§_-bw§.createTree(collisionPrimitives);
       }
       
-      public function §_-63§(contacts:§_-6h§) : §_-6h§
+      public function getAllContacts(contacts:Contact) : Contact
       {
          return contacts;
       }
       
-      public function getContact(prim1:§_-Nh§, prim2:§_-Nh§, contact:§_-6h§) : Boolean
+      public function getContact(prim1:CollisionPrimitive, prim2:CollisionPrimitive, contact:Contact) : Boolean
       {
          if((prim1.collisionGroup & prim2.collisionGroup) == 0)
          {
@@ -79,7 +79,7 @@ package §_-1e§
          {
             return false;
          }
-         var collider:§_-hG§ = this.§_-P6§[prim1.type <= prim2.type ? prim1.type << 16 | prim2.type : prim2.type << 16 | prim1.type] as §_-hG§;
+         var collider:ICollider = this.§_-P6§[prim1.type <= prim2.type ? prim1.type << 16 | prim2.type : prim2.type << 16 | prim1.type] as ICollider;
          if(collider != null && Boolean(collider.getContact(prim1,prim2,contact)))
          {
             if(prim1.postCollisionFilter != null && !prim1.postCollisionFilter.§_-eZ§(prim1,prim2))
@@ -95,7 +95,7 @@ package §_-1e§
          return false;
       }
       
-      public function §_-A5§(prim1:§_-Nh§, prim2:§_-Nh§) : Boolean
+      public function testCollision(prim1:CollisionPrimitive, prim2:CollisionPrimitive) : Boolean
       {
          if((prim1.collisionGroup & prim2.collisionGroup) == 0)
          {
@@ -109,7 +109,7 @@ package §_-1e§
          {
             return false;
          }
-         var collider:§_-hG§ = this.§_-P6§[prim1.type <= prim2.type ? prim1.type << 16 | prim2.type : prim2.type << 16 | prim1.type] as §_-hG§;
+         var collider:ICollider = this.§_-P6§[prim1.type <= prim2.type ? prim1.type << 16 | prim2.type : prim2.type << 16 | prim1.type] as ICollider;
          if(collider != null && Boolean(collider.haveCollision(prim1,prim2)))
          {
             if(prim1.postCollisionFilter != null && !prim1.postCollisionFilter.§_-eZ§(prim1,prim2))
@@ -125,10 +125,10 @@ package §_-1e§
          return false;
       }
       
-      public function raycast(origin:§_-bj§, dir:§_-bj§, collisionGroup:int, maxTime:Number, predicate:§_-jn§, result:§_-jr§) : Boolean
+      public function raycast(origin:Vector3, dir:Vector3, collisionGroup:int, maxTime:Number, predicate:IRaycastFilter, result:RayHit) : Boolean
       {
-         var hasStaticIntersection:Boolean = this.§_-cX§(origin,dir,collisionGroup,maxTime,predicate,result);
-         var hasDynamicIntersection:Boolean = this.§_-Tm§(origin,dir,collisionGroup,maxTime,predicate,this.§_-2P§);
+         var hasStaticIntersection:Boolean = this.raycastStatic(origin,dir,collisionGroup,maxTime,predicate,result);
+         var hasDynamicIntersection:Boolean = this.intersectRayWithDynamic(origin,dir,collisionGroup,maxTime,predicate,this.§_-2P§);
          if(!(hasDynamicIntersection || hasStaticIntersection))
          {
             return false;
@@ -149,9 +149,9 @@ package §_-1e§
          return true;
       }
       
-      public function §_-cX§(origin:§_-bj§, dir:§_-bj§, collisionGroup:int, maxTime:Number, predicate:§_-jn§, result:§_-jr§) : Boolean
+      public function raycastStatic(origin:Vector3, dir:Vector3, collisionGroup:int, maxTime:Number, predicate:IRaycastFilter, result:RayHit) : Boolean
       {
-         if(!this.§_-oL§(origin,dir,this.§_-bw§.§_-5H§.boundBox,this.§_-qC§))
+         if(!this.getRayBoundBoxIntersection(origin,dir,this.§_-bw§.§_-5H§.boundBox,this.§_-qC§))
          {
             return false;
          }
@@ -176,31 +176,31 @@ package §_-1e§
          {
             this.§_-qC§.max = maxTime;
          }
-         var hasIntersection:Boolean = this.§_-NC§(this.§_-bw§.§_-5H§,origin,this.§_-0q§,dir,collisionGroup,this.§_-qC§.min,this.§_-qC§.max,predicate,result);
+         var hasIntersection:Boolean = this.testRayAgainstNode(this.§_-bw§.§_-5H§,origin,this.§_-0q§,dir,collisionGroup,this.§_-qC§.min,this.§_-qC§.max,predicate,result);
          return hasIntersection ? result.t <= maxTime : false;
       }
       
-      public function §_-9G§(body:§_-BV§, primitive:§_-Nh§) : Boolean
+      public function testBodyPrimitiveCollision(body:Body, primitive:CollisionPrimitive) : Boolean
       {
          return false;
       }
       
-      private function §_-c2§(type1:int, type2:int, collider:§_-hG§) : void
+      private function addCollider(type1:int, type2:int, collider:ICollider) : void
       {
          this.§_-P6§[type1 <= type2 ? type1 << 16 | type2 : type2 << 16 | type1] = collider;
       }
       
-      private function §_-m1§(node:§_-oZ§, primitive:§_-Nh§, contacts:§_-6h§) : §_-6h§
+      private function getPrimitiveNodeCollisions(node:CollisionKdNode, primitive:CollisionPrimitive, contacts:Contact) : Contact
       {
          return null;
       }
       
-      private function §_-Tm§(origin:§_-bj§, dir:§_-bj§, collisionGroup:int, maxTime:Number, filter:§_-jn§, result:§_-jr§) : Boolean
+      private function intersectRayWithDynamic(origin:Vector3, dir:Vector3, collisionGroup:int, maxTime:Number, filter:IRaycastFilter, result:RayHit) : Boolean
       {
          var yy:Number = NaN;
          var minTime:Number = NaN;
-         var primitive:§_-Nh§ = null;
-         var paabb:§_-FW§ = null;
+         var primitive:CollisionPrimitive = null;
+         var paabb:BoundBox = null;
          var t:Number = NaN;
          var xx:Number = origin.x + dir.x * maxTime;
          yy = origin.y + dir.y * maxTime;
@@ -271,7 +271,7 @@ package §_-1e§
          return true;
       }
       
-      private function §_-oL§(origin:§_-bj§, dir:§_-bj§, bb:§_-FW§, time:MinMax) : Boolean
+      private function getRayBoundBoxIntersection(origin:Vector3, dir:Vector3, bb:BoundBox, time:MinMax) : Boolean
       {
          var t1:Number = NaN;
          var t2:Number = NaN;
@@ -348,12 +348,12 @@ package §_-1e§
          return true;
       }
       
-      private function §_-NC§(node:§_-oZ§, origin:§_-bj§, localOrigin:§_-bj§, dir:§_-bj§, collisionGroup:int, t1:Number, t2:Number, predicate:§_-jn§, result:§_-jr§) : Boolean
+      private function testRayAgainstNode(node:CollisionKdNode, origin:Vector3, localOrigin:Vector3, dir:Vector3, collisionGroup:int, t1:Number, t2:Number, predicate:IRaycastFilter, result:RayHit) : Boolean
       {
          var splitTime:Number = NaN;
-         var currChildNode:§_-oZ§ = null;
+         var currChildNode:CollisionKdNode = null;
          var intersects:Boolean = false;
-         if(node.indices != null && this.§_-FH§(origin,dir,collisionGroup,this.§_-bw§.§_-8A§,node.indices,predicate,result))
+         if(node.indices != null && this.getRayNodeIntersection(origin,dir,collisionGroup,this.§_-bw§.§_-8A§,node.indices,predicate,result))
          {
             return true;
          }
@@ -398,9 +398,9 @@ package §_-1e§
          }
          if(splitTime < t1 || splitTime > t2)
          {
-            return this.§_-NC§(currChildNode,origin,localOrigin,dir,collisionGroup,t1,t2,predicate,result);
+            return this.testRayAgainstNode(currChildNode,origin,localOrigin,dir,collisionGroup,t1,t2,predicate,result);
          }
-         intersects = this.§_-NC§(currChildNode,origin,localOrigin,dir,collisionGroup,t1,splitTime,predicate,result);
+         intersects = this.testRayAgainstNode(currChildNode,origin,localOrigin,dir,collisionGroup,t1,splitTime,predicate,result);
          if(intersects)
          {
             return true;
@@ -408,12 +408,12 @@ package §_-1e§
          this.§_-0q§.x = origin.x + splitTime * dir.x;
          this.§_-0q§.y = origin.y + splitTime * dir.y;
          this.§_-0q§.z = origin.z + splitTime * dir.z;
-         return this.§_-NC§(currChildNode == node.§_-Gm§ ? node.§_-75§ : node.§_-Gm§,origin,this.§_-0q§,dir,collisionGroup,splitTime,t2,predicate,result);
+         return this.testRayAgainstNode(currChildNode == node.§_-Gm§ ? node.§_-75§ : node.§_-Gm§,origin,this.§_-0q§,dir,collisionGroup,splitTime,t2,predicate,result);
       }
       
-      private function §_-FH§(origin:§_-bj§, dir:§_-bj§, collisionGroup:int, primitives:Vector.<§_-Nh§>, indices:Vector.<int>, filter:§_-jn§, intersection:§_-jr§) : Boolean
+      private function getRayNodeIntersection(origin:Vector3, dir:Vector3, collisionGroup:int, primitives:Vector.<CollisionPrimitive>, indices:Vector.<int>, filter:IRaycastFilter, intersection:RayHit) : Boolean
       {
-         var primitive:§_-Nh§ = null;
+         var primitive:CollisionPrimitive = null;
          var t:Number = NaN;
          var pnum:int = int(indices.length);
          var minTime:Number = 1e+308;

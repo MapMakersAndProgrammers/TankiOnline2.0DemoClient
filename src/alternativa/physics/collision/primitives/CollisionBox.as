@@ -1,21 +1,21 @@
-package §_-pe§
+package alternativa.physics.collision.primitives
 {
-   import §_-1e§.§_-Nh§;
-   import §_-KA§.§_-FW§;
-   import §_-nl§.Matrix4;
-   import §_-nl§.§_-bj§;
+   import alternativa.physics.collision.CollisionPrimitive;
+   import alternativa.physics.collision.types.BoundBox;
+   import alternativa.math.Matrix4;
+   import alternativa.math.Vector3;
    
-   public class §_-m3§ extends §_-Nh§
+   public class CollisionBox extends CollisionPrimitive
    {
-      public var hs:§_-bj§ = new §_-bj§();
+      public var hs:Vector3 = new Vector3();
       
-      public function §_-m3§(hs:§_-bj§, collisionGroup:int, collisionMask:int)
+      public function CollisionBox(hs:Vector3, collisionGroup:int, collisionMask:int)
       {
          super(BOX,collisionGroup,collisionMask);
          this.hs.copy(hs);
       }
       
-      override public function calculateAABB() : §_-FW§
+      override public function calculateAABB() : BoundBox
       {
          var t:Matrix4 = null;
          var xx:Number = NaN;
@@ -46,9 +46,9 @@ package §_-pe§
          return aabb;
       }
       
-      override public function copyFrom(source:§_-Nh§) : §_-Nh§
+      override public function copyFrom(source:CollisionPrimitive) : CollisionPrimitive
       {
-         var box:§_-m3§ = source as §_-m3§;
+         var box:CollisionBox = source as CollisionBox;
          if(box == null)
          {
             return this;
@@ -58,12 +58,12 @@ package §_-pe§
          return this;
       }
       
-      override protected function createPrimitive() : §_-Nh§
+      override protected function createPrimitive() : CollisionPrimitive
       {
-         return new §_-m3§(this.hs,collisionGroup,collisionMask);
+         return new CollisionBox(this.hs,collisionGroup,collisionMask);
       }
       
-      override public function raycast(origin:§_-bj§, vector:§_-bj§, epsilon:Number, normal:§_-bj§) : Number
+      override public function raycast(origin:Vector3, vector:Vector3, epsilon:Number, normal:Vector3) : Number
       {
          var t1:Number = NaN;
          var t2:Number = NaN;

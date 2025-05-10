@@ -3,7 +3,7 @@ package alternativa.physics
    import alternativa.math.Matrix3;
    import alternativa.math.Vector3;
    import alternativa.physics.collision.ICollisionDetector;
-   import alternativa.physics.collision.§_-LG§;
+   import alternativa.physics.collision.KdTreeCollisionDetector;
    import alternativa.physics.constraints.Constraint;
    
    public class PhysicsScene
@@ -64,7 +64,7 @@ package alternativa.physics
             contact.next = new Contact(i);
             contact = contact.next;
          }
-         this.collisionDetector = new §_-LG§();
+         this.collisionDetector = new KdTreeCollisionDetector();
       }
       
       public function get gravity() : Vector3
