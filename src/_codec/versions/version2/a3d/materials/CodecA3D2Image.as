@@ -12,9 +12,9 @@ package _codec.versions.version2.a3d.materials
    {
       public static var log:IClientLog = IClientLog(OSGi.getInstance().getService(IClientLog));
       
-      private var §_-2o§:ICodec;
+      private var name_2o:ICodec;
       
-      private var §_-aV§:ICodec;
+      private var name_aV:ICodec;
       
       public function CodecA3D2Image()
       {
@@ -23,16 +23,16 @@ package _codec.versions.version2.a3d.materials
       
       public function init(protocol:IProtocol) : void
       {
-         this.§_-2o§ = protocol.getCodec(new TypeCodecInfo(int,false));
-         this.§_-aV§ = protocol.getCodec(new TypeCodecInfo(String,false));
+         this.name_2o = protocol.getCodec(new TypeCodecInfo(int,false));
+         this.name_aV = protocol.getCodec(new TypeCodecInfo(String,false));
       }
       
       public function decode(protocolBuffer:ProtocolBuffer) : Object
       {
          log = IClientLog(OSGi.getInstance().getService(IClientLog));
-         var value_id:int = int(this.§_-2o§.decode(protocolBuffer) as int);
+         var value_id:int = int(this.name_2o.decode(protocolBuffer) as int);
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.materials.A3D2Image","id",value_id);
-         var value_url:String = this.§_-aV§.decode(protocolBuffer) as String;
+         var value_url:String = this.name_aV.decode(protocolBuffer) as String;
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.materials.A3D2Image","url",value_url);
          return new A3D2Image(value_id,value_url);
       }
@@ -44,8 +44,8 @@ package _codec.versions.version2.a3d.materials
             throw new Error("Object is null. Use @ProtocolOptional annotation.");
          }
          var struct:A3D2Image = A3D2Image(object);
-         this.§_-2o§.encode(protocolBuffer,struct.id);
-         this.§_-aV§.encode(protocolBuffer,struct.url);
+         this.name_2o.encode(protocolBuffer,struct.id);
+         this.name_aV.encode(protocolBuffer,struct.url);
       }
    }
 }

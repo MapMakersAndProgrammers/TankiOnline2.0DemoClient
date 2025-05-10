@@ -32,27 +32,27 @@ package alternativa.engine3d.core
       
       alternativa3d var textures:Vector.<TextureBase> = new Vector.<TextureBase>();
       
-      alternativa3d var §_-kR§:Vector.<int> = new Vector.<int>();
+      alternativa3d var name_kR:Vector.<int> = new Vector.<int>();
       
-      alternativa3d var §_-Oq§:int = 0;
+      alternativa3d var name_Oq:int = 0;
       
       alternativa3d var vertexBuffers:Vector.<VertexBuffer3D> = new Vector.<VertexBuffer3D>();
       
-      alternativa3d var §else §:Vector.<int> = new Vector.<int>();
+      alternativa3d var name_else:Vector.<int> = new Vector.<int>();
       
-      alternativa3d var §_-nw§:Vector.<int> = new Vector.<int>();
+      alternativa3d var name_nw:Vector.<int> = new Vector.<int>();
       
-      alternativa3d var §_-EL§:Vector.<String> = new Vector.<String>();
+      alternativa3d var name_EL:Vector.<String> = new Vector.<String>();
       
-      alternativa3d var §_-3G§:int = 0;
+      alternativa3d var name_3G:int = 0;
       
-      alternativa3d var §_-Aq§:Vector.<Number> = new Vector.<Number>();
+      alternativa3d var name_Aq:Vector.<Number> = new Vector.<Number>();
       
-      alternativa3d var §_-9X§:int = 0;
+      alternativa3d var name_9X:int = 0;
       
-      alternativa3d var §_-Cl§:Vector.<Number> = new Vector.<Number>(28 * 4,true);
+      alternativa3d var name_Cl:Vector.<Number> = new Vector.<Number>(28 * 4,true);
       
-      alternativa3d var §_-Kv§:int = 0;
+      alternativa3d var name_Kv:int = 0;
       
       public function DrawUnit()
       {
@@ -68,11 +68,11 @@ package alternativa.engine3d.core
          this.alternativa3d::blendDestination = Context3DBlendFactor.ZERO;
          this.alternativa3d::culling = Context3DTriangleFace.FRONT;
          this.alternativa3d::textures.length = 0;
-         this.alternativa3d::_-Oq = 0;
+         this.name_Oq = 0;
          this.alternativa3d::vertexBuffers.length = 0;
-         this.alternativa3d::_-3G = 0;
-         this.alternativa3d::_-9X = 0;
-         this.alternativa3d::_-Kv = 0;
+         this.name_3G = 0;
+         this.name_9X = 0;
+         this.name_Kv = 0;
       }
       
       alternativa3d function setTextureAt(sampler:int, texture:TextureBase) : void
@@ -85,9 +85,9 @@ package alternativa.engine3d.core
          {
             throw new Error("Texture is null");
          }
-         this.alternativa3d::_-kR[this.alternativa3d::_-Oq] = sampler;
-         this.alternativa3d::textures[this.alternativa3d::_-Oq] = texture;
-         ++this.alternativa3d::_-Oq;
+         this.name_kR[this.name_Oq] = sampler;
+         this.alternativa3d::textures[this.name_Oq] = texture;
+         ++this.name_Oq;
       }
       
       alternativa3d function setVertexBufferAt(index:int, buffer:VertexBuffer3D, bufferOffset:int, format:String) : void
@@ -100,11 +100,11 @@ package alternativa.engine3d.core
          {
             throw new Error("Buffer is null");
          }
-         this.alternativa3d::else [this.alternativa3d::_-3G] = index;
-         this.alternativa3d::vertexBuffers[this.alternativa3d::_-3G] = buffer;
-         this.alternativa3d::_-nw[this.alternativa3d::_-3G] = bufferOffset;
-         this.alternativa3d::_-EL[this.alternativa3d::_-3G] = format;
-         ++this.alternativa3d::_-3G;
+         this.name_else[this.name_3G] = index;
+         this.alternativa3d::vertexBuffers[this.name_3G] = buffer;
+         this.name_nw[this.name_3G] = bufferOffset;
+         this.name_EL[this.name_3G] = format;
+         ++this.name_3G;
       }
       
       alternativa3d function setVertexConstantsFromVector(firstRegister:int, data:Vector.<Number>, numRegisters:int) : void
@@ -114,14 +114,14 @@ package alternativa.engine3d.core
             throw new Error("Register index " + firstRegister + " is out of bounds.");
          }
          var offset:int = firstRegister << 2;
-         if(firstRegister + numRegisters > this.alternativa3d::_-9X)
+         if(firstRegister + numRegisters > this.name_9X)
          {
-            this.alternativa3d::_-9X = firstRegister + numRegisters;
-            this.alternativa3d::_-Aq.length = this.alternativa3d::_-9X << 2;
+            this.name_9X = firstRegister + numRegisters;
+            this.name_Aq.length = this.name_9X << 2;
          }
-         for(var i:int = 0,var len:int = numRegisters << 2; i < len; )
+         for(var i:int = 0, len:int = numRegisters << 2; i < len; )
          {
-            this.alternativa3d::_-Aq[offset] = data[i];
+            this.name_Aq[offset] = data[i];
             offset++;
             i++;
          }
@@ -134,18 +134,18 @@ package alternativa.engine3d.core
             throw new Error("Register index " + firstRegister + " is out of bounds.");
          }
          var offset:int = firstRegister << 2;
-         if(firstRegister + 1 > this.alternativa3d::_-9X)
+         if(firstRegister + 1 > this.name_9X)
          {
-            this.alternativa3d::_-9X = firstRegister + 1;
-            this.alternativa3d::_-Aq.length = this.alternativa3d::_-9X << 2;
+            this.name_9X = firstRegister + 1;
+            this.name_Aq.length = this.name_9X << 2;
          }
-         this.alternativa3d::_-Aq[offset] = x;
+         this.name_Aq[offset] = x;
          offset++;
-         this.alternativa3d::_-Aq[offset] = y;
+         this.name_Aq[offset] = y;
          offset++;
-         this.alternativa3d::_-Aq[offset] = z;
+         this.name_Aq[offset] = z;
          offset++;
-         this.alternativa3d::_-Aq[offset] = w;
+         this.name_Aq[offset] = w;
       }
       
       alternativa3d function setVertexConstantsFromTransform(firstRegister:int, transform:Transform3D) : void
@@ -155,34 +155,34 @@ package alternativa.engine3d.core
             throw new Error("Register index " + firstRegister + " is out of bounds.");
          }
          var offset:int = firstRegister << 2;
-         if(firstRegister + 3 > this.alternativa3d::_-9X)
+         if(firstRegister + 3 > this.name_9X)
          {
-            this.alternativa3d::_-9X = firstRegister + 3;
-            this.alternativa3d::_-Aq.length = this.alternativa3d::_-9X << 2;
+            this.name_9X = firstRegister + 3;
+            this.name_Aq.length = this.name_9X << 2;
          }
-         this.alternativa3d::_-Aq[offset] = transform.a;
+         this.name_Aq[offset] = transform.a;
          offset++;
-         this.alternativa3d::_-Aq[offset] = transform.b;
+         this.name_Aq[offset] = transform.b;
          offset++;
-         this.alternativa3d::_-Aq[offset] = transform.c;
+         this.name_Aq[offset] = transform.c;
          offset++;
-         this.alternativa3d::_-Aq[offset] = transform.d;
+         this.name_Aq[offset] = transform.d;
          offset++;
-         this.alternativa3d::_-Aq[offset] = transform.e;
+         this.name_Aq[offset] = transform.e;
          offset++;
-         this.alternativa3d::_-Aq[offset] = transform.f;
+         this.name_Aq[offset] = transform.f;
          offset++;
-         this.alternativa3d::_-Aq[offset] = transform.g;
+         this.name_Aq[offset] = transform.g;
          offset++;
-         this.alternativa3d::_-Aq[offset] = transform.h;
+         this.name_Aq[offset] = transform.h;
          offset++;
-         this.alternativa3d::_-Aq[offset] = transform.i;
+         this.name_Aq[offset] = transform.i;
          offset++;
-         this.alternativa3d::_-Aq[offset] = transform.j;
+         this.name_Aq[offset] = transform.j;
          offset++;
-         this.alternativa3d::_-Aq[offset] = transform.k;
+         this.name_Aq[offset] = transform.k;
          offset++;
-         this.alternativa3d::_-Aq[offset] = transform.l;
+         this.name_Aq[offset] = transform.l;
       }
       
       alternativa3d function setProjectionConstants(camera:Camera3D, firstRegister:int, transform:Transform3D = null) : void
@@ -192,99 +192,99 @@ package alternativa.engine3d.core
             throw new Error("Register index is out of bounds.");
          }
          var offset:int = firstRegister << 2;
-         if(firstRegister + 4 > this.alternativa3d::_-9X)
+         if(firstRegister + 4 > this.name_9X)
          {
-            this.alternativa3d::_-9X = firstRegister + 4;
-            this.alternativa3d::_-Aq.length = this.alternativa3d::_-9X << 2;
+            this.name_9X = firstRegister + 4;
+            this.name_Aq.length = this.name_9X << 2;
          }
          if(transform != null)
          {
-            this.alternativa3d::_-Aq[offset] = transform.a * camera.alternativa3d::m0;
+            this.name_Aq[offset] = transform.a * camera.alternativa3d::m0;
             offset++;
-            this.alternativa3d::_-Aq[offset] = transform.b * camera.alternativa3d::m0;
+            this.name_Aq[offset] = transform.b * camera.alternativa3d::m0;
             offset++;
-            this.alternativa3d::_-Aq[offset] = transform.c * camera.alternativa3d::m0;
+            this.name_Aq[offset] = transform.c * camera.alternativa3d::m0;
             offset++;
-            this.alternativa3d::_-Aq[offset] = transform.d * camera.alternativa3d::m0;
+            this.name_Aq[offset] = transform.d * camera.alternativa3d::m0;
             offset++;
-            this.alternativa3d::_-Aq[offset] = transform.e * camera.alternativa3d::m5;
+            this.name_Aq[offset] = transform.e * camera.alternativa3d::m5;
             offset++;
-            this.alternativa3d::_-Aq[offset] = transform.f * camera.alternativa3d::m5;
+            this.name_Aq[offset] = transform.f * camera.alternativa3d::m5;
             offset++;
-            this.alternativa3d::_-Aq[offset] = transform.g * camera.alternativa3d::m5;
+            this.name_Aq[offset] = transform.g * camera.alternativa3d::m5;
             offset++;
-            this.alternativa3d::_-Aq[offset] = transform.h * camera.alternativa3d::m5;
+            this.name_Aq[offset] = transform.h * camera.alternativa3d::m5;
             offset++;
-            this.alternativa3d::_-Aq[offset] = transform.i * camera.alternativa3d::m10;
+            this.name_Aq[offset] = transform.i * camera.alternativa3d::m10;
             offset++;
-            this.alternativa3d::_-Aq[offset] = transform.j * camera.alternativa3d::m10;
+            this.name_Aq[offset] = transform.j * camera.alternativa3d::m10;
             offset++;
-            this.alternativa3d::_-Aq[offset] = transform.k * camera.alternativa3d::m10;
+            this.name_Aq[offset] = transform.k * camera.alternativa3d::m10;
             offset++;
-            this.alternativa3d::_-Aq[offset] = transform.l * camera.alternativa3d::m10 + camera.alternativa3d::m14;
+            this.name_Aq[offset] = transform.l * camera.alternativa3d::m10 + camera.alternativa3d::m14;
             offset++;
             if(!camera.orthographic)
             {
-               this.alternativa3d::_-Aq[offset] = transform.i;
+               this.name_Aq[offset] = transform.i;
                offset++;
-               this.alternativa3d::_-Aq[offset] = transform.j;
+               this.name_Aq[offset] = transform.j;
                offset++;
-               this.alternativa3d::_-Aq[offset] = transform.k;
+               this.name_Aq[offset] = transform.k;
                offset++;
-               this.alternativa3d::_-Aq[offset] = transform.l;
+               this.name_Aq[offset] = transform.l;
             }
             else
             {
-               this.alternativa3d::_-Aq[offset] = 0;
+               this.name_Aq[offset] = 0;
                offset++;
-               this.alternativa3d::_-Aq[offset] = 0;
+               this.name_Aq[offset] = 0;
                offset++;
-               this.alternativa3d::_-Aq[offset] = 0;
+               this.name_Aq[offset] = 0;
                offset++;
-               this.alternativa3d::_-Aq[offset] = 1;
+               this.name_Aq[offset] = 1;
             }
          }
          else
          {
-            this.alternativa3d::_-Aq[offset] = camera.alternativa3d::m0;
+            this.name_Aq[offset] = camera.alternativa3d::m0;
             offset++;
-            this.alternativa3d::_-Aq[offset] = 0;
+            this.name_Aq[offset] = 0;
             offset++;
-            this.alternativa3d::_-Aq[offset] = 0;
+            this.name_Aq[offset] = 0;
             offset++;
-            this.alternativa3d::_-Aq[offset] = 0;
+            this.name_Aq[offset] = 0;
             offset++;
-            this.alternativa3d::_-Aq[offset] = 0;
+            this.name_Aq[offset] = 0;
             offset++;
-            this.alternativa3d::_-Aq[offset] = camera.alternativa3d::m5;
+            this.name_Aq[offset] = camera.alternativa3d::m5;
             offset++;
-            this.alternativa3d::_-Aq[offset] = 0;
+            this.name_Aq[offset] = 0;
             offset++;
-            this.alternativa3d::_-Aq[offset] = 0;
+            this.name_Aq[offset] = 0;
             offset++;
-            this.alternativa3d::_-Aq[offset] = 0;
+            this.name_Aq[offset] = 0;
             offset++;
-            this.alternativa3d::_-Aq[offset] = 0;
+            this.name_Aq[offset] = 0;
             offset++;
-            this.alternativa3d::_-Aq[offset] = camera.alternativa3d::m10;
+            this.name_Aq[offset] = camera.alternativa3d::m10;
             offset++;
-            this.alternativa3d::_-Aq[offset] = camera.alternativa3d::m14;
+            this.name_Aq[offset] = camera.alternativa3d::m14;
             offset++;
-            this.alternativa3d::_-Aq[offset] = 0;
+            this.name_Aq[offset] = 0;
             offset++;
-            this.alternativa3d::_-Aq[offset] = 0;
+            this.name_Aq[offset] = 0;
             offset++;
             if(!camera.orthographic)
             {
-               this.alternativa3d::_-Aq[offset] = 1;
+               this.name_Aq[offset] = 1;
                offset++;
-               this.alternativa3d::_-Aq[offset] = 0;
+               this.name_Aq[offset] = 0;
             }
             else
             {
-               this.alternativa3d::_-Aq[offset] = 0;
+               this.name_Aq[offset] = 0;
                offset++;
-               this.alternativa3d::_-Aq[offset] = 1;
+               this.name_Aq[offset] = 1;
             }
          }
       }
@@ -296,13 +296,13 @@ package alternativa.engine3d.core
             throw new Error("Register index " + firstRegister + " is out of bounds.");
          }
          var offset:int = firstRegister << 2;
-         if(firstRegister + numRegisters > this.alternativa3d::_-Kv)
+         if(firstRegister + numRegisters > this.name_Kv)
          {
-            this.alternativa3d::_-Kv = firstRegister + numRegisters;
+            this.name_Kv = firstRegister + numRegisters;
          }
-         for(var i:int = 0,var len:int = numRegisters << 2; i < len; )
+         for(var i:int = 0, len:int = numRegisters << 2; i < len; )
          {
-            this.alternativa3d::_-Cl[offset] = data[i];
+            this.name_Cl[offset] = data[i];
             offset++;
             i++;
          }
@@ -315,17 +315,17 @@ package alternativa.engine3d.core
             throw new Error("Register index " + firstRegister + " is out of bounds.");
          }
          var offset:int = firstRegister << 2;
-         if(firstRegister + 1 > this.alternativa3d::_-Kv)
+         if(firstRegister + 1 > this.name_Kv)
          {
-            this.alternativa3d::_-Kv = firstRegister + 1;
+            this.name_Kv = firstRegister + 1;
          }
-         this.alternativa3d::_-Cl[offset] = x;
+         this.name_Cl[offset] = x;
          offset++;
-         this.alternativa3d::_-Cl[offset] = y;
+         this.name_Cl[offset] = y;
          offset++;
-         this.alternativa3d::_-Cl[offset] = z;
+         this.name_Cl[offset] = z;
          offset++;
-         this.alternativa3d::_-Cl[offset] = w;
+         this.name_Cl[offset] = w;
       }
       
       alternativa3d function setFragmentConstantsFromTransform(firstRegister:int, transform:Transform3D) : void
@@ -335,33 +335,33 @@ package alternativa.engine3d.core
             throw new Error("Register index " + firstRegister + " is out of bounds.");
          }
          var offset:int = firstRegister << 2;
-         if(firstRegister + 3 > this.alternativa3d::_-Kv)
+         if(firstRegister + 3 > this.name_Kv)
          {
-            this.alternativa3d::_-Kv = firstRegister + 3;
+            this.name_Kv = firstRegister + 3;
          }
-         this.alternativa3d::_-Cl[offset] = transform.a;
+         this.name_Cl[offset] = transform.a;
          offset++;
-         this.alternativa3d::_-Cl[offset] = transform.b;
+         this.name_Cl[offset] = transform.b;
          offset++;
-         this.alternativa3d::_-Cl[offset] = transform.c;
+         this.name_Cl[offset] = transform.c;
          offset++;
-         this.alternativa3d::_-Cl[offset] = transform.d;
+         this.name_Cl[offset] = transform.d;
          offset++;
-         this.alternativa3d::_-Cl[offset] = transform.e;
+         this.name_Cl[offset] = transform.e;
          offset++;
-         this.alternativa3d::_-Cl[offset] = transform.f;
+         this.name_Cl[offset] = transform.f;
          offset++;
-         this.alternativa3d::_-Cl[offset] = transform.g;
+         this.name_Cl[offset] = transform.g;
          offset++;
-         this.alternativa3d::_-Cl[offset] = transform.h;
+         this.name_Cl[offset] = transform.h;
          offset++;
-         this.alternativa3d::_-Cl[offset] = transform.i;
+         this.name_Cl[offset] = transform.i;
          offset++;
-         this.alternativa3d::_-Cl[offset] = transform.j;
+         this.name_Cl[offset] = transform.j;
          offset++;
-         this.alternativa3d::_-Cl[offset] = transform.k;
+         this.name_Cl[offset] = transform.k;
          offset++;
-         this.alternativa3d::_-Cl[offset] = transform.l;
+         this.name_Cl[offset] = transform.l;
       }
    }
 }

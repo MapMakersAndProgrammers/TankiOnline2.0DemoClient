@@ -4,27 +4,27 @@ package alternativa.utils
    
    public class ByteArrayMap
    {
-      private var §_-Bp§:Object;
+      private var name_Bp:Object;
       
       public function ByteArrayMap(data:Object = null)
       {
          super();
-         this.§_-Bp§ = data == null ? {} : data;
+         this.name_Bp = data == null ? {} : data;
       }
       
       public function get data() : Object
       {
-         return this.§_-Bp§;
+         return this.name_Bp;
       }
       
       public function getValue(key:String) : ByteArray
       {
-         return this.§_-Bp§[key];
+         return this.name_Bp[key];
       }
       
       public function putValue(key:String, value:ByteArray) : void
       {
-         this.§_-Bp§[key] = value;
+         this.name_Bp[key] = value;
       }
    }
 }

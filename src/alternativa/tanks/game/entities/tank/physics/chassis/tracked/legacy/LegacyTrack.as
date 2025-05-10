@@ -17,11 +17,11 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
       
       public var numRays:int;
       
-      public var §_-Ca§:int;
+      public var name_Ca:int;
       
-      public var §_-gt§:Number = 0;
+      public var name_gt:Number = 0;
       
-      private var §_-Ce§:Object;
+      private var name_Ce:Object;
       
       public function LegacyTrack(chassisBody:Body, matrix:Matrix4, wheels:Vector.<TankWheel>)
       {
@@ -75,7 +75,7 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
             }
             return 0;
          });
-         this.§_-Ce§ = {};
+         this.name_Ce = {};
          this.numRays = mainWheels.length;
          this.rays = new Vector.<LegacySuspensionRay>(this.numRays);
          position = new Vector3();
@@ -85,18 +85,18 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
             matrix.transformPoint(mainWheel.position,position);
             ray = new LegacySuspensionRay(this.chassisBody,position,new Vector3(0,0,-1));
             this.rays[i] = ray;
-            this.§_-Ce§[mainWheel.name] = ray;
+            this.name_Ce[mainWheel.name] = ray;
          }
       }
       
       public function getRayLastHitLength(name:String, maxRayLength:Number) : Number
       {
-         var ray:LegacySuspensionRay = this.§_-Ce§[name];
+         var ray:LegacySuspensionRay = this.name_Ce[name];
          if(ray == null)
          {
             return -1;
          }
-         return ray.§_-n3§ ? ray.§_-ZA§.t : maxRayLength;
+         return ray.name_n3 ? ray.name_ZA.t : maxRayLength;
       }
       
       public function addForces(dt:Number, throttle:Number, maxSpeed:Number, slipTerm:int, weight:Number, data:SuspensionData, brake:Boolean) : void
@@ -105,28 +105,29 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
          var springCoeff:Number = NaN;
          var mid:int = 0;
          var ray:LegacySuspensionRay = null;
-         this.§_-Ca§ = 0;
+         this.name_Ca = 0;
          for(i = 0; i < this.numRays; )
          {
             if(LegacySuspensionRay(this.rays[i]).calculateIntersection(data.rayLength))
             {
-               ++this.§_-Ca§;
+               ++this.name_Ca;
             }
             i++;
          }
-         if(this.§_-Ca§ > 0)
+         if(this.name_Ca > 0)
          {
-            this.§_-gt§ = 0;
-            springCoeff = 0.5 * weight / (this.§_-Ca§ * (data.rayLength - data.§_-Fw§));
-            throttle *= this.numRays / this.§_-Ca§;
+            this.name_gt = 0;
+            springCoeff = 0.5 * weight / (this.name_Ca * (data.rayLength - data.name_Fw));
+            throttle *= this.numRays / this.name_Ca;
             mid = this.numRays >> 1;
-            if(Boolean(this.numRays & 1 == 0))
+            //if(Boolean(this.numRays & 1 == 0)) //XXX: I have no clue man
+            if((this.numRays & 1) == 0)
             {
                for(i = 0; i < this.numRays; i++)
                {
                   ray = this.rays[i];
                   ray.addForce(dt,throttle,maxSpeed,i <= mid ? slipTerm : int(-slipTerm),springCoeff,data,brake);
-                  this.§_-gt§ += ray.§_-bv§;
+                  this.name_gt += ray.name_bv;
                }
             }
             else
@@ -135,15 +136,15 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
                {
                   ray = this.rays[i];
                   ray.addForce(dt,throttle,maxSpeed,i < mid ? slipTerm : (i > mid ? int(-slipTerm) : 0),springCoeff,data,brake);
-                  this.§_-gt§ += ray.§_-bv§;
+                  this.name_gt += ray.name_bv;
                   i++;
                }
             }
-            this.§_-gt§ /= this.§_-Ca§;
+            this.name_gt /= this.name_Ca;
          }
          else
          {
-            this.§_-gt§ = GameMathUtils.advanceValueTowards(this.§_-gt§,0,conSpeedDamping.value * dt);
+            this.name_gt = GameMathUtils.advanceValueTowards(this.name_gt,0,conSpeedDamping.value * dt);
          }
       }
    }

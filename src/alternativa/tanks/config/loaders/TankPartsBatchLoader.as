@@ -11,7 +11,7 @@ package alternativa.tanks.config.loaders
    {
       public var parts:Vector.<TankPart>;
       
-      private var §_-d5§:TaskSequence;
+      private var name_d5:TaskSequence;
       
       public function TankPartsBatchLoader()
       {
@@ -22,18 +22,18 @@ package alternativa.tanks.config.loaders
       {
          var _loc4_:XML = null;
          this.parts = new Vector.<TankPart>();
-         this.§_-d5§ = new TaskSequence();
+         this.name_d5 = new TaskSequence();
          for each(_loc4_ in param2)
          {
-            this.§_-d5§.addTask(param3.createLoader(param1,_loc4_,this.parts));
+            this.name_d5.addTask(param3.createLoader(param1,_loc4_,this.parts));
          }
-         this.§_-d5§.addEventListener(Event.COMPLETE,this.onSequenceComplete);
-         this.§_-d5§.run();
+         this.name_d5.addEventListener(Event.COMPLETE,this.onSequenceComplete);
+         this.name_d5.run();
       }
       
       private function onSequenceComplete(param1:Event) : void
       {
-         this.§_-d5§ = null;
+         this.name_d5 = null;
          if(hasEventListener(Event.COMPLETE))
          {
             dispatchEvent(new Event(Event.COMPLETE));

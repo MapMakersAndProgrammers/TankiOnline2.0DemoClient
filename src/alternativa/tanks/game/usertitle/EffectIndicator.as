@@ -48,7 +48,7 @@ package alternativa.tanks.game.usertitle
       
       private static var iconRect:Rectangle = BitmapData(icons[TYPE_HEALTH]).rect;
       
-      private var §_-oz§:int;
+      private var name_oz:int;
       
       private var icon:BitmapData;
       
@@ -56,13 +56,13 @@ package alternativa.tanks.game.usertitle
       
       private var colorTransform:ColorTransform = new ColorTransform();
       
-      private var §_-im§:int;
+      private var name_im:int;
       
-      private var §_-Jj§:Blinker;
+      private var name_Jj:Blinker;
       
       private var alpha:Number = 1;
       
-      private var §_-aw§:Boolean;
+      private var name_aw:Boolean;
       
       private var x:int;
       
@@ -72,22 +72,22 @@ package alternativa.tanks.game.usertitle
       
       private var state:int;
       
-      private var §_-VQ§:Boolean;
+      private var name_VQ:Boolean;
       
       public function EffectIndicator(effectId:int, blinkingTime:int, userTitle:UserTitle, initialBlinkInterval:int, blinkIntervalDecrement:int)
       {
          super();
-         this.§_-oz§ = effectId;
+         this.name_oz = effectId;
          this.icon = icons[effectId];
          this.blinkingTime = blinkingTime;
          this.userTitle = userTitle;
-         this.§_-Jj§ = new Blinker(initialBlinkInterval,20,blinkIntervalDecrement,MIN_ALPHA,1,10);
+         this.name_Jj = new Blinker(initialBlinkInterval,20,blinkIntervalDecrement,MIN_ALPHA,1,10);
          this.state = STATE_HIDDEN;
       }
       
       public function get effectId() : int
       {
-         return this.§_-oz§;
+         return this.name_oz;
       }
       
       public function isVisible() : Boolean
@@ -105,10 +105,10 @@ package alternativa.tanks.game.usertitle
          this.state &= ~STATE_HIDING;
          if(this.state != STATE_VISIBLE || this.alpha != 1)
          {
-            this.§_-aw§ = true;
+            this.name_aw = true;
          }
-         this.§_-im§ = getTimer() + duration - this.blinkingTime;
-         this.§_-VQ§ = false;
+         this.name_im = getTimer() + duration - this.blinkingTime;
+         this.name_VQ = false;
          this.alpha = 1;
          if(this.state == STATE_HIDDEN)
          {
@@ -129,12 +129,12 @@ package alternativa.tanks.game.usertitle
             return;
          }
          this.state |= STATE_HIDING;
-         this.§_-Jj§.setMinValue(0);
-         if(!this.§_-VQ§)
+         this.name_Jj.setMinValue(0);
+         if(!this.name_VQ)
          {
-            this.§_-im§ = 0;
-            this.§_-Jj§.init(getTimer());
-            this.§_-VQ§ = true;
+            this.name_im = 0;
+            this.name_Jj.init(getTimer());
+            this.name_VQ = true;
          }
       }
       
@@ -153,12 +153,12 @@ package alternativa.tanks.game.usertitle
       {
          this.x = x;
          this.y = y;
-         this.§_-aw§ = true;
+         this.name_aw = true;
       }
       
       public function forceRedraw() : void
       {
-         this.§_-aw§ = true;
+         this.name_aw = true;
       }
       
       public function update(now:int, delta:int, texture:BitmapData) : Boolean
@@ -168,13 +168,13 @@ package alternativa.tanks.game.usertitle
          {
             return false;
          }
-         if(this.§_-aw§)
+         if(this.name_aw)
          {
             this.draw(texture);
-            this.§_-aw§ = false;
+            this.name_aw = false;
             updated = true;
          }
-         if(now > this.§_-im§)
+         if(now > this.name_im)
          {
             this.updateBlinking(now,delta,texture);
             updated = true;
@@ -189,9 +189,9 @@ package alternativa.tanks.game.usertitle
       private function updateBlinking(now:int, delta:int, texture:BitmapData) : void
       {
          var newAlpha:Number = NaN;
-         if(this.§_-VQ§)
+         if(this.name_VQ)
          {
-            newAlpha = this.§_-Jj§.updateValue(now,delta);
+            newAlpha = this.name_Jj.updateValue(now,delta);
             if(newAlpha != this.alpha)
             {
                this.alpha = newAlpha;
@@ -205,9 +205,9 @@ package alternativa.tanks.game.usertitle
          }
          else
          {
-            this.§_-Jj§.setMinValue(MIN_ALPHA);
-            this.§_-Jj§.init(now);
-            this.§_-VQ§ = true;
+            this.name_Jj.setMinValue(MIN_ALPHA);
+            this.name_Jj.init(now);
+            this.name_VQ = true;
          }
       }
       

@@ -27,11 +27,11 @@ package tankshudDemo
       
       private static const GAP_BEEWEN_BUTTON:int = 1;
       
-      private var §_-d0§:Bitmap;
+      private var name_d0:Bitmap;
       
-      private var §_-7U§:Bitmap;
+      private var name_7U:Bitmap;
       
-      private var §_-4m§:Bitmap;
+      private var name_4m:Bitmap;
       
       private var fullScreenButtonState1:Bitmap;
       
@@ -41,11 +41,11 @@ package tankshudDemo
       
       private var nextTankButtonState2:Bitmap;
       
-      private var §_-at§:Sprite;
+      private var name_at:Sprite;
       
-      private var §_-I5§:Sprite;
+      private var name_I5:Sprite;
       
-      private var §_-kn§:Boolean;
+      private var name_kn:Boolean;
       
       public function TanksHudDemo()
       {
@@ -58,102 +58,102 @@ package tankshudDemo
          tabEnabled = false;
          tabChildren = false;
          mouseEnabled = false;
-         this.§_-d0§ = new topLeftIconClass();
-         addChild(this.§_-d0§);
-         this.§_-7U§ = new topRightIconClass();
-         addChild(this.§_-7U§);
-         this.§_-4m§ = new bottomLeftIconClass();
-         addChild(this.§_-4m§);
-         this.§_-at§ = new Sprite();
-         this.§_-at§.mouseChildren = false;
-         addChild(this.§_-at§);
+         this.name_d0 = new topLeftIconClass();
+         addChild(this.name_d0);
+         this.name_7U = new topRightIconClass();
+         addChild(this.name_7U);
+         this.name_4m = new bottomLeftIconClass();
+         addChild(this.name_4m);
+         this.name_at = new Sprite();
+         this.name_at.mouseChildren = false;
+         addChild(this.name_at);
          this.fullScreenButtonState1 = new fullScreenState1Class();
-         this.§_-at§.addChild(this.fullScreenButtonState1);
+         this.name_at.addChild(this.fullScreenButtonState1);
          this.fullScreenButtonState2 = new fullScreenState2Class();
-         this.§_-at§.addChild(this.fullScreenButtonState2);
-         this.§_-at§.addEventListener(MouseEvent.ROLL_OVER,this.onOverFullScreenBtn);
-         this.§_-at§.addEventListener(MouseEvent.ROLL_OUT,this.onOutFullScreenBtn);
-         this.§_-at§.addEventListener(MouseEvent.CLICK,this.onClickFullScreenBtn);
+         this.name_at.addChild(this.fullScreenButtonState2);
+         this.name_at.addEventListener(MouseEvent.ROLL_OVER,this.onOverFullScreenBtn);
+         this.name_at.addEventListener(MouseEvent.ROLL_OUT,this.onOutFullScreenBtn);
+         this.name_at.addEventListener(MouseEvent.CLICK,this.onClickFullScreenBtn);
          this.isFullScreen = false;
-         this.§_-I5§ = new Sprite();
-         this.§_-I5§.mouseChildren = false;
-         addChild(this.§_-I5§);
+         this.name_I5 = new Sprite();
+         this.name_I5.mouseChildren = false;
+         addChild(this.name_I5);
          this.nextTankButtonState1 = new nextTankState1Class();
-         this.§_-I5§.addChild(this.nextTankButtonState1);
+         this.name_I5.addChild(this.nextTankButtonState1);
          this.nextTankButtonState2 = new nextTankState2Class();
-         this.§_-I5§.addChild(this.nextTankButtonState2);
+         this.name_I5.addChild(this.nextTankButtonState2);
          this.nextTankButtonState2.visible = false;
-         this.§_-I5§.addEventListener(MouseEvent.ROLL_OVER,this.onOverNextTankBtn);
-         this.§_-I5§.addEventListener(MouseEvent.ROLL_OUT,this.onOutNextTankBtn);
-         this.§_-I5§.addEventListener(MouseEvent.CLICK,this.onClickNextTankBtn);
+         this.name_I5.addEventListener(MouseEvent.ROLL_OVER,this.onOverNextTankBtn);
+         this.name_I5.addEventListener(MouseEvent.ROLL_OUT,this.onOutNextTankBtn);
+         this.name_I5.addEventListener(MouseEvent.CLICK,this.onClickNextTankBtn);
       }
       
       public function destroy() : void
       {
-         if(this.§_-d0§ != null)
+         if(this.name_d0 != null)
          {
-            removeChild(this.§_-d0§);
+            removeChild(this.name_d0);
          }
-         if(this.§_-7U§ != null)
+         if(this.name_7U != null)
          {
-            removeChild(this.§_-7U§);
+            removeChild(this.name_7U);
          }
-         if(this.§_-4m§ != null)
+         if(this.name_4m != null)
          {
-            removeChild(this.§_-4m§);
+            removeChild(this.name_4m);
          }
-         if(this.§_-at§ != null)
+         if(this.name_at != null)
          {
-            this.§_-at§.removeEventListener(MouseEvent.ROLL_OVER,this.onOverFullScreenBtn);
-            this.§_-at§.removeEventListener(MouseEvent.ROLL_OUT,this.onOutFullScreenBtn);
-            this.§_-at§.removeEventListener(MouseEvent.CLICK,this.onClickFullScreenBtn);
-            removeChild(this.§_-at§);
+            this.name_at.removeEventListener(MouseEvent.ROLL_OVER,this.onOverFullScreenBtn);
+            this.name_at.removeEventListener(MouseEvent.ROLL_OUT,this.onOutFullScreenBtn);
+            this.name_at.removeEventListener(MouseEvent.CLICK,this.onClickFullScreenBtn);
+            removeChild(this.name_at);
          }
-         if(this.§_-I5§ != null)
+         if(this.name_I5 != null)
          {
-            this.§_-I5§.removeEventListener(MouseEvent.ROLL_OVER,this.onOverNextTankBtn);
-            this.§_-I5§.removeEventListener(MouseEvent.ROLL_OUT,this.onOutNextTankBtn);
-            this.§_-I5§.removeEventListener(MouseEvent.CLICK,this.onClickNextTankBtn);
-            removeChild(this.§_-I5§);
+            this.name_I5.removeEventListener(MouseEvent.ROLL_OVER,this.onOverNextTankBtn);
+            this.name_I5.removeEventListener(MouseEvent.ROLL_OUT,this.onOutNextTankBtn);
+            this.name_I5.removeEventListener(MouseEvent.CLICK,this.onClickNextTankBtn);
+            removeChild(this.name_I5);
          }
-         this.§_-d0§ = null;
-         this.§_-7U§ = null;
-         this.§_-4m§ = null;
-         this.§_-at§ = null;
-         this.§_-I5§ = null;
+         this.name_d0 = null;
+         this.name_7U = null;
+         this.name_4m = null;
+         this.name_at = null;
+         this.name_I5 = null;
       }
       
       public function resize(param1:Number, param2:Number) : void
       {
-         if(this.§_-7U§ != null)
+         if(this.name_7U != null)
          {
-            this.§_-7U§.x = param1 - this.§_-7U§.width;
+            this.name_7U.x = param1 - this.name_7U.width;
          }
-         if(this.§_-4m§ != null)
+         if(this.name_4m != null)
          {
-            this.§_-4m§.y = param2 - this.§_-4m§.height;
+            this.name_4m.y = param2 - this.name_4m.height;
          }
-         if(this.§_-at§ != null)
+         if(this.name_at != null)
          {
-            this.§_-at§.x = param1 - this.§_-at§.width - GAP_RIGHT;
-            this.§_-at§.y = param2 - this.§_-at§.height - GAP_BOTTOM;
+            this.name_at.x = param1 - this.name_at.width - GAP_RIGHT;
+            this.name_at.y = param2 - this.name_at.height - GAP_BOTTOM;
          }
-         if(this.§_-I5§ != null)
+         if(this.name_I5 != null)
          {
-            this.§_-I5§.x = param1 - this.§_-at§.width - this.§_-I5§.width - GAP_BEEWEN_BUTTON - GAP_RIGHT;
-            this.§_-I5§.y = param2 - this.§_-I5§.height - GAP_BOTTOM;
+            this.name_I5.x = param1 - this.name_at.width - this.name_I5.width - GAP_BEEWEN_BUTTON - GAP_RIGHT;
+            this.name_I5.y = param2 - this.name_I5.height - GAP_BOTTOM;
          }
       }
       
       public function get isFullScreen() : Boolean
       {
-         return this.§_-kn§;
+         return this.name_kn;
       }
       
       public function set isFullScreen(param1:Boolean) : void
       {
-         this.§_-kn§ = param1;
-         if(this.§_-kn§ == false)
+         this.name_kn = param1;
+         if(this.name_kn == false)
          {
             this.fullScreenButtonState2.visible = false;
          }
@@ -165,7 +165,7 @@ package tankshudDemo
       
       private function onOverFullScreenBtn(param1:MouseEvent) : void
       {
-         if(this.§_-kn§ == false)
+         if(this.name_kn == false)
          {
             this.fullScreenButtonState2.visible = true;
          }
@@ -173,7 +173,7 @@ package tankshudDemo
       
       private function onOutFullScreenBtn(param1:MouseEvent) : void
       {
-         if(this.§_-kn§ == false)
+         if(this.name_kn == false)
          {
             this.fullScreenButtonState2.visible = false;
          }
@@ -181,7 +181,7 @@ package tankshudDemo
       
       private function onClickFullScreenBtn(param1:MouseEvent) : void
       {
-         this.isFullScreen = !this.§_-kn§;
+         this.isFullScreen = !this.name_kn;
          dispatchEvent(new Event("CLICK_FULL_SCREEN_BUTTON"));
       }
       

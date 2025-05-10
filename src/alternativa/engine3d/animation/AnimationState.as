@@ -9,15 +9,15 @@ package alternativa.engine3d.animation
    
    public class AnimationState
    {
-      public var §_-6V§:int = 0;
+      public var name_6V:int = 0;
       
       public var transform:TransformKey = new TransformKey();
       
-      public var §_-H1§:Number = 0;
+      public var name_H1:Number = 0;
       
       public var numbers:Object = new Object();
       
-      public var §_-NT§:Object = new Object();
+      public var name_NT:Object = new Object();
       
       public function AnimationState()
       {
@@ -27,36 +27,36 @@ package alternativa.engine3d.animation
       public function reset() : void
       {
          var key:String = null;
-         this.§_-H1§ = 0;
+         this.name_H1 = 0;
          for(key in this.numbers)
          {
             delete this.numbers[key];
-            delete this.§_-NT§[key];
+            delete this.name_NT[key];
          }
       }
       
       public function addWeightedTransform(key:TransformKey, weight:Number) : void
       {
-         this.§_-H1§ += weight;
-         this.transform.interpolate(this.transform,key,weight / this.§_-H1§);
+         this.name_H1 += weight;
+         this.transform.interpolate(this.transform,key,weight / this.name_H1);
       }
       
       public function addWeightedNumber(property:String, value:Number, weight:Number) : void
       {
          var current:Number = NaN;
-         var sum:Number = Number(this.§_-NT§[property]);
+         var sum:Number = Number(this.name_NT[property]);
          if(sum == sum)
          {
             sum += weight;
             weight /= sum;
             current = Number(this.numbers[property]);
             this.numbers[property] = (1 - weight) * current + weight * value;
-            this.§_-NT§[property] = sum;
+            this.name_NT[property] = sum;
          }
          else
          {
             this.numbers[property] = value;
-            this.§_-NT§[property] = weight;
+            this.name_NT[property] = weight;
          }
       }
       
@@ -65,7 +65,7 @@ package alternativa.engine3d.animation
          var sum:Number = NaN;
          var weight:Number = NaN;
          var key:String = null;
-         if(this.§_-H1§ > 0)
+         if(this.name_H1 > 0)
          {
             object.x = this.transform.alternativa3d::x;
             object.y = this.transform.alternativa3d::y;
@@ -80,48 +80,48 @@ package alternativa.engine3d.animation
             switch(key)
             {
                case "x":
-                  sum = Number(this.§_-NT§["x"]);
-                  weight = sum / (sum + this.§_-H1§);
+                  sum = Number(this.name_NT["x"]);
+                  weight = sum / (sum + this.name_H1);
                   object.x = (1 - weight) * object.x + weight * this.numbers["x"];
                   break;
                case "y":
-                  sum = Number(this.§_-NT§["y"]);
-                  weight = sum / (sum + this.§_-H1§);
+                  sum = Number(this.name_NT["y"]);
+                  weight = sum / (sum + this.name_H1);
                   object.y = (1 - weight) * object.y + weight * this.numbers["y"];
                   break;
                case "z":
-                  sum = Number(this.§_-NT§["z"]);
-                  weight = sum / (sum + this.§_-H1§);
+                  sum = Number(this.name_NT["z"]);
+                  weight = sum / (sum + this.name_H1);
                   object.z = (1 - weight) * object.z + weight * this.numbers["z"];
                   break;
                case "rotationX":
-                  sum = Number(this.§_-NT§["rotationX"]);
-                  weight = sum / (sum + this.§_-H1§);
+                  sum = Number(this.name_NT["rotationX"]);
+                  weight = sum / (sum + this.name_H1);
                   object.rotationX = (1 - weight) * object.rotationX + weight * this.numbers["rotationX"];
                   break;
                case "rotationY":
-                  sum = Number(this.§_-NT§["rotationY"]);
-                  weight = sum / (sum + this.§_-H1§);
+                  sum = Number(this.name_NT["rotationY"]);
+                  weight = sum / (sum + this.name_H1);
                   object.rotationY = (1 - weight) * object.rotationY + weight * this.numbers["rotationY"];
                   break;
                case "rotationZ":
-                  sum = Number(this.§_-NT§["rotationZ"]);
-                  weight = sum / (sum + this.§_-H1§);
+                  sum = Number(this.name_NT["rotationZ"]);
+                  weight = sum / (sum + this.name_H1);
                   object.rotationZ = (1 - weight) * object.rotationZ + weight * this.numbers["rotationZ"];
                   break;
                case "scaleX":
-                  sum = Number(this.§_-NT§["scaleX"]);
-                  weight = sum / (sum + this.§_-H1§);
+                  sum = Number(this.name_NT["scaleX"]);
+                  weight = sum / (sum + this.name_H1);
                   object.scaleX = (1 - weight) * object.scaleX + weight * this.numbers["scaleX"];
                   break;
                case "scaleY":
-                  sum = Number(this.§_-NT§["scaleY"]);
-                  weight = sum / (sum + this.§_-H1§);
+                  sum = Number(this.name_NT["scaleY"]);
+                  weight = sum / (sum + this.name_H1);
                   object.scaleY = (1 - weight) * object.scaleY + weight * this.numbers["scaleY"];
                   break;
                case "scaleZ":
-                  sum = Number(this.§_-NT§["scaleZ"]);
-                  weight = sum / (sum + this.§_-H1§);
+                  sum = Number(this.name_NT["scaleZ"]);
+                  weight = sum / (sum + this.name_H1);
                   object.scaleZ = (1 - weight) * object.scaleZ + weight * this.numbers["scaleZ"];
                   break;
                default:
@@ -136,7 +136,7 @@ package alternativa.engine3d.animation
          var sum:Number = NaN;
          var weight:Number = NaN;
          var key:String = null;
-         if(this.§_-H1§ > 0)
+         if(this.name_H1 > 0)
          {
             object.x = this.transform.alternativa3d::x;
             object.y = this.transform.alternativa3d::y;
@@ -151,48 +151,48 @@ package alternativa.engine3d.animation
             switch(key)
             {
                case "x":
-                  sum = Number(this.§_-NT§["x"]);
-                  weight = sum / (sum + this.§_-H1§);
+                  sum = Number(this.name_NT["x"]);
+                  weight = sum / (sum + this.name_H1);
                   object.x = (1 - weight) * object.x + weight * this.numbers["x"];
                   break;
                case "y":
-                  sum = Number(this.§_-NT§["y"]);
-                  weight = sum / (sum + this.§_-H1§);
+                  sum = Number(this.name_NT["y"]);
+                  weight = sum / (sum + this.name_H1);
                   object.y = (1 - weight) * object.y + weight * this.numbers["y"];
                   break;
                case "z":
-                  sum = Number(this.§_-NT§["z"]);
-                  weight = sum / (sum + this.§_-H1§);
+                  sum = Number(this.name_NT["z"]);
+                  weight = sum / (sum + this.name_H1);
                   object.z = (1 - weight) * object.z + weight * this.numbers["z"];
                   break;
                case "rotationX":
-                  sum = Number(this.§_-NT§["rotationX"]);
-                  weight = sum / (sum + this.§_-H1§);
+                  sum = Number(this.name_NT["rotationX"]);
+                  weight = sum / (sum + this.name_H1);
                   object.rotationX = (1 - weight) * object.rotationX + weight * this.numbers["rotationX"];
                   break;
                case "rotationY":
-                  sum = Number(this.§_-NT§["rotationY"]);
-                  weight = sum / (sum + this.§_-H1§);
+                  sum = Number(this.name_NT["rotationY"]);
+                  weight = sum / (sum + this.name_H1);
                   object.rotationY = (1 - weight) * object.rotationY + weight * this.numbers["rotationY"];
                   break;
                case "rotationZ":
-                  sum = Number(this.§_-NT§["rotationZ"]);
-                  weight = sum / (sum + this.§_-H1§);
+                  sum = Number(this.name_NT["rotationZ"]);
+                  weight = sum / (sum + this.name_H1);
                   object.rotationZ = (1 - weight) * object.rotationZ + weight * this.numbers["rotationZ"];
                   break;
                case "scaleX":
-                  sum = Number(this.§_-NT§["scaleX"]);
-                  weight = sum / (sum + this.§_-H1§);
+                  sum = Number(this.name_NT["scaleX"]);
+                  weight = sum / (sum + this.name_H1);
                   object.scaleX = (1 - weight) * object.scaleX + weight * this.numbers["scaleX"];
                   break;
                case "scaleY":
-                  sum = Number(this.§_-NT§["scaleY"]);
-                  weight = sum / (sum + this.§_-H1§);
+                  sum = Number(this.name_NT["scaleY"]);
+                  weight = sum / (sum + this.name_H1);
                   object.scaleY = (1 - weight) * object.scaleY + weight * this.numbers["scaleY"];
                   break;
                case "scaleZ":
-                  sum = Number(this.§_-NT§["scaleZ"]);
-                  weight = sum / (sum + this.§_-H1§);
+                  sum = Number(this.name_NT["scaleZ"]);
+                  weight = sum / (sum + this.name_H1);
                   object.scaleZ = (1 - weight) * object.scaleZ + weight * this.numbers["scaleZ"];
                   break;
                default:

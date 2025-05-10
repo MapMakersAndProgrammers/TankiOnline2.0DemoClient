@@ -20,7 +20,7 @@ package alternativa.engine3d.shadows
       
       private static const boundVertices:Vector.<Number> = new Vector.<Number>(24);
       
-      alternativa3d var §if§:String;
+      alternativa3d var name_if:String;
       
       public var active:Boolean = false;
       
@@ -28,7 +28,7 @@ package alternativa.engine3d.shadows
       {
          super();
          ++counter;
-         this.alternativa3d::if = "M" + counter.toString();
+         this.name_if = "M" + counter.toString();
       }
       
       alternativa3d function get needMultiplyBlend() : Boolean

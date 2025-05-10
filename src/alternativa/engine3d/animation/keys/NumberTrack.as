@@ -9,7 +9,7 @@ package alternativa.engine3d.animation.keys
    {
       private static var temp:NumberKey = new NumberKey();
       
-      alternativa3d var §_-ku§:NumberKey;
+      alternativa3d var name_ku:NumberKey;
       
       public var property:String;
       
@@ -22,18 +22,18 @@ package alternativa.engine3d.animation.keys
       
       override alternativa3d function get keyFramesList() : Keyframe
       {
-         return this.alternativa3d::_-ku;
+         return this.name_ku;
       }
       
       override alternativa3d function set keyFramesList(value:Keyframe) : void
       {
-         this.alternativa3d::_-ku = NumberKey(value);
+         this.name_ku = NumberKey(value);
       }
       
       public function addKey(time:Number, value:Number = 0) : Keyframe
       {
          var key:NumberKey = new NumberKey();
-         key.alternativa3d::_-qC = time;
+         key.name_qC = time;
          key.value = value;
          alternativa3d::addKeyToList(key);
          return key;
@@ -46,8 +46,8 @@ package alternativa.engine3d.animation.keys
          {
             return;
          }
-         var next:NumberKey = this.alternativa3d::_-ku;
-         while(next != null && next.alternativa3d::_-qC < time)
+         var next:NumberKey = this.name_ku;
+         while(next != null && next.name_qC < time)
          {
             prev = next;
             next = next.alternativa3d::next;
@@ -56,17 +56,17 @@ package alternativa.engine3d.animation.keys
          {
             if(next != null)
             {
-               temp.interpolate(prev,next,(time - prev.alternativa3d::_-qC) / (next.alternativa3d::_-qC - prev.alternativa3d::_-qC));
-               state.addWeightedNumber(this.property,temp.alternativa3d::_-4O,weight);
+               temp.interpolate(prev,next,(time - prev.name_qC) / (next.name_qC - prev.name_qC));
+               state.addWeightedNumber(this.property,temp.name_4O,weight);
             }
             else
             {
-               state.addWeightedNumber(this.property,prev.alternativa3d::_-4O,weight);
+               state.addWeightedNumber(this.property,prev.name_4O,weight);
             }
          }
          else if(next != null)
          {
-            state.addWeightedNumber(this.property,next.alternativa3d::_-4O,weight);
+            state.addWeightedNumber(this.property,next.name_4O,weight);
          }
       }
       

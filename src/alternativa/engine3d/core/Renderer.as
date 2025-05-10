@@ -20,7 +20,7 @@ package alternativa.engine3d.core
       
       alternativa3d var camera:Camera3D;
       
-      alternativa3d var §_-T5§:Vector.<DrawUnit> = new Vector.<DrawUnit>();
+      alternativa3d var name_T5:Vector.<DrawUnit> = new Vector.<DrawUnit>();
       
       public function Renderer()
       {
@@ -31,10 +31,10 @@ package alternativa.engine3d.core
       {
          var list:DrawUnit = null;
          var next:DrawUnit = null;
-         var drawUnitsLength:int = int(this.alternativa3d::_-T5.length);
+         var drawUnitsLength:int = int(this.name_T5.length);
          for(var i:int = 0; i < drawUnitsLength; )
          {
-            list = this.alternativa3d::_-T5[i];
+            list = this.name_T5[i];
             if(list != null)
             {
                switch(i)
@@ -86,11 +86,10 @@ package alternativa.engine3d.core
                      }
                      context.setDepthTest(false,Context3DCompareMode.LESS);
                }
-               continue loop1;
             }
             i++;
          }
-         this.alternativa3d::_-T5.length = 0;
+         this.name_T5.length = 0;
       }
       
       alternativa3d function createDrawUnit(object:Object3D, program:Program3D, indexBuffer:IndexBuffer3D, firstIndex:int, numTriangles:int, debugShader:ShaderProgram = null) : DrawUnit
@@ -116,12 +115,12 @@ package alternativa.engine3d.core
       
       alternativa3d function addDrawUnit(drawUnit:DrawUnit, renderPriority:int) : void
       {
-         if(renderPriority >= this.alternativa3d::_-T5.length)
+         if(renderPriority >= this.name_T5.length)
          {
-            this.alternativa3d::_-T5.length = renderPriority + 1;
+            this.name_T5.length = renderPriority + 1;
          }
-         drawUnit.alternativa3d::next = this.alternativa3d::_-T5[renderPriority];
-         this.alternativa3d::_-T5[renderPriority] = drawUnit;
+         drawUnit.alternativa3d::next = this.name_T5[renderPriority];
+         this.name_T5[renderPriority] = drawUnit;
       }
       
       protected function renderDrawUnit(drawUnit:DrawUnit, context:Context3D, camera:Camera3D) : void
@@ -134,25 +133,25 @@ package alternativa.engine3d.core
          var currentTextures:int = 0;
          context.setBlendFactors(drawUnit.alternativa3d::blendSource,drawUnit.alternativa3d::blendDestination);
          context.setCulling(drawUnit.alternativa3d::culling);
-         for(var i:int = 0; i < drawUnit.alternativa3d::_-3G; i++)
+         for(var i:int = 0; i < drawUnit.name_3G; i++)
          {
-            bufferIndex = int(drawUnit.alternativa3d::else [i]);
+            bufferIndex = int(drawUnit.name_else[i]);
             bufferBit = 1 << bufferIndex;
             currentBuffers |= bufferBit;
             _usedBuffers &= ~bufferBit;
-            context.setVertexBufferAt(bufferIndex,drawUnit.alternativa3d::vertexBuffers[i],drawUnit.alternativa3d::_-nw[i],drawUnit.alternativa3d::_-EL[i]);
+            context.setVertexBufferAt(bufferIndex,drawUnit.alternativa3d::vertexBuffers[i],drawUnit.name_nw[i],drawUnit.name_EL[i]);
          }
-         if(drawUnit.alternativa3d::_-9X > 0)
+         if(drawUnit.name_9X > 0)
          {
-            context.setProgramConstantsFromVector(Context3DProgramType.VERTEX,0,drawUnit.alternativa3d::_-Aq,drawUnit.alternativa3d::_-9X);
+            context.setProgramConstantsFromVector(Context3DProgramType.VERTEX,0,drawUnit.name_Aq,drawUnit.name_9X);
          }
-         if(drawUnit.alternativa3d::_-Kv > 0)
+         if(drawUnit.name_Kv > 0)
          {
-            context.setProgramConstantsFromVector(Context3DProgramType.FRAGMENT,0,drawUnit.alternativa3d::_-Cl,drawUnit.alternativa3d::_-Kv);
+            context.setProgramConstantsFromVector(Context3DProgramType.FRAGMENT,0,drawUnit.name_Cl,drawUnit.name_Kv);
          }
-         for(i = 0; i < drawUnit.alternativa3d::_-Oq; )
+         for(i = 0; i < drawUnit.name_Oq; )
          {
-            textureSampler = int(drawUnit.alternativa3d::_-kR[i]);
+            textureSampler = int(drawUnit.name_kR[i]);
             textureBit = 1 << textureSampler;
             currentTextures |= textureBit;
             _usedTextures &= ~textureBit;

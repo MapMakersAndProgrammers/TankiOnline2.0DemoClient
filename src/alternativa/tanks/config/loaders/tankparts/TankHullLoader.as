@@ -14,7 +14,7 @@ package alternativa.tanks.config.loaders.tankparts
       override public function parseModelData(param1:ByteArrayMap) : TankPart
       {
          var _loc2_:TankHullParser = new TankHullParser();
-         return _loc2_.parse(param1,§_-P9§);
+         return _loc2_.parse(param1,name_P9);
       }
    }
 }

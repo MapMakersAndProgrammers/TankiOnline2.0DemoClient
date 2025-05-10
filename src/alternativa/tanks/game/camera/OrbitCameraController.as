@@ -81,9 +81,9 @@ package alternativa.tanks.game.camera
       
       private var collisionMask:int;
       
-      private var §_-U1§:Number = 0;
+      private var name_U1:Number = 0;
       
-      private var §_-7h§:Number = 0;
+      private var name_7h:Number = 0;
       
       private var locked:Boolean;
       
@@ -95,47 +95,47 @@ package alternativa.tanks.game.camera
       
       private var targetDirection:Vector3 = new Vector3();
       
-      private var §_-Wq§:Number = 0;
+      private var name_Wq:Number = 0;
       
-      private var §_-fq§:Number = 0;
+      private var name_fq:Number = 0;
       
-      private var §_-qF§:Number = 0;
+      private var name_qF:Number = 0;
       
-      private var §_-51§:Number = 10000000;
+      private var name_51:Number = 10000000;
       
-      private var §_-kz§:int;
+      private var name_kz:int;
       
       private var cameraPositionData:CameraPositionData = new CameraPositionData();
       
-      private var §_-4G§:Number;
+      private var name_4G:Number;
       
       private var input:IInput;
       
-      private var §_-fZ§:Mesh;
+      private var name_fZ:Mesh;
       
-      private var §_-LT§:Number = 0;
+      private var name_LT:Number = 0;
       
-      private var §_-mg§:Number = 0;
+      private var name_mg:Number = 0;
       
-      private var §_-R2§:Number = 1000;
+      private var name_R2:Number = 1000;
       
-      private var §_-Rb§:Number = 0;
+      private var name_Rb:Number = 0;
       
-      private var §_-NW§:Number = 0;
+      private var name_NW:Number = 0;
       
-      private var §_-1J§:Number = 1000;
+      private var name_1J:Number = 1000;
       
       public var smoothing:Number = 40;
       
       private var angles:Vector3 = new Vector3();
       
-      private var §_-n9§:Vector3 = new Vector3();
+      private var name_n9:Vector3 = new Vector3();
       
       private var rotationMatrix:Matrix4 = new Matrix4();
       
-      private var §_-Ys§:Matrix4 = new Matrix4();
+      private var name_Ys:Matrix4 = new Matrix4();
       
-      private var §_-b4§:Vector3 = new Vector3();
+      private var name_b4:Vector3 = new Vector3();
       
       public function OrbitCameraController(camera:GameCamera, collisionDetector:ICollisionDetector, collisionMask:int, input:IInput)
       {
@@ -159,17 +159,17 @@ package alternativa.tanks.game.camera
       {
          if(target == null)
          {
-            this.§_-fZ§ = null;
+            this.name_fZ = null;
          }
          else
          {
-            this.§_-fZ§ = TurretGraphicsComponent(target.getComponentStrict(TurretGraphicsComponent)).turretMesh;
+            this.name_fZ = TurretGraphicsComponent(target.getComponentStrict(TurretGraphicsComponent)).turretMesh;
          }
       }
       
       public function update() : void
       {
-         if(this.§_-fZ§ == null)
+         if(this.name_fZ == null)
          {
             throw new Error("Target is not set");
          }
@@ -183,62 +183,62 @@ package alternativa.tanks.game.camera
             dt = 0.1;
          }
          this.updateTargetState();
-         matrix.transformPoint(targetOffset,this.§_-n9§);
+         matrix.transformPoint(targetOffset,this.name_n9);
          var distanceChangeDir:int = this.input.getKeyState(KEY_CAMERA_UP) - this.input.getKeyState(KEY_CAMERA_DOWN) - this.input.getMouseWheelDelta();
          if(distanceChangeDir != 0)
          {
-            this.§_-1J§ *= Math.pow(10,distanceChangeDir * 0.02);
+            this.name_1J *= Math.pow(10,distanceChangeDir * 0.02);
          }
          if(this.input.mouseButtonPressed())
          {
-            this.§_-Rb§ -= this.input.getMouseDeltaY() * 0.01;
-            this.§_-NW§ -= this.input.getMouseDeltaX() * 0.01;
+            this.name_Rb -= this.input.getMouseDeltaY() * 0.01;
+            this.name_NW -= this.input.getMouseDeltaX() * 0.01;
          }
          var k:Number = 1;
          if(this.smoothing > 0)
          {
             k = 100 / this.smoothing * dt;
             k = k > 1 ? 1 : k;
-            this.§_-LT§ += (this.§_-Rb§ - this.§_-LT§) * k;
-            this.§_-mg§ += (this.§_-NW§ - this.§_-mg§) * k;
+            this.name_LT += (this.name_Rb - this.name_LT) * k;
+            this.name_mg += (this.name_NW - this.name_mg) * k;
          }
          else
          {
-            this.§_-LT§ = this.§_-Rb§;
-            this.§_-mg§ = this.§_-NW§;
+            this.name_LT = this.name_Rb;
+            this.name_mg = this.name_NW;
          }
-         this.rotationMatrix.setRotationMatrix(this.§_-LT§,0,this.§_-mg§);
+         this.rotationMatrix.setRotationMatrix(this.name_LT,0,this.name_mg);
          this.rotationMatrix.setPositionXYZ(matrix.d,matrix.h,matrix.l);
          matrix.getAxis(3,rayOrigin);
          this.rotationMatrix.transformVector(Vector3.Y_AXIS,rayDirection);
          rayDirection.reverse();
-         var distance:Number = this.§_-1J§;
+         var distance:Number = this.name_1J;
          if(this.collisionDetector.raycast(rayOrigin,rayDirection,this.collisionMask,distance,null,rayHit))
          {
             distance = rayHit.t - COLLISION_OFFSET;
          }
          if(distanceChangeDir != 0)
          {
-            this.§_-1J§ = distance;
+            this.name_1J = distance;
          }
          if(this.smoothing > 0)
          {
-            this.§_-R2§ += (distance - this.§_-R2§) * k;
+            this.name_R2 += (distance - this.name_R2) * k;
          }
          else
          {
-            this.§_-R2§ = distance;
+            this.name_R2 = distance;
          }
          this.position.x = 0;
-         this.position.y = -this.§_-R2§;
+         this.position.y = -this.name_R2;
          this.position.z = 0;
          this.rotationMatrix.transformPoint(this.position,currentPosition);
          camera.x = currentPosition.x;
          camera.y = currentPosition.y;
          camera.z = currentPosition.z;
-         var dx:Number = this.§_-n9§.x - camera.x;
-         var dy:Number = this.§_-n9§.y - camera.y;
-         var dz:Number = this.§_-n9§.z - camera.z;
+         var dx:Number = this.name_n9.x - camera.x;
+         var dy:Number = this.name_n9.y - camera.y;
+         var dz:Number = this.name_n9.z - camera.z;
          camera.rotationX = Math.atan2(dz,Math.sqrt(dx * dx + dy * dy)) - 0.5 * Math.PI;
          camera.rotationY = 0;
          camera.rotationZ = -Math.atan2(dx,dy);
@@ -246,11 +246,11 @@ package alternativa.tanks.game.camera
       
       private function set cameraHeight(value:Number) : void
       {
-         this.§_-U1§ = GameMathUtils.clamp(value,MIN_HEIGHT,MAX_HEIGHT);
-         var d:Number = this.getCamDistance(this.§_-U1§);
-         this.§_-4G§ = Math.atan2(this.§_-U1§,d);
-         this.§_-7h§ = Math.sqrt(this.§_-U1§ * this.§_-U1§ + d * d);
-         this.§_-kz§ = 0;
+         this.name_U1 = GameMathUtils.clamp(value,MIN_HEIGHT,MAX_HEIGHT);
+         var d:Number = this.getCamDistance(this.name_U1);
+         this.name_4G = Math.atan2(this.name_U1,d);
+         this.name_7h = Math.sqrt(this.name_U1 * this.name_U1 + d * d);
+         this.name_kz = 0;
       }
       
       private function getCameraPositionData(targetPosition:Vector3, targetDirection:Vector3, useReboundDelay:Boolean, dt:Number, result:CameraPositionData) : void
@@ -258,7 +258,7 @@ package alternativa.tanks.game.camera
          var angle:Number = NaN;
          var now:int = 0;
          var delta:Number = NaN;
-         var actualElevation:Number = this.§_-4G§;
+         var actualElevation:Number = this.name_4G;
          var xyLength:Number = Number(Math.sqrt(targetDirection.x * targetDirection.x + targetDirection.y * targetDirection.y));
          if(xyLength < 0.00001)
          {
@@ -272,7 +272,7 @@ package alternativa.tanks.game.camera
          }
          result.extraPitch = 0;
          result.t = 1;
-         var minCollisionDistance:Number = this.§_-7h§;
+         var minCollisionDistance:Number = this.name_7h;
          rayOrigin.copy(targetPosition);
          elevationAngles[0] = actualElevation;
          axis.x = flatDirection.y;
@@ -282,28 +282,28 @@ package alternativa.tanks.game.camera
          {
             this.rotationMatrix.fromAxisAngle(axis,-angle);
             this.rotationMatrix.transformVector(flatDirection,rayDirection);
-            minCollisionDistance = this.getMinCollisionDistance(rayOrigin,rayDirection,this.§_-7h§,minCollisionDistance);
+            minCollisionDistance = this.getMinCollisionDistance(rayOrigin,rayDirection,this.name_7h,minCollisionDistance);
          }
          if(useReboundDelay)
          {
             now = int(getTimer());
-            if(minCollisionDistance <= this.§_-51§ + 0.001)
+            if(minCollisionDistance <= this.name_51 + 0.001)
             {
-               this.§_-51§ = minCollisionDistance;
-               this.§_-kz§ = now;
+               this.name_51 = minCollisionDistance;
+               this.name_kz = now;
             }
-            else if(now - this.§_-kz§ < reboundDelay.value)
+            else if(now - this.name_kz < reboundDelay.value)
             {
-               minCollisionDistance = this.§_-51§;
+               minCollisionDistance = this.name_51;
             }
             else
             {
-               this.§_-51§ = minCollisionDistance;
+               this.name_51 = minCollisionDistance;
             }
          }
-         if(minCollisionDistance < this.§_-7h§)
+         if(minCollisionDistance < this.name_7h)
          {
-            result.t = minCollisionDistance / this.§_-7h§;
+            result.t = minCollisionDistance / this.name_7h;
             if(minCollisionDistance < MIN_DISTANCE)
             {
                rayOrigin.addScaled(minCollisionDistance,rayDirection);
@@ -325,7 +325,7 @@ package alternativa.tanks.game.camera
          }
          else
          {
-            result.position.copy(rayOrigin).addScaled(this.§_-7h§,rayDirection);
+            result.position.copy(rayOrigin).addScaled(this.name_7h,rayDirection);
          }
       }
       
@@ -353,8 +353,8 @@ package alternativa.tanks.game.camera
       
       private function updateTargetState() : void
       {
-         this.setMatrixFromObject(this.§_-fZ§.parent,parentMatrix);
-         this.setMatrixFromObject(this.§_-fZ§,matrix);
+         this.setMatrixFromObject(this.name_fZ.parent,parentMatrix);
+         this.setMatrixFromObject(this.name_fZ,matrix);
          matrix.append(parentMatrix);
          matrix.getAxis(3,this.targetPosition);
          this.targetDirection.reset(matrix.b,matrix.f,matrix.j);
@@ -371,7 +371,7 @@ package alternativa.tanks.game.camera
          var heightChangeDir:int = this.input.getKeyState(KEY_CAMERA_UP) - this.input.getKeyState(KEY_CAMERA_DOWN);
          if(heightChangeDir != 0)
          {
-            this.cameraHeight = this.§_-U1§ + heightChangeDir * HEIGHT_CHANGE_STEP;
+            this.cameraHeight = this.name_U1 + heightChangeDir * HEIGHT_CHANGE_STEP;
          }
       }
       
@@ -400,7 +400,7 @@ package alternativa.tanks.game.camera
          return currentSpeed;
       }
       
-      private function §each §(value:Number, snapValue:Number, epsilon:Number) : Number
+      private function each (value:Number, snapValue:Number, epsilon:Number) : Number
       {
          if(value > snapValue - epsilon && value < snapValue + epsilon)
          {
@@ -411,7 +411,7 @@ package alternativa.tanks.game.camera
       
       private function getPitchAngle(cameraPositionData:CameraPositionData) : Number
       {
-         var angle:Number = this.§_-4G§ - fixedPitch.value;
+         var angle:Number = this.name_4G - fixedPitch.value;
          if(angle < 0)
          {
             angle = 0;
@@ -421,7 +421,7 @@ package alternativa.tanks.game.camera
          {
             return cameraPositionData.extraPitch - angle;
          }
-         return cameraPositionData.extraPitch - Math.atan2(t * this.§_-U1§,pitchCorrectionCoeff.value * this.§_-U1§ * (1 / Math.tan(angle) - (1 - t) / Math.tan(this.§_-4G§)));
+         return cameraPositionData.extraPitch - Math.atan2(t * this.name_U1,pitchCorrectionCoeff.value * this.name_U1 * (1 / Math.tan(angle) - (1 - t) / Math.tan(this.name_4G)));
       }
    }
 }

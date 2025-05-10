@@ -14,11 +14,11 @@ package alternativa.osgi
       
       private static const LOG_CHANNEL:String = "osgi";
       
-      private var §_-2M§:Object = {};
+      private var name_2M:Object = {};
       
       private var services:Dictionary = new Dictionary();
       
-      private var §_-dp§:Dictionary = new Dictionary();
+      private var name_dp:Dictionary = new Dictionary();
       
       public function OSGi()
       {
@@ -41,11 +41,11 @@ package alternativa.osgi
          var activators:Vector.<IBundleActivator> = null;
          var i:int = 0;
          var activator:IBundleActivator = null;
-         if(this.§_-2M§[bundleDescriptor.name] == null)
+         if(this.name_2M[bundleDescriptor.name] == null)
          {
             clientLog.log(LOG_CHANNEL,"Installing bundle %1",bundleDescriptor.name);
             clientLog.log(LOG_CHANNEL,"Bundle activators: %1",bundleDescriptor.activators);
-            this.§_-2M§[bundleDescriptor.name] = bundleDescriptor;
+            this.name_2M[bundleDescriptor.name] = bundleDescriptor;
             activators = bundleDescriptor.activators;
             if(activators != null)
             {
@@ -70,7 +70,7 @@ package alternativa.osgi
          {
             throw new ArgumentError("Bundle name is null");
          }
-         var bundleDescriptor:IBundleDescriptor = this.§_-2M§[bundleName];
+         var bundleDescriptor:IBundleDescriptor = this.name_2M[bundleName];
          if(bundleDescriptor == null)
          {
             throw new Error("Bundle " + bundleName + " not found");
@@ -85,7 +85,7 @@ package alternativa.osgi
                activator.stop(this);
             }
          }
-         delete this.§_-2M§[bundleName];
+         delete this.name_2M[bundleName];
          clientLog.log(LOG_CHANNEL,"Bundle " + bundleName + " has been uninstalled");
       }
       
@@ -96,9 +96,9 @@ package alternativa.osgi
          if(this.services[serviceInterface] == null)
          {
             this.services[serviceInterface] = serviceImplementation;
-            if(this.§_-dp§[serviceInterface] != null)
+            if(this.name_dp[serviceInterface] != null)
             {
-               injectPoints = this.§_-dp§[serviceInterface];
+               injectPoints = this.name_dp[serviceInterface];
                for each(ip in injectPoints)
                {
                   ip.injectOwner[ip.injectFieldName] = serviceImplementation;
@@ -125,7 +125,7 @@ package alternativa.osgi
          if(this.services[serviceInterface] != null)
          {
             delete this.services[serviceInterface];
-            delete this.§_-dp§[serviceInterface];
+            delete this.name_dp[serviceInterface];
             clientLog.log(LOG_CHANNEL,"Service has been unregistered: " + serviceInterface);
          }
       }
@@ -137,11 +137,11 @@ package alternativa.osgi
       
       public function injectService(serviceInterface:Class, injectFieldOwner:Class, injectFieldName:String) : void
       {
-         if(!this.§_-dp§[serviceInterface])
+         if(!this.name_dp[serviceInterface])
          {
-            this.§_-dp§[serviceInterface] = new Vector.<InjectPoint>();
+            this.name_dp[serviceInterface] = new Vector.<InjectPoint>();
          }
-         this.§_-dp§[serviceInterface].push(new InjectPoint(injectFieldOwner,injectFieldName));
+         this.name_dp[serviceInterface].push(new InjectPoint(injectFieldOwner,injectFieldName));
          injectFieldOwner[injectFieldName] = this.services[serviceInterface];
          clientLog.log(LOG_CHANNEL,"Inject %1 have been processed. Current value is %2",injectFieldOwner + "." + injectFieldName,this.services[serviceInterface]);
       }
@@ -150,7 +150,7 @@ package alternativa.osgi
       {
          var bundleDescriptor:IBundleDescriptor = null;
          var list:Vector.<IBundleDescriptor> = new Vector.<IBundleDescriptor>();
-         for each(bundleDescriptor in this.§_-2M§)
+         for each(bundleDescriptor in this.name_2M)
          {
             list.push(bundleDescriptor);
          }

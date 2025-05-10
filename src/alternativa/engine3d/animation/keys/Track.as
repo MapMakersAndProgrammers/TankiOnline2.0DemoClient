@@ -9,7 +9,7 @@ package alternativa.engine3d.animation.keys
    {
       public var object:String;
       
-      alternativa3d var §_-YC§:Number = 0;
+      alternativa3d var name_YC:Number = 0;
       
       public function Track()
       {
@@ -18,7 +18,7 @@ package alternativa.engine3d.animation.keys
       
       public function get length() : Number
       {
-         return this.alternativa3d::_-YC;
+         return this.name_YC;
       }
       
       alternativa3d function get keyFramesList() : Keyframe
@@ -33,28 +33,28 @@ package alternativa.engine3d.animation.keys
       alternativa3d function addKeyToList(key:Keyframe) : void
       {
          var _loc3_:Keyframe = null;
-         var time:Number = key.alternativa3d::_-qC;
+         var time:Number = key.name_qC;
          if(this.alternativa3d::keyFramesList == null)
          {
             this.alternativa3d::keyFramesList = key;
-            this.alternativa3d::_-YC = time <= 0 ? 0 : time;
+            this.name_YC = time <= 0 ? 0 : time;
             return;
          }
-         if(this.alternativa3d::keyFramesList.alternativa3d::_-qC > time)
+         if(this.alternativa3d::keyFramesList.name_qC > time)
          {
             key.alternativa3d::nextKeyFrame = this.alternativa3d::keyFramesList;
             this.alternativa3d::keyFramesList = key;
             return;
          }
          _loc3_ = this.alternativa3d::keyFramesList;
-         while(_loc3_.alternativa3d::nextKeyFrame != null && _loc3_.alternativa3d::nextKeyFrame.alternativa3d::_-qC <= time)
+         while(_loc3_.alternativa3d::nextKeyFrame != null && _loc3_.alternativa3d::nextKeyFrame.name_qC <= time)
          {
             _loc3_ = _loc3_.alternativa3d::nextKeyFrame;
          }
          if(_loc3_.alternativa3d::nextKeyFrame == null)
          {
             _loc3_.alternativa3d::nextKeyFrame = key;
-            this.alternativa3d::_-YC = time <= 0 ? 0 : time;
+            this.name_YC = time <= 0 ? 0 : time;
          }
          else
          {
@@ -73,7 +73,7 @@ package alternativa.engine3d.animation.keys
                this.alternativa3d::keyFramesList = this.alternativa3d::keyFramesList.alternativa3d::nextKeyFrame;
                if(this.alternativa3d::keyFramesList == null)
                {
-                  this.alternativa3d::_-YC = 0;
+                  this.name_YC = 0;
                }
                return key;
             }
@@ -86,7 +86,7 @@ package alternativa.engine3d.animation.keys
             {
                if(key.alternativa3d::nextKeyFrame == null)
                {
-                  this.alternativa3d::_-YC = k.alternativa3d::_-qC <= 0 ? 0 : k.alternativa3d::_-qC;
+                  this.name_YC = k.name_qC <= 0 ? 0 : k.name_qC;
                }
                k.alternativa3d::nextKeyFrame = key.alternativa3d::nextKeyFrame;
                return key;
@@ -132,7 +132,7 @@ package alternativa.engine3d.animation.keys
          var shiftTime:Number = start > 0 ? start : 0;
          var next:Keyframe = this.alternativa3d::keyFramesList;
          var key:Keyframe = this.alternativa3d::createKeyFrame();
-         while(next != null && next.alternativa3d::_-qC <= start)
+         while(next != null && next.name_qC <= start)
          {
             prev = next;
             next = next.alternativa3d::nextKeyFrame;
@@ -141,8 +141,8 @@ package alternativa.engine3d.animation.keys
          {
             if(next != null)
             {
-               this.alternativa3d::interpolateKeyFrame(key,prev,next,(start - prev.alternativa3d::_-qC) / (next.alternativa3d::_-qC - prev.alternativa3d::_-qC));
-               key.alternativa3d::_-qC = start - shiftTime;
+               this.alternativa3d::interpolateKeyFrame(key,prev,next,(start - prev.name_qC) / (next.name_qC - prev.name_qC));
+               key.name_qC = start - shiftTime;
             }
             else
             {
@@ -156,21 +156,21 @@ package alternativa.engine3d.animation.keys
                return;
             }
             this.alternativa3d::interpolateKeyFrame(key,key,next,1);
-            key.alternativa3d::_-qC = next.alternativa3d::_-qC - shiftTime;
+            key.name_qC = next.name_qC - shiftTime;
             prev = next;
             next = next.alternativa3d::nextKeyFrame;
          }
          dest.alternativa3d::keyFramesList = key;
          if(next == null || end <= start)
          {
-            dest.alternativa3d::_-YC = key.alternativa3d::_-qC <= 0 ? 0 : key.alternativa3d::_-qC;
+            dest.name_YC = key.name_qC <= 0 ? 0 : key.name_qC;
             return;
          }
-         while(next != null && next.alternativa3d::_-qC <= end)
+         while(next != null && next.name_qC <= end)
          {
             nextKey = this.alternativa3d::createKeyFrame();
             this.alternativa3d::interpolateKeyFrame(nextKey,nextKey,next,1);
-            nextKey.alternativa3d::_-qC = next.alternativa3d::_-qC - shiftTime;
+            nextKey.name_qC = next.name_qC - shiftTime;
             key.alternativa3d::nextKeyFrame = nextKey;
             key = nextKey;
             prev = next;
@@ -179,13 +179,13 @@ package alternativa.engine3d.animation.keys
          if(next != null)
          {
             nextKey = this.alternativa3d::createKeyFrame();
-            this.alternativa3d::interpolateKeyFrame(nextKey,prev,next,(end - prev.alternativa3d::_-qC) / (next.alternativa3d::_-qC - prev.alternativa3d::_-qC));
-            nextKey.alternativa3d::_-qC = end - shiftTime;
+            this.alternativa3d::interpolateKeyFrame(nextKey,prev,next,(end - prev.name_qC) / (next.name_qC - prev.name_qC));
+            nextKey.name_qC = end - shiftTime;
             key.alternativa3d::nextKeyFrame = nextKey;
          }
          if(nextKey != null)
          {
-            dest.alternativa3d::_-YC = nextKey.alternativa3d::_-qC <= 0 ? 0 : nextKey.alternativa3d::_-qC;
+            dest.name_YC = nextKey.name_qC <= 0 ? 0 : nextKey.name_qC;
          }
       }
    }

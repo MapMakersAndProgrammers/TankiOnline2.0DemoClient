@@ -20,7 +20,7 @@ package alternativa.tanks.game.weapons.thunder
       
       private var textureResource:TextureResource;
       
-      private var §_-PT§:Vector3D = new Vector3D();
+      private var name_PT:Vector3D = new Vector3D();
       
       public function ThunderShotEffectComponent(textureResource:TextureResource)
       {
@@ -52,14 +52,14 @@ package alternativa.tanks.game.weapons.thunder
       public function createShotEffects(barrelIndex:int, barrelOrigin:Vector3, muzzlePosition:Vector3, gunDirection:Vector3, gunElevationAxis:Vector3) : void
       {
          var eff:SmokyShot = new SmokyShot(smokyShotAtlas);
-         this.§_-PT§.x = muzzlePosition.x;
-         this.§_-PT§.y = muzzlePosition.y;
-         this.§_-PT§.z = muzzlePosition.z + 20;
-         eff.position = this.§_-PT§;
-         this.§_-PT§.x = gunDirection.x;
-         this.§_-PT§.y = gunDirection.y;
-         this.§_-PT§.z = gunDirection.z;
-         eff.direction = this.§_-PT§;
+         this.name_PT.x = muzzlePosition.x;
+         this.name_PT.y = muzzlePosition.y;
+         this.name_PT.z = muzzlePosition.z + 20;
+         eff.position = this.name_PT;
+         this.name_PT.x = gunDirection.x;
+         this.name_PT.y = gunDirection.y;
+         this.name_PT.z = gunDirection.z;
+         eff.direction = this.name_PT;
          eff.scale = 3;
          this.gameKernel.getRenderSystem().addA3DEffect(eff);
       }

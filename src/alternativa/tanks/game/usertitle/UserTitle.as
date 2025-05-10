@@ -85,7 +85,7 @@ package alternativa.tanks.game.usertitle
       
       private var sprite:Sprite3D;
       
-      private var §_-iy§:Rectangle;
+      private var name_iy:Rectangle;
       
       private var material:TextureMaterial;
       
@@ -101,17 +101,17 @@ package alternativa.tanks.game.usertitle
       
       private var rankId:int;
       
-      private var §_-f1§:ProgressBar;
+      private var name_f1:ProgressBar;
       
-      private var §_-ie§:ProgressBar;
+      private var name_ie:ProgressBar;
       
-      private var §_-os§:Vector.<EffectIndicator>;
+      private var name_os:Vector.<EffectIndicator>;
       
-      private var §_-8o§:int;
+      private var name_8o:int;
       
-      private var §_-oS§:int;
+      private var name_oS:int;
       
-      private var §_-P4§:Boolean;
+      private var name_P4:Boolean;
       
       private var maxHealth:int;
       
@@ -132,7 +132,7 @@ package alternativa.tanks.game.usertitle
          this.resourceManager = this.resourceManager;
          this.textureResource = new BitmapTextureResource(null);
          this.material = new TextureMaterial(this.textureResource);
-         this.material.§_-L4§ = true;
+         this.material.name_L4 = true;
          this.sprite = new Sprite3D(100,100,this.material);
          this.sprite.material = this.material;
          this.sprite.perspectiveScale = false;
@@ -286,7 +286,7 @@ package alternativa.tanks.game.usertitle
       public function hideIndicators() : void
       {
          var indicatorId:int = 0;
-         if(this.§_-os§ != null && this.hasAllFlags(BIT_EFFECTS))
+         if(this.name_os != null && this.hasAllFlags(BIT_EFFECTS))
          {
             for each(indicatorId in indicatorTypes)
             {
@@ -316,18 +316,18 @@ package alternativa.tanks.game.usertitle
             }
             if(this.isDirtyAndHasOption(BIT_HEALTH))
             {
-               this.§_-f1§.setSkin(teamTypeSkin[this.teamType]);
-               this.§_-f1§.progress = MAX_PROGRESS * this.health / this.maxHealth;
-               this.§_-f1§.draw(this.texture);
+               this.name_f1.setSkin(teamTypeSkin[this.teamType]);
+               this.name_f1.progress = MAX_PROGRESS * this.health / this.maxHealth;
+               this.name_f1.draw(this.texture);
             }
             if(this.isDirtyAndHasOption(BIT_WEAPON))
             {
-               this.§_-ie§.progress = this.weaponStatus;
-               this.§_-ie§.draw(this.texture);
+               this.name_ie.progress = this.weaponStatus;
+               this.name_ie.draw(this.texture);
             }
             if(this.isDirtyAndHasOption(BIT_EFFECTS))
             {
-               for each(effectIndicator in this.§_-os§)
+               for each(effectIndicator in this.name_os)
                {
                   effectIndicator.forceRedraw();
                }
@@ -356,21 +356,21 @@ package alternativa.tanks.game.usertitle
          var i:int = 0;
          var wereUpdated:Boolean = false;
          var x:int = 0;
-         var num:int = int(this.§_-os§.length);
-         if(this.§_-P4§)
+         var num:int = int(this.name_os.length);
+         if(this.name_P4)
          {
-            this.§_-P4§ = false;
-            x = this.§_-iy§.width + TEXTURE_MARGIN_2 - this.§_-8o§ * EFFECTS_ICON_SIZE - (this.§_-8o§ - 1) * EFFECTS_SPACING_X >> 1;
+            this.name_P4 = false;
+            x = this.name_iy.width + TEXTURE_MARGIN_2 - this.name_8o * EFFECTS_ICON_SIZE - (this.name_8o - 1) * EFFECTS_SPACING_X >> 1;
             for(i = 0; i < num; )
             {
-               indicator = this.§_-os§[i];
+               indicator = this.name_os[i];
                if(indicator.isVisible())
                {
                   indicator.clear(this.texture);
                }
                if(!indicator.isHidden())
                {
-                  indicator.setPosition(x,this.§_-oS§);
+                  indicator.setPosition(x,this.name_oS);
                   x += EFFECTS_ICON_SIZE + EFFECTS_SPACING_X;
                }
                i++;
@@ -379,7 +379,7 @@ package alternativa.tanks.game.usertitle
          }
          for(i = 0; i < num; )
          {
-            indicator = this.§_-os§[i];
+            indicator = this.name_os[i];
             wereUpdated = indicator.update(now,delta,this.texture) || wereUpdated;
             i++;
          }
@@ -388,8 +388,8 @@ package alternativa.tanks.game.usertitle
       
       private function changeVisibleIndicatorsNumber(increment:int) : void
       {
-         this.§_-8o§ += increment;
-         this.§_-P4§ = true;
+         this.name_8o += increment;
+         this.name_P4 = true;
       }
       
       private function updateConfiguration() : void
@@ -457,7 +457,7 @@ package alternativa.tanks.game.usertitle
             this.textureResource.data = this.texture;
             this.sprite.width = width;
             this.sprite.height = height;
-            this.§_-iy§ = this.texture.rect;
+            this.name_iy = this.texture.rect;
             this.markDirty(BIT_LABEL | BIT_HEALTH | BIT_WEAPON | BIT_EFFECTS);
          }
       }
@@ -485,20 +485,20 @@ package alternativa.tanks.game.usertitle
             {
                top += HEALTH_BAR_SPACING_Y;
             }
-            left = this.§_-iy§.width - BAR_WIDTH >> 1;
-            this.§_-f1§ = new ProgressBar(left,top,MAX_PROGRESS,BAR_WIDTH,teamTypeSkin[this.teamType]);
+            left = this.name_iy.width - BAR_WIDTH >> 1;
+            this.name_f1 = new ProgressBar(left,top,MAX_PROGRESS,BAR_WIDTH,teamTypeSkin[this.teamType]);
             top += BAR_HEIGHT;
             if(this.hasAllFlags(BIT_WEAPON))
             {
                top += WEAPON_BAR_SPACING_Y;
-               this.§_-ie§ = new ProgressBar(left,top,MAX_PROGRESS,BAR_WIDTH,ProgressBarSkin.WEAPONBAR);
+               this.name_ie = new ProgressBar(left,top,MAX_PROGRESS,BAR_WIDTH,ProgressBarSkin.WEAPONBAR);
                top += BAR_HEIGHT;
             }
          }
          if(this.hasAllFlags(BIT_EFFECTS))
          {
             top += EFFECTS_SPACING_Y;
-            this.§_-oS§ = top;
+            this.name_oS = top;
             this.createEffectsIndicators();
          }
       }
@@ -535,7 +535,7 @@ package alternativa.tanks.game.usertitle
       {
          var clientLog:IClientLog = null;
          var tmpBitmapData:BitmapData = this.texture.clone();
-         tmpBitmapData.fillRect(this.§_-iy§,0);
+         tmpBitmapData.fillRect(this.name_iy,0);
          var labelWidth:int = RANK_ICON_SIZE + LABEL_SPACING + this.label.textWidth;
          var left:int = tmpBitmapData.width - labelWidth >> 1;
          matrix.tx = left;
@@ -550,27 +550,27 @@ package alternativa.tanks.game.usertitle
          var skin:ProgressBarSkin = teamTypeSkin[this.teamType];
          this.label.textColor = skin.color;
          tmpBitmapData.draw(this.label.getLabel(),matrix,null,null,null,true);
-         this.texture.applyFilter(tmpBitmapData,this.§_-iy§,new Point(),filter);
+         this.texture.applyFilter(tmpBitmapData,this.name_iy,new Point(),filter);
          tmpBitmapData.dispose();
       }
       
       private function createEffectsIndicators() : void
       {
          var indicatorType:int = 0;
-         if(this.§_-os§ != null)
+         if(this.name_os != null)
          {
             return;
          }
-         this.§_-os§ = new Vector.<EffectIndicator>();
+         this.name_os = new Vector.<EffectIndicator>();
          for each(indicatorType in indicatorTypes)
          {
             if(indicatorType == EffectIndicator.TYPE_HEALTH)
             {
-               this.§_-os§.push(new EffectIndicator(indicatorType,100000,this,300,0));
+               this.name_os.push(new EffectIndicator(indicatorType,100000,this,300,0));
             }
             else
             {
-               this.§_-os§.push(new EffectIndicator(indicatorType,EFFECT_WARNING_TIME,this,300,30));
+               this.name_os.push(new EffectIndicator(indicatorType,EFFECT_WARNING_TIME,this,300,30));
             }
          }
       }
@@ -580,12 +580,12 @@ package alternativa.tanks.game.usertitle
          var len:int = 0;
          var i:int = 0;
          var indicator:EffectIndicator = null;
-         if(this.§_-os§ != null)
+         if(this.name_os != null)
          {
-            len = int(this.§_-os§.length);
+            len = int(this.name_os.length);
             for(i = 0; i < len; )
             {
-               indicator = this.§_-os§[i];
+               indicator = this.name_os[i];
                if(indicator.effectId == effectId)
                {
                   return indicator;

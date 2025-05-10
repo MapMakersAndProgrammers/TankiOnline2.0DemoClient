@@ -4,7 +4,7 @@ package alternativa.physics.constraints
    
    public class Constraint
    {
-      public var §_-CV§:Boolean;
+      public var name_CV:Boolean;
       
       public var world:PhysicsScene;
       

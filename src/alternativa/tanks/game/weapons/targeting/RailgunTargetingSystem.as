@@ -25,7 +25,7 @@ package alternativa.tanks.game.weapons.targeting
       
       private var numRaysDown:int;
       
-      private var §_-Gs§:MultybodyRaycastFilter = new MultybodyRaycastFilter();
+      private var name_Gs:MultybodyRaycastFilter = new MultybodyRaycastFilter();
       
       private var rayHit:RayHit = new RayHit();
       
@@ -86,10 +86,10 @@ package alternativa.tanks.game.weapons.targeting
          var targetValue:Number = NaN;
          var directionValue:Number = 0;
          var firstTarget:Boolean = true;
-         this.§_-Gs§.§_-By§ = new Dictionary();
-         this.§_-Gs§.§_-By§[shooter] = true;
+         this.name_Gs.name_By = new Dictionary();
+         this.name_Gs.name_By[shooter] = true;
          this.origin.copy(barrelOrigin);
-         while(this.collisionDetector.raycast(this.origin,barrelDirection,this.COLLISION_MASK,maxDistance,this.§_-Gs§,this.rayHit))
+         while(this.collisionDetector.raycast(this.origin,barrelDirection,this.COLLISION_MASK,maxDistance,this.name_Gs,this.rayHit))
          {
             body = this.rayHit.primitive.body;
             if(body == null)
@@ -111,10 +111,10 @@ package alternativa.tanks.game.weapons.targeting
                firstTarget = false;
             }
             directionValue += targetValue;
-            this.§_-Gs§.§_-By§[body] = true;
+            this.name_Gs.name_By[body] = true;
             this.origin.copy(this.rayHit.position);
          }
-         this.§_-Gs§.§_-By§ = null;
+         this.name_Gs.name_By = null;
          return directionValue;
       }
    }

@@ -6,33 +6,33 @@ package alternativa.osgi.service.network
    {
       private static const SHARED_OBJECT_NAME:String = "connection";
       
-      private var §_-oQ§:String;
+      private var name_oQ:String;
       
-      private var §_-O7§:Vector.<int>;
+      private var name_O7:Vector.<int>;
       
-      private var §_-5u§:String;
+      private var name_5u:String;
       
       public function NetworkService(controlServerAddress:String, controlServerPorts:Vector.<int>, resourcesRootUrl:String)
       {
          super();
-         this.§_-oQ§ = controlServerAddress;
-         this.§_-O7§ = controlServerPorts;
-         this.§_-5u§ = resourcesRootUrl;
+         this.name_oQ = controlServerAddress;
+         this.name_O7 = controlServerPorts;
+         this.name_5u = resourcesRootUrl;
       }
       
       public function get controlServerAddress() : String
       {
-         return this.§_-oQ§;
+         return this.name_oQ;
       }
       
       public function get controlServerPorts() : Vector.<int>
       {
-         return this.§_-O7§;
+         return this.name_O7;
       }
       
       public function get resourcesRootUrl() : String
       {
-         return this.§_-5u§;
+         return this.name_5u;
       }
       
       public function getLastPort(host:String) : int

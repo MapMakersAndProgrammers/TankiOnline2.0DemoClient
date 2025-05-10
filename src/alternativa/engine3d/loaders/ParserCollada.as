@@ -24,9 +24,9 @@ package alternativa.engine3d.loaders
       
       public var materials:Vector.<ParserMaterial>;
       
-      public var §_-eL§:Vector.<AnimationClip>;
+      public var name_eL:Vector.<AnimationClip>;
       
-      private var §_-W6§:Dictionary;
+      private var name_W6:Dictionary;
       
       public function ParserCollada()
       {
@@ -48,7 +48,7 @@ package alternativa.engine3d.loaders
          var t:int = 0;
          var numTracks:int = 0;
          var track:Track = null;
-         for(var i:int = 0,var count:int = int(nodes.length); i < count; i++)
+         for(var i:int = 0, count:int = int(nodes.length); i < count; i++)
          {
             node = nodes[i];
             animation = node.parseAnimation();
@@ -73,14 +73,14 @@ package alternativa.engine3d.loaders
          this.objects = null;
          this.hierarchy = null;
          this.lights = null;
-         this.§_-eL§ = null;
+         this.name_eL = null;
          this.materials = null;
-         this.§_-W6§ = null;
+         this.name_W6 = null;
       }
       
       public function getObjectLayer(object:Object3D) : String
       {
-         return this.§_-W6§[object];
+         return this.name_W6[object];
       }
       
       private function init(data:XML, units:Number) : DaeDocument
@@ -89,9 +89,9 @@ package alternativa.engine3d.loaders
          this.objects = new Vector.<Object3D>();
          this.hierarchy = new Vector.<Object3D>();
          this.lights = new Vector.<Light3D>();
-         this.§_-eL§ = new Vector.<AnimationClip>();
+         this.name_eL = new Vector.<AnimationClip>();
          this.materials = new Vector.<ParserMaterial>();
-         this.§_-W6§ = new Dictionary(true);
+         this.name_W6 = new Dictionary(true);
          return new DaeDocument(data,units);
       }
       
@@ -129,11 +129,11 @@ package alternativa.engine3d.loaders
          }
          if(animatedObject.animation != null)
          {
-            this.§_-eL§.push(animatedObject.animation);
+            this.name_eL.push(animatedObject.animation);
          }
          if(Boolean(layer))
          {
-            this.§_-W6§[object] = layer;
+            this.name_W6[object] = layer;
          }
          return object;
       }
@@ -152,7 +152,7 @@ package alternativa.engine3d.loaders
       {
          var child:DaeNode = null;
          var nodes:Vector.<DaeNode> = node.nodes;
-         for(var i:int = 0,var count:int = int(nodes.length); i < count; )
+         for(var i:int = 0, count:int = int(nodes.length); i < count; )
          {
             child = nodes[i];
             child.parse();
@@ -173,7 +173,7 @@ package alternativa.engine3d.loaders
       {
          var node:DaeNode = null;
          var container:Object3D = null;
-         for(var i:int = 0,var count:int = int(nodes.length); i < count; )
+         for(var i:int = 0, count:int = int(nodes.length); i < count; )
          {
             node = nodes[i];
             node.parse();
@@ -301,7 +301,7 @@ package alternativa.engine3d.loaders
          var basePart:String = null;
          var baseParts:Array = base.split("/");
          var parts:Array = path.split("/");
-         for(var i:int = 0,var count:int = int(parts.length); i < count; i++)
+         for(var i:int = 0, count:int = int(parts.length); i < count; i++)
          {
             part = parts[i];
             if(part == "..")
@@ -425,9 +425,9 @@ package alternativa.engine3d.loaders
       {
          var animation:AnimationClip = null;
          var objects:Array = null;
-         for each(animation in this.§_-eL§)
+         for each(animation in this.name_eL)
          {
-            objects = animation.alternativa3d::_-Kq;
+            objects = animation.name_Kq;
             if(objects.indexOf(object) >= 0)
             {
                return animation;

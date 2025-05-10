@@ -5,71 +5,71 @@ package versions.version2.a3d.objects
    
    public class A3D2Sprite
    {
-      private var §_-CL§:Boolean;
+      private var name_CL:Boolean;
       
-      private var §_-jD§:int;
+      private var name_jD:int;
       
       private var _height:Number;
       
-      private var §_-3I§:Long;
+      private var name_3I:Long;
       
-      private var §_-pS§:Id;
+      private var name_pS:Id;
       
       private var _name:String;
       
-      private var §_-4T§:Number;
+      private var name_4T:Number;
       
-      private var §_-TP§:Number;
+      private var name_TP:Number;
       
-      private var §_-fP§:Long;
+      private var name_fP:Long;
       
-      private var §_-2t§:Boolean;
+      private var name_2t:Boolean;
       
-      private var §_-Vd§:Number;
+      private var name_Vd:Number;
       
-      private var §_-bP§:A3D2Transform;
+      private var name_bP:A3D2Transform;
       
-      private var §_-1u§:Boolean;
+      private var name_1u:Boolean;
       
-      private var §_-qj§:Number;
+      private var name_qj:Number;
       
       public function A3D2Sprite(alwaysOnTop:Boolean, boundBoxId:int, height:Number, id:Long, materialId:Id, name:String, originX:Number, originY:Number, parentId:Long, perspectiveScale:Boolean, rotation:Number, transform:A3D2Transform, visible:Boolean, width:Number)
       {
          super();
-         this.§_-CL§ = alwaysOnTop;
-         this.§_-jD§ = boundBoxId;
+         this.name_CL = alwaysOnTop;
+         this.name_jD = boundBoxId;
          this._height = height;
-         this.§_-3I§ = id;
-         this.§_-pS§ = materialId;
+         this.name_3I = id;
+         this.name_pS = materialId;
          this._name = name;
-         this.§_-4T§ = originX;
-         this.§_-TP§ = originY;
-         this.§_-fP§ = parentId;
-         this.§_-2t§ = perspectiveScale;
-         this.§_-Vd§ = rotation;
-         this.§_-bP§ = transform;
-         this.§_-1u§ = visible;
-         this.§_-qj§ = width;
+         this.name_4T = originX;
+         this.name_TP = originY;
+         this.name_fP = parentId;
+         this.name_2t = perspectiveScale;
+         this.name_Vd = rotation;
+         this.name_bP = transform;
+         this.name_1u = visible;
+         this.name_qj = width;
       }
       
       public function get alwaysOnTop() : Boolean
       {
-         return this.§_-CL§;
+         return this.name_CL;
       }
       
       public function set alwaysOnTop(value:Boolean) : void
       {
-         this.§_-CL§ = value;
+         this.name_CL = value;
       }
       
       public function get boundBoxId() : int
       {
-         return this.§_-jD§;
+         return this.name_jD;
       }
       
       public function set boundBoxId(value:int) : void
       {
-         this.§_-jD§ = value;
+         this.name_jD = value;
       }
       
       public function get height() : Number
@@ -84,22 +84,22 @@ package versions.version2.a3d.objects
       
       public function get id() : Long
       {
-         return this.§_-3I§;
+         return this.name_3I;
       }
       
       public function set id(value:Long) : void
       {
-         this.§_-3I§ = value;
+         this.name_3I = value;
       }
       
       public function get materialId() : Id
       {
-         return this.§_-pS§;
+         return this.name_pS;
       }
       
       public function set materialId(value:Id) : void
       {
-         this.§_-pS§ = value;
+         this.name_pS = value;
       }
       
       public function get name() : String
@@ -114,82 +114,82 @@ package versions.version2.a3d.objects
       
       public function get originX() : Number
       {
-         return this.§_-4T§;
+         return this.name_4T;
       }
       
       public function set originX(value:Number) : void
       {
-         this.§_-4T§ = value;
+         this.name_4T = value;
       }
       
       public function get originY() : Number
       {
-         return this.§_-TP§;
+         return this.name_TP;
       }
       
       public function set originY(value:Number) : void
       {
-         this.§_-TP§ = value;
+         this.name_TP = value;
       }
       
       public function get parentId() : Long
       {
-         return this.§_-fP§;
+         return this.name_fP;
       }
       
       public function set parentId(value:Long) : void
       {
-         this.§_-fP§ = value;
+         this.name_fP = value;
       }
       
       public function get perspectiveScale() : Boolean
       {
-         return this.§_-2t§;
+         return this.name_2t;
       }
       
       public function set perspectiveScale(value:Boolean) : void
       {
-         this.§_-2t§ = value;
+         this.name_2t = value;
       }
       
       public function get rotation() : Number
       {
-         return this.§_-Vd§;
+         return this.name_Vd;
       }
       
       public function set rotation(value:Number) : void
       {
-         this.§_-Vd§ = value;
+         this.name_Vd = value;
       }
       
       public function get transform() : A3D2Transform
       {
-         return this.§_-bP§;
+         return this.name_bP;
       }
       
       public function set transform(value:A3D2Transform) : void
       {
-         this.§_-bP§ = value;
+         this.name_bP = value;
       }
       
       public function get visible() : Boolean
       {
-         return this.§_-1u§;
+         return this.name_1u;
       }
       
       public function set visible(value:Boolean) : void
       {
-         this.§_-1u§ = value;
+         this.name_1u = value;
       }
       
       public function get width() : Number
       {
-         return this.§_-qj§;
+         return this.name_qj;
       }
       
       public function set width(value:Number) : void
       {
-         this.§_-qj§ = value;
+         this.name_qj = value;
       }
       
       public function toString() : String

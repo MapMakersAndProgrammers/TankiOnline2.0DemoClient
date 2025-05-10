@@ -80,22 +80,22 @@ package alternativa.engine3d.lights
          var w:Number = (maxX - minX) * 0.5;
          var l:Number = (maxY - minY) * 0.5;
          var h:Number = (maxZ - minZ) * 0.5;
-         var ax:Number = alternativa3d::_-cl.a * w;
-         var ay:Number = alternativa3d::_-cl.e * w;
-         var az:Number = alternativa3d::_-cl.i * w;
-         var bx:Number = alternativa3d::_-cl.b * l;
-         var by:Number = alternativa3d::_-cl.f * l;
-         var bz:Number = alternativa3d::_-cl.j * l;
-         var cx:Number = alternativa3d::_-cl.c * h;
-         var cy:Number = alternativa3d::_-cl.g * h;
-         var cz:Number = alternativa3d::_-cl.k * h;
+         var ax:Number = name_cl.a * w;
+         var ay:Number = name_cl.e * w;
+         var az:Number = name_cl.i * w;
+         var bx:Number = name_cl.b * l;
+         var by:Number = name_cl.f * l;
+         var bz:Number = name_cl.j * l;
+         var cx:Number = name_cl.c * h;
+         var cy:Number = name_cl.g * h;
+         var cz:Number = name_cl.k * h;
          var objectBB:BoundBox = targetObject.boundBox;
          var hw:Number = (objectBB.maxX - objectBB.minX) * 0.5;
          var hl:Number = (objectBB.maxY - objectBB.minY) * 0.5;
          var hh:Number = (objectBB.maxZ - objectBB.minZ) * 0.5;
-         var dx:Number = alternativa3d::_-cl.a * (minX + w) + alternativa3d::_-cl.b * (minY + l) + alternativa3d::_-cl.c * (minZ + h) + alternativa3d::_-cl.d - objectBB.minX - hw;
-         var dy:Number = alternativa3d::_-cl.e * (minX + w) + alternativa3d::_-cl.f * (minY + l) + alternativa3d::_-cl.g * (minZ + h) + alternativa3d::_-cl.h - objectBB.minY - hl;
-         var dz:Number = alternativa3d::_-cl.i * (minX + w) + alternativa3d::_-cl.j * (minY + l) + alternativa3d::_-cl.k * (minZ + h) + alternativa3d::_-cl.l - objectBB.minZ - hh;
+         var dx:Number = name_cl.a * (minX + w) + name_cl.b * (minY + l) + name_cl.c * (minZ + h) + name_cl.d - objectBB.minX - hw;
+         var dy:Number = name_cl.e * (minX + w) + name_cl.f * (minY + l) + name_cl.g * (minZ + h) + name_cl.h - objectBB.minY - hl;
+         var dz:Number = name_cl.i * (minX + w) + name_cl.j * (minY + l) + name_cl.k * (minZ + h) + name_cl.l - objectBB.minZ - hh;
          sum = 0;
          if(ax >= 0)
          {
@@ -208,7 +208,7 @@ package alternativa.engine3d.lights
             return false;
          }
          sum = 0;
-         pro = alternativa3d::_-cl.a * ax + alternativa3d::_-cl.e * ay + alternativa3d::_-cl.i * az;
+         pro = name_cl.a * ax + name_cl.e * ay + name_cl.i * az;
          if(pro >= 0)
          {
             sum += pro;
@@ -217,7 +217,7 @@ package alternativa.engine3d.lights
          {
             sum -= pro;
          }
-         pro = alternativa3d::_-cl.a * bx + alternativa3d::_-cl.e * by + alternativa3d::_-cl.i * bz;
+         pro = name_cl.a * bx + name_cl.e * by + name_cl.i * bz;
          if(pro >= 0)
          {
             sum += pro;
@@ -226,7 +226,7 @@ package alternativa.engine3d.lights
          {
             sum -= pro;
          }
-         pro = alternativa3d::_-cl.a * cx + alternativa3d::_-cl.e * cy + alternativa3d::_-cl.i * cz;
+         pro = name_cl.a * cx + name_cl.e * cy + name_cl.i * cz;
          if(pro >= 0)
          {
             sum += pro;
@@ -235,31 +235,31 @@ package alternativa.engine3d.lights
          {
             sum -= pro;
          }
-         if(alternativa3d::_-cl.a >= 0)
+         if(name_cl.a >= 0)
          {
-            sum += alternativa3d::_-cl.a * hw;
+            sum += name_cl.a * hw;
          }
          else
          {
-            sum -= alternativa3d::_-cl.a * hw;
+            sum -= name_cl.a * hw;
          }
-         if(alternativa3d::_-cl.e >= 0)
+         if(name_cl.e >= 0)
          {
-            sum += alternativa3d::_-cl.e * hl;
+            sum += name_cl.e * hl;
          }
          else
          {
-            sum -= alternativa3d::_-cl.e * hl;
+            sum -= name_cl.e * hl;
          }
-         if(alternativa3d::_-cl.i >= 0)
+         if(name_cl.i >= 0)
          {
-            sum += alternativa3d::_-cl.i * hh;
+            sum += name_cl.i * hh;
          }
          else
          {
-            sum -= alternativa3d::_-cl.i * hh;
+            sum -= name_cl.i * hh;
          }
-         pro = alternativa3d::_-cl.a * dx + alternativa3d::_-cl.e * dy + alternativa3d::_-cl.i * dz;
+         pro = name_cl.a * dx + name_cl.e * dy + name_cl.i * dz;
          if(pro >= 0)
          {
             sum -= pro;
@@ -273,7 +273,7 @@ package alternativa.engine3d.lights
             return false;
          }
          sum = 0;
-         pro = alternativa3d::_-cl.b * ax + alternativa3d::_-cl.f * ay + alternativa3d::_-cl.j * az;
+         pro = name_cl.b * ax + name_cl.f * ay + name_cl.j * az;
          if(pro >= 0)
          {
             sum += pro;
@@ -282,7 +282,7 @@ package alternativa.engine3d.lights
          {
             sum -= pro;
          }
-         pro = alternativa3d::_-cl.b * bx + alternativa3d::_-cl.f * by + alternativa3d::_-cl.j * bz;
+         pro = name_cl.b * bx + name_cl.f * by + name_cl.j * bz;
          if(pro >= 0)
          {
             sum += pro;
@@ -291,7 +291,7 @@ package alternativa.engine3d.lights
          {
             sum -= pro;
          }
-         pro = alternativa3d::_-cl.b * cx + alternativa3d::_-cl.f * cy + alternativa3d::_-cl.j * cz;
+         pro = name_cl.b * cx + name_cl.f * cy + name_cl.j * cz;
          if(pro >= 0)
          {
             sum += pro;
@@ -300,31 +300,31 @@ package alternativa.engine3d.lights
          {
             sum -= pro;
          }
-         if(alternativa3d::_-cl.b >= 0)
+         if(name_cl.b >= 0)
          {
-            sum += alternativa3d::_-cl.b * hw;
+            sum += name_cl.b * hw;
          }
          else
          {
-            sum -= alternativa3d::_-cl.b * hw;
+            sum -= name_cl.b * hw;
          }
-         if(alternativa3d::_-cl.f >= 0)
+         if(name_cl.f >= 0)
          {
-            sum += alternativa3d::_-cl.f * hl;
+            sum += name_cl.f * hl;
          }
          else
          {
-            sum -= alternativa3d::_-cl.f * hl;
+            sum -= name_cl.f * hl;
          }
-         if(alternativa3d::_-cl.j >= 0)
+         if(name_cl.j >= 0)
          {
-            sum += alternativa3d::_-cl.j * hh;
+            sum += name_cl.j * hh;
          }
          else
          {
-            sum -= alternativa3d::_-cl.j * hh;
+            sum -= name_cl.j * hh;
          }
-         pro = alternativa3d::_-cl.b * dx + alternativa3d::_-cl.f * dy + alternativa3d::_-cl.j * dz;
+         pro = name_cl.b * dx + name_cl.f * dy + name_cl.j * dz;
          if(pro >= 0)
          {
             sum -= pro;
@@ -335,7 +335,7 @@ package alternativa.engine3d.lights
             return false;
          }
          sum = 0;
-         pro = alternativa3d::_-cl.c * ax + alternativa3d::_-cl.g * ay + alternativa3d::_-cl.k * az;
+         pro = name_cl.c * ax + name_cl.g * ay + name_cl.k * az;
          if(pro >= 0)
          {
             sum += pro;
@@ -344,7 +344,7 @@ package alternativa.engine3d.lights
          {
             sum -= pro;
          }
-         pro = alternativa3d::_-cl.c * bx + alternativa3d::_-cl.g * by + alternativa3d::_-cl.k * bz;
+         pro = name_cl.c * bx + name_cl.g * by + name_cl.k * bz;
          if(pro >= 0)
          {
             sum += pro;
@@ -353,7 +353,7 @@ package alternativa.engine3d.lights
          {
             sum -= pro;
          }
-         pro = alternativa3d::_-cl.c * cx + alternativa3d::_-cl.g * cy + alternativa3d::_-cl.k * cz;
+         pro = name_cl.c * cx + name_cl.g * cy + name_cl.k * cz;
          if(pro >= 0)
          {
             sum += pro;
@@ -362,31 +362,31 @@ package alternativa.engine3d.lights
          {
             sum -= pro;
          }
-         if(alternativa3d::_-cl.c >= 0)
+         if(name_cl.c >= 0)
          {
-            sum += alternativa3d::_-cl.c * hw;
+            sum += name_cl.c * hw;
          }
          else
          {
-            sum -= alternativa3d::_-cl.c * hw;
+            sum -= name_cl.c * hw;
          }
-         if(alternativa3d::_-cl.g >= 0)
+         if(name_cl.g >= 0)
          {
-            sum += alternativa3d::_-cl.g * hl;
+            sum += name_cl.g * hl;
          }
          else
          {
-            sum -= alternativa3d::_-cl.g * hl;
+            sum -= name_cl.g * hl;
          }
-         if(alternativa3d::_-cl.k >= 0)
+         if(name_cl.k >= 0)
          {
-            sum += alternativa3d::_-cl.k * hh;
+            sum += name_cl.k * hh;
          }
          else
          {
-            sum -= alternativa3d::_-cl.k * hh;
+            sum -= name_cl.k * hh;
          }
-         pro = alternativa3d::_-cl.c * dx + alternativa3d::_-cl.g * dy + alternativa3d::_-cl.k * dz;
+         pro = name_cl.c * dx + name_cl.g * dy + name_cl.k * dz;
          if(pro >= 0)
          {
             sum -= pro;

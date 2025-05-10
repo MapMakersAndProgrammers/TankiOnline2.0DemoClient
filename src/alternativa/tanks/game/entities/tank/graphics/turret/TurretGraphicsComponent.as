@@ -24,13 +24,13 @@ package alternativa.tanks.game.entities.tank.graphics.turret
       
       private var turret:TankTurret;
       
-      private var §_-Pf§:Mesh;
+      private var name_Pf:Mesh;
       
-      private var §_-a§:TankPartMaterials;
+      private var name_a:TankPartMaterials;
       
       private var physicsComponent:ITurretPhysicsComponent;
       
-      private var §_-Gf§:TextureMaterial;
+      private var name_Gf:TextureMaterial;
       
       private var renderSystem:RenderSystem;
       
@@ -42,7 +42,7 @@ package alternativa.tanks.game.entities.tank.graphics.turret
       
       public function getObject3D() : Object3D
       {
-         return this.§_-Pf§;
+         return this.name_Pf;
       }
       
       override public function initComponent() : void
@@ -60,7 +60,7 @@ package alternativa.tanks.game.entities.tank.graphics.turret
             trackedChassisGraphicsComponent = TrackedChassisGraphicsComponent(entity.getComponent(TrackedChassisGraphicsComponent));
             if(trackedChassisGraphicsComponent != null)
             {
-               trackedChassisGraphicsComponent.hullMesh.addChild(this.§_-Pf§);
+               trackedChassisGraphicsComponent.hullMesh.addChild(this.name_Pf);
             }
          }
       }
@@ -83,10 +83,10 @@ package alternativa.tanks.game.entities.tank.graphics.turret
             return;
          }
          this.physicsComponent.getSkinMountPoint(vector);
-         this.§_-Pf§.x = vector.x;
-         this.§_-Pf§.y = vector.y;
-         this.§_-Pf§.z = vector.z;
-         this.§_-Pf§.rotationZ = this.physicsComponent.getInterpolatedTurretDirection();
+         this.name_Pf.x = vector.x;
+         this.name_Pf.y = vector.y;
+         this.name_Pf.z = vector.z;
+         this.name_Pf.rotationZ = this.physicsComponent.getInterpolatedTurretDirection();
       }
       
       public function setMaterial(materialType:MaterialType) : void
@@ -94,19 +94,19 @@ package alternativa.tanks.game.entities.tank.graphics.turret
          switch(materialType)
          {
             case MaterialType.DEAD:
-               this.§_-a§.deadMaterial.alpha = 1;
-               this.§_-Pf§.setMaterialToAllSurfaces(this.§_-a§.deadMaterial);
-               this.§_-Gf§ = this.§_-a§.deadMaterial;
+               this.name_a.deadMaterial.alpha = 1;
+               this.name_Pf.setMaterialToAllSurfaces(this.name_a.deadMaterial);
+               this.name_Gf = this.name_a.deadMaterial;
                break;
             case MaterialType.ACTIVATING:
-               this.§_-a§.normalMaterial.alpha = 0.5;
-               this.§_-Pf§.setMaterialToAllSurfaces(this.§_-a§.normalMaterial);
-               this.§_-Gf§ = this.§_-a§.normalMaterial;
+               this.name_a.normalMaterial.alpha = 0.5;
+               this.name_Pf.setMaterialToAllSurfaces(this.name_a.normalMaterial);
+               this.name_Gf = this.name_a.normalMaterial;
                break;
             case MaterialType.NORMAL:
-               this.§_-a§.normalMaterial.alpha = 1;
-               this.§_-Pf§.setMaterialToAllSurfaces(this.§_-a§.normalMaterial);
-               this.§_-Gf§ = this.§_-a§.normalMaterial;
+               this.name_a.normalMaterial.alpha = 1;
+               this.name_Pf.setMaterialToAllSurfaces(this.name_a.normalMaterial);
+               this.name_Gf = this.name_a.normalMaterial;
          }
       }
       
@@ -120,7 +120,7 @@ package alternativa.tanks.game.entities.tank.graphics.turret
       
       public function setAlpha(value:Number) : void
       {
-         this.§_-Gf§.alpha = value;
+         this.name_Gf.alpha = value;
       }
       
       public function setTurret(value:TankTurret) : void
@@ -131,27 +131,27 @@ package alternativa.tanks.game.entities.tank.graphics.turret
          }
          if(this.turret != null)
          {
-            this.§_-Pf§.alternativa3d::removeFromParent();
+            this.name_Pf.alternativa3d::removeFromParent();
          }
          this.turret = value;
          if(this.turret != null)
          {
-            this.§_-Pf§ = new Mesh();
-            this.§_-Pf§.geometry = this.turret.geometry;
-            this.§_-Pf§.addSurface(this.§_-Gf§,0,this.turret.geometry.numTriangles);
-            this.§_-Pf§.calculateBoundBox();
+            this.name_Pf = new Mesh();
+            this.name_Pf.geometry = this.turret.geometry;
+            this.name_Pf.addSurface(this.name_Gf,0,this.turret.geometry.numTriangles);
+            this.name_Pf.calculateBoundBox();
             this.addToChassisSkin();
          }
       }
       
       public function setTurretMaterials(materials:TankPartMaterials) : void
       {
-         this.§_-a§ = materials;
+         this.name_a = materials;
       }
       
       public function get turretMesh() : Mesh
       {
-         return this.§_-Pf§;
+         return this.name_Pf;
       }
    }
 }

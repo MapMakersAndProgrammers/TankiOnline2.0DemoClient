@@ -21,17 +21,17 @@ package alternativa.engine3d.resources
    {
       alternativa3d var _vertexStreams:Vector.<VertexStream> = new Vector.<VertexStream>();
       
-      alternativa3d var §_-EM§:IndexBuffer3D;
+      alternativa3d var name_EM:IndexBuffer3D;
       
       alternativa3d var _numVertices:int;
       
       alternativa3d var _indices:Vector.<uint> = new Vector.<uint>();
       
-      alternativa3d var §_-GM§:Vector.<VertexStream> = new Vector.<VertexStream>();
+      alternativa3d var name_GM:Vector.<VertexStream> = new Vector.<VertexStream>();
       
       alternativa3d var _attributesOffsets:Vector.<int> = new Vector.<int>();
       
-      private var §_-QD§:Vector.<int> = new Vector.<int>();
+      private var name_QD:Vector.<int> = new Vector.<int>();
       
       public function Geometry(numVertices:int = 0)
       {
@@ -102,7 +102,7 @@ package alternativa.engine3d.resources
             {
                if(attribute != 0)
                {
-                  if(attribute < this.alternativa3d::_-GM.length && this.alternativa3d::_-GM[attribute] != null)
+                  if(attribute < this.name_GM.length && this.name_GM[attribute] != null)
                   {
                      throw new Error("Attribute " + attribute + " already used in this geometry.");
                   }
@@ -111,16 +111,16 @@ package alternativa.engine3d.resources
                   {
                      throw new Error("Standard attributes must be predefined size.");
                   }
-                  if(this.alternativa3d::_-GM.length < attribute)
+                  if(this.name_GM.length < attribute)
                   {
-                     this.alternativa3d::_-GM.length = attribute + 1;
+                     this.name_GM.length = attribute + 1;
                      this.alternativa3d::_attributesOffsets.length = attribute + 1;
-                     this.§_-QD§.length = attribute + 1;
+                     this.name_QD.length = attribute + 1;
                   }
                   startIndex = i - stride;
-                  this.alternativa3d::_-GM[attribute] = vBuffer;
+                  this.name_GM[attribute] = vBuffer;
                   this.alternativa3d::_attributesOffsets[attribute] = startIndex;
-                  this.§_-QD§[attribute] = stride;
+                  this.name_QD[attribute] = stride;
                }
                stride = 1;
             }
@@ -150,13 +150,13 @@ package alternativa.engine3d.resources
       
       public function hasAttribute(attribute:uint) : Boolean
       {
-         return attribute < this.alternativa3d::_-GM.length && this.alternativa3d::_-GM[attribute] != null;
+         return attribute < this.name_GM.length && this.name_GM[attribute] != null;
       }
       
       public function findVertexStreamByAttribute(attribute:uint) : int
       {
          var i:int = 0;
-         var vBuffer:VertexStream = attribute < this.alternativa3d::_-GM.length ? this.alternativa3d::_-GM[attribute] : null;
+         var vBuffer:VertexStream = attribute < this.name_GM.length ? this.name_GM[attribute] : null;
          if(vBuffer != null)
          {
             for(i = 0; i < this.alternativa3d::_vertexStreams.length; )
@@ -173,7 +173,7 @@ package alternativa.engine3d.resources
       
       public function getAttributeOffset(attribute:uint) : int
       {
-         var vBuffer:VertexStream = attribute < this.alternativa3d::_-GM.length ? this.alternativa3d::_-GM[attribute] : null;
+         var vBuffer:VertexStream = attribute < this.name_GM.length ? this.name_GM[attribute] : null;
          if(vBuffer == null)
          {
             throw new Error("Attribute not found.");
@@ -185,12 +185,12 @@ package alternativa.engine3d.resources
       {
          var srcIndex:int = 0;
          var j:int = 0;
-         var vBuffer:VertexStream = attribute < this.alternativa3d::_-GM.length ? this.alternativa3d::_-GM[attribute] : null;
+         var vBuffer:VertexStream = attribute < this.name_GM.length ? this.name_GM[attribute] : null;
          if(vBuffer == null)
          {
             throw new Error("Attribute not found.");
          }
-         var stride:int = this.§_-QD§[attribute];
+         var stride:int = this.name_QD[attribute];
          if(values == null || values.length != stride * this.alternativa3d::_numVertices)
          {
             throw new Error("Values count must be the same.");
@@ -213,13 +213,13 @@ package alternativa.engine3d.resources
       {
          var dstIndex:int = 0;
          var j:int = 0;
-         var vBuffer:VertexStream = attribute < this.alternativa3d::_-GM.length ? this.alternativa3d::_-GM[attribute] : null;
+         var vBuffer:VertexStream = attribute < this.name_GM.length ? this.name_GM[attribute] : null;
          if(vBuffer == null)
          {
             throw new Error("Attribute not found.");
          }
          var data:ByteArray = vBuffer.data;
-         var stride:int = this.§_-QD§[attribute];
+         var stride:int = this.name_QD[attribute];
          var result:Vector.<Number> = new Vector.<Number>(stride * this.alternativa3d::_numVertices);
          var numMappings:int = int(vBuffer.attributes.length);
          var offset:int = this.alternativa3d::_attributesOffsets[attribute];
@@ -237,7 +237,7 @@ package alternativa.engine3d.resources
       
       override public function get isUploaded() : Boolean
       {
-         return this.alternativa3d::_-EM != null;
+         return this.name_EM != null;
       }
       
       override public function upload(context3D:Context3D) : void
@@ -247,10 +247,10 @@ package alternativa.engine3d.resources
          var numMappings:int = 0;
          var data:ByteArray = null;
          var numBuffers:int = int(this.alternativa3d::_vertexStreams.length);
-         if(this.alternativa3d::_-EM != null)
+         if(this.name_EM != null)
          {
-            this.alternativa3d::_-EM.dispose();
-            this.alternativa3d::_-EM = null;
+            this.name_EM.dispose();
+            this.name_EM = null;
             for(i = 0; i < numBuffers; i++)
             {
                vBuffer = this.alternativa3d::_vertexStreams[i];
@@ -276,8 +276,8 @@ package alternativa.engine3d.resources
             i++;
          }
          var numIndices:int = int(this.alternativa3d::_indices.length);
-         this.alternativa3d::_-EM = context3D.createIndexBuffer(numIndices);
-         this.alternativa3d::_-EM.uploadFromVector(this.alternativa3d::_indices,0,numIndices);
+         this.name_EM = context3D.createIndexBuffer(numIndices);
+         this.name_EM.uploadFromVector(this.alternativa3d::_indices,0,numIndices);
       }
       
       override public function dispose() : void
@@ -285,10 +285,10 @@ package alternativa.engine3d.resources
          var numBuffers:int = 0;
          var i:int = 0;
          var vBuffer:VertexStream = null;
-         if(this.alternativa3d::_-EM != null)
+         if(this.name_EM != null)
          {
-            this.alternativa3d::_-EM.dispose();
-            this.alternativa3d::_-EM = null;
+            this.name_EM.dispose();
+            this.name_EM = null;
             numBuffers = int(this.alternativa3d::_vertexStreams.length);
             for(i = 0; i < numBuffers; i++)
             {
@@ -301,25 +301,25 @@ package alternativa.engine3d.resources
       
       public function updateIndexBufferInContextFromVector(data:Vector.<uint>, startOffset:int, count:int) : void
       {
-         if(this.alternativa3d::_-EM == null)
+         if(this.name_EM == null)
          {
             throw new Error("Geometry must be uploaded.");
          }
-         this.alternativa3d::_-EM.uploadFromVector(data,startOffset,count);
+         this.name_EM.uploadFromVector(data,startOffset,count);
       }
       
       public function updateIndexBufferInContextFromByteArray(data:ByteArray, byteArrayOffset:int, startOffset:int, count:int) : void
       {
-         if(this.alternativa3d::_-EM == null)
+         if(this.name_EM == null)
          {
             throw new Error("Geometry must be uploaded.");
          }
-         this.alternativa3d::_-EM.uploadFromByteArray(data,byteArrayOffset,startOffset,count);
+         this.name_EM.uploadFromByteArray(data,byteArrayOffset,startOffset,count);
       }
       
       public function updateVertexBufferInContextFromVector(index:int, data:Vector.<Number>, startVertex:int, numVertices:int) : void
       {
-         if(this.alternativa3d::_-EM == null)
+         if(this.name_EM == null)
          {
             throw new Error("Geometry must be uploaded.");
          }
@@ -328,7 +328,7 @@ package alternativa.engine3d.resources
       
       public function updateVertexBufferInContextFromByteArray(index:int, data:ByteArray, byteArrayOffset:int, startVertex:int, numVertices:int) : void
       {
-         if(this.alternativa3d::_-EM == null)
+         if(this.name_EM == null)
          {
             throw new Error("Geometry must be uploaded.");
          }
@@ -426,14 +426,14 @@ package alternativa.engine3d.resources
          var minTime:Number = 1e+22;
          var posAttribute:int = int(VertexAttributes.POSITION);
          var uvAttribute:int = int(VertexAttributes.TEXCOORDS[0]);
-         if(VertexAttributes.POSITION >= this.alternativa3d::_-GM.length || (positionStream = this.alternativa3d::_-GM[posAttribute]) == null)
+         if(VertexAttributes.POSITION >= this.name_GM.length || (positionStream = this.name_GM[posAttribute]) == null)
          {
             throw new Error("Raycast require POSITION attribute");
          }
          var positionBuffer:ByteArray = positionStream.data;
          var positionOffset:uint = uint(this.alternativa3d::_attributesOffsets[posAttribute] * 4);
          var stride:uint = positionStream.attributes.length * 4;
-         var hasUV:Boolean = uvAttribute < this.alternativa3d::_-GM.length && (uvStream = this.alternativa3d::_-GM[uvAttribute]) != null;
+         var hasUV:Boolean = uvAttribute < this.name_GM.length && (uvStream = this.name_GM[uvAttribute]) != null;
          if(hasUV)
          {
             uvBuffer = uvStream.data;
@@ -607,9 +607,9 @@ package alternativa.engine3d.resources
       alternativa3d function getVertexBuffer(attribute:int) : VertexBuffer3D
       {
          var stream:VertexStream = null;
-         if(attribute < this.alternativa3d::_-GM.length)
+         if(attribute < this.name_GM.length)
          {
-            stream = this.alternativa3d::_-GM[attribute];
+            stream = this.name_GM[attribute];
             return stream != null ? stream.buffer : null;
          }
          return null;
@@ -623,7 +623,7 @@ package alternativa.engine3d.resources
          var x:Number = NaN;
          var y:Number = NaN;
          var z:Number = NaN;
-         var vBuffer:VertexStream = VertexAttributes.POSITION < this.alternativa3d::_-GM.length ? this.alternativa3d::_-GM[VertexAttributes.POSITION] : null;
+         var vBuffer:VertexStream = VertexAttributes.POSITION < this.name_GM.length ? this.name_GM[VertexAttributes.POSITION] : null;
          if(vBuffer == null)
          {
             throw new Error("Cannot calculate BoundBox without data.");

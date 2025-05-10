@@ -551,7 +551,7 @@ package alternativa.engine3d.core
          var event3D:Event3D = event as Event3D;
          if(event3D != null)
          {
-            event3D.alternativa3d::_-5E = this;
+            event3D.name_5E = this;
          }
          var branch:Vector.<Object3D> = new Vector.<Object3D>();
          var branchLength:int = 0;
@@ -565,8 +565,8 @@ package alternativa.engine3d.core
             object = branch[i];
             if(event3D != null)
             {
-               event3D.alternativa3d::_-Kh = object;
-               event3D.alternativa3d::_-VE = EventPhase.CAPTURING_PHASE;
+               event3D.name_Kh = object;
+               event3D.name_VE = EventPhase.CAPTURING_PHASE;
             }
             if(object.alternativa3d::captureListeners != null)
             {
@@ -587,17 +587,17 @@ package alternativa.engine3d.core
          }
          if(event3D != null)
          {
-            event3D.alternativa3d::_-VE = EventPhase.AT_TARGET;
+            event3D.name_VE = EventPhase.AT_TARGET;
          }
          for(i = 0; i < branchLength; )
          {
             object = branch[i];
             if(event3D != null)
             {
-               event3D.alternativa3d::_-Kh = object;
+               event3D.name_Kh = object;
                if(i > 0)
                {
-                  event3D.alternativa3d::_-VE = EventPhase.BUBBLING_PHASE;
+                  event3D.name_VE = EventPhase.BUBBLING_PHASE;
                }
             }
             if(object.alternativa3d::bubbleListeners != null)
@@ -1164,7 +1164,7 @@ package alternativa.engine3d.core
                         for(i = 0; i < lightsLength; )
                         {
                            light = lights[i];
-                           light.alternativa3d::_-cl.combine(child.alternativa3d::cameraToLocalTransform,light.alternativa3d::localToCameraTransform);
+                           light.name_cl.combine(child.alternativa3d::cameraToLocalTransform,light.alternativa3d::localToCameraTransform);
                            if(light.boundBox == null || light.alternativa3d::checkBound(child))
                            {
                               camera.alternativa3d::childLights[childLightsLength] = light;
@@ -1179,7 +1179,7 @@ package alternativa.engine3d.core
                         for(i = 0; i < lightsLength; )
                         {
                            light = lights[i];
-                           light.alternativa3d::_-cl.combine(child.alternativa3d::cameraToLocalTransform,light.alternativa3d::localToCameraTransform);
+                           light.name_cl.combine(child.alternativa3d::cameraToLocalTransform,light.alternativa3d::localToCameraTransform);
                            i++;
                         }
                         child.alternativa3d::collectDraws(camera,lights,lightsLength);

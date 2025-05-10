@@ -37,7 +37,7 @@ package _codec
          var result:Vector.<Vector.<int>> = new Vector.<Vector.<int>>(length1,true);
          for(var i1:int = 0; i1 < length1; )
          {
-            if(!protocolBuffer.optionalMap.OptionalMap())
+            if(!protocolBuffer.optionalMap.get())
             {
                length2 = LengthCodecHelper.decodeLength(protocolBuffer);
                items2 = new Vector.<int>(length2,true);

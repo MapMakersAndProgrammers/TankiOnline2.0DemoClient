@@ -10,11 +10,11 @@ package alternativa.tanks.config.loaders.tankparts
    {
       public var data:TankPart;
       
-      protected var §_-P9§:String;
+      protected var name_P9:String;
       
       private var files:ByteArrayMap;
       
-      private var §_-e2§:TaskSequence;
+      private var name_e2:TaskSequence;
       
       private var baseUrl:String;
       
@@ -34,16 +34,16 @@ package alternativa.tanks.config.loaders.tankparts
       {
          var _loc2_:XML = null;
          this.files = new ByteArrayMap();
-         this.§_-e2§ = new TaskSequence();
+         this.name_e2 = new TaskSequence();
          var _loc1_:String = this.baseUrl + this.partXML.modelFile[0].toString();
-         this.§_-P9§ = "main." + this.partXML.modelFile[0].@type;
-         this.§_-e2§.addTask(new BlobLoadTask(this.§_-P9§,_loc1_,this.files));
+         this.name_P9 = "main." + this.partXML.modelFile[0].@type;
+         this.name_e2.addTask(new BlobLoadTask(this.name_P9,_loc1_,this.files));
          for each(_loc2_ in this.partXML.texture)
          {
-            this.§_-e2§.addTask(new BlobLoadTask(_loc2_.@id,this.baseUrl + _loc2_.toString(),this.files));
+            this.name_e2.addTask(new BlobLoadTask(_loc2_.@id,this.baseUrl + _loc2_.toString(),this.files));
          }
-         this.§_-e2§.addEventListener(Event.COMPLETE,this.onTexturesLoadingComplete);
-         this.§_-e2§.run();
+         this.name_e2.addEventListener(Event.COMPLETE,this.onTexturesLoadingComplete);
+         this.name_e2.run();
       }
       
       public function parseModelData(param1:ByteArrayMap) : TankPart
@@ -53,7 +53,7 @@ package alternativa.tanks.config.loaders.tankparts
       
       private function onTexturesLoadingComplete(param1:Event) : void
       {
-         this.§_-e2§ = null;
+         this.name_e2 = null;
          this.data = this.parseModelData(this.files);
          this.data.id = this.partXML.id;
          this.partsCollector.push(this.data);

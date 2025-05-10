@@ -80,9 +80,9 @@ package alternativa.engine3d.loaders
       
       private var protocol:Protocol;
       
-      private var §_-gk§:Object;
+      private var name_gk:Object;
       
-      private var §_-Y8§:Boolean = false;
+      private var name_Y8:Boolean = false;
       
       public function ParserA3D()
       {
@@ -279,7 +279,7 @@ package alternativa.engine3d.loaders
          var sourceSurface:A3DSurface = null;
          var destSurface:A3D2Surface = null;
          var dest:Vector.<A3D2Surface> = new Vector.<A3D2Surface>();
-         for(var i:int = 0,var count:int = int(source.length); i < count; i++)
+         for(var i:int = 0, count:int = int(source.length); i < count; i++)
          {
             sourceSurface = source[i];
             destSurface = new A3D2Surface(sourceSurface.indexBegin,idToInt(sourceSurface.materialId),sourceSurface.numTriangles);
@@ -325,7 +325,7 @@ package alternativa.engine3d.loaders
       
       private function init() : void
       {
-         if(this.§_-Y8§)
+         if(this.name_Y8)
          {
             return;
          }
@@ -341,7 +341,7 @@ package alternativa.engine3d.loaders
          new platform.client.a3d.osgi.Activator().start(osgi);
          new platform.clients.fp10.libraries.alternativaprotocol.Activator().start(osgi);
          this.protocol = Protocol(osgi.getService(IProtocol));
-         this.§_-Y8§ = true;
+         this.name_Y8 = true;
       }
       
       private function parseVersion1(input:ByteArray) : void
@@ -422,7 +422,7 @@ package alternativa.engine3d.loaders
          this.objects = new Vector.<Object3D>();
          this.maps = new Dictionary();
          this.materials = new Dictionary();
-         this.§_-gk§ = new Dictionary();
+         this.name_gk = new Dictionary();
          for each(a3DJoint in a3d.joints)
          {
             resJoint = new Joint();
@@ -579,7 +579,7 @@ package alternativa.engine3d.loaders
          var j:int = 0;
          var jcount:int = 0;
          var result:Vector.<Vector.<Joint>> = new Vector.<Vector.<Joint>>();
-         for(var i:int = 0,var count:int = int(source.length); i < count; i++)
+         for(var i:int = 0, count:int = int(source.length); i < count; i++)
          {
             vector = source[i];
             resultVector = new Vector.<Joint>();
@@ -743,7 +743,7 @@ package alternativa.engine3d.loaders
          {
             key += "v" + id.toString();
          }
-         geometry = this.§_-gk§[key];
+         geometry = this.name_gk[key];
          if(geometry != null)
          {
             return geometry;
@@ -796,7 +796,7 @@ package alternativa.engine3d.loaders
             geometry.alternativa3d::_vertexStreams[0].data = byteArray;
          }
          geometry.alternativa3d::_numVertices = buffers.length > 0 ? int(vertexCount) : 0;
-         this.§_-gk§[key] = geometry;
+         this.name_gk[key] = geometry;
          return geometry;
       }
       

@@ -33,17 +33,17 @@ package alternativa.tanks.game
       
       public static const CLEANUP_SYSTEM_PRIORITY:int = 6000;
       
-      public const §_-PI§:TimeStat = new TimeStat(20);
+      public const name_PI:TimeStat = new TimeStat(20);
       
-      private var §_-We§:Stage;
+      private var name_We:Stage;
       
-      private var §_-D9§:Object;
+      private var name_D9:Object;
       
-      private var §_-IC§:IGameLogger = new DummyLogger();
+      private var name_IC:IGameLogger = new DummyLogger();
       
-      private var §_-Uw§:TaskManager;
+      private var name_Uw:TaskManager;
       
-      private var §_-f2§:TimeSystem;
+      private var name_f2:TimeSystem;
       
       private var inputSystem:InputSystem;
       
@@ -57,43 +57,43 @@ package alternativa.tanks.game
       
       private var renderSystem:RenderSystem;
       
-      private var §_-0s§:DeferredCommandsSystem;
+      private var name_0s:DeferredCommandsSystem;
       
-      private var §_-jZ§:Vector.<Entity>;
+      private var name_jZ:Vector.<Entity>;
       
-      private var §_-TA§:int;
+      private var name_TA:int;
       
-      private var §_-XC§:ObjectPoolManager;
+      private var name_XC:ObjectPoolManager;
       
       public function GameKernel(stage:Stage, options:Object)
       {
          super();
-         this.§_-We§ = stage;
-         this.§_-D9§ = options || {};
-         this.§_-jZ§ = new Vector.<Entity>();
-         this.§_-XC§ = new ObjectPoolManager();
-         this.§_-Uw§ = new TaskManager();
-         this.§_-f2§ = new TimeSystem(TIME_SYSTEM_PRIORITY);
-         this.§_-Uw§.addTask(this.§_-f2§);
+         this.name_We = stage;
+         this.name_D9 = options || {};
+         this.name_jZ = new Vector.<Entity>();
+         this.name_XC = new ObjectPoolManager();
+         this.name_Uw = new TaskManager();
+         this.name_f2 = new TimeSystem(TIME_SYSTEM_PRIORITY);
+         this.name_Uw.addTask(this.name_f2);
          this.inputSystem = new InputSystem(INPUT_SYSTEM_PRIORITY,stage);
-         this.§_-Uw§.addTask(this.inputSystem);
+         this.name_Uw.addTask(this.inputSystem);
          this.eventSystem = new EventSystem(EVENT_SYSTEM_PRIORITY);
-         this.§_-Uw§.addTask(this.eventSystem);
+         this.name_Uw.addTask(this.eventSystem);
          this.logicSystem1 = new LogicSystem(LOGIC_SYSTEM_1_PRIORITY,this);
-         this.§_-Uw§.addTask(this.logicSystem1);
+         this.name_Uw.addTask(this.logicSystem1);
          this.logicSystem2 = new LogicSystem(LOGIC_SYSTEM_2_PRIORITY,this);
-         this.§_-Uw§.addTask(this.logicSystem2);
-         this.physicsSystem = new PhysicsSystem(PHYSICS_SYSTEM_PRIORITY,this.§_-XC§);
-         this.§_-Uw§.addTask(this.physicsSystem);
+         this.name_Uw.addTask(this.logicSystem2);
+         this.physicsSystem = new PhysicsSystem(PHYSICS_SYSTEM_PRIORITY,this.name_XC);
+         this.name_Uw.addTask(this.physicsSystem);
          this.renderSystem = new RenderSystem(RENDER_SYSTEM_PRIORITY,stage);
-         this.§_-Uw§.addTask(this.renderSystem);
-         this.§_-0s§ = new DeferredCommandsSystem(CLEANUP_SYSTEM_PRIORITY);
-         this.§_-Uw§.addTask(this.§_-0s§);
+         this.name_Uw.addTask(this.renderSystem);
+         this.name_0s = new DeferredCommandsSystem(CLEANUP_SYSTEM_PRIORITY);
+         this.name_Uw.addTask(this.name_0s);
       }
       
       public function get logger() : IGameLogger
       {
-         return this.§_-IC§;
+         return this.name_IC;
       }
       
       public function set logger(value:IGameLogger) : void
@@ -102,41 +102,41 @@ package alternativa.tanks.game
          {
             throw new ArgumentError("Logger is null");
          }
-         this.§_-IC§ = value;
+         this.name_IC = value;
       }
       
       public function get stage() : Stage
       {
-         return this.§_-We§;
+         return this.name_We;
       }
       
       public function get options() : Object
       {
-         return this.§_-D9§;
+         return this.name_D9;
       }
       
       public function addDeferredCommand(command:DeferredCommand) : void
       {
-         this.§_-0s§.addCommand(command);
+         this.name_0s.addCommand(command);
       }
       
       public function getObjectPoolManager() : ObjectPoolManager
       {
-         return this.§_-XC§;
+         return this.name_XC;
       }
       
       public function addTask(gameTask:GameTask) : void
       {
-         this.§_-Uw§.addTask(gameTask);
+         this.name_Uw.addTask(gameTask);
       }
       
       public function addEntity(entity:Entity) : void
       {
          if(entity.index < 0)
          {
-            entity.index = this.§_-TA§;
-            var _loc2_:* = this.§_-TA§++;
-            this.§_-jZ§[_loc2_] = entity;
+            entity.index = this.name_TA;
+            var _loc2_:* = this.name_TA++;
+            this.name_jZ[_loc2_] = entity;
             entity.addToGame(this);
             return;
          }
@@ -150,10 +150,10 @@ package alternativa.tanks.game
          {
             throw new Error("Entity " + entity + " is not in game");
          }
-         var lastEntity:Entity = this.§_-jZ§[--this.§_-TA§];
+         var lastEntity:Entity = this.name_jZ[--this.name_TA];
          lastEntity.index = index;
-         this.§_-jZ§[index] = lastEntity;
-         this.§_-jZ§[this.§_-TA§] = null;
+         this.name_jZ[index] = lastEntity;
+         this.name_jZ[this.name_TA] = null;
          entity.index = -1;
          entity.removeFromGame(this);
       }
@@ -190,18 +190,20 @@ package alternativa.tanks.game
       
       public function tick() : void
       {
-         this.§_-PI§.startTick();
-         this.§_-Uw§.runTasks();
-         this.§_-PI§.stopTick();
+         this.name_PI.startTick();
+         this.name_Uw.runTasks();
+         this.name_PI.stopTick();
       }
       
       public function shutdown() : void
       {
-         this.§_-Uw§.killAll();
-         this.§_-Uw§.runTasks();
+         this.name_Uw.killAll();
+         this.name_Uw.runTasks();
       }
    }
 }
+
+import alternativa.tanks.game.IGameLogger;
 
 class DummyLogger implements IGameLogger
 {

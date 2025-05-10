@@ -261,7 +261,7 @@ package alternativa.tanks.game.entities.map
             program.upload(camera.alternativa3d::context3D);
             optionsPrograms[index] = program;
          }
-         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.alternativa3d::_-EM,surface.indexBegin,surface.numTriangles,program);
+         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.name_EM,surface.indexBegin,surface.numTriangles,program);
          drawUnit.alternativa3d::setVertexBufferAt(program.aPosition,positionBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.POSITION],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.POSITION]);
          drawUnit.alternativa3d::setVertexBufferAt(program.aUV,uvBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.TEXCOORDS[0]],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.TEXCOORDS[0]]);
          drawUnit.alternativa3d::setVertexBufferAt(program.aUV1,lightMapUVBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.TEXCOORDS[this.lightMapChannel]],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.TEXCOORDS[this.lightMapChannel]]);

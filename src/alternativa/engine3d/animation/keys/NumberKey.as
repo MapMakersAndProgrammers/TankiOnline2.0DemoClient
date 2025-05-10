@@ -6,7 +6,7 @@ package alternativa.engine3d.animation.keys
    
    public class NumberKey extends Keyframe
    {
-      alternativa3d var §_-4O§:Number = 0;
+      alternativa3d var name_4O:Number = 0;
       
       alternativa3d var next:NumberKey;
       
@@ -17,17 +17,17 @@ package alternativa.engine3d.animation.keys
       
       public function interpolate(a:NumberKey, b:NumberKey, c:Number) : void
       {
-         this.alternativa3d::_-4O = (1 - c) * a.alternativa3d::_-4O + c * b.alternativa3d::_-4O;
+         this.name_4O = (1 - c) * a.name_4O + c * b.name_4O;
       }
       
       override public function get value() : Object
       {
-         return this.alternativa3d::_-4O;
+         return this.name_4O;
       }
       
       override public function set value(v:Object) : void
       {
-         this.alternativa3d::_-4O = Number(v);
+         this.name_4O = Number(v);
       }
       
       override alternativa3d function get nextKeyFrame() : Keyframe

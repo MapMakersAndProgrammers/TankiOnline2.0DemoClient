@@ -36,9 +36,9 @@ package alternativa
       
       private var console:Console;
       
-      private var §_-UU§:KeyboardShortcut;
+      private var name_UU:KeyboardShortcut;
       
-      private var §_-jQ§:KeyboardShortcut;
+      private var name_jQ:KeyboardShortcut;
       
       public function ClientConfigurator()
       {
@@ -143,8 +143,8 @@ package alternativa
          {
             console.executeCommand("con_alpha " + params["alpha"]);
          }
-         this.§_-UU§ = this.parseShortcut(params["hsw"],Keyboard.LEFT,false,true,true);
-         this.§_-jQ§ = this.parseShortcut(params["vsw"],Keyboard.UP,false,true,true);
+         this.name_UU = this.parseShortcut(params["hsw"],Keyboard.LEFT,false,true,true);
+         this.name_jQ = this.parseShortcut(params["vsw"],Keyboard.UP,false,true,true);
          stage.addEventListener(KeyboardEvent.KEY_DOWN,this.onKey,true);
       }
       
@@ -161,8 +161,8 @@ package alternativa
       {
          switch(e.keyCode)
          {
-            case this.§_-UU§.keyCode:
-               if(this.§_-UU§.altKey == e.altKey && this.§_-UU§.shiftKey == e.shiftKey && this.§_-UU§.ctrlKey == e.ctrlKey)
+            case this.name_UU.keyCode:
+               if(this.name_UU.altKey == e.altKey && this.name_UU.shiftKey == e.shiftKey && this.name_UU.ctrlKey == e.ctrlKey)
                {
                   if(this.console.horizontalAlignment == 1)
                   {
@@ -172,8 +172,8 @@ package alternativa
                   this.console.horizontalAlignment = 1;
                }
                break;
-            case this.§_-jQ§.keyCode:
-               if(this.§_-jQ§.altKey == e.altKey && this.§_-jQ§.shiftKey == e.shiftKey && this.§_-jQ§.ctrlKey == e.ctrlKey)
+            case this.name_jQ.keyCode:
+               if(this.name_jQ.altKey == e.altKey && this.name_jQ.shiftKey == e.shiftKey && this.name_jQ.ctrlKey == e.ctrlKey)
                {
                   if(this.console.vericalAlignment == 1)
                   {

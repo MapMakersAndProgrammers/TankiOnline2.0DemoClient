@@ -6,48 +6,48 @@ package alternativa.protocol
    
    public class ProtocolBuffer
    {
-      private var §_-R§:IDataOutput;
+      private var name_R:IDataOutput;
       
-      private var §_-ch§:IDataInput;
+      private var name_ch:IDataInput;
       
-      private var §_-7s§:OptionalMap;
+      private var name_7s:OptionalMap;
       
       public function ProtocolBuffer(output:IDataOutput, input:IDataInput, optionalMap:OptionalMap)
       {
          super();
-         this.§_-R§ = output;
-         this.§_-ch§ = input;
-         this.§_-7s§ = optionalMap;
+         this.name_R = output;
+         this.name_ch = input;
+         this.name_7s = optionalMap;
       }
       
       public function get writer() : IDataOutput
       {
-         return this.§_-R§;
+         return this.name_R;
       }
       
       public function set writer(value:IDataOutput) : void
       {
-         this.§_-R§ = value;
+         this.name_R = value;
       }
       
       public function get reader() : IDataInput
       {
-         return this.§_-ch§;
+         return this.name_ch;
       }
       
       public function set reader(value:IDataInput) : void
       {
-         this.§_-ch§ = value;
+         this.name_ch = value;
       }
       
       public function get optionalMap() : OptionalMap
       {
-         return this.§_-7s§;
+         return this.name_7s;
       }
       
       public function set optionalMap(value:OptionalMap) : void
       {
-         this.§_-7s§ = value;
+         this.name_7s = value;
       }
       
       public function toString() : String

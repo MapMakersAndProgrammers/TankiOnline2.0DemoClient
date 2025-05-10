@@ -30,13 +30,13 @@ package alternativa.tanks.game.physics.collision.uniformgrid
       
       private var cellSize:Number;
       
-      private var §_-aq§:BoundBox = new BoundBox();
+      private var name_aq:BoundBox = new BoundBox();
       
       private var denseArray:Vector.<CollisionPrimitive>;
       
       private var denseCellIndices:Vector.<int>;
       
-      private var §_-00§:int;
+      private var name_00:int;
       
       private var numCellsX:int;
       
@@ -44,38 +44,38 @@ package alternativa.tanks.game.physics.collision.uniformgrid
       
       private var numCellsZ:int;
       
-      private var §_-Sp§:int;
+      private var name_Sp:int;
       
-      private var §_-48§:Vector.<int>;
+      private var name_48:Vector.<int>;
       
-      private var §_-81§:int;
+      private var name_81:int;
       
-      private var §_-3Q§:Vector.<BodyCollisionGridData>;
+      private var name_3Q:Vector.<BodyCollisionGridData>;
       
-      private var §_-VV§:int;
+      private var name_VV:int;
       
       private var bodyCellEntries:Vector.<BodyCellEntry>;
       
-      private var §_-P6§:Object;
+      private var name_P6:Object;
       
-      private var §_-SI§:RaycastCellVisitor;
+      private var name_SI:RaycastCellVisitor;
       
-      private var §_-Qp§:OccupiedCellIndex;
+      private var name_Qp:OccupiedCellIndex;
       
-      private var §_-WJ§:Boolean;
+      private var name_WJ:Boolean;
       
       public function UniformGridCollisionDetector()
       {
          super();
-         this.§_-3Q§ = new Vector.<BodyCollisionGridData>();
-         this.§_-SI§ = new RaycastCellVisitor();
+         this.name_3Q = new Vector.<BodyCollisionGridData>();
+         this.name_SI = new RaycastCellVisitor();
          this.initColliders();
          this.initPairBitArray();
       }
       
       private function addCollider(type1:int, type2:int, collider:ICollider) : void
       {
-         this.§_-P6§[type1 | type2] = collider;
+         this.name_P6[type1 | type2] = collider;
       }
       
       public function addBodyCollisionData(bodyCollisionData:BodyCollisionData) : void
@@ -88,10 +88,10 @@ package alternativa.tanks.game.physics.collision.uniformgrid
          bodyCollisionGridData.body = bodyCollisionData.body;
          bodyCollisionGridData.detailedPrimitives = bodyCollisionData.detailedPrimitives;
          bodyCollisionGridData.simplePrimitives = bodyCollisionData.simplePrimitives;
-         bodyCollisionGridData.index = this.§_-VV§;
-         var _loc3_:* = this.§_-VV§++;
-         this.§_-3Q§[_loc3_] = bodyCollisionGridData;
-         this.§_-WJ§ = true;
+         bodyCollisionGridData.index = this.name_VV;
+         var _loc3_:* = this.name_VV++;
+         this.name_3Q[_loc3_] = bodyCollisionGridData;
+         this.name_WJ = true;
       }
       
       public function removeBodyCollisionData(bodyCollisionData:BodyCollisionData) : void
@@ -101,13 +101,13 @@ package alternativa.tanks.game.physics.collision.uniformgrid
          {
             throw new Error("Body collision data not found");
          }
-         --this.§_-VV§;
-         var lastBodyEntry:BodyCollisionGridData = this.§_-3Q§[this.§_-VV§];
+         --this.name_VV;
+         var lastBodyEntry:BodyCollisionGridData = this.name_3Q[this.name_VV];
          lastBodyEntry.index = index;
-         BodyCollisionGridData(this.§_-3Q§[index]).destroy();
-         this.§_-3Q§[index] = lastBodyEntry;
-         this.§_-3Q§[this.§_-VV§] = null;
-         this.§_-WJ§ = true;
+         BodyCollisionGridData(this.name_3Q[index]).destroy();
+         this.name_3Q[index] = lastBodyEntry;
+         this.name_3Q[this.name_VV] = null;
+         this.name_WJ = true;
       }
       
       public function prepareForRaycasts() : void
@@ -122,7 +122,7 @@ package alternativa.tanks.game.physics.collision.uniformgrid
       
       public function getGridBoundBox() : BoundBox
       {
-         return this.§_-aq§.clone();
+         return this.name_aq.clone();
       }
       
       public function getNumCellsX() : int
@@ -142,7 +142,7 @@ package alternativa.tanks.game.physics.collision.uniformgrid
       
       public function getMaxCellPrimitiveCount() : int
       {
-         return this.§_-Sp§;
+         return this.name_Sp;
       }
       
       public function getNumlPrimitivesInCell(x:int, y:int, z:int) : int
@@ -172,12 +172,12 @@ package alternativa.tanks.game.physics.collision.uniformgrid
          var dy:Number = NaN;
          var dz:Number = NaN;
          var d:Number = NaN;
-         var imin:int = this.clamp((center.x - radius - this.§_-aq§.minX) / this.cellSize,0,this.numCellsX - 1);
-         var imax:int = this.clamp((center.x + radius - this.§_-aq§.minX) / this.cellSize,0,this.numCellsX - 1);
-         var jmin:int = this.clamp((center.y - radius - this.§_-aq§.minY) / this.cellSize,0,this.numCellsY - 1);
-         var jmax:int = this.clamp((center.y + radius - this.§_-aq§.minY) / this.cellSize,0,this.numCellsY - 1);
-         var kmin:int = this.clamp((center.z - radius - this.§_-aq§.minZ) / this.cellSize,0,this.numCellsZ - 1);
-         var kmax:int = this.clamp((center.z + radius - this.§_-aq§.minZ) / this.cellSize,0,this.numCellsZ - 1);
+         var imin:int = this.clamp((center.x - radius - this.name_aq.minX) / this.cellSize,0,this.numCellsX - 1);
+         var imax:int = this.clamp((center.x + radius - this.name_aq.minX) / this.cellSize,0,this.numCellsX - 1);
+         var jmin:int = this.clamp((center.y - radius - this.name_aq.minY) / this.cellSize,0,this.numCellsY - 1);
+         var jmax:int = this.clamp((center.y + radius - this.name_aq.minY) / this.cellSize,0,this.numCellsY - 1);
+         var kmin:int = this.clamp((center.z - radius - this.name_aq.minZ) / this.cellSize,0,this.numCellsZ - 1);
+         var kmax:int = this.clamp((center.z + radius - this.name_aq.minZ) / this.cellSize,0,this.numCellsZ - 1);
          var ts:int = int(++timestamp);
          var radiusSqr:Number = radius * radius;
          for(var i:int = imin; i <= imax; i++)
@@ -223,9 +223,9 @@ package alternativa.tanks.game.physics.collision.uniformgrid
       {
          var bodyCollisionData:BodyCollisionGridData = null;
          this.fillDynamicBodyCells();
-         for(var i:int = 0; i < this.§_-VV§; i++)
+         for(var i:int = 0; i < this.name_VV; i++)
          {
-            bodyCollisionData = this.§_-3Q§[i];
+            bodyCollisionData = this.name_3Q[i];
             contacts = this.getBodyStaticContacts(bodyCollisionData,contacts);
          }
          return this.getDynamicContacts(contacts);
@@ -233,31 +233,31 @@ package alternativa.tanks.game.physics.collision.uniformgrid
       
       private function initRaycastCellVisitor() : void
       {
-         this.§_-SI§.denseArray = this.denseArray;
-         this.§_-SI§.denseCellIndices = this.denseCellIndices;
-         this.§_-SI§.numCellsX = this.numCellsX;
-         this.§_-SI§.numCellsY = this.numCellsY;
-         this.§_-SI§.numCellsZ = this.numCellsZ;
+         this.name_SI.denseArray = this.denseArray;
+         this.name_SI.denseCellIndices = this.denseCellIndices;
+         this.name_SI.numCellsX = this.numCellsX;
+         this.name_SI.numCellsY = this.numCellsY;
+         this.name_SI.numCellsZ = this.numCellsZ;
       }
       
       private function setupGridParameters(staticPrimitives:Vector.<CollisionPrimitive>, cellSize:Number) : void
       {
          var collisionPrimitive:CollisionPrimitive = null;
          this.cellSize = cellSize;
-         this.§_-aq§.infinity();
+         this.name_aq.infinity();
          for each(collisionPrimitive in staticPrimitives)
          {
-            this.§_-aq§.addBoundBox(collisionPrimitive.calculateAABB());
+            this.name_aq.addBoundBox(collisionPrimitive.calculateAABB());
          }
-         this.§_-aq§.increase(cellSize + EPSILON);
-         this.numCellsX = int(this.§_-aq§.getSizeX() / cellSize) + 1;
-         this.numCellsY = int(this.§_-aq§.getSizeY() / cellSize) + 1;
-         this.numCellsZ = int(this.§_-aq§.getSizeZ() / cellSize) + 1;
-         this.§_-00§ = this.numCellsX * this.numCellsY * this.numCellsZ;
-         this.§_-aq§.maxX = this.§_-aq§.minX + this.numCellsX * cellSize;
-         this.§_-aq§.maxY = this.§_-aq§.minY + this.numCellsY * cellSize;
-         this.§_-aq§.maxZ = this.§_-aq§.minZ + this.numCellsZ * cellSize;
-         this.bodyCellEntries = new Vector.<BodyCellEntry>(this.§_-00§);
+         this.name_aq.increase(cellSize + EPSILON);
+         this.numCellsX = int(this.name_aq.getSizeX() / cellSize) + 1;
+         this.numCellsY = int(this.name_aq.getSizeY() / cellSize) + 1;
+         this.numCellsZ = int(this.name_aq.getSizeZ() / cellSize) + 1;
+         this.name_00 = this.numCellsX * this.numCellsY * this.numCellsZ;
+         this.name_aq.maxX = this.name_aq.minX + this.numCellsX * cellSize;
+         this.name_aq.maxY = this.name_aq.minY + this.numCellsY * cellSize;
+         this.name_aq.maxZ = this.name_aq.minZ + this.numCellsZ * cellSize;
+         this.bodyCellEntries = new Vector.<BodyCellEntry>(this.name_00);
       }
       
       private function prepareDenseArray(staticPrimitives:Vector.<CollisionPrimitive>) : void
@@ -280,14 +280,14 @@ package alternativa.tanks.game.physics.collision.uniformgrid
          var cellIndex:int = 0;
          var denseCellIndex:int = 0;
          var cellCounters:Vector.<int> = this.calculateNumPrimitivesForEachCell(staticPrimitives);
-         this.§_-Sp§ = 0;
-         this.denseCellIndices = new Vector.<int>(this.§_-00§);
-         for(index = 0; index < this.§_-00§; index++)
+         this.name_Sp = 0;
+         this.denseCellIndices = new Vector.<int>(this.name_00);
+         for(index = 0; index < this.name_00; index++)
          {
             numCellPrimitives = cellCounters[index];
-            if(numCellPrimitives > this.§_-Sp§)
+            if(numCellPrimitives > this.name_Sp)
             {
-               this.§_-Sp§ = numCellPrimitives;
+               this.name_Sp = numCellPrimitives;
             }
             denseArraySize += numCellPrimitives;
             this.denseCellIndices[index] = numCellPrimitives << 24 | lastIndex;
@@ -300,12 +300,12 @@ package alternativa.tanks.game.physics.collision.uniformgrid
          {
             collisionPrimitive = staticPrimitives[index];
             bb = collisionPrimitive.aabb;
-            imin = (bb.minX - this.§_-aq§.minX) / this.cellSize;
-            imax = (bb.maxX - this.§_-aq§.minX) / this.cellSize;
-            jmin = (bb.minY - this.§_-aq§.minY) / this.cellSize;
-            jmax = (bb.maxY - this.§_-aq§.minY) / this.cellSize;
-            kmin = (bb.minZ - this.§_-aq§.minZ) / this.cellSize;
-            kmax = (bb.maxZ - this.§_-aq§.minZ) / this.cellSize;
+            imin = (bb.minX - this.name_aq.minX) / this.cellSize;
+            imax = (bb.maxX - this.name_aq.minX) / this.cellSize;
+            jmin = (bb.minY - this.name_aq.minY) / this.cellSize;
+            jmax = (bb.maxY - this.name_aq.minY) / this.cellSize;
+            kmin = (bb.minZ - this.name_aq.minZ) / this.cellSize;
+            kmax = (bb.maxZ - this.name_aq.minZ) / this.cellSize;
             for(i = imin; i <= imax; i++)
             {
                for(j = jmin; j <= jmax; j++)
@@ -335,17 +335,17 @@ package alternativa.tanks.game.physics.collision.uniformgrid
          var j:int = 0;
          var k:int = 0;
          var cellIndex:int = 0;
-         var cellPrimitiveCounters:Vector.<int> = new Vector.<int>(this.§_-00§);
+         var cellPrimitiveCounters:Vector.<int> = new Vector.<int>(this.name_00);
          var numPrimitives:int = int(staticPrimitives.length);
          for(var index:int = 0; index < numPrimitives; index++)
          {
             bb = staticPrimitives[index].aabb;
-            imin = (bb.minX - this.§_-aq§.minX) / this.cellSize;
-            imax = (bb.maxX - this.§_-aq§.minX) / this.cellSize;
-            jmin = (bb.minY - this.§_-aq§.minY) / this.cellSize;
-            jmax = (bb.maxY - this.§_-aq§.minY) / this.cellSize;
-            kmin = (bb.minZ - this.§_-aq§.minZ) / this.cellSize;
-            kmax = (bb.maxZ - this.§_-aq§.minZ) / this.cellSize;
+            imin = (bb.minX - this.name_aq.minX) / this.cellSize;
+            imax = (bb.maxX - this.name_aq.minX) / this.cellSize;
+            jmin = (bb.minY - this.name_aq.minY) / this.cellSize;
+            jmax = (bb.maxY - this.name_aq.minY) / this.cellSize;
+            kmin = (bb.minZ - this.name_aq.minZ) / this.cellSize;
+            kmax = (bb.maxZ - this.name_aq.minZ) / this.cellSize;
             for(i = imin; i <= imax; i++)
             {
                for(j = jmin; j <= jmax; j++)
@@ -378,8 +378,8 @@ package alternativa.tanks.game.physics.collision.uniformgrid
          var k:int = 0;
          var cellIndex:int = 0;
          this.clearPairBits();
-         var numBodies:int = int(this.§_-3Q§.length);
-         for(var occupiedCell:OccupiedCellIndex = this.§_-Qp§; occupiedCell != null; )
+         var numBodies:int = int(this.name_3Q.length);
+         for(var occupiedCell:OccupiedCellIndex = this.name_Qp; occupiedCell != null; )
          {
             for(currentBodyCellEntry = this.bodyCellEntries[occupiedCell.index]; currentBodyCellEntry != null; )
             {
@@ -443,9 +443,9 @@ package alternativa.tanks.game.physics.collision.uniformgrid
                }
                bitIndex = min * (2 * numBodies - min - 3) / 2 + max - 1;
                mask = 1 << (bitIndex & 0x1F);
-               if((this.§_-48§[bitIndex >>> 5] & mask) == 0)
+               if((this.name_48[bitIndex >>> 5] & mask) == 0)
                {
-                  this.§_-48§[bitIndex >>> 5] |= mask;
+                  this.name_48[bitIndex >>> 5] |= mask;
                   body2 = cellStartEntry.data.body;
                   if(body2.aabb.intersects(body.aabb,EPSILON))
                   {
@@ -513,9 +513,9 @@ package alternativa.tanks.game.physics.collision.uniformgrid
       
       private function clearPairBits() : void
       {
-         for(var i:int = 0; i < this.§_-81§; i++)
+         for(var i:int = 0; i < this.name_81; i++)
          {
-            this.§_-48§[i] = 0;
+            this.name_48[i] = 0;
          }
       }
       
@@ -574,17 +574,17 @@ package alternativa.tanks.game.physics.collision.uniformgrid
       
       public function raycast(origin:Vector3, direction:Vector3, collisionMask:int, maxTime:Number, filter:IRaycastFilter, result:RayHit) : Boolean
       {
-         if(this.§_-WJ§)
+         if(this.name_WJ)
          {
             this.fillDynamicBodyCells();
          }
-         this.§_-SI§.collisionMask = collisionMask;
-         this.§_-SI§.filter = filter;
-         this.§_-SI§.result = result;
-         this.§_-SI§.bodyCellEntries = this.bodyCellEntries;
-         this.doRaycast(origin,direction,maxTime,this.§_-SI§);
-         this.§_-SI§.clear();
-         if(this.§_-SI§.hasHit)
+         this.name_SI.collisionMask = collisionMask;
+         this.name_SI.filter = filter;
+         this.name_SI.result = result;
+         this.name_SI.bodyCellEntries = this.bodyCellEntries;
+         this.doRaycast(origin,direction,maxTime,this.name_SI);
+         this.name_SI.clear();
+         if(this.name_SI.hasHit)
          {
             if(result.t < maxTime)
             {
@@ -597,12 +597,12 @@ package alternativa.tanks.game.physics.collision.uniformgrid
       
       public function raycastStatic(origin:Vector3, direction:Vector3, collisionMask:int, maxTime:Number, filter:IRaycastFilter, result:RayHit) : Boolean
       {
-         this.§_-SI§.collisionMask = collisionMask;
-         this.§_-SI§.filter = filter;
-         this.§_-SI§.result = result;
-         this.doRaycast(origin,direction,maxTime,this.§_-SI§);
-         this.§_-SI§.clear();
-         if(this.§_-SI§.hasHit)
+         this.name_SI.collisionMask = collisionMask;
+         this.name_SI.filter = filter;
+         this.name_SI.result = result;
+         this.doRaycast(origin,direction,maxTime,this.name_SI);
+         this.name_SI.clear();
+         if(this.name_SI.hasHit)
          {
             if(result.t < maxTime)
             {
@@ -619,7 +619,7 @@ package alternativa.tanks.game.physics.collision.uniformgrid
          {
             return false;
          }
-         var collider:ICollider = this.§_-P6§[prim1.type | prim2.type];
+         var collider:ICollider = this.name_P6[prim1.type | prim2.type];
          if(collider != null && Boolean(collider.getContact(prim1,prim2,contact)))
          {
             if(prim1.postCollisionFilter != null && !prim1.postCollisionFilter.acceptPrimitivesCollision(prim1,prim2))
@@ -644,22 +644,22 @@ package alternativa.tanks.game.physics.collision.uniformgrid
          var k:int = 0;
          var cellMaxTime:Number = NaN;
          var tstamp:int = int(++timestamp);
-         var x1:Number = origin.x - this.§_-aq§.minX;
-         var y1:Number = origin.y - this.§_-aq§.minY;
-         var z1:Number = origin.z - this.§_-aq§.minZ;
+         var x1:Number = origin.x - this.name_aq.minX;
+         var y1:Number = origin.y - this.name_aq.minY;
+         var z1:Number = origin.z - this.name_aq.minZ;
          var x2:Number = x1 + direction.x * maxTime;
          var y2:Number = y1 + direction.y * maxTime;
          var z2:Number = z1 + direction.z * maxTime;
          var axis:int = -1;
          var entryTime:Number = 0;
          var p:Vector3 = new Vector3();
-         var pointInBounds:Boolean = Boolean(this.§_-aq§.containsPoint(origin,EPSILON));
+         var pointInBounds:Boolean = Boolean(this.name_aq.containsPoint(origin,EPSILON));
          if(!pointInBounds)
          {
             collisionBox.hs.reset(this.cellSize * this.numCellsX / 2,this.cellSize * this.numCellsY / 2,this.cellSize * this.numCellsZ / 2);
-            collisionBox.transform.d = this.§_-aq§.minX + collisionBox.hs.x;
-            collisionBox.transform.h = this.§_-aq§.minY + collisionBox.hs.y;
-            collisionBox.transform.l = this.§_-aq§.minZ + collisionBox.hs.z;
+            collisionBox.transform.d = this.name_aq.minX + collisionBox.hs.x;
+            collisionBox.transform.h = this.name_aq.minY + collisionBox.hs.y;
+            collisionBox.transform.l = this.name_aq.minZ + collisionBox.hs.z;
             collisionBox.calculateAABB();
             t = Number(collisionBox.raycast(origin,direction,EPSILON,normal));
             if(t < 0 || t >= maxTime)
@@ -680,9 +680,9 @@ package alternativa.tanks.game.physics.collision.uniformgrid
                axis = 2;
             }
             entryTime = t;
-            i = this.clamp((p.x - this.§_-aq§.minX) / this.cellSize,0,this.numCellsX - 1);
-            j = this.clamp((p.y - this.§_-aq§.minY) / this.cellSize,0,this.numCellsY - 1);
-            k = this.clamp((p.z - this.§_-aq§.minZ) / this.cellSize,0,this.numCellsZ - 1);
+            i = this.clamp((p.x - this.name_aq.minX) / this.cellSize,0,this.numCellsX - 1);
+            j = this.clamp((p.y - this.name_aq.minY) / this.cellSize,0,this.numCellsY - 1);
+            k = this.clamp((p.z - this.name_aq.minZ) / this.cellSize,0,this.numCellsZ - 1);
          }
          else
          {
@@ -789,7 +789,7 @@ package alternativa.tanks.game.physics.collision.uniformgrid
          var bodyCellEntry:BodyCellEntry = null;
          var nextBodyCellEntry:BodyCellEntry = null;
          var nextOccupiedCell:OccupiedCellIndex = null;
-         for(var cellIndex:int = 0; cellIndex < this.§_-00§; cellIndex++)
+         for(var cellIndex:int = 0; cellIndex < this.name_00; cellIndex++)
          {
             bodyCellEntry = this.bodyCellEntries[cellIndex];
             for(this.bodyCellEntries[cellIndex] = null; bodyCellEntry != null; )
@@ -799,8 +799,8 @@ package alternativa.tanks.game.physics.collision.uniformgrid
                bodyCellEntry = nextBodyCellEntry;
             }
          }
-         var occupiedCell:OccupiedCellIndex = this.§_-Qp§;
-         for(this.§_-Qp§ = null; occupiedCell != null; )
+         var occupiedCell:OccupiedCellIndex = this.name_Qp;
+         for(this.name_Qp = null; occupiedCell != null; )
          {
             nextOccupiedCell = occupiedCell.next;
             occupiedCell.destory();
@@ -826,30 +826,30 @@ package alternativa.tanks.game.physics.collision.uniformgrid
          var index:int = 0;
          var newEntry:BodyCellEntry = null;
          this.clearDynamicBodyCells();
-         for(var ti:int = 0; ti < this.§_-VV§; ti++)
+         for(var ti:int = 0; ti < this.name_VV; ti++)
          {
-            bodyCollisionData = this.§_-3Q§[ti];
+            bodyCollisionData = this.name_3Q[ti];
             boundBox = bodyCollisionData.body.aabb;
-            imin = (boundBox.minX - this.§_-aq§.minX) / this.cellSize;
+            imin = (boundBox.minX - this.name_aq.minX) / this.cellSize;
             if(!(imin < 0 || imin >= this.numCellsX))
             {
-               jmin = (boundBox.minY - this.§_-aq§.minY) / this.cellSize;
+               jmin = (boundBox.minY - this.name_aq.minY) / this.cellSize;
                if(!(jmin < 0 || jmin >= this.numCellsY))
                {
-                  kmin = (boundBox.minZ - this.§_-aq§.minZ) / this.cellSize;
+                  kmin = (boundBox.minZ - this.name_aq.minZ) / this.cellSize;
                   if(!(kmin < 0 || kmin >= this.numCellsZ))
                   {
-                     imax = (boundBox.maxX - this.§_-aq§.minX) / this.cellSize;
+                     imax = (boundBox.maxX - this.name_aq.minX) / this.cellSize;
                      if(imax >= this.numCellsX)
                      {
                         imax = this.numCellsX - 1;
                      }
-                     jmax = (boundBox.maxY - this.§_-aq§.minY) / this.cellSize;
+                     jmax = (boundBox.maxY - this.name_aq.minY) / this.cellSize;
                      if(jmax >= this.numCellsY)
                      {
                         jmax = this.numCellsY - 1;
                      }
-                     kmax = (boundBox.maxZ - this.§_-aq§.minZ) / this.cellSize;
+                     kmax = (boundBox.maxZ - this.name_aq.minZ) / this.cellSize;
                      if(kmax >= this.numCellsZ)
                      {
                         kmax = this.numCellsZ - 1;
@@ -861,8 +861,8 @@ package alternativa.tanks.game.physics.collision.uniformgrid
                      if(this.bodyCellEntries[cellIndex] == null)
                      {
                         occupiedCellIndex = OccupiedCellIndex.create(cellIndex);
-                        occupiedCellIndex.next = this.§_-Qp§;
-                        this.§_-Qp§ = occupiedCellIndex;
+                        occupiedCellIndex.next = this.name_Qp;
+                        this.name_Qp = occupiedCellIndex;
                      }
                      for(i = imin; i <= imax; )
                      {
@@ -883,15 +883,15 @@ package alternativa.tanks.game.physics.collision.uniformgrid
                }
             }
          }
-         this.§_-WJ§ = false;
+         this.name_WJ = false;
       }
       
       private function findBodyEntry(body:Body) : int
       {
          var bodyCollisionGridData:BodyCollisionGridData = null;
-         for(var i:int = 0; i < this.§_-VV§; )
+         for(var i:int = 0; i < this.name_VV; )
          {
-            bodyCollisionGridData = this.§_-3Q§[i];
+            bodyCollisionGridData = this.name_3Q[i];
             if(bodyCollisionGridData.body == body)
             {
                return i;
@@ -904,13 +904,13 @@ package alternativa.tanks.game.physics.collision.uniformgrid
       private function initPairBitArray() : void
       {
          var maxObjectPairs:int = MAX_OBJECTS * (MAX_OBJECTS - 1) / 2;
-         this.§_-81§ = (maxObjectPairs + 31) / 32;
-         this.§_-48§ = new Vector.<int>(this.§_-81§);
+         this.name_81 = (maxObjectPairs + 31) / 32;
+         this.name_48 = new Vector.<int>(this.name_81);
       }
       
       private function initColliders() : void
       {
-         this.§_-P6§ = new Object();
+         this.name_P6 = new Object();
          this.addCollider(CollisionPrimitive.BOX,CollisionPrimitive.BOX,new BoxBoxCollider());
          this.addCollider(CollisionPrimitive.BOX,CollisionPrimitive.RECT,new BoxRectCollider());
          this.addCollider(CollisionPrimitive.BOX,CollisionPrimitive.TRIANGLE,new BoxTriangleCollider());
@@ -922,6 +922,8 @@ import alternativa.math.Vector3;
 import alternativa.physics.collision.CollisionPrimitive;
 import alternativa.physics.collision.IRaycastFilter;
 import alternativa.physics.collision.types.RayHit;
+import alternativa.tanks.game.physics.collision.uniformgrid.IRaycastCellVisitor;
+import alternativa.tanks.game.physics.collision.uniformgrid.BodyCollisionGridData;
 
 class BodyCellEntry
 {

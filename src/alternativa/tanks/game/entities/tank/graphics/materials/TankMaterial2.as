@@ -93,15 +93,15 @@ package alternativa.tanks.game.entities.tank.graphics.materials
       
       public var surfaceMap:TextureResource;
       
-      public var §_-jM§:Number = 1;
+      public var name_jM:Number = 1;
       
-      public var §_-Sf§:Number = 1;
+      public var name_Sf:Number = 1;
       
       public var normalMap:TextureResource;
       
       public var glossiness:Number = 100;
       
-      public var §_-kj§:Number = 1;
+      public var name_kj:Number = 1;
       
       private const outputWithSpecularProcedure:Procedure = new Procedure(["mul t0.xyz, i0.xyz, i1.xyz","add t0.xyz, t0.xyz, i2.xyz","mov t0.w, i1.w","mov o0, t0"],"outputWithSpecularProcedure");
       
@@ -121,12 +121,12 @@ package alternativa.tanks.game.entities.tank.graphics.materials
       
       private static function directionalProcedure(light:Light3D, add:Boolean) : Procedure
       {
-         return new Procedure(["#c0=c" + light.alternativa3d::_-oG + "Direction","#c1=c" + light.alternativa3d::_-oG + "Color","add t0.xyz, i1.xyz, c0.xyz","nrm t0.xyz, t0.xyz","dp3 t0.w, t0.xyz, i0.xyz","pow t0.w, t0.w, i0.w","mul t0.w, t0.w, i1.w","dp3 t0.x, i0.xyz, c0.xyz","sat t0.x, t0.x",add ? "mul t0.xyz, c1.xyz, t0.x" : "mul o0.xyz, c1.xyz, t0.x",add ? "add o0.xyz, o0.xyz, t0.xyz" : "mov o0.w, c0.w",add ? "mul t0.xyz, c1.xyz, t0.w" : "mul o1.xyz, c1.xyz, t0.w",add ? "add o1.xyz, o1.xyz, t0.xyz" : "mov o1.w, c0.w"],"directionalProcedure");
+         return new Procedure(["#c0=c" + light.name_oG + "Direction","#c1=c" + light.name_oG + "Color","add t0.xyz, i1.xyz, c0.xyz","nrm t0.xyz, t0.xyz","dp3 t0.w, t0.xyz, i0.xyz","pow t0.w, t0.w, i0.w","mul t0.w, t0.w, i1.w","dp3 t0.x, i0.xyz, c0.xyz","sat t0.x, t0.x",add ? "mul t0.xyz, c1.xyz, t0.x" : "mul o0.xyz, c1.xyz, t0.x",add ? "add o0.xyz, o0.xyz, t0.xyz" : "mov o0.w, c0.w",add ? "mul t0.xyz, c1.xyz, t0.w" : "mul o1.xyz, c1.xyz, t0.w",add ? "add o1.xyz, o1.xyz, t0.xyz" : "mov o1.w, c0.w"],"directionalProcedure");
       }
       
       private static function omniProcedure(light:Light3D, add:Boolean) : Procedure
       {
-         return new Procedure(["#c0=c" + light.alternativa3d::_-oG + "Position","#c1=c" + light.alternativa3d::_-oG + "Color","#c2=c" + light.alternativa3d::_-oG + "Radius","#v0=vPosition","sub t0, c0, v0","dp3 t0.w, t0.xyz, t0.xyz","nrm t0.xyz, t0.xyz","add t1.xyz, i1.xyz, t0.xyz","mov t1.w, c0.w","nrm t1.xyz, t1.xyz","dp3 t1.w, t1.xyz, i0.xyz","pow t1.w, t1.w, i0.w","mul t1.w, t1.w, i1.w","sqt t1.x, t0.w","dp3 t0.w, t0.xyz, i0.xyz","sub t0.x, t1.x, c2.z","div t0.y, t0.x, c2.y","sub t0.x, c2.x, t0.y","sat t0.xw, t0.xw","mul t0.xyz, c1.xyz, t0.xxx",add ? "mul t1.xyz, t0.xyz, t0.w" : "mul o0.xyz, t0.xyz, t0.w",add ? "add o0.xyz, o0.xyz, t1.xyz" : "mov o0.w, c0.w",add ? "mul t1.xyz, t0.xyz, t1.w" : "mul o1.xyz, t0.xyz, t1.w",add ? "add o1.xyz, o1.xyz, t1.xyz" : "mov o1.w, c0.w"],"omniProcedure");
+         return new Procedure(["#c0=c" + light.name_oG + "Position","#c1=c" + light.name_oG + "Color","#c2=c" + light.name_oG + "Radius","#v0=vPosition","sub t0, c0, v0","dp3 t0.w, t0.xyz, t0.xyz","nrm t0.xyz, t0.xyz","add t1.xyz, i1.xyz, t0.xyz","mov t1.w, c0.w","nrm t1.xyz, t1.xyz","dp3 t1.w, t1.xyz, i0.xyz","pow t1.w, t1.w, i0.w","mul t1.w, t1.w, i1.w","sqt t1.x, t0.w","dp3 t0.w, t0.xyz, i0.xyz","sub t0.x, t1.x, c2.z","div t0.y, t0.x, c2.y","sub t0.x, c2.x, t0.y","sat t0.xw, t0.xw","mul t0.xyz, c1.xyz, t0.xxx",add ? "mul t1.xyz, t0.xyz, t0.w" : "mul o0.xyz, t0.xyz, t0.w",add ? "add o0.xyz, o0.xyz, t1.xyz" : "mov o0.w, c0.w",add ? "mul t1.xyz, t0.xyz, t1.w" : "mul o1.xyz, t0.xyz, t1.w",add ? "add o1.xyz, o1.xyz, t1.xyz" : "mov o1.w, c0.w"],"omniProcedure");
       }
       
       override alternativa3d function fillResources(resources:Dictionary, resourceType:Class) : void
@@ -185,7 +185,7 @@ package alternativa.tanks.game.entities.tank.graphics.materials
             else if(actualLightsLength < 8 && (light is OmniLight || light is DirectionalLight))
             {
                actualLigths[actualLightsLength] = light;
-               lightsKey += light.alternativa3d::_-oG;
+               lightsKey += light.name_oG;
                actualLightsLength++;
             }
             i++;
@@ -344,7 +344,7 @@ package alternativa.tanks.game.entities.tank.graphics.materials
       {
          var positionBuffer:VertexBuffer3D = geometry.alternativa3d::getVertexBuffer(VertexAttributes.POSITION);
          var uvBuffer:VertexBuffer3D = geometry.alternativa3d::getVertexBuffer(VertexAttributes.TEXCOORDS[0]);
-         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.alternativa3d::_-EM,surface.indexBegin,surface.numTriangles,program);
+         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.name_EM,surface.indexBegin,surface.numTriangles,program);
          drawUnit.alternativa3d::setVertexBufferAt(program.aPosition,positionBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.POSITION],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.POSITION]);
          if(ambient)
          {
@@ -355,7 +355,7 @@ package alternativa.tanks.game.entities.tank.graphics.materials
          if(ambient)
          {
             drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.cAmbient,camera.alternativa3d::ambient[0],camera.alternativa3d::ambient[1],camera.alternativa3d::ambient[2],1);
-            drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.cTiling,this.§_-jM§,this.§_-Sf§,0,0);
+            drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.cTiling,this.name_jM,this.name_Sf,0,0);
             drawUnit.alternativa3d::setTextureAt(program.sDiffuse,this.diffuse.alternativa3d::_texture);
             drawUnit.alternativa3d::setTextureAt(program.sColormap,this.colorMap.alternativa3d::_texture);
             drawUnit.alternativa3d::setTextureAt(program.sSurface,this.surfaceMap.alternativa3d::_texture);
@@ -442,7 +442,7 @@ package alternativa.tanks.game.entities.tank.graphics.materials
          var omni:OmniLight = null;
          var positionBuffer:VertexBuffer3D = geometry.alternativa3d::getVertexBuffer(VertexAttributes.POSITION);
          var uvBuffer:VertexBuffer3D = geometry.alternativa3d::getVertexBuffer(VertexAttributes.TEXCOORDS[0]);
-         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.alternativa3d::_-EM,surface.indexBegin,surface.numTriangles,program);
+         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.name_EM,surface.indexBegin,surface.numTriangles,program);
          drawUnit.alternativa3d::setVertexBufferAt(program.aPosition,positionBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.POSITION],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.POSITION]);
          drawUnit.alternativa3d::setVertexBufferAt(program.aUV,uvBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.TEXCOORDS[0]],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.TEXCOORDS[0]]);
          object.alternativa3d::setTransformConstants(drawUnit,surface,program.vertexShader,camera);
@@ -453,27 +453,27 @@ package alternativa.tanks.game.entities.tank.graphics.materials
             light = lights[i];
             if(light is DirectionalLight)
             {
-               transform = light.alternativa3d::_-cl;
+               transform = light.name_cl;
                len = Number(Math.sqrt(transform.c * transform.c + transform.g * transform.g + transform.k * transform.k));
-               drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.alternativa3d::_-oG + "Direction"),-transform.c / len,-transform.g / len,-transform.k / len,1);
-               drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.alternativa3d::_-oG + "Color"),light.alternativa3d::red,light.alternativa3d::green,light.alternativa3d::blue);
+               drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.name_oG + "Direction"),-transform.c / len,-transform.g / len,-transform.k / len,1);
+               drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.name_oG + "Color"),light.alternativa3d::red,light.alternativa3d::green,light.alternativa3d::blue);
             }
             else if(light is OmniLight)
             {
                omni = OmniLight(light);
-               transform = light.alternativa3d::_-cl;
+               transform = light.name_cl;
                rScale = Number(Math.sqrt(transform.a * transform.a + transform.e * transform.e + transform.i * transform.i));
                rScale += Math.sqrt(transform.b * transform.b + transform.f * transform.f + transform.j * transform.j);
                rScale += Math.sqrt(transform.c * transform.c + transform.g * transform.g + transform.k * transform.k);
                rScale /= 3;
-               drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.alternativa3d::_-oG + "Position"),transform.d,transform.h,transform.l);
-               drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.alternativa3d::_-oG + "Radius"),1,omni.attenuationEnd * rScale - omni.attenuationBegin * rScale,omni.attenuationBegin * rScale);
-               drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.alternativa3d::_-oG + "Color"),light.alternativa3d::red,light.alternativa3d::green,light.alternativa3d::blue);
+               drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.name_oG + "Position"),transform.d,transform.h,transform.l);
+               drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.name_oG + "Radius"),1,omni.attenuationEnd * rScale - omni.attenuationBegin * rScale,omni.attenuationBegin * rScale);
+               drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.name_oG + "Color"),light.alternativa3d::red,light.alternativa3d::green,light.alternativa3d::blue);
             }
             i++;
          }
-         drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.cSurface,0,this.glossiness,this.§_-kj§,1);
-         drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.cTiling,this.§_-jM§,this.§_-Sf§,0,0);
+         drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.cSurface,0,this.glossiness,this.name_kj,1);
+         drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.cTiling,this.name_jM,this.name_Sf,0,0);
          drawUnit.alternativa3d::setTextureAt(program.sDiffuse,this.diffuse.alternativa3d::_texture);
          drawUnit.alternativa3d::setTextureAt(program.sColormap,this.colorMap.alternativa3d::_texture);
          drawUnit.alternativa3d::setTextureAt(program.sSurface,this.surfaceMap.alternativa3d::_texture);
@@ -530,7 +530,7 @@ package alternativa.tanks.game.entities.tank.graphics.materials
          var bmd:BitmapData = null;
          var i:int = 0;
          var positionBuffer:VertexBuffer3D = geometry.alternativa3d::getVertexBuffer(VertexAttributes.POSITION);
-         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.alternativa3d::_-EM,surface.indexBegin,surface.numTriangles,program);
+         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.name_EM,surface.indexBegin,surface.numTriangles,program);
          drawUnit.alternativa3d::setVertexBufferAt(program.aPosition,positionBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.POSITION],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.POSITION]);
          object.alternativa3d::setTransformConstants(drawUnit,surface,program.vertexShader,camera);
          drawUnit.alternativa3d::setProjectionConstants(camera,program.cProjMatrix,object.alternativa3d::localToCameraTransform);
@@ -586,7 +586,7 @@ package alternativa.tanks.game.entities.tank.graphics.materials
       override public function clone() : Material
       {
          var cloned:TankMaterial2 = new TankMaterial2(this.colorMap,this.diffuse,this.normalMap,this.surfaceMap);
-         cloned.§_-kj§ = this.§_-kj§;
+         cloned.name_kj = this.name_kj;
          cloned.glossiness = this.glossiness;
          return cloned;
       }

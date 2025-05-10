@@ -5,9 +5,9 @@ package alternativa.tanks.game.subsystems.logicsystem
    
    public class LogicSystem extends GameTask implements ILogic
    {
-      private var §_-jB§:Vector.<ILogicUnit>;
+      private var name_jB:Vector.<ILogicUnit>;
       
-      private var §_-0Y§:int;
+      private var name_0Y:int;
       
       private var running:Boolean;
       
@@ -17,7 +17,7 @@ package alternativa.tanks.game.subsystems.logicsystem
       {
          super(priority);
          this.gameKernel = gameKernel;
-         this.§_-jB§ = new Vector.<ILogicUnit>();
+         this.name_jB = new Vector.<ILogicUnit>();
       }
       
       public function addLogicUnit(logicUnit:ILogicUnit) : void
@@ -30,12 +30,12 @@ package alternativa.tanks.game.subsystems.logicsystem
          }
          else
          {
-            if(this.§_-jB§.indexOf(logicUnit) >= 0)
+            if(this.name_jB.indexOf(logicUnit) >= 0)
             {
                throw new Error("Logic unit already exists");
             }
-            var _loc3_:* = this.§_-0Y§++;
-            this.§_-jB§[_loc3_] = logicUnit;
+            var _loc3_:* = this.name_0Y++;
+            this.name_jB[_loc3_] = logicUnit;
          }
       }
       
@@ -50,22 +50,22 @@ package alternativa.tanks.game.subsystems.logicsystem
          }
          else
          {
-            _loc3_ = int(this.§_-jB§.indexOf(logicUnit));
+            _loc3_ = int(this.name_jB.indexOf(logicUnit));
             if(_loc3_ < 0)
             {
                throw new Error("Logic unit not found");
             }
-            this.§_-jB§[_loc3_] = this.§_-jB§[--this.§_-0Y§];
-            this.§_-jB§[this.§_-0Y§] = null;
+            this.name_jB[_loc3_] = this.name_jB[--this.name_0Y];
+            this.name_jB[this.name_0Y] = null;
          }
       }
       
       override public function run() : void
       {
          this.running = true;
-         for(var i:int = 0; i < this.§_-0Y§; i++)
+         for(var i:int = 0; i < this.name_0Y; i++)
          {
-            this.§_-jB§[i].runLogic();
+            this.name_jB[i].runLogic();
          }
          this.running = false;
       }
@@ -82,6 +82,8 @@ package alternativa.tanks.game.subsystems.logicsystem
 import alternativa.tanks.game.subsystems.deferredcommandssystem.DeferredCommand;
 import alternativa.tanks.game.utils.objectpool.ObjectPool;
 import alternativa.tanks.game.utils.objectpool.PooledObject;
+import alternativa.tanks.game.subsystems.logicsystem.ILogic;
+import alternativa.tanks.game.subsystems.logicsystem.ILogicUnit;
 
 class DeferredAction extends DeferredCommand
 {

@@ -76,7 +76,7 @@ package alternativa.tanks.game.subsystems.rendersystem
       
       public var alpha:Number = 1;
       
-      public var §_-L4§:Boolean = false;
+      public var name_L4:Boolean = false;
       
       public function SkyMaterial(diffuseMap:TextureResource = null, opacityMap:TextureResource = null, alpha:Number = 1)
       {
@@ -181,7 +181,7 @@ package alternativa.tanks.game.subsystems.rendersystem
          {
             return;
          }
-         if(!this.§_-L4§ && this.opacityMap != null && this.opacityMap.alternativa3d::_texture == null)
+         if(!this.name_L4 && this.opacityMap != null && this.opacityMap.alternativa3d::_texture == null)
          {
             return;
          }
@@ -198,15 +198,15 @@ package alternativa.tanks.game.subsystems.rendersystem
             optionsPrograms = [];
             _programs[object.alternativa3d::transformProcedure] = optionsPrograms;
          }
-         if(!this.§_-L4§ && !this.opacityMap)
+         if(!this.name_L4 && !this.opacityMap)
          {
             key = 0;
          }
-         else if(!this.§_-L4§ && Boolean(this.opacityMap))
+         else if(!this.name_L4 && Boolean(this.opacityMap))
          {
             key = 1;
          }
-         else if(this.§_-L4§)
+         else if(this.name_L4)
          {
             key = 2;
          }
@@ -218,14 +218,14 @@ package alternativa.tanks.game.subsystems.rendersystem
             program.upload(camera.alternativa3d::context3D);
             optionsPrograms[key] = program;
          }
-         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.alternativa3d::_-EM,surface.indexBegin,surface.numTriangles,program);
+         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.name_EM,surface.indexBegin,surface.numTriangles,program);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aPosition"),positionBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.POSITION],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.POSITION]);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aUV"),uvBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.TEXCOORDS[0]],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.TEXCOORDS[0]]);
          object.alternativa3d::setTransformConstants(drawUnit,surface,program.vertexShader,camera);
          drawUnit.alternativa3d::setProjectionConstants(camera,program.vertexShader.getVariableIndex("cProjMatrix"),object.alternativa3d::localToCameraTransform);
          drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("cAlpha"),0,0,0,this.alpha);
          drawUnit.alternativa3d::setTextureAt(program.fragmentShader.getVariableIndex("sTexture"),this.diffuseMap.alternativa3d::_texture);
-         if(Boolean(this.opacityMap) && !this.§_-L4§)
+         if(Boolean(this.opacityMap) && !this.name_L4)
          {
             drawUnit.alternativa3d::setTextureAt(program.fragmentShader.getVariableIndex("sOpacity"),this.opacityMap.alternativa3d::_texture);
          }
@@ -277,7 +277,7 @@ package alternativa.tanks.game.subsystems.rendersystem
             drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("cFogConsts"),0.5 * uScale,0.5 - uRight,0);
             drawUnit.alternativa3d::setTextureAt(program.fragmentShader.getVariableIndex("sFogTexture"),fogTexture.alternativa3d::_texture);
          }
-         if(this.§_-L4§ || this.opacityMap != null || this.alpha < 1)
+         if(this.name_L4 || this.opacityMap != null || this.alpha < 1)
          {
             drawUnit.alternativa3d::blendSource = Context3DBlendFactor.SOURCE_ALPHA;
             drawUnit.alternativa3d::blendDestination = Context3DBlendFactor.ONE_MINUS_SOURCE_ALPHA;

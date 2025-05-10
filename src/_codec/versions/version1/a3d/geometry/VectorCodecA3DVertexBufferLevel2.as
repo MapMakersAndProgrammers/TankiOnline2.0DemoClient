@@ -38,7 +38,7 @@ package _codec.versions.version1.a3d.geometry
          var result:Vector.<Vector.<A3DVertexBuffer>> = new Vector.<Vector.<A3DVertexBuffer>>(length1,true);
          for(var i1:int = 0; i1 < length1; )
          {
-            if(!protocolBuffer.optionalMap.OptionalMap())
+            if(!protocolBuffer.optionalMap.get())
             {
                length2 = LengthCodecHelper.decodeLength(protocolBuffer);
                items2 = new Vector.<A3DVertexBuffer>(length2,true);

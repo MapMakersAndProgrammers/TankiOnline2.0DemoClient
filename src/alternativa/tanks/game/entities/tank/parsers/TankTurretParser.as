@@ -34,17 +34,17 @@ package alternativa.tanks.game.entities.tank.parsers
       
       private function parseFlagMountPoint(mesh:Mesh, tankTurret:TankTurret) : void
       {
-         tankTurret.§_-G3§.reset(mesh.x,mesh.y,mesh.z);
+         tankTurret.name_G3.reset(mesh.x,mesh.y,mesh.z);
       }
       
       private function parseTurretBox(mesh:Mesh, tankTurret:TankTurret) : void
       {
-         tankTurret.§_-Of§.push(TankPartParsingUtils.parseCollisionBoxData(mesh));
+         tankTurret.name_Of.push(TankPartParsingUtils.parseCollisionBoxData(mesh));
       }
       
       private function parseMuzzle(mesh:Mesh, tankTurret:TankTurret) : void
       {
-         tankTurret.§_-O3§.push(new Vector3(mesh.x,mesh.y,mesh.z));
+         tankTurret.name_O3.push(new Vector3(mesh.x,mesh.y,mesh.z));
       }
    }
 }

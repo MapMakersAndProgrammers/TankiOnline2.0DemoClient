@@ -12,7 +12,7 @@ package alternativa.engine3d.loaders.collada
       
       public var data:XML;
       
-      private var §_-Ba§:int = -1;
+      private var name_Ba:int = -1;
       
       public function DaeElement(data:XML, document:DaeDocument)
       {
@@ -35,12 +35,12 @@ package alternativa.engine3d.loaders.collada
       
       public function parse() : Boolean
       {
-         if(this.§_-Ba§ < 0)
+         if(this.name_Ba < 0)
          {
-            this.§_-Ba§ = this.parseImplementation() ? 1 : 0;
-            return this.§_-Ba§ != 0;
+            this.name_Ba = this.parseImplementation() ? 1 : 0;
+            return this.name_Ba != 0;
          }
-         return this.§_-Ba§ != 0;
+         return this.name_Ba != 0;
       }
       
       protected function parseImplementation() : Boolean
@@ -57,7 +57,7 @@ package alternativa.engine3d.loaders.collada
       {
          var value:String = null;
          var arr:Array = element.text().toString().split(/\s+/);
-         for(var i:int = 0,var count:int = int(arr.length); i < count; i++)
+         for(var i:int = 0, count:int = int(arr.length); i < count; i++)
          {
             value = arr[i];
             if(value.indexOf(",") != -1)
@@ -73,7 +73,7 @@ package alternativa.engine3d.loaders.collada
       {
          var value:String = null;
          var arr:Array = element.text().toString().split(/\s+/);
-         for(var i:int = 0,var count:int = int(arr.length); i < count; i++)
+         for(var i:int = 0, count:int = int(arr.length); i < count; i++)
          {
             value = arr[i];
             arr[i] = parseInt(value,10);

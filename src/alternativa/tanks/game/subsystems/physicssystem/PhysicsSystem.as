@@ -23,25 +23,25 @@ package alternativa.tanks.game.subsystems.physicssystem
       
       private var physicsScene:PhysicsScene;
       
-      private var §_-hl§:Vector.<IPhysicsController>;
+      private var name_hl:Vector.<IPhysicsController>;
       
-      private var §_-g7§:int;
+      private var name_g7:int;
       
-      private var §_-b5§:Vector.<IPhysicsController>;
+      private var name_b5:Vector.<IPhysicsController>;
       
-      private var §_-f5§:int;
+      private var name_f5:int;
       
-      private var §_-ST§:Vector.<IPhysicsController>;
+      private var name_ST:Vector.<IPhysicsController>;
       
-      private var §_-7y§:int;
+      private var name_7y:int;
       
-      private var §_-jp§:UniformGridCollisionDetector;
+      private var name_jp:UniformGridCollisionDetector;
       
-      private var §_-FE§:int;
+      private var name_FE:int;
       
       private var running:Boolean;
       
-      private var §_-pR§:DeferredCommand;
+      private var name_pR:DeferredCommand;
       
       private var objectPoolManager:ObjectPoolManager;
       
@@ -49,18 +49,18 @@ package alternativa.tanks.game.subsystems.physicssystem
       {
          super(priority);
          this.objectPoolManager = objectPoolManager;
-         this.§_-hl§ = new Vector.<IPhysicsController>();
-         this.§_-b5§ = new Vector.<IPhysicsController>();
-         this.§_-ST§ = new Vector.<IPhysicsController>();
+         this.name_hl = new Vector.<IPhysicsController>();
+         this.name_b5 = new Vector.<IPhysicsController>();
+         this.name_ST = new Vector.<IPhysicsController>();
          this.physicsScene = new PhysicsScene();
-         this.physicsScene.§_-06§ = true;
-         this.physicsScene.§_-YB§ = 5;
+         this.physicsScene.name_06 = true;
+         this.physicsScene.name_YB = 5;
          this.physicsScene.dynamic = 100;
          this.physicsScene.gravity = new Vector3(0,0,-1000);
          if(USE_GRID_COLLISION_DETECTOR)
          {
-            this.§_-jp§ = new UniformGridCollisionDetector();
-            this.physicsScene.collisionDetector = this.§_-jp§;
+            this.name_jp = new UniformGridCollisionDetector();
+            this.physicsScene.collisionDetector = this.name_jp;
          }
          else
          {
@@ -70,18 +70,18 @@ package alternativa.tanks.game.subsystems.physicssystem
       
       override protected function onPause() : void
       {
-         this.§_-FE§ = getTimer();
+         this.name_FE = getTimer();
       }
       
       override protected function onResume() : void
       {
-         this.§_-FE§ = getTimer() - this.§_-FE§;
-         this.physicsScene.time += this.§_-FE§;
+         this.name_FE = getTimer() - this.name_FE;
+         this.physicsScene.time += this.name_FE;
       }
       
       public function getGridCollisionDetector() : UniformGridCollisionDetector
       {
-         return this.§_-jp§;
+         return this.name_jp;
       }
       
       public function getPhysicsStep() : int
@@ -103,7 +103,7 @@ package alternativa.tanks.game.subsystems.physicssystem
          if(USE_GRID_COLLISION_DETECTOR)
          {
             gridCellSize = 800;
-            this.§_-jp§.createGrid(gridCellSize,collisionPrimitives);
+            this.name_jp.createGrid(gridCellSize,collisionPrimitives);
          }
          else
          {
@@ -111,7 +111,7 @@ package alternativa.tanks.game.subsystems.physicssystem
             _loc4_ = new BoundBox();
             _loc5_ = 20000;
             _loc4_.setSize(-_loc5_,-_loc5_,-_loc5_,_loc5_,_loc5_,_loc5_);
-            _loc3_.prepareForRaycasts(collisionPrimitives,_loc4_);
+            _loc3_.buildKdTree(collisionPrimitives,_loc4_);
          }
       }
       
@@ -125,12 +125,12 @@ package alternativa.tanks.game.subsystems.physicssystem
          }
          else
          {
-            if(this.§_-hl§.indexOf(controller) >= 0)
+            if(this.name_hl.indexOf(controller) >= 0)
             {
                throw new Error("Controller " + controller + " already exists");
             }
-            var _loc3_:* = this.§_-g7§++;
-            this.§_-hl§[_loc3_] = controller;
+            var _loc3_:* = this.name_g7++;
+            this.name_hl[_loc3_] = controller;
          }
       }
       
@@ -144,23 +144,23 @@ package alternativa.tanks.game.subsystems.physicssystem
          }
          else
          {
-            if(this.§_-b5§.indexOf(controller) >= 0)
+            if(this.name_b5.indexOf(controller) >= 0)
             {
                throw new Error("Controller " + controller + " already exists");
             }
-            var _loc3_:* = this.§_-f5§++;
-            this.§_-b5§[_loc3_] = controller;
+            var _loc3_:* = this.name_f5++;
+            this.name_b5[_loc3_] = controller;
          }
       }
       
       public function addInterpolationController(controller:IPhysicsController) : void
       {
-         if(this.§_-ST§.indexOf(controller) >= 0)
+         if(this.name_ST.indexOf(controller) >= 0)
          {
             throw new Error("Controller " + controller + " already exists");
          }
-         var _loc2_:* = this.§_-7y§++;
-         this.§_-ST§[_loc2_] = controller;
+         var _loc2_:* = this.name_7y++;
+         this.name_ST[_loc2_] = controller;
       }
       
       public function removeControllerBefore(controller:IPhysicsController) : void
@@ -174,13 +174,13 @@ package alternativa.tanks.game.subsystems.physicssystem
          }
          else
          {
-            _loc3_ = int(this.§_-hl§.indexOf(controller));
+            _loc3_ = int(this.name_hl.indexOf(controller));
             if(_loc3_ < 0)
             {
                throw new Error("Controller " + controller + " not found");
             }
-            this.§_-hl§[_loc3_] = this.§_-hl§[--this.§_-g7§];
-            this.§_-hl§[this.§_-g7§] = null;
+            this.name_hl[_loc3_] = this.name_hl[--this.name_g7];
+            this.name_hl[this.name_g7] = null;
          }
       }
       
@@ -195,25 +195,25 @@ package alternativa.tanks.game.subsystems.physicssystem
          }
          else
          {
-            _loc3_ = int(this.§_-b5§.indexOf(controller));
+            _loc3_ = int(this.name_b5.indexOf(controller));
             if(_loc3_ < 0)
             {
                throw new Error("Controller " + controller + " not found");
             }
-            this.§_-b5§[_loc3_] = this.§_-b5§[--this.§_-f5§];
-            this.§_-b5§[this.§_-f5§] = null;
+            this.name_b5[_loc3_] = this.name_b5[--this.name_f5];
+            this.name_b5[this.name_f5] = null;
          }
       }
       
       public function removeInterpolationController(controller:IPhysicsController) : void
       {
-         var index:int = int(this.§_-ST§.indexOf(controller));
+         var index:int = int(this.name_ST.indexOf(controller));
          if(index < 0)
          {
             throw new Error("Controller " + controller + " not found");
          }
-         this.§_-ST§[index] = this.§_-ST§[--this.§_-7y§];
-         this.§_-ST§[this.§_-7y§] = null;
+         this.name_ST[index] = this.name_ST[--this.name_7y];
+         this.name_ST[this.name_7y] = null;
       }
       
       override public function start() : void
@@ -233,22 +233,22 @@ package alternativa.tanks.game.subsystems.physicssystem
             {
                this.running = true;
                ITanksCollisionDetector(this.physicsScene.collisionDetector).prepareForRaycasts();
-               for(i = 0; i < this.§_-g7§; i++)
+               for(i = 0; i < this.name_g7; i++)
                {
-                  controller = this.§_-hl§[i];
+                  controller = this.name_hl[i];
                   controller.updateBeforeSimulation(this.physicsStep);
                }
                this.physicsScene.update(this.physicsStep);
                ITanksCollisionDetector(this.physicsScene.collisionDetector).prepareForRaycasts();
-               for(i = 0; i < this.§_-f5§; i++)
+               for(i = 0; i < this.name_f5; i++)
                {
-                  controller = this.§_-b5§[i];
+                  controller = this.name_b5[i];
                   controller.updateAfterSimulation(this.physicsStep);
                }
-               for(this.running = false; this.§_-pR§ != null; )
+               for(this.running = false; this.name_pR != null; )
                {
-                  action = this.§_-pR§;
-                  this.§_-pR§ = this.§_-pR§.next;
+                  action = this.name_pR;
+                  this.name_pR = this.name_pR.next;
                   action.next = null;
                   action.execute();
                   action.storeInPool();
@@ -256,9 +256,9 @@ package alternativa.tanks.game.subsystems.physicssystem
             }
          }
          this.interpolationCoeff = 1 - (this.physicsScene.time - currentTime) / this.physicsStep;
-         for(i = 0; i < this.§_-7y§; i++)
+         for(i = 0; i < this.name_7y; i++)
          {
-            controller = this.§_-ST§[i];
+            controller = this.name_ST[i];
             controller.interpolate(this.interpolationCoeff);
          }
       }
@@ -267,8 +267,8 @@ package alternativa.tanks.game.subsystems.physicssystem
       {
          deferredAction.system = this;
          deferredAction.controller = controller;
-         deferredAction.next = this.§_-pR§;
-         this.§_-pR§ = deferredAction;
+         deferredAction.next = this.name_pR;
+         this.name_pR = deferredAction;
       }
    }
 }
@@ -276,6 +276,8 @@ package alternativa.tanks.game.subsystems.physicssystem
 import alternativa.tanks.game.subsystems.deferredcommandssystem.DeferredCommand;
 import alternativa.tanks.game.utils.objectpool.ObjectPool;
 import alternativa.tanks.game.utils.objectpool.PooledObject;
+import alternativa.tanks.game.subsystems.physicssystem.PhysicsSystem;
+import alternativa.tanks.game.subsystems.physicssystem.IPhysicsController;
 
 class DeferredAction extends DeferredCommand
 {

@@ -44,9 +44,9 @@ package alternativa.tanks.game.weapons.flamethrower
       
       private var range:Number;
       
-      private var §_-n7§:Number;
+      private var name_n7:Number;
       
-      private var §_-er§:Number;
+      private var name_er:Number;
       
       private var maxParticles:int;
       
@@ -54,9 +54,9 @@ package alternativa.tanks.game.weapons.flamethrower
       
       private var sfxData:FlamethrowerSFXData;
       
-      private var §_-lV§:Vector.<Particle> = new Vector.<Particle>();
+      private var name_lV:Vector.<Particle> = new Vector.<Particle>();
       
-      private var §_-Jx§:int;
+      private var name_Jx:int;
       
       private var numFrames:int;
       
@@ -64,9 +64,9 @@ package alternativa.tanks.game.weapons.flamethrower
       
       private var dead:Boolean;
       
-      private var §_-ny§:int;
+      private var name_ny:int;
       
-      private var §_-jJ§:int;
+      private var name_jJ:int;
       
       private var collisionGroup:int = CollisionGroup.WEAPON | CollisionGroup.STATIC;
       
@@ -76,7 +76,7 @@ package alternativa.tanks.game.weapons.flamethrower
       
       private var sideAxis:Vector3 = new Vector3();
       
-      private var §_-6z§:Number;
+      private var name_6z:Number;
       
       private var renderSystem:RenderSystem;
       
@@ -99,10 +99,10 @@ package alternativa.tanks.game.weapons.flamethrower
       {
          this.renderSystem = system;
          this.turret.getGunData(BARREL_INDEX,this.origin,this.direction,this.sideAxis);
-         this.§_-6z§ = this.turret.getBarrelLength(BARREL_INDEX);
-         this.position.x = this.origin.x + this.direction.x * this.§_-6z§;
-         this.position.y = this.origin.y + this.direction.y * this.§_-6z§;
-         this.position.z = this.origin.z + this.direction.z * this.§_-6z§;
+         this.name_6z = this.turret.getBarrelLength(BARREL_INDEX);
+         this.position.x = this.origin.x + this.direction.x * this.name_6z;
+         this.position.y = this.origin.y + this.direction.y * this.name_6z;
+         this.position.z = this.origin.z + this.direction.z * this.name_6z;
          this.flame.position = this.position;
          this.dir.x = this.direction.x;
          this.dir.y = this.direction.y;
@@ -126,10 +126,10 @@ package alternativa.tanks.game.weapons.flamethrower
             return false;
          }
          this.turret.getGunData(BARREL_INDEX,this.origin,this.direction,this.sideAxis);
-         this.§_-6z§ = this.turret.getBarrelLength(BARREL_INDEX);
-         this.position.x = this.origin.x + this.direction.x * this.§_-6z§;
-         this.position.y = this.origin.y + this.direction.y * this.§_-6z§;
-         this.position.z = this.origin.z + this.direction.z * this.§_-6z§;
+         this.name_6z = this.turret.getBarrelLength(BARREL_INDEX);
+         this.position.x = this.origin.x + this.direction.x * this.name_6z;
+         this.position.y = this.origin.y + this.direction.y * this.name_6z;
+         this.position.z = this.origin.z + this.direction.z * this.name_6z;
          this.flame.position = this.position;
          this.dir.x = this.direction.x;
          this.dir.y = this.direction.y;
@@ -151,11 +151,11 @@ package alternativa.tanks.game.weapons.flamethrower
       private function tryToAddParticle() : void
       {
          var offset:Number = Math.random() * 50;
-         if(!this.collisionDetector.raycastStatic(this.origin,this.direction,CollisionGroup.STATIC,this.§_-6z§ + offset,null,rayHit))
+         if(!this.collisionDetector.raycastStatic(this.origin,this.direction,CollisionGroup.STATIC,this.name_6z + offset,null,rayHit))
          {
-            sourcePosition.x = this.origin.x + this.direction.x * this.§_-6z§;
-            sourcePosition.y = this.origin.y + this.direction.y * this.§_-6z§;
-            sourcePosition.z = this.origin.z + this.direction.z * this.§_-6z§;
+            sourcePosition.x = this.origin.x + this.direction.x * this.name_6z;
+            sourcePosition.y = this.origin.y + this.direction.y * this.name_6z;
+            sourcePosition.z = this.origin.z + this.direction.z * this.name_6z;
             particleDirection.copy(this.direction);
             xAxis.copy(this.sideAxis);
             this.addParticle(sourcePosition,particleDirection,xAxis,offset);
@@ -169,7 +169,7 @@ package alternativa.tanks.game.weapons.flamethrower
          var angle:Number = 2 * Math.PI * Math.random();
          matrix.fromAxisAngle(direction,angle);
          sideAxis.transform3(matrix);
-         var d:Number = this.range * this.§_-er§ * Math.random();
+         var d:Number = this.range * this.name_er * Math.random();
          direction.x = direction.x * this.range + sideAxis.x * d;
          direction.y = direction.y * this.range + sideAxis.y * d;
          direction.z = direction.z * this.range + sideAxis.z * d;
@@ -182,15 +182,15 @@ package alternativa.tanks.game.weapons.flamethrower
          particle.x = sourcePosition.x + offset * direction.x;
          particle.y = sourcePosition.y + offset * direction.y;
          particle.z = sourcePosition.z + offset * direction.z;
-         var _loc9_:* = this.§_-Jx§++;
-         this.§_-lV§[_loc9_] = particle;
+         var _loc9_:* = this.name_Jx++;
+         this.name_lV[_loc9_] = particle;
       }
       
       private function removeParticle(index:int) : void
       {
-         var particle:Particle = this.§_-lV§[index];
-         this.§_-lV§[index] = this.§_-lV§[--this.§_-Jx§];
-         this.§_-lV§[this.§_-Jx§] = null;
+         var particle:Particle = this.name_lV[index];
+         this.name_lV[index] = this.name_lV[--this.name_Jx];
+         this.name_lV[this.name_Jx] = null;
          particle.dispose();
       }
    }

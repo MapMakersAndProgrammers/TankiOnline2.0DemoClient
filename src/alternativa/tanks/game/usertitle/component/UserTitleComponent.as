@@ -20,37 +20,37 @@ package alternativa.tanks.game.usertitle.component
       
       private static var position:Vector3 = new Vector3();
       
-      private var §_-Xa§:UserTitle;
+      private var name_Xa:UserTitle;
       
       private var chassisComponent:IChassisPhysicsComponent;
       
-      private var §_-lp§:IWeapon;
+      private var name_lp:IWeapon;
       
       private var localPlayer:Boolean;
       
-      private var §_-z§:EventStates;
+      private var name_z:EventStates;
       
       private var gameKernel:GameKernel;
       
-      private var §case §:Boolean;
+      private var name_case:Boolean;
       
-      private var §_-S3§:VisibleState;
+      private var name_S3:VisibleState;
       
       private var titleRenderer:IUserTitleRenderer;
       
       public function UserTitleComponent(maxHealth:int, rankIcon:IRankIcon, name:String, localPlayer:Boolean, label:IUserName, configFlags:int, titleRenderer:IUserTitleRenderer)
       {
          super();
-         this.§_-Xa§ = new UserTitle(maxHealth,rankIcon,label);
+         this.name_Xa = new UserTitle(maxHealth,rankIcon,label);
          this.localPlayer = localPlayer;
          this.titleRenderer = titleRenderer;
-         this.§_-Xa§.setLabelText(name);
-         this.§_-Xa§.setConfiguration(configFlags);
+         this.name_Xa.setLabelText(name);
+         this.name_Xa.setConfiguration(configFlags);
       }
       
       public function isOnScene() : Boolean
       {
-         return this.§case §;
+         return this.name_case;
       }
       
       public function isLocalPlayer() : Boolean
@@ -60,31 +60,31 @@ package alternativa.tanks.game.usertitle.component
       
       public function setMaxHealth(maxHealth:int) : void
       {
-         this.§_-Xa§.setMaxHealth(maxHealth);
+         this.name_Xa.setMaxHealth(maxHealth);
       }
       
       public function showIndicator(indicatorId:int, duration:int) : void
       {
-         this.§_-Xa§.showIndicator(indicatorId,duration);
+         this.name_Xa.showIndicator(indicatorId,duration);
       }
       
       public function hideIndicator(indicatorId:int) : void
       {
-         this.§_-Xa§.hideIndicator(indicatorId);
+         this.name_Xa.hideIndicator(indicatorId);
       }
       
       override public function initComponent() : void
       {
          this.chassisComponent = IChassisPhysicsComponent(entity.getComponentStrict(IChassisPhysicsComponent));
-         this.§_-lp§ = IWeapon(entity.getComponent(IWeapon));
-         this.§_-z§ = new EventStates();
-         this.§_-S3§ = new VisibleState(this);
-         this.§_-z§.setEventState(entity,TankEvents.SET_ACTIVATING_STATE,this.§_-S3§);
-         this.§_-z§.setEventState(entity,TankEvents.SET_ACTIVE_STATE,this.§_-S3§);
-         this.§_-z§.setEventState(entity,TankEvents.SET_DEAD_STATE,new DeadState(this));
+         this.name_lp = IWeapon(entity.getComponent(IWeapon));
+         this.name_z = new EventStates();
+         this.name_S3 = new VisibleState(this);
+         this.name_z.setEventState(entity,TankEvents.SET_ACTIVATING_STATE,this.name_S3);
+         this.name_z.setEventState(entity,TankEvents.SET_ACTIVE_STATE,this.name_S3);
+         this.name_z.setEventState(entity,TankEvents.SET_DEAD_STATE,new DeadState(this));
          var offSceneState:OffSceneState = new OffSceneState(this);
-         this.§_-z§.setEventState(entity,TankEvents.SET_RESPAWN_STATE,offSceneState);
-         this.§_-z§.§_-Ah§ = offSceneState;
+         this.name_z.setEventState(entity,TankEvents.SET_RESPAWN_STATE,offSceneState);
+         this.name_z.name_Ah = offSceneState;
          entity.addEventHandler(TankEvents.SET_HEALTH,this.onSetHealth);
       }
       
@@ -96,70 +96,70 @@ package alternativa.tanks.game.usertitle.component
       override public function addToGame(gameKernel:GameKernel) : void
       {
          this.gameKernel = gameKernel;
-         this.§_-Xa§.setResourceManager(gameKernel.getRenderSystem());
+         this.name_Xa.setResourceManager(gameKernel.getRenderSystem());
       }
       
       override public function removeFromGame(gameKernel:GameKernel) : void
       {
-         this.§_-z§.§_-Ah§.stop();
+         this.name_z.name_Ah.stop();
          this.removeFromScene();
       }
       
       public function addToScene() : void
       {
          var renderSystem:RenderSystem = null;
-         if(!this.§case §)
+         if(!this.name_case)
          {
             renderSystem = this.gameKernel.getRenderSystem();
             if(this.localPlayer)
             {
-               this.§_-Xa§.setLocal();
+               this.name_Xa.setLocal();
             }
-            this.§_-Xa§.addToContainer(renderSystem.getDynamicObjectsContainer());
+            this.name_Xa.addToContainer(renderSystem.getDynamicObjectsContainer());
             renderSystem.addRenderer(this);
-            this.§case § = true;
+            this.name_case = true;
          }
       }
       
       public function removeFromScene() : void
       {
-         if(this.§case §)
+         if(this.name_case)
          {
-            this.§_-Xa§.removeFromContainer();
+            this.name_Xa.removeFromContainer();
             this.gameKernel.getRenderSystem().removeRenderer(this);
-            this.§case § = false;
+            this.name_case = false;
          }
       }
       
       public function setHealth(health:Number) : void
       {
-         this.§_-Xa§.setHealth(health);
+         this.name_Xa.setHealth(health);
       }
       
       public function setRank(rankId:int) : void
       {
-         this.§_-Xa§.setRank(rankId);
+         this.name_Xa.setRank(rankId);
       }
       
       public function render() : void
       {
          this.chassisComponent.getTurretMountPoint(position);
          position.transform4(this.chassisComponent.getInterpolatedMatrix());
-         if(this.localPlayer && this.§_-lp§ != null)
+         if(this.localPlayer && this.name_lp != null)
          {
-            this.§_-Xa§.setWeaponStatus(this.§_-lp§.getStatus() * 100);
+            this.name_Xa.setWeaponStatus(this.name_lp.getStatus() * 100);
          }
          else
          {
             position.z += REMOTE_LABEL_OFFSET_Z;
          }
          this.titleRenderer.renderUserTitle(entity,this);
-         this.§_-Xa§.update(position,TimeSystem.time,TimeSystem.timeDelta);
+         this.name_Xa.update(position,TimeSystem.time,TimeSystem.timeDelta);
       }
       
       public function getTitle() : UserTitle
       {
-         return this.§_-Xa§;
+         return this.name_Xa;
       }
    }
 }

@@ -85,7 +85,7 @@ package alternativa.tanks.game.effects
                particleSystem.each(newFire);
             },(live - 5 * ft) * 1000);
          }
-         setLife(§_-gV§[§_-kf§ - 1] + smokePrototype.lifeTime);
+         setLife(name_gV[name_kf - 1] + smokePrototype.lifeTime);
       }
       
       private function keyFrame1(keyTime:Number, time:Number) : void

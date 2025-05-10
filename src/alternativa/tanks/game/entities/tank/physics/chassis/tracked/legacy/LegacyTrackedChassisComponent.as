@@ -43,39 +43,39 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
       
       public var body:Body;
       
-      public var §_-Ei§:LegacyTrack;
+      public var name_Ei:LegacyTrack;
       
-      public var §_-iA§:LegacyTrack;
+      public var name_iA:LegacyTrack;
       
       public var maxSpeed:Number = 0;
       
-      private var §_-fL§:ValueSmoother = new ValueSmoother(100,1000,0,0);
+      private var name_fL:ValueSmoother = new ValueSmoother(100,1000,0,0);
       
       public var maxTurnSpeed:Number = 0;
       
-      private var §_-dr§:ValueSmoother = new ValueSmoother(0.3,10,0,0);
+      private var name_dr:ValueSmoother = new ValueSmoother(0.3,10,0,0);
       
-      private var §_-mt§:Number = 0;
+      private var name_mt:Number = 0;
       
-      private var §_-JJ§:Number = 0;
+      private var name_JJ:Number = 0;
       
-      private var §_-Tb§:Boolean;
+      private var name_Tb:Boolean;
       
-      private var §_-mq§:Boolean;
+      private var name_mq:Boolean;
       
-      private var §_-DC§:Vector.<CollisionPrimitive>;
+      private var name_DC:Vector.<CollisionPrimitive>;
       
-      public var §_-i1§:Vector.<CollisionPrimitive>;
+      public var name_i1:Vector.<CollisionPrimitive>;
       
-      public var §_-4Y§:Vector.<CollisionPrimitive>;
+      public var name_4Y:Vector.<CollisionPrimitive>;
       
-      public var §_-bi§:Vector3 = new Vector3();
+      public var name_bi:Vector3 = new Vector3();
       
-      public var §_-UQ§:Quaternion = new Quaternion();
+      public var name_UQ:Quaternion = new Quaternion();
       
-      public var §_-YH§:Matrix4 = new Matrix4();
+      public var name_YH:Matrix4 = new Matrix4();
       
-      public var §_-CF§:SuspensionData = new SuspensionData();
+      public var name_CF:SuspensionData = new SuspensionData();
       
       public var moveDirection:int;
       
@@ -83,15 +83,15 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
       
       private var hull:TankHull;
       
-      private var §_-Rg§:BodyCollisionData;
+      private var name_Rg:BodyCollisionData;
       
-      private var §_-z§:EventStates;
+      private var name_z:EventStates;
       
-      private var §case §:Boolean;
+      private var name_case:Boolean;
       
       private var turret:ITurretPhysicsComponent;
       
-      private var §_-CG§:Vector.<Vector3>;
+      private var name_CG:Vector.<Vector3>;
       
       private var mass:Number = 1;
       
@@ -104,19 +104,19 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
          super();
          this.mass = mass;
          this.power = power;
-         this.§_-CG§ = new Vector.<Vector3>();
+         this.name_CG = new Vector.<Vector3>();
          this.body = new Body(1,Matrix3.IDENTITY);
          this.body.id = lastId++;
-         this.§_-DC§ = new Vector.<CollisionPrimitive>();
-         this.§_-4Y§ = new Vector.<CollisionPrimitive>();
-         this.§_-i1§ = new Vector.<CollisionPrimitive>();
-         this.§_-Rg§ = new BodyCollisionData(this.body,this.§_-i1§,this.§_-4Y§);
+         this.name_DC = new Vector.<CollisionPrimitive>();
+         this.name_4Y = new Vector.<CollisionPrimitive>();
+         this.name_i1 = new Vector.<CollisionPrimitive>();
+         this.name_Rg = new BodyCollisionData(this.body,this.name_i1,this.name_4Y);
          this.setHull(hull);
       }
       
       public function getBoundPoints() : Vector.<Vector3>
       {
-         return this.§_-CG§;
+         return this.name_CG;
       }
       
       public function getBody() : Body
@@ -126,26 +126,26 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
       
       public function getWheelDeltaZ(wheelName:String) : Number
       {
-         var lastHitLength:Number = this.§_-Ei§.getRayLastHitLength(wheelName,this.§_-CF§.rayLength);
+         var lastHitLength:Number = this.name_Ei.getRayLastHitLength(wheelName,this.name_CF.rayLength);
          if(lastHitLength < 0)
          {
-            lastHitLength = this.§_-iA§.getRayLastHitLength(wheelName,this.§_-CF§.rayLength);
+            lastHitLength = this.name_iA.getRayLastHitLength(wheelName,this.name_CF.rayLength);
          }
          if(lastHitLength < 0)
          {
             return 0;
          }
-         return this.§_-CF§.§_-Fw§ - lastHitLength;
+         return this.name_CF.name_Fw - lastHitLength;
       }
       
       public function getLeftTrackSpeed() : Number
       {
-         return this.§_-Ei§.§_-gt§;
+         return this.name_Ei.name_gt;
       }
       
       public function getRightTrackSpeed() : Number
       {
-         return this.§_-iA§.§_-gt§;
+         return this.name_iA.name_gt;
       }
       
       public function setHull(hull:TankHull) : void
@@ -159,20 +159,20 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
             return;
          }
          this.hull = hull;
-         this.createPrimitives(hull.§_-AE§,this.§_-DC§,CollisionGroup.TANK,CollisionGroup.TANK | CollisionGroup.STATIC);
-         this.createPrimitives(hull.§_-KR§,this.§_-i1§,CollisionGroup.TANK,CollisionGroup.TANK);
+         this.createPrimitives(hull.name_AE,this.name_DC,CollisionGroup.TANK,CollisionGroup.TANK | CollisionGroup.STATIC);
+         this.createPrimitives(hull.name_KR,this.name_i1,CollisionGroup.TANK,CollisionGroup.TANK);
          if(this.turret != null)
          {
-            this.turret.setTurretMountPoint(hull.§_-Rj§);
+            this.turret.setTurretMountPoint(hull.name_Rj);
          }
          this.resetCollisionPrimitives();
          this.setBodyInertia();
          var rayZ:Number = this.createTracks();
          this.setSuspensionCollisionMask(CollisionGroup.TANK | CollisionGroup.STATIC);
-         this.§_-CF§.rayLength = 75;
-         this.§_-CF§.§_-Fw§ = rayZ - hull.§_-Sh§.z;
-         this.§_-CF§.§_-WZ§ = 1000;
-         this.body.material.§_-J1§ = 0.1;
+         this.name_CF.rayLength = 75;
+         this.name_CF.name_Fw = rayZ - hull.name_Sh.z;
+         this.name_CF.name_WZ = 1000;
+         this.body.material.name_J1 = 0.1;
          this.setChassisControls(this.moveDirection,this.turnDirection,true);
          var bb:BoundBox = new BoundBox();
          this.calculateBoundBox(bb);
@@ -184,11 +184,11 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
          if(immediate)
          {
             this.maxTurnSpeed = value;
-            this.§_-dr§.reset(value);
+            this.name_dr.reset(value);
          }
          else
          {
-            this.§_-dr§.targetValue = value;
+            this.name_dr.targetValue = value;
          }
       }
       
@@ -197,21 +197,21 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
          if(immediate)
          {
             this.maxSpeed = value;
-            this.§_-fL§.reset(value);
+            this.name_fL.reset(value);
          }
          else
          {
-            this.§_-fL§.targetValue = value;
+            this.name_fL.targetValue = value;
          }
       }
       
       private function createTracks() : Number
       {
          var matrix:Matrix4 = new Matrix4();
-         matrix.setPosition(this.hull.§_-Sh§);
-         this.§_-Ei§ = new LegacyTrack(this.body,matrix,this.hull.§_-EY§);
-         this.§_-iA§ = new LegacyTrack(this.body,matrix,this.hull.§_-M4§);
-         return this.§_-Ei§.rays[0].getRelativeZ();
+         matrix.setPosition(this.hull.name_Sh);
+         this.name_Ei = new LegacyTrack(this.body,matrix,this.hull.name_EY);
+         this.name_iA = new LegacyTrack(this.body,matrix,this.hull.name_M4);
+         return this.name_Ei.rays[0].getRelativeZ();
       }
       
       private function setBodyInertia() : void
@@ -227,7 +227,7 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
          }
          else
          {
-            _loc1_ = this.hull.§_-eh§.hs.clone();
+            _loc1_ = this.hull.name_eh.hs.clone();
             _loc1_.scale(2);
             this.body.invMass = 1 / this.mass;
             _loc2_ = _loc1_.x * _loc1_.x;
@@ -244,7 +244,7 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
          var collisionPrimitive:CollisionPrimitive = null;
          var primitiveTransform:Matrix4 = null;
          boundBox.infinity();
-         for each(collisionPrimitive in this.§_-DC§)
+         for each(collisionPrimitive in this.name_DC)
          {
             primitiveTransform = collisionPrimitive.transform;
             collisionPrimitive.transform = collisionPrimitive.localTransform || Matrix4.IDENTITY;
@@ -268,14 +268,14 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
          var clientLog:IClientLog = null;
          clientLog = IClientLog(OSGi.getInstance().getService(IClientLog));
          clientLog.log("tank","LegacyTrackedChassisComponent::setBoundPoint() point %1: %2, %3, %4",index,x.toFixed(2),y.toFixed(2),z.toFixed(2));
-         if(index < this.§_-CG§.length)
+         if(index < this.name_CG.length)
          {
-            point = this.§_-CG§[index];
+            point = this.name_CG[index];
          }
          if(point == null)
          {
             point = new Vector3();
-            this.§_-CG§[index] = point;
+            this.name_CG[index] = point;
          }
          point.reset(x,y,z);
       }
@@ -288,12 +288,12 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
          {
             this.body.collisionPrimitives.clear();
          }
-         this.addPrimitivesToBody(this.§_-DC§);
-         this.addPrimitivesToBody(this.§_-i1§);
-         this.§_-4Y§.length = 0;
-         for each(collisionPrimitive in this.§_-DC§)
+         this.addPrimitivesToBody(this.name_DC);
+         this.addPrimitivesToBody(this.name_i1);
+         this.name_4Y.length = 0;
+         for each(collisionPrimitive in this.name_DC)
          {
-            this.§_-4Y§.push(collisionPrimitive);
+            this.name_4Y.push(collisionPrimitive);
          }
          if(this.turret != null)
          {
@@ -301,7 +301,7 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
             this.addPrimitivesToBody(turretPrimitives);
             for each(collisionPrimitive in turretPrimitives)
             {
-               this.§_-4Y§.push(collisionPrimitive);
+               this.name_4Y.push(collisionPrimitive);
             }
          }
       }
@@ -359,14 +359,14 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
       
       private function setThrottle(throttleLeft:Number, throttleRight:Number) : void
       {
-         this.§_-mt§ = throttleLeft;
-         this.§_-JJ§ = throttleRight;
+         this.name_mt = throttleLeft;
+         this.name_JJ = throttleRight;
       }
       
       private function setBrakes(lb:Boolean, rb:Boolean) : void
       {
-         this.§_-Tb§ = lb;
-         this.§_-mq§ = rb;
+         this.name_Tb = lb;
+         this.name_mq = rb;
       }
       
       public function setChassisControls(moveDirection:int, turnDirection:int, reverseBackTurn:Boolean, force:Boolean = false) : Boolean
@@ -444,7 +444,7 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
       
       override public function removeFromGame(gameKernel:GameKernel) : void
       {
-         this.§_-z§.§_-Ah§.stop();
+         this.name_z.name_Ah.stop();
          this.removeFromScene();
          gameKernel = null;
       }
@@ -453,24 +453,24 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
       {
          InterpolationComponent(entity.getComponentStrict(InterpolationComponent)).setChassisController(this);
          this.resetCollisionPrimitives();
-         this.§_-z§ = new EventStates();
+         this.name_z = new EventStates();
          var respawnState:LegacyRespawnState = new LegacyRespawnState(this);
-         this.§_-z§.setEventState(entity,TankEvents.SET_RESPAWN_STATE,respawnState);
-         this.§_-z§.setEventState(entity,TankEvents.SET_ACTIVATING_STATE,new LegacyActivatingState(this));
-         this.§_-z§.setEventState(entity,TankEvents.SET_ACTIVE_STATE,new LegacyActiveState(this));
-         this.§_-z§.setEventState(entity,TankEvents.SET_DEAD_STATE,new LegacyDeadState(this));
-         this.§_-z§.§_-Ah§ = EmptyState.INSTANCE;
+         this.name_z.setEventState(entity,TankEvents.SET_RESPAWN_STATE,respawnState);
+         this.name_z.setEventState(entity,TankEvents.SET_ACTIVATING_STATE,new LegacyActivatingState(this));
+         this.name_z.setEventState(entity,TankEvents.SET_ACTIVE_STATE,new LegacyActiveState(this));
+         this.name_z.setEventState(entity,TankEvents.SET_DEAD_STATE,new LegacyDeadState(this));
+         this.name_z.name_Ah = EmptyState.INSTANCE;
          entity.addEventHandler(GameEvents.BATTLE_FINISHED,this.onBattleFinished);
       }
       
       public function getTurretSkinMountPoint(point:Vector3) : void
       {
-         point.copy(this.hull.§_-EN§);
+         point.copy(this.hull.name_EN);
       }
       
       public function getInterpolatedMatrix() : Matrix4
       {
-         return this.§_-YH§;
+         return this.name_YH;
       }
       
       public function setTurret(turret:ITurretPhysicsComponent) : void
@@ -484,7 +484,7 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
       
       public function getTurretMountPoint(point:Vector3) : void
       {
-         point.copy(this.hull.§_-Rj§);
+         point.copy(this.hull.name_Rj);
       }
       
       public function updateBeforeSimulation(physicsStep:int) : void
@@ -492,30 +492,30 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
          var d:Number = NaN;
          var limit:Number = NaN;
          var dt:Number = TimeSystem.timeDeltaSeconds;
-         if(this.maxSpeed != this.§_-fL§.targetValue)
+         if(this.maxSpeed != this.name_fL.targetValue)
          {
-            this.maxSpeed = this.§_-fL§.update(dt);
+            this.maxSpeed = this.name_fL.update(dt);
          }
-         if(this.maxTurnSpeed != this.§_-dr§.targetValue)
+         if(this.maxTurnSpeed != this.name_dr.targetValue)
          {
-            this.maxTurnSpeed = this.§_-dr§.update(dt);
+            this.maxTurnSpeed = this.name_dr.update(dt);
          }
-         var slipTerm:int = this.§_-mt§ > this.§_-JJ§ ? -1 : (this.§_-mt§ < this.§_-JJ§ ? 1 : 0);
+         var slipTerm:int = this.name_mt > this.name_JJ ? -1 : (this.name_mt < this.name_JJ ? 1 : 0);
          var world:PhysicsScene = this.body.scene;
-         var weight:Number = this.mass * world.§_-MX§.length();
-         var k:Number = this.§_-mt§ != this.§_-JJ§ && !(this.§_-Tb§ || this.§_-mq§) && this.body.state.rotation.length() > this.maxTurnSpeed ? 0.1 : 1;
-         this.§_-Ei§.addForces(dt,k * this.§_-mt§,this.maxSpeed,slipTerm,weight,this.§_-CF§,this.§_-Tb§);
-         this.§_-iA§.addForces(dt,k * this.§_-JJ§,this.maxSpeed,slipTerm,weight,this.§_-CF§,this.§_-mq§);
+         var weight:Number = this.mass * world.name_MX.length();
+         var k:Number = this.name_mt != this.name_JJ && !(this.name_Tb || this.name_mq) && this.body.state.rotation.length() > this.maxTurnSpeed ? 0.1 : 1;
+         this.name_Ei.addForces(dt,k * this.name_mt,this.maxSpeed,slipTerm,weight,this.name_CF,this.name_Tb);
+         this.name_iA.addForces(dt,k * this.name_JJ,this.maxSpeed,slipTerm,weight,this.name_CF,this.name_mq);
          var baseMatrix:Matrix3 = this.body.baseMatrix;
-         if(this.§_-iA§.§_-Ca§ >= this.§_-iA§.numRays >> 1 || this.§_-Ei§.§_-Ca§ >= this.§_-Ei§.numRays >> 1)
+         if(this.name_iA.name_Ca >= this.name_iA.numRays >> 1 || this.name_Ei.name_Ca >= this.name_Ei.numRays >> 1)
          {
-            d = world.§_-MX§.x * baseMatrix.c + world.§_-MX§.y * baseMatrix.g + world.§_-MX§.z * baseMatrix.k;
-            limit = Math.SQRT1_2 * world.§_-MX§.length();
+            d = world.name_MX.x * baseMatrix.c + world.name_MX.y * baseMatrix.g + world.name_MX.z * baseMatrix.k;
+            limit = Math.SQRT1_2 * world.name_MX.length();
             if(d < -limit || d > limit)
             {
-               _v.x = (baseMatrix.c * d - world.§_-MX§.x) * this.mass;
-               _v.y = (baseMatrix.g * d - world.§_-MX§.y) * this.mass;
-               _v.z = (baseMatrix.k * d - world.§_-MX§.z) * this.mass;
+               _v.x = (baseMatrix.c * d - world.name_MX.x) * this.mass;
+               _v.y = (baseMatrix.g * d - world.name_MX.y) * this.mass;
+               _v.z = (baseMatrix.k * d - world.name_MX.z) * this.mass;
                this.body.addForce(_v);
             }
          }
@@ -527,24 +527,24 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
       
       public function interpolate(interpolationCoeff:Number) : void
       {
-         this.body.interpolate(interpolationCoeff,this.§_-bi§,this.§_-UQ§);
-         this.§_-UQ§.normalize();
-         this.§_-UQ§.toMatrix4(this.§_-YH§);
-         this.§_-YH§.setPosition(this.§_-bi§);
+         this.body.interpolate(interpolationCoeff,this.name_bi,this.name_UQ);
+         this.name_UQ.normalize();
+         this.name_UQ.toMatrix4(this.name_YH);
+         this.name_YH.setPosition(this.name_bi);
       }
       
       public function setSimpleCollisionMask(mask:int) : void
       {
-         for(var i:int = 0; i < this.§_-i1§.length; i++)
+         for(var i:int = 0; i < this.name_i1.length; i++)
          {
-            this.§_-i1§[i].collisionMask = mask;
+            this.name_i1[i].collisionMask = mask;
          }
       }
       
       public function setDetailedCollisionGroup(collisionGroup:int) : void
       {
          var collisionPrimitive:CollisionPrimitive = null;
-         for each(collisionPrimitive in this.§_-DC§)
+         for each(collisionPrimitive in this.name_DC)
          {
             collisionPrimitive.collisionGroup = collisionGroup;
          }
@@ -559,8 +559,8 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
       
       public function setSuspensionCollisionMask(collisionMask:int) : void
       {
-         this.§_-Ei§.collisionMask = collisionMask;
-         this.§_-iA§.collisionMask = collisionMask;
+         this.name_Ei.collisionMask = collisionMask;
+         this.name_iA.collisionMask = collisionMask;
       }
       
       public function addToScene() : void
@@ -568,15 +568,15 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
          var physicsSystem:PhysicsSystem = null;
          var physicsScene:PhysicsScene = null;
          var collisionDetector:ITanksCollisionDetector = null;
-         if(!this.§case §)
+         if(!this.name_case)
          {
             physicsSystem = this.gameKernel.getPhysicsSystem();
             physicsScene = physicsSystem.getPhysicsScene();
             collisionDetector = ITanksCollisionDetector(physicsScene.collisionDetector);
             physicsScene.addBody(this.body);
-            collisionDetector.addBodyCollisionData(this.§_-Rg§);
+            collisionDetector.addBodyCollisionData(this.name_Rg);
             physicsSystem.addControllerBefore(this);
-            this.§case § = true;
+            this.name_case = true;
          }
       }
       
@@ -585,15 +585,15 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
          var physicsSystem:PhysicsSystem = null;
          var physicsScene:PhysicsScene = null;
          var collisionDetector:ITanksCollisionDetector = null;
-         if(this.§case §)
+         if(this.name_case)
          {
             physicsSystem = this.gameKernel.getPhysicsSystem();
             physicsScene = physicsSystem.getPhysicsScene();
             collisionDetector = ITanksCollisionDetector(physicsScene.collisionDetector);
             physicsScene.removeBody(this.body);
-            collisionDetector.removeBodyCollisionData(this.§_-Rg§);
+            collisionDetector.removeBodyCollisionData(this.name_Rg);
             physicsSystem.removeControllerBefore(this);
-            this.§case § = false;
+            this.name_case = false;
          }
       }
       
@@ -606,7 +606,7 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
          this.body.invMass = 1 / value;
          if(this.hull != null)
          {
-            PhysicsUtils.getBoxInvInertia(value,this.hull.§_-eh§.hs,this.body.invInertia);
+            PhysicsUtils.getBoxInvInertia(value,this.hull.name_eh.hs,this.body.invInertia);
          }
       }
       

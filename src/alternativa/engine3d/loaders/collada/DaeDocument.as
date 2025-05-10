@@ -8,7 +8,7 @@ package alternativa.engine3d.loaders.collada
       
       private var data:XML;
       
-      internal var §_-DR§:Object;
+      internal var name_DR:Object;
       
       internal var arrays:Object;
       
@@ -24,9 +24,9 @@ package alternativa.engine3d.loaders.collada
       
       internal var effects:Object;
       
-      internal var §_-DW§:Object;
+      internal var name_DW:Object;
       
-      internal var §_-GB§:Object;
+      internal var name_GB:Object;
       
       public var materials:Object;
       
@@ -83,14 +83,14 @@ package alternativa.engine3d.loaders.collada
          var geom:DaeGeometry = null;
          var controller:DaeController = null;
          var node:DaeNode = null;
-         this.§_-DR§ = new Object();
+         this.name_DR = new Object();
          this.arrays = new Object();
          for each(element in this.data..source)
          {
             source = new DaeSource(element,this);
             if(source.id != null)
             {
-               this.§_-DR§[source.id] = source;
+               this.name_DR[source.id] = source;
             }
          }
          this.lights = new Object();
@@ -139,13 +139,13 @@ package alternativa.engine3d.loaders.collada
                this.geometries[geom.id] = geom;
             }
          }
-         this.§_-DW§ = new Object();
+         this.name_DW = new Object();
          for each(element in this.data.library_controllers.controller)
          {
             controller = new DaeController(element,this);
             if(controller.id != null)
             {
-               this.§_-DW§[controller.id] = controller;
+               this.name_DW[controller.id] = controller;
             }
          }
          this.nodes = new Object();
@@ -198,13 +198,13 @@ package alternativa.engine3d.loaders.collada
          var sampler:DaeSampler = null;
          var channel:DaeChannel = null;
          var node:DaeNode = null;
-         this.§_-GB§ = new Object();
+         this.name_GB = new Object();
          for each(element in this.data.library_animations..sampler)
          {
             sampler = new DaeSampler(element,this);
             if(sampler.id != null)
             {
-               this.§_-GB§[sampler.id] = sampler;
+               this.name_GB[sampler.id] = sampler;
             }
          }
          for each(element in this.data.library_animations..channel)
@@ -225,7 +225,7 @@ package alternativa.engine3d.loaders.collada
       
       public function findSource(url:XML) : DaeSource
       {
-         return this.§_-DR§[this.getLocalID(url)];
+         return this.name_DR[this.getLocalID(url)];
       }
       
       public function findLight(url:XML) : DaeLight
@@ -275,12 +275,12 @@ package alternativa.engine3d.loaders.collada
       
       public function findController(url:XML) : DaeController
       {
-         return this.§_-DW§[this.getLocalID(url)];
+         return this.name_DW[this.getLocalID(url)];
       }
       
       public function findSampler(url:XML) : DaeSampler
       {
-         return this.§_-GB§[this.getLocalID(url)];
+         return this.name_GB[this.getLocalID(url)];
       }
    }
 }

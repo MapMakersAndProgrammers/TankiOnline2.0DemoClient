@@ -18,37 +18,37 @@ package alternativa.tanks.game.physics
    
    public class TanksCollisionDetector implements ITanksCollisionDetector
    {
-      public var §_-bw§:CollisionKdTree;
+      public var name_bw:CollisionKdTree;
       
       public var threshold:Number = 0.0001;
       
-      private var §_-P6§:Object;
+      private var name_P6:Object;
       
-      private var §_-Wj§:Vector.<BodyCollisionData>;
+      private var name_Wj:Vector.<BodyCollisionData>;
       
-      private var §_-LK§:int;
+      private var name_LK:int;
       
-      private var §_-By§:Vector.<Body>;
+      private var name_By:Vector.<Body>;
       
       private var numBodies:int;
       
-      private var §_-qC§:MinMax = new MinMax();
+      private var name_qC:MinMax = new MinMax();
       
-      private var §_-k8§:Vector3 = new Vector3();
+      private var name_k8:Vector3 = new Vector3();
       
-      private var §_-0q§:Vector3 = new Vector3();
+      private var name_0q:Vector3 = new Vector3();
       
-      private var §_-2P§:RayHit = new RayHit();
+      private var name_2P:RayHit = new RayHit();
       
       private var _rayAABB:BoundBox = new BoundBox();
       
       public function TanksCollisionDetector()
       {
          super();
-         this.§_-bw§ = new CollisionKdTree();
-         this.§_-By§ = new Vector.<Body>();
-         this.§_-Wj§ = new Vector.<BodyCollisionData>();
-         this.§_-P6§ = new Object();
+         this.name_bw = new CollisionKdTree();
+         this.name_By = new Vector.<Body>();
+         this.name_Wj = new Vector.<BodyCollisionData>();
+         this.name_P6 = new Object();
          this.addCollider(CollisionPrimitive.BOX,CollisionPrimitive.BOX,new BoxBoxCollider());
          this.addCollider(CollisionPrimitive.BOX,CollisionPrimitive.RECT,new BoxRectCollider());
          this.addCollider(CollisionPrimitive.BOX,CollisionPrimitive.TRIANGLE,new BoxTriangleCollider());
@@ -66,47 +66,47 @@ package alternativa.tanks.game.physics
       {
       }
       
-      public function prepareForRaycasts(collisionPrimitives:Vector.<CollisionPrimitive>, boundBox:BoundBox = null) : void
+      public function buildKdTree(collisionPrimitives:Vector.<CollisionPrimitive>, boundBox:BoundBox = null) : void
       {
-         this.§_-bw§.createTree(collisionPrimitives,boundBox);
+         this.name_bw.createTree(collisionPrimitives,boundBox);
       }
       
       public function addBodyCollisionData(tankPhysicsEntry:BodyCollisionData) : void
       {
-         if(this.§_-Wj§.indexOf(tankPhysicsEntry) >= 0)
+         if(this.name_Wj.indexOf(tankPhysicsEntry) >= 0)
          {
             throw new Error("Tank entry already exists");
          }
-         var _loc2_:* = this.§_-LK§++;
-         this.§_-Wj§[_loc2_] = tankPhysicsEntry;
+         var _loc2_:* = this.name_LK++;
+         this.name_Wj[_loc2_] = tankPhysicsEntry;
       }
       
       public function removeBodyCollisionData(tankPhysicsEntry:BodyCollisionData) : void
       {
-         var index:Number = Number(this.§_-Wj§.indexOf(tankPhysicsEntry));
+         var index:Number = Number(this.name_Wj.indexOf(tankPhysicsEntry));
          if(index < 0)
          {
             throw new Error("Tank entry not found");
          }
-         this.§_-Wj§[index] = this.§_-Wj§[--this.§_-LK§];
-         this.§_-Wj§[this.§_-LK§] = null;
+         this.name_Wj[index] = this.name_Wj[--this.name_LK];
+         this.name_Wj[this.name_LK] = null;
       }
       
       public function addBody(body:Body) : void
       {
          var _loc2_:* = this.numBodies++;
-         this.§_-By§[_loc2_] = body;
+         this.name_By[_loc2_] = body;
       }
       
       public function removeBody(body:Body) : void
       {
-         var index:int = int(this.§_-By§.indexOf(body));
+         var index:int = int(this.name_By.indexOf(body));
          if(index < 0)
          {
             throw new Error("Body not found");
          }
-         this.§_-By§[index] = this.§_-By§[--this.numBodies];
-         this.§_-By§[this.numBodies] = null;
+         this.name_By[index] = this.name_By[--this.numBodies];
+         this.name_By[this.numBodies] = null;
       }
       
       public function getObjectsInRadius(center:Vector3, radius:Number, filter:IRadiusQueryFilter) : Vector.<BodyDistance>
@@ -119,9 +119,9 @@ package alternativa.tanks.game.physics
          var dz:Number = NaN;
          var distance:Number = NaN;
          radius *= radius;
-         for(var i:int = 0; i < this.§_-LK§; )
+         for(var i:int = 0; i < this.name_LK; )
          {
-            tankPhysicsEntry = this.§_-Wj§[i];
+            tankPhysicsEntry = this.name_Wj[i];
             position = tankPhysicsEntry.body.state.position;
             dx = position.x - center.x;
             dy = position.y - center.y;
@@ -129,7 +129,7 @@ package alternativa.tanks.game.physics
             distance = dx * dx + dy * dy + dz * dz;
             if(distance < radius)
             {
-               if(filter == null || Boolean(filter.§_-cb§(center,tankPhysicsEntry.body)))
+               if(filter == null || Boolean(filter.acceptBody(center,tankPhysicsEntry.body)))
                {
                   if(result == null)
                   {
@@ -154,14 +154,14 @@ package alternativa.tanks.game.physics
          {
             return false;
          }
-         var collider:ICollider = this.§_-P6§[prim1.type | prim2.type];
+         var collider:ICollider = this.name_P6[prim1.type | prim2.type];
          if(collider != null && Boolean(collider.getContact(prim1,prim2,contact)))
          {
-            if(prim1.postCollisionFilter != null && !prim1.postCollisionFilter.§_-eZ§(prim1,prim2))
+            if(prim1.postCollisionFilter != null && !prim1.postCollisionFilter.acceptPrimitivesCollision(prim1,prim2))
             {
                return false;
             }
-            return !(prim2.postCollisionFilter != null && !prim2.postCollisionFilter.§_-eZ§(prim2,prim1));
+            return !(prim2.postCollisionFilter != null && !prim2.postCollisionFilter.acceptPrimitivesCollision(prim2,prim1));
          }
          return false;
       }
@@ -180,14 +180,14 @@ package alternativa.tanks.game.physics
          {
             return false;
          }
-         var collider:ICollider = this.§_-P6§[prim1.type | prim2.type];
+         var collider:ICollider = this.name_P6[prim1.type | prim2.type];
          if(collider != null && Boolean(collider.haveCollision(prim1,prim2)))
          {
-            if(prim1.postCollisionFilter != null && !prim1.postCollisionFilter.§_-eZ§(prim1,prim2))
+            if(prim1.postCollisionFilter != null && !prim1.postCollisionFilter.acceptPrimitivesCollision(prim1,prim2))
             {
                return false;
             }
-            return !(prim2.postCollisionFilter != null && !prim2.postCollisionFilter.§_-eZ§(prim2,prim1));
+            return !(prim2.postCollisionFilter != null && !prim2.postCollisionFilter.acceptPrimitivesCollision(prim2,prim1));
          }
          return false;
       }
@@ -195,16 +195,16 @@ package alternativa.tanks.game.physics
       public function raycast(origin:Vector3, dir:Vector3, collisionMask:int, maxTime:Number, filter:IRaycastFilter, result:RayHit) : Boolean
       {
          var hasStaticIntersection:Boolean = this.raycastStatic(origin,dir,collisionMask,maxTime,filter,result);
-         var hasDynamicIntersection:Boolean = this.raycastTanks(origin,dir,collisionMask,maxTime,filter,this.§_-2P§);
+         var hasDynamicIntersection:Boolean = this.raycastTanks(origin,dir,collisionMask,maxTime,filter,this.name_2P);
          if(!(hasDynamicIntersection || hasStaticIntersection))
          {
             return false;
          }
          if(hasDynamicIntersection && hasStaticIntersection)
          {
-            if(result.t > this.§_-2P§.t)
+            if(result.t > this.name_2P.t)
             {
-               result.copy(this.§_-2P§);
+               result.copy(this.name_2P);
             }
             return true;
          }
@@ -212,49 +212,49 @@ package alternativa.tanks.game.physics
          {
             return true;
          }
-         result.copy(this.§_-2P§);
+         result.copy(this.name_2P);
          return true;
       }
       
       public function raycastStatic(origin:Vector3, dir:Vector3, collisionMask:int, maxTime:Number, filter:IRaycastFilter, result:RayHit) : Boolean
       {
-         if(!this.getRayBoundBoxIntersection(origin,dir,this.§_-bw§.§_-5H§.boundBox,this.§_-qC§))
+         if(!this.getRayBoundBoxIntersection(origin,dir,this.name_bw.name_5H.boundBox,this.name_qC))
          {
             return false;
          }
-         if(this.§_-qC§.max < 0 || this.§_-qC§.min > maxTime)
+         if(this.name_qC.max < 0 || this.name_qC.min > maxTime)
          {
             return false;
          }
-         if(this.§_-qC§.min <= 0)
+         if(this.name_qC.min <= 0)
          {
-            this.§_-qC§.min = 0;
-            this.§_-0q§.x = origin.x;
-            this.§_-0q§.y = origin.y;
-            this.§_-0q§.z = origin.z;
+            this.name_qC.min = 0;
+            this.name_0q.x = origin.x;
+            this.name_0q.y = origin.y;
+            this.name_0q.z = origin.z;
          }
          else
          {
-            this.§_-0q§.x = origin.x + this.§_-qC§.min * dir.x;
-            this.§_-0q§.y = origin.y + this.§_-qC§.min * dir.y;
-            this.§_-0q§.z = origin.z + this.§_-qC§.min * dir.z;
+            this.name_0q.x = origin.x + this.name_qC.min * dir.x;
+            this.name_0q.y = origin.y + this.name_qC.min * dir.y;
+            this.name_0q.z = origin.z + this.name_qC.min * dir.z;
          }
-         if(this.§_-qC§.max > maxTime)
+         if(this.name_qC.max > maxTime)
          {
-            this.§_-qC§.max = maxTime;
+            this.name_qC.max = maxTime;
          }
-         var hasIntersection:Boolean = this.testRayAgainstNode(this.§_-bw§.§_-5H§,origin,this.§_-0q§,dir,collisionMask,this.§_-qC§.min,this.§_-qC§.max,filter,result);
+         var hasIntersection:Boolean = this.testRayAgainstNode(this.name_bw.name_5H,origin,this.name_0q,dir,collisionMask,this.name_qC.min,this.name_qC.max,filter,result);
          return hasIntersection ? result.t <= maxTime : false;
       }
       
       public function testPrimitiveTreeCollision(primitive:CollisionPrimitive) : Boolean
       {
-         return this.testPrimitiveNodeCollision(primitive,this.§_-bw§.§_-5H§);
+         return this.testPrimitiveNodeCollision(primitive,this.name_bw.name_5H);
       }
       
       private function addCollider(type1:int, type2:int, collider:ICollider) : void
       {
-         this.§_-P6§[type1 | type2] = collider;
+         this.name_P6[type1 | type2] = collider;
       }
       
       private function getTankContacts(contact:Contact) : Contact
@@ -264,18 +264,18 @@ package alternativa.tanks.game.physics
          var listItem:CollisionPrimitiveListItem = null;
          var j:int = 0;
          var otherTankEntry:BodyCollisionData = null;
-         for(var i:int = 0; i < this.§_-LK§; i++)
+         for(var i:int = 0; i < this.name_LK; i++)
          {
-            tankEntry = this.§_-Wj§[i];
+            tankEntry = this.name_Wj[i];
             body = tankEntry.body;
             for(listItem = body.collisionPrimitives.head; listItem != null; )
             {
-               contact = this.getPrimitiveNodeCollisions(this.§_-bw§.§_-5H§,listItem.primitive,contact);
+               contact = this.getPrimitiveNodeCollisions(this.name_bw.name_5H,listItem.primitive,contact);
                listItem = listItem.next;
             }
-            for(j = i + 1; j < this.§_-LK§; )
+            for(j = i + 1; j < this.name_LK; )
             {
-               otherTankEntry = this.§_-Wj§[j];
+               otherTankEntry = this.name_Wj[j];
                if(body.aabb.intersects(otherTankEntry.body.aabb,0.1))
                {
                   contact = this.getTanksCollision(tankEntry,otherTankEntry,contact);
@@ -371,7 +371,7 @@ package alternativa.tanks.game.physics
          var i:int = 0;
          if(node.indices != null)
          {
-            primitives = this.§_-bw§.§_-8A§;
+            primitives = this.name_bw.name_8A;
             indices = node.indices;
             for(i = indices.length - 1; i >= 0; )
             {
@@ -402,15 +402,15 @@ package alternativa.tanks.game.physics
          }
          if(min < node.coord)
          {
-            contact = this.getPrimitiveNodeCollisions(node.§_-Gm§,primitive,contact);
+            contact = this.getPrimitiveNodeCollisions(node.name_Gm,primitive,contact);
          }
          if(max > node.coord)
          {
-            contact = this.getPrimitiveNodeCollisions(node.§_-75§,primitive,contact);
+            contact = this.getPrimitiveNodeCollisions(node.name_75,primitive,contact);
          }
-         if(node.§_-da§ != null && min < node.coord && max > node.coord)
+         if(node.name_da != null && min < node.coord && max > node.coord)
          {
-            contact = this.getPrimitiveNodeCollisions(node.§_-da§.§_-5H§,primitive,contact);
+            contact = this.getPrimitiveNodeCollisions(node.name_da.name_5H,primitive,contact);
          }
          return contact;
       }
@@ -424,7 +424,7 @@ package alternativa.tanks.game.physics
          var i:int = 0;
          if(node.indices != null)
          {
-            primitives = this.§_-bw§.§_-8A§;
+            primitives = this.name_bw.name_8A;
             indices = node.indices;
             for(i = indices.length - 1; i >= 0; )
             {
@@ -453,23 +453,23 @@ package alternativa.tanks.game.physics
                min = Number(primitive.aabb.minZ);
                max = Number(primitive.aabb.maxZ);
          }
-         if(node.§_-da§ != null && min < node.coord && max > node.coord)
+         if(node.name_da != null && min < node.coord && max > node.coord)
          {
-            if(this.testPrimitiveNodeCollision(primitive,node.§_-da§.§_-5H§))
+            if(this.testPrimitiveNodeCollision(primitive,node.name_da.name_5H))
             {
                return true;
             }
          }
          if(min < node.coord)
          {
-            if(this.testPrimitiveNodeCollision(primitive,node.§_-Gm§))
+            if(this.testPrimitiveNodeCollision(primitive,node.name_Gm))
             {
                return true;
             }
          }
          if(max > node.coord)
          {
-            if(this.testPrimitiveNodeCollision(primitive,node.§_-75§))
+            if(this.testPrimitiveNodeCollision(primitive,node.name_75))
             {
                return true;
             }
@@ -519,11 +519,11 @@ package alternativa.tanks.game.physics
             this._rayAABB.maxZ = zz;
          }
          var minTime:Number = maxTime + 1;
-         for(var i:int = 0; i < this.§_-LK§; i++)
+         for(var i:int = 0; i < this.name_LK; i++)
          {
-            tankPhysicsEntry = this.§_-Wj§[i];
+            tankPhysicsEntry = this.name_Wj[i];
             body = tankPhysicsEntry.body;
-            if(!(filter != null && !filter.§_-0w§(body.collisionPrimitives.head.primitive)))
+            if(!(filter != null && !filter.acceptRayHit(body.collisionPrimitives.head.primitive)))
             {
                aabb = body.aabb;
                if(!(this._rayAABB.maxX < aabb.minX || this._rayAABB.minX > aabb.maxX || this._rayAABB.maxY < aabb.minY || this._rayAABB.minY > aabb.maxY || this._rayAABB.maxZ < aabb.minZ || this._rayAABB.minZ > aabb.maxZ))
@@ -544,14 +544,14 @@ package alternativa.tanks.game.physics
                         }
                         else
                         {
-                           t = Number(primitive.raycast(origin,dir,this.threshold,this.§_-k8§));
+                           t = Number(primitive.raycast(origin,dir,this.threshold,this.name_k8));
                            if(t > 0 && t < minTime)
                            {
                               minTime = t;
                               result.primitive = primitive;
-                              result.normal.x = this.§_-k8§.x;
-                              result.normal.y = this.§_-k8§.y;
-                              result.normal.z = this.§_-k8§.z;
+                              result.normal.x = this.name_k8.x;
+                              result.normal.y = this.name_k8.y;
+                              result.normal.z = this.name_k8.z;
                            }
                            collisionPrimitiveListItem = collisionPrimitiveListItem.next;
                         }
@@ -656,7 +656,7 @@ package alternativa.tanks.game.physics
          var splitNode:CollisionKdNode = null;
          var i:int = 0;
          var primitive:CollisionPrimitive = null;
-         if(node.indices != null && this.getRayNodeIntersection(origin,dir,collisionMask,this.§_-bw§.§_-8A§,node.indices,filter,result))
+         if(node.indices != null && this.getRayNodeIntersection(origin,dir,collisionMask,this.name_bw.name_8A,node.indices,filter,result))
          {
             return true;
          }
@@ -675,7 +675,7 @@ package alternativa.tanks.game.physics
                {
                   splitTime = (node.coord - origin.x) / dir.x;
                }
-               currChildNode = localOrigin.x < node.coord ? node.§_-Gm§ : node.§_-75§;
+               currChildNode = localOrigin.x < node.coord ? node.name_Gm : node.name_75;
                break;
             case 1:
                if(dir.y > -this.threshold && dir.y < this.threshold)
@@ -686,7 +686,7 @@ package alternativa.tanks.game.physics
                {
                   splitTime = (node.coord - origin.y) / dir.y;
                }
-               currChildNode = localOrigin.y < node.coord ? node.§_-Gm§ : node.§_-75§;
+               currChildNode = localOrigin.y < node.coord ? node.name_Gm : node.name_75;
                break;
             case 2:
                if(dir.z > -this.threshold && dir.z < this.threshold)
@@ -697,7 +697,7 @@ package alternativa.tanks.game.physics
                {
                   splitTime = (node.coord - origin.z) / dir.z;
                }
-               currChildNode = localOrigin.z < node.coord ? node.§_-Gm§ : node.§_-75§;
+               currChildNode = localOrigin.z < node.coord ? node.name_Gm : node.name_75;
          }
          if(splitTime < t1 || splitTime > t2)
          {
@@ -708,24 +708,24 @@ package alternativa.tanks.game.physics
          {
             return true;
          }
-         this.§_-0q§.x = origin.x + splitTime * dir.x;
-         this.§_-0q§.y = origin.y + splitTime * dir.y;
-         this.§_-0q§.z = origin.z + splitTime * dir.z;
-         if(node.§_-da§ != null)
+         this.name_0q.x = origin.x + splitTime * dir.x;
+         this.name_0q.y = origin.y + splitTime * dir.y;
+         this.name_0q.z = origin.z + splitTime * dir.z;
+         if(node.name_da != null)
          {
-            splitNode = node.§_-da§.§_-5H§;
+            splitNode = node.name_da.name_5H;
             while(splitNode != null && splitNode.axis != -1)
             {
                switch(splitNode.axis)
                {
                   case 0:
-                     splitNode = this.§_-0q§.x < splitNode.coord ? splitNode.§_-Gm§ : splitNode.§_-75§;
+                     splitNode = this.name_0q.x < splitNode.coord ? splitNode.name_Gm : splitNode.name_75;
                      break;
                   case 1:
-                     splitNode = this.§_-0q§.y < splitNode.coord ? splitNode.§_-Gm§ : splitNode.§_-75§;
+                     splitNode = this.name_0q.y < splitNode.coord ? splitNode.name_Gm : splitNode.name_75;
                      break;
                   case 2:
-                     splitNode = this.§_-0q§.z < splitNode.coord ? splitNode.§_-Gm§ : splitNode.§_-75§;
+                     splitNode = this.name_0q.z < splitNode.coord ? splitNode.name_Gm : splitNode.name_75;
                      break;
                }
             }
@@ -733,15 +733,15 @@ package alternativa.tanks.game.physics
             {
                for(i = splitNode.indices.length - 1; i >= 0; )
                {
-                  primitive = this.§_-bw§.§_-8A§[splitNode.indices[i]];
+                  primitive = this.name_bw.name_8A[splitNode.indices[i]];
                   if((primitive.collisionGroup & collisionMask) != 0)
                   {
-                     if(!(filter != null && !filter.§_-0w§(primitive)))
+                     if(!(filter != null && !filter.acceptRayHit(primitive)))
                      {
                         result.t = primitive.raycast(origin,dir,this.threshold,result.normal);
                         if(result.t >= 0)
                         {
-                           result.position.copy(this.§_-0q§);
+                           result.position.copy(this.name_0q);
                            result.primitive = primitive;
                            return true;
                         }
@@ -751,7 +751,7 @@ package alternativa.tanks.game.physics
                }
             }
          }
-         return this.testRayAgainstNode(currChildNode == node.§_-Gm§ ? node.§_-75§ : node.§_-Gm§,origin,this.§_-0q§,dir,collisionMask,splitTime,t2,filter,result);
+         return this.testRayAgainstNode(currChildNode == node.name_Gm ? node.name_75 : node.name_Gm,origin,this.name_0q,dir,collisionMask,splitTime,t2,filter,result);
       }
       
       private function getRayNodeIntersection(origin:Vector3, dir:Vector3, collisionMask:int, primitives:Vector.<CollisionPrimitive>, indices:Vector.<int>, filter:IRaycastFilter, intersection:RayHit) : Boolean
@@ -765,16 +765,16 @@ package alternativa.tanks.game.physics
             primitive = primitives[indices[i]];
             if((primitive.collisionGroup & collisionMask) != 0)
             {
-               if(!(filter != null && !filter.§_-0w§(primitive)))
+               if(!(filter != null && !filter.acceptRayHit(primitive)))
                {
-                  t = Number(primitive.raycast(origin,dir,this.threshold,this.§_-k8§));
+                  t = Number(primitive.raycast(origin,dir,this.threshold,this.name_k8));
                   if(t > 0 && t < minTime)
                   {
                      minTime = t;
                      intersection.primitive = primitive;
-                     intersection.normal.x = this.§_-k8§.x;
-                     intersection.normal.y = this.§_-k8§.y;
-                     intersection.normal.z = this.§_-k8§.z;
+                     intersection.normal.x = this.name_k8.x;
+                     intersection.normal.y = this.name_k8.y;
+                     intersection.normal.z = this.name_k8.z;
                   }
                }
             }

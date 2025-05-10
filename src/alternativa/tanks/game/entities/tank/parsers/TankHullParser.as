@@ -93,25 +93,25 @@ package alternativa.tanks.game.entities.tank.parsers
       
       private function parseMountPoint(mesh:Mesh, tankHull:TankHull) : void
       {
-         tankHull.§_-Rj§.reset(mesh.x,mesh.y,mesh.z);
-         tankHull.§_-EN§.copy(tankHull.§_-Rj§);
+         tankHull.name_Rj.reset(mesh.x,mesh.y,mesh.z);
+         tankHull.name_EN.copy(tankHull.name_Rj);
       }
       
       private function parseBody(mesh:Mesh, tankHull:TankHull) : void
       {
-         tankHull.§_-eh§ = TankPartParsingUtils.parseCollisionBoxData(mesh);
+         tankHull.name_eh = TankPartParsingUtils.parseCollisionBoxData(mesh);
       }
       
       private function parseDetailedGeometry(mesh:Mesh, tankHull:TankHull) : void
       {
          var boxData:BoxData = TankPartParsingUtils.parseCollisionBoxData(mesh);
-         tankHull.§_-AE§.push(boxData);
+         tankHull.name_AE.push(boxData);
       }
       
       private function parseSimpleGeometry(mesh:Mesh, tankHull:TankHull) : void
       {
          var boxData:BoxData = TankPartParsingUtils.parseCollisionBoxData(mesh);
-         tankHull.§_-KR§.push(boxData);
+         tankHull.name_KR.push(boxData);
       }
       
       private function parseSuspensionRay(mesh:Mesh, tankHull:TankHull) : void
@@ -128,11 +128,11 @@ package alternativa.tanks.game.entities.tank.parsers
          var tankWheel:TankWheel = new TankWheel(mesh.name,mesh.geometry,new Vector3(mesh.x,mesh.y,mesh.z));
          if(mesh.name.charAt(2) == "l")
          {
-            tankHull.§_-EY§.push(tankWheel);
+            tankHull.name_EY.push(tankWheel);
          }
          else
          {
-            tankHull.§_-M4§.push(tankWheel);
+            tankHull.name_M4.push(tankWheel);
          }
       }
       
@@ -151,24 +151,24 @@ package alternativa.tanks.game.entities.tank.parsers
          }
          if(skin.name.toLowerCase().charAt(0) == "l")
          {
-            tankHull.§_-Ei§ = skin;
+            tankHull.name_Ei = skin;
          }
          else
          {
-            tankHull.§_-iA§ = skin;
+            tankHull.name_iA = skin;
          }
       }
       
       private function prepareAll(tankHull:TankHull) : void
       {
-         var skinMatrix:Matrix4 = tankHull.§_-eh§.matrix.clone();
+         var skinMatrix:Matrix4 = tankHull.name_eh.matrix.clone();
          skinMatrix.invert();
-         skinMatrix.getAxis(3,tankHull.§_-Sh§);
-         tankHull.§_-Rj§.transform4(skinMatrix);
-         this.prepareCollisionGeometry(tankHull.§_-AE§,skinMatrix);
-         this.prepareCollisionGeometry(tankHull.§_-KR§,skinMatrix);
-         tankHull.§_-j9§ = this.prepareSuspensionPoints(leftSprings,skinMatrix);
-         tankHull.§_-Hd§ = this.prepareSuspensionPoints(rightSprings,skinMatrix);
+         skinMatrix.getAxis(3,tankHull.name_Sh);
+         tankHull.name_Rj.transform4(skinMatrix);
+         this.prepareCollisionGeometry(tankHull.name_AE,skinMatrix);
+         this.prepareCollisionGeometry(tankHull.name_KR,skinMatrix);
+         tankHull.name_j9 = this.prepareSuspensionPoints(leftSprings,skinMatrix);
+         tankHull.name_Hd = this.prepareSuspensionPoints(rightSprings,skinMatrix);
          leftSprings = null;
          rightSprings = null;
       }

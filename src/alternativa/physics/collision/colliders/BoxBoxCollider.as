@@ -27,24 +27,24 @@ package alternativa.physics.collision.colliders
       
       private var axis22:Vector3 = new Vector3();
       
-      private var §_-Wt§:int;
+      private var name_Wt:int;
       
-      private var §_-hK§:Number;
+      private var name_hK:Number;
       
       private var points1:Vector.<Vector3> = new Vector.<Vector3>(8,true);
       
       private var points2:Vector.<Vector3> = new Vector.<Vector3>(8,true);
       
-      private var §_-2r§:Vector.<ContactPoint> = new Vector.<ContactPoint>(8,true);
+      private var name_2r:Vector.<ContactPoint> = new Vector.<ContactPoint>(8,true);
       
-      private var §_-P3§:int;
+      private var name_P3:int;
       
       public function BoxBoxCollider()
       {
          super();
          for(var i:int = 0; i < 8; i++)
          {
-            this.§_-2r§[i] = new ContactPoint();
+            this.name_2r[i] = new ContactPoint();
             this.points1[i] = new Vector3();
             this.points2[i] = new Vector3();
          }
@@ -68,17 +68,17 @@ package alternativa.physics.collision.colliders
             box1 = prim2 as CollisionBox;
             box2 = prim1 as CollisionBox;
          }
-         if(this.§_-Wt§ < 6)
+         if(this.name_Wt < 6)
          {
-            if(!this.findFaceContactPoints(box1,box2,this.vectorToBox1,this.§_-Wt§,contact))
+            if(!this.findFaceContactPoints(box1,box2,this.vectorToBox1,this.name_Wt,contact))
             {
                return false;
             }
          }
          else
          {
-            this.§_-Wt§ -= 6;
-            this.findEdgesIntersection(box1,box2,this.vectorToBox1,int(this.§_-Wt§ / 3),this.§_-Wt§ % 3,contact);
+            this.name_Wt -= 6;
+            this.findEdgesIntersection(box1,box2,this.vectorToBox1,int(this.name_Wt / 3),this.name_Wt % 3,contact);
          }
          contact.body1 = box1.body;
          contact.body2 = box2.body;
@@ -91,7 +91,7 @@ package alternativa.physics.collision.colliders
          var box2:CollisionBox = null;
          var transform1:Matrix4 = null;
          var transform2:Matrix4 = null;
-         this.§_-hK§ = 10000000000;
+         this.name_hK = 10000000000;
          if(prim1.body != null)
          {
             box1 = prim1 as CollisionBox;
@@ -244,14 +244,14 @@ package alternativa.physics.collision.colliders
          transform2.transformPointsN(this.points1,this.points2,4);
          transform1.transformPointsTransposedN(this.points2,this.points1,4);
          var pnum:int = this.clip(box1.hs,faceAxisIdx);
-         this.§_-P3§ = 0;
+         this.name_P3 = 0;
          for(var i:int = 0; i < pnum; )
          {
             v = this.points1[i];
             pen = this.getPointBoxPenetration(box1.hs,v,faceAxisIdx,negativeFace);
             if(pen > -this.epsilon)
             {
-               cp = this.§_-2r§[this.§_-P3§++];
+               cp = this.name_2r[this.name_P3++];
                cpPos = cp.pos;
                cpPos.x = transform1.a * v.x + transform1.b * v.y + transform1.c * v.z + transform1.d;
                cpPos.y = transform1.e * v.x + transform1.f * v.y + transform1.g * v.z + transform1.h;
@@ -274,17 +274,17 @@ package alternativa.physics.collision.colliders
             colAxis.y = -colAxis.y;
             colAxis.z = -colAxis.z;
          }
-         if(this.§_-P3§ > 4)
+         if(this.name_P3 > 4)
          {
             this.reducePoints();
          }
-         for(i = 0; i < this.§_-P3§; )
+         for(i = 0; i < this.name_P3; )
          {
             cp = contact.points[i];
-            cp.copyFrom(this.§_-2r§[i]);
+            cp.copyFrom(this.name_2r[i]);
             i++;
          }
-         contact.§_-P3§ = this.§_-P3§;
+         contact.name_P3 = this.name_P3;
          return true;
       }
       
@@ -302,13 +302,13 @@ package alternativa.physics.collision.colliders
          var dy:Number = NaN;
          var dz:Number = NaN;
          var len:Number = NaN;
-         while(this.§_-P3§ > 4)
+         while(this.name_P3 > 4)
          {
             minLen = 10000000000;
-            p1 = (this.§_-2r§[int(this.§_-P3§ - 1)] as ContactPoint).pos;
-            for(i = 0; i < this.§_-P3§; i++)
+            p1 = (this.name_2r[int(this.name_P3 - 1)] as ContactPoint).pos;
+            for(i = 0; i < this.name_P3; i++)
             {
-               p2 = (this.§_-2r§[i] as ContactPoint).pos;
+               p2 = (this.name_2r[i] as ContactPoint).pos;
                dx = p2.x - p1.x;
                dy = p2.y - p1.y;
                dz = p2.z - p1.z;
@@ -320,9 +320,9 @@ package alternativa.physics.collision.colliders
                }
                p1 = p2;
             }
-            ii = minIdx == 0 ? this.§_-P3§ - 1 : minIdx - 1;
-            cp1 = this.§_-2r§[ii];
-            cp2 = this.§_-2r§[minIdx];
+            ii = minIdx == 0 ? this.name_P3 - 1 : minIdx - 1;
+            cp1 = this.name_2r[ii];
+            cp2 = this.name_2r[minIdx];
             p1 = cp1.pos;
             p2 = cp2.pos;
             p2.x = 0.5 * (p1.x + p2.x);
@@ -331,13 +331,13 @@ package alternativa.physics.collision.colliders
             cp2.penetration = 0.5 * (cp1.penetration + cp2.penetration);
             if(minIdx > 0)
             {
-               for(i = minIdx; i < this.§_-P3§; i++)
+               for(i = minIdx; i < this.name_P3; i++)
                {
-                  this.§_-2r§[int(i - 1)] = this.§_-2r§[i];
+                  this.name_2r[int(i - 1)] = this.name_2r[i];
                }
-               this.§_-2r§[int(this.§_-P3§ - 1)] = cp1;
+               this.name_2r[int(this.name_P3 - 1)] = cp1;
             }
-            --this.§_-P3§;
+            --this.name_P3;
          }
       }
       
@@ -535,7 +535,7 @@ package alternativa.physics.collision.colliders
          var c2:Number = this.axis20.x * tx + this.axis20.y * ty + this.axis20.z * tz;
          var t1:Number = (c2 * k - c1) / det;
          var t2:Number = (c2 - c1 * k) / det;
-         contact.§_-P3§ = 1;
+         contact.name_P3 = 1;
          var cp:ContactPoint = contact.points[0];
          var cpPos:Vector3 = cp.pos;
          cp.pos.x = 0.5 * (x1 + this.axis10.x * t1 + x2 + this.axis20.x * t2);
@@ -549,7 +549,7 @@ package alternativa.physics.collision.colliders
          r.x = cpPos.x - transform2.d;
          r.y = cpPos.y - transform2.h;
          r.z = cpPos.z - transform2.l;
-         cp.penetration = this.§_-hK§;
+         cp.penetration = this.name_hK;
       }
       
       private function testMainAxis(box1:CollisionBox, box2:CollisionBox, axis:Vector3, axisIndex:int, toBox1:Vector3) : Boolean
@@ -559,10 +559,10 @@ package alternativa.physics.collision.colliders
          {
             return false;
          }
-         if(overlap + this.epsilon < this.§_-hK§)
+         if(overlap + this.epsilon < this.name_hK)
          {
-            this.§_-hK§ = overlap;
-            this.§_-Wt§ = axisIndex;
+            this.name_hK = overlap;
+            this.name_Wt = axisIndex;
          }
          return true;
       }
@@ -586,10 +586,10 @@ package alternativa.physics.collision.colliders
          {
             return false;
          }
-         if(overlap + this.epsilon < this.§_-hK§)
+         if(overlap + this.epsilon < this.name_hK)
          {
-            this.§_-hK§ = overlap;
-            this.§_-Wt§ = axisIndex;
+            this.name_hK = overlap;
+            this.name_Wt = axisIndex;
          }
          return true;
       }

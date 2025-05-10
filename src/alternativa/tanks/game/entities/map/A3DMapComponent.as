@@ -53,15 +53,15 @@ package alternativa.tanks.game.entities.map
       
       private var skyboxSize:Number;
       
-      private var §_-Zy§:A3DMapBuilder;
+      private var name_Zy:A3DMapBuilder;
       
       private var gameKernel:GameKernel;
       
-      private var §_-9h§:Number = 1.5;
+      private var name_9h:Number = 1.5;
       
       private var listener:IA3DMapComponentListener;
       
-      private var §_-RZ§:Boolean = true;
+      private var name_RZ:Boolean = true;
       
       public function A3DMapComponent(files:ByteArrayMap, skyboxFiles:ByteArrayMap, skyboxSize:Number, listener:IA3DMapComponentListener)
       {
@@ -124,13 +124,13 @@ package alternativa.tanks.game.entities.map
          var light:Light3D = null;
          var renderSystem:RenderSystem = gameKernel.getRenderSystem();
          var mapGeometryContainer:Object3D = renderSystem.getMapGeometryContainer();
-         for each(object in this.§_-Zy§.objects)
+         for each(object in this.name_Zy.objects)
          {
             mapGeometryContainer.removeChild(object);
          }
          renderSystem.releaseResources(mapGeometryContainer.getResources(true));
          lights = renderSystem.lights;
-         for each(light in this.§_-Zy§.lights)
+         for each(light in this.name_Zy.lights)
          {
             if(light is DirectionalLight)
             {
@@ -155,9 +155,9 @@ package alternativa.tanks.game.entities.map
       
       private function buildRealMap() : void
       {
-         this.§_-Zy§ = new A3DMapBuilder();
-         this.§_-Zy§.addEventListener(Event.COMPLETE,this.onBuildingComplete);
-         this.§_-Zy§.buildMap(this.files);
+         this.name_Zy = new A3DMapBuilder();
+         this.name_Zy.addEventListener(Event.COMPLETE,this.onBuildingComplete);
+         this.name_Zy.buildMap(this.files);
       }
       
       private function onBuildingComplete(event:Event) : void
@@ -188,7 +188,7 @@ package alternativa.tanks.game.entities.map
          }
          var renderSystem:RenderSystem = this.gameKernel.getRenderSystem();
          var lights:Lights = renderSystem.lights;
-         for each(light in this.§_-Zy§.lights)
+         for each(light in this.name_Zy.lights)
          {
             if(light is DirectionalLight)
             {
@@ -236,7 +236,7 @@ package alternativa.tanks.game.entities.map
          var object:Object3D = null;
          var renderSystem:RenderSystem = this.gameKernel.getRenderSystem();
          var mapGeometryContainer:Object3D = renderSystem.getMapGeometryContainer();
-         for each(object in this.§_-Zy§.objects)
+         for each(object in this.name_Zy.objects)
          {
             mapGeometryContainer.addChild(object);
          }
@@ -252,11 +252,11 @@ package alternativa.tanks.game.entities.map
          var renderSystem:RenderSystem = null;
          var physicsContainer:Object3D = null;
          var physicsSystem:PhysicsSystem = this.gameKernel.getPhysicsSystem();
-         physicsSystem.initCollisionGeometry(this.§_-Zy§.collisionPrimitives);
+         physicsSystem.initCollisionGeometry(this.name_Zy.collisionPrimitives);
          if(this.gameKernel.options[MapOptions.VISUALIZE_PHYSICS] != null)
          {
             renderSystem = this.gameKernel.getRenderSystem();
-            physicsContainer = this.createPhysicsVisualObjects(this.§_-Zy§.collisionPrimitives);
+            physicsContainer = this.createPhysicsVisualObjects(this.name_Zy.collisionPrimitives);
             physicsContainer.visible = false;
             renderSystem.addContainer(PHYSICS_GEOMETRY,physicsContainer,true);
          }
@@ -385,27 +385,27 @@ package alternativa.tanks.game.entities.map
       private function toggleDecals() : void
       {
          var d:Decal = null;
-         this.§_-RZ§ = !this.§_-RZ§;
-         for each(d in this.§_-Zy§.decals)
+         this.name_RZ = !this.name_RZ;
+         for each(d in this.name_Zy.decals)
          {
-            d.visible = this.§_-RZ§;
+            d.visible = this.name_RZ;
          }
       }
       
       private function get decalsOffset() : Number
       {
-         return this.§_-9h§;
+         return this.name_9h;
       }
       
       private function set decalsOffset(value:Number) : void
       {
          var decal:Decal = null;
-         this.§_-9h§ = value;
-         for each(decal in this.§_-Zy§.decals)
+         this.name_9h = value;
+         for each(decal in this.name_Zy.decals)
          {
-            decal.offset = this.§_-9h§;
+            decal.offset = this.name_9h;
          }
-         IConsole(OSGi.getInstance().getService(IConsole)).addText("Decals offset: " + this.§_-9h§);
+         IConsole(OSGi.getInstance().getService(IConsole)).addText("Decals offset: " + this.name_9h);
       }
       
       private function toggleGeometry(containerId:String) : void

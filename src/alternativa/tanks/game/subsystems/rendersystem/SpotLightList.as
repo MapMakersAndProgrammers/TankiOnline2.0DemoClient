@@ -7,47 +7,47 @@ package alternativa.tanks.game.subsystems.rendersystem
    {
       private var container:Object3D;
       
-      private var §_-9k§:Vector.<SpotLight>;
+      private var name_9k:Vector.<SpotLight>;
       
       public function SpotLightList(container:Object3D)
       {
          super();
          this.container = container;
-         this.§_-9k§ = new Vector.<SpotLight>();
+         this.name_9k = new Vector.<SpotLight>();
       }
       
       public function add(light:SpotLight) : void
       {
-         if(this.§_-9k§.indexOf(light) < 0)
+         if(this.name_9k.indexOf(light) < 0)
          {
-            this.§_-9k§.push(light);
+            this.name_9k.push(light);
             this.container.addChild(light);
          }
       }
       
       public function remove(light:SpotLight) : void
       {
-         var index:int = int(this.§_-9k§.indexOf(light));
+         var index:int = int(this.name_9k.indexOf(light));
          if(index >= 0)
          {
-            this.§_-9k§[index] = this.§_-9k§[this.§_-9k§.length - 1];
-            this.§_-9k§.length -= 1;
+            this.name_9k[index] = this.name_9k[this.name_9k.length - 1];
+            this.name_9k.length -= 1;
          }
       }
       
       public function get size() : int
       {
-         return this.§_-9k§.length;
+         return this.name_9k.length;
       }
       
       public function get lights() : Vector.<SpotLight>
       {
-         return Vector.<SpotLight>(this.§_-9k§);
+         return Vector.<SpotLight>(this.name_9k);
       }
       
       public function getLightAt(i:int) : SpotLight
       {
-         return this.§_-9k§[i];
+         return this.name_9k[i];
       }
    }
 }

@@ -20,9 +20,9 @@ package
       
       private var area:Shape = new Shape();
       
-      private var §_-1q§:Bitmap = new EmbedPreloader();
+      private var name_1q:Bitmap = new EmbedPreloader();
       
-      private var §_-Za§:Bitmap = new EmbedPreloaderA();
+      private var name_Za:Bitmap = new EmbedPreloaderA();
       
       private var progress:Bitmap = new EmbedProgress();
       
@@ -30,15 +30,15 @@ package
       
       public var maps:Vector.<ExternalTextureResource>;
       
-      private var §_-dH§:int;
+      private var name_dH:int;
       
       private var counter:int;
       
       private var baseURL:String;
       
-      private var §_-m§:TextureResource = new BitmapTextureResource(new BitmapData(1,1,false,8355711));
+      private var name_m:TextureResource = new BitmapTextureResource(new BitmapData(1,1,false,8355711));
       
-      private var §_-UB§:Number = 0.09803921568627451;
+      private var name_UB:Number = 0.09803921568627451;
       
       public function Preloader()
       {
@@ -46,9 +46,9 @@ package
          addChild(this.area);
          this.area.alpha = 1;
          this.progress.alpha = 1;
-         this.§_-1q§.alpha = 1;
-         addChild(this.§_-1q§);
-         addChild(this.§_-Za§);
+         this.name_1q.alpha = 1;
+         addChild(this.name_1q);
+         addChild(this.name_Za);
          addChild(this.progress);
          addEventListener(Event.ADDED_TO_STAGE,this.onAddToStage);
          addEventListener(Event.REMOVED_FROM_STAGE,this.onRemoveFromStage);
@@ -95,9 +95,9 @@ package
       
       private function onEnterFrame(param1:Event) : void
       {
-         this.area.alpha -= this.§_-UB§;
-         this.§_-1q§.alpha -= this.§_-UB§;
-         this.progress.alpha -= this.§_-UB§;
+         this.area.alpha -= this.name_UB;
+         this.name_1q.alpha -= this.name_UB;
+         this.progress.alpha -= this.name_UB;
          if(this.area.alpha <= 0)
          {
             removeEventListener(Event.ENTER_FRAME,this.onEnterFrame);
@@ -111,8 +111,8 @@ package
       
       private function onEnterFrameSwitch(param1:Event) : void
       {
-         this.§_-Za§.alpha -= this.§_-UB§ * 1.5;
-         if(this.§_-Za§.alpha <= 0)
+         this.name_Za.alpha -= this.name_UB * 1.5;
+         if(this.name_Za.alpha <= 0)
          {
             removeEventListener(Event.ENTER_FRAME,this.onEnterFrameSwitch);
          }
@@ -121,17 +121,17 @@ package
       private function onResize(param1:Event = null) : void
       {
          this.area.graphics.clear();
-         this.§_-1q§.x = Math.round(stage.stageWidth / 2 - this.§_-1q§.width / 2);
-         this.§_-1q§.y = Math.round(stage.stageHeight / 2 - this.§_-1q§.height / 2) - 30;
-         this.§_-Za§.x = this.§_-1q§.x;
-         this.§_-Za§.y = this.§_-1q§.y;
-         this.progress.x = this.§_-1q§.x + 2;
-         this.progress.y = this.§_-1q§.y + 221;
+         this.name_1q.x = Math.round(stage.stageWidth / 2 - this.name_1q.width / 2);
+         this.name_1q.y = Math.round(stage.stageHeight / 2 - this.name_1q.height / 2) - 30;
+         this.name_Za.x = this.name_1q.x;
+         this.name_Za.y = this.name_1q.y;
+         this.progress.x = this.name_1q.x + 2;
+         this.progress.y = this.name_1q.y + 221;
          this.area.graphics.beginFill(0);
-         this.area.graphics.drawRect(0,0,this.§_-1q§.x,stage.stageHeight);
-         this.area.graphics.drawRect(this.§_-1q§.x,0,this.§_-1q§.width,this.§_-1q§.y);
-         this.area.graphics.drawRect(this.§_-1q§.x + this.§_-1q§.width,0,stage.stageWidth - this.§_-1q§.width - this.§_-1q§.x,stage.stageHeight);
-         this.area.graphics.drawRect(this.§_-1q§.x,this.§_-1q§.y + this.§_-1q§.height,this.§_-1q§.width,stage.stageHeight - this.§_-1q§.height - this.§_-1q§.y);
+         this.area.graphics.drawRect(0,0,this.name_1q.x,stage.stageHeight);
+         this.area.graphics.drawRect(this.name_1q.x,0,this.name_1q.width,this.name_1q.y);
+         this.area.graphics.drawRect(this.name_1q.x + this.name_1q.width,0,stage.stageWidth - this.name_1q.width - this.name_1q.x,stage.stageHeight);
+         this.area.graphics.drawRect(this.name_1q.x,this.name_1q.y + this.name_1q.height,this.name_1q.width,stage.stageHeight - this.name_1q.height - this.name_1q.y);
       }
    }
 }

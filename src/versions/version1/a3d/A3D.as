@@ -9,37 +9,37 @@ package versions.version1.a3d
    
    public class A3D
    {
-      private var §_-0§:Vector.<A3DBox>;
+      private var name_0:Vector.<A3DBox>;
       
       private var OptionalMap:Vector.<A3DGeometry>;
       
-      private var §_-ce§:Vector.<A3DImage>;
+      private var name_ce:Vector.<A3DImage>;
       
-      private var §_-XJ§:Vector.<A3DMap>;
+      private var name_XJ:Vector.<A3DMap>;
       
-      private var §_-22§:Vector.<A3DMaterial>;
+      private var name_22:Vector.<A3DMaterial>;
       
-      private var §_-Kq§:Vector.<A3DObject>;
+      private var name_Kq:Vector.<A3DObject>;
       
       public function A3D(boxes:Vector.<A3DBox>, geometries:Vector.<A3DGeometry>, images:Vector.<A3DImage>, maps:Vector.<A3DMap>, materials:Vector.<A3DMaterial>, objects:Vector.<A3DObject>)
       {
          super();
-         this.§_-0§ = boxes;
+         this.name_0 = boxes;
          this.OptionalMap = geometries;
-         this.§_-ce§ = images;
-         this.§_-XJ§ = maps;
-         this.§_-22§ = materials;
-         this.§_-Kq§ = objects;
+         this.name_ce = images;
+         this.name_XJ = maps;
+         this.name_22 = materials;
+         this.name_Kq = objects;
       }
       
       public function get boxes() : Vector.<A3DBox>
       {
-         return this.§_-0§;
+         return this.name_0;
       }
       
       public function set boxes(value:Vector.<A3DBox>) : void
       {
-         this.§_-0§ = value;
+         this.name_0 = value;
       }
       
       public function get geometries() : Vector.<A3DGeometry>
@@ -54,42 +54,42 @@ package versions.version1.a3d
       
       public function get images() : Vector.<A3DImage>
       {
-         return this.§_-ce§;
+         return this.name_ce;
       }
       
       public function set images(value:Vector.<A3DImage>) : void
       {
-         this.§_-ce§ = value;
+         this.name_ce = value;
       }
       
       public function get maps() : Vector.<A3DMap>
       {
-         return this.§_-XJ§;
+         return this.name_XJ;
       }
       
       public function set maps(value:Vector.<A3DMap>) : void
       {
-         this.§_-XJ§ = value;
+         this.name_XJ = value;
       }
       
       public function get materials() : Vector.<A3DMaterial>
       {
-         return this.§_-22§;
+         return this.name_22;
       }
       
       public function set materials(value:Vector.<A3DMaterial>) : void
       {
-         this.§_-22§ = value;
+         this.name_22 = value;
       }
       
       public function get objects() : Vector.<A3DObject>
       {
-         return this.§_-Kq§;
+         return this.name_Kq;
       }
       
       public function set objects(value:Vector.<A3DObject>) : void
       {
-         this.§_-Kq§ = value;
+         this.name_Kq = value;
       }
       
       public function toString() : String

@@ -12,15 +12,15 @@ package alternativa.physics.collision.colliders
    {
       public var epsilon:Number = 0.001;
       
-      private var §_-Wt§:int;
+      private var name_Wt:int;
       
-      private var §_-hK§:Number;
+      private var name_hK:Number;
       
       private var toBox:Vector3 = new Vector3();
       
       private var axis:Vector3 = new Vector3();
       
-      private var §_-VZ§:Vector3 = new Vector3();
+      private var name_VZ:Vector3 = new Vector3();
       
       private var axis10:Vector3 = new Vector3();
       
@@ -65,17 +65,17 @@ package alternativa.physics.collision.colliders
          {
             box = CollisionBox(prim2);
          }
-         if(this.§_-Wt§ < 4)
+         if(this.name_Wt < 4)
          {
-            if(!this.findFaceContactPoints(box,tri,this.toBox,this.§_-Wt§,contact))
+            if(!this.findFaceContactPoints(box,tri,this.toBox,this.name_Wt,contact))
             {
                return false;
             }
          }
          else
          {
-            this.§_-Wt§ -= 4;
-            if(!this.findEdgesIntersection(box,tri,this.toBox,this.§_-Wt§ % 3,int(this.§_-Wt§ / 3),contact))
+            this.name_Wt -= 4;
+            if(!this.findEdgesIntersection(box,tri,this.toBox,this.name_Wt % 3,int(this.name_Wt / 3),contact))
             {
                return false;
             }
@@ -112,7 +112,7 @@ package alternativa.physics.collision.colliders
          this.toBox.x = boxTransform.d - triTransform.d;
          this.toBox.y = boxTransform.h - triTransform.h;
          this.toBox.z = boxTransform.l - triTransform.l;
-         this.§_-hK§ = 1e+308;
+         this.name_hK = 1e+308;
          this.axis.x = triTransform.c;
          this.axis.y = triTransform.g;
          this.axis.z = triTransform.k;
@@ -199,10 +199,10 @@ package alternativa.physics.collision.colliders
          {
             return false;
          }
-         if(overlap + this.epsilon < this.§_-hK§)
+         if(overlap + this.epsilon < this.name_hK)
          {
-            this.§_-hK§ = overlap;
-            this.§_-Wt§ = axisIndex;
+            this.name_hK = overlap;
+            this.name_Wt = axisIndex;
          }
          return true;
       }
@@ -227,10 +227,10 @@ package alternativa.physics.collision.colliders
          {
             return false;
          }
-         if(overlap + this.epsilon < this.§_-hK§)
+         if(overlap + this.epsilon < this.name_hK)
          {
-            this.§_-hK§ = overlap;
-            this.§_-Wt§ = axisIndex;
+            this.name_hK = overlap;
+            this.name_Wt = axisIndex;
          }
          return true;
       }
@@ -313,15 +313,15 @@ package alternativa.physics.collision.colliders
          var r:Vector3 = null;
          var boxTransform:Matrix4 = box.transform;
          var triTransform:Matrix4 = tri.transform;
-         this.§_-VZ§.x = triTransform.c;
-         this.§_-VZ§.y = triTransform.g;
-         this.§_-VZ§.z = triTransform.k;
-         var over:Boolean = toBox.x * this.§_-VZ§.x + toBox.y * this.§_-VZ§.y + toBox.z * this.§_-VZ§.z > 0;
+         this.name_VZ.x = triTransform.c;
+         this.name_VZ.y = triTransform.g;
+         this.name_VZ.z = triTransform.k;
+         var over:Boolean = toBox.x * this.name_VZ.x + toBox.y * this.name_VZ.y + toBox.z * this.name_VZ.z > 0;
          if(!over)
          {
-            this.§_-VZ§.x = -this.§_-VZ§.x;
-            this.§_-VZ§.y = -this.§_-VZ§.y;
-            this.§_-VZ§.z = -this.§_-VZ§.z;
+            this.name_VZ.x = -this.name_VZ.x;
+            this.name_VZ.y = -this.name_VZ.y;
+            this.name_VZ.z = -this.name_VZ.z;
          }
          var incFaceAxisIdx:int = 0;
          var incAxisDot:Number = 0;
@@ -329,7 +329,7 @@ package alternativa.physics.collision.colliders
          for(var axisIdx:int = 0; axisIdx < 3; )
          {
             boxTransform.getAxis(axisIdx,this.axis);
-            dot = this.axis.x * this.§_-VZ§.x + this.axis.y * this.§_-VZ§.y + this.axis.z * this.§_-VZ§.z;
+            dot = this.axis.x * this.name_VZ.x + this.axis.y * this.name_VZ.y + this.axis.z * this.name_VZ.z;
             absDot = dot < 0 ? -dot : dot;
             if(absDot > maxDot)
             {
@@ -340,17 +340,17 @@ package alternativa.physics.collision.colliders
             axisIdx++;
          }
          var negativeFace:Boolean = incAxisDot > 0;
-         §_-ho§(box.hs,incFaceAxisIdx,negativeFace,this.points1);
-         boxTransform.§_-ZK§(this.points1,this.points2,4);
-         triTransform.§_-iX§(this.points2,this.points1,4);
+         getFaceVertsByAxis(box.hs,incFaceAxisIdx,negativeFace,this.points1);
+         boxTransform.transformPointsN(this.points1,this.points2,4);
+         triTransform.transformPointsTransposedN(this.points2,this.points1,4);
          var pnum:int = this.clipByTriangle(tri);
-         contact.§_-P3§ = 0;
+         contact.name_P3 = 0;
          for(var i:int = 0; i < pnum; )
          {
             v = this.points2[i];
             if(over && v.z < 0 || !over && v.z > 0)
             {
-               cp = contact.points[contact.§_-P3§++];
+               cp = contact.points[contact.name_P3++];
                cpPos = cp.pos;
                cpPos.x = triTransform.a * v.x + triTransform.b * v.y + triTransform.c * v.z + triTransform.d;
                cpPos.y = triTransform.e * v.x + triTransform.f * v.y + triTransform.g * v.z + triTransform.h;
@@ -367,9 +367,9 @@ package alternativa.physics.collision.colliders
             }
             i++;
          }
-         contact.normal.x = this.§_-VZ§.x;
-         contact.normal.y = this.§_-VZ§.y;
-         contact.normal.z = this.§_-VZ§.z;
+         contact.normal.x = this.name_VZ.x;
+         contact.normal.y = this.name_VZ.y;
+         contact.normal.z = this.name_VZ.z;
          return true;
       }
       
@@ -382,13 +382,13 @@ package alternativa.physics.collision.colliders
          faceAxisIdx--;
          var boxTransform:Matrix4 = box.transform;
          var triTransform:Matrix4 = tri.transform;
-         boxTransform.getAxis(faceAxisIdx,this.§_-VZ§);
-         var negativeFace:Boolean = toBox.x * this.§_-VZ§.x + toBox.y * this.§_-VZ§.y + toBox.z * this.§_-VZ§.z > 0;
+         boxTransform.getAxis(faceAxisIdx,this.name_VZ);
+         var negativeFace:Boolean = toBox.x * this.name_VZ.x + toBox.y * this.name_VZ.y + toBox.z * this.name_VZ.z > 0;
          if(!negativeFace)
          {
-            this.§_-VZ§.x = -this.§_-VZ§.x;
-            this.§_-VZ§.y = -this.§_-VZ§.y;
-            this.§_-VZ§.z = -this.§_-VZ§.z;
+            this.name_VZ.x = -this.name_VZ.x;
+            this.name_VZ.y = -this.name_VZ.y;
+            this.name_VZ.z = -this.name_VZ.z;
          }
          var v:Vector3 = this.points1[0];
          v.x = tri.v0.x;
@@ -402,17 +402,17 @@ package alternativa.physics.collision.colliders
          v.x = tri.v2.x;
          v.y = tri.v2.y;
          v.z = tri.v2.z;
-         triTransform.§_-ZK§(this.points1,this.points2,3);
-         boxTransform.§_-iX§(this.points2,this.points1,3);
+         triTransform.transformPointsN(this.points1,this.points2,3);
+         boxTransform.transformPointsTransposedN(this.points2,this.points1,3);
          var pnum:int = this.clipByBox(box.hs,faceAxisIdx);
-         contact.§_-P3§ = 0;
+         contact.name_P3 = 0;
          for(var i:int = 0; i < pnum; )
          {
             v = this.points1[i];
             penetration = this.getPointBoxPenetration(box.hs,v,faceAxisIdx,negativeFace);
             if(penetration > -this.epsilon)
             {
-               cp = contact.points[contact.§_-P3§++];
+               cp = contact.points[contact.name_P3++];
                cpPos = cp.pos;
                cpPos.x = boxTransform.a * v.x + boxTransform.b * v.y + boxTransform.c * v.z + boxTransform.d;
                cpPos.y = boxTransform.e * v.x + boxTransform.f * v.y + boxTransform.g * v.z + boxTransform.h;
@@ -429,9 +429,9 @@ package alternativa.physics.collision.colliders
             }
             i++;
          }
-         contact.normal.x = this.§_-VZ§.x;
-         contact.normal.y = this.§_-VZ§.y;
-         contact.normal.z = this.§_-VZ§.z;
+         contact.normal.x = this.name_VZ.x;
+         contact.normal.y = this.name_VZ.y;
+         contact.normal.z = this.name_VZ.z;
          return true;
       }
       
@@ -471,58 +471,58 @@ package alternativa.physics.collision.colliders
          switch(faceAxisIdx)
          {
             case 0:
-               pnum = int(§_-Yb§(-hs.z,pnum,this.points1,this.points2,this.epsilon));
+               pnum = int(clipLowZ(-hs.z,pnum,this.points1,this.points2,this.epsilon));
                if(pnum == 0)
                {
                   return 0;
                }
-               pnum = int(§_-Cg§(hs.z,pnum,this.points2,this.points1,this.epsilon));
+               pnum = int(clipHighZ(hs.z,pnum,this.points2,this.points1,this.epsilon));
                if(pnum == 0)
                {
                   return 0;
                }
-               pnum = int(§_-BG§(-hs.y,pnum,this.points1,this.points2,this.epsilon));
+               pnum = int(clipLowY(-hs.y,pnum,this.points1,this.points2,this.epsilon));
                if(pnum == 0)
                {
                   return 0;
                }
-               return §_-Ro§(hs.y,pnum,this.points2,this.points1,this.epsilon);
+               return clipHighY(hs.y,pnum,this.points2,this.points1,this.epsilon);
                break;
             case 1:
-               pnum = int(§_-Yb§(-hs.z,pnum,this.points1,this.points2,this.epsilon));
+               pnum = int(clipLowZ(-hs.z,pnum,this.points1,this.points2,this.epsilon));
                if(pnum == 0)
                {
                   return 0;
                }
-               pnum = int(§_-Cg§(hs.z,pnum,this.points2,this.points1,this.epsilon));
+               pnum = int(clipHighZ(hs.z,pnum,this.points2,this.points1,this.epsilon));
                if(pnum == 0)
                {
                   return 0;
                }
-               pnum = int(§_-ii§(-hs.x,pnum,this.points1,this.points2,this.epsilon));
+               pnum = int(clipLowX(-hs.x,pnum,this.points1,this.points2,this.epsilon));
                if(pnum == 0)
                {
                   return 0;
                }
-               return §_-KZ§(hs.x,pnum,this.points2,this.points1,this.epsilon);
+               return clipHighX(hs.x,pnum,this.points2,this.points1,this.epsilon);
                break;
             case 2:
-               pnum = int(§_-ii§(-hs.x,pnum,this.points1,this.points2,this.epsilon));
+               pnum = int(clipLowX(-hs.x,pnum,this.points1,this.points2,this.epsilon));
                if(pnum == 0)
                {
                   return 0;
                }
-               pnum = int(§_-KZ§(hs.x,pnum,this.points2,this.points1,this.epsilon));
+               pnum = int(clipHighX(hs.x,pnum,this.points2,this.points1,this.epsilon));
                if(pnum == 0)
                {
                   return 0;
                }
-               pnum = int(§_-BG§(-hs.y,pnum,this.points1,this.points2,this.epsilon));
+               pnum = int(clipLowY(-hs.y,pnum,this.points1,this.points2,this.epsilon));
                if(pnum == 0)
                {
                   return 0;
                }
-               return §_-Ro§(hs.y,pnum,this.points2,this.points1,this.epsilon);
+               return clipHighY(hs.y,pnum,this.points2,this.points1,this.epsilon);
                break;
             default:
                return 0;
@@ -697,9 +697,9 @@ package alternativa.physics.collision.colliders
          var c2:Number = this.axis20.x * vx + this.axis20.y * vy + this.axis20.z * vz;
          var t1:Number = (c2 * k - c1) / det;
          var t2:Number = (c2 - c1 * k) / det;
-         contact.§_-P3§ = 1;
+         contact.name_P3 = 1;
          var cp:ContactPoint = contact.points[0];
-         cp.penetration = this.§_-hK§;
+         cp.penetration = this.name_hK;
          v = cp.pos;
          v.x = 0.5 * (x1 + this.axis10.x * t1 + x2 + this.axis20.x * t2);
          v.y = 0.5 * (y1 + this.axis10.y * t1 + y2 + this.axis20.y * t2);

@@ -41,14 +41,14 @@ package _codec.versions.version2.a3d.animation
          var result:Vector.<Vector.<Vector.<A3D2Track>>> = new Vector.<Vector.<Vector.<A3D2Track>>>(length1,true);
          for(var i1:int = 0; i1 < length1; )
          {
-            if(!protocolBuffer.optionalMap.OptionalMap())
+            if(!protocolBuffer.optionalMap.get())
             {
                length2 = LengthCodecHelper.decodeLength(protocolBuffer);
                items2 = new Vector.<Vector.<A3D2Track>>(length2,true);
                result[i1] = items2;
                for(i2 = 0; i2 < length2; )
                {
-                  if(!protocolBuffer.optionalMap.OptionalMap())
+                  if(!protocolBuffer.optionalMap.get())
                   {
                      length3 = LengthCodecHelper.decodeLength(protocolBuffer);
                      items3 = new Vector.<A3D2Track>(length3,true);

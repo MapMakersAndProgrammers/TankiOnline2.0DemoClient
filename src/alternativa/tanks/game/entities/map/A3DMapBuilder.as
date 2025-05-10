@@ -50,21 +50,21 @@ package alternativa.tanks.game.entities.map
       
       private static var fakeBumpTextureResource:BitmapTextureResource = new BitmapTextureResource(new BitmapData(1,1,false,8355839));
       
-      private var §_-Kq§:Vector.<Object3D> = new Vector.<Object3D>();
+      private var name_Kq:Vector.<Object3D> = new Vector.<Object3D>();
       
-      private var §_-73§:Vector.<CollisionPrimitive>;
+      private var name_73:Vector.<CollisionPrimitive>;
       
-      private var §_-9k§:Vector.<Light3D>;
+      private var name_9k:Vector.<Light3D>;
       
-      private var §_-Gv§:Vector.<Decal> = new Vector.<Decal>();
+      private var name_Gv:Vector.<Decal> = new Vector.<Decal>();
       
-      private var §_-ah§:TaskSequence;
+      private var name_ah:TaskSequence;
       
       private var mapFiles:ByteArrayMap;
       
       private var collector:Vector.<Object3D>;
       
-      private var §_-TE§:BitmapCubeTextureResource = new BitmapCubeTextureResource(new BitmapData(1,1,false,16711680),new BitmapData(1,1,false,16711680),new BitmapData(1,1,false,16711680),new BitmapData(1,1,false,16711680),new BitmapData(1,1,false,16711680),new BitmapData(1,1,false,16711680));
+      private var name_TE:BitmapCubeTextureResource = new BitmapCubeTextureResource(new BitmapData(1,1,false,16711680),new BitmapData(1,1,false,16711680),new BitmapData(1,1,false,16711680),new BitmapData(1,1,false,16711680),new BitmapData(1,1,false,16711680),new BitmapData(1,1,false,16711680));
       
       public function A3DMapBuilder()
       {
@@ -73,22 +73,22 @@ package alternativa.tanks.game.entities.map
       
       public function get objects() : Vector.<Object3D>
       {
-         return this.§_-Kq§;
+         return this.name_Kq;
       }
       
       public function get collisionPrimitives() : Vector.<CollisionPrimitive>
       {
-         return this.§_-73§;
+         return this.name_73;
       }
       
       public function get lights() : Vector.<Light3D>
       {
-         return this.§_-9k§;
+         return this.name_9k;
       }
       
       public function get decals() : Vector.<Decal>
       {
-         return this.§_-Gv§;
+         return this.name_Gv;
       }
       
       public function buildMap(mapFiles:ByteArrayMap) : void
@@ -97,13 +97,13 @@ package alternativa.tanks.game.entities.map
          this.mapFiles = mapFiles;
          var mapGeometryFiles:Vector.<String> = this.getMapGeometryFiles(mapFiles);
          this.collector = new Vector.<Object3D>();
-         this.§_-ah§ = new TaskSequence();
+         this.name_ah = new TaskSequence();
          for each(geometryFileName in mapGeometryFiles)
          {
-            this.§_-ah§.addTask(new GeometryBuildTask(mapFiles.getValue(geometryFileName),this.collector));
+            this.name_ah.addTask(new GeometryBuildTask(mapFiles.getValue(geometryFileName),this.collector));
          }
-         this.§_-ah§.addEventListener(Event.COMPLETE,this.onGeometryComplete);
-         this.§_-ah§.run();
+         this.name_ah.addEventListener(Event.COMPLETE,this.onGeometryComplete);
+         this.name_ah.run();
       }
       
       private function onGeometryComplete(event:Event) : void
@@ -126,24 +126,24 @@ package alternativa.tanks.game.entities.map
                   decal.name = meshName;
                   decal.useShadow = true;
                   decal.geometry = mesh.geometry;
-                  decal.alternativa3d::_-eW = mesh.alternativa3d::_-eW;
-                  decal.alternativa3d::_-Oy = mesh.alternativa3d::_-Oy;
-                  for each(surface in decal.alternativa3d::_-eW)
+                  decal.name_eW = mesh.name_eW;
+                  decal.name_Oy = mesh.name_Oy;
+                  for each(surface in decal.name_eW)
                   {
                      surface.alternativa3d::object = decal;
                   }
                   decal.boundBox = mesh.boundBox;
                   decal.matrix = mesh.matrix;
                   mesh = decal;
-                  this.§_-Gv§.push(decal);
+                  this.name_Gv.push(decal);
                }
                mesh.calculateBoundBox();
                this.setupMaterials(mesh,resourceCache);
-               this.§_-Kq§.push(mesh);
+               this.name_Kq.push(mesh);
             }
          }
          this.collector = null;
-         this.§_-ah§ = null;
+         this.name_ah = null;
          this.parseTrees(this.mapFiles.getValue(TREES_FILE));
          this.parseReflections(this.mapFiles.getValue(MARKET_FILE));
          this.parseBeams(this.mapFiles.getValue(BEAMS_FILE));
@@ -192,7 +192,7 @@ package alternativa.tanks.game.entities.map
                         if(diffName.indexOf("vetrino01") >= 0)
                         {
                            reflection = this.getCompressedTextureResource(new ExternalTextureResource("vetrino_rfl.atf"),resourceCache,this.mapFiles);
-                           envMaterial = new EnviromentMaterial(diffuse,this.§_-TE§,null,reflection,emission,opacity);
+                           envMaterial = new EnviromentMaterial(diffuse,this.name_TE,null,reflection,emission,opacity);
                            envMaterial.reflection = 0.4;
                            surface.material = envMaterial;
                         }
@@ -203,7 +203,7 @@ package alternativa.tanks.game.entities.map
                      }
                      i++;
                   }
-                  this.§_-Kq§.push(mesh);
+                  this.name_Kq.push(mesh);
                }
             }
          }
@@ -217,7 +217,7 @@ package alternativa.tanks.game.entities.map
          var emissionTextureResource:TextureResource = null;
          var opacityTextureResource:TextureResource = null;
          var material:MapMaterial = null;
-         for each(surface in mesh.alternativa3d::_-eW)
+         for each(surface in mesh.name_eW)
          {
             parserMaterial = surface.material as ParserMaterial;
             if(parserMaterial != null)
@@ -286,13 +286,13 @@ package alternativa.tanks.game.entities.map
                         bump = this.getCompressedTextureResource(material.textures["bump"],resourceCache,this.mapFiles);
                         opacity = this.getCompressedTextureResource(material.textures["transparent"],resourceCache,this.mapFiles);
                         trMaterial = new TreesMaterial(diffuse,fakeBumpTextureResource,null,null,opacity);
-                        trMaterial.§_-kj§ = 0;
+                        trMaterial.name_kj = 0;
                         trMaterial.alphaThreshold = 0.2;
                         surface.material = trMaterial;
                      }
                      i++;
                   }
-                  this.§_-Kq§.push(mesh);
+                  this.name_Kq.push(mesh);
                }
             }
          }
@@ -331,7 +331,7 @@ package alternativa.tanks.game.entities.map
                   }
                   i++;
                }
-               this.§_-Kq§.push(mesh);
+               this.name_Kq.push(mesh);
             }
          }
       }
@@ -346,11 +346,11 @@ package alternativa.tanks.game.entities.map
             parserCollada = new ParserCollada();
             parserCollada.parse(XML(lightsData.toString()));
             numLights = uint(parserCollada.lights.length);
-            this.§_-9k§ = new Vector.<Light3D>(numLights);
+            this.name_9k = new Vector.<Light3D>(numLights);
             for(i = 0; i < numLights; i++)
             {
-               this.§_-9k§[i] = parserCollada.lights[i];
-               Light3D(this.§_-9k§[i]).alternativa3d::removeFromParent();
+               this.name_9k[i] = parserCollada.lights[i];
+               Light3D(this.name_9k[i]).alternativa3d::removeFromParent();
             }
          }
       }
@@ -387,7 +387,7 @@ package alternativa.tanks.game.entities.map
          var objectName:String = null;
          var parserA3D:ParserA3D = new ParserA3D();
          parserA3D.parse(a3dData);
-         this.§_-73§ = new Vector.<CollisionPrimitive>();
+         this.name_73 = new Vector.<CollisionPrimitive>();
          for each(object in parserA3D.objects)
          {
             if(object is Mesh)
@@ -395,15 +395,15 @@ package alternativa.tanks.game.entities.map
                objectName = object.name.toLowerCase();
                if(objectName.indexOf("tri") == 0)
                {
-                  PhysicsParsingUtils.parseCollisionTriangles(Mesh(object),this.§_-73§,CollisionGroup.STATIC,COLLISION_MASK);
+                  PhysicsParsingUtils.parseCollisionTriangles(Mesh(object),this.name_73,CollisionGroup.STATIC,COLLISION_MASK);
                }
                else if(objectName.indexOf("box") == 0)
                {
-                  PhysicsParsingUtils.parseBox(Mesh(object),this.§_-73§,CollisionGroup.STATIC,COLLISION_MASK);
+                  PhysicsParsingUtils.parseBox(Mesh(object),this.name_73,CollisionGroup.STATIC,COLLISION_MASK);
                }
                else if(objectName.indexOf("plane") == 0)
                {
-                  PhysicsParsingUtils.parsePlane(Mesh(object),this.§_-73§,CollisionGroup.STATIC,COLLISION_MASK);
+                  PhysicsParsingUtils.parsePlane(Mesh(object),this.name_73,CollisionGroup.STATIC,COLLISION_MASK);
                }
             }
          }

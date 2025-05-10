@@ -11,7 +11,7 @@ package alternativa.physics.collision.primitives
       
       public var hs:Vector3 = new Vector3();
       
-      public var §_-ng§:Boolean = true;
+      public var name_ng:Boolean = true;
       
       public function CollisionRect(hs:Vector3, collisionGroup:int, collisionMask:int)
       {

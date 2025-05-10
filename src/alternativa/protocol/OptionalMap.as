@@ -4,7 +4,7 @@ package alternativa.protocol
    
    public class OptionalMap
    {
-      private var §_-bU§:int;
+      private var name_bU:int;
       
       private var size:int;
       
@@ -19,28 +19,28 @@ package alternativa.protocol
             this.map.writeBytes(source,0,this.convertSize(size));
          }
          this.size = size;
-         this.§_-bU§ = 0;
+         this.name_bU = 0;
       }
       
       public function getReadPosition() : int
       {
-         return this.§_-bU§;
+         return this.name_bU;
       }
       
       public function setReadPosition(value:int) : void
       {
-         this.§_-bU§ = value;
+         this.name_bU = value;
       }
       
       public function reset() : void
       {
-         this.§_-bU§ = 0;
+         this.name_bU = 0;
       }
       
       public function clear() : void
       {
          this.size = 0;
-         this.§_-bU§ = 0;
+         this.name_bU = 0;
       }
       
       public function addBit(isNull:Boolean) : void
@@ -51,17 +51,17 @@ package alternativa.protocol
       
       public function hasNextBit() : Boolean
       {
-         return this.§_-bU§ < this.size;
+         return this.name_bU < this.size;
       }
       
-      public function OptionalMap() : Boolean
+      public function get() : Boolean
       {
-         if(this.§_-bU§ >= this.size)
+         if(this.name_bU >= this.size)
          {
-            throw new Error("Index out of bounds: " + this.§_-bU§);
+            throw new Error("Index out of bounds: " + this.name_bU);
          }
-         var res:Boolean = this.getBit(this.§_-bU§);
-         ++this.§_-bU§;
+         var res:Boolean = this.getBit(this.name_bU);
+         ++this.name_bU;
          return res;
       }
       
@@ -107,20 +107,20 @@ package alternativa.protocol
       
       public function toString() : String
       {
-         var result:String = "readPosition: " + this.§_-bU§ + " size:" + this.getSize() + " mask:";
-         var _readPosition:int = this.§_-bU§;
-         for(var i:int = this.§_-bU§; i < this.getSize(); i++)
+         var result:String = "readPosition: " + this.name_bU + " size:" + this.getSize() + " mask:";
+         var _readPosition:int = this.name_bU;
+         for(var i:int = this.name_bU; i < this.getSize(); i++)
          {
-            result += this.OptionalMap() ? "1" : "0";
+            result += this.get() ? "1" : "0";
          }
-         this.§_-bU§ = _readPosition;
+         this.name_bU = _readPosition;
          return result;
       }
       
       public function clone() : alternativa.protocol.OptionalMap
       {
          var map:alternativa.protocol.OptionalMap = new alternativa.protocol.OptionalMap(this.size,this.map);
-         map.§_-bU§ = this.§_-bU§;
+         map.name_bU = this.name_bU;
          return map;
       }
    }

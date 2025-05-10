@@ -10,58 +10,58 @@ package alternativa.engine3d.materials.compiler
    
    public class Linker
    {
-      public var §_-RT§:int = 0;
+      public var name_RT:int = 0;
       
-      public var §_-A§:int = 0;
+      public var name_A:int = 0;
       
       public var type:String;
       
-      private var §_-2L§:Vector.<Procedure> = new Vector.<Procedure>();
+      private var name_2L:Vector.<Procedure> = new Vector.<Procedure>();
       
-      private var §_-RU§:ByteArray = new ByteArray();
+      private var name_RU:ByteArray = new ByteArray();
       
-      private var §_-8Z§:Boolean;
+      private var name_8Z:Boolean;
       
-      alternativa3d var §_-3r§:Object;
+      alternativa3d var name_3r:Object;
       
-      private var §_-c§:Object = new Object();
+      private var name_c:Object = new Object();
       
-      private var §_-T1§:Linker;
+      private var name_T1:Linker;
       
-      private var §_-W8§:Dictionary = new Dictionary();
+      private var name_W8:Dictionary = new Dictionary();
       
-      private var §_-f-§:Dictionary = new Dictionary();
+      private var name_f:Dictionary = new Dictionary();
       
-      private var §_-Jf§:Vector.<uint> = new Vector.<uint>(6,true);
+      private var name_Jf:Vector.<uint> = new Vector.<uint>(6,true);
       
       public function Linker(programType:String)
       {
          super();
-         this.§_-RU§.endian = Endian.LITTLE_ENDIAN;
+         this.name_RU.endian = Endian.LITTLE_ENDIAN;
          this.type = programType;
-         this.§_-RU§.writeByte(160);
-         this.§_-RU§.writeUnsignedInt(1);
-         this.§_-RU§.writeByte(161);
-         this.§_-RU§.writeByte(programType == Context3DProgramType.FRAGMENT ? 1 : 0);
+         this.name_RU.writeByte(160);
+         this.name_RU.writeUnsignedInt(1);
+         this.name_RU.writeByte(161);
+         this.name_RU.writeByte(programType == Context3DProgramType.FRAGMENT ? 1 : 0);
       }
       
       public function clear() : void
       {
-         this.§_-RU§.length = 7;
-         this.§_-Jf§[0] = this.§_-Jf§[1] = this.§_-Jf§[2] = this.§_-Jf§[3] = this.§_-Jf§[4] = this.§_-Jf§[5] = 0;
-         this.§_-2L§.length = 0;
-         this.§_-8Z§ = false;
-         this.§_-A§ = 0;
-         this.§_-RT§ = 0;
-         this.alternativa3d::_-3r = null;
-         this.§_-W8§ = new Dictionary();
-         this.§_-f-§ = new Dictionary();
+         this.name_RU.length = 7;
+         this.name_Jf[0] = this.name_Jf[1] = this.name_Jf[2] = this.name_Jf[3] = this.name_Jf[4] = this.name_Jf[5] = 0;
+         this.name_2L.length = 0;
+         this.name_8Z = false;
+         this.name_A = 0;
+         this.name_RT = 0;
+         this.name_3r = null;
+         this.name_W8 = new Dictionary();
+         this.name_f = new Dictionary();
       }
       
       public function addProcedure(procedure:Procedure) : void
       {
-         this.§_-8Z§ = true;
-         this.§_-2L§.push(procedure);
+         this.name_8Z = true;
+         this.name_2L.push(procedure);
       }
       
       public function declareVariable(name:String, type:uint = 2) : void
@@ -71,26 +71,26 @@ package alternativa.engine3d.materials.compiler
          v.index = -1;
          v.type = type;
          v.name = name;
-         this.§_-c§[name] = v;
+         this.name_c[name] = v;
       }
       
       public function setInputParams(procedure:Procedure, ... args) : void
       {
-         this.§_-W8§[procedure] = args;
+         this.name_W8[procedure] = args;
       }
       
       public function setOutputParams(procedure:Procedure, ... args) : void
       {
-         this.§_-f-§[procedure] = args;
+         this.name_f[procedure] = args;
       }
       
       public function getVariableIndex(name:String) : int
       {
-         if(this.§_-8Z§)
+         if(this.name_8Z)
          {
             this.link();
          }
-         var variable:Variable = this.alternativa3d::_-3r[name];
+         var variable:Variable = this.name_3r[name];
          if(variable == null)
          {
             throw new Error("Variable \"" + name + "\" not found");
@@ -100,11 +100,11 @@ package alternativa.engine3d.materials.compiler
       
       public function findVariable(name:String) : int
       {
-         if(this.§_-8Z§)
+         if(this.name_8Z)
          {
             this.link();
          }
-         var variable:Variable = this.alternativa3d::_-3r[name];
+         var variable:Variable = this.name_3r[name];
          if(variable == null)
          {
             return -1;
@@ -114,26 +114,26 @@ package alternativa.engine3d.materials.compiler
       
       public function containsVariable(name:String) : Boolean
       {
-         if(this.§_-8Z§)
+         if(this.name_8Z)
          {
             this.link();
          }
-         return this.alternativa3d::_-3r[name] != null;
+         return this.name_3r[name] != null;
       }
       
       public function getByteCode() : ByteArray
       {
-         if(this.§_-8Z§)
+         if(this.name_8Z)
          {
             this.link();
          }
-         return this.§_-RU§;
+         return this.name_RU;
       }
       
       public function setOppositeLinker(linker:Linker) : void
       {
-         this.§_-T1§ = linker;
-         this.§_-8Z§ = true;
+         this.name_T1 = linker;
+         this.name_8Z = true;
       }
       
       public function link() : void
@@ -150,28 +150,28 @@ package alternativa.engine3d.materials.compiler
          var vars:Vector.<Variable> = null;
          var inParam:Variable = null;
          var outParam:Variable = null;
-         if(this.§_-8Z§)
+         if(this.name_8Z)
          {
-            this.alternativa3d::_-3r = new Object();
-            this.§_-RU§.position = 7;
-            this.§_-Jf§[0] = 0;
-            this.§_-Jf§[1] = 0;
-            this.§_-Jf§[3] = 0;
-            this.§_-Jf§[4] = 0;
-            this.§_-Jf§[5] = 0;
-            this.§_-A§ = 0;
-            this.§_-RT§ = 0;
-            for each(v in this.§_-c§)
+            this.name_3r = new Object();
+            this.name_RU.position = 7;
+            this.name_Jf[0] = 0;
+            this.name_Jf[1] = 0;
+            this.name_Jf[3] = 0;
+            this.name_Jf[4] = 0;
+            this.name_Jf[5] = 0;
+            this.name_A = 0;
+            this.name_RT = 0;
+            for each(v in this.name_c)
             {
-               this.alternativa3d::_-3r[v.name] = v;
+               this.name_3r[v.name] = v;
             }
-            for(i = 0; i < this.§_-2L§.length; i++)
+            for(i = 0; i < this.name_2L.length; i++)
             {
-               p = this.§_-2L§[i];
-               this.§_-A§ += p.§_-A§;
-               this.§_-RT§ += p.§_-RT§;
-               input = this.§_-W8§[p];
-               output = this.§_-f-§[p];
+               p = this.name_2L[i];
+               this.name_A += p.name_A;
+               this.name_RT += p.name_RT;
+               input = this.name_W8[p];
+               output = this.name_f[p];
                code = new ByteArray();
                code.endian = Endian.LITTLE_ENDIAN;
                p.byteCode.position = 0;
@@ -182,21 +182,21 @@ package alternativa.engine3d.materials.compiler
                   for(j = 0; j < numParams; )
                   {
                      param = input[j];
-                     v = this.alternativa3d::_-3r[param];
+                     v = this.name_3r[param];
                      if(v == null)
                      {
                         throw new Error("Input parameter not set. paramName = " + param);
                      }
-                     if(p.§_-d2§[6].length > j)
+                     if(p.name_d2[6].length > j)
                      {
-                        inParam = p.§_-d2§[6][j];
+                        inParam = p.name_d2[6][j];
                         if(inParam == null)
                         {
                            throw new Error("Input parameter set, but not exist in code. paramName = " + param + ", register = i" + j.toString());
                         }
-                        if(this.§_-c§[v.name] != null && v.index < 0)
+                        if(this.name_c[v.name] != null && v.index < 0)
                         {
-                           v.index = int(this.§_-Jf§[v.type]++);
+                           v.index = int(this.name_Jf[v.type]++);
                         }
                         while(inParam != null)
                         {
@@ -213,25 +213,25 @@ package alternativa.engine3d.materials.compiler
                   for(j = 0; j < numParams; j++)
                   {
                      param = output[j];
-                     v = this.alternativa3d::_-3r[param];
+                     v = this.name_3r[param];
                      if(v == null)
                      {
-                        if(!(j == 0 && i == this.§_-2L§.length - 1))
+                        if(!(j == 0 && i == this.name_2L.length - 1))
                         {
                            throw new Error("Output parameter have not declared. paramName = " + param);
                         }
                      }
                      else
                      {
-                        if(this.§_-c§[v.name] != null && v.index < 0)
+                        if(this.name_c[v.name] != null && v.index < 0)
                         {
                            if(v.type != 2)
                            {
                               throw new Error("Wrong output type:" + VariableType.TYPE_NAMES[v.type]);
                            }
-                           v.index = int(this.§_-Jf§[v.type]++);
+                           v.index = int(this.name_Jf[v.type]++);
                         }
-                        outParam = p.§_-d2§[3][j];
+                        outParam = p.name_d2[3][j];
                         if(outParam == null)
                         {
                            throw new Error("Output parameter set, but not exist in code. paramName = " + param + ", register = i" + j.toString());
@@ -244,7 +244,7 @@ package alternativa.engine3d.materials.compiler
                      }
                   }
                }
-               vars = p.§_-d2§[2];
+               vars = p.name_d2[2];
                for(j = 0; j < vars.length; j++)
                {
                   v = vars[j];
@@ -252,19 +252,19 @@ package alternativa.engine3d.materials.compiler
                   {
                      while(v != null)
                      {
-                        v.writeToByteArray(code,v.index + this.§_-Jf§[2],VariableType.TEMPORARY);
+                        v.writeToByteArray(code,v.index + this.name_Jf[2],VariableType.TEMPORARY);
                         v = v.next;
                      }
                   }
                }
-               this.§_-Jf§[VariableType.CONSTANT] += p.alternativa3d::_-in;
-               this.resolveVariablesUsages(code,p.§_-d2§[0],VariableType.ATTRIBUTE);
-               this.resolveVariablesUsages(code,p.§_-d2§[1],VariableType.CONSTANT);
-               this.resolveVaryings(code,p.§_-d2§[4]);
-               this.resolveVariablesUsages(code,p.§_-d2§[5],VariableType.SAMPLER);
-               this.§_-RU§.writeBytes(code,0,code.length);
+               this.name_Jf[VariableType.CONSTANT] += p.name_in;
+               this.resolveVariablesUsages(code,p.name_d2[0],VariableType.ATTRIBUTE);
+               this.resolveVariablesUsages(code,p.name_d2[1],VariableType.CONSTANT);
+               this.resolveVaryings(code,p.name_d2[4]);
+               this.resolveVariablesUsages(code,p.name_d2[5],VariableType.SAMPLER);
+               this.name_RU.writeBytes(code,0,code.length);
             }
-            this.§_-8Z§ = false;
+            this.name_8Z = false;
          }
       }
       
@@ -273,17 +273,17 @@ package alternativa.engine3d.materials.compiler
          var vUsage:Variable = null;
          var variable:Variable = null;
          var type:uint = VariableType.VARYING;
-         if(this.§_-T1§ != null && this.§_-T1§.§_-8Z§)
+         if(this.name_T1 != null && this.name_T1.name_8Z)
          {
-            this.§_-T1§.link();
+            this.name_T1.link();
          }
-         var oppositeVariables:Object = this.§_-T1§ != null ? this.§_-T1§.alternativa3d::_-3r : null;
+         var oppositeVariables:Object = this.name_T1 != null ? this.name_T1.name_3r : null;
          for(var j:uint = 0; j < variableUsages.length; j++)
          {
             vUsage = variableUsages[j];
             if(vUsage != null)
             {
-               variable = this.alternativa3d::_-3r[vUsage.name];
+               variable = this.name_3r[vUsage.name];
                if(variable == null)
                {
                   variable = Variable.create();
@@ -291,7 +291,7 @@ package alternativa.engine3d.materials.compiler
                   {
                      throw new Error("Varying is not assigned. Use \'assignVariableName\' method. register = " + vUsage.index);
                   }
-                  this.alternativa3d::_-3r[vUsage.name] = variable;
+                  this.name_3r[vUsage.name] = variable;
                   variable.name = vUsage.name;
                   if(oppositeVariables != null)
                   {
@@ -303,8 +303,8 @@ package alternativa.engine3d.materials.compiler
                   }
                   else
                   {
-                     variable.index = this.§_-Jf§[type];
-                     this.§_-Jf§[type] += vUsage.size;
+                     variable.index = this.name_Jf[type];
+                     this.name_Jf[type] += vUsage.size;
                   }
                   variable.type = type;
                }
@@ -326,26 +326,26 @@ package alternativa.engine3d.materials.compiler
             vUsage = variableUsages[j];
             if(vUsage != null)
             {
-               variable = this.alternativa3d::_-3r[vUsage.name];
+               variable = this.name_3r[vUsage.name];
                if(variable == null)
                {
                   variable = Variable.create();
                   if(vUsage.name != null)
                   {
-                     this.alternativa3d::_-3r[vUsage.name] = variable;
+                     this.name_3r[vUsage.name] = variable;
                   }
                   else if(!vUsage.isRelative)
                   {
                      throw new Error(VariableType.TYPE_NAMES[type] + " is not assigned. Use \"assignVariableName\" method. register = " + vUsage.index);
                   }
                   variable.name = vUsage.name;
-                  variable.index = this.§_-Jf§[type];
-                  this.§_-Jf§[type] += vUsage.size;
+                  variable.index = this.name_Jf[type];
+                  this.name_Jf[type] += vUsage.size;
                   variable.type = type;
                }
                else if(variable.index < 0)
                {
-                  variable.index = int(this.§_-Jf§[type]++);
+                  variable.index = int(this.name_Jf[type]++);
                }
                while(vUsage != null)
                {
@@ -364,9 +364,9 @@ package alternativa.engine3d.materials.compiler
          var result:String = "LINKER:\n";
          var totalCodes:uint = 0;
          var totalCommands:uint = 0;
-         for(var i:int = 0; i < this.§_-2L§.length; i++)
+         for(var i:int = 0; i < this.name_2L.length; i++)
          {
-            p = this.§_-2L§[i];
+            p = this.name_2L[i];
             if(p.name != null)
             {
                result += p.name + "(";
@@ -375,7 +375,7 @@ package alternativa.engine3d.materials.compiler
             {
                result += "#" + i.toString() + "(";
             }
-            args = this.§_-W8§[p];
+            args = this.name_W8[p];
             if(args != null)
             {
                for each(str in args)
@@ -385,7 +385,7 @@ package alternativa.engine3d.materials.compiler
                result = result.substr(0,result.length - 1);
             }
             result += ")";
-            args = this.§_-f-§[p];
+            args = this.name_f[p];
             if(args != null)
             {
                result += "->(";
@@ -396,9 +396,9 @@ package alternativa.engine3d.materials.compiler
                result = result.substr(0,result.length - 1);
                result += ")";
             }
-            result += " [IS:" + p.§_-RT§.toString() + ", CMDS:" + p.§_-A§.toString() + "]\n";
-            totalCodes += p.§_-RT§;
-            totalCommands += p.§_-A§;
+            result += " [IS:" + p.name_RT.toString() + ", CMDS:" + p.name_A.toString() + "]\n";
+            totalCodes += p.name_RT;
+            totalCommands += p.name_A;
          }
          return result + ("[IS:" + totalCodes.toString() + ", CMDS:" + totalCommands.toString() + "]\n");
       }

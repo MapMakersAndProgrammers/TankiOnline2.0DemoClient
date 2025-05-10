@@ -12,15 +12,15 @@ package alternativa.engine3d.shadows
       
       public var renderers:Vector.<ShadowRenderer> = new Vector.<ShadowRenderer>();
       
-      private var §_-jy§:Dictionary = new Dictionary();
+      private var name_jy:Dictionary = new Dictionary();
       
-      private var §_-gR§:int;
+      private var name_gR:int;
       
-      private var §_-i-§:int;
+      private var name_i:int;
       
-      private var §_-O0§:Vector.<ShadowRenderer> = new Vector.<ShadowRenderer>();
+      private var name_O0:Vector.<ShadowRenderer> = new Vector.<ShadowRenderer>();
       
-      private var §_-aJ§:int;
+      private var name_aJ:int;
       
       public function ShadowsSystem()
       {
@@ -34,7 +34,7 @@ package alternativa.engine3d.shadows
          {
             return;
          }
-         this.§_-i-§ = 0;
+         this.name_i = 0;
          var num:int = int(this.renderers.length);
          for(var i:int = 0; i < num; )
          {
@@ -42,8 +42,8 @@ package alternativa.engine3d.shadows
             renderer.update();
             if(renderer.active)
             {
-               this.§_-O0§[this.§_-i-§] = renderer;
-               ++this.§_-i-§;
+               this.name_O0[this.name_i] = renderer;
+               ++this.name_i;
             }
             i++;
          }
@@ -52,8 +52,8 @@ package alternativa.engine3d.shadows
             root.alternativa3d::composeTransforms();
          }
          root.alternativa3d::localToGlobalTransform.copy(root.alternativa3d::transform);
-         this.§_-gR§ = 0;
-         this.§_-aJ§ = 0;
+         this.name_gR = 0;
+         this.name_aJ = 0;
          this.recursive(root);
       }
       
@@ -74,21 +74,21 @@ package alternativa.engine3d.shadows
                   child.alternativa3d::composeTransforms();
                }
                child.alternativa3d::localToGlobalTransform.combine(object.alternativa3d::localToGlobalTransform,child.alternativa3d::transform);
-               for(i = 0; i < this.§_-i-§; )
+               for(i = 0; i < this.name_i; )
                {
-                  renderer = this.§_-O0§[i];
+                  renderer = this.name_O0[i];
                   if(child.useShadow)
                   {
                      if(child.boundBox == null || renderer.alternativa3d::cullReciever(child.boundBox,child))
                      {
-                        ++this.§_-gR§;
+                        ++this.name_gR;
                         if(value == null)
                         {
-                           value = this.§_-jy§[child];
+                           value = this.name_jy[child];
                            if(value == null)
                            {
                               value = new Vector.<ShadowRenderer>();
-                              this.§_-jy§[child] = value;
+                              this.name_jy[child] = value;
                            }
                            else
                            {
@@ -109,9 +109,9 @@ package alternativa.engine3d.shadows
       
       private function setRenderers(object:Object3D, renderers:Vector.<ShadowRenderer>, numShadowRenderers:int) : void
       {
-         if(numShadowRenderers > this.§_-aJ§)
+         if(numShadowRenderers > this.name_aJ)
          {
-            this.§_-aJ§ = numShadowRenderers;
+            this.name_aJ = numShadowRenderers;
          }
          if(numShadowRenderers > MAX_SHADOWMAPS)
          {

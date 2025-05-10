@@ -53,7 +53,7 @@ package alternativa.physics.collision.colliders
          contact.normal.x = dx;
          contact.normal.y = dy;
          contact.normal.z = dz;
-         contact.§_-P3§ = 1;
+         contact.name_P3 = 1;
          var cp:ContactPoint = contact.points[0];
          cp.penetration = sum - len;
          cp.pos.x = this.p1.x - dx * s1.r;

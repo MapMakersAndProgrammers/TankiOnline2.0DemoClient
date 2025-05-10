@@ -24,7 +24,7 @@ package alternativa.tanks.game.effects
       
       private var fps:Number;
       
-      private var §_-5m§:Number;
+      private var name_5m:Number;
       
       private var numFrames:int;
       
@@ -52,7 +52,7 @@ package alternativa.tanks.game.effects
          this.frames = frames;
          this.fps = fps;
          this.sizeGrowSpeed = sizeGrowSpeed;
-         this.§_-5m§ = 0;
+         this.name_5m = 0;
          this.numFrames = frames.length;
          this.size = startSize;
          this.plane.scaleX = startSize;
@@ -74,16 +74,16 @@ package alternativa.tanks.game.effects
       
       public function play(camera:GameCamera) : Boolean
       {
-         if(this.§_-5m§ >= this.numFrames)
+         if(this.name_5m >= this.numFrames)
          {
             return false;
          }
-         this.plane.setMaterialToAllSurfaces(this.frames[int(this.§_-5m§)]);
+         this.plane.setMaterialToAllSurfaces(this.frames[int(this.name_5m)]);
          this.plane.scaleX = this.size;
          this.plane.scaleY = this.size;
          var dt:Number = TimeSystem.timeDeltaSeconds;
          this.size += this.sizeGrowSpeed * dt;
-         this.§_-5m§ += this.fps * dt;
+         this.name_5m += this.fps * dt;
          return true;
       }
       

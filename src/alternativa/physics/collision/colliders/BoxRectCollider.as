@@ -28,9 +28,9 @@ package alternativa.physics.collision.colliders
       
       private var axis22:Vector3 = new Vector3();
       
-      private var §_-Wt§:int;
+      private var name_Wt:int;
       
-      private var §_-hK§:Number;
+      private var name_hK:Number;
       
       private var points1:Vector.<Vector3> = new Vector.<Vector3>(8,true);
       
@@ -63,17 +63,17 @@ package alternativa.physics.collision.colliders
          {
             rect = prim2 as CollisionRect;
          }
-         if(this.§_-Wt§ < 4)
+         if(this.name_Wt < 4)
          {
-            if(!this.findFaceContactPoints(box,rect,this.vectorToBox,this.§_-Wt§,contact))
+            if(!this.findFaceContactPoints(box,rect,this.vectorToBox,this.name_Wt,contact))
             {
                return false;
             }
          }
          else
          {
-            this.§_-Wt§ -= 4;
-            if(!this.findEdgesIntersection(box,rect,this.vectorToBox,int(this.§_-Wt§ / 2),this.§_-Wt§ % 2,contact))
+            this.name_Wt -= 4;
+            if(!this.findEdgesIntersection(box,rect,this.vectorToBox,int(this.name_Wt / 2),this.name_Wt % 2,contact))
             {
                return false;
             }
@@ -94,7 +94,7 @@ package alternativa.physics.collision.colliders
          var box:CollisionBox = null;
          var rect:CollisionRect = null;
          var rectTransform:Matrix4 = null;
-         this.§_-hK§ = 10000000000;
+         this.name_hK = 10000000000;
          box = prim1 as CollisionBox;
          if(box == null)
          {
@@ -206,13 +206,13 @@ package alternativa.physics.collision.colliders
             boxTransform.transformPointsN(this.points1,this.points2,4);
             rectTransform.transformPointsTransposedN(this.points2,this.points1,4);
             pnum = this.clipByRect(rect.hs);
-            contact.§_-P3§ = 0;
+            contact.name_P3 = 0;
             for(i = 0; i < pnum; )
             {
                v = this.points1[i];
                if(v.z < this.epsilon)
                {
-                  cp = contact.points[contact.§_-P3§++];
+                  cp = contact.points[contact.name_P3++];
                   cp.penetration = -v.z;
                   cpPos = cp.pos;
                   cpPos.x = rectTransform.a * v.x + rectTransform.b * v.y + rectTransform.c * v.z + rectTransform.d;
@@ -249,14 +249,14 @@ package alternativa.physics.collision.colliders
             rectTransform.transformPointsN(this.points1,this.points2,4);
             boxTransform.transformPointsTransposedN(this.points2,this.points1,4);
             pnum = this.clipByBox(box.hs,faceAxisIdx);
-            contact.§_-P3§ = 0;
+            contact.name_P3 = 0;
             for(i = 0; i < pnum; )
             {
                v = this.points1[i];
                _loc21_ = this.getPointBoxPenetration(box.hs,v,faceAxisIdx,negativeFace);
                if(_loc21_ > -this.epsilon)
                {
-                  cp = contact.points[contact.§_-P3§++];
+                  cp = contact.points[contact.name_P3++];
                   cp.penetration = _loc21_;
                   cpPos = cp.pos;
                   cpPos.x = boxTransform.a * v.x + boxTransform.b * v.y + boxTransform.c * v.z + boxTransform.d;
@@ -483,9 +483,9 @@ package alternativa.physics.collision.colliders
          var c2:Number = this.axis20.x * vx + this.axis20.y * vy + this.axis20.z * vz;
          var t1:Number = (c2 * k - c1) / det;
          var t2:Number = (c2 - c1 * k) / det;
-         contact.§_-P3§ = 1;
+         contact.name_P3 = 1;
          var cp:ContactPoint = contact.points[0];
-         cp.penetration = this.§_-hK§;
+         cp.penetration = this.name_hK;
          var cpPos:Vector3 = cp.pos;
          cpPos.x = 0.5 * (x1 + this.axis10.x * t1 + x2 + this.axis20.x * t2);
          cpPos.y = 0.5 * (y1 + this.axis10.y * t1 + y2 + this.axis20.y * t2);
@@ -508,10 +508,10 @@ package alternativa.physics.collision.colliders
          {
             return false;
          }
-         if(overlap + this.epsilon < this.§_-hK§)
+         if(overlap + this.epsilon < this.name_hK)
          {
-            this.§_-hK§ = overlap;
-            this.§_-Wt§ = axisIndex;
+            this.name_hK = overlap;
+            this.name_Wt = axisIndex;
          }
          return true;
       }
@@ -535,10 +535,10 @@ package alternativa.physics.collision.colliders
          {
             return false;
          }
-         if(overlap + this.epsilon < this.§_-hK§)
+         if(overlap + this.epsilon < this.name_hK)
          {
-            this.§_-hK§ = overlap;
-            this.§_-Wt§ = axisIndex;
+            this.name_hK = overlap;
+            this.name_Wt = axisIndex;
          }
          return true;
       }

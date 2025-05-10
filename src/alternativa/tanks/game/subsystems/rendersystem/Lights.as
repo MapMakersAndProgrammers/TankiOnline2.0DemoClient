@@ -7,57 +7,57 @@ package alternativa.tanks.game.subsystems.rendersystem
    {
       private var container:Object3D;
       
-      private var §_-e8§:AmbientLight;
+      private var name_e8:AmbientLight;
       
-      private var §_-qW§:DirectionalLightList;
+      private var name_qW:DirectionalLightList;
       
-      private var §_-hD§:OmniLightList;
+      private var name_hD:OmniLightList;
       
-      private var §_-pd§:SpotLightList;
+      private var name_pd:SpotLightList;
       
       public function Lights(container:Object3D)
       {
          super();
          this.container = container;
-         this.§_-qW§ = new DirectionalLightList(container);
-         this.§_-hD§ = new OmniLightList(container);
-         this.§_-pd§ = new SpotLightList(container);
+         this.name_qW = new DirectionalLightList(container);
+         this.name_hD = new OmniLightList(container);
+         this.name_pd = new SpotLightList(container);
       }
       
       public function set ambientLight(light:AmbientLight) : void
       {
-         if(this.§_-e8§ != light)
+         if(this.name_e8 != light)
          {
-            if(this.§_-e8§ != null)
+            if(this.name_e8 != null)
             {
-               this.container.removeChild(this.§_-e8§);
+               this.container.removeChild(this.name_e8);
             }
-            this.§_-e8§ = light;
-            if(this.§_-e8§ != null)
+            this.name_e8 = light;
+            if(this.name_e8 != null)
             {
-               this.container.addChild(this.§_-e8§);
+               this.container.addChild(this.name_e8);
             }
          }
       }
       
       public function get ambientLight() : AmbientLight
       {
-         return this.§_-e8§;
+         return this.name_e8;
       }
       
       public function get directionalLigths() : DirectionalLightList
       {
-         return this.§_-qW§;
+         return this.name_qW;
       }
       
       public function get omniLigths() : OmniLightList
       {
-         return this.§_-hD§;
+         return this.name_hD;
       }
       
       public function get spotLights() : SpotLightList
       {
-         return this.§_-pd§;
+         return this.name_pd;
       }
    }
 }

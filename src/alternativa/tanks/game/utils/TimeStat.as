@@ -4,17 +4,17 @@ package alternativa.tanks.game.utils
    
    public class TimeStat
    {
-      public var §_-IZ§:Number = 0;
+      public var name_IZ:Number = 0;
       
-      public var §_-6u§:Number = 0;
+      public var name_6u:Number = 0;
       
       private var maxTicks:int;
       
-      private var §_-Et§:int;
+      private var name_Et:int;
       
-      private var §_-Jl§:int;
+      private var name_Jl:int;
       
-      private var §_-45§:int;
+      private var name_45:int;
       
       public function TimeStat(maxTicks:int)
       {
@@ -24,19 +24,19 @@ package alternativa.tanks.game.utils
       
       public function startTick() : void
       {
-         this.§_-Jl§ = getTimer();
+         this.name_Jl = getTimer();
       }
       
       public function stopTick() : void
       {
-         this.§_-45§ += getTimer() - this.§_-Jl§;
-         ++this.§_-Et§;
-         if(this.§_-Et§ >= this.maxTicks)
+         this.name_45 += getTimer() - this.name_Jl;
+         ++this.name_Et;
+         if(this.name_Et >= this.maxTicks)
          {
-            this.§_-IZ§ = this.§_-45§ / this.§_-Et§;
-            this.§_-6u§ = this.§_-Et§ * 1000 / this.§_-45§;
-            this.§_-Et§ = 0;
-            this.§_-45§ = 0;
+            this.name_IZ = this.name_45 / this.name_Et;
+            this.name_6u = this.name_Et * 1000 / this.name_45;
+            this.name_Et = 0;
+            this.name_45 = 0;
          }
       }
    }

@@ -26,15 +26,15 @@ package alternativa.physics
       
       public var scene:PhysicsScene;
       
-      public var §_-Sb§:Boolean = true;
+      public var name_Sb:Boolean = true;
       
-      public var §_-N4§:Boolean = false;
+      public var name_N4:Boolean = false;
       
-      public var §_-ia§:int;
+      public var name_ia:int;
       
-      public var §_-N0§:Boolean = false;
+      public var name_N0:Boolean = false;
       
-      public var §_-fA§:Boolean = true;
+      public var name_fA:Boolean = true;
       
       public var aabb:BoundBox = new BoundBox();
       
@@ -42,11 +42,11 @@ package alternativa.physics
       
       public var state:BodyState = new BodyState();
       
-      public var §_-U3§:BodyState = new BodyState();
+      public var name_U3:BodyState = new BodyState();
       
-      public var §_-1G§:Vector3 = new Vector3();
+      public var name_1G:Vector3 = new Vector3();
       
-      public var §_-fR§:Vector3 = new Vector3();
+      public var name_fR:Vector3 = new Vector3();
       
       public var material:BodyMaterial = new BodyMaterial();
       
@@ -54,15 +54,15 @@ package alternativa.physics
       
       public var invInertia:Matrix3 = new Matrix3();
       
-      public var §_-nX§:Matrix3 = new Matrix3();
+      public var name_nX:Matrix3 = new Matrix3();
       
       public var baseMatrix:Matrix3 = new Matrix3();
       
       public var collisionPrimitives:CollisionPrimitiveList;
       
-      public var §_-iu§:Vector3 = new Vector3();
+      public var name_iu:Vector3 = new Vector3();
       
-      public var §_-Xr§:Vector3 = new Vector3();
+      public var name_Xr:Vector3 = new Vector3();
       
       public var data:Object;
       
@@ -105,36 +105,36 @@ package alternativa.physics
       {
          var t1:Number = NaN;
          t1 = 1 - t;
-         pos.x = this.§_-U3§.position.x * t1 + this.state.position.x * t;
-         pos.y = this.§_-U3§.position.y * t1 + this.state.position.y * t;
-         pos.z = this.§_-U3§.position.z * t1 + this.state.position.z * t;
-         orientation.w = this.§_-U3§.orientation.w * t1 + this.state.orientation.w * t;
-         orientation.x = this.§_-U3§.orientation.x * t1 + this.state.orientation.x * t;
-         orientation.y = this.§_-U3§.orientation.y * t1 + this.state.orientation.y * t;
-         orientation.z = this.§_-U3§.orientation.z * t1 + this.state.orientation.z * t;
+         pos.x = this.name_U3.position.x * t1 + this.state.position.x * t;
+         pos.y = this.name_U3.position.y * t1 + this.state.position.y * t;
+         pos.z = this.name_U3.position.z * t1 + this.state.position.z * t;
+         orientation.w = this.name_U3.orientation.w * t1 + this.state.orientation.w * t;
+         orientation.x = this.name_U3.orientation.x * t1 + this.state.orientation.x * t;
+         orientation.y = this.name_U3.orientation.y * t1 + this.state.orientation.y * t;
+         orientation.z = this.name_U3.orientation.z * t1 + this.state.orientation.z * t;
       }
       
       public function interpolateSLERP(t:Number, pos:Vector3, orientation:Quaternion) : void
       {
          var t1:Number = NaN;
          t1 = 1 - t;
-         pos.x = this.§_-U3§.position.x * t1 + this.state.position.x * t;
-         pos.y = this.§_-U3§.position.y * t1 + this.state.position.y * t;
-         pos.z = this.§_-U3§.position.z * t1 + this.state.position.z * t;
-         orientation.slerp(this.§_-U3§.orientation,this.state.orientation,t);
+         pos.x = this.name_U3.position.x * t1 + this.state.position.x * t;
+         pos.y = this.name_U3.position.y * t1 + this.state.position.y * t;
+         pos.z = this.name_U3.position.z * t1 + this.state.position.z * t;
+         orientation.slerp(this.name_U3.orientation,this.state.orientation,t);
       }
       
       public function interpolateToMatrix(t:Number, m:Matrix4) : void
       {
          var t1:Number = NaN;
          t1 = 1 - t;
-         m.d = this.§_-U3§.position.x * t1 + this.state.position.x * t;
-         m.h = this.§_-U3§.position.y * t1 + this.state.position.y * t;
-         m.l = this.§_-U3§.position.z * t1 + this.state.position.z * t;
-         _q.w = this.§_-U3§.orientation.w * t1 + this.state.orientation.w * t;
-         _q.x = this.§_-U3§.orientation.x * t1 + this.state.orientation.x * t;
-         _q.y = this.§_-U3§.orientation.y * t1 + this.state.orientation.y * t;
-         _q.z = this.§_-U3§.orientation.z * t1 + this.state.orientation.z * t;
+         m.d = this.name_U3.position.x * t1 + this.state.position.x * t;
+         m.h = this.name_U3.position.y * t1 + this.state.position.y * t;
+         m.l = this.name_U3.position.z * t1 + this.state.position.z * t;
+         _q.w = this.name_U3.orientation.w * t1 + this.state.orientation.w * t;
+         _q.x = this.name_U3.orientation.x * t1 + this.state.orientation.x * t;
+         _q.y = this.name_U3.orientation.y * t1 + this.state.orientation.y * t;
+         _q.z = this.name_U3.orientation.z * t1 + this.state.orientation.z * t;
          _q.normalize();
          _q.toMatrix4(m);
       }
@@ -142,10 +142,10 @@ package alternativa.physics
       public function interpolateToMatrixSLERP(t:Number, m:Matrix4) : void
       {
          var t1:Number = 1 - t;
-         m.d = this.§_-U3§.position.x * t1 + this.state.position.x * t;
-         m.h = this.§_-U3§.position.y * t1 + this.state.position.y * t;
-         m.l = this.§_-U3§.position.z * t1 + this.state.position.z * t;
-         _q.slerp(this.§_-U3§.orientation,this.state.orientation,t);
+         m.d = this.name_U3.position.x * t1 + this.state.position.x * t;
+         m.h = this.name_U3.position.y * t1 + this.state.position.y * t;
+         m.l = this.name_U3.position.z * t1 + this.state.position.z * t;
+         _q.slerp(this.name_U3.orientation,this.state.orientation,t);
          _q.normalize();
          _q.toMatrix4(m);
       }
@@ -201,42 +201,42 @@ package alternativa.physics
          x = (r.y * dir.z - r.z * dir.y) * magnitude;
          y = (r.z * dir.x - r.x * dir.z) * magnitude;
          var z:Number = (r.x * dir.y - r.y * dir.x) * magnitude;
-         this.state.rotation.x += this.§_-nX§.a * x + this.§_-nX§.b * y + this.§_-nX§.c * z;
-         this.state.rotation.y += this.§_-nX§.e * x + this.§_-nX§.f * y + this.§_-nX§.g * z;
-         this.state.rotation.z += this.§_-nX§.i * x + this.§_-nX§.j * y + this.§_-nX§.k * z;
+         this.state.rotation.x += this.name_nX.a * x + this.name_nX.b * y + this.name_nX.c * z;
+         this.state.rotation.y += this.name_nX.e * x + this.name_nX.f * y + this.name_nX.g * z;
+         this.state.rotation.z += this.name_nX.i * x + this.name_nX.j * y + this.name_nX.k * z;
       }
       
       public function addForce(f:Vector3) : void
       {
-         this.§_-iu§.add(f);
+         this.name_iu.add(f);
       }
       
       public function addForceXYZ(fx:Number, fy:Number, fz:Number) : void
       {
-         this.§_-iu§.x += fx;
-         this.§_-iu§.y += fy;
-         this.§_-iu§.z += fz;
+         this.name_iu.x += fx;
+         this.name_iu.y += fy;
+         this.name_iu.z += fz;
       }
       
       public function addWorldForceXYZ(px:Number, py:Number, pz:Number, fx:Number, fy:Number, fz:Number) : void
       {
          var rx:Number = NaN;
-         this.§_-iu§.x += fx;
-         this.§_-iu§.y += fy;
-         this.§_-iu§.z += fz;
+         this.name_iu.x += fx;
+         this.name_iu.y += fy;
+         this.name_iu.z += fz;
          var pos:Vector3 = this.state.position;
          rx = px - pos.x;
          var ry:Number = py - pos.y;
          var rz:Number = pz - pos.z;
-         this.§_-Xr§.x += ry * fz - rz * fy;
-         this.§_-Xr§.y += rz * fx - rx * fz;
-         this.§_-Xr§.z += rx * fy - ry * fx;
+         this.name_Xr.x += ry * fz - rz * fy;
+         this.name_Xr.y += rz * fx - rx * fz;
+         this.name_Xr.z += rx * fy - ry * fx;
       }
       
       public function addWorldForce(pos:Vector3, force:Vector3) : void
       {
-         this.§_-iu§.add(force);
-         this.§_-Xr§.add(_r.diff(pos,this.state.position).cross(force));
+         this.name_iu.add(force);
+         this.name_Xr.add(_r.diff(pos,this.state.position).cross(force));
       }
       
       public function addWorldForceScaled(pos:Vector3, force:Vector3, scale:Number) : void
@@ -244,44 +244,44 @@ package alternativa.physics
          _f.x = scale * force.x;
          _f.y = scale * force.y;
          _f.z = scale * force.z;
-         this.§_-iu§.add(_f);
-         this.§_-Xr§.add(_r.diff(pos,this.state.position).cross(_f));
+         this.name_iu.add(_f);
+         this.name_Xr.add(_r.diff(pos,this.state.position).cross(_f));
       }
       
       public function addLocalForce(pos:Vector3, force:Vector3) : void
       {
          this.baseMatrix.transformVector(pos,_r);
          this.baseMatrix.transformVector(force,_f);
-         this.§_-iu§.add(_f);
-         this.§_-Xr§.add(_r.cross(_f));
+         this.name_iu.add(_f);
+         this.name_Xr.add(_r.cross(_f));
       }
       
       public function addWorldForceAtLocalPoint(localPos:Vector3, worldForce:Vector3) : void
       {
          this.baseMatrix.transformVector(localPos,_r);
-         this.§_-iu§.add(worldForce);
-         this.§_-Xr§.add(_r.cross(worldForce));
+         this.name_iu.add(worldForce);
+         this.name_Xr.add(_r.cross(worldForce));
       }
       
       public function addTorque(t:Vector3) : void
       {
-         this.§_-Xr§.add(t);
+         this.name_Xr.add(t);
       }
       
       internal function clearAccumulators() : void
       {
-         this.§_-iu§.x = this.§_-iu§.y = this.§_-iu§.z = 0;
-         this.§_-Xr§.x = this.§_-Xr§.y = this.§_-Xr§.z = 0;
+         this.name_iu.x = this.name_iu.y = this.name_iu.z = 0;
+         this.name_Xr.x = this.name_Xr.y = this.name_Xr.z = 0;
       }
       
       internal function calcAccelerations() : void
       {
-         this.§_-1G§.x = this.§_-iu§.x * this.invMass;
-         this.§_-1G§.y = this.§_-iu§.y * this.invMass;
-         this.§_-1G§.z = this.§_-iu§.z * this.invMass;
-         this.§_-fR§.x = this.§_-nX§.a * this.§_-Xr§.x + this.§_-nX§.b * this.§_-Xr§.y + this.§_-nX§.c * this.§_-Xr§.z;
-         this.§_-fR§.y = this.§_-nX§.e * this.§_-Xr§.x + this.§_-nX§.f * this.§_-Xr§.y + this.§_-nX§.g * this.§_-Xr§.z;
-         this.§_-fR§.z = this.§_-nX§.i * this.§_-Xr§.x + this.§_-nX§.j * this.§_-Xr§.y + this.§_-nX§.k * this.§_-Xr§.z;
+         this.name_1G.x = this.name_iu.x * this.invMass;
+         this.name_1G.y = this.name_iu.y * this.invMass;
+         this.name_1G.z = this.name_iu.z * this.invMass;
+         this.name_fR.x = this.name_nX.a * this.name_Xr.x + this.name_nX.b * this.name_Xr.y + this.name_nX.c * this.name_Xr.z;
+         this.name_fR.y = this.name_nX.e * this.name_Xr.x + this.name_nX.f * this.name_Xr.y + this.name_nX.g * this.name_Xr.z;
+         this.name_fR.z = this.name_nX.i * this.name_Xr.x + this.name_nX.j * this.name_Xr.y + this.name_nX.k * this.name_Xr.z;
       }
       
       public function calcDerivedData() : void
@@ -289,7 +289,7 @@ package alternativa.physics
          var item:CollisionPrimitiveListItem = null;
          var primitive:CollisionPrimitive = null;
          this.state.orientation.toMatrix3(this.baseMatrix);
-         this.§_-nX§.copy(this.invInertia).append(this.baseMatrix).prependTransposed(this.baseMatrix);
+         this.name_nX.copy(this.invInertia).append(this.baseMatrix).prependTransposed(this.baseMatrix);
          if(this.collisionPrimitives != null)
          {
             this.aabb.infinity();
@@ -310,22 +310,22 @@ package alternativa.physics
       
       public function saveState() : void
       {
-         this.§_-U3§.copy(this.state);
+         this.name_U3.copy(this.state);
       }
       
       internal function restoreState() : void
       {
-         this.state.copy(this.§_-U3§);
+         this.state.copy(this.name_U3);
       }
       
       internal function integrateVelocity(dt:Number) : void
       {
-         this.state.velocity.x += this.§_-1G§.x * dt;
-         this.state.velocity.y += this.§_-1G§.y * dt;
-         this.state.velocity.z += this.§_-1G§.z * dt;
-         this.state.rotation.x += this.§_-fR§.x * dt;
-         this.state.rotation.y += this.§_-fR§.y * dt;
-         this.state.rotation.z += this.§_-fR§.z * dt;
+         this.state.velocity.x += this.name_1G.x * dt;
+         this.state.velocity.y += this.name_1G.y * dt;
+         this.state.velocity.z += this.name_1G.z * dt;
+         this.state.rotation.x += this.name_fR.x * dt;
+         this.state.rotation.y += this.name_fR.y * dt;
+         this.state.rotation.z += this.name_fR.z * dt;
          this.state.velocity.x *= linDamping;
          this.state.velocity.y *= linDamping;
          this.state.velocity.z *= linDamping;

@@ -33,7 +33,7 @@ package alternativa.tanks.game.weapons.conicareadamage
       
       private var targetToDistance:Dictionary;
       
-      private var §_-9m§:Dictionary;
+      private var name_9m:Dictionary;
       
       private var callback:IConicAreaWeaponCallback;
       
@@ -51,7 +51,7 @@ package alternativa.tanks.game.weapons.conicareadamage
          this.isLocal = isLocal;
          this.createStarted = createStarted;
          this.targetToDistance = new Dictionary();
-         this.§_-9m§ = new Dictionary();
+         this.name_9m = new Dictionary();
       }
       
       public function setCallback(callback:IConicAreaWeaponCallback) : void
@@ -114,8 +114,8 @@ package alternativa.tanks.game.weapons.conicareadamage
          var tmp:Dictionary = null;
          this.turret.getGunData(BARREL_INDEX,barrelOrigin,gunDirection,gunElevationAxis);
          var barrelLength:Number = Number(this.turret.getBarrelLength(BARREL_INDEX));
-         this.targetingSystem.getTargets(this.chassis.getBody(),barrelOrigin,barrelLength,0,gunDirection,gunElevationAxis,this.§_-9m§);
-         for(key in this.§_-9m§)
+         this.targetingSystem.getTargets(this.chassis.getBody(),barrelOrigin,barrelLength,0,gunDirection,gunElevationAxis,this.name_9m);
+         for(key in this.name_9m)
          {
             storedDistance = Number(this.targetToDistance[key]);
             if(isNaN(storedDistance))
@@ -123,7 +123,7 @@ package alternativa.tanks.game.weapons.conicareadamage
                targetsChanged = true;
                break;
             }
-            newDistance = Number(this.§_-9m§[key]);
+            newDistance = Number(this.name_9m[key]);
             if(storedDistance > this.fullDamageRange || newDistance > this.fullDamageRange)
             {
                difference = newDistance - storedDistance;
@@ -138,7 +138,7 @@ package alternativa.tanks.game.weapons.conicareadamage
          {
             for(key in this.targetToDistance)
             {
-               if(this.§_-9m§[key] == null)
+               if(this.name_9m[key] == null)
                {
                   targetsChanged = true;
                   break;
@@ -148,16 +148,16 @@ package alternativa.tanks.game.weapons.conicareadamage
          if(targetsChanged)
          {
             tmp = this.targetToDistance;
-            this.targetToDistance = this.§_-9m§;
-            this.§_-9m§ = tmp;
+            this.targetToDistance = this.name_9m;
+            this.name_9m = tmp;
             if(this.callback != null)
             {
                this.callback.onConicAreaWeaponTargetSetChange(this.targetToDistance);
             }
          }
-         for(key in this.§_-9m§)
+         for(key in this.name_9m)
          {
-            delete this.§_-9m§[key];
+            delete this.name_9m[key];
          }
       }
    }

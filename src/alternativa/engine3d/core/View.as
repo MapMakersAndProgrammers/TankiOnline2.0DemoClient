@@ -97,57 +97,57 @@ package alternativa.engine3d.core
       
       public var antiAlias:int;
       
-      alternativa3d var §_-qj§:int;
+      alternativa3d var name_qj:int;
       
       alternativa3d var _height:int;
       
-      alternativa3d var §_-gJ§:BitmapData = null;
+      alternativa3d var name_gJ:BitmapData = null;
       
-      private var §_-j6§:Vector.<MouseEvent>;
+      private var name_j6:Vector.<MouseEvent>;
       
       private var indices:Vector.<int>;
       
-      private var §_-Zv§:int = 0;
+      private var name_Zv:int = 0;
       
       private var surfaces:Vector.<Surface>;
       
       private var geometries:Vector.<Geometry>;
       
-      private var §_-2L§:Vector.<Procedure>;
+      private var name_2L:Vector.<Procedure>;
       
-      private var §_-8b§:int = 0;
+      private var name_8b:int = 0;
       
-      alternativa3d var §_-Cr§:Vector.<Vector3D>;
+      alternativa3d var name_Cr:Vector.<Vector3D>;
       
-      alternativa3d var §_-g4§:Vector.<Vector3D>;
+      alternativa3d var name_g4:Vector.<Vector3D>;
       
-      private var §_-Ql§:Vector.<Point>;
+      private var name_Ql:Vector.<Point>;
       
-      private var §extends§:Vector.<Vector.<Surface>>;
+      private var name_extends:Vector.<Vector.<Surface>>;
       
-      private var §_-9L§:Vector.<Vector.<Number>>;
+      private var name_9L:Vector.<Vector.<Number>>;
       
-      private var §_-4N§:Vector.<int>;
+      private var name_4N:Vector.<int>;
       
-      private var §_-ff§:Vector.<int>;
+      private var name_ff:Vector.<int>;
       
       alternativa3d var raysLength:int = 0;
       
-      private var §_-Ki§:MouseEvent;
+      private var name_Ki:MouseEvent;
       
       private var target:Object3D;
       
       private var targetSurface:Surface;
       
-      private var §_-Cu§:Number;
+      private var name_Cu:Number;
       
-      private var §_-B4§:Object3D;
+      private var name_B4:Object3D;
       
-      private var §_-c3§:Object3D;
+      private var name_c3:Object3D;
       
-      private var §_-Lx§:Object3D;
+      private var name_Lx:Object3D;
       
-      private var §_-H7§:Surface;
+      private var name_H7:Surface;
       
       private var altKey:Boolean;
       
@@ -159,34 +159,34 @@ package alternativa.engine3d.core
       
       private var area:Sprite;
       
-      private var §_-N2§:Logo;
+      private var name_N2:Logo;
       
-      private var §_-OE§:Bitmap;
+      private var name_OE:Bitmap;
       
-      private var §_-bx§:String = "BR";
+      private var name_bx:String = "BR";
       
-      private var §_-hq§:Number = 0;
+      private var name_hq:Number = 0;
       
-      private var §_-Xc§:Number = 0;
+      private var name_Xc:Number = 0;
       
-      private var §_-IE§:Boolean;
+      private var name_IE:Boolean;
       
       public function View(width:int, height:int, renderToBitmap:Boolean = false, backgroundColor:uint = 0, backgroundAlpha:Number = 1, antiAlias:int = 0)
       {
          var item:ContextMenuItem;
          var menu:ContextMenu;
-         this.§_-j6§ = new Vector.<MouseEvent>();
+         this.name_j6 = new Vector.<MouseEvent>();
          this.indices = new Vector.<int>();
          this.surfaces = new Vector.<Surface>();
          this.geometries = new Vector.<Geometry>();
-         this.§_-2L§ = new Vector.<Procedure>();
-         this.alternativa3d::_-Cr = new Vector.<Vector3D>();
-         this.alternativa3d::_-g4 = new Vector.<Vector3D>();
-         this.§_-Ql§ = new Vector.<Point>();
-         this.§extends§ = new Vector.<Vector.<Surface>>();
-         this.§_-9L§ = new Vector.<Vector.<Number>>();
-         this.§_-4N§ = new Vector.<int>();
-         this.§_-ff§ = new Vector.<int>();
+         this.name_2L = new Vector.<Procedure>();
+         this.name_Cr = new Vector.<Vector3D>();
+         this.name_g4 = new Vector.<Vector3D>();
+         this.name_Ql = new Vector.<Point>();
+         this.name_extends = new Vector.<Vector.<Surface>>();
+         this.name_9L = new Vector.<Vector.<Number>>();
+         this.name_4N = new Vector.<int>();
+         this.name_ff = new Vector.<int>();
          super();
          if(width < 50)
          {
@@ -196,9 +196,9 @@ package alternativa.engine3d.core
          {
             height = 50;
          }
-         this.alternativa3d::_-qj = width;
+         this.name_qj = width;
          this.alternativa3d::_height = height;
-         this.§_-IE§ = renderToBitmap;
+         this.name_IE = renderToBitmap;
          this.backgroundColor = backgroundColor;
          this.backgroundAlpha = backgroundAlpha;
          this.antiAlias = antiAlias;
@@ -234,7 +234,7 @@ package alternativa.engine3d.core
          this.area.graphics.drawRect(0,0,100,100);
          this.area.mouseEnabled = false;
          this.area.visible = false;
-         this.area.width = this.alternativa3d::_-qj;
+         this.area.width = this.name_qj;
          this.area.height = this.alternativa3d::_height;
          hitArea = this.area;
          super.addChild(hitArea);
@@ -258,30 +258,30 @@ package alternativa.engine3d.core
       
       private function onMouse(mouseEvent:MouseEvent) : void
       {
-         var prev:int = this.§_-Zv§ - 1;
-         if(this.§_-Zv§ > 0 && mouseEvent.type == "mouseMove" && (this.§_-j6§[prev] as MouseEvent).type == "mouseMove")
+         var prev:int = this.name_Zv - 1;
+         if(this.name_Zv > 0 && mouseEvent.type == "mouseMove" && (this.name_j6[prev] as MouseEvent).type == "mouseMove")
          {
-            this.§_-j6§[prev] = mouseEvent;
+            this.name_j6[prev] = mouseEvent;
          }
          else
          {
-            this.§_-j6§[this.§_-Zv§] = mouseEvent;
-            ++this.§_-Zv§;
+            this.name_j6[this.name_Zv] = mouseEvent;
+            ++this.name_Zv;
          }
-         this.§_-Ki§ = mouseEvent;
+         this.name_Ki = mouseEvent;
       }
       
       private function onLeave(mouseEvent:MouseEvent) : void
       {
-         this.§_-j6§[this.§_-Zv§] = mouseEvent;
-         ++this.§_-Zv§;
-         this.§_-Ki§ = null;
+         this.name_j6[this.name_Zv] = mouseEvent;
+         ++this.name_Zv;
+         this.name_Ki = null;
       }
       
       private function createRenderBitmap() : void
       {
-         this.alternativa3d::_-gJ = new BitmapData(this.alternativa3d::_-qj,this.alternativa3d::_height,this.backgroundAlpha < 1,this.backgroundColor);
-         this.container.bitmapData = this.alternativa3d::_-gJ;
+         this.name_gJ = new BitmapData(this.name_qj,this.alternativa3d::_height,this.backgroundAlpha < 1,this.backgroundColor);
+         this.container.bitmapData = this.name_gJ;
          this.container.smoothing = true;
       }
       
@@ -305,12 +305,12 @@ package alternativa.engine3d.core
          this.altKey = keyboardEvent.altKey;
          this.ctrlKey = keyboardEvent.ctrlKey;
          this.shiftKey = keyboardEvent.shiftKey;
-         if(this.ctrlKey && this.shiftKey && keyboardEvent.keyCode == Keyboard.F1 && this.§_-OE§ == null)
+         if(this.ctrlKey && this.shiftKey && keyboardEvent.keyCode == Keyboard.F1 && this.name_OE == null)
          {
-            this.§_-OE§ = new Bitmap(Logo.image);
-            this.§_-OE§.x = Math.round((this.alternativa3d::_-qj - this.§_-OE§.width) / 2);
-            this.§_-OE§.y = Math.round((this.alternativa3d::_height - this.§_-OE§.height) / 2);
-            super.addChild(this.§_-OE§);
+            this.name_OE = new Bitmap(Logo.image);
+            this.name_OE.x = Math.round((this.name_qj - this.name_OE.width) / 2);
+            this.name_OE.y = Math.round((this.alternativa3d::_height - this.name_OE.height) / 2);
+            super.addChild(this.name_OE);
             setTimeout(this.removeBitmap,2048);
          }
       }
@@ -324,10 +324,10 @@ package alternativa.engine3d.core
       
       private function removeBitmap() : void
       {
-         if(this.§_-OE§ != null)
+         if(this.name_OE != null)
          {
-            super.removeChild(this.§_-OE§);
-            this.§_-OE§ = null;
+            super.removeChild(this.name_OE);
+            this.name_OE = null;
          }
       }
       
@@ -339,12 +339,12 @@ package alternativa.engine3d.core
          var origin:Vector3D = null;
          var direction:Vector3D = null;
          var coefficient:Point = null;
-         if(this.§_-Ki§ != null)
+         if(this.name_Ki != null)
          {
             mouseMoved = false;
-            for(i = 0; i < this.§_-Zv§; )
+            for(i = 0; i < this.name_Zv; )
             {
-               mouseEvent = this.§_-j6§[i];
+               mouseEvent = this.name_j6[i];
                if(mouseEvent.type == "mouseMove" || mouseEvent.type == "mouseOut")
                {
                   mouseMoved = true;
@@ -354,55 +354,55 @@ package alternativa.engine3d.core
             }
             if(!mouseMoved)
             {
-               renderEvent.localX = this.§_-Ki§.localX;
-               renderEvent.localY = this.§_-Ki§.localY;
+               renderEvent.localX = this.name_Ki.localX;
+               renderEvent.localY = this.name_Ki.localY;
                renderEvent.ctrlKey = this.ctrlKey;
                renderEvent.altKey = this.altKey;
                renderEvent.shiftKey = this.shiftKey;
-               renderEvent.buttonDown = this.§_-Ki§.buttonDown;
+               renderEvent.buttonDown = this.name_Ki.buttonDown;
                renderEvent.delta = 0;
-               this.§_-j6§[this.§_-Zv§] = renderEvent;
-               ++this.§_-Zv§;
+               this.name_j6[this.name_Zv] = renderEvent;
+               ++this.name_Zv;
             }
          }
          var mouseX:Number = 1e+22;
          var mouseY:Number = 1e+22;
-         for(i = 0; i < this.§_-Zv§; i++)
+         for(i = 0; i < this.name_Zv; i++)
          {
-            mouseEvent = this.§_-j6§[i];
+            mouseEvent = this.name_j6[i];
             if(mouseEvent.type != "mouseOut")
             {
                if(mouseEvent.localX != mouseX || mouseEvent.localY != mouseY)
                {
                   mouseX = Number(mouseEvent.localX);
                   mouseY = Number(mouseEvent.localY);
-                  if(this.alternativa3d::raysLength < this.alternativa3d::_-Cr.length)
+                  if(this.alternativa3d::raysLength < this.name_Cr.length)
                   {
-                     origin = this.alternativa3d::_-Cr[this.alternativa3d::raysLength];
-                     direction = this.alternativa3d::_-g4[this.alternativa3d::raysLength];
-                     coefficient = this.§_-Ql§[this.alternativa3d::raysLength];
+                     origin = this.name_Cr[this.alternativa3d::raysLength];
+                     direction = this.name_g4[this.alternativa3d::raysLength];
+                     coefficient = this.name_Ql[this.alternativa3d::raysLength];
                   }
                   else
                   {
                      origin = new Vector3D();
                      direction = new Vector3D();
                      coefficient = new Point();
-                     this.alternativa3d::_-Cr[this.alternativa3d::raysLength] = origin;
-                     this.alternativa3d::_-g4[this.alternativa3d::raysLength] = direction;
-                     this.§_-Ql§[this.alternativa3d::raysLength] = coefficient;
-                     this.§extends§[this.alternativa3d::raysLength] = new Vector.<Surface>();
-                     this.§_-9L§[this.alternativa3d::raysLength] = new Vector.<Number>();
+                     this.name_Cr[this.alternativa3d::raysLength] = origin;
+                     this.name_g4[this.alternativa3d::raysLength] = direction;
+                     this.name_Ql[this.alternativa3d::raysLength] = coefficient;
+                     this.name_extends[this.alternativa3d::raysLength] = new Vector.<Surface>();
+                     this.name_9L[this.alternativa3d::raysLength] = new Vector.<Number>();
                   }
                   if(!camera.orthographic)
                   {
-                     direction.x = mouseX - this.alternativa3d::_-qj * 0.5;
+                     direction.x = mouseX - this.name_qj * 0.5;
                      direction.y = mouseY - this.alternativa3d::_height * 0.5;
                      direction.z = camera.alternativa3d::focalLength;
                      origin.x = direction.x * camera.nearClipping / camera.alternativa3d::focalLength;
                      origin.y = direction.y * camera.nearClipping / camera.alternativa3d::focalLength;
                      origin.z = camera.nearClipping;
                      direction.normalize();
-                     coefficient.x = mouseX * 2 / this.alternativa3d::_-qj;
+                     coefficient.x = mouseX * 2 / this.name_qj;
                      coefficient.y = mouseY * 2 / this.alternativa3d::_height;
                   }
                   else
@@ -410,10 +410,10 @@ package alternativa.engine3d.core
                      direction.x = 0;
                      direction.y = 0;
                      direction.z = 1;
-                     origin.x = mouseX - this.alternativa3d::_-qj * 0.5;
+                     origin.x = mouseX - this.name_qj * 0.5;
                      origin.y = mouseY - this.alternativa3d::_height * 0.5;
                      origin.z = camera.nearClipping;
-                     coefficient.x = mouseX * 2 / this.alternativa3d::_-qj;
+                     coefficient.x = mouseX * 2 / this.name_qj;
                      coefficient.y = mouseY * 2 / this.alternativa3d::_height;
                   }
                   ++this.alternativa3d::raysLength;
@@ -429,10 +429,10 @@ package alternativa.engine3d.core
       
       alternativa3d function addSurfaceToMouseEvents(surface:Surface, geometry:Geometry, procedure:Procedure) : void
       {
-         this.surfaces[this.§_-8b§] = surface;
-         this.geometries[this.§_-8b§] = geometry;
-         this.§_-2L§[this.§_-8b§] = procedure;
-         ++this.§_-8b§;
+         this.surfaces[this.name_8b] = surface;
+         this.geometries[this.name_8b] = geometry;
+         this.name_2L[this.name_8b] = procedure;
+         ++this.name_8b;
       }
       
       alternativa3d function prepareToRender(stage3D:Stage3D, context:Context3D) : void
@@ -444,16 +444,16 @@ package alternativa.engine3d.core
          var isIncubator:Boolean = "viewPort" in stage3DObject;
          if(isIncubator)
          {
-            if(this.alternativa3d::_-qj > 2048)
+            if(this.name_qj > 2048)
             {
-               this.alternativa3d::_-qj = 2048;
+               this.name_qj = 2048;
             }
             if(this.alternativa3d::_height > 2048)
             {
                this.alternativa3d::_height = 2048;
             }
          }
-         if(this.alternativa3d::_-gJ == null)
+         if(this.name_gJ == null)
          {
             vis = Boolean(this.visible);
             for(parent = this.parent; parent != null; parent = parent.parent)
@@ -469,7 +469,7 @@ package alternativa.engine3d.core
                {
                   rectangle.x = coords.x;
                   rectangle.y = coords.y;
-                  point.x = this.alternativa3d::_-qj;
+                  point.x = this.name_qj;
                   point.y = this.alternativa3d::_height;
                   coords = localToGlobal(point);
                   rectangle.width = coords.x - rectangle.x;
@@ -506,13 +506,13 @@ package alternativa.engine3d.core
             {
                stage3DObject.visible = false;
             }
-            if(this.alternativa3d::_-qj != this.alternativa3d::_-gJ.width || this.alternativa3d::_height != this.alternativa3d::_-gJ.height || this.backgroundAlpha < 1 != this.alternativa3d::_-gJ.transparent)
+            if(this.name_qj != this.name_gJ.width || this.alternativa3d::_height != this.name_gJ.height || this.backgroundAlpha < 1 != this.name_gJ.transparent)
             {
-               this.alternativa3d::_-gJ.dispose();
+               this.name_gJ.dispose();
                this.createRenderBitmap();
             }
          }
-         context.configureBackBuffer(this.alternativa3d::_-qj,this.alternativa3d::_height,this.antiAlias);
+         context.configureBackBuffer(this.name_qj,this.alternativa3d::_height,this.antiAlias);
          var r:Number = (this.backgroundColor >> 16 & 0xFF) / 255;
          var g:Number = (this.backgroundColor >> 8 & 0xFF) / 255;
          var b:Number = (this.backgroundColor & 0xFF) / 255;
@@ -533,15 +533,15 @@ package alternativa.engine3d.core
          var raySurfacesLength:int = 0;
          var mouseEvent:MouseEvent = null;
          var index:int = 0;
-         if(this.§_-Zv§ > 0)
+         if(this.name_Zv > 0)
          {
-            if(this.§_-8b§ > 0)
+            if(this.name_8b > 0)
             {
-               this.calculateSurfacesDepths(context,camera,this.alternativa3d::_-qj,this.alternativa3d::_height);
+               this.calculateSurfacesDepths(context,camera,this.name_qj,this.alternativa3d::_height);
                for(i = 0; i < this.alternativa3d::raysLength; )
                {
-                  raySurfaces = this.§extends§[i];
-                  rayDepths = this.§_-9L§[i];
+                  raySurfaces = this.name_extends[i];
+                  rayDepths = this.name_9L[i];
                   raySurfacesLength = int(raySurfaces.length);
                   if(raySurfacesLength > 1)
                   {
@@ -550,10 +550,10 @@ package alternativa.engine3d.core
                   i++;
                }
             }
-            this.§_-Cu§ = camera.farClipping;
-            for(i = 0; i < this.§_-Zv§; i++)
+            this.name_Cu = camera.farClipping;
+            for(i = 0; i < this.name_Zv; i++)
             {
-               mouseEvent = this.§_-j6§[i];
+               mouseEvent = this.name_j6[i];
                index = this.indices[i];
                switch(mouseEvent.type)
                {
@@ -563,7 +563,7 @@ package alternativa.engine3d.core
                      {
                         this.propagateEvent(MouseEvent3D.MOUSE_DOWN,mouseEvent,camera,this.target,this.targetSurface,this.branchToVector(this.target,branch));
                      }
-                     this.§_-B4§ = this.target;
+                     this.name_B4 = this.target;
                      break;
                   case "mouseWheel":
                      this.defineTarget(index);
@@ -577,26 +577,26 @@ package alternativa.engine3d.core
                      if(this.target != null)
                      {
                         this.propagateEvent(MouseEvent3D.MOUSE_UP,mouseEvent,camera,this.target,this.targetSurface,this.branchToVector(this.target,branch));
-                        if(this.§_-B4§ == this.target)
+                        if(this.name_B4 == this.target)
                         {
-                           this.§_-c3§ = this.target;
+                           this.name_c3 = this.target;
                            this.propagateEvent(MouseEvent3D.CLICK,mouseEvent,camera,this.target,this.targetSurface,this.branchToVector(this.target,branch));
                         }
                      }
-                     this.§_-B4§ = null;
+                     this.name_B4 = null;
                      break;
                   case "doubleClick":
                      this.defineTarget(index);
                      if(this.target != null)
                      {
                         this.propagateEvent(MouseEvent3D.MOUSE_UP,mouseEvent,camera,this.target,this.targetSurface,this.branchToVector(this.target,branch));
-                        if(this.§_-B4§ == this.target)
+                        if(this.name_B4 == this.target)
                         {
-                           this.propagateEvent(this.§_-c3§ == this.target && this.target.doubleClickEnabled ? MouseEvent3D.DOUBLE_CLICK : MouseEvent3D.CLICK,mouseEvent,camera,this.target,this.targetSurface,this.branchToVector(this.target,branch));
+                           this.propagateEvent(this.name_c3 == this.target && this.target.doubleClickEnabled ? MouseEvent3D.DOUBLE_CLICK : MouseEvent3D.CLICK,mouseEvent,camera,this.target,this.targetSurface,this.branchToVector(this.target,branch));
                         }
                      }
-                     this.§_-c3§ = null;
-                     this.§_-B4§ = null;
+                     this.name_c3 = null;
+                     this.name_B4 = null;
                      break;
                   case "mouseMove":
                      this.defineTarget(index);
@@ -604,23 +604,23 @@ package alternativa.engine3d.core
                      {
                         this.propagateEvent(MouseEvent3D.MOUSE_MOVE,mouseEvent,camera,this.target,this.targetSurface,this.branchToVector(this.target,branch));
                      }
-                     if(this.§_-Lx§ != this.target)
+                     if(this.name_Lx != this.target)
                      {
                         this.processOverOut(mouseEvent,camera);
                      }
                      break;
                   case "mouseOut":
-                     this.§_-Ki§ = null;
+                     this.name_Ki = null;
                      this.target = null;
                      this.targetSurface = null;
-                     if(this.§_-Lx§ != this.target)
+                     if(this.name_Lx != this.target)
                      {
                         this.processOverOut(mouseEvent,camera);
                      }
                      break;
                   case "render":
                      this.defineTarget(index);
-                     if(this.§_-Lx§ != this.target)
+                     if(this.name_Lx != this.target)
                      {
                         this.processOverOut(mouseEvent,camera);
                      }
@@ -628,17 +628,17 @@ package alternativa.engine3d.core
                }
                this.target = null;
                this.targetSurface = null;
-               this.§_-Cu§ = camera.farClipping;
+               this.name_Cu = camera.farClipping;
             }
          }
          this.surfaces.length = 0;
-         this.§_-8b§ = 0;
-         this.§_-j6§.length = 0;
-         this.§_-Zv§ = 0;
+         this.name_8b = 0;
+         this.name_j6.length = 0;
+         this.name_Zv = 0;
          for(i = 0; i < this.alternativa3d::raysLength; i++)
          {
-            this.§extends§[i].length = 0;
-            this.§_-9L§[i].length = 0;
+            this.name_extends[i].length = 0;
+            this.name_9L[i].length = 0;
          }
          this.alternativa3d::raysLength = 0;
       }
@@ -755,9 +755,9 @@ package alternativa.engine3d.core
          var pixelIndex:int = 0;
          for(i = 0; i < this.alternativa3d::raysLength; )
          {
-            rayCoefficients = this.§_-Ql§[i];
+            rayCoefficients = this.name_Ql[i];
             i++;
-            for(j = 0; j < this.§_-8b§; )
+            for(j = 0; j < this.name_8b; )
             {
                if(pixelIndex == 0)
                {
@@ -768,7 +768,7 @@ package alternativa.engine3d.core
                   }
                   else
                   {
-                     drawColoredRectConst[0] = this.alternativa3d::raysLength * this.§_-8b§ * 2 / contextWidth;
+                     drawColoredRectConst[0] = this.alternativa3d::raysLength * this.name_8b * 2 / contextWidth;
                      drawColoredRectConst[1] = -2 / contextHeight;
                      context.setDepthTest(false,Context3DCompareMode.ALWAYS);
                      context.setProgram(drawColoredRectProgram.program);
@@ -779,18 +779,18 @@ package alternativa.engine3d.core
                      drawRectColor[2] = 0;
                      drawRectColor[3] = 1;
                      context.setProgramConstantsFromVector(Context3DProgramType.FRAGMENT,0,drawRectColor);
-                     context.drawTriangles(drawRectGeometry.alternativa3d::_-EM,0,2);
+                     context.drawTriangles(drawRectGeometry.name_EM,0,2);
                      context.setVertexBufferAt(0,null);
                   }
                }
                scissor.x = pixelIndex;
                context.setScissorRectangle(scissor);
                this.drawSurface(context,camera,j,m0,m5,m10,m11,(pixelIndex * 2 / contextWidth - rayCoefficients.x) * drawTextureWidthScale + drawTextureWidthOffset,rayCoefficients.y * drawTextureHeightScale - drawTextureHeightOffset,kZ,fragmentConst,camera.orthographic);
-               this.§_-4N§[pixelIndex] = i - 1;
-               this.§_-ff§[pixelIndex] = j;
+               this.name_4N[pixelIndex] = i - 1;
+               this.name_ff[pixelIndex] = j;
                j++;
                pixelIndex++;
-               if(pixelIndex >= contextWidth || i >= this.alternativa3d::raysLength && j >= this.§_-8b§)
+               if(pixelIndex >= contextWidth || i >= this.alternativa3d::raysLength && j >= this.name_8b)
                {
                   if(this.antiAlias > 0)
                   {
@@ -806,7 +806,7 @@ package alternativa.engine3d.core
                      context.setProgramConstantsFromVector(Context3DProgramType.VERTEX,0,drawColoredRectConst);
                      context.setProgramConstantsFromVector(Context3DProgramType.VERTEX,1,drawTexturedRectUVScaleConst);
                      context.setTextureAt(0,texture);
-                     context.drawTriangles(drawRectGeometry.alternativa3d::_-EM,0,2);
+                     context.drawTriangles(drawRectGeometry.name_EM,0,2);
                      context.setTextureAt(0,null);
                      context.setVertexBufferAt(0,null);
                      context.setVertexBufferAt(1,null);
@@ -825,10 +825,10 @@ package alternativa.engine3d.core
                      green = color >> 8 & 0xFF;
                      if(red < 255)
                      {
-                        ind = this.§_-4N§[k];
-                        raySurfaces = this.§extends§[ind];
-                        rayDepths = this.§_-9L§[ind];
-                        ind = this.§_-ff§[k];
+                        ind = this.name_4N[k];
+                        raySurfaces = this.name_extends[ind];
+                        rayDepths = this.name_9L[ind];
+                        ind = this.name_ff[k];
                         raySurfaces.push(this.surfaces[ind]);
                         rayDepths.push((red + green / 255) / kZ);
                      }
@@ -842,7 +842,7 @@ package alternativa.engine3d.core
          context.setDepthTest(true,Context3DCompareMode.ALWAYS);
          context.setProgram(drawColoredRectProgram.program);
          context.setVertexBufferAt(0,drawRectGeometry.alternativa3d::getVertexBuffer(VertexAttributes.POSITION),drawRectGeometry.alternativa3d::_attributesOffsets[VertexAttributes.POSITION],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.POSITION]);
-         drawColoredRectConst[0] = this.alternativa3d::raysLength * this.§_-8b§ * 2 / contextWidth;
+         drawColoredRectConst[0] = this.alternativa3d::raysLength * this.name_8b * 2 / contextWidth;
          drawColoredRectConst[1] = -2 / contextHeight;
          context.setProgramConstantsFromVector(Context3DProgramType.VERTEX,0,drawColoredRectConst);
          var r:Number = (this.backgroundColor >> 16 & 0xFF) / 255;
@@ -862,7 +862,7 @@ package alternativa.engine3d.core
          }
          drawRectColor[3] = this.backgroundAlpha;
          context.setProgramConstantsFromVector(Context3DProgramType.FRAGMENT,0,drawRectColor);
-         context.drawTriangles(drawRectGeometry.alternativa3d::_-EM,0,2);
+         context.drawTriangles(drawRectGeometry.name_EM,0,2);
          context.setVertexBufferAt(0,null);
       }
       
@@ -873,7 +873,7 @@ package alternativa.engine3d.core
          var position:String = null;
          var surface:Surface = this.surfaces[index];
          var geometry:Geometry = this.geometries[index];
-         var procedure:Procedure = this.§_-2L§[index];
+         var procedure:Procedure = this.name_2L[index];
          var object:Object3D = surface.alternativa3d::object;
          var drawDistanceProgram:ShaderProgram = drawDistancePrograms[procedure];
          if(drawDistanceProgram == null)
@@ -901,9 +901,9 @@ package alternativa.engine3d.core
          {
             return;
          }
-         drawUnit.alternativa3d::_-3G = 0;
-         drawUnit.alternativa3d::_-9X = 0;
-         drawUnit.alternativa3d::_-Kv = 0;
+         drawUnit.name_3G = 0;
+         drawUnit.name_9X = 0;
+         drawUnit.name_Kv = 0;
          object.alternativa3d::setTransformConstants(drawUnit,surface,drawDistanceProgram.vertexShader,camera);
          drawUnit.alternativa3d::setVertexConstantsFromTransform(drawDistanceProgram.vertexShader.getVariableIndex("transform0"),object.alternativa3d::localToCameraTransform);
          drawUnit.alternativa3d::setVertexConstantsFromNumbers(drawDistanceProgram.vertexShader.getVariableIndex("coefficient"),xOffset,yOffset,vertexConst,orthographic ? 1 : 0);
@@ -911,17 +911,17 @@ package alternativa.engine3d.core
          drawUnit.alternativa3d::setFragmentConstantsFromNumbers(drawDistanceProgram.fragmentShader.getVariableIndex("code"),fragmentConst,0,0,1);
          context.setProgram(drawDistanceProgram.program);
          context.setVertexBufferAt(0,buffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.POSITION],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.POSITION]);
-         for(i = 0; i < drawUnit.alternativa3d::_-3G; i++)
+         for(i = 0; i < drawUnit.name_3G; i++)
          {
-            context.setVertexBufferAt(drawUnit.alternativa3d::else [i],drawUnit.alternativa3d::vertexBuffers[i],drawUnit.alternativa3d::_-nw[i],drawUnit.alternativa3d::_-EL[i]);
+            context.setVertexBufferAt(drawUnit.name_else[i],drawUnit.alternativa3d::vertexBuffers[i],drawUnit.name_nw[i],drawUnit.name_EL[i]);
          }
-         context.setProgramConstantsFromVector(Context3DProgramType.VERTEX,0,drawUnit.alternativa3d::_-Aq,drawUnit.alternativa3d::_-9X);
-         context.setProgramConstantsFromVector(Context3DProgramType.FRAGMENT,0,drawUnit.alternativa3d::_-Cl,drawUnit.alternativa3d::_-Kv);
-         context.drawTriangles(geometry.alternativa3d::_-EM,surface.indexBegin,surface.numTriangles);
+         context.setProgramConstantsFromVector(Context3DProgramType.VERTEX,0,drawUnit.name_Aq,drawUnit.name_9X);
+         context.setProgramConstantsFromVector(Context3DProgramType.FRAGMENT,0,drawUnit.name_Cl,drawUnit.name_Kv);
+         context.drawTriangles(geometry.name_EM,surface.indexBegin,surface.numTriangles);
          context.setVertexBufferAt(0,null);
-         for(i = 0; i < drawUnit.alternativa3d::_-3G; i++)
+         for(i = 0; i < drawUnit.name_3G; i++)
          {
-            context.setVertexBufferAt(drawUnit.alternativa3d::else [i],null);
+            context.setVertexBufferAt(drawUnit.name_else[i],null);
          }
       }
       
@@ -992,12 +992,12 @@ package alternativa.engine3d.core
          var j:int = 0;
          var object:Object3D = null;
          this.branchToVector(this.target,branch);
-         this.branchToVector(this.§_-Lx§,overedBranch);
+         this.branchToVector(this.name_Lx,overedBranch);
          var branchLength:int = int(branch.length);
          var overedBranchLength:int = int(overedBranch.length);
-         if(this.§_-Lx§ != null)
+         if(this.name_Lx != null)
          {
-            this.propagateEvent(MouseEvent3D.MOUSE_OUT,mouseEvent,camera,this.§_-Lx§,this.§_-H7§,overedBranch,true,this.target);
+            this.propagateEvent(MouseEvent3D.MOUSE_OUT,mouseEvent,camera,this.name_Lx,this.name_H7,overedBranch,true,this.target);
             changedBranchLength = 0;
             for(i = 0; i < overedBranchLength; )
             {
@@ -1019,7 +1019,7 @@ package alternativa.engine3d.core
             if(changedBranchLength > 0)
             {
                changedBranch.length = changedBranchLength;
-               this.propagateEvent(MouseEvent3D.ROLL_OUT,mouseEvent,camera,this.§_-Lx§,this.§_-H7§,changedBranch,false,this.target);
+               this.propagateEvent(MouseEvent3D.ROLL_OUT,mouseEvent,camera,this.name_Lx,this.name_H7,changedBranch,false,this.target);
             }
          }
          if(this.target != null)
@@ -1045,9 +1045,9 @@ package alternativa.engine3d.core
             if(changedBranchLength > 0)
             {
                changedBranch.length = changedBranchLength;
-               this.propagateEvent(MouseEvent3D.ROLL_OVER,mouseEvent,camera,this.target,this.targetSurface,changedBranch,false,this.§_-Lx§);
+               this.propagateEvent(MouseEvent3D.ROLL_OVER,mouseEvent,camera,this.target,this.targetSurface,changedBranch,false,this.name_Lx);
             }
-            this.propagateEvent(MouseEvent3D.MOUSE_OVER,mouseEvent,camera,this.target,this.targetSurface,branch,true,this.§_-Lx§);
+            this.propagateEvent(MouseEvent3D.MOUSE_OVER,mouseEvent,camera,this.target,this.targetSurface,branch,true,this.name_Lx);
             useHandCursor = this.target.useHandCursor;
          }
          else
@@ -1055,8 +1055,8 @@ package alternativa.engine3d.core
             useHandCursor = false;
          }
          Mouse.cursor = Mouse.cursor;
-         this.§_-Lx§ = this.target;
-         this.§_-H7§ = this.targetSurface;
+         this.name_Lx = this.target;
+         this.name_H7 = this.targetSurface;
       }
       
       private function branchToVector(object:Object3D, vector:Vector.<Object3D>) : Vector.<Object3D>
@@ -1090,13 +1090,13 @@ package alternativa.engine3d.core
                {
                   if(mouseEvent3D == null)
                   {
-                     this.calculateLocalCoords(camera,target.alternativa3d::cameraToLocalTransform,this.§_-Cu§,mouseEvent);
+                     this.calculateLocalCoords(camera,target.alternativa3d::cameraToLocalTransform,this.name_Cu,mouseEvent);
                      mouseEvent3D = new MouseEvent3D(type,bubbles,localCoords.x,localCoords.y,localCoords.z,relatedObject,mouseEvent.ctrlKey,mouseEvent.altKey,mouseEvent.shiftKey,mouseEvent.buttonDown,mouseEvent.delta);
-                     mouseEvent3D.alternativa3d::_-5E = target;
-                     mouseEvent3D.alternativa3d::_-BX = targetSurface;
+                     mouseEvent3D.name_5E = target;
+                     mouseEvent3D.name_BX = targetSurface;
                   }
-                  mouseEvent3D.alternativa3d::_-Kh = object;
-                  mouseEvent3D.alternativa3d::_-VE = 1;
+                  mouseEvent3D.name_Kh = object;
+                  mouseEvent3D.name_VE = 1;
                   length = int(vector.length);
                   for(j = 0; j < length; functions[j] = vector[j],j++)
                   {
@@ -1104,7 +1104,7 @@ package alternativa.engine3d.core
                   for(j = 0; j < length; )
                   {
                      (functions[j] as Function).call(null,mouseEvent3D);
-                     if(mouseEvent3D.alternativa3d::_-XD)
+                     if(mouseEvent3D.name_XD)
                      {
                         return;
                      }
@@ -1128,13 +1128,13 @@ package alternativa.engine3d.core
                {
                   if(mouseEvent3D == null)
                   {
-                     this.calculateLocalCoords(camera,target.alternativa3d::cameraToLocalTransform,this.§_-Cu§,mouseEvent);
+                     this.calculateLocalCoords(camera,target.alternativa3d::cameraToLocalTransform,this.name_Cu,mouseEvent);
                      mouseEvent3D = new MouseEvent3D(type,bubbles,localCoords.x,localCoords.y,localCoords.z,relatedObject,mouseEvent.ctrlKey,mouseEvent.altKey,mouseEvent.shiftKey,mouseEvent.buttonDown,mouseEvent.delta);
-                     mouseEvent3D.alternativa3d::_-5E = target;
-                     mouseEvent3D.alternativa3d::_-BX = targetSurface;
+                     mouseEvent3D.name_5E = target;
+                     mouseEvent3D.name_BX = targetSurface;
                   }
-                  mouseEvent3D.alternativa3d::_-Kh = object;
-                  mouseEvent3D.alternativa3d::_-VE = i == 0 ? 2 : 3;
+                  mouseEvent3D.name_Kh = object;
+                  mouseEvent3D.name_VE = i == 0 ? 2 : 3;
                   length = int(vector.length);
                   for(j = 0; j < length; functions[j] = vector[j],j++)
                   {
@@ -1142,7 +1142,7 @@ package alternativa.engine3d.core
                   for(j = 0; j < length; )
                   {
                      (functions[j] as Function).call(null,mouseEvent3D);
-                     if(mouseEvent3D.alternativa3d::_-XD)
+                     if(mouseEvent3D.name_XD)
                      {
                         return;
                      }
@@ -1164,12 +1164,12 @@ package alternativa.engine3d.core
          var y:Number = NaN;
          if(!camera.orthographic)
          {
-            x = z * (mouseEvent.localX - this.alternativa3d::_-qj * 0.5) / camera.alternativa3d::focalLength;
+            x = z * (mouseEvent.localX - this.name_qj * 0.5) / camera.alternativa3d::focalLength;
             y = z * (mouseEvent.localY - this.alternativa3d::_height * 0.5) / camera.alternativa3d::focalLength;
          }
          else
          {
-            x = mouseEvent.localX - this.alternativa3d::_-qj * 0.5;
+            x = mouseEvent.localX - this.name_qj * 0.5;
             y = mouseEvent.localY - this.alternativa3d::_height * 0.5;
          }
          localCoords.x = transform.a * x + transform.b * y + transform.c * z + transform.d;
@@ -1185,8 +1185,8 @@ package alternativa.engine3d.core
          var object:Object3D = null;
          var potentialTarget:Object3D = null;
          var obj:Object3D = null;
-         var surfaces:Vector.<Surface> = this.§extends§[index];
-         var depths:Vector.<Number> = this.§_-9L§[index];
+         var surfaces:Vector.<Surface> = this.name_extends[index];
+         var depths:Vector.<Number> = this.name_9L[index];
          for(var i:int = surfaces.length - 1; i >= 0; )
          {
             surface = surfaces[i];
@@ -1218,7 +1218,7 @@ package alternativa.engine3d.core
                         {
                            this.target = potentialTarget;
                            this.targetSurface = surface;
-                           this.§_-Cu§ = depth;
+                           this.name_Cu = depth;
                         }
                         break;
                      }
@@ -1230,7 +1230,7 @@ package alternativa.engine3d.core
                   source = object;
                   this.target = potentialTarget;
                   this.targetSurface = surface;
-                  this.§_-Cu§ = depth;
+                  this.name_Cu = depth;
                }
                if(source == this.target)
                {
@@ -1243,117 +1243,117 @@ package alternativa.engine3d.core
       
       public function get renderToBitmap() : Boolean
       {
-         return this.alternativa3d::_-gJ != null;
+         return this.name_gJ != null;
       }
       
       public function set renderToBitmap(value:Boolean) : void
       {
          if(value)
          {
-            if(this.alternativa3d::_-gJ == null)
+            if(this.name_gJ == null)
             {
                this.createRenderBitmap();
             }
          }
-         else if(this.alternativa3d::_-gJ != null)
+         else if(this.name_gJ != null)
          {
             this.container.bitmapData = null;
-            this.alternativa3d::_-gJ.dispose();
-            this.alternativa3d::_-gJ = null;
+            this.name_gJ.dispose();
+            this.name_gJ = null;
          }
       }
       
       public function get canvas() : BitmapData
       {
-         return this.alternativa3d::_-gJ;
+         return this.name_gJ;
       }
       
       public function showLogo() : void
       {
-         if(this.§_-N2§ == null)
+         if(this.name_N2 == null)
          {
-            this.§_-N2§ = new Logo();
-            super.addChild(this.§_-N2§);
-            this.§package§();
+            this.name_N2 = new Logo();
+            super.addChild(this.name_N2);
+            this.name_package();
          }
       }
       
       public function hideLogo() : void
       {
-         if(this.§_-N2§ != null)
+         if(this.name_N2 != null)
          {
-            super.removeChild(this.§_-N2§);
-            this.§_-N2§ = null;
+            super.removeChild(this.name_N2);
+            this.name_N2 = null;
          }
       }
       
       public function get logoAlign() : String
       {
-         return this.§_-bx§;
+         return this.name_bx;
       }
       
       public function set logoAlign(value:String) : void
       {
-         this.§_-bx§ = value;
-         this.§package§();
+         this.name_bx = value;
+         this.name_package();
       }
       
       public function get logoHorizontalMargin() : Number
       {
-         return this.§_-hq§;
+         return this.name_hq;
       }
       
       public function set logoHorizontalMargin(value:Number) : void
       {
-         this.§_-hq§ = value;
-         this.§package§();
+         this.name_hq = value;
+         this.name_package();
       }
       
       public function get logoVerticalMargin() : Number
       {
-         return this.§_-Xc§;
+         return this.name_Xc;
       }
       
       public function set logoVerticalMargin(value:Number) : void
       {
-         this.§_-Xc§ = value;
-         this.§package§();
+         this.name_Xc = value;
+         this.name_package();
       }
       
-      private function §package§() : void
+      private function name_package() : void
       {
-         if(this.§_-N2§ != null)
+         if(this.name_N2 != null)
          {
-            if(this.§_-bx§ == StageAlign.TOP_LEFT || this.§_-bx§ == StageAlign.LEFT || this.§_-bx§ == StageAlign.BOTTOM_LEFT)
+            if(this.name_bx == StageAlign.TOP_LEFT || this.name_bx == StageAlign.LEFT || this.name_bx == StageAlign.BOTTOM_LEFT)
             {
-               this.§_-N2§.x = Math.round(this.§_-hq§);
+               this.name_N2.x = Math.round(this.name_hq);
             }
-            if(this.§_-bx§ == StageAlign.TOP || this.§_-bx§ == StageAlign.BOTTOM)
+            if(this.name_bx == StageAlign.TOP || this.name_bx == StageAlign.BOTTOM)
             {
-               this.§_-N2§.x = Math.round((this.alternativa3d::_-qj - this.§_-N2§.width) / 2);
+               this.name_N2.x = Math.round((this.name_qj - this.name_N2.width) / 2);
             }
-            if(this.§_-bx§ == StageAlign.TOP_RIGHT || this.§_-bx§ == StageAlign.RIGHT || this.§_-bx§ == StageAlign.BOTTOM_RIGHT)
+            if(this.name_bx == StageAlign.TOP_RIGHT || this.name_bx == StageAlign.RIGHT || this.name_bx == StageAlign.BOTTOM_RIGHT)
             {
-               this.§_-N2§.x = Math.round(this.alternativa3d::_-qj - this.§_-hq§ - this.§_-N2§.width);
+               this.name_N2.x = Math.round(this.name_qj - this.name_hq - this.name_N2.width);
             }
-            if(this.§_-bx§ == StageAlign.TOP_LEFT || this.§_-bx§ == StageAlign.TOP || this.§_-bx§ == StageAlign.TOP_RIGHT)
+            if(this.name_bx == StageAlign.TOP_LEFT || this.name_bx == StageAlign.TOP || this.name_bx == StageAlign.TOP_RIGHT)
             {
-               this.§_-N2§.y = Math.round(this.§_-Xc§);
+               this.name_N2.y = Math.round(this.name_Xc);
             }
-            if(this.§_-bx§ == StageAlign.LEFT || this.§_-bx§ == StageAlign.RIGHT)
+            if(this.name_bx == StageAlign.LEFT || this.name_bx == StageAlign.RIGHT)
             {
-               this.§_-N2§.y = Math.round((this.alternativa3d::_height - this.§_-N2§.height) / 2);
+               this.name_N2.y = Math.round((this.alternativa3d::_height - this.name_N2.height) / 2);
             }
-            if(this.§_-bx§ == StageAlign.BOTTOM_LEFT || this.§_-bx§ == StageAlign.BOTTOM || this.§_-bx§ == StageAlign.BOTTOM_RIGHT)
+            if(this.name_bx == StageAlign.BOTTOM_LEFT || this.name_bx == StageAlign.BOTTOM || this.name_bx == StageAlign.BOTTOM_RIGHT)
             {
-               this.§_-N2§.y = Math.round(this.alternativa3d::_height - this.§_-Xc§ - this.§_-N2§.height);
+               this.name_N2.y = Math.round(this.alternativa3d::_height - this.name_Xc - this.name_N2.height);
             }
          }
       }
       
       override public function get width() : Number
       {
-         return this.alternativa3d::_-qj;
+         return this.name_qj;
       }
       
       override public function set width(value:Number) : void
@@ -1362,9 +1362,9 @@ package alternativa.engine3d.core
          {
             value = 50;
          }
-         this.alternativa3d::_-qj = value;
+         this.name_qj = value;
          this.area.width = value;
-         this.§package§();
+         this.name_package();
       }
       
       override public function get height() : Number
@@ -1380,7 +1380,7 @@ package alternativa.engine3d.core
          }
          this.alternativa3d::_height = value;
          this.area.height = value;
-         this.§package§();
+         this.name_package();
       }
       
       override public function addChild(child:DisplayObject) : DisplayObject

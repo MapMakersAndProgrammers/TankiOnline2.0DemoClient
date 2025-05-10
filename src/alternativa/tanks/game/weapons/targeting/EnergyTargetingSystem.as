@@ -40,7 +40,7 @@ package alternativa.tanks.game.weapons.targeting
       
       private var matrix:Matrix3 = new Matrix3();
       
-      private var §_-KF§:Number;
+      private var name_KF:Number;
       
       public function EnergyTargetingSystem(angleUp:Number, numRaysUp:int, angleDown:Number, numRaysDown:int, maxRicochets:int, collisionDetector:ICollisionDetector, targetValidator:IGenericTargetEvaluator)
       {
@@ -66,12 +66,12 @@ package alternativa.tanks.game.weapons.targeting
       
       public function getShotDirection(shooter:Body, muzzlePosition:Vector3, barrelDirection:Vector3, gunElevationAxis:Vector3, maxDistance:Number, result:Vector3) : void
       {
-         this.§_-KF§ = 0;
+         this.name_KF = 0;
          this.checkDirection(shooter,muzzlePosition,barrelDirection,maxDistance,0,result);
          this.checkSector(shooter,muzzlePosition,barrelDirection,gunElevationAxis,maxDistance,this.angleUp / this.numRaysUp,this.numRaysUp,result);
          this.checkSector(shooter,muzzlePosition,barrelDirection,gunElevationAxis,maxDistance,-this.angleDown / this.numRaysDown,this.numRaysDown,result);
          this.filter.body = null;
-         if(this.§_-KF§ == 0)
+         if(this.name_KF == 0)
          {
             result.copy(barrelDirection);
          }
@@ -103,9 +103,9 @@ package alternativa.tanks.game.weapons.targeting
             {
                distance = maxDistance - remainingDistance;
                targetPriority = Number(this.targetEvaluator.getTargetPriority(shooter,body,distance,angle));
-               if(targetPriority > this.§_-KF§)
+               if(targetPriority > this.name_KF)
                {
-                  this.§_-KF§ = targetPriority;
+                  this.name_KF = targetPriority;
                   result.copy(direction);
                }
                return;

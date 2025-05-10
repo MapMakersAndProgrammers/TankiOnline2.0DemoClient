@@ -6,7 +6,7 @@ package alternativa.tanks.game.weapons.ammunition.railgun
    
    public class MultybodyRaycastFilter implements IRaycastFilter
    {
-      public var §_-By§:Dictionary = new Dictionary();
+      public var name_By:Dictionary = new Dictionary();
       
       public function MultybodyRaycastFilter()
       {
@@ -15,7 +15,7 @@ package alternativa.tanks.game.weapons.ammunition.railgun
       
       public function acceptRayHit(primitive:CollisionPrimitive) : Boolean
       {
-         return this.§_-By§[primitive.body] == null;
+         return this.name_By[primitive.body] == null;
       }
    }
 }

@@ -4,47 +4,47 @@ package versions.version2.a3d.objects
    
    public class A3D2Joint
    {
-      private var §_-jD§:int;
+      private var name_jD:int;
       
-      private var §_-3I§:Long;
+      private var name_3I:Long;
       
       private var _name:String;
       
-      private var §_-fP§:Long;
+      private var name_fP:Long;
       
-      private var §_-bP§:A3D2Transform;
+      private var name_bP:A3D2Transform;
       
-      private var §_-1u§:Boolean;
+      private var name_1u:Boolean;
       
       public function A3D2Joint(boundBoxId:int, id:Long, name:String, parentId:Long, transform:A3D2Transform, visible:Boolean)
       {
          super();
-         this.§_-jD§ = boundBoxId;
-         this.§_-3I§ = id;
+         this.name_jD = boundBoxId;
+         this.name_3I = id;
          this._name = name;
-         this.§_-fP§ = parentId;
-         this.§_-bP§ = transform;
-         this.§_-1u§ = visible;
+         this.name_fP = parentId;
+         this.name_bP = transform;
+         this.name_1u = visible;
       }
       
       public function get boundBoxId() : int
       {
-         return this.§_-jD§;
+         return this.name_jD;
       }
       
       public function set boundBoxId(value:int) : void
       {
-         this.§_-jD§ = value;
+         this.name_jD = value;
       }
       
       public function get id() : Long
       {
-         return this.§_-3I§;
+         return this.name_3I;
       }
       
       public function set id(value:Long) : void
       {
-         this.§_-3I§ = value;
+         this.name_3I = value;
       }
       
       public function get name() : String
@@ -59,32 +59,32 @@ package versions.version2.a3d.objects
       
       public function get parentId() : Long
       {
-         return this.§_-fP§;
+         return this.name_fP;
       }
       
       public function set parentId(value:Long) : void
       {
-         this.§_-fP§ = value;
+         this.name_fP = value;
       }
       
       public function get transform() : A3D2Transform
       {
-         return this.§_-bP§;
+         return this.name_bP;
       }
       
       public function set transform(value:A3D2Transform) : void
       {
-         this.§_-bP§ = value;
+         this.name_bP = value;
       }
       
       public function get visible() : Boolean
       {
-         return this.§_-1u§;
+         return this.name_1u;
       }
       
       public function set visible(value:Boolean) : void
       {
-         this.§_-1u§ = value;
+         this.name_1u = value;
       }
       
       public function toString() : String

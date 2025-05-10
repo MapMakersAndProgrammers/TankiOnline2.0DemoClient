@@ -52,11 +52,11 @@ package
       
       private var gameKernel:GameKernel;
       
-      private var §_-6s§:TanksHudDemo;
+      private var name_6s:TanksHudDemo;
       
       private var stage3D:Stage3D;
       
-      private var §_-nZ§:ClientConfigurator;
+      private var name_nZ:ClientConfigurator;
       
       private var preloader:Preloader = new Preloader();
       
@@ -182,8 +182,8 @@ package
       private function initClient() : void
       {
          new OSGi();
-         this.§_-nZ§ = new ClientConfigurator();
-         this.§_-nZ§.start(this,new Properties(loaderInfo.parameters),new Vector.<LibraryInfo>(),new ConnectionParameters(null,null,null),new Vector.<String>());
+         this.name_nZ = new ClientConfigurator();
+         this.name_nZ.start(this,new Properties(loaderInfo.parameters),new Vector.<LibraryInfo>(),new ConnectionParameters(null,null,null),new Vector.<String>());
          new ProtocolActivator().start(OSGi.getInstance());
          new platform.clients.fp10.libraries.alternativaprotocol.Activator().start(OSGi.getInstance());
          new platform.client.a3d.osgi.Activator().start(OSGi.getInstance());
@@ -213,12 +213,12 @@ package
       
       private function initHUD() : void
       {
-         this.§_-6s§ = new TanksHudDemo();
-         stage.addChild(this.§_-6s§);
-         this.§_-6s§.mouseChildren = true;
-         this.§_-6s§.mouseEnabled = true;
-         this.§_-6s§.addEventListener("CLICK_FULL_SCREEN_BUTTON",this.onClickFullScreenButton);
-         this.§_-6s§.addEventListener("CLICK_NEXT_TANK_BUTTON",this.onClickNextTankButton);
+         this.name_6s = new TanksHudDemo();
+         stage.addChild(this.name_6s);
+         this.name_6s.mouseChildren = true;
+         this.name_6s.mouseEnabled = true;
+         this.name_6s.addEventListener("CLICK_FULL_SCREEN_BUTTON",this.onClickFullScreenButton);
+         this.name_6s.addEventListener("CLICK_NEXT_TANK_BUTTON",this.onClickNextTankButton);
          stage.addChild(this.preloader);
          stage.addEventListener(KeyboardEvent.KEY_DOWN,this.onKeyDown);
          this.gameKernel.getRenderSystem().getCamera().diagramVerticalMargin = 85;
@@ -245,14 +245,14 @@ package
       
       private function onClickFullScreenButton(param1:Event) : void
       {
-         stage.displayState = this.§_-6s§.isFullScreen ? StageDisplayState.FULL_SCREEN : StageDisplayState.NORMAL;
+         stage.displayState = this.name_6s.isFullScreen ? StageDisplayState.FULL_SCREEN : StageDisplayState.NORMAL;
          stage.addEventListener(FullScreenEvent.FULL_SCREEN,this.onFullScreenChange);
       }
       
       private function onFullScreenChange(param1:Event) : void
       {
          stage.removeEventListener(FullScreenEvent.FULL_SCREEN,this.onFullScreenChange);
-         this.§_-6s§.isFullScreen = stage.displayState != StageDisplayState.NORMAL;
+         this.name_6s.isFullScreen = stage.displayState != StageDisplayState.NORMAL;
       }
       
       private function onClickNextTankButton(param1:Event) : void
@@ -288,9 +288,9 @@ package
             _loc2_ = this.gameKernel.getRenderSystem().getAxisIndicator();
             _loc2_.y = stage.stageHeight - _loc2_.size;
          }
-         if(this.§_-6s§ != null)
+         if(this.name_6s != null)
          {
-            this.§_-6s§.resize(stage.stageWidth,stage.stageHeight);
+            this.name_6s.resize(stage.stageWidth,stage.stageHeight);
          }
       }
    }

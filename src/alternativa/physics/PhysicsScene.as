@@ -10,47 +10,47 @@ package alternativa.physics
    {
       private static var lastBodyId:int;
       
-      public const §_-ga§:int = 1000;
+      public const name_ga:int = 1000;
       
-      public var §_-kv§:int = 10;
+      public var name_kv:int = 10;
       
-      public var §_-YB§:Number = 0.1;
+      public var name_YB:Number = 0.1;
       
       public var dynamic:Number = 0.5;
       
-      public var §_-Yi§:int = 5;
+      public var name_Yi:int = 5;
       
-      public var §_-2I§:int = 5;
+      public var name_2I:int = 5;
       
-      public var §_-06§:Boolean = false;
+      public var name_06:Boolean = false;
       
-      public var §_-Y6§:int = 10;
+      public var name_Y6:int = 10;
       
-      public var §_-cc§:Number = 1;
+      public var name_cc:Number = 1;
       
-      public var §_-GG§:Number = 0.01;
+      public var name_GG:Number = 0.01;
       
-      public var §_-MX§:Vector3 = new Vector3(0,0,-9.8);
+      public var name_MX:Vector3 = new Vector3(0,0,-9.8);
       
-      public var §_-fz§:Number = 9.8;
+      public var name_fz:Number = 9.8;
       
       public var collisionDetector:ICollisionDetector;
       
-      public var §_-By§:BodyList = new BodyList();
+      public var name_By:BodyList = new BodyList();
       
       public var contacts:Contact;
       
-      public var §_-7e§:Vector.<Constraint> = new Vector.<Constraint>();
+      public var name_7e:Vector.<Constraint> = new Vector.<Constraint>();
       
-      public var §_-0v§:int;
+      public var name_0v:int;
       
-      public var §_-hA§:int;
+      public var name_hA:int;
       
       public var time:int;
       
-      private var §_-lh§:Contact;
+      private var name_lh:Contact;
       
-      private var §_-MN§:Vector3 = new Vector3();
+      private var name_MN:Vector3 = new Vector3();
       
       private var _v:Vector3 = new Vector3();
       
@@ -59,7 +59,7 @@ package alternativa.physics
          super();
          this.contacts = new Contact(0);
          var contact:Contact = this.contacts;
-         for(var i:int = 1; i < this.§_-ga§; i++)
+         for(var i:int = 1; i < this.name_ga; i++)
          {
             contact.next = new Contact(i);
             contact = contact.next;
@@ -69,25 +69,25 @@ package alternativa.physics
       
       public function get gravity() : Vector3
       {
-         return this.§_-MX§.clone();
+         return this.name_MX.clone();
       }
       
       public function set gravity(value:Vector3) : void
       {
-         this.§_-MX§.copy(value);
-         this.§_-fz§ = this.§_-MX§.length();
+         this.name_MX.copy(value);
+         this.name_fz = this.name_MX.length();
       }
       
       public function addBody(body:Body) : void
       {
          body.id = lastBodyId++;
          body.scene = this;
-         this.§_-By§.append(body);
+         this.name_By.append(body);
       }
       
       public function removeBody(body:Body) : void
       {
-         if(this.§_-By§.remove(body))
+         if(this.name_By.remove(body))
          {
             body.scene = null;
          }
@@ -95,20 +95,20 @@ package alternativa.physics
       
       public function addConstraint(c:Constraint) : void
       {
-         var _loc2_:* = this.§_-0v§++;
-         this.§_-7e§[_loc2_] = c;
+         var _loc2_:* = this.name_0v++;
+         this.name_7e[_loc2_] = c;
          c.world = this;
       }
       
       public function removeConstraint(c:Constraint) : Boolean
       {
-         var idx:int = int(this.§_-7e§.indexOf(c));
+         var idx:int = int(this.name_7e.indexOf(c));
          if(idx < 0)
          {
             return false;
          }
-         this.§_-7e§.splice(idx,1);
-         --this.§_-0v§;
+         this.name_7e.splice(idx,1);
+         --this.name_0v;
          c.world = null;
          return true;
       }
@@ -116,15 +116,15 @@ package alternativa.physics
       private function applyForces(dt:Number) : void
       {
          var body:Body = null;
-         for(var item:BodyListItem = this.§_-By§.head; item != null; )
+         for(var item:BodyListItem = this.name_By.head; item != null; )
          {
             body = item.body;
             body.calcAccelerations();
-            if(body.§_-fA§ && body.§_-Sb§ && !body.§_-N0§)
+            if(body.name_fA && body.name_Sb && !body.name_N0)
             {
-               body.§_-1G§.x += this.§_-MX§.x;
-               body.§_-1G§.y += this.§_-MX§.y;
-               body.§_-1G§.z += this.§_-MX§.z;
+               body.name_1G.x += this.name_MX.x;
+               body.name_1G.y += this.name_MX.y;
+               body.name_1G.z += this.name_MX.z;
             }
             item = item.next;
          }
@@ -138,13 +138,13 @@ package alternativa.physics
          var j:int = 0;
          var cp:ContactPoint = null;
          var bPos:Vector3 = null;
-         for(var item:BodyListItem = this.§_-By§.head; item != null; )
+         for(var item:BodyListItem = this.name_By.head; item != null; )
          {
             body = item.body;
-            if(!body.§_-N0§)
+            if(!body.name_N0)
             {
                body.saveState();
-               if(this.§_-06§)
+               if(this.name_06)
                {
                   body.integrateVelocity(dt);
                   body.integratePosition(dt);
@@ -153,12 +153,12 @@ package alternativa.physics
             }
             item = item.next;
          }
-         this.§_-lh§ = this.collisionDetector.getAllContacts(this.contacts);
-         for(var contact:Contact = this.contacts; contact != this.§_-lh§; )
+         this.name_lh = this.collisionDetector.getAllContacts(this.contacts);
+         for(var contact:Contact = this.contacts; contact != this.name_lh; )
          {
             b1 = contact.body1;
             b2 = contact.body2;
-            for(j = 0; j < contact.§_-P3§; )
+            for(j = 0; j < contact.name_P3; )
             {
                cp = contact.points[j];
                bPos = b1.state.position;
@@ -176,12 +176,12 @@ package alternativa.physics
             }
             contact = contact.next;
          }
-         if(this.§_-06§)
+         if(this.name_06)
          {
-            for(item = this.§_-By§.head; item != null; )
+            for(item = this.name_By.head; item != null; )
             {
                body = item.body;
-               if(!body.§_-N0§)
+               if(!body.name_N0)
                {
                   body.restoreState();
                   body.calcDerivedData();
@@ -198,63 +198,63 @@ package alternativa.physics
          var j:int = 0;
          var cp:ContactPoint = null;
          var constraint:Constraint = null;
-         for(var contact:Contact = this.contacts; contact != this.§_-lh§; )
+         for(var contact:Contact = this.contacts; contact != this.name_lh; )
          {
             b1 = contact.body1;
             b2 = contact.body2;
-            if(b1.§_-N0§)
+            if(b1.name_N0)
             {
-               b1.§_-N0§ = false;
-               b1.§_-ia§ = 0;
+               b1.name_N0 = false;
+               b1.name_ia = 0;
             }
-            if(b2 != null && b2.§_-N0§)
+            if(b2 != null && b2.name_N0)
             {
-               b2.§_-N0§ = false;
-               b2.§_-ia§ = 0;
+               b2.name_N0 = false;
+               b2.name_ia = 0;
             }
-            contact.§_-Pe§ = b1.material.§_-Pe§;
-            if(b2 != null && b2.material.§_-Pe§ < contact.§_-Pe§)
+            contact.name_Pe = b1.material.name_Pe;
+            if(b2 != null && b2.material.name_Pe < contact.name_Pe)
             {
-               contact.§_-Pe§ = b2.material.§_-Pe§;
+               contact.name_Pe = b2.material.name_Pe;
             }
-            contact.§_-J1§ = b1.material.§_-J1§;
-            if(b2 != null && b2.material.§_-J1§ < contact.§_-J1§)
+            contact.name_J1 = b1.material.name_J1;
+            if(b2 != null && b2.material.name_J1 < contact.name_J1)
             {
-               contact.§_-J1§ = b2.material.§_-J1§;
+               contact.name_J1 = b2.material.name_J1;
             }
-            for(j = 0; j < contact.§_-P3§; )
+            for(j = 0; j < contact.name_P3; )
             {
                cp = contact.points[j];
-               cp.§_-Dv§ = 0;
-               cp.§_-DS§ = 0;
-               if(b1.§_-Sb§)
+               cp.name_Dv = 0;
+               cp.name_DS = 0;
+               if(b1.name_Sb)
                {
-                  cp.angularInertia1 = this._v.cross2(cp.r1,contact.normal).transform3(b1.§_-nX§).cross(cp.r1).dot(contact.normal);
-                  cp.§_-DS§ += b1.invMass + cp.angularInertia1;
+                  cp.angularInertia1 = this._v.cross2(cp.r1,contact.normal).transform3(b1.name_nX).cross(cp.r1).dot(contact.normal);
+                  cp.name_DS += b1.invMass + cp.angularInertia1;
                }
-               if(b2 != null && b2.§_-Sb§)
+               if(b2 != null && b2.name_Sb)
                {
-                  cp.angularInertia2 = this._v.cross2(cp.r2,contact.normal).transform3(b2.§_-nX§).cross(cp.r2).dot(contact.normal);
-                  cp.§_-DS§ += b2.invMass + cp.angularInertia2;
+                  cp.angularInertia2 = this._v.cross2(cp.r2,contact.normal).transform3(b2.name_nX).cross(cp.r2).dot(contact.normal);
+                  cp.name_DS += b2.invMass + cp.angularInertia2;
                }
                this.calcSepVelocity(b1,b2,cp,this._v);
-               cp.§_-0C§ = this._v.dot(contact.normal);
-               if(cp.§_-0C§ < 0)
+               cp.name_0C = this._v.dot(contact.normal);
+               if(cp.name_0C < 0)
                {
-                  cp.§_-0C§ = -contact.§_-Pe§ * cp.§_-0C§;
+                  cp.name_0C = -contact.name_Pe * cp.name_0C;
                }
-               cp.§_-A-§ = cp.penetration > this.§_-YB§ ? (cp.penetration - this.§_-YB§) / (this.§_-kv§ * dt) : 0;
-               if(cp.§_-A-§ > this.dynamic)
+               cp.name_A = cp.penetration > this.name_YB ? (cp.penetration - this.name_YB) / (this.name_kv * dt) : 0;
+               if(cp.name_A > this.dynamic)
                {
-                  cp.§_-A-§ = this.dynamic;
+                  cp.name_A = this.dynamic;
                }
                j++;
             }
             contact = contact.next;
          }
-         for(var i:int = 0; i < this.§_-0v§; i++)
+         for(var i:int = 0; i < this.name_0v; i++)
          {
-            constraint = this.§_-7e§[i];
+            constraint = this.name_7e[i];
             constraint.preProcess(dt);
          }
       }
@@ -264,19 +264,19 @@ package alternativa.physics
          var i:int = 0;
          var contact:Contact = null;
          var constraint:Constraint = null;
-         var iterNum:int = forceInelastic ? this.§_-2I§ : this.§_-Yi§;
+         var iterNum:int = forceInelastic ? this.name_2I : this.name_Yi;
          var forwardLoop:Boolean = false;
          for(var iter:int = 0; iter < iterNum; iter++)
          {
             forwardLoop = !forwardLoop;
-            for(contact = this.contacts; contact != this.§_-lh§; )
+            for(contact = this.contacts; contact != this.name_lh; )
             {
                this.resolveContact(contact,forceInelastic,forwardLoop);
                contact = contact.next;
             }
-            for(i = 0; i < this.§_-0v§; i++)
+            for(i = 0; i < this.name_0v; i++)
             {
-               constraint = this.§_-7e§[i];
+               constraint = this.name_7e[i];
                constraint.apply(dt);
             }
          }
@@ -290,13 +290,13 @@ package alternativa.physics
          var normal:Vector3 = contactInfo.normal;
          if(forwardLoop)
          {
-            for(i = 0; i < contactInfo.§_-P3§; this.resolveContactPoint(i,b1,b2,contactInfo,normal,forceInelastic),i++)
+            for(i = 0; i < contactInfo.name_P3; this.resolveContactPoint(i,b1,b2,contactInfo,normal,forceInelastic),i++)
             {
             }
          }
          else
          {
-            for(i = contactInfo.§_-P3§ - 1; i >= 0; this.resolveContactPoint(i,b1,b2,contactInfo,normal,forceInelastic),i--)
+            for(i = contactInfo.name_P3 - 1; i >= 0; this.resolveContactPoint(i,b1,b2,contactInfo,normal,forceInelastic),i--)
             {
             }
          }
@@ -313,7 +313,7 @@ package alternativa.physics
          var cp:ContactPoint = contact.points[idx];
          if(!forceInelastic)
          {
-            cp.§_-CV§ = true;
+            cp.name_CV = true;
          }
          var newVel:Number = 0;
          this.calcSepVelocity(b1,b2,cp,this._v);
@@ -321,12 +321,12 @@ package alternativa.physics
          var sepVel:Number = this._v.x * cnormal.x + this._v.y * cnormal.y + this._v.z * cnormal.z;
          if(forceInelastic)
          {
-            minSpeVel = cp.§_-A-§;
+            minSpeVel = cp.name_A;
             if(sepVel < minSpeVel)
             {
-               cp.§_-CV§ = false;
+               cp.name_CV = false;
             }
-            else if(cp.§_-CV§)
+            else if(cp.name_CV)
             {
                return;
             }
@@ -334,22 +334,22 @@ package alternativa.physics
          }
          else
          {
-            newVel = cp.§_-0C§;
+            newVel = cp.name_0C;
          }
          var deltaVel:Number = newVel - sepVel;
-         var impulse:Number = deltaVel / cp.§_-DS§;
-         var accumImpulse:Number = cp.§_-Dv§ + impulse;
+         var impulse:Number = deltaVel / cp.name_DS;
+         var accumImpulse:Number = cp.name_Dv + impulse;
          if(accumImpulse < 0)
          {
             accumImpulse = 0;
          }
-         var deltaImpulse:Number = accumImpulse - cp.§_-Dv§;
-         cp.§_-Dv§ = accumImpulse;
-         if(b1.§_-Sb§)
+         var deltaImpulse:Number = accumImpulse - cp.name_Dv;
+         cp.name_Dv = accumImpulse;
+         if(b1.name_Sb)
          {
             b1.applyRelPosWorldImpulse(cp.r1,normal,deltaImpulse);
          }
-         if(b2 != null && b2.§_-Sb§)
+         if(b2 != null && b2.name_Sb)
          {
             b2.applyRelPosWorldImpulse(cp.r2,normal,-deltaImpulse);
          }
@@ -364,42 +364,42 @@ package alternativa.physics
          {
             return;
          }
-         this.§_-MN§.x = -this._v.x;
-         this.§_-MN§.y = -this._v.y;
-         this.§_-MN§.z = -this._v.z;
-         this.§_-MN§.normalize();
-         if(b1.§_-Sb§)
+         this.name_MN.x = -this._v.x;
+         this.name_MN.y = -this._v.y;
+         this.name_MN.z = -this._v.z;
+         this.name_MN.normalize();
+         if(b1.name_Sb)
          {
             r = cp.r1;
-            m = b1.§_-nX§;
-            this._v.x = r.y * this.§_-MN§.z - r.z * this.§_-MN§.y;
-            this._v.y = r.z * this.§_-MN§.x - r.x * this.§_-MN§.z;
-            this._v.z = r.x * this.§_-MN§.y - r.y * this.§_-MN§.x;
+            m = b1.name_nX;
+            this._v.x = r.y * this.name_MN.z - r.z * this.name_MN.y;
+            this._v.y = r.z * this.name_MN.x - r.x * this.name_MN.z;
+            this._v.z = r.x * this.name_MN.y - r.y * this.name_MN.x;
             xx = m.a * this._v.x + m.b * this._v.y + m.c * this._v.z;
             yy = m.e * this._v.x + m.f * this._v.y + m.g * this._v.z;
             zz = m.i * this._v.x + m.j * this._v.y + m.k * this._v.z;
             this._v.x = yy * r.z - zz * r.y;
             this._v.y = zz * r.x - xx * r.z;
             this._v.z = xx * r.y - yy * r.x;
-            tanSpeedByUnitImpulse += b1.invMass + this._v.x * this.§_-MN§.x + this._v.y * this.§_-MN§.y + this._v.z * this.§_-MN§.z;
+            tanSpeedByUnitImpulse += b1.invMass + this._v.x * this.name_MN.x + this._v.y * this.name_MN.y + this._v.z * this.name_MN.z;
          }
-         if(b2 != null && b2.§_-Sb§)
+         if(b2 != null && b2.name_Sb)
          {
             r = cp.r2;
-            m = b2.§_-nX§;
-            this._v.x = r.y * this.§_-MN§.z - r.z * this.§_-MN§.y;
-            this._v.y = r.z * this.§_-MN§.x - r.x * this.§_-MN§.z;
-            this._v.z = r.x * this.§_-MN§.y - r.y * this.§_-MN§.x;
+            m = b2.name_nX;
+            this._v.x = r.y * this.name_MN.z - r.z * this.name_MN.y;
+            this._v.y = r.z * this.name_MN.x - r.x * this.name_MN.z;
+            this._v.z = r.x * this.name_MN.y - r.y * this.name_MN.x;
             xx = m.a * this._v.x + m.b * this._v.y + m.c * this._v.z;
             yy = m.e * this._v.x + m.f * this._v.y + m.g * this._v.z;
             zz = m.i * this._v.x + m.j * this._v.y + m.k * this._v.z;
             this._v.x = yy * r.z - zz * r.y;
             this._v.y = zz * r.x - xx * r.z;
             this._v.z = xx * r.y - yy * r.x;
-            tanSpeedByUnitImpulse += b2.invMass + this._v.x * this.§_-MN§.x + this._v.y * this.§_-MN§.y + this._v.z * this.§_-MN§.z;
+            tanSpeedByUnitImpulse += b2.invMass + this._v.x * this.name_MN.x + this._v.y * this.name_MN.y + this._v.z * this.name_MN.z;
          }
          var tanImpulse:Number = tanSpeed / tanSpeedByUnitImpulse;
-         var max:Number = contact.§_-J1§ * cp.§_-Dv§;
+         var max:Number = contact.name_J1 * cp.name_Dv;
          if(max < 0)
          {
             if(tanImpulse < max)
@@ -411,13 +411,13 @@ package alternativa.physics
          {
             tanImpulse = max;
          }
-         if(b1.§_-Sb§)
+         if(b1.name_Sb)
          {
-            b1.applyRelPosWorldImpulse(cp.r1,this.§_-MN§,tanImpulse);
+            b1.applyRelPosWorldImpulse(cp.r1,this.name_MN,tanImpulse);
          }
-         if(b2 != null && b2.§_-Sb§)
+         if(b2 != null && b2.name_Sb)
          {
-            b2.applyRelPosWorldImpulse(cp.r2,this.§_-MN§,-tanImpulse);
+            b2.applyRelPosWorldImpulse(cp.r2,this.name_MN,-tanImpulse);
          }
       }
       
@@ -448,7 +448,7 @@ package alternativa.physics
       
       private function intergateVelocities(dt:Number) : void
       {
-         for(var item:BodyListItem = this.§_-By§.head; item != null; )
+         for(var item:BodyListItem = this.name_By.head; item != null; )
          {
             item.body.integrateVelocity(dt);
             item = item.next;
@@ -458,10 +458,10 @@ package alternativa.physics
       private function integratePositions(dt:Number) : void
       {
          var body:Body = null;
-         for(var item:BodyListItem = this.§_-By§.head; item != null; )
+         for(var item:BodyListItem = this.name_By.head; item != null; )
          {
             body = item.body;
-            if(body.§_-Sb§ && !body.§_-N0§)
+            if(body.name_Sb && !body.name_N0)
             {
                body.integratePosition(dt);
             }
@@ -472,28 +472,28 @@ package alternativa.physics
       private function postPhysics() : void
       {
          var body:Body = null;
-         for(var item:BodyListItem = this.§_-By§.head; item != null; )
+         for(var item:BodyListItem = this.name_By.head; item != null; )
          {
             body = item.body;
             body.clearAccumulators();
             body.calcDerivedData();
-            if(body.§_-N4§)
+            if(body.name_N4)
             {
-               if(body.state.velocity.length() < this.§_-cc§ && body.state.rotation.length() < this.§_-GG§)
+               if(body.state.velocity.length() < this.name_cc && body.state.rotation.length() < this.name_GG)
                {
-                  if(!body.§_-N0§)
+                  if(!body.name_N0)
                   {
-                     ++body.§_-ia§;
-                     if(body.§_-ia§ >= this.§_-Y6§)
+                     ++body.name_ia;
+                     if(body.name_ia >= this.name_Y6)
                      {
-                        body.§_-N0§ = true;
+                        body.name_N0 = true;
                      }
                   }
                }
                else
                {
-                  body.§_-ia§ = 0;
-                  body.§_-N0§ = false;
+                  body.name_ia = 0;
+                  body.name_N0 = false;
                }
             }
             item = item.next;
@@ -502,7 +502,7 @@ package alternativa.physics
       
       public function update(delta:int) : void
       {
-         ++this.§_-hA§;
+         ++this.name_hA;
          this.time += delta;
          var dt:Number = 0.001 * delta;
          this.applyForces(dt);

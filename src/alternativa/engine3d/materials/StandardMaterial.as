@@ -84,7 +84,7 @@ package alternativa.engine3d.materials
       
       private static const outputWithAdvancedFogProcedure:Procedure = new Procedure(["#v0=vZDistance","#c0=cFogConsts","#c1=cFogRange","#s0=sFogTexture","min t0.xy, v0.xy, c1.xy","max t0.xy, t0.xy, c1.zw","mul i0.xyz, i0.xyz, t0.y","mov t1.xyzw, c0.yyzw","div t0.z, v0.z, v0.w","mul t0.z, t0.z, c0.x","add t1.x, t1.x, t0.z","tex t1, t1, s0 <2d, repeat, linear, miplinear>","mul t0.xyz, t1.xyz, t0.x","add i0.xyz, i0.xyz, t0.xyz","mov o0, i0"],"outputWithAdvancedFog");
       
-      alternativa3d var §_-ES§:Boolean = false;
+      alternativa3d var name_ES:Boolean = false;
       
       alternativa3d var outputAlpha:Procedure = new Procedure(["#c0=cSurface","mov i0.w, c0.w","mov o0, i0"],"outputAlpha");
       
@@ -94,7 +94,7 @@ package alternativa.engine3d.materials
       
       public var normalMap:TextureResource;
       
-      private var §_-NH§:int = 0;
+      private var name_NH:int = 0;
       
       public var specularMap:TextureResource;
       
@@ -102,7 +102,7 @@ package alternativa.engine3d.materials
       
       public var glossiness:Number = 100;
       
-      public var §_-kj§:Number = 1;
+      public var name_kj:Number = 1;
       
       public function StandardMaterial(diffuseMap:TextureResource, normalMap:TextureResource, specularMap:TextureResource = null, glossinessMap:TextureResource = null, opacityMap:TextureResource = null)
       {
@@ -121,7 +121,7 @@ package alternativa.engine3d.materials
       
       public function get normalMapSpace() : int
       {
-         return this.§_-NH§;
+         return this.name_NH;
       }
       
       public function set normalMapSpace(value:int) : void
@@ -130,7 +130,7 @@ package alternativa.engine3d.materials
          {
             throw new ArgumentError("Value must be a constant from the NormalMapSpace class");
          }
-         this.§_-NH§ = value;
+         this.name_NH = value;
       }
       
       alternativa3d function getPassUVProcedure() : Procedure
@@ -204,9 +204,9 @@ package alternativa.engine3d.materials
             vertexLinker.addProcedure(_passVaryingsProcedure);
             vertexLinker.setInputParams(_passVaryingsProcedure,positionVar);
             fragmentLinker.declareVariable("tViewVector");
-            if(this.§_-NH§ == NormalMapSpace.TANGENT_RIGHT_HANDED || this.§_-NH§ == NormalMapSpace.TANGENT_LEFT_HANDED)
+            if(this.name_NH == NormalMapSpace.TANGENT_RIGHT_HANDED || this.name_NH == NormalMapSpace.TANGENT_LEFT_HANDED)
             {
-               nrmProcedure = this.§_-NH§ == NormalMapSpace.TANGENT_RIGHT_HANDED ? _passTBNRightProcedure : _passTBNLeftProcedure;
+               nrmProcedure = this.name_NH == NormalMapSpace.TANGENT_RIGHT_HANDED ? _passTBNRightProcedure : _passTBNLeftProcedure;
                vertexLinker.addProcedure(nrmProcedure);
                vertexLinker.setInputParams(nrmProcedure,tangentVar,normalVar);
                fragmentLinker.addProcedure(_getNormalAndViewTangentProcedure);
@@ -250,12 +250,12 @@ package alternativa.engine3d.materials
                      }
                      else if(light is OmniLight)
                      {
-                        lightFragmentProcedure.compileFromArray(["#c0=c" + light.alternativa3d::_-oG + "Position","#c1=c" + light.alternativa3d::_-oG + "Color","#c2=c" + light.alternativa3d::_-oG + "Radius","#v0=vPosition","sub t0, c0, v0","dp3 t0.w, t0.xyz, t0.xyz","nrm t0.xyz, t0.xyz","add t1.xyz, i1.xyz, t0.xyz","mov t1.w, c0.w","nrm t1.xyz, t1.xyz","dp3 t1.w, t1.xyz, i0.xyz","pow t1.w, t1.w, o1.w","sqt t1.x, t0.w","dp3 t0.w, t0.xyz, i0.xyz","sub t0.x, t1.x, c2.z","div t0.y, t0.x, c2.y","sub t0.x, c2.x, t0.y","sat t0.xw, t0.xw","mul t0.xyz, c1.xyz, t0.xxx","mul t1.xyz, t0.xyz, t1.w","add o1.xyz, o1.xyz, t1.xyz","mul t0.xyz, t0.xyz, t0.www","add o0.xyz, o0.xyz, t0.xyz"]);
+                        lightFragmentProcedure.compileFromArray(["#c0=c" + light.name_oG + "Position","#c1=c" + light.name_oG + "Color","#c2=c" + light.name_oG + "Radius","#v0=vPosition","sub t0, c0, v0","dp3 t0.w, t0.xyz, t0.xyz","nrm t0.xyz, t0.xyz","add t1.xyz, i1.xyz, t0.xyz","mov t1.w, c0.w","nrm t1.xyz, t1.xyz","dp3 t1.w, t1.xyz, i0.xyz","pow t1.w, t1.w, o1.w","sqt t1.x, t0.w","dp3 t0.w, t0.xyz, i0.xyz","sub t0.x, t1.x, c2.z","div t0.y, t0.x, c2.y","sub t0.x, c2.x, t0.y","sat t0.xw, t0.xw","mul t0.xyz, c1.xyz, t0.xxx","mul t1.xyz, t0.xyz, t1.w","add o1.xyz, o1.xyz, t1.xyz","mul t0.xyz, t0.xyz, t0.www","add o0.xyz, o0.xyz, t0.xyz"]);
                         lightFragmentProcedure.name += "Omni";
                      }
                      else if(light is SpotLight)
                      {
-                        lightFragmentProcedure.compileFromArray(["#c0=c" + light.alternativa3d::_-oG + "Position","#c1=c" + light.alternativa3d::_-oG + "Color","#c2=c" + light.alternativa3d::_-oG + "Radius","#c3=c" + light.alternativa3d::_-oG + "Axis","#v0=vPosition","sub t0, c0, v0","dp3 t0.w, t0, t0","nrm t0.xyz,t0.xyz","add t2.xyz, i1.xyz, t0.xyz","nrm t2.xyz, t2.xyz","dp3 t2.x, t2.xyz, i0.xyz","pow t2.x, t2.x, o1.w","dp3 t1.x, t0.xyz, c3.xyz","dp3 t0.x, t0, i0.xyz","sqt t0.w, t0.w","sub t0.w, t0.w, c2.y","div t0.y, t0.w, c2.x","sub t0.w, c0.w, t0.y","sub t0.y, t1.x, c2.w","div t0.y, t0.y, c2.z","sat t0.xyw,t0.xyw","mul t1.xyz,c1.xyz,t0.yyy","mul t1.xyz,t1.xyz,t0.www","mul t2.xyz, t2.x, t1.xyz","add o1.xyz, o1.xyz, t2.xyz","mul t1.xyz, t1.xyz, t0.xxx","add o0.xyz, o0.xyz, t1.xyz"]);
+                        lightFragmentProcedure.compileFromArray(["#c0=c" + light.name_oG + "Position","#c1=c" + light.name_oG + "Color","#c2=c" + light.name_oG + "Radius","#c3=c" + light.name_oG + "Axis","#v0=vPosition","sub t0, c0, v0","dp3 t0.w, t0, t0","nrm t0.xyz,t0.xyz","add t2.xyz, i1.xyz, t0.xyz","nrm t2.xyz, t2.xyz","dp3 t2.x, t2.xyz, i0.xyz","pow t2.x, t2.x, o1.w","dp3 t1.x, t0.xyz, c3.xyz","dp3 t0.x, t0, i0.xyz","sqt t0.w, t0.w","sub t0.w, t0.w, c2.y","div t0.y, t0.w, c2.x","sub t0.w, c0.w, t0.y","sub t0.y, t1.x, c2.w","div t0.y, t0.y, c2.z","sat t0.xyw,t0.xyw","mul t1.xyz,c1.xyz,t0.yyy","mul t1.xyz,t1.xyz,t0.www","mul t2.xyz, t2.x, t1.xyz","add o1.xyz, o1.xyz, t2.xyz","mul t1.xyz, t1.xyz, t0.xxx","add o0.xyz, o0.xyz, t1.xyz"]);
                         lightFragmentProcedure.name += "Spot";
                      }
                   }
@@ -276,7 +276,7 @@ package alternativa.engine3d.materials
          fragmentLinker.addProcedure(_mulLightingProcedure);
          fragmentLinker.setInputParams(_mulLightingProcedure,"tTotalLight","tTotalHighLight");
          fragmentLinker.setOutputParams(_mulLightingProcedure,"outColor");
-         if(§_-L4§)
+         if(name_L4)
          {
             fragmentLinker.addProcedure(this.alternativa3d::outputDiffuseAlpha);
             fragmentLinker.setInputParams(this.alternativa3d::outputDiffuseAlpha,"outColor");
@@ -320,7 +320,7 @@ package alternativa.engine3d.materials
       
       private function formDirectionalProcedure(procedure:Procedure, light:Light3D, useShadow:Boolean) : void
       {
-         var source:Array = ["#c0=c" + light.alternativa3d::_-oG + "Direction","#c1=c" + light.alternativa3d::_-oG + "Color","add t0.xyz, i1.xyz, c0.xyz","mov t0.w, c0.w","nrm t0.xyz,t0.xyz","dp3 t0.w, t0.xyz, i0.xyz","pow t0.w, t0.w, o1.w","dp3 t0.x, i0.xyz, c0.xyz","sat t0.x, t0.x"];
+         var source:Array = ["#c0=c" + light.name_oG + "Direction","#c1=c" + light.name_oG + "Color","add t0.xyz, i1.xyz, c0.xyz","mov t0.w, c0.w","nrm t0.xyz,t0.xyz","dp3 t0.w, t0.xyz, i0.xyz","pow t0.w, t0.w, o1.w","dp3 t0.x, i0.xyz, c0.xyz","sat t0.x, t0.x"];
          if(useShadow)
          {
             source.push("mul t0.x, t0.x, i2.x");
@@ -394,7 +394,7 @@ package alternativa.engine3d.materials
          {
             return;
          }
-         if(!§_-L4§ && opacityMap != null && opacityMap.alternativa3d::_texture == null)
+         if(!name_L4 && opacityMap != null && opacityMap.alternativa3d::_texture == null)
          {
             return;
          }
@@ -415,7 +415,7 @@ package alternativa.engine3d.materials
          {
             return;
          }
-         var key:String = alternativa3d::fogMode.toString() + this.§_-NH§.toString() + (this.glossinessMap != null ? "G" : "g") + (opacityMap != null ? "O" : "o") + (this.specularMap != null ? "S" : "s") + (§_-L4§ ? "D" : "d");
+         var key:String = alternativa3d::fogMode.toString() + this.name_NH.toString() + (this.glossinessMap != null ? "G" : "g") + (opacityMap != null ? "O" : "o") + (this.specularMap != null ? "S" : "s") + (name_L4 ? "D" : "d");
          for(i = 0; i < lightsLength; i++)
          {
             light = lights[i];
@@ -424,7 +424,7 @@ package alternativa.engine3d.materials
                directional = DirectionalLight(light);
                key += "S";
             }
-            key += light.alternativa3d::_-oG;
+            key += light.name_oG;
          }
          var programs:Dictionary = _programs[object.alternativa3d::transformProcedure];
          if(programs == null)
@@ -445,16 +445,16 @@ package alternativa.engine3d.materials
                programs[key] = program;
             }
          }
-         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.alternativa3d::_-EM,surface.indexBegin,surface.numTriangles,program);
+         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.name_EM,surface.indexBegin,surface.numTriangles,program);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aPosition"),positionBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.POSITION],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.POSITION]);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aUV"),uvBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.TEXCOORDS[0]],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.TEXCOORDS[0]]);
          object.alternativa3d::setTransformConstants(drawUnit,surface,program.vertexShader,camera);
          drawUnit.alternativa3d::setProjectionConstants(camera,program.vertexShader.getVariableIndex("cProjMatrix"),object.alternativa3d::localToCameraTransform);
          drawUnit.alternativa3d::setFragmentConstantsFromVector(program.fragmentShader.getVariableIndex("cAmbientColor"),camera.alternativa3d::ambient,1);
-         drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("cSurface"),0,this.glossiness,this.§_-kj§,alpha);
+         drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("cSurface"),0,this.glossiness,this.name_kj,alpha);
          if(lightsLength > 0)
          {
-            if(this.§_-NH§ == NormalMapSpace.TANGENT_RIGHT_HANDED || this.§_-NH§ == NormalMapSpace.TANGENT_LEFT_HANDED)
+            if(this.name_NH == NormalMapSpace.TANGENT_RIGHT_HANDED || this.name_NH == NormalMapSpace.TANGENT_LEFT_HANDED)
             {
                drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aNormal"),normalsBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.NORMAL],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.NORMAL]);
                drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aTangent"),tangentsBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.TANGENT4],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.TANGENT4]);
@@ -467,37 +467,37 @@ package alternativa.engine3d.materials
                light = lights[i];
                if(light is DirectionalLight)
                {
-                  transform = light.alternativa3d::_-cl;
+                  transform = light.name_cl;
                   len = Number(Math.sqrt(transform.c * transform.c + transform.g * transform.g + transform.k * transform.k));
-                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.alternativa3d::_-oG + "Direction"),-transform.c / len,-transform.g / len,-transform.k / len,1);
-                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.alternativa3d::_-oG + "Color"),light.alternativa3d::red,light.alternativa3d::green,light.alternativa3d::blue);
+                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.name_oG + "Direction"),-transform.c / len,-transform.g / len,-transform.k / len,1);
+                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.name_oG + "Color"),light.alternativa3d::red,light.alternativa3d::green,light.alternativa3d::blue);
                }
                else if(light is OmniLight)
                {
                   omni = light as OmniLight;
-                  transform = light.alternativa3d::_-cl;
+                  transform = light.name_cl;
                   rScale = Number(Math.sqrt(transform.a * transform.a + transform.e * transform.e + transform.i * transform.i));
                   rScale += Math.sqrt(transform.b * transform.b + transform.f * transform.f + transform.j * transform.j);
                   rScale += Math.sqrt(transform.c * transform.c + transform.g * transform.g + transform.k * transform.k);
                   rScale /= 3;
-                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.alternativa3d::_-oG + "Position"),transform.d,transform.h,transform.l);
-                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.alternativa3d::_-oG + "Radius"),1,omni.attenuationEnd * rScale - omni.attenuationBegin * rScale,omni.attenuationBegin * rScale);
-                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.alternativa3d::_-oG + "Color"),light.alternativa3d::red,light.alternativa3d::green,light.alternativa3d::blue);
+                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.name_oG + "Position"),transform.d,transform.h,transform.l);
+                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.name_oG + "Radius"),1,omni.attenuationEnd * rScale - omni.attenuationBegin * rScale,omni.attenuationBegin * rScale);
+                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.name_oG + "Color"),light.alternativa3d::red,light.alternativa3d::green,light.alternativa3d::blue);
                }
                else if(light is SpotLight)
                {
                   spot = light as SpotLight;
-                  transform = light.alternativa3d::_-cl;
+                  transform = light.name_cl;
                   rScale = Number(Math.sqrt(transform.a * transform.a + transform.e * transform.e + transform.i * transform.i));
                   rScale += Math.sqrt(transform.b * transform.b + transform.f * transform.f + transform.j * transform.j);
                   rScale += len = Number(Math.sqrt(transform.c * transform.c + transform.g * transform.g + transform.k * transform.k));
                   rScale /= 3;
                   falloff = Number(Math.cos(spot.falloff * 0.5));
                   hotspot = Number(Math.cos(spot.hotspot * 0.5));
-                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.alternativa3d::_-oG + "Position"),transform.d,transform.h,transform.l);
-                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.alternativa3d::_-oG + "Axis"),-transform.c / len,-transform.g / len,-transform.k / len);
-                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.alternativa3d::_-oG + "Radius"),spot.attenuationEnd * rScale - spot.attenuationBegin * rScale,spot.attenuationBegin * rScale,hotspot == falloff ? 0.000001 : hotspot - falloff,falloff);
-                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.alternativa3d::_-oG + "Color"),light.alternativa3d::red,light.alternativa3d::green,light.alternativa3d::blue);
+                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.name_oG + "Position"),transform.d,transform.h,transform.l);
+                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.name_oG + "Axis"),-transform.c / len,-transform.g / len,-transform.k / len);
+                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.name_oG + "Radius"),spot.attenuationEnd * rScale - spot.attenuationBegin * rScale,spot.attenuationBegin * rScale,hotspot == falloff ? 0.000001 : hotspot - falloff,falloff);
+                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.name_oG + "Color"),light.alternativa3d::red,light.alternativa3d::green,light.alternativa3d::blue);
                }
                if(directional != null)
                {
@@ -507,7 +507,7 @@ package alternativa.engine3d.materials
             }
          }
          drawUnit.alternativa3d::setTextureAt(program.fragmentShader.getVariableIndex("sTexture"),diffuseMap.alternativa3d::_texture);
-         if(!§_-L4§ && opacityMap != null)
+         if(!name_L4 && opacityMap != null)
          {
             drawUnit.alternativa3d::setTextureAt(program.fragmentShader.getVariableIndex("sOpacity"),opacityMap.alternativa3d::_texture);
          }
@@ -566,7 +566,7 @@ package alternativa.engine3d.materials
             drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("cFogConsts"),0.5 * uScale,0.5 - uRight,0);
             drawUnit.alternativa3d::setTextureAt(program.fragmentShader.getVariableIndex("sFogTexture"),alternativa3d::fogTexture.alternativa3d::_texture);
          }
-         if(this.alternativa3d::_-ES)
+         if(this.name_ES)
          {
             if(drawUnit.alternativa3d::object == null)
             {
@@ -574,7 +574,7 @@ package alternativa.engine3d.materials
             }
             camera.alternativa3d::renderer.alternativa3d::addDrawUnit(drawUnit,objectRenderPriority >= 0 ? objectRenderPriority : RenderPriority.OPAQUE);
          }
-         else if(§_-L4§ || opacityMap != null || alpha < 1)
+         else if(name_L4 || opacityMap != null || alpha < 1)
          {
             drawUnit.alternativa3d::blendSource = Context3DBlendFactor.SOURCE_ALPHA;
             drawUnit.alternativa3d::blendDestination = Context3DBlendFactor.ONE_MINUS_SOURCE_ALPHA;

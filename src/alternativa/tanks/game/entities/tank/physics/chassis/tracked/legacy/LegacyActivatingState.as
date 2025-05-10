@@ -7,12 +7,12 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
    
    public class LegacyActivatingState extends LegacyComponentState
    {
-      private var §_-Cn§:ContactFilter;
+      private var name_Cn:ContactFilter;
       
       public function LegacyActivatingState(component:LegacyTrackedChassisComponent)
       {
          super(component);
-         this.§_-Cn§ = new ContactFilter();
+         this.name_Cn = new ContactFilter();
       }
       
       override public function start(data:*) : void
@@ -22,16 +22,16 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
          component.addToScene();
          component.setDetailedCollisionGroup(CollisionGroup.TANK);
          component.setSuspensionCollisionMask(CollisionGroup.STATIC);
-         component.body.postCollisionFilter = this.§_-Cn§;
+         component.body.postCollisionFilter = this.name_Cn;
          var callback:IActivatingStateCallback = IActivatingStateCallback(data);
          if(callback != null)
          {
             gameKernel = component.gameKernel;
-            this.§_-Cn§.initCallback(callback);
-            gameKernel.getLogicSystem1().addLogicUnit(this.§_-Cn§);
+            this.name_Cn.initCallback(callback);
+            gameKernel.getLogicSystem1().addLogicUnit(this.name_Cn);
             physicsSystem = gameKernel.getPhysicsSystem();
-            physicsSystem.addControllerAfter(this.§_-Cn§);
-            physicsSystem.addControllerBefore(this.§_-Cn§);
+            physicsSystem.addControllerAfter(this.name_Cn);
+            physicsSystem.addControllerBefore(this.name_Cn);
          }
       }
       
@@ -40,14 +40,14 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
          var gameKernel:GameKernel = null;
          var physicsSystem:PhysicsSystem = null;
          component.body.postCollisionFilter = null;
-         if(this.§_-Cn§.callback != null)
+         if(this.name_Cn.callback != null)
          {
             gameKernel = component.gameKernel;
-            gameKernel.getLogicSystem1().removeLogicUnit(this.§_-Cn§);
+            gameKernel.getLogicSystem1().removeLogicUnit(this.name_Cn);
             physicsSystem = gameKernel.getPhysicsSystem();
-            physicsSystem.removeControllerAfter(this.§_-Cn§);
-            physicsSystem.removeControllerBefore(this.§_-Cn§);
-            this.§_-Cn§.callback = null;
+            physicsSystem.removeControllerAfter(this.name_Cn);
+            physicsSystem.removeControllerBefore(this.name_Cn);
+            this.name_Cn.callback = null;
          }
       }
    }

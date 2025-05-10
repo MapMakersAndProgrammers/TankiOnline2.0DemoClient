@@ -8,13 +8,13 @@ package alternativa.tanks.game
    
    public class TaskManager
    {
-      private var §_-AF§:List = new List();
+      private var name_AF:List = new List();
       
-      private var §_-Ey§:TaskArray = new TaskArray();
+      private var name_Ey:TaskArray = new TaskArray();
       
-      private var §_-4z§:TaskArray = new TaskArray();
+      private var name_4z:TaskArray = new TaskArray();
       
-      private var §_-TV§:Dictionary = new Dictionary();
+      private var name_TV:Dictionary = new Dictionary();
       
       public function TaskManager()
       {
@@ -23,22 +23,22 @@ package alternativa.tanks.game
       
       public function addTask(task:GameTask) : void
       {
-         if(this.§_-AF§.contains(task))
+         if(this.name_AF.contains(task))
          {
             throw new Error("Task is already active");
          }
-         if(this.§_-Ey§.contains(task))
+         if(this.name_Ey.contains(task))
          {
             throw new Error("Task has been already scheduled for addition");
          }
-         this.§_-Ey§.add(task);
+         this.name_Ey.add(task);
       }
       
       public function killTask(task:GameTask) : void
       {
-         if(this.§_-AF§.contains(task) && !this.§_-4z§.contains(task))
+         if(this.name_AF.contains(task) && !this.name_4z.contains(task))
          {
-            this.§_-4z§.add(task);
+            this.name_4z.add(task);
          }
       }
       
@@ -46,7 +46,7 @@ package alternativa.tanks.game
       {
          var task:GameTask = null;
          this.startAddedTasks();
-         var iterator:ListIterator = this.§_-AF§.listIterator();
+         var iterator:ListIterator = this.name_AF.listIterator();
          while(iterator.hasNext())
          {
             task = GameTask(iterator.next());
@@ -60,13 +60,13 @@ package alternativa.tanks.game
       
       public function getTaskInterface(taskInterface:Class) : Object
       {
-         return this.§_-TV§[taskInterface];
+         return this.name_TV[taskInterface];
       }
       
       public function killAll() : void
       {
          var task:GameTask = null;
-         var listIterator:ListIterator = this.§_-AF§.listIterator();
+         var listIterator:ListIterator = this.name_AF.listIterator();
          while(listIterator.hasNext())
          {
             task = GameTask(listIterator.next());
@@ -81,17 +81,17 @@ package alternativa.tanks.game
          var taskInterface:Class = null;
          var activeTasksIterator:ListIterator = null;
          var activeTask:GameTask = null;
-         for(var i:int = 0; i < this.§_-Ey§.numTasks; i++)
+         for(var i:int = 0; i < this.name_Ey.numTasks; i++)
          {
-            task = this.§_-Ey§.tasks[i];
-            task.§_-Uw§ = this;
+            task = this.name_Ey.tasks[i];
+            task.name_Uw = this;
             task.start();
             taskInterfaces = this.getObjectInterfaces(task);
             for each(taskInterface in taskInterfaces)
             {
-               this.§_-TV§[taskInterface] = task;
+               this.name_TV[taskInterface] = task;
             }
-            activeTasksIterator = this.§_-AF§.listIterator();
+            activeTasksIterator = this.name_AF.listIterator();
             while(activeTasksIterator.hasNext())
             {
                activeTask = GameTask(activeTasksIterator.next());
@@ -103,7 +103,7 @@ package alternativa.tanks.game
             }
             activeTasksIterator.add(task);
          }
-         this.§_-Ey§.clear();
+         this.name_Ey.clear();
       }
       
       private function removeKilledTasks() : void
@@ -111,19 +111,19 @@ package alternativa.tanks.game
          var task:GameTask = null;
          var taskInterfaces:Vector.<Class> = null;
          var taskInterface:Class = null;
-         for(var i:int = 0; i < this.§_-4z§.numTasks; i++)
+         for(var i:int = 0; i < this.name_4z.numTasks; i++)
          {
-            task = this.§_-4z§.tasks[i];
-            this.§_-AF§.remove(task);
+            task = this.name_4z.tasks[i];
+            this.name_AF.remove(task);
             task.stop();
             taskInterfaces = this.getObjectInterfaces(task);
             for each(taskInterface in taskInterfaces)
             {
-               delete this.§_-TV§[taskInterface];
+               delete this.name_TV[taskInterface];
             }
-            task.§_-Uw§ = null;
+            task.name_Uw = null;
          }
-         this.§_-4z§.clear();
+         this.name_4z.clear();
       }
       
       private function getObjectInterfaces(object:Object) : Vector.<Class>
@@ -141,6 +141,8 @@ package alternativa.tanks.game
       }
    }
 }
+
+import alternativa.tanks.game.GameTask;
 
 class TaskArray
 {

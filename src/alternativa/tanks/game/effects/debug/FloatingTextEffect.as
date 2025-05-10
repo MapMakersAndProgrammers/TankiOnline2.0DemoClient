@@ -22,26 +22,26 @@ package alternativa.tanks.game.effects.debug
       
       private var messageLifeTime:int;
       
-      private var §_-cd§:Vector.<Message>;
+      private var name_cd:Vector.<Message>;
       
       private var anchor:Object3D;
       
-      private var §_-1R§:DisplayObjectContainer;
+      private var name_1R:DisplayObjectContainer;
       
-      private var §_-Cx§:Function;
+      private var name_Cx:Function;
       
       public function FloatingTextEffect(objectPool:ObjectPool)
       {
          super(objectPool);
-         this.§_-cd§ = new Vector.<Message>();
-         this.§_-1R§ = new Sprite();
+         this.name_cd = new Vector.<Message>();
+         this.name_1R = new Sprite();
       }
       
       public function init(messageLifeTime:int, anchor:Object3D, destuctionCallback:Function) : void
       {
          this.messageLifeTime = messageLifeTime;
          this.anchor = anchor;
-         this.§_-Cx§ = destuctionCallback;
+         this.name_Cx = destuctionCallback;
       }
       
       public function addMessage(text:String, color:uint) : void
@@ -50,13 +50,13 @@ package alternativa.tanks.game.effects.debug
          message.color = color;
          message.text = text;
          message.lifeTime = 0;
-         this.§_-cd§.push(message);
-         this.§_-1R§.addChild(message);
+         this.name_cd.push(message);
+         this.name_1R.addChild(message);
       }
       
       public function addedToRenderSystem(system:RenderSystem) : void
       {
-         system.getOverlay("debug_messages").addChild(this.§_-1R§);
+         system.getOverlay("debug_messages").addChild(this.name_1R);
       }
       
       public function play(camera:GameCamera) : Boolean
@@ -64,19 +64,19 @@ package alternativa.tanks.game.effects.debug
          var i:int = 0;
          var message:Message = null;
          var timeDelta:int = TimeSystem.timeDelta;
-         for(i = 0; i < this.§_-cd§.length; )
+         for(i = 0; i < this.name_cd.length; )
          {
-            message = this.§_-cd§[i];
+            message = this.name_cd[i];
             message.lifeTime += timeDelta;
             if(message.lifeTime >= this.messageLifeTime)
             {
                message.destroy();
-               this.§_-cd§.shift();
+               this.name_cd.shift();
                i--;
             }
             i++;
          }
-         if(this.§_-cd§.length == 0)
+         if(this.name_cd.length == 0)
          {
             return false;
          }
@@ -88,18 +88,18 @@ package alternativa.tanks.game.effects.debug
          vector2.y -= camera.view.height / 2;
          if(vector2.z > 0.01 && vector2.z > camera.nearClipping)
          {
-            this.§_-1R§.visible = true;
-            this.§_-1R§.x = int(vector2.x);
-            this.§_-1R§.y = int(vector2.y);
+            this.name_1R.visible = true;
+            this.name_1R.x = int(vector2.x);
+            this.name_1R.y = int(vector2.y);
          }
          else
          {
-            this.§_-1R§.visible = false;
+            this.name_1R.visible = false;
          }
          var messageY:int = 0;
-         for(i = this.§_-cd§.length - 1; i >= 0; i--)
+         for(i = this.name_cd.length - 1; i >= 0; i--)
          {
-            message = this.§_-cd§[i];
+            message = this.name_cd[i];
             message.y = messageY;
             message.x = -int(message.textWidth / 2);
             messageY -= 20;
@@ -111,19 +111,19 @@ package alternativa.tanks.game.effects.debug
       {
          var message:Message = null;
          var func:Function = null;
-         if(this.§_-1R§.parent != null)
+         if(this.name_1R.parent != null)
          {
-            this.§_-1R§.parent.removeChild(this.§_-1R§);
+            this.name_1R.parent.removeChild(this.name_1R);
          }
-         for each(message in this.§_-cd§)
+         for each(message in this.name_cd)
          {
             message.destroy();
          }
-         this.§_-cd§.length = 0;
-         if(this.§_-Cx§ != null)
+         this.name_cd.length = 0;
+         if(this.name_Cx != null)
          {
-            func = this.§_-Cx§;
-            this.§_-Cx§ = null;
+            func = this.name_Cx;
+            this.name_Cx = null;
             func.call();
          }
       }

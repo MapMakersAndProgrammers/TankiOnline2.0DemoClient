@@ -4,33 +4,33 @@ package alternativa.utils
    {
       public var strings:Vector.<String>;
       
-      public var §_-Uh§:int;
+      public var name_Uh:int;
       
-      public var §_-1A§:int;
+      public var name_1A:int;
       
-      private var §_-9W§:int;
+      private var name_9W:int;
       
       public function CircularStringBuffer(capacity:int)
       {
          super();
-         this.§_-9W§ = capacity;
-         this.strings = new Vector.<String>(this.§_-9W§ + 1);
+         this.name_9W = capacity;
+         this.strings = new Vector.<String>(this.name_9W + 1);
       }
       
       public function add(s:String) : void
       {
-         this.strings[this.§_-1A§] = s;
-         this.§_-1A§ = this.incIndex(this.§_-1A§);
-         if(this.§_-1A§ == this.§_-Uh§)
+         this.strings[this.name_1A] = s;
+         this.name_1A = this.incIndex(this.name_1A);
+         if(this.name_1A == this.name_Uh)
          {
-            this.§_-Uh§ = this.incIndex(this.§_-Uh§);
+            this.name_Uh = this.incIndex(this.name_Uh);
          }
       }
       
       public function clear() : void
       {
-         this.§_-Uh§ = 0;
-         this.§_-1A§ = 0;
+         this.name_Uh = 0;
+         this.name_1A = 0;
          var len:int = int(this.strings.length);
          for(var i:int = 0; i < len; i++)
          {
@@ -40,7 +40,7 @@ package alternativa.utils
       
       public function get size() : int
       {
-         var result:int = this.§_-1A§ - this.§_-Uh§;
+         var result:int = this.name_1A - this.name_Uh;
          if(result < 0)
          {
             result += this.strings.length;
@@ -50,13 +50,13 @@ package alternativa.utils
       
       public function get capacity() : int
       {
-         return this.§_-9W§;
+         return this.name_9W;
       }
       
       public function getStrings() : Vector.<String>
       {
          var result:Vector.<String> = new Vector.<String>();
-         for(var i:int = this.§_-Uh§; i != this.§_-1A§; i = this.incIndex(i))
+         for(var i:int = this.name_Uh; i != this.name_1A; i = this.incIndex(i))
          {
             result.push(this.strings[i]);
          }
@@ -80,6 +80,9 @@ package alternativa.utils
    }
 }
 
+import alternativa.utils.IStringBufferIterator;
+import alternativa.utils.CircularStringBuffer;
+
 class Iterator implements IStringBufferIterator
 {
    private var buffer:CircularStringBuffer;
@@ -95,7 +98,7 @@ class Iterator implements IStringBufferIterator
       }
       this.buffer = buffer;
       var bufferLength:uint = uint(buffer.strings.length);
-      this.index = buffer.§_-Uh§ + startIndex - 1;
+      this.index = buffer.name_Uh + startIndex - 1;
       if(this.index < 0)
       {
          this.index = bufferLength - 1;
@@ -108,13 +111,13 @@ class Iterator implements IStringBufferIterator
    
    public function hasNext() : Boolean
    {
-      return this.incIndex(this.index) != this.buffer.§_-1A§;
+      return this.incIndex(this.index) != this.buffer.name_1A;
    }
    
    public function getNext() : String
    {
       this.index = this.incIndex(this.index);
-      if(this.index == this.buffer.§_-1A§)
+      if(this.index == this.buffer.name_1A)
       {
          throw new Error("End of buffer");
       }

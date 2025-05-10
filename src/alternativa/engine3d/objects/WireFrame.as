@@ -28,7 +28,7 @@ package alternativa.engine3d.objects
       
       public var thickness:Number = 1;
       
-      alternativa3d var §_-lc§:Vector.<Number> = new Vector.<Number>(4,true);
+      alternativa3d var name_lc:Vector.<Number> = new Vector.<Number>(4,true);
       
       alternativa3d var geometry:WireGeometry;
       
@@ -113,7 +113,7 @@ package alternativa.engine3d.objects
          var edges:Dictionary = new Dictionary();
          var indices:Vector.<uint> = geometry.indices;
          var vertices:Vector.<Number> = geometry.getAttributeValues(VertexAttributes.POSITION);
-         for(var i:int = 0,var count:int = int(indices.length); i < count; )
+         for(var i:int = 0, count:int = int(indices.length); i < count; )
          {
             index = indices[i] * 3;
             v1x = vertices[index];
@@ -181,24 +181,24 @@ package alternativa.engine3d.objects
       
       public function get alpha() : Number
       {
-         return this.alternativa3d::_-lc[3];
+         return this.name_lc[3];
       }
       
       public function set alpha(value:Number) : void
       {
-         this.alternativa3d::_-lc[3] = value;
+         this.name_lc[3] = value;
       }
       
       public function get color() : uint
       {
-         return this.alternativa3d::_-lc[0] * 255 << 16 | this.alternativa3d::_-lc[1] * 255 << 8 | this.alternativa3d::_-lc[2] * 255;
+         return this.name_lc[0] * 255 << 16 | this.name_lc[1] * 255 << 8 | this.name_lc[2] * 255;
       }
       
       public function set color(value:uint) : void
       {
-         this.alternativa3d::_-lc[0] = (value >> 16 & 0xFF) / 255;
-         this.alternativa3d::_-lc[1] = (value >> 8 & 0xFF) / 255;
-         this.alternativa3d::_-lc[2] = (value & 0xFF) / 255;
+         this.name_lc[0] = (value >> 16 & 0xFF) / 255;
+         this.name_lc[1] = (value >> 8 & 0xFF) / 255;
+         this.name_lc[2] = (value & 0xFF) / 255;
       }
       
       override alternativa3d function updateBoundBox(boundBox:BoundBox, hierarchy:Boolean, transform:Transform3D = null) : void
@@ -212,7 +212,7 @@ package alternativa.engine3d.objects
       
       override alternativa3d function collectDraws(camera:Camera3D, lights:Vector.<Light3D>, lightsLength:int) : void
       {
-         this.alternativa3d::geometry.alternativa3d::getDrawUnits(camera,this.alternativa3d::_-lc,this.thickness,this,alternativa3d::shaderProgram);
+         this.alternativa3d::geometry.alternativa3d::getDrawUnits(camera,this.name_lc,this.thickness,this,alternativa3d::shaderProgram);
       }
       
       override alternativa3d function fillResources(resources:Dictionary, hierarchy:Boolean = false, resourceType:Class = null) : void

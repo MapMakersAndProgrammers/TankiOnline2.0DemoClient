@@ -12,50 +12,50 @@ package alternativa.tanks.game.subsystems.inputsystem
       
       private var eventSource:InteractiveObject;
       
-      private var §_-Pb§:BitVector;
+      private var name_Pb:BitVector;
       
-      private var §_-FK§:Boolean;
+      private var name_FK:Boolean;
       
-      private var §_-PG§:Boolean;
+      private var name_PG:Boolean;
       
-      private var §_-Hv§:Boolean;
+      private var name_Hv:Boolean;
       
-      private var §_-8e§:int;
+      private var name_8e:int;
       
-      private var §_-dL§:int;
+      private var name_dL:int;
       
       private var mouseX:int;
       
       private var mouseY:int;
       
-      private var §_-Sm§:int;
+      private var name_Sm:int;
       
-      private var §_-4F§:int;
+      private var name_4F:int;
       
-      private var §_-HC§:int;
+      private var name_HC:int;
       
-      private var §_-Jh§:CleanupTask;
+      private var name_Jh:CleanupTask;
       
-      private var §_-CU§:Vector.<Vector.<Function>>;
+      private var name_CU:Vector.<Vector.<Function>>;
       
-      private var §_-ll§:Vector.<Vector.<Function>>;
+      private var name_ll:Vector.<Vector.<Function>>;
       
-      private var § use§:Vector.<Function>;
+      private var name_use1:Vector.<Function>;
       
-      private var §_-A4§:Vector.<Function>;
+      private var name_A4:Vector.<Function>;
       
-      private var §use §:KeybardEventQueue;
+      private var name_use2:KeybardEventQueue;
       
       public function InputSystem(priority:int, eventSource:InteractiveObject)
       {
          super(priority);
          this.eventSource = eventSource;
-         this.§_-Pb§ = new BitVector(NUM_KEYS);
-         this.§_-CU§ = new Vector.<Vector.<Function>>(NUM_KEYS);
-         this.§_-ll§ = new Vector.<Vector.<Function>>(NUM_KEYS);
-         this.§ use§ = new Vector.<Function>();
-         this.§_-A4§ = new Vector.<Function>();
-         this.§use § = new KeybardEventQueue();
+         this.name_Pb = new BitVector(NUM_KEYS);
+         this.name_CU = new Vector.<Vector.<Function>>(NUM_KEYS);
+         this.name_ll = new Vector.<Vector.<Function>>(NUM_KEYS);
+         this.name_use1 = new Vector.<Function>();
+         this.name_A4 = new Vector.<Function>();
+         this.name_use2 = new KeybardEventQueue();
       }
       
       public function addKeyboardListener(eventType:KeyboardEventType, listener:Function, keyCode:uint = 0) : void
@@ -65,18 +65,18 @@ package alternativa.tanks.game.subsystems.inputsystem
             case KeyboardEventType.KEY_DOWN:
                if(keyCode == 0)
                {
-                  this.addKeyListener(this.§ use§,listener);
+                  this.addKeyListener(this.name_use1,listener);
                   break;
                }
-               this.addDistinctKeyListener(this.§_-CU§,keyCode,listener);
+               this.addDistinctKeyListener(this.name_CU,keyCode,listener);
                break;
             case KeyboardEventType.KEY_UP:
                if(keyCode == 0)
                {
-                  this.addKeyListener(this.§_-A4§,listener);
+                  this.addKeyListener(this.name_A4,listener);
                   break;
                }
-               this.addDistinctKeyListener(this.§_-ll§,keyCode,listener);
+               this.addDistinctKeyListener(this.name_ll,keyCode,listener);
                break;
          }
       }
@@ -88,30 +88,30 @@ package alternativa.tanks.game.subsystems.inputsystem
             case KeyboardEventType.KEY_DOWN:
                if(keyCode == 0)
                {
-                  this.removeKeyListener(this.§ use§,listener);
+                  this.removeKeyListener(this.name_use1,listener);
                   break;
                }
-               this.removeDistinctKeyListener(this.§_-CU§,keyCode,listener);
+               this.removeDistinctKeyListener(this.name_CU,keyCode,listener);
                break;
             case KeyboardEventType.KEY_UP:
                if(keyCode == 0)
                {
-                  this.removeKeyListener(this.§_-A4§,listener);
+                  this.removeKeyListener(this.name_A4,listener);
                   break;
                }
-               this.removeDistinctKeyListener(this.§_-ll§,keyCode,listener);
+               this.removeDistinctKeyListener(this.name_ll,keyCode,listener);
                break;
          }
       }
       
       public function getKeyState(keyCode:uint) : int
       {
-         return this.§_-Pb§.getBit(keyCode);
+         return this.name_Pb.getBit(keyCode);
       }
       
       public function keyPressed(keyCode:uint) : Boolean
       {
-         return this.§_-Pb§.getBit(keyCode) == 1;
+         return this.name_Pb.getBit(keyCode) == 1;
       }
       
       private function addDistinctKeyListener(keyTypeListeners:Vector.<Vector.<Function>>, keyCode:uint, listener:Function) : void
@@ -168,33 +168,33 @@ package alternativa.tanks.game.subsystems.inputsystem
       
       public function mouseButtonPressed() : Boolean
       {
-         return this.§_-PG§;
+         return this.name_PG;
       }
       
       public function wasMouseButtonPressed() : Boolean
       {
-         return this.§_-Hv§;
+         return this.name_Hv;
       }
       
       public function getMouseDeltaX() : int
       {
-         return this.§_-Sm§;
+         return this.name_Sm;
       }
       
       public function getMouseDeltaY() : int
       {
-         return this.§_-4F§;
+         return this.name_4F;
       }
       
       public function getMouseWheelDelta() : int
       {
-         return this.§_-HC§;
+         return this.name_HC;
       }
       
       override public function start() : void
       {
-         this.§_-Jh§ = new CleanupTask(int.MAX_VALUE,this);
-         §_-Uw§.addTask(this.§_-Jh§);
+         this.name_Jh = new CleanupTask(int.MAX_VALUE,this);
+         name_Uw.addTask(this.name_Jh);
          this.eventSource.addEventListener(KeyboardEvent.KEY_DOWN,this.onKeyDown);
          this.eventSource.addEventListener(KeyboardEvent.KEY_UP,this.onKeyUp);
          this.eventSource.addEventListener(MouseEvent.MOUSE_MOVE,this.onMouseMove);
@@ -205,7 +205,7 @@ package alternativa.tanks.game.subsystems.inputsystem
       
       override public function stop() : void
       {
-         §_-Uw§.killTask(this.§_-Jh§);
+         name_Uw.killTask(this.name_Jh);
          this.eventSource.removeEventListener(KeyboardEvent.KEY_DOWN,this.onKeyDown);
          this.eventSource.removeEventListener(KeyboardEvent.KEY_UP,this.onKeyUp);
          this.eventSource.removeEventListener(MouseEvent.MOUSE_MOVE,this.onMouseMove);
@@ -216,8 +216,8 @@ package alternativa.tanks.game.subsystems.inputsystem
       
       override public function run() : void
       {
-         this.§_-Sm§ = this.mouseX - this.§_-8e§;
-         this.§_-4F§ = this.mouseY - this.§_-dL§;
+         this.name_Sm = this.mouseX - this.name_8e;
+         this.name_4F = this.mouseY - this.name_dL;
          this.dispatchKeyboardEvents();
       }
       
@@ -230,7 +230,7 @@ package alternativa.tanks.game.subsystems.inputsystem
          var eventType:KeyboardEventType = null;
          while(true)
          {
-            event = this.§use §.poll();
+            event = this.name_use2.poll();
             if(event == null)
             {
                break;
@@ -240,12 +240,12 @@ package alternativa.tanks.game.subsystems.inputsystem
             switch(eventType)
             {
                case KeyboardEventType.KEY_DOWN:
-                  distinctListeners = this.§_-CU§[keyCode];
-                  listeners = this.§ use§;
+                  distinctListeners = this.name_CU[keyCode];
+                  listeners = this.name_use1;
                   break;
                case KeyboardEventType.KEY_UP:
-                  distinctListeners = this.§_-ll§[keyCode];
-                  listeners = this.§_-A4§;
+                  distinctListeners = this.name_ll[keyCode];
+                  listeners = this.name_A4;
             }
             if(distinctListeners != null)
             {
@@ -272,11 +272,11 @@ package alternativa.tanks.game.subsystems.inputsystem
       
       public function cleanup() : void
       {
-         this.§_-FK§ = this.§_-PG§;
-         this.§_-Hv§ = false;
-         this.§_-8e§ = this.mouseX;
-         this.§_-dL§ = this.mouseY;
-         this.§_-HC§ = 0;
+         this.name_FK = this.name_PG;
+         this.name_Hv = false;
+         this.name_8e = this.mouseX;
+         this.name_dL = this.mouseY;
+         this.name_HC = 0;
       }
       
       private function onKeyDown(event:KeyboardEvent) : void
@@ -284,10 +284,10 @@ package alternativa.tanks.game.subsystems.inputsystem
          var keyCode:uint = uint(event.keyCode);
          if(keyCode < NUM_KEYS)
          {
-            if(this.§_-Pb§.getBit(keyCode) == 0)
+            if(this.name_Pb.getBit(keyCode) == 0)
             {
-               this.§_-Pb§.setBit(keyCode,true);
-               this.§use §.add(keyCode,KeyboardEventType.KEY_DOWN);
+               this.name_Pb.setBit(keyCode,true);
+               this.name_use2.add(keyCode,KeyboardEventType.KEY_DOWN);
             }
          }
       }
@@ -297,10 +297,10 @@ package alternativa.tanks.game.subsystems.inputsystem
          var keyCode:uint = uint(event.keyCode);
          if(keyCode < NUM_KEYS)
          {
-            if(this.§_-Pb§.getBit(keyCode) == 1)
+            if(this.name_Pb.getBit(keyCode) == 1)
             {
-               this.§_-Pb§.setBit(keyCode,false);
-               this.§use §.add(keyCode,KeyboardEventType.KEY_UP);
+               this.name_Pb.setBit(keyCode,false);
+               this.name_use2.add(keyCode,KeyboardEventType.KEY_UP);
             }
          }
       }
@@ -313,23 +313,25 @@ package alternativa.tanks.game.subsystems.inputsystem
       
       private function onMouseWheel(event:MouseEvent) : void
       {
-         this.§_-HC§ = event.delta;
+         this.name_HC = event.delta;
       }
       
       private function onMouseDown(event:MouseEvent) : void
       {
-         this.§_-PG§ = true;
-         this.§_-Hv§ = true;
+         this.name_PG = true;
+         this.name_Hv = true;
       }
       
       private function onMouseUp(event:MouseEvent) : void
       {
-         this.§_-PG§ = false;
+         this.name_PG = false;
       }
    }
 }
 
 import alternativa.tanks.game.GameTask;
+import alternativa.tanks.game.subsystems.inputsystem.InputSystem;
+import alternativa.tanks.game.subsystems.inputsystem.KeyboardEventType;
 
 class CleanupTask extends GameTask
 {

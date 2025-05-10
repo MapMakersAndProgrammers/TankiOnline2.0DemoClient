@@ -4,20 +4,20 @@ package alternativa.tanks.game
    {
       private static var lastId:int;
       
-      private var §_-3I§:int;
+      private var name_3I:int;
       
       private var components:Vector.<EntityComponent>;
       
-      private var §_-ax§:Object;
+      private var name_ax:Object;
       
       internal var index:int = -1;
       
       public function Entity(id:int)
       {
          super();
-         this.§_-3I§ = id;
+         this.name_3I = id;
          this.components = new Vector.<EntityComponent>();
-         this.§_-ax§ = new Object();
+         this.name_ax = new Object();
       }
       
       public static function generateId() : int
@@ -27,7 +27,7 @@ package alternativa.tanks.game
       
       public function get id() : int
       {
-         return this.§_-3I§;
+         return this.name_3I;
       }
       
       public function addComponent(component:EntityComponent) : void
@@ -90,7 +90,7 @@ package alternativa.tanks.game
       {
          var numListeners:uint = 0;
          var i:int = 0;
-         var listeners:Vector.<Function> = this.§_-ax§[eventType];
+         var listeners:Vector.<Function> = this.name_ax[eventType];
          if(listeners != null)
          {
             numListeners = uint(listeners.length);
@@ -103,11 +103,11 @@ package alternativa.tanks.game
       
       public function addEventHandler(eventType:String, handler:Function) : void
       {
-         var handlers:Vector.<Function> = this.§_-ax§[eventType];
+         var handlers:Vector.<Function> = this.name_ax[eventType];
          if(handlers == null)
          {
             handlers = new Vector.<Function>();
-            this.§_-ax§[eventType] = handlers;
+            this.name_ax[eventType] = handlers;
          }
          handlers.push(handler);
       }

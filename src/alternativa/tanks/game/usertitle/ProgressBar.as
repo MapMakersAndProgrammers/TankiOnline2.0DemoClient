@@ -18,11 +18,11 @@ package alternativa.tanks.game.usertitle
       
       private var skin:ProgressBarSkin;
       
-      private var §_-oy§:int;
+      private var name_oy:int;
       
-      private var §_-Da§:int;
+      private var name_Da:int;
       
-      private var §_-H2§:int;
+      private var name_H2:int;
       
       private var x:int;
       
@@ -38,19 +38,19 @@ package alternativa.tanks.game.usertitle
          this.maxValue = maxValue;
          this.barWidth = barWidth;
          this.setSkin(skin);
-         this.rect = new Rectangle(x,y,barWidth,this.§_-Da§);
+         this.rect = new Rectangle(x,y,barWidth,this.name_Da);
       }
       
       public function setSkin(skin:ProgressBarSkin) : void
       {
          this.skin = skin;
-         this.§_-oy§ = skin.§_-XU§.width;
-         this.§_-Da§ = skin.§_-XU§.height;
+         this.name_oy = skin.name_XU.width;
+         this.name_Da = skin.name_XU.height;
       }
       
       public function get progress() : int
       {
-         return this.§_-H2§;
+         return this.name_H2;
       }
       
       public function set progress(value:int) : void
@@ -63,7 +63,7 @@ package alternativa.tanks.game.usertitle
          {
             value = this.maxValue;
          }
-         this.§_-H2§ = value;
+         this.name_H2 = value;
       }
       
       public function draw(texture:BitmapData) : void
@@ -72,44 +72,44 @@ package alternativa.tanks.game.usertitle
          var g:Graphics = canvas.graphics;
          g.clear();
          matrix.ty = 0;
-         var displayWidth:int = this.barWidth * this.§_-H2§ / this.maxValue;
-         var w:int = this.barWidth - this.§_-oy§;
-         if(displayWidth >= this.§_-oy§)
+         var displayWidth:int = this.barWidth * this.name_H2 / this.maxValue;
+         var w:int = this.barWidth - this.name_oy;
+         if(displayWidth >= this.name_oy)
          {
             if(displayWidth == this.barWidth)
             {
-               this.drawFullBar(g,this.skin.§_-9Y§,this.skin.§_-j2§,this.skin.§_-oU§);
+               this.drawFullBar(g,this.skin.name_9Y,this.skin.name_j2,this.skin.name_oU);
                bgStart = displayWidth;
             }
             else
             {
-               g.beginBitmapFill(this.skin.§_-9Y§,null,false);
-               g.drawRect(0,0,this.§_-oy§,this.§_-Da§);
-               if(displayWidth > this.§_-oy§)
+               g.beginBitmapFill(this.skin.name_9Y,null,false);
+               g.drawRect(0,0,this.name_oy,this.name_Da);
+               if(displayWidth > this.name_oy)
                {
                   if(displayWidth > w)
                   {
                      displayWidth = w;
                   }
                   bgStart = displayWidth;
-                  this.drawCenter(g,this.skin.§_-oU§,this.§_-oy§,displayWidth - this.§_-oy§);
+                  this.drawCenter(g,this.skin.name_oU,this.name_oy,displayWidth - this.name_oy);
                }
                else
                {
-                  bgStart = this.§_-oy§;
+                  bgStart = this.name_oy;
                }
             }
          }
          if(bgStart == 0)
          {
-            this.drawFullBar(g,this.skin.§_-XU§,this.skin.§_-GY§,this.skin.§_-py§);
+            this.drawFullBar(g,this.skin.name_XU,this.skin.name_GY,this.skin.name_py);
          }
          else if(bgStart < this.barWidth)
          {
-            this.drawCenter(g,this.skin.§_-py§,bgStart,w - bgStart);
+            this.drawCenter(g,this.skin.name_py,bgStart,w - bgStart);
             matrix.tx = w;
-            g.beginBitmapFill(this.skin.§_-GY§,matrix,false);
-            g.drawRect(w,0,this.§_-oy§,this.§_-Da§);
+            g.beginBitmapFill(this.skin.name_GY,matrix,false);
+            g.drawRect(w,0,this.name_oy,this.name_Da);
          }
          g.endFill();
          texture.fillRect(this.rect,0);
@@ -120,22 +120,22 @@ package alternativa.tanks.game.usertitle
       
       private function drawFullBar(g:Graphics, leftTip:BitmapData, rightTip:BitmapData, center:BitmapData) : void
       {
-         var w:int = this.barWidth - this.§_-oy§;
+         var w:int = this.barWidth - this.name_oy;
          g.beginBitmapFill(leftTip,null,false);
-         g.drawRect(0,0,this.§_-oy§,this.§_-Da§);
-         matrix.tx = this.§_-oy§;
+         g.drawRect(0,0,this.name_oy,this.name_Da);
+         matrix.tx = this.name_oy;
          g.beginBitmapFill(center,matrix,true);
-         g.drawRect(this.§_-oy§,0,w - this.§_-oy§,this.§_-Da§);
+         g.drawRect(this.name_oy,0,w - this.name_oy,this.name_Da);
          matrix.tx = w;
          g.beginBitmapFill(rightTip,matrix,false);
-         g.drawRect(w,0,this.§_-oy§,this.§_-Da§);
+         g.drawRect(w,0,this.name_oy,this.name_Da);
       }
       
       private function drawCenter(g:Graphics, center:BitmapData, x:int, width:int) : void
       {
          matrix.tx = x;
          g.beginBitmapFill(center,matrix,true);
-         g.drawRect(x,0,width,this.§_-Da§);
+         g.drawRect(x,0,width,this.name_Da);
       }
    }
 }

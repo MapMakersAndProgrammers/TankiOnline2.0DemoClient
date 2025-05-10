@@ -7,19 +7,19 @@ package alternativa.tanks.game.utils.list
    {
       private var list:List;
       
-      private var §_-M0§:int;
+      private var name_M0:int;
       
-      private var §_-9H§:ListItem;
+      private var name_9H:ListItem;
       
-      private var §_-4o§:ListItem;
+      private var name_4o:ListItem;
       
       public function ListIteratorImpl(list:List)
       {
          super();
          this.list = list;
-         this.§_-M0§ = list.§_-M0§;
-         this.§_-4o§ = list.head;
-         this.§_-9H§ = this.§_-4o§.next;
+         this.name_M0 = list.name_M0;
+         this.name_4o = list.head;
+         this.name_9H = this.name_4o.next;
       }
       
       public function add(data:Object) : void
@@ -27,53 +27,53 @@ package alternativa.tanks.game.utils.list
          this.validateList();
          var item:ListItem = new ListItem();
          item.data = data;
-         item.prev = this.§_-4o§;
-         item.next = this.§_-9H§;
-         this.§_-4o§.next = item;
-         this.§_-9H§.prev = item;
-         this.§_-4o§ = item;
+         item.prev = this.name_4o;
+         item.next = this.name_9H;
+         this.name_4o.next = item;
+         this.name_9H.prev = item;
+         this.name_4o = item;
          this.incChangeCounter();
       }
       
       public function hasNext() : Boolean
       {
          this.validateList();
-         return this.§_-9H§ != this.list.tail;
+         return this.name_9H != this.list.tail;
       }
       
       public function hasPrevious() : Boolean
       {
          this.validateList();
-         return this.§_-4o§ != this.list.head;
+         return this.name_4o != this.list.head;
       }
       
       public function next() : Object
       {
          this.validateList();
-         if(this.§_-9H§ == this.list.tail)
+         if(this.name_9H == this.list.tail)
          {
             throw new NoSuchElementError();
          }
-         this.§_-4o§ = this.§_-9H§;
-         this.§_-9H§ = this.§_-9H§.next;
-         return this.§_-4o§.data;
+         this.name_4o = this.name_9H;
+         this.name_9H = this.name_9H.next;
+         return this.name_4o.data;
       }
       
       public function previous() : Object
       {
          this.validateList();
-         if(this.§_-4o§ == this.list.head)
+         if(this.name_4o == this.list.head)
          {
             throw new NoSuchElementError();
          }
-         this.§_-9H§ = this.§_-4o§;
-         this.§_-4o§ = this.§_-4o§.prev;
-         return this.§_-9H§.data;
+         this.name_9H = this.name_4o;
+         this.name_4o = this.name_4o.prev;
+         return this.name_9H.data;
       }
       
       private function validateList() : void
       {
-         if(this.§_-M0§ != this.list.§_-M0§)
+         if(this.name_M0 != this.list.name_M0)
          {
             throw new ConcurrentModificationError();
          }
@@ -81,8 +81,8 @@ package alternativa.tanks.game.utils.list
       
       private function incChangeCounter() : void
       {
-         ++this.§_-M0§;
-         this.list.§_-M0§ = this.§_-M0§;
+         ++this.name_M0;
+         this.list.name_M0 = this.name_M0;
       }
    }
 }

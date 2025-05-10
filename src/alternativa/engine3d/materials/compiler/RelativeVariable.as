@@ -43,10 +43,10 @@ package alternativa.engine3d.materials.compiler
          {
             throw new Error("Error: index offset " + reloffset + " out of bounds. [0..255]");
          }
-         §_-0J§ = reloffset << 16 | index;
-         §_-oc§ |= type << 8;
-         §_-oc§ |= relsel << 16;
-         §_-oc§ |= 1 << 31;
+         name_0J = reloffset << 16 | index;
+         name_oc |= type << 8;
+         name_oc |= relsel << 16;
+         name_oc |= 1 << 31;
       }
       
       override public function writeToByteArray(byteCode:ByteArray, newIndex:int, newType:int) : void

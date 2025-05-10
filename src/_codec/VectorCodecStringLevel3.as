@@ -40,14 +40,14 @@ package _codec
          var result:Vector.<Vector.<Vector.<String>>> = new Vector.<Vector.<Vector.<String>>>(length1,true);
          for(var i1:int = 0; i1 < length1; )
          {
-            if(!protocolBuffer.optionalMap.OptionalMap())
+            if(!protocolBuffer.optionalMap.get())
             {
                length2 = LengthCodecHelper.decodeLength(protocolBuffer);
                items2 = new Vector.<Vector.<String>>(length2,true);
                result[i1] = items2;
                for(i2 = 0; i2 < length2; )
                {
-                  if(!protocolBuffer.optionalMap.OptionalMap())
+                  if(!protocolBuffer.optionalMap.get())
                   {
                      length3 = LengthCodecHelper.decodeLength(protocolBuffer);
                      items3 = new Vector.<String>(length3,true);

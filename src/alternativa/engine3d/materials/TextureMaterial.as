@@ -40,7 +40,7 @@ package alternativa.engine3d.materials
       
       public var alpha:Number = 1;
       
-      public var §_-L4§:Boolean = false;
+      public var name_L4:Boolean = false;
       
       public function TextureMaterial(diffuseMap:TextureResource = null, opacityMap:TextureResource = null, alpha:Number = 1)
       {
@@ -52,7 +52,7 @@ package alternativa.engine3d.materials
       
       override alternativa3d function get canDrawInShadowMap() : Boolean
       {
-         return !this.§_-L4§ && this.opacityMap == null;
+         return !this.name_L4 && this.opacityMap == null;
       }
       
       override alternativa3d function fillResources(resources:Dictionary, resourceType:Class) : void
@@ -80,7 +80,7 @@ package alternativa.engine3d.materials
          vertexLinker.addProcedure(alternativa3d::_projectProcedure);
          vertexLinker.setInputParams(alternativa3d::_projectProcedure,positionVar);
          vertexLinker.addProcedure(alternativa3d::_passUVProcedure);
-         var outProcedure:Procedure = this.§_-L4§ ? alternativa3d::_samplerSetProcedureDiffuseAlpha : (this.opacityMap != null ? alternativa3d::_samplerSetProcedureOpacity : alternativa3d::_samplerSetProcedure);
+         var outProcedure:Procedure = this.name_L4 ? alternativa3d::_samplerSetProcedureDiffuseAlpha : (this.opacityMap != null ? alternativa3d::_samplerSetProcedureOpacity : alternativa3d::_samplerSetProcedure);
          var fragmentLinker:Linker = new Linker(Context3DProgramType.FRAGMENT);
          fragmentLinker.addProcedure(outProcedure);
          fragmentLinker.setOppositeLinker(vertexLinker);
@@ -93,7 +93,7 @@ package alternativa.engine3d.materials
          var object:Object3D = surface.alternativa3d::object;
          var positionBuffer:VertexBuffer3D = geometry.alternativa3d::getVertexBuffer(VertexAttributes.POSITION);
          var uvBuffer:VertexBuffer3D = geometry.alternativa3d::getVertexBuffer(VertexAttributes.TEXCOORDS[0]);
-         var key:int = this.§_-L4§ ? 2 : (this.opacityMap != null ? 1 : 0);
+         var key:int = this.name_L4 ? 2 : (this.opacityMap != null ? 1 : 0);
          var optionsPrograms:Vector.<ShaderProgram> = _programs[object.alternativa3d::transformProcedure];
          if(optionsPrograms == null)
          {
@@ -117,22 +117,22 @@ package alternativa.engine3d.materials
          {
             return;
          }
-         if(!this.§_-L4§ && this.opacityMap != null && this.opacityMap.alternativa3d::_texture == null)
+         if(!this.name_L4 && this.opacityMap != null && this.opacityMap.alternativa3d::_texture == null)
          {
             return;
          }
-         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.alternativa3d::_-EM,surface.indexBegin,surface.numTriangles,program);
+         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.name_EM,surface.indexBegin,surface.numTriangles,program);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aPosition"),positionBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.POSITION],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.POSITION]);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aUV"),uvBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.TEXCOORDS[0]],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.TEXCOORDS[0]]);
          object.alternativa3d::setTransformConstants(drawUnit,surface,program.vertexShader,camera);
          drawUnit.alternativa3d::setProjectionConstants(camera,program.vertexShader.getVariableIndex("cProjMatrix"),object.alternativa3d::localToCameraTransform);
          drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("cAlpha"),0,0,0,this.alpha);
          drawUnit.alternativa3d::setTextureAt(program.fragmentShader.getVariableIndex("sTexture"),this.diffuseMap.alternativa3d::_texture);
-         if(!this.§_-L4§ && this.opacityMap != null)
+         if(!this.name_L4 && this.opacityMap != null)
          {
             drawUnit.alternativa3d::setTextureAt(program.fragmentShader.getVariableIndex("sOpacity"),this.opacityMap.alternativa3d::_texture);
          }
-         if(this.§_-L4§ || this.opacityMap != null || this.alpha < 1)
+         if(this.name_L4 || this.opacityMap != null || this.alpha < 1)
          {
             drawUnit.alternativa3d::blendSource = Context3DBlendFactor.SOURCE_ALPHA;
             drawUnit.alternativa3d::blendDestination = Context3DBlendFactor.ONE_MINUS_SOURCE_ALPHA;

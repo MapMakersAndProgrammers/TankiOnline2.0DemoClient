@@ -35,7 +35,7 @@ package alternativa.tanks.game.entities.tank.graphics
             textureSize = 256;
             pcfSize = 4;
             directionalShadowRenderer = new DirectionalShadowRenderer(this.renderSystem.getContext3D(),textureSize,worldSize,pcfSize);
-            directionalShadowRenderer.§_-qg§ = this.object;
+            directionalShadowRenderer.name_qg = this.object;
             directionalShadowRenderer.setLight(directionalLights[0]);
             this.renderSystem.addShadowRenderer(directionalShadowRenderer);
             this.consumer.setShadowRenderer(directionalShadowRenderer);

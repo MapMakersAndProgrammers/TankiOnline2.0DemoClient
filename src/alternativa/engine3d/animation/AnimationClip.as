@@ -8,7 +8,7 @@ package alternativa.engine3d.animation
    
    public class AnimationClip extends AnimationNode
    {
-      alternativa3d var §_-Kq§:Array;
+      alternativa3d var name_Kq:Array;
       
       public var name:String;
       
@@ -18,13 +18,13 @@ package alternativa.engine3d.animation
       
       public var animated:Boolean = true;
       
-      private var §_-qC§:Number = 0;
+      private var name_qC:Number = 0;
       
-      private var §_-Iv§:int = 0;
+      private var name_Iv:int = 0;
       
-      private var §_-cT§:Vector.<Track> = new Vector.<Track>();
+      private var name_cT:Vector.<Track> = new Vector.<Track>();
       
-      private var §_-Ci§:AnimationNotify;
+      private var name_Ci:AnimationNotify;
       
       public function AnimationClip(name:String = null)
       {
@@ -34,30 +34,30 @@ package alternativa.engine3d.animation
       
       public function get objects() : Array
       {
-         return this.alternativa3d::_-Kq == null ? null : [].concat(this.alternativa3d::_-Kq);
+         return this.name_Kq == null ? null : [].concat(this.name_Kq);
       }
       
       public function set objects(value:Array) : void
       {
-         this.updateObjects(this.alternativa3d::_-Kq,alternativa3d::controller,value,alternativa3d::controller);
-         this.alternativa3d::_-Kq = value == null ? null : [].concat(value);
+         this.updateObjects(this.name_Kq,alternativa3d::controller,value,alternativa3d::controller);
+         this.name_Kq = value == null ? null : [].concat(value);
       }
       
       override alternativa3d function setController(value:AnimationController) : void
       {
-         this.updateObjects(this.alternativa3d::_-Kq,alternativa3d::controller,this.alternativa3d::_-Kq,value);
+         this.updateObjects(this.name_Kq,alternativa3d::controller,this.name_Kq,value);
          this.alternativa3d::controller = value;
       }
       
       private function addObject(object:Object) : void
       {
-         if(this.alternativa3d::_-Kq == null)
+         if(this.name_Kq == null)
          {
-            this.alternativa3d::_-Kq = [object];
+            this.name_Kq = [object];
          }
          else
          {
-            this.alternativa3d::_-Kq.push(object);
+            this.name_Kq.push(object);
          }
          if(alternativa3d::controller != null)
          {
@@ -71,7 +71,7 @@ package alternativa.engine3d.animation
          var count:int = 0;
          if(oldController != null && oldObjects != null)
          {
-            for(i = 0,count = int(this.alternativa3d::_-Kq.length); i < count; i++)
+            for(i = 0,count = int(this.name_Kq.length); i < count; i++)
             {
                oldController.alternativa3d::removeObject(oldObjects[i]);
             }
@@ -89,9 +89,9 @@ package alternativa.engine3d.animation
       {
          var track:Track = null;
          var len:Number = NaN;
-         for(var i:int = 0; i < this.§_-Iv§; )
+         for(var i:int = 0; i < this.name_Iv; )
          {
-            track = this.§_-cT§[i];
+            track = this.name_cT[i];
             len = track.length;
             if(len > this.length)
             {
@@ -107,8 +107,8 @@ package alternativa.engine3d.animation
          {
             throw new Error("Track can not be null");
          }
-         var _loc2_:* = this.§_-Iv§++;
-         this.§_-cT§[_loc2_] = track;
+         var _loc2_:* = this.name_Iv++;
+         this.name_cT[_loc2_] = track;
          if(track.length > this.length)
          {
             this.length = track.length;
@@ -119,23 +119,23 @@ package alternativa.engine3d.animation
       public function removeTrack(track:Track) : Track
       {
          var t:Track = null;
-         var index:int = int(this.§_-cT§.indexOf(track));
+         var index:int = int(this.name_cT.indexOf(track));
          if(index < 0)
          {
             throw new ArgumentError("Track not found");
          }
-         --this.§_-Iv§;
-         for(var j:int = index + 1; index < this.§_-Iv§; )
+         --this.name_Iv;
+         for(var j:int = index + 1; index < this.name_Iv; )
          {
-            this.§_-cT§[index] = this.§_-cT§[j];
+            this.name_cT[index] = this.name_cT[j];
             index++;
             j++;
          }
-         this.§_-cT§.length = this.§_-Iv§;
+         this.name_cT.length = this.name_Iv;
          this.length = 0;
-         for(var i:int = 0; i < this.§_-Iv§; )
+         for(var i:int = 0; i < this.name_Iv; )
          {
-            t = this.§_-cT§[i];
+            t = this.name_cT[i];
             if(t.length > this.length)
             {
                this.length = t.length;
@@ -147,12 +147,12 @@ package alternativa.engine3d.animation
       
       public function getTrackAt(index:int) : Track
       {
-         return this.§_-cT§[index];
+         return this.name_cT[index];
       }
       
       public function get numTracks() : int
       {
-         return this.§_-Iv§;
+         return this.name_Iv;
       }
       
       override alternativa3d function update(interval:Number, weight:Number) : void
@@ -160,51 +160,51 @@ package alternativa.engine3d.animation
          var i:int = 0;
          var track:Track = null;
          var state:AnimationState = null;
-         var oldTime:Number = this.§_-qC§;
+         var oldTime:Number = this.name_qC;
          if(this.animated)
          {
-            this.§_-qC§ += interval * speed;
+            this.name_qC += interval * speed;
             if(this.loop)
             {
-               if(this.§_-qC§ < 0)
+               if(this.name_qC < 0)
                {
-                  this.§_-qC§ = 0;
+                  this.name_qC = 0;
                }
-               else if(this.§_-qC§ >= this.length)
+               else if(this.name_qC >= this.length)
                {
                   this.alternativa3d::collectNotifiers(oldTime,this.length);
-                  this.§_-qC§ = this.length <= 0 ? 0 : this.§_-qC§ % this.length;
-                  this.alternativa3d::collectNotifiers(0,this.§_-qC§);
+                  this.name_qC = this.length <= 0 ? 0 : this.name_qC % this.length;
+                  this.alternativa3d::collectNotifiers(0,this.name_qC);
                }
                else
                {
-                  this.alternativa3d::collectNotifiers(oldTime,this.§_-qC§);
+                  this.alternativa3d::collectNotifiers(oldTime,this.name_qC);
                }
             }
             else
             {
-               if(this.§_-qC§ < 0)
+               if(this.name_qC < 0)
                {
-                  this.§_-qC§ = 0;
+                  this.name_qC = 0;
                }
-               else if(this.§_-qC§ >= this.length)
+               else if(this.name_qC >= this.length)
                {
-                  this.§_-qC§ = this.length;
+                  this.name_qC = this.length;
                }
-               this.alternativa3d::collectNotifiers(oldTime,this.§_-qC§);
+               this.alternativa3d::collectNotifiers(oldTime,this.name_qC);
             }
          }
          if(weight > 0)
          {
-            for(i = 0; i < this.§_-Iv§; )
+            for(i = 0; i < this.name_Iv; )
             {
-               track = this.§_-cT§[i];
+               track = this.name_cT[i];
                if(track.object != null)
                {
                   state = alternativa3d::controller.alternativa3d::getState(track.object);
                   if(state != null)
                   {
-                     track.alternativa3d::blend(this.§_-qC§,weight,state);
+                     track.alternativa3d::blend(this.name_qC,weight,state);
                   }
                }
                i++;
@@ -214,22 +214,22 @@ package alternativa.engine3d.animation
       
       public function get time() : Number
       {
-         return this.§_-qC§;
+         return this.name_qC;
       }
       
       public function set time(value:Number) : void
       {
-         this.§_-qC§ = value;
+         this.name_qC = value;
       }
       
       public function get normalizedTime() : Number
       {
-         return this.length == 0 ? 0 : this.§_-qC§ / this.length;
+         return this.length == 0 ? 0 : this.name_qC / this.length;
       }
       
       public function set normalizedTime(value:Number) : void
       {
-         this.§_-qC§ = value * this.length;
+         this.name_qC = value * this.length;
       }
       
       private function getNumChildren(object:Object) : int
@@ -253,7 +253,7 @@ package alternativa.engine3d.animation
       private function addChildren(object:Object) : void
       {
          var child:Object = null;
-         for(var i:int = 0,var numChildren:int = this.getNumChildren(object); i < numChildren; i++)
+         for(var i:int = 0, numChildren:int = this.getNumChildren(object); i < numChildren; i++)
          {
             child = this.getChildAt(object,i);
             this.addObject(child);
@@ -263,8 +263,8 @@ package alternativa.engine3d.animation
       
       public function attach(object:Object, includeDescendants:Boolean) : void
       {
-         this.updateObjects(this.alternativa3d::_-Kq,alternativa3d::controller,null,alternativa3d::controller);
-         this.alternativa3d::_-Kq = null;
+         this.updateObjects(this.name_Kq,alternativa3d::controller,null,alternativa3d::controller);
+         this.name_Kq = null;
          this.addObject(object);
          if(includeDescendants)
          {
@@ -274,16 +274,16 @@ package alternativa.engine3d.animation
       
       alternativa3d function collectNotifiers(start:Number, end:Number) : void
       {
-         for(var notify:AnimationNotify = this.§_-Ci§; notify != null; )
+         for(var notify:AnimationNotify = this.name_Ci; notify != null; )
          {
-            if(notify.alternativa3d::_-qC > start)
+            if(notify.name_qC > start)
             {
-               if(notify.alternativa3d::_-qC > end)
+               if(notify.name_qC > end)
                {
                   notify = notify.alternativa3d::next;
                   continue;
                }
-               notify.alternativa3d::_-XY = alternativa3d::controller.alternativa3d::nearestNotifyers;
+               notify.name_XY = alternativa3d::controller.alternativa3d::nearestNotifyers;
                alternativa3d::controller.alternativa3d::nearestNotifyers = notify;
             }
             notify = notify.alternativa3d::next;
@@ -295,20 +295,20 @@ package alternativa.engine3d.animation
          var _loc4_:AnimationNotify = null;
          time = time <= 0 ? 0 : (time >= this.length ? this.length : time);
          var notify:AnimationNotify = new AnimationNotify(name);
-         notify.alternativa3d::_-qC = time;
-         if(this.§_-Ci§ == null)
+         notify.name_qC = time;
+         if(this.name_Ci == null)
          {
-            this.§_-Ci§ = notify;
+            this.name_Ci = notify;
             return notify;
          }
-         if(this.§_-Ci§.alternativa3d::_-qC > time)
+         if(this.name_Ci.name_qC > time)
          {
-            notify.alternativa3d::next = this.§_-Ci§;
-            this.§_-Ci§ = notify;
+            notify.alternativa3d::next = this.name_Ci;
+            this.name_Ci = notify;
             return notify;
          }
-         _loc4_ = this.§_-Ci§;
-         while(_loc4_.alternativa3d::next != null && _loc4_.alternativa3d::next.alternativa3d::_-qC <= time)
+         _loc4_ = this.name_Ci;
+         while(_loc4_.alternativa3d::next != null && _loc4_.alternativa3d::next.name_qC <= time)
          {
             _loc4_ = _loc4_.alternativa3d::next;
          }
@@ -332,14 +332,14 @@ package alternativa.engine3d.animation
       public function removeNotify(notify:AnimationNotify) : AnimationNotify
       {
          var n:AnimationNotify = null;
-         if(this.§_-Ci§ != null)
+         if(this.name_Ci != null)
          {
-            if(this.§_-Ci§ == notify)
+            if(this.name_Ci == notify)
             {
-               this.§_-Ci§ = this.§_-Ci§.alternativa3d::next;
+               this.name_Ci = this.name_Ci.alternativa3d::next;
                return notify;
             }
-            n = this.§_-Ci§;
+            n = this.name_Ci;
             while(n.alternativa3d::next != null && n.alternativa3d::next != notify)
             {
                n = n.alternativa3d::next;
@@ -357,7 +357,7 @@ package alternativa.engine3d.animation
       {
          var result:Vector.<AnimationNotify> = new Vector.<AnimationNotify>();
          var i:int = 0;
-         for(var notify:AnimationNotify = this.§_-Ci§; notify != null; notify = notify.alternativa3d::next)
+         for(var notify:AnimationNotify = this.name_Ci; notify != null; notify = notify.alternativa3d::next)
          {
             result[i] = notify;
             i++;
@@ -368,10 +368,10 @@ package alternativa.engine3d.animation
       public function slice(start:Number, end:Number = 1.7976931348623157e+308) : AnimationClip
       {
          var sliced:AnimationClip = new AnimationClip(this.name);
-         sliced.alternativa3d::_-Kq = this.alternativa3d::_-Kq == null ? null : [].concat(this.alternativa3d::_-Kq);
-         for(var i:int = 0; i < this.§_-Iv§; i++)
+         sliced.name_Kq = this.name_Kq == null ? null : [].concat(this.name_Kq);
+         for(var i:int = 0; i < this.name_Iv; i++)
          {
-            sliced.addTrack(this.§_-cT§[i].slice(start,end));
+            sliced.addTrack(this.name_cT[i].slice(start,end));
          }
          return sliced;
       }
@@ -379,10 +379,10 @@ package alternativa.engine3d.animation
       public function clone() : AnimationClip
       {
          var cloned:AnimationClip = new AnimationClip(this.name);
-         cloned.alternativa3d::_-Kq = this.alternativa3d::_-Kq == null ? null : [].concat(this.alternativa3d::_-Kq);
-         for(var i:int = 0; i < this.§_-Iv§; i++)
+         cloned.name_Kq = this.name_Kq == null ? null : [].concat(this.name_Kq);
+         for(var i:int = 0; i < this.name_Iv; i++)
          {
-            cloned.addTrack(this.§_-cT§[i]);
+            cloned.addTrack(this.name_cT[i]);
          }
          cloned.length = this.length;
          return cloned;

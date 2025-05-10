@@ -4,17 +4,17 @@ package alternativa.tanks.game.weapons.ammunition.splashhit.debug
    
    public class DebugSplashDamage implements ISplashDamage
    {
-      private var §_-YZ§:Number;
+      private var name_YZ:Number;
       
       public function DebugSplashDamage(radius:Number)
       {
          super();
-         this.§_-YZ§ = radius;
+         this.name_YZ = radius;
       }
       
       public function get radius() : Number
       {
-         return this.§_-YZ§;
+         return this.name_YZ;
       }
       
       public function getPower(basePower:Number, radius:Number) : Number

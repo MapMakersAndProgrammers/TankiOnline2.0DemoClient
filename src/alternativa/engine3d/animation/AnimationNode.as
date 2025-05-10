@@ -6,7 +6,7 @@ package alternativa.engine3d.animation
    
    public class AnimationNode
    {
-      alternativa3d var §_-Eo§:Boolean = false;
+      alternativa3d var name_Eo:Boolean = false;
       
       alternativa3d var _parent:AnimationNode;
       
@@ -21,7 +21,7 @@ package alternativa.engine3d.animation
       
       public function get isActive() : Boolean
       {
-         return this.alternativa3d::_-Eo && this.alternativa3d::controller != null;
+         return this.name_Eo && this.alternativa3d::controller != null;
       }
       
       public function get parent() : AnimationNode
@@ -51,7 +51,7 @@ package alternativa.engine3d.animation
       alternativa3d function removeNode(node:AnimationNode) : void
       {
          node.alternativa3d::setController(null);
-         node.alternativa3d::_-Eo = false;
+         node.name_Eo = false;
          node.alternativa3d::_parent = null;
       }
    }

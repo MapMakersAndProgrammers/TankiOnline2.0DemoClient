@@ -4,15 +4,15 @@ package alternativa.engine3d.loaders.collada
    
    public class DaeSource extends DaeElement
    {
-      private const §_-XM§:String = "float_array";
+      private const name_XM:String = "float_array";
       
-      private const §_-g6§:String = "int_array";
+      private const name_g6:String = "int_array";
       
-      private const §_-ZJ§:String = "Name_array";
+      private const name_ZJ:String = "Name_array";
       
       public var numbers:Vector.<Number>;
       
-      public var §_-op§:Vector.<int>;
+      public var name_op:Vector.<int>;
       
       public var names:Vector.<String>;
       
@@ -29,14 +29,14 @@ package alternativa.engine3d.loaders.collada
          var child:XML = null;
          var _loc5_:DaeArray = null;
          var children:XMLList = data.children();
-         for(var i:int = 0,var count:int = int(children.length()); i < count; )
+         for(var i:int = 0, count:int = int(children.length()); i < count; )
          {
             child = children[i];
             switch(child.localName())
             {
-               case this.§_-XM§:
-               case this.§_-g6§:
-               case this.§_-ZJ§:
+               case this.name_XM:
+               case this.name_g6:
+               case this.name_ZJ:
                   _loc5_ = new DaeArray(child,document);
                   if(_loc5_.id != null)
                   {
@@ -99,7 +99,7 @@ package alternativa.engine3d.loaders.collada
       private function numValidParams(params:XMLList) : int
       {
          var res:int = 0;
-         for(var i:int = 0,var count:int = int(params.length()); i < count; )
+         for(var i:int = 0, count:int = int(params.length()); i < count; )
          {
             if(params[i].@name[0] != null)
             {
@@ -119,13 +119,13 @@ package alternativa.engine3d.loaders.collada
          var arrStride:int = int(Math.max(this.numValidParams(params),stride));
          switch(type)
          {
-            case this.§_-XM§:
+            case this.name_XM:
                this.numbers = new Vector.<Number>(int(arrStride * count));
                break;
-            case this.§_-g6§:
-               this.§_-op§ = new Vector.<int>(int(arrStride * count));
+            case this.name_g6:
+               this.name_op = new Vector.<int>(int(arrStride * count));
                break;
-            case this.§_-ZJ§:
+            case this.name_ZJ:
                this.names = new Vector.<String>(int(arrStride * count));
          }
          var curr:int = 0;
@@ -136,7 +136,7 @@ package alternativa.engine3d.loaders.collada
             {
                switch(type)
                {
-                  case this.§_-XM§:
+                  case this.name_XM:
                      for(j = 0; j < count; j++)
                      {
                         value = array[int(offset + stride * j + i)];
@@ -147,13 +147,13 @@ package alternativa.engine3d.loaders.collada
                         this.numbers[int(arrStride * j + curr)] = parseFloat(value);
                      }
                      break;
-                  case this.§_-g6§:
+                  case this.name_g6:
                      for(j = 0; j < count; j++)
                      {
-                        this.§_-op§[int(arrStride * j + curr)] = parseInt(array[int(offset + stride * j + i)],10);
+                        this.name_op[int(arrStride * j + curr)] = parseInt(array[int(offset + stride * j + i)],10);
                      }
                      break;
-                  case this.§_-ZJ§:
+                  case this.name_ZJ:
                      for(j = 0; j < count; j++)
                      {
                         this.names[int(arrStride * j + curr)] = array[int(offset + stride * j + i)];

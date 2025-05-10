@@ -14,7 +14,7 @@ package alternativa.engine3d.animation.keys
       
       private static var temp:TransformKey = new TransformKey();
       
-      private var §_-ku§:TransformKey;
+      private var name_ku:TransformKey;
       
       public function TransformTrack(object:String)
       {
@@ -24,19 +24,19 @@ package alternativa.engine3d.animation.keys
       
       override alternativa3d function get keyFramesList() : Keyframe
       {
-         return this.§_-ku§;
+         return this.name_ku;
       }
       
       override alternativa3d function set keyFramesList(value:Keyframe) : void
       {
-         this.§_-ku§ = TransformKey(value);
+         this.name_ku = TransformKey(value);
       }
       
       public function addKey(time:Number, matrix:Matrix3D) : TransformKey
       {
          var key:TransformKey = null;
          key = new TransformKey();
-         key.alternativa3d::_-qC = time;
+         key.name_qC = time;
          var components:Vector.<Vector3D> = matrix.decompose(Orientation3D.QUATERNION);
          key.alternativa3d::x = components[0].x;
          key.alternativa3d::y = components[0].y;
@@ -52,7 +52,7 @@ package alternativa.engine3d.animation.keys
       public function addKeyComponents(time:Number, x:Number = 0, y:Number = 0, z:Number = 0, rotationX:Number = 0, rotationY:Number = 0, rotationZ:Number = 0, scaleX:Number = 1, scaleY:Number = 1, scaleZ:Number = 1) : TransformKey
       {
          var key:TransformKey = new TransformKey();
-         key.alternativa3d::_-qC = time;
+         key.name_qC = time;
          key.alternativa3d::x = x;
          key.alternativa3d::y = y;
          key.alternativa3d::z = z;
@@ -118,8 +118,8 @@ package alternativa.engine3d.animation.keys
       override alternativa3d function blend(time:Number, weight:Number, state:AnimationState) : void
       {
          var prev:TransformKey = null;
-         var next:TransformKey = this.§_-ku§;
-         while(next != null && next.alternativa3d::_-qC < time)
+         var next:TransformKey = this.name_ku;
+         while(next != null && next.name_qC < time)
          {
             prev = next;
             next = next.alternativa3d::next;
@@ -128,7 +128,7 @@ package alternativa.engine3d.animation.keys
          {
             if(next != null)
             {
-               temp.interpolate(prev,next,(time - prev.alternativa3d::_-qC) / (next.alternativa3d::_-qC - prev.alternativa3d::_-qC));
+               temp.interpolate(prev,next,(time - prev.name_qC) / (next.name_qC - prev.name_qC));
                state.addWeightedTransform(temp,weight);
             }
             else

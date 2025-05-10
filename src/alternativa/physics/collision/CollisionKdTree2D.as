@@ -18,19 +18,19 @@ package alternativa.physics.collision
       
       public var threshold:Number = 0.1;
       
-      public var §_-eV§:int = 1;
+      public var name_eV:int = 1;
       
       public var parentTree:CollisionKdTree;
       
       public var parentNode:CollisionKdNode;
       
-      public var §_-5H§:CollisionKdNode;
+      public var name_5H:CollisionKdNode;
       
-      private var §_-94§:int;
+      private var name_94:int;
       
-      private var §_-ou§:Number;
+      private var name_ou:Number;
       
-      private var §_-P5§:Number;
+      private var name_P5:Number;
       
       public function CollisionKdTree2D(parentTree:CollisionKdTree, parentNode:CollisionKdNode)
       {
@@ -41,14 +41,14 @@ package alternativa.physics.collision
       
       public function createTree() : void
       {
-         this.§_-5H§ = new CollisionKdNode();
-         this.§_-5H§.boundBox = this.parentNode.boundBox.clone();
-         this.§_-5H§.indices = new Vector.<int>();
-         var numObjects:int = int(this.parentNode.§_-Xt§.length);
-         for(var i:int = 0; i < numObjects; this.§_-5H§.indices[i] = this.parentNode.§_-Xt§[i],i++)
+         this.name_5H = new CollisionKdNode();
+         this.name_5H.boundBox = this.parentNode.boundBox.clone();
+         this.name_5H.indices = new Vector.<int>();
+         var numObjects:int = int(this.parentNode.name_Xt.length);
+         for(var i:int = 0; i < numObjects; this.name_5H.indices[i] = this.parentNode.name_Xt[i],i++)
          {
          }
-         this.splitNode(this.§_-5H§);
+         this.splitNode(this.name_5H);
          splitCoordsX.length = splitCoordsY.length = splitCoordsZ.length = 0;
       }
       
@@ -64,7 +64,7 @@ package alternativa.physics.collision
          var bb:BoundBox = null;
          var min:Number = NaN;
          var max:Number = NaN;
-         if(node.indices.length <= this.§_-eV§)
+         if(node.indices.length <= this.name_eV)
          {
             return;
          }
@@ -123,8 +123,8 @@ package alternativa.physics.collision
             }
             i++;
          }
-         this.§_-94§ = -1;
-         this.§_-ou§ = 1e+308;
+         this.name_94 = -1;
+         this.name_ou = 1e+308;
          _nodeBB[0] = nodeBoundBox.minX;
          _nodeBB[1] = nodeBoundBox.minY;
          _nodeBB[2] = nodeBoundBox.minZ;
@@ -143,34 +143,34 @@ package alternativa.physics.collision
          {
             this.checkNodeAxis(node,2,numSplitCoordsZ,splitCoordsZ,_nodeBB);
          }
-         if(this.§_-94§ < 0)
+         if(this.name_94 < 0)
          {
             return;
          }
-         var axisX:Boolean = this.§_-94§ == 0;
-         var axisY:Boolean = this.§_-94§ == 1;
-         node.axis = this.§_-94§;
-         node.coord = this.§_-P5§;
-         node.§_-Gm§ = new CollisionKdNode();
-         node.§_-Gm§.parent = node;
-         node.§_-Gm§.boundBox = nodeBoundBox.clone();
-         node.§_-75§ = new CollisionKdNode();
-         node.§_-75§.parent = node;
-         node.§_-75§.boundBox = nodeBoundBox.clone();
+         var axisX:Boolean = this.name_94 == 0;
+         var axisY:Boolean = this.name_94 == 1;
+         node.axis = this.name_94;
+         node.coord = this.name_P5;
+         node.name_Gm = new CollisionKdNode();
+         node.name_Gm.parent = node;
+         node.name_Gm.boundBox = nodeBoundBox.clone();
+         node.name_75 = new CollisionKdNode();
+         node.name_75.parent = node;
+         node.name_75.boundBox = nodeBoundBox.clone();
          if(axisX)
          {
-            node.§_-Gm§.boundBox.maxX = node.§_-75§.boundBox.minX = this.§_-P5§;
+            node.name_Gm.boundBox.maxX = node.name_75.boundBox.minX = this.name_P5;
          }
          else if(axisY)
          {
-            node.§_-Gm§.boundBox.maxY = node.§_-75§.boundBox.minY = this.§_-P5§;
+            node.name_Gm.boundBox.maxY = node.name_75.boundBox.minY = this.name_P5;
          }
          else
          {
-            node.§_-Gm§.boundBox.maxZ = node.§_-75§.boundBox.minZ = this.§_-P5§;
+            node.name_Gm.boundBox.maxZ = node.name_75.boundBox.minZ = this.name_P5;
          }
-         var coordMin:Number = this.§_-P5§ - this.threshold;
-         var coordMax:Number = this.§_-P5§ + this.threshold;
+         var coordMin:Number = this.name_P5 - this.threshold;
+         var coordMax:Number = this.name_P5 + this.threshold;
          for(i = 0; i < numObjects; )
          {
             bb = staticBoundBoxes[objects[i]];
@@ -180,11 +180,11 @@ package alternativa.physics.collision
             {
                if(min < coordMin)
                {
-                  if(node.§_-Gm§.indices == null)
+                  if(node.name_Gm.indices == null)
                   {
-                     node.§_-Gm§.indices = new Vector.<int>();
+                     node.name_Gm.indices = new Vector.<int>();
                   }
-                  node.§_-Gm§.indices.push(objects[i]);
+                  node.name_Gm.indices.push(objects[i]);
                   objects[i] = -1;
                }
             }
@@ -192,11 +192,11 @@ package alternativa.physics.collision
             {
                if(max > coordMax)
                {
-                  if(node.§_-75§.indices == null)
+                  if(node.name_75.indices == null)
                   {
-                     node.§_-75§.indices = new Vector.<int>();
+                     node.name_75.indices = new Vector.<int>();
                   }
-                  node.§_-75§.indices.push(objects[i]);
+                  node.name_75.indices.push(objects[i]);
                   objects[i] = -1;
                }
             }
@@ -219,13 +219,13 @@ package alternativa.physics.collision
          {
             node.indices = null;
          }
-         if(node.§_-Gm§.indices != null)
+         if(node.name_Gm.indices != null)
          {
-            this.splitNode(node.§_-Gm§);
+            this.splitNode(node.name_Gm);
          }
-         if(node.§_-75§.indices != null)
+         if(node.name_75.indices != null)
          {
-            this.splitNode(node.§_-75§);
+            this.splitNode(node.name_75);
          }
       }
       
@@ -288,11 +288,11 @@ package alternativa.physics.collision
                   j++;
                }
                cost = areaNegative * numNegative + areaPositive * numPositive;
-               if(!conflict && cost < this.§_-ou§ && numNegative > 0 && numPositive > 0)
+               if(!conflict && cost < this.name_ou && numNegative > 0 && numPositive > 0)
                {
-                  this.§_-94§ = axis;
-                  this.§_-ou§ = cost;
-                  this.§_-P5§ = currSplitCoord;
+                  this.name_94 = axis;
+                  this.name_ou = cost;
+                  this.name_P5 = currSplitCoord;
                }
                for(j = i + 1; j < numSplitCoords; )
                {

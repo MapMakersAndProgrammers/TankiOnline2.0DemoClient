@@ -128,55 +128,55 @@ package alternativa.tanks
       
       private var gameKernel:GameKernel;
       
-      private var §_-D1§:int = 0;
+      private var name_D1:int = 0;
       
-      private var §_-Dl§:Vector.<Fire> = new Vector.<Fire>();
+      private var name_Dl:Vector.<Fire> = new Vector.<Fire>();
       
       private var tanks:Vector.<Entity>;
       
-      private var §_-Dx§:int;
+      private var name_Dx:int;
       
-      private var §_-LW§:TextureAtlas;
+      private var name_LW:TextureAtlas;
       
-      private var §_-J4§:TextureAtlas;
+      private var name_J4:TextureAtlas;
       
-      private var §_-FD§:TextureAtlas;
+      private var name_FD:TextureAtlas;
       
-      private var §_-Qv§:BitmapData;
+      private var name_Qv:BitmapData;
       
-      private var §_-Wv§:FollowCameraController;
+      private var name_Wv:FollowCameraController;
       
-      private var §_-al§:OrbitCameraController;
+      private var name_al:OrbitCameraController;
       
       private var freeCameraController:FreeCameraController;
       
-      private var §_-8c§:ICameraController;
+      private var name_8c:ICameraController;
       
-      private var §_-Xq§:LightsManager;
+      private var name_Xq:LightsManager;
       
-      private var §_-34§:DebugPanel;
+      private var name_34:DebugPanel;
       
-      private var §_-T2§:FloatingTextEffect;
+      private var name_T2:FloatingTextEffect;
       
-      private var §_-pn§:int;
+      private var name_pn:int;
       
-      private var §_-8m§:int;
+      private var name_8m:int;
       
-      private var §_-lw§:int;
+      private var name_lw:int;
       
-      private var §_-BT§:TextureResourceCache;
+      private var name_BT:TextureResourceCache;
       
-      private var §_-pb§:MultiBitmapTextureResourceCache;
+      private var name_pb:MultiBitmapTextureResourceCache;
       
-      private var §_-fa§:TextureResourceService;
+      private var name_fa:TextureResourceService;
       
-      private var §_-n6§:BattleMessagesSubsystem;
+      private var name_n6:BattleMessagesSubsystem;
       
       private var preloader:Preloader;
       
-      private var §_-3t§:Entity;
+      private var name_3t:Entity;
       
-      private var §_-3u§:DataCache = new DataCache();
+      private var name_3u:DataCache = new DataCache();
       
       public function TankTestTask(param1:int, param2:Config, param3:GameKernel, param4:FreeCameraController, param5:Preloader)
       {
@@ -186,27 +186,27 @@ package alternativa.tanks
          this.gameKernel = param3;
          this.freeCameraController = param4;
          this.tanks = new Vector.<Entity>();
-         this.§_-Dx§ = -1;
-         this.§_-Qv§ = new BitmapData(1,1);
-         this.§_-Qv§.setPixel(0,0,11141120);
-         this.§_-8c§ = param4;
-         this.§_-BT§ = new TextureResourceCache(param2.§_-WX§);
-         this.§_-pb§ = new MultiBitmapTextureResourceCache(param2.§_-WX§);
-         this.§_-fa§ = new TextureResourceService(param3);
+         this.name_Dx = -1;
+         this.name_Qv = new BitmapData(1,1);
+         this.name_Qv.setPixel(0,0,11141120);
+         this.name_8c = param4;
+         this.name_BT = new TextureResourceCache(param2.name_WX);
+         this.name_pb = new MultiBitmapTextureResourceCache(param2.name_WX);
+         this.name_fa = new TextureResourceService(param3);
          TanksTestingTool.testTask = this;
       }
       
       override public function start() : void
       {
-         var _loc1_:IInput = IInput(§_-Uw§.getTaskInterface(IInput));
+         var _loc1_:IInput = IInput(name_Uw.getTaskInterface(IInput));
          _loc1_.addKeyboardListener(KeyboardEventType.KEY_DOWN,this.onKeyDown);
-         var _loc2_:IEventSystem = IEventSystem(§_-Uw§.getTaskInterface(IEventSystem));
+         var _loc2_:IEventSystem = IEventSystem(name_Uw.getTaskInterface(IEventSystem));
          _loc2_.addEventListener(TrackedChassisGraphicsComponent.TANK_CLICK,this);
-         this.§_-Wv§ = new FollowCameraController(this.gameKernel.getRenderSystem().getCamera(),this.gameKernel.getPhysicsSystem().getPhysicsScene().collisionDetector,CollisionGroup.STATIC,_loc1_);
-         this.§_-al§ = new OrbitCameraController(this.gameKernel.getRenderSystem().getCamera(),this.gameKernel.getPhysicsSystem().getPhysicsScene().collisionDetector,CollisionGroup.STATIC,_loc1_);
-         this.§_-Xq§ = new LightsManager(this.gameKernel.getRenderSystem());
-         this.§_-34§ = new DebugPanel();
-         this.gameKernel.stage.addChild(this.§_-34§);
+         this.name_Wv = new FollowCameraController(this.gameKernel.getRenderSystem().getCamera(),this.gameKernel.getPhysicsSystem().getPhysicsScene().collisionDetector,CollisionGroup.STATIC,_loc1_);
+         this.name_al = new OrbitCameraController(this.gameKernel.getRenderSystem().getCamera(),this.gameKernel.getPhysicsSystem().getPhysicsScene().collisionDetector,CollisionGroup.STATIC,_loc1_);
+         this.name_Xq = new LightsManager(this.gameKernel.getRenderSystem());
+         this.name_34 = new DebugPanel();
+         this.gameKernel.stage.addChild(this.name_34);
          var _loc3_:IConsole = IConsole(OSGi.getInstance().getService(IConsole));
          _loc3_.setCommandHandler("addtank",this.consoleAddTankHandler);
          var _loc4_:XMLList = this.config.xml.elements("console-commands");
@@ -215,14 +215,14 @@ package alternativa.tanks
             this.executeConsoleCommands(_loc3_,this.config.xml.elements("console-commands")[0].toString());
          }
          _loc3_.setCommandHandler("lstanks",this.listTanks);
-         this.§_-n6§ = new BattleMessagesSubsystem(GameKernel.RENDER_SYSTEM_PRIORITY + 1,10,this.gameKernel.stage,0,0);
-         this.gameKernel.addTask(this.§_-n6§);
+         this.name_n6 = new BattleMessagesSubsystem(GameKernel.RENDER_SYSTEM_PRIORITY + 1,10,this.gameKernel.stage,0,0);
+         this.gameKernel.addTask(this.name_n6);
          this.gameKernel.getEventSystem().addEventListener(GameEvents.MAP_COMPLETE,this);
       }
       
       private function get activeTank() : Entity
       {
-         return this.§_-Dx§ >= 0 ? this.tanks[this.§_-Dx§] : null;
+         return this.name_Dx >= 0 ? this.tanks[this.name_Dx] : null;
       }
       
       private function selectTank(param1:int) : void
@@ -233,15 +233,15 @@ package alternativa.tanks
             {
                this.activeTank.dispatchEvent(TankEvents.SET_DISABLED_STATE);
             }
-            this.§_-Dx§ = param1;
+            this.name_Dx = param1;
             this.activeTank.dispatchEvent(TankEvents.SET_ACTIVE_STATE);
-            if(this.§_-8c§ == this.§_-Wv§)
+            if(this.name_8c == this.name_Wv)
             {
-               this.§_-Wv§.setTarget(this.activeTank);
+               this.name_Wv.setTarget(this.activeTank);
             }
-            if(this.§_-8c§ == this.§_-al§)
+            if(this.name_8c == this.name_al)
             {
-               this.§_-al§.setTarget(this.activeTank);
+               this.name_al.setTarget(this.activeTank);
             }
          }
       }
@@ -250,11 +250,11 @@ package alternativa.tanks
       {
          if(this.tanks.length > 0)
          {
-            this.selectTank((this.§_-Dx§ + 1) % this.tanks.length);
+            this.selectTank((this.name_Dx + 1) % this.tanks.length);
          }
-         if(this.§_-8c§ != this.§_-Wv§)
+         if(this.name_8c != this.name_Wv)
          {
-            this.setCameraController(this.§_-Wv§);
+            this.setCameraController(this.name_Wv);
          }
       }
       
@@ -263,7 +263,7 @@ package alternativa.tanks
          var _loc1_:int = 0;
          if(this.tanks.length > 0)
          {
-            _loc1_ = this.§_-Dx§ - 1;
+            _loc1_ = this.name_Dx - 1;
             if(_loc1_ < 0)
             {
                _loc1_ = this.tanks.length - 1;
@@ -303,7 +303,7 @@ package alternativa.tanks
                this.switchCameraController();
                break;
             case Keyboard.N:
-               if(this.§_-8c§ == this.freeCameraController)
+               if(this.name_8c == this.freeCameraController)
                {
                   FreeCameraController.targeted = !FreeCameraController.targeted;
                   break;
@@ -348,7 +348,7 @@ package alternativa.tanks
       
       private function createRandomBattleMessage() : void
       {
-         this.§_-n6§.addMessage("Message: " + Math.random(),ColorUtils.random());
+         this.name_n6.addMessage("Message: " + Math.random(),ColorUtils.random());
       }
       
       private function controlKeyPressed() : Boolean
@@ -379,7 +379,7 @@ package alternativa.tanks
          var _loc4_:Vector.<Material> = null;
          var _loc5_:int = 0;
          var _loc8_:TextureMaterial = null;
-         var _loc1_:Vector.<TextureResource> = this.§_-pb§.getFrames("thunder/explosion");
+         var _loc1_:Vector.<TextureResource> = this.name_pb.getFrames("thunder/explosion");
          var _loc2_:RenderSystem = this.gameKernel.getRenderSystem();
          for each(_loc3_ in _loc1_)
          {
@@ -390,7 +390,7 @@ package alternativa.tanks
          while(_loc5_ < _loc1_.length)
          {
             _loc8_ = new TextureMaterial(_loc1_[_loc5_]);
-            _loc8_.§_-L4§ = true;
+            _loc8_.name_L4 = true;
             _loc4_[_loc5_] = _loc8_;
             _loc5_++;
          }
@@ -402,8 +402,8 @@ package alternativa.tanks
       
       private function createThunderShotEffect() : void
       {
-         var _loc1_:TextureResource = this.§_-BT§.getResource("smoky/diffuse");
-         var _loc2_:TextureResource = this.§_-BT§.getResource("smoky/opacity");
+         var _loc1_:TextureResource = this.name_BT.getResource("smoky/diffuse");
+         var _loc2_:TextureResource = this.name_BT.getResource("smoky/opacity");
          var _loc3_:RenderSystem = this.gameKernel.getRenderSystem();
          _loc3_.useResource(_loc1_);
          _loc3_.useResource(_loc2_);
@@ -414,33 +414,33 @@ package alternativa.tanks
       
       private function selectPrevTurret() : void
       {
-         --this.§_-8m§;
-         if(this.§_-8m§ < 0)
+         --this.name_8m;
+         if(this.name_8m < 0)
          {
-            this.§_-8m§ += this.config.tankParts.numTurrets;
+            this.name_8m += this.config.tankParts.numTurrets;
          }
          this.rebuildActiveTank();
       }
       
       private function selectNextTurret() : void
       {
-         this.§_-8m§ = (this.§_-8m§ + 1) % this.config.tankParts.numTurrets;
+         this.name_8m = (this.name_8m + 1) % this.config.tankParts.numTurrets;
          this.rebuildActiveTank();
       }
       
       private function selectPrevHull() : void
       {
-         --this.§_-pn§;
-         if(this.§_-pn§ < 0)
+         --this.name_pn;
+         if(this.name_pn < 0)
          {
-            this.§_-pn§ += this.config.tankParts.numHulls;
+            this.name_pn += this.config.tankParts.numHulls;
          }
          this.rebuildActiveTank();
       }
       
       public function selectNextHull() : void
       {
-         this.§_-pn§ = (this.§_-pn§ + 1) % this.config.tankParts.numHulls;
+         this.name_pn = (this.name_pn + 1) % this.config.tankParts.numHulls;
          this.rebuildActiveTank();
       }
       
@@ -456,9 +456,9 @@ package alternativa.tanks
          {
             this.removeActiveTank();
             _loc2_ = new TankParams();
-            _loc2_.hull = this.config.tankParts.getHull(this.§_-pn§).id;
-            _loc2_.turret = this.config.tankParts.getTurret(this.§_-8m§).id;
-            _loc2_.coloring = this.§_-lw§;
+            _loc2_.hull = this.config.tankParts.getHull(this.name_pn).id;
+            _loc2_.turret = this.config.tankParts.getTurret(this.name_8m).id;
+            _loc2_.coloring = this.name_lw;
             _loc3_ = this.addTank(_loc2_);
             this.selectTank(this.tanks.length - 1);
             _loc4_ = IChassisPhysicsComponent(_loc1_.getComponentStrict(IChassisPhysicsComponent));
@@ -479,14 +479,14 @@ package alternativa.tanks
          var _loc1_:TurretGraphicsComponent = null;
          if(this.activeTank != null)
          {
-            if(this.§_-T2§ == null)
+            if(this.name_T2 == null)
             {
-               this.§_-T2§ = FloatingTextEffect(this.gameKernel.getObjectPoolManager().getObject(FloatingTextEffect));
+               this.name_T2 = FloatingTextEffect(this.gameKernel.getObjectPoolManager().getObject(FloatingTextEffect));
                _loc1_ = TurretGraphicsComponent(this.activeTank.getComponentStrict(TurretGraphicsComponent));
-               this.§_-T2§.init(5000,_loc1_.getObject3D(),this.onFloatingTextEffectDestroy);
-               this.gameKernel.getRenderSystem().each(this.§_-T2§);
+               this.name_T2.init(5000,_loc1_.getObject3D(),this.onFloatingTextEffectDestroy);
+               this.gameKernel.getRenderSystem().each(this.name_T2);
             }
-            this.§_-T2§.addMessage("Message " + Math.random(),65280);
+            this.name_T2.addMessage("Message " + Math.random(),65280);
          }
       }
       
@@ -512,18 +512,18 @@ package alternativa.tanks
                }
                break;
             case GameEvents.MAP_COMPLETE:
-               this.setCameraController(this.§_-Wv§);
+               this.setCameraController(this.name_Wv);
                if(this.config.xml.user.length() > 0)
                {
                   _loc6_ = TankParams.fromXML(this.config.xml.user[0],true);
-                  this.§_-lw§ = _loc6_.coloring;
-                  this.§_-pn§ = this.config.tankParts.getHullIndex(_loc6_.hull);
-                  this.§_-8m§ = this.config.tankParts.getTurretIndex(_loc6_.turret);
-                  if(this.§_-pn§ < 0)
+                  this.name_lw = _loc6_.coloring;
+                  this.name_pn = this.config.tankParts.getHullIndex(_loc6_.hull);
+                  this.name_8m = this.config.tankParts.getTurretIndex(_loc6_.turret);
+                  if(this.name_pn < 0)
                   {
                      throw new ArgumentError("bad hull: " + _loc6_.hull);
                   }
-                  if(this.§_-8m§ < 0)
+                  if(this.name_8m < 0)
                   {
                      throw new ArgumentError("bad turret: " + _loc6_.turret);
                   }
@@ -551,12 +551,12 @@ package alternativa.tanks
                if(_loc4_.length > 0)
                {
                   _loc11_ = _loc4_[0] as BitmapCubeTextureResource;
-                  _loc11_.left = this.config.§_-WX§.getTexture("left_01") as BitmapData;
-                  _loc11_.right = this.config.§_-WX§.getTexture("right_01") as BitmapData;
-                  _loc11_.back = this.config.§_-WX§.getTexture("back_01") as BitmapData;
-                  _loc11_.front = this.config.§_-WX§.getTexture("front_01") as BitmapData;
-                  _loc11_.top = this.config.§_-WX§.getTexture("top_01") as BitmapData;
-                  _loc11_.bottom = this.config.§_-WX§.getTexture("bottom_01") as BitmapData;
+                  _loc11_.left = this.config.name_WX.getTexture("left_01") as BitmapData;
+                  _loc11_.right = this.config.name_WX.getTexture("right_01") as BitmapData;
+                  _loc11_.back = this.config.name_WX.getTexture("back_01") as BitmapData;
+                  _loc11_.front = this.config.name_WX.getTexture("front_01") as BitmapData;
+                  _loc11_.top = this.config.name_WX.getTexture("top_01") as BitmapData;
+                  _loc11_.bottom = this.config.name_WX.getTexture("bottom_01") as BitmapData;
                   this.gameKernel.getRenderSystem().useResource(_loc11_);
                }
                this.createFire();
@@ -583,8 +583,8 @@ package alternativa.tanks
       
       private function addCachedTank() : void
       {
-         this.gameKernel.addEntity(this.§_-3t§);
-         this.tanks.push(this.§_-3t§);
+         this.gameKernel.addEntity(this.name_3t);
+         this.tanks.push(this.name_3t);
          this.selectTank(this.tanks.length - 1);
       }
       
@@ -601,7 +601,7 @@ package alternativa.tanks
          var _loc2_:TankHull = this.config.tankParts.getHullByID(param1.hull);
          var _loc3_:TankTurret = this.config.tankParts.getTurretByID(param1.turret);
          var _loc4_:BitmapData = this.config.tankParts.getColormap(param1.coloring);
-         var _loc5_:BitmapData = this.config.§_-WX§.getTexture(DEAD_TEXTURE_ID) as BitmapData;
+         var _loc5_:BitmapData = this.config.name_WX.getTexture(DEAD_TEXTURE_ID) as BitmapData;
          var _loc6_:Entity = new Entity(Entity.generateId());
          var _loc9_:LegacyTrackedChassisComponent = new LegacyTrackedChassisComponent(_loc2_,1000,80000);
          var _loc10_:int = conMaxSpeed.value;
@@ -646,9 +646,9 @@ package alternativa.tanks
          if(param1.isUser)
          {
          }
-         var _loc16_:Vector.<Material> = this.getFrameMaterials(this.§_-pb§.getFrames("tank_explosion/shock_wave"));
-         var _loc17_:Vector.<Material> = this.getFrameMaterials(this.§_-pb§.getFrames("tank_explosion/explosion"));
-         var _loc18_:Vector.<Material> = this.getFrameMaterials(this.§_-pb§.getFrames("tank_explosion/smoke"));
+         var _loc16_:Vector.<Material> = this.getFrameMaterials(this.name_pb.getFrames("tank_explosion/shock_wave"));
+         var _loc17_:Vector.<Material> = this.getFrameMaterials(this.name_pb.getFrames("tank_explosion/explosion"));
+         var _loc18_:Vector.<Material> = this.getFrameMaterials(this.name_pb.getFrames("tank_explosion/smoke"));
          var _loc19_:TankExplosionComponent = new TankExplosionComponent(1200,200,_loc16_,_loc17_,_loc18_);
          _loc6_.addComponent(_loc19_);
          _loc6_.initComponents();
@@ -657,13 +657,13 @@ package alternativa.tanks
       
       private function tracePos() : void
       {
-         var _loc1_:LegacyTrackedChassisComponent = LegacyTrackedChassisComponent(this.tanks[this.§_-Dx§].getComponent(LegacyTrackedChassisComponent));
+         var _loc1_:LegacyTrackedChassisComponent = LegacyTrackedChassisComponent(this.tanks[this.name_Dx].getComponent(LegacyTrackedChassisComponent));
          var _loc2_:Vector3 = new Vector3();
-         _loc1_.§_-UQ§.getEulerAngles(_loc2_);
+         _loc1_.name_UQ.getEulerAngles(_loc2_);
          _loc2_.x = _loc2_.x * 180 / Math.PI;
          _loc2_.y = _loc2_.y * 180 / Math.PI;
          _loc2_.z = _loc2_.z * 180 / Math.PI;
-         log.log("tank","position %1 %2 %3",_loc1_.§_-bi§.x.toFixed(),_loc1_.§_-bi§.y.toFixed(),_loc1_.§_-bi§.z.toFixed());
+         log.log("tank","position %1 %2 %3",_loc1_.name_bi.x.toFixed(),_loc1_.name_bi.y.toFixed(),_loc1_.name_bi.z.toFixed());
          log.log("tank","rotation %1 %2 %3",_loc2_.x.toFixed(),_loc2_.y.toFixed(),_loc2_.z.toFixed());
       }
       
@@ -675,14 +675,14 @@ package alternativa.tanks
          var _loc7_:XML = null;
          var _loc8_:Fire = null;
          var _loc9_:Array = null;
-         var _loc1_:TextureResource = this.§_-BT§.getResource("fire/diffuse");
-         var _loc2_:TextureResource = this.§_-BT§.getResource("fire/opacity");
+         var _loc1_:TextureResource = this.name_BT.getResource("fire/diffuse");
+         var _loc2_:TextureResource = this.name_BT.getResource("fire/opacity");
          var _loc3_:RenderSystem = this.gameKernel.getRenderSystem();
          _loc3_.useResource(_loc1_);
          _loc3_.useResource(_loc2_);
-         this.§_-LW§ = new TextureAtlas(_loc1_,_loc2_,8,8,0,16,30,true);
-         this.§_-J4§ = new TextureAtlas(_loc1_,_loc2_,8,8,16,16,30,true);
-         this.§_-FD§ = new TextureAtlas(_loc1_,_loc2_,8,8,32,32,45,true,0.5,0.5);
+         this.name_LW = new TextureAtlas(_loc1_,_loc2_,8,8,0,16,30,true);
+         this.name_J4 = new TextureAtlas(_loc1_,_loc2_,8,8,16,16,30,true);
+         this.name_FD = new TextureAtlas(_loc1_,_loc2_,8,8,32,32,45,true,0.5,0.5);
          if(this.config.xml.effects.length() > 0)
          {
             _loc4_ = this.config.xml.effects[0].fire;
@@ -691,11 +691,11 @@ package alternativa.tanks
             while(_loc5_ < _loc6_)
             {
                _loc7_ = _loc4_[_loc5_];
-               _loc8_ = new Fire(this.§_-LW§,this.§_-J4§,this.§_-FD§,5,true);
+               _loc8_ = new Fire(this.name_LW,this.name_J4,this.name_FD,5,true);
                _loc9_ = _loc7_.@position.toString().split(/\s+/);
                _loc8_.position = new Vector3D(Number(_loc9_[0]),Number(_loc9_[1]),Number(_loc9_[2]));
                _loc8_.scale = Number(_loc7_.@scale);
-               this.§_-Dl§.push(_loc8_);
+               this.name_Dl.push(_loc8_);
                this.gameKernel.getRenderSystem().addA3DEffect(_loc8_);
                _loc5_++;
             }
@@ -705,16 +705,16 @@ package alternativa.tanks
       private function createTracksMaterial(param1:TankHull) : TracksMaterial2
       {
          var _loc2_:ByteArrayMap = param1.textureData;
-         var _loc3_:ATFTextureResource = this.§_-fa§.getCompressedTextureResource(_loc2_.getValue(TankHullParser.KEY_TRACKS_DIFFUSE));
-         var _loc4_:ATFTextureResource = this.§_-fa§.getCompressedTextureResource(_loc2_.getValue(TankHullParser.KEY_TRACKS_NORMAL));
+         var _loc3_:ATFTextureResource = this.name_fa.getCompressedTextureResource(_loc2_.getValue(TankHullParser.KEY_TRACKS_DIFFUSE));
+         var _loc4_:ATFTextureResource = this.name_fa.getCompressedTextureResource(_loc2_.getValue(TankHullParser.KEY_TRACKS_NORMAL));
          var _loc5_:TracksMaterial2 = new TracksMaterial2();
          _loc5_.glossiness = 65;
-         _loc5_.§_-kj§ = 0.6;
+         _loc5_.name_kj = 0.6;
          _loc5_.diffuseMap = _loc3_;
          _loc5_.normalMap = _loc4_;
          if(_loc2_.getValue(TankHullParser.KEY_TRACKS_OPACITY) != null)
          {
-            _loc5_.opacityMap = this.§_-fa§.getCompressedTextureResource(_loc2_.getValue(TankHullParser.KEY_TRACKS_OPACITY));
+            _loc5_.opacityMap = this.name_fa.getCompressedTextureResource(_loc2_.getValue(TankHullParser.KEY_TRACKS_OPACITY));
          }
          return _loc5_;
       }
@@ -725,7 +725,7 @@ package alternativa.tanks
          var _loc2_:ByteArrayMap = param1.textureData;
          if(_loc2_.getValue(TankHullParser.KEY_SHADOW) != null)
          {
-            _loc3_ = this.§_-fa§.getCompressedTextureResource(_loc2_.getValue(TankHullParser.KEY_SHADOW));
+            _loc3_ = this.name_fa.getCompressedTextureResource(_loc2_.getValue(TankHullParser.KEY_SHADOW));
             return new GiShadowMaterial(_loc3_);
          }
          return null;
@@ -743,7 +743,7 @@ package alternativa.tanks
          var _loc6_:GenericTargetingSystem = new GenericTargetingSystem(Math.PI / 9,20,Math.PI / 9,20,_loc4_,_loc5_);
          _loc6_.setCollisionDetector(this.gameKernel.getPhysicsSystem().getPhysicsScene().collisionDetector);
          _loc6_.setTargetValidator(new SimpleTargetEvaluator());
-         var _loc7_:Vector.<TextureResource> = this.§_-pb§.getFrames("thunder/explosion");
+         var _loc7_:Vector.<TextureResource> = this.name_pb.getFrames("thunder/explosion");
          var _loc8_:RenderSystem = this.gameKernel.getRenderSystem();
          for each(_loc9_ in _loc7_)
          {
@@ -754,12 +754,12 @@ package alternativa.tanks
          while(_loc11_ < _loc7_.length)
          {
             _loc18_ = new TextureMaterial(_loc7_[_loc11_]);
-            _loc18_.§_-L4§ = true;
+            _loc18_.name_L4 = true;
             _loc10_[_loc11_] = _loc18_;
             _loc11_++;
          }
-         var _loc12_:TextureResource = this.§_-BT§.getResource("smoky/diffuse");
-         var _loc13_:TextureResource = this.§_-BT§.getResource("smoky/opacity");
+         var _loc12_:TextureResource = this.name_BT.getResource("smoky/diffuse");
+         var _loc13_:TextureResource = this.name_BT.getResource("smoky/opacity");
          _loc8_.useResource(_loc12_);
          _loc8_.useResource(_loc13_);
          DebugSplashDamageEffects.init(_loc12_,_loc13_);
@@ -770,7 +770,7 @@ package alternativa.tanks
          var _loc16_:BitmapData = new BitmapData(20,20,false,0);
          _loc16_.perlinNoise(20,20,3,13,false,true);
          ThunderShotEffectComponent.init(_loc12_,_loc13_);
-         var _loc17_:ThunderShotEffectComponent = new ThunderShotEffectComponent(this.§_-BT§.getResource("thunder/shot"));
+         var _loc17_:ThunderShotEffectComponent = new ThunderShotEffectComponent(this.name_BT.getResource("thunder/shot"));
          param1.addComponent(_loc17_);
       }
       
@@ -785,7 +785,7 @@ package alternativa.tanks
          var _loc6_:GenericTargetingSystem = new GenericTargetingSystem(Math.PI / 9,20,Math.PI / 9,20,_loc4_,_loc5_);
          _loc6_.setCollisionDetector(this.gameKernel.getPhysicsSystem().getPhysicsScene().collisionDetector);
          _loc6_.setTargetValidator(new SimpleTargetEvaluator());
-         var _loc7_:Vector.<TextureResource> = this.§_-pb§.getFrames("thunder/explosion");
+         var _loc7_:Vector.<TextureResource> = this.name_pb.getFrames("thunder/explosion");
          var _loc8_:RenderSystem = this.gameKernel.getRenderSystem();
          for each(_loc9_ in _loc7_)
          {
@@ -796,12 +796,12 @@ package alternativa.tanks
          while(_loc11_ < _loc7_.length)
          {
             _loc18_ = new TextureMaterial(_loc7_[_loc11_]);
-            _loc18_.§_-L4§ = true;
+            _loc18_.name_L4 = true;
             _loc10_[_loc11_] = _loc18_;
             _loc11_++;
          }
-         var _loc12_:TextureResource = this.§_-BT§.getResource("smoky/diffuse");
-         var _loc13_:TextureResource = this.§_-BT§.getResource("smoky/opacity");
+         var _loc12_:TextureResource = this.name_BT.getResource("smoky/diffuse");
+         var _loc13_:TextureResource = this.name_BT.getResource("smoky/opacity");
          _loc8_.useResource(_loc12_);
          _loc8_.useResource(_loc13_);
          DebugSplashDamageEffects.init(_loc12_,_loc13_);
@@ -812,7 +812,7 @@ package alternativa.tanks
          var _loc16_:BitmapData = new BitmapData(20,20,false,0);
          _loc16_.perlinNoise(20,20,3,13,false,true);
          ThunderShotEffectComponent.init(_loc12_,_loc13_);
-         var _loc17_:ThunderShotEffectComponent = new ThunderShotEffectComponent(this.§_-BT§.getResource("thunder/shot"));
+         var _loc17_:ThunderShotEffectComponent = new ThunderShotEffectComponent(this.name_BT.getResource("thunder/shot"));
          param1.addComponent(_loc17_);
       }
       
@@ -830,10 +830,10 @@ package alternativa.tanks
          var _loc11_:EnergyTargetingSystem = new EnergyTargetingSystem(Math.PI / 4,20,Math.PI / 4,20,100,_loc9_,_loc10_);
          var _loc13_:Number = WeaponConst.BASE_FORCE;
          var _loc14_:IWeaponDistanceWeakening = new DebugWeaponDistanceWeakening(2000,4000,0.5);
-         var _loc15_:BitmapData = this.config.§_-WX§.getTexture("plasma/charge") as BitmapData;
+         var _loc15_:BitmapData = this.config.name_WX.getTexture("plasma/charge") as BitmapData;
          var _loc16_:Vector.<BitmapData> = TextureUtils.parseImageStrip(_loc15_,_loc15_.height);
          var _loc17_:Vector.<Material> = this.getMaterialStrip(_loc16_);
-         var _loc18_:BitmapData = this.config.§_-WX§.getTexture("plasma/explosion") as BitmapData;
+         var _loc18_:BitmapData = this.config.name_WX.getTexture("plasma/explosion") as BitmapData;
          _loc16_ = TextureUtils.parseImageStrip(_loc18_,_loc18_.height);
          var _loc19_:Vector.<Material> = this.getMaterialStrip(_loc16_);
          var _loc20_:ColorTransform = new ColorTransform(5);
@@ -844,7 +844,7 @@ package alternativa.tanks
          param1.addComponent(_loc24_);
          var _loc25_:BitmapData = new BitmapData(20,20,false,0);
          _loc25_.perlinNoise(20,20,3,13,false,true);
-         var _loc26_:TextureResource = this.§_-BT§.getResource("plasma/shot");
+         var _loc26_:TextureResource = this.name_BT.getResource("plasma/shot");
          var _loc27_:SimpleWeaponShotSFXComponent = new SimpleWeaponShotSFXComponent(_loc26_,null);
          param1.addComponent(_loc27_);
       }
@@ -858,8 +858,8 @@ package alternativa.tanks
          var _loc11_:FlamethrowerSFXComponent = new FlamethrowerSFXComponent(3000,_loc7_,20,3000,_loc10_);
          param1.addComponent(_loc11_);
          var _loc16_:RenderSystem = this.gameKernel.getRenderSystem();
-         var _loc17_:TextureResource = this.§_-BT§.getResource("firebird/diffuse");
-         var _loc18_:TextureResource = this.§_-BT§.getResource("firebird/opacity");
+         var _loc17_:TextureResource = this.name_BT.getResource("firebird/diffuse");
+         var _loc18_:TextureResource = this.name_BT.getResource("firebird/opacity");
          _loc16_.useResource(_loc17_);
          _loc16_.useResource(_loc18_);
          FlamethrowerSFXComponent.init(_loc17_,_loc18_);
@@ -884,32 +884,32 @@ package alternativa.tanks
       private function removeActiveTank() : void
       {
          var _loc1_:Entity = null;
-         if(this.§_-Dx§ >= 0)
+         if(this.name_Dx >= 0)
          {
             _loc1_ = this.activeTank;
             this.gameKernel.removeEntity(_loc1_);
-            this.tanks.splice(this.§_-Dx§,1);
+            this.tanks.splice(this.name_Dx,1);
             if(this.tanks.length == 0)
             {
-               this.§_-Dx§ = -1;
+               this.name_Dx = -1;
             }
             else
             {
-               this.§_-Dx§--;
-               this.selectTank(this.§_-Dx§);
+               this.name_Dx--;
+               this.selectTank(this.name_Dx);
             }
          }
       }
       
       private function switchCameraController() : void
       {
-         if(this.§_-8c§ == this.§_-al§)
+         if(this.name_8c == this.name_al)
          {
-            this.setCameraController(this.§_-Wv§);
+            this.setCameraController(this.name_Wv);
          }
-         else if(this.§_-8c§ == this.freeCameraController)
+         else if(this.name_8c == this.freeCameraController)
          {
-            this.setCameraController(this.§_-al§);
+            this.setCameraController(this.name_al);
          }
          else
          {
@@ -921,13 +921,13 @@ package alternativa.tanks
       {
          if(this.activeTank != null)
          {
-            if(param1 == this.§_-Wv§)
+            if(param1 == this.name_Wv)
             {
-               this.§_-Wv§.setTarget(this.activeTank);
+               this.name_Wv.setTarget(this.activeTank);
             }
-            if(param1 == this.§_-al§)
+            if(param1 == this.name_al)
             {
-               this.§_-al§.setTarget(this.activeTank);
+               this.name_al.setTarget(this.activeTank);
             }
             if(param1 == this.freeCameraController)
             {
@@ -935,7 +935,7 @@ package alternativa.tanks
             }
          }
          this.gameKernel.getRenderSystem().setCameraController(param1);
-         this.§_-8c§ = param1;
+         this.name_8c = param1;
       }
       
       private function getPartMaterials(param1:TankPart, param2:BitmapData, param3:BitmapData, param4:Number, param5:Number) : TankPartMaterials
@@ -944,29 +944,29 @@ package alternativa.tanks
          var _loc16_:TankWheel = null;
          var _loc6_:RenderSystem = this.gameKernel.getRenderSystem();
          var _loc7_:ByteArrayMap = param1.textureData;
-         var _loc8_:ATFTextureResource = this.§_-fa§.getCompressedTextureResource(_loc7_.getValue(TankPartParser.KEY_DIFFUSE_MAP));
-         var _loc9_:ATFTextureResource = this.§_-fa§.getCompressedTextureResource(_loc7_.getValue(TankPartParser.KEY_NORMAL_MAP));
-         var _loc10_:ATFTextureResource = this.§_-fa§.getCompressedTextureResource(_loc7_.getValue(TankPartParser.KEY_SURFACE_MAP));
-         var _loc11_:BitmapTextureResource = this.§_-fa§.getBitmapTextureResource(param2);
-         var _loc12_:BitmapTextureResource = this.§_-fa§.getBitmapTextureResource(param3);
+         var _loc8_:ATFTextureResource = this.name_fa.getCompressedTextureResource(_loc7_.getValue(TankPartParser.KEY_DIFFUSE_MAP));
+         var _loc9_:ATFTextureResource = this.name_fa.getCompressedTextureResource(_loc7_.getValue(TankPartParser.KEY_NORMAL_MAP));
+         var _loc10_:ATFTextureResource = this.name_fa.getCompressedTextureResource(_loc7_.getValue(TankPartParser.KEY_SURFACE_MAP));
+         var _loc11_:BitmapTextureResource = this.name_fa.getBitmapTextureResource(param2);
+         var _loc12_:BitmapTextureResource = this.name_fa.getBitmapTextureResource(param3);
          var _loc13_:TankMaterial2 = new TankMaterial2(_loc11_,_loc8_,_loc9_,_loc10_);
          var _loc14_:TankMaterial2 = new TankMaterial2(_loc12_,_loc8_,_loc9_,_loc10_);
-         _loc13_.§_-jM§ = param4;
-         _loc13_.§_-Sf§ = param5;
-         _loc14_.§_-jM§ = param4;
-         _loc14_.§_-Sf§ = param5;
+         _loc13_.name_jM = param4;
+         _loc13_.name_Sf = param5;
+         _loc14_.name_jM = param4;
+         _loc14_.name_Sf = param5;
          _loc6_.useResource(param1.geometry);
          if(param1 is TankHull)
          {
             _loc15_ = TankHull(param1);
-            for each(var _loc19_ in _loc15_.§_-EY§.concat(_loc15_.§_-M4§))
+            for each(var _loc19_ in _loc15_.name_EY.concat(_loc15_.name_M4))
             {
                _loc16_ = _loc19_;
                _loc19_;
                _loc6_.useResource(_loc16_.geometry);
             }
-            _loc6_.useResource(_loc15_.§_-Ei§.geometry);
-            _loc6_.useResource(_loc15_.§_-iA§.geometry);
+            _loc6_.useResource(_loc15_.name_Ei.geometry);
+            _loc6_.useResource(_loc15_.name_iA.geometry);
             _loc6_.useResource(_loc15_.shadow.geometry);
          }
          return new TankPartMaterials(_loc13_,_loc14_);
@@ -979,7 +979,7 @@ package alternativa.tanks
       
       private function onFloatingTextEffectDestroy() : void
       {
-         this.§_-T2§ = null;
+         this.name_T2 = null;
          null;
       }
       
@@ -988,7 +988,7 @@ package alternativa.tanks
          var _loc4_:BitmapData = null;
          var _loc5_:Vector.<ColorTransformEntry> = null;
          var _loc6_:FlamethrowerSFXData = null;
-         var _loc1_:BitmapData = this.config.§_-WX§.getTexture("flame/sprite") as BitmapData;
+         var _loc1_:BitmapData = this.config.name_WX.getTexture("flame/sprite") as BitmapData;
          var _loc2_:Vector.<BitmapData> = TextureUtils.parseImageStrip(_loc1_);
          var _loc3_:Vector.<Material> = new Vector.<Material>();
          for each(var _loc9_ in _loc2_)
@@ -1039,7 +1039,7 @@ package alternativa.tanks
                {
                   _loc7_.z = Math.atan2(-_loc5_.normal.x,_loc5_.normal.y);
                }
-               _loc8_ = this.§_-pb§.getFrames("tank_explosion/shock_wave");
+               _loc8_ = this.name_pb.getFrames("tank_explosion/shock_wave");
                _loc9_ = this.getFrameMaterials(_loc8_);
                _loc10_ = AnimatedPlaneEffect(this.gameKernel.getObjectPoolManager().getObject(AnimatedPlaneEffect));
                _loc10_.init(conShockSize.value,_loc6_,_loc7_,_loc9_,30,conShockSizeGrow.value);
@@ -1061,7 +1061,7 @@ package alternativa.tanks
          var _loc1_:Entity = this.activeTank;
          if(_loc1_ != null)
          {
-            _loc2_ = this.§_-pb§.getFrames("tank_explosion/explosion");
+            _loc2_ = this.name_pb.getFrames("tank_explosion/explosion");
             _loc3_ = this.getFrameMaterials(_loc2_);
             _loc4_ = AnimatedSpriteEffect(this.gameKernel.getObjectPoolManager().getObject(AnimatedSpriteEffect));
             _loc5_ = IChassisPhysicsComponent(this.activeTank.getComponentStrict(IChassisPhysicsComponent));
@@ -1108,7 +1108,7 @@ package alternativa.tanks
             _loc7_ = 15;
             _loc8_ = -1000;
             _loc9_ = 400;
-            _loc10_ = this.§_-pb§.getFrames("tank_explosion/smoke");
+            _loc10_ = this.name_pb.getFrames("tank_explosion/smoke");
             _loc11_ = this.getFrameMaterials(_loc10_);
             _loc12_ = IChassisPhysicsComponent(this.activeTank.getComponentStrict(IChassisPhysicsComponent));
             _loc13_ = _loc12_.getBody().state.position.clone();
@@ -1137,7 +1137,7 @@ package alternativa.tanks
       private function getFrameMaterials(param1:Vector.<TextureResource>) : Vector.<Material>
       {
          FrameMaterialsFactory.INSTANCE.renderSystem = this.gameKernel.getRenderSystem();
-         return this.§_-3u§.getData(param1,FrameMaterialsFactory.INSTANCE) as Vector.<Material>;
+         return this.name_3u.getData(param1,FrameMaterialsFactory.INSTANCE) as Vector.<Material>;
       }
       
       private function listTanks(param1:IConsole, param2:Array) : void
@@ -1209,7 +1209,7 @@ class FrameMaterialsFactory implements IDataFactory
       {
          this.renderSystem.useResource(_loc2_[_loc5_]);
          _loc6_ = new TextureMaterial(_loc2_[_loc5_]);
-         _loc6_.§_-L4§ = true;
+         _loc6_.name_L4 = true;
          _loc4_[_loc5_] = _loc6_;
          _loc5_++;
       }

@@ -72,9 +72,9 @@ package alternativa.engine3d.lights
       
       override alternativa3d function checkBound(targetObject:Object3D) : Boolean
       {
-         var rScale:Number = Number(Math.sqrt(alternativa3d::_-cl.a * alternativa3d::_-cl.a + alternativa3d::_-cl.e * alternativa3d::_-cl.e + alternativa3d::_-cl.i * alternativa3d::_-cl.i));
-         rScale += Math.sqrt(alternativa3d::_-cl.b * alternativa3d::_-cl.b + alternativa3d::_-cl.f * alternativa3d::_-cl.f + alternativa3d::_-cl.j * alternativa3d::_-cl.j);
-         rScale += Math.sqrt(alternativa3d::_-cl.c * alternativa3d::_-cl.c + alternativa3d::_-cl.g * alternativa3d::_-cl.g + alternativa3d::_-cl.k * alternativa3d::_-cl.k);
+         var rScale:Number = Number(Math.sqrt(name_cl.a * name_cl.a + name_cl.e * name_cl.e + name_cl.i * name_cl.i));
+         rScale += Math.sqrt(name_cl.b * name_cl.b + name_cl.f * name_cl.f + name_cl.j * name_cl.j);
+         rScale += Math.sqrt(name_cl.c * name_cl.c + name_cl.g * name_cl.g + name_cl.k * name_cl.k);
          rScale /= 3;
          rScale *= this.attenuationEnd;
          rScale *= rScale;
@@ -84,9 +84,9 @@ package alternativa.engine3d.lights
          var minY:Number = bb.minY;
          var minZ:Number = bb.minZ;
          var maxX:Number = bb.maxX;
-         var px:Number = Number(alternativa3d::_-cl.d);
-         var py:Number = Number(alternativa3d::_-cl.h);
-         var pz:Number = Number(alternativa3d::_-cl.l);
+         var px:Number = Number(name_cl.d);
+         var py:Number = Number(name_cl.h);
+         var pz:Number = Number(name_cl.l);
          var maxY:Number = bb.maxY;
          var maxZ:Number = bb.maxZ;
          if(px < minX)

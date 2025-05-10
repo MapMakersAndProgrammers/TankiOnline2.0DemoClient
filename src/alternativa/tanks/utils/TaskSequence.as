@@ -7,7 +7,7 @@ package alternativa.tanks.utils
    {
       private var tasks:Vector.<Task>;
       
-      private var §_-LN§:int;
+      private var name_LN:int;
       
       public function TaskSequence()
       {
@@ -33,7 +33,7 @@ package alternativa.tanks.utils
       {
          if(this.tasks.length > 0)
          {
-            this.§_-LN§ = 0;
+            this.name_LN = 0;
             this.runCurrentTask();
          }
          else
@@ -44,13 +44,13 @@ package alternativa.tanks.utils
       
       private function runCurrentTask() : void
       {
-         this.tasks[this.§_-LN§].run();
+         this.tasks[this.name_LN].run();
       }
       
       internal function taskComplete(param1:Task) : void
       {
          dispatchEvent(new TaskEvent(TaskEvent.TASK_COMPLETE,1,this.tasks.length));
-         if(++this.§_-LN§ < this.tasks.length)
+         if(++this.name_LN < this.tasks.length)
          {
             this.runCurrentTask();
          }

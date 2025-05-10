@@ -17,25 +17,25 @@ package alternativa.engine3d.loaders.collada
    
    public class DaeController extends DaeElement
    {
-      private var §_-A6§:Vector.<Vector.<Number>>;
+      private var name_A6:Vector.<Vector.<Number>>;
       
-      private var §_-2j§:Array;
+      private var name_2j:Array;
       
       private var indices:Array;
       
-      private var §_-4h§:DaeInput;
+      private var name_4h:DaeInput;
       
-      private var §_-NK§:DaeInput;
+      private var name_NK:DaeInput;
       
-      private var §_-5O§:int;
+      private var name_5O:int;
       
       private var geometry:Geometry;
       
       private var primitives:Vector.<DaePrimitive>;
       
-      private var §_-1U§:int = 0;
+      private var name_1U:int = 0;
       
-      private var §_-I§:Vector.<Number>;
+      private var name_I:Vector.<Number>;
       
       public function DaeController(data:XML, document:DaeDocument)
       {
@@ -78,7 +78,7 @@ package alternativa.engine3d.loaders.collada
          {
             return false;
          }
-         this.§_-2j§ = parseIntsArray(vcountsXML);
+         this.name_2j = parseIntsArray(vcountsXML);
          var indicesXML:XML = vertexWeightsXML.v[0];
          if(indicesXML == null)
          {
@@ -87,23 +87,23 @@ package alternativa.engine3d.loaders.collada
          this.indices = parseIntsArray(indicesXML);
          this.parseInputs();
          this.parseJointsBindMatrices();
-         for(i = 0; i < this.§_-2j§.length; )
+         for(i = 0; i < this.name_2j.length; )
          {
-            count = int(this.§_-2j§[i]);
-            if(this.§_-1U§ < count)
+            count = int(this.name_2j[i]);
+            if(this.name_1U < count)
             {
-               this.§_-1U§ = count;
+               this.name_1U = count;
             }
             i++;
          }
          var geom:DaeGeometry = this.daeGeometry;
-         this.§_-I§ = this.getBindShapeMatrix();
+         this.name_I = this.getBindShapeMatrix();
          if(geom != null)
          {
             geom.parse();
-            vertices = geom.§_-FV§;
+            vertices = geom.name_FV;
             source = geom.geometry;
-            localMaxJointsPerVertex = this.§_-1U§ % 2 != 0 ? this.§_-1U§ + 1 : this.§_-1U§;
+            localMaxJointsPerVertex = this.name_1U % 2 != 0 ? this.name_1U + 1 : this.name_1U;
             this.geometry = new Geometry();
             this.geometry.alternativa3d::_indices = source.alternativa3d::_indices.slice();
             attributes = source.getVertexStreamAttributes(0);
@@ -165,9 +165,9 @@ package alternativa.engine3d.loaders.collada
             y = Number(data.readFloat());
             z = Number(data.readFloat());
             data.position -= 12;
-            data.writeFloat(x * this.§_-I§[0] + y * this.§_-I§[1] + z * this.§_-I§[2] + this.§_-I§[3]);
-            data.writeFloat(x * this.§_-I§[4] + y * this.§_-I§[5] + z * this.§_-I§[6] + this.§_-I§[7]);
-            data.writeFloat(x * this.§_-I§[8] + y * this.§_-I§[9] + z * this.§_-I§[10] + this.§_-I§[11]);
+            data.writeFloat(x * this.name_I[0] + y * this.name_I[1] + z * this.name_I[2] + this.name_I[3]);
+            data.writeFloat(x * this.name_I[4] + y * this.name_I[5] + z * this.name_I[6] + this.name_I[7]);
+            data.writeFloat(x * this.name_I[8] + y * this.name_I[9] + z * this.name_I[10] + this.name_I[11]);
          }
       }
       
@@ -184,9 +184,9 @@ package alternativa.engine3d.loaders.collada
          var index:int = 0;
          var jointIndex:int = 0;
          var weightIndex:int = 0;
-         var jointsOffset:int = this.§_-4h§.offset;
-         var weightsOffset:int = this.§_-NK§.offset;
-         var weightsSource:DaeSource = this.§_-NK§.prepareSource(1);
+         var jointsOffset:int = this.name_4h.offset;
+         var weightsOffset:int = this.name_NK.offset;
+         var weightsSource:DaeSource = this.name_NK.prepareSource(1);
          var weights:Vector.<Number> = weightsSource.numbers;
          var weightsStride:int = weightsSource.stride;
          var verticesDict:Dictionary = new Dictionary();
@@ -198,25 +198,25 @@ package alternativa.engine3d.loaders.collada
             vertex = vertices[i];
             if(vertex != null)
             {
-               vec = verticesDict[vertex.§_-Eq§];
+               vec = verticesDict[vertex.name_Eq];
                if(vec == null)
                {
-                  vec = verticesDict[vertex.§_-Eq§] = new Vector.<uint>();
+                  vec = verticesDict[vertex.name_Eq] = new Vector.<uint>();
                }
-               vec.push(vertex.§_-AR§);
+               vec.push(vertex.name_AR);
             }
          }
          var vertexIndex:int = 0;
-         for(i = 0,count = int(this.§_-2j§.length); i < count; i++)
+         for(i = 0,count = int(this.name_2j.length); i < count; i++)
          {
-            jointsPerVertex = int(this.§_-2j§[i]);
+            jointsPerVertex = int(this.name_2j[i]);
             vertexOutIndices = verticesDict[i];
             for(j = 0; j < vertexOutIndices.length; j++)
             {
                byteArray.position = vertexOutIndices[j] * localMaxJointsPerVertex * 8;
                for(k = 0; k < jointsPerVertex; k++)
                {
-                  index = this.§_-5O§ * (vertexIndex + k);
+                  index = this.name_5O * (vertexIndex + k);
                   jointIndex = int(this.indices[int(index + jointsOffset)]);
                   if(jointIndex >= 0)
                   {
@@ -243,7 +243,7 @@ package alternativa.engine3d.loaders.collada
          var offset:int = 0;
          var inputsList:XMLList = data.skin.vertex_weights.input;
          var maxInputOffset:int = 0;
-         for(var i:int = 0,var count:int = int(inputsList.length()); i < count; offset = input.offset,maxInputOffset = offset > maxInputOffset ? offset : maxInputOffset,i++)
+         for(var i:int = 0, count:int = int(inputsList.length()); i < count; offset = input.offset,maxInputOffset = offset > maxInputOffset ? offset : maxInputOffset,i++)
          {
             input = new DaeInput(inputsList[i],document);
             semantic = input.semantic;
@@ -254,20 +254,20 @@ package alternativa.engine3d.loaders.collada
             switch(semantic)
             {
                case "JOINT":
-                  if(this.§_-4h§ == null)
+                  if(this.name_4h == null)
                   {
-                     this.§_-4h§ = input;
+                     this.name_4h = input;
                   }
                   break;
                case "WEIGHT":
-                  if(this.§_-NK§ == null)
+                  if(this.name_NK == null)
                   {
-                     this.§_-NK§ = input;
+                     this.name_NK = input;
                   }
                   break;
             }
          }
-         this.§_-5O§ = maxInputOffset + 1;
+         this.name_5O = maxInputOffset + 1;
       }
       
       private function parseJointsBindMatrices() : void
@@ -290,12 +290,12 @@ package alternativa.engine3d.loaders.collada
                {
                   stride = jointsSource.stride;
                   count = jointsSource.numbers.length / stride;
-                  this.§_-A6§ = new Vector.<Vector.<Number>>(count);
+                  this.name_A6 = new Vector.<Vector.<Number>>(count);
                   for(i = 0; i < count; i++)
                   {
                      index = stride * i;
                      matrix = new Vector.<Number>(16);
-                     this.§_-A6§[i] = matrix;
+                     this.name_A6[i] = matrix;
                      for(j = 0; j < 16; j++)
                      {
                         matrix[j] = jointsSource.numbers[int(index + j)];
@@ -323,13 +323,13 @@ package alternativa.engine3d.loaders.collada
          var skinXML:XML = data.skin[0];
          if(skinXML != null)
          {
-            this.§_-I§ = this.getBindShapeMatrix();
-            numJoints = int(this.§_-A6§.length);
-            skin = new Skin(this.§_-1U§,numJoints);
+            this.name_I = this.getBindShapeMatrix();
+            numJoints = int(this.name_A6.length);
+            skin = new Skin(this.name_1U,numJoints);
             skin.geometry = this.geometry;
             joints = this.addJointsToSkin(skin,topmostJoints,this.findNodes(skeletons));
             this.setJointsBindMatrices(joints);
-            skin.§_-WA§ = this.collectRenderedJoints(joints,numJoints);
+            skin.name_WA = this.collectRenderedJoints(joints,numJoints);
             if(this.primitives != null)
             {
                for(i = 0; i < this.primitives.length; i++)
@@ -376,7 +376,7 @@ package alternativa.engine3d.loaders.collada
          }
          var result:AnimationClip = new AnimationClip();
          var resultObjects:Array = [skin];
-         for(var i:int = 0,var count:int = int(joints.length); i < count; i++)
+         for(var i:int = 0, count:int = int(joints.length); i < count; i++)
          {
             animatedObject = joints[i];
             clip = animatedObject.animation;
@@ -395,14 +395,14 @@ package alternativa.engine3d.loaders.collada
             object.name = animatedObject.jointNode.animName;
             resultObjects.push(object);
          }
-         result.alternativa3d::_-Kq = resultObjects;
+         result.name_Kq = resultObjects;
          return result;
       }
       
       private function hasJointsAnimation(joints:Vector.<DaeObject>) : Boolean
       {
          var object:DaeObject = null;
-         for(var i:int = 0,var count:int = int(joints.length); i < count; )
+         for(var i:int = 0, count:int = int(joints.length); i < count; )
          {
             object = joints[i];
             if(object.animation != null)
@@ -418,10 +418,10 @@ package alternativa.engine3d.loaders.collada
       {
          var animatedJoint:DaeObject = null;
          var bindMatrix:Vector.<Number> = null;
-         for(var i:int = 0,var count:int = int(this.§_-A6§.length); i < count; i++)
+         for(var i:int = 0, count:int = int(this.name_A6.length); i < count; i++)
          {
             animatedJoint = animatedJoints[i];
-            bindMatrix = this.§_-A6§[i];
+            bindMatrix = this.name_A6[i];
             Joint(animatedJoint.object).alternativa3d::setBindPoseMatrix(bindMatrix);
          }
       }
@@ -472,7 +472,7 @@ package alternativa.engine3d.loaders.collada
          var child:DaeNode = null;
          var joint:Joint = null;
          var children:Vector.<DaeNode> = parentNode.nodes;
-         for(var i:int = 0,var count:int = int(children.length); i < count; )
+         for(var i:int = 0, count:int = int(children.length); i < count; )
          {
             child = children[i];
             if(child in nodes)
@@ -503,7 +503,7 @@ package alternativa.engine3d.loaders.collada
       {
          var child:DaeNode = null;
          var children:Vector.<DaeNode> = parentNode.nodes;
-         for(var i:int = 0,var count:int = int(children.length); i < count; )
+         for(var i:int = 0, count:int = int(children.length); i < count; )
          {
             child = children[i];
             if(child in nodes || this.hasJointInDescendants(child,nodes))

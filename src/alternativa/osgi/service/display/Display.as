@@ -6,39 +6,39 @@ package alternativa.osgi.service.display
    
    public class Display implements IDisplay
    {
-      private var §_-We§:Stage;
+      private var name_We:Stage;
       
-      private var §_-j§:DisplayObjectContainer;
+      private var name_j:DisplayObjectContainer;
       
-      private var §finally§:DisplayObjectContainer;
+      private var name_finally:DisplayObjectContainer;
       
-      private var §_-TJ§:DisplayObjectContainer;
+      private var name_TJ:DisplayObjectContainer;
       
-      private var §_-6o§:DisplayObjectContainer;
+      private var name_6o:DisplayObjectContainer;
       
-      private var §_-Xl§:DisplayObjectContainer;
+      private var name_Xl:DisplayObjectContainer;
       
-      private var §_-Ha§:DisplayObjectContainer;
+      private var name_Ha:DisplayObjectContainer;
       
-      private var §_-5X§:DisplayObjectContainer;
+      private var name_5X:DisplayObjectContainer;
       
-      private var §_-Qq§:DisplayObjectContainer;
+      private var name_Qq:DisplayObjectContainer;
       
-      private var §_-Ow§:DisplayObjectContainer;
+      private var name_Ow:DisplayObjectContainer;
       
       public function Display(rootContainer:DisplayObjectContainer)
       {
          super();
-         this.§_-We§ = rootContainer.stage;
-         this.§_-j§ = rootContainer;
-         this.§finally§ = this.addLayerSprite();
-         this.§_-TJ§ = this.addLayerSprite();
-         this.§_-6o§ = this.addLayerSprite();
-         this.§_-Xl§ = this.addLayerSprite();
-         this.§_-Ha§ = this.addLayerSprite();
-         this.§_-5X§ = this.addLayerSprite();
-         this.§_-Qq§ = this.addLayerSprite();
-         this.§_-Ow§ = this.addLayerSprite();
+         this.name_We = rootContainer.stage;
+         this.name_j = rootContainer;
+         this.name_finally = this.addLayerSprite();
+         this.name_TJ = this.addLayerSprite();
+         this.name_6o = this.addLayerSprite();
+         this.name_Xl = this.addLayerSprite();
+         this.name_Ha = this.addLayerSprite();
+         this.name_5X = this.addLayerSprite();
+         this.name_Qq = this.addLayerSprite();
+         this.name_Ow = this.addLayerSprite();
       }
       
       private function addLayerSprite() : Sprite
@@ -46,58 +46,58 @@ package alternativa.osgi.service.display
          var sprite:Sprite = new Sprite();
          sprite.mouseEnabled = false;
          sprite.tabEnabled = false;
-         this.§_-j§.addChild(sprite);
+         this.name_j.addChild(sprite);
          return sprite;
       }
       
       public function get stage() : Stage
       {
-         return this.§_-We§;
+         return this.name_We;
       }
       
       public function get mainContainer() : DisplayObjectContainer
       {
-         return this.§_-j§;
+         return this.name_j;
       }
       
       public function get backgroundLayer() : DisplayObjectContainer
       {
-         return this.§finally§;
+         return this.name_finally;
       }
       
       public function get contentLayer() : DisplayObjectContainer
       {
-         return this.§_-TJ§;
+         return this.name_TJ;
       }
       
       public function get contentUILayer() : DisplayObjectContainer
       {
-         return this.§_-6o§;
+         return this.name_6o;
       }
       
       public function get systemLayer() : DisplayObjectContainer
       {
-         return this.§_-Xl§;
+         return this.name_Xl;
       }
       
       public function get systemUILayer() : DisplayObjectContainer
       {
-         return this.§_-Ha§;
+         return this.name_Ha;
       }
       
       public function get dialogsLayer() : DisplayObjectContainer
       {
-         return this.§_-5X§;
+         return this.name_5X;
       }
       
       public function get noticesLayer() : DisplayObjectContainer
       {
-         return this.§_-Qq§;
+         return this.name_Qq;
       }
       
       public function get cursorLayer() : DisplayObjectContainer
       {
-         return this.§_-Ow§;
+         return this.name_Ow;
       }
    }
 }

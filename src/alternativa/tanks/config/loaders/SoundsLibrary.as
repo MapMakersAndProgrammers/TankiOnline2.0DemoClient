@@ -12,7 +12,7 @@ package alternativa.tanks.config.loaders
    {
       private var sounds:Object = {};
       
-      private var §_-d5§:TaskSequence;
+      private var name_d5:TaskSequence;
       
       public function SoundsLibrary(param1:Config)
       {
@@ -39,24 +39,24 @@ package alternativa.tanks.config.loaders
          }
          var _loc1_:XML = config.xml.sounds[0];
          var _loc2_:String = StringUtils.makeCorrectBaseUrl(_loc1_.@baseUrl);
-         this.§_-d5§ = new TaskSequence();
+         this.name_d5 = new TaskSequence();
          for each(_loc3_ in _loc1_.sound)
          {
-            this.§_-d5§.addTask(new SoundLoader(_loc3_.@id,_loc2_ + _loc3_.@file,this));
+            this.name_d5.addTask(new SoundLoader(_loc3_.@id,_loc2_ + _loc3_.@file,this));
          }
-         this.§_-d5§.addEventListener(TaskEvent.TASK_COMPLETE,this.onTaskComplete);
-         this.§_-d5§.addEventListener(Event.COMPLETE,this.onSequenceComplete);
-         this.§_-d5§.run();
+         this.name_d5.addEventListener(TaskEvent.TASK_COMPLETE,this.onTaskComplete);
+         this.name_d5.addEventListener(Event.COMPLETE,this.onSequenceComplete);
+         this.name_d5.run();
       }
       
       private function onTaskComplete(param1:TaskEvent) : void
       {
-         dispatchEvent(new TaskEvent(TaskEvent.TASK_PROGRESS,1,this.§_-d5§.length));
+         dispatchEvent(new TaskEvent(TaskEvent.TASK_PROGRESS,1,this.name_d5.length));
       }
       
       private function onSequenceComplete(param1:Event) : void
       {
-         this.§_-d5§ = null;
+         this.name_d5 = null;
          completeTask();
       }
    }
@@ -67,6 +67,7 @@ import flash.events.Event;
 import flash.events.EventDispatcher;
 import flash.media.Sound;
 import flash.net.URLRequest;
+import alternativa.tanks.config.loaders.SoundsLibrary;
 
 class SoundLoader extends Task
 {

@@ -14,15 +14,15 @@ package _codec.versions.version2.a3d.animation
    {
       public static var log:IClientLog = IClientLog(OSGi.getInstance().getService(IClientLog));
       
-      private var §_-2o§:ICodec;
+      private var name_2o:ICodec;
       
-      private var §_-HX§:ICodec;
+      private var name_HX:ICodec;
       
-      private var §_-XW§:ICodec;
+      private var name_XW:ICodec;
       
-      private var §_-Td§:ICodec;
+      private var name_Td:ICodec;
       
-      private var §_-Z-§:ICodec;
+      private var name_Z:ICodec;
       
       public function CodecA3D2AnimationClip()
       {
@@ -31,25 +31,25 @@ package _codec.versions.version2.a3d.animation
       
       public function init(protocol:IProtocol) : void
       {
-         this.§_-2o§ = protocol.getCodec(new TypeCodecInfo(int,false));
-         this.§_-HX§ = protocol.getCodec(new TypeCodecInfo(Boolean,false));
-         this.§_-XW§ = protocol.getCodec(new TypeCodecInfo(String,true));
-         this.§_-Td§ = protocol.getCodec(new CollectionCodecInfo(new TypeCodecInfo(Long,false),true,1));
-         this.§_-Z-§ = protocol.getCodec(new CollectionCodecInfo(new TypeCodecInfo(int,false),false,1));
+         this.name_2o = protocol.getCodec(new TypeCodecInfo(int,false));
+         this.name_HX = protocol.getCodec(new TypeCodecInfo(Boolean,false));
+         this.name_XW = protocol.getCodec(new TypeCodecInfo(String,true));
+         this.name_Td = protocol.getCodec(new CollectionCodecInfo(new TypeCodecInfo(Long,false),true,1));
+         this.name_Z = protocol.getCodec(new CollectionCodecInfo(new TypeCodecInfo(int,false),false,1));
       }
       
       public function decode(protocolBuffer:ProtocolBuffer) : Object
       {
          log = IClientLog(OSGi.getInstance().getService(IClientLog));
-         var value_id:int = int(this.§_-2o§.decode(protocolBuffer) as int);
+         var value_id:int = int(this.name_2o.decode(protocolBuffer) as int);
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.animation.A3D2AnimationClip","id",value_id);
-         var value_loop:Boolean = Boolean(this.§_-HX§.decode(protocolBuffer) as Boolean);
+         var value_loop:Boolean = Boolean(this.name_HX.decode(protocolBuffer) as Boolean);
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.animation.A3D2AnimationClip","loop",value_loop);
-         var value_name:String = this.§_-XW§.decode(protocolBuffer) as String;
+         var value_name:String = this.name_XW.decode(protocolBuffer) as String;
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.animation.A3D2AnimationClip","name",value_name);
-         var value_objectIDs:Vector.<Long> = this.§_-Td§.decode(protocolBuffer) as Vector.<Long>;
+         var value_objectIDs:Vector.<Long> = this.name_Td.decode(protocolBuffer) as Vector.<Long>;
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.animation.A3D2AnimationClip","objectIDs",value_objectIDs);
-         var value_tracks:Vector.<int> = this.§_-Z-§.decode(protocolBuffer) as Vector.<int>;
+         var value_tracks:Vector.<int> = this.name_Z.decode(protocolBuffer) as Vector.<int>;
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.animation.A3D2AnimationClip","tracks",value_tracks);
          return new A3D2AnimationClip(value_id,value_loop,value_name,value_objectIDs,value_tracks);
       }
@@ -61,11 +61,11 @@ package _codec.versions.version2.a3d.animation
             throw new Error("Object is null. Use @ProtocolOptional annotation.");
          }
          var struct:A3D2AnimationClip = A3D2AnimationClip(object);
-         this.§_-2o§.encode(protocolBuffer,struct.id);
-         this.§_-HX§.encode(protocolBuffer,struct.loop);
-         this.§_-XW§.encode(protocolBuffer,struct.name);
-         this.§_-Td§.encode(protocolBuffer,struct.objectIDs);
-         this.§_-Z-§.encode(protocolBuffer,struct.tracks);
+         this.name_2o.encode(protocolBuffer,struct.id);
+         this.name_HX.encode(protocolBuffer,struct.loop);
+         this.name_XW.encode(protocolBuffer,struct.name);
+         this.name_Td.encode(protocolBuffer,struct.objectIDs);
+         this.name_Z.encode(protocolBuffer,struct.tracks);
       }
    }
 }

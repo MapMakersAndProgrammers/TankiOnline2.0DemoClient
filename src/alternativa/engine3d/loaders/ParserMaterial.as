@@ -22,11 +22,11 @@ package alternativa.engine3d.loaders
       
       public var transparency:Number = 0;
       
-      public var §_-3m§:String = "diffuse";
+      public var name_3m:String = "diffuse";
       
       private var textureMaterial:TextureMaterial;
       
-      private var §_-h7§:FillMaterial;
+      private var name_h7:FillMaterial;
       
       public function ParserMaterial()
       {
@@ -51,22 +51,22 @@ package alternativa.engine3d.loaders
       override alternativa3d function collectDraws(camera:Camera3D, surface:Surface, geometry:Geometry, lights:Vector.<Light3D>, lightsLength:int, objectRenderPriority:int = -1) : void
       {
          var map:ExternalTextureResource = null;
-         var colorO:Object = this.colors[this.§_-3m§];
+         var colorO:Object = this.colors[this.name_3m];
          if(colorO != null)
          {
-            if(this.§_-h7§ == null)
+            if(this.name_h7 == null)
             {
-               this.§_-h7§ = new FillMaterial(int(colorO));
+               this.name_h7 = new FillMaterial(int(colorO));
             }
             else
             {
-               this.§_-h7§.color = int(colorO);
+               this.name_h7.color = int(colorO);
             }
-            this.§_-h7§.alternativa3d::collectDraws(camera,surface,geometry,lights,lightsLength,objectRenderPriority);
+            this.name_h7.alternativa3d::collectDraws(camera,surface,geometry,lights,lightsLength,objectRenderPriority);
          }
          else
          {
-            map = this.textures[this.§_-3m§];
+            map = this.textures[this.name_3m];
             if(map != null)
             {
                if(this.textureMaterial == null)

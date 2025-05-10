@@ -8,14 +8,14 @@ package alternativa.tanks.game.subsystems.rendersystem
    {
       private var context:Context3D;
       
-      private var §_-hg§:Dictionary;
+      private var name_hg:Dictionary;
       
-      private var §_-Wf§:Vector.<Resource>;
+      private var name_Wf:Vector.<Resource>;
       
       public function ResourceManager()
       {
          super();
-         this.§_-hg§ = new Dictionary();
+         this.name_hg = new Dictionary();
       }
       
       public function useResource(resource:Resource) : void
@@ -31,8 +31,8 @@ package alternativa.tanks.game.subsystems.rendersystem
          {
             resource.upload(this.context);
          }
-         var refCount:int = int(this.§_-hg§[resource]);
-         this.§_-hg§[resource] = refCount + 1;
+         var refCount:int = int(this.name_hg[resource]);
+         this.name_hg[resource] = refCount + 1;
       }
       
       public function useResources(resources:Vector.<Resource>) : void
@@ -46,7 +46,7 @@ package alternativa.tanks.game.subsystems.rendersystem
       
       public function releaseResource(resource:Resource) : void
       {
-         var refCount:int = int(this.§_-hg§[resource]);
+         var refCount:int = int(this.name_hg[resource]);
          if(refCount > 0)
          {
             if(refCount == 1)
@@ -55,7 +55,7 @@ package alternativa.tanks.game.subsystems.rendersystem
             }
             else
             {
-               this.§_-hg§[resource] = refCount - 1;
+               this.name_hg[resource] = refCount - 1;
             }
          }
       }
@@ -85,13 +85,13 @@ package alternativa.tanks.game.subsystems.rendersystem
       {
          var resource:Resource = null;
          this.context = context;
-         if(this.§_-Wf§ != null)
+         if(this.name_Wf != null)
          {
-            for each(resource in this.§_-Wf§)
+            for each(resource in this.name_Wf)
             {
                resource.upload(context);
             }
-            this.§_-Wf§ = null;
+            this.name_Wf = null;
          }
       }
       
@@ -100,13 +100,13 @@ package alternativa.tanks.game.subsystems.rendersystem
          var resource:* = undefined;
          if(this.context != null)
          {
-            for(resource in this.§_-hg§)
+            for(resource in this.name_hg)
             {
                Resource(resource).dispose();
             }
          }
-         this.§_-Wf§ = null;
-         this.§_-hg§ = new Dictionary();
+         this.name_Wf = null;
+         this.name_hg = new Dictionary();
       }
       
       private function doRelease(resource:Resource) : void
@@ -118,41 +118,41 @@ package alternativa.tanks.game.subsystems.rendersystem
             index = this.getQueuedIndex(resource);
             if(index >= 0)
             {
-               num = int(this.§_-Wf§.length);
+               num = int(this.name_Wf.length);
                if(num == 1)
                {
-                  this.§_-Wf§ = null;
+                  this.name_Wf = null;
                }
                else
                {
-                  this.§_-Wf§[index] = this.§_-Wf§[--num];
-                  this.§_-Wf§.length = num;
+                  this.name_Wf[index] = this.name_Wf[--num];
+                  this.name_Wf.length = num;
                }
             }
          }
          else
          {
             resource.dispose();
-            delete this.§_-hg§[resource];
+            delete this.name_hg[resource];
          }
       }
       
       private function getQueuedIndex(resource:Resource) : int
       {
-         if(this.§_-Wf§ == null)
+         if(this.name_Wf == null)
          {
             return -1;
          }
-         return this.§_-Wf§.indexOf(resource);
+         return this.name_Wf.indexOf(resource);
       }
       
       private function queue(resource:Resource) : void
       {
-         if(this.§_-Wf§ == null)
+         if(this.name_Wf == null)
          {
-            this.§_-Wf§ = new Vector.<Resource>();
+            this.name_Wf = new Vector.<Resource>();
          }
-         this.§_-Wf§.push(resource);
+         this.name_Wf.push(resource);
       }
    }
 }

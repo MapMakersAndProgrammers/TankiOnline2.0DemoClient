@@ -2,100 +2,100 @@ package versions.version2.a3d.materials
 {
    public class A3D2CubeMap
    {
-      private var §_-0x§:int;
+      private var name_0x:int;
       
-      private var §_-el§:int;
+      private var name_el:int;
       
-      private var §_-5I§:int;
+      private var name_5I:int;
       
-      private var §_-3I§:int;
+      private var name_3I:int;
       
-      private var §_-ML§:int;
+      private var name_ML:int;
       
-      private var §_-K§:int;
+      private var name_K:int;
       
-      private var §_-pW§:int;
+      private var name_pW:int;
       
       public function A3D2CubeMap(backId:int, bottomId:int, frontId:int, id:int, leftId:int, rightId:int, topId:int)
       {
          super();
-         this.§_-0x§ = backId;
-         this.§_-el§ = bottomId;
-         this.§_-5I§ = frontId;
-         this.§_-3I§ = id;
-         this.§_-ML§ = leftId;
-         this.§_-K§ = rightId;
-         this.§_-pW§ = topId;
+         this.name_0x = backId;
+         this.name_el = bottomId;
+         this.name_5I = frontId;
+         this.name_3I = id;
+         this.name_ML = leftId;
+         this.name_K = rightId;
+         this.name_pW = topId;
       }
       
       public function get backId() : int
       {
-         return this.§_-0x§;
+         return this.name_0x;
       }
       
       public function set backId(value:int) : void
       {
-         this.§_-0x§ = value;
+         this.name_0x = value;
       }
       
       public function get bottomId() : int
       {
-         return this.§_-el§;
+         return this.name_el;
       }
       
       public function set bottomId(value:int) : void
       {
-         this.§_-el§ = value;
+         this.name_el = value;
       }
       
       public function get frontId() : int
       {
-         return this.§_-5I§;
+         return this.name_5I;
       }
       
       public function set frontId(value:int) : void
       {
-         this.§_-5I§ = value;
+         this.name_5I = value;
       }
       
       public function get id() : int
       {
-         return this.§_-3I§;
+         return this.name_3I;
       }
       
       public function set id(value:int) : void
       {
-         this.§_-3I§ = value;
+         this.name_3I = value;
       }
       
       public function get leftId() : int
       {
-         return this.§_-ML§;
+         return this.name_ML;
       }
       
       public function set leftId(value:int) : void
       {
-         this.§_-ML§ = value;
+         this.name_ML = value;
       }
       
       public function get rightId() : int
       {
-         return this.§_-K§;
+         return this.name_K;
       }
       
       public function set rightId(value:int) : void
       {
-         this.§_-K§ = value;
+         this.name_K = value;
       }
       
       public function get topId() : int
       {
-         return this.§_-pW§;
+         return this.name_pW;
       }
       
       public function set topId(value:int) : void
       {
-         this.§_-pW§ = value;
+         this.name_pW = value;
       }
       
       public function toString() : String

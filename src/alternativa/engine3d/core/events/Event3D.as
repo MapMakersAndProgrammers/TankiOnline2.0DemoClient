@@ -12,42 +12,42 @@ package alternativa.engine3d.core.events
       
       public static const REMOVED:String = "removed3D";
       
-      alternativa3d var §_-5E§:Object3D;
+      alternativa3d var name_5E:Object3D;
       
-      alternativa3d var §_-Kh§:Object3D;
+      alternativa3d var name_Kh:Object3D;
       
-      alternativa3d var §_-iJ§:Boolean;
+      alternativa3d var name_iJ:Boolean;
       
-      alternativa3d var §_-VE§:uint = 3;
+      alternativa3d var name_VE:uint = 3;
       
       alternativa3d var stop:Boolean = false;
       
-      alternativa3d var §_-XD§:Boolean = false;
+      alternativa3d var name_XD:Boolean = false;
       
       public function Event3D(type:String, bubbles:Boolean = true)
       {
          super(type,bubbles);
-         this.alternativa3d::_-iJ = bubbles;
+         this.name_iJ = bubbles;
       }
       
       override public function get bubbles() : Boolean
       {
-         return this.alternativa3d::_-iJ;
+         return this.name_iJ;
       }
       
       override public function get eventPhase() : uint
       {
-         return this.alternativa3d::_-VE;
+         return this.name_VE;
       }
       
       override public function get target() : Object
       {
-         return this.alternativa3d::_-5E;
+         return this.name_5E;
       }
       
       override public function get currentTarget() : Object
       {
-         return this.alternativa3d::_-Kh;
+         return this.name_Kh;
       }
       
       override public function stopPropagation() : void
@@ -57,15 +57,15 @@ package alternativa.engine3d.core.events
       
       override public function stopImmediatePropagation() : void
       {
-         this.alternativa3d::_-XD = true;
+         this.name_XD = true;
       }
       
       override public function clone() : Event
       {
-         var result:Event3D = new Event3D(type,this.alternativa3d::_-iJ);
-         result.alternativa3d::_-5E = this.alternativa3d::_-5E;
-         result.alternativa3d::_-Kh = this.alternativa3d::_-Kh;
-         result.alternativa3d::_-VE = this.alternativa3d::_-VE;
+         var result:Event3D = new Event3D(type,this.name_iJ);
+         result.name_5E = this.name_5E;
+         result.name_Kh = this.name_Kh;
+         result.name_VE = this.name_VE;
          return result;
       }
       

@@ -35,9 +35,9 @@ package alternativa.tanks.game.entities.tank.graphics
       
       private var turret:TurretPhysicsComponent;
       
-      private var §_-hF§:Vector.<CollisionPrimitive3D>;
+      private var name_hF:Vector.<CollisionPrimitive3D>;
       
-      private var §_-ec§:Object3D;
+      private var name_ec:Object3D;
       
       private var rays:Vector.<RayEntry>;
       
@@ -54,7 +54,7 @@ package alternativa.tanks.game.entities.tank.graphics
          var wireFrame:WireFrame = null;
          this.chassis = LegacyTrackedChassisComponent(entity.getComponentStrict(LegacyTrackedChassisComponent));
          this.turret = TurretPhysicsComponent(entity.getComponentStrict(TurretPhysicsComponent));
-         this.§_-hF§ = new Vector.<CollisionPrimitive3D>();
+         this.name_hF = new Vector.<CollisionPrimitive3D>();
          var body:Body = this.chassis.getBody();
          for(var item:CollisionPrimitiveListItem = body.collisionPrimitives.head; item != null; )
          {
@@ -62,22 +62,22 @@ package alternativa.tanks.game.entities.tank.graphics
             hs = collisionBox.hs.clone().scale(2);
             box = new Box(hs.x,hs.y,hs.z);
             wireFrame = WireFrame.createEdges(box,16711680);
-            this.§_-hF§.push(new CollisionPrimitive3D(collisionBox,wireFrame));
+            this.name_hF.push(new CollisionPrimitive3D(collisionBox,wireFrame));
             item = item.next;
          }
          var trackedChassisGraphicsComponent:TrackedChassisGraphicsComponent = TrackedChassisGraphicsComponent(entity.getComponentStrict(TrackedChassisGraphicsComponent));
          var hull:TankHull = trackedChassisGraphicsComponent.getHull();
-         hs = hull.§_-eh§.hs.clone().scale(2);
+         hs = hull.name_eh.hs.clone().scale(2);
          box = new Box(hs.x,hs.y,hs.z);
-         this.§_-ec§ = WireFrame.createEdges(box,65280);
+         this.name_ec = WireFrame.createEdges(box,65280);
          this.initRays();
       }
       
       private function initRays() : void
       {
          this.rays = new Vector.<RayEntry>();
-         this.addRays(this.chassis.§_-Ei§,this.rays);
-         this.addRays(this.chassis.§_-iA§,this.rays);
+         this.addRays(this.chassis.name_Ei,this.rays);
+         this.addRays(this.chassis.name_iA,this.rays);
       }
       
       private function addRays(track:LegacyTrack, rays:Vector.<RayEntry>) : void
@@ -101,11 +101,11 @@ package alternativa.tanks.game.entities.tank.graphics
          var collisionPrimitive3D:CollisionPrimitive3D = null;
          var rayEntry:RayEntry = null;
          var renderSystem:RenderSystem = gameKernel.getRenderSystem();
-         for each(collisionPrimitive3D in this.§_-hF§)
+         for each(collisionPrimitive3D in this.name_hF)
          {
             this.addObject3D(renderSystem,collisionPrimitive3D.skin);
          }
-         this.addObject3D(renderSystem,this.§_-ec§);
+         this.addObject3D(renderSystem,this.name_ec);
          for each(rayEntry in this.rays)
          {
             this.addObject3D(renderSystem,rayEntry.originSkin);
@@ -119,7 +119,7 @@ package alternativa.tanks.game.entities.tank.graphics
          var collisionPrimitive3D:CollisionPrimitive3D = null;
          var rayEntry:RayEntry = null;
          var renderSystem:RenderSystem = gameKernel.getRenderSystem();
-         for each(collisionPrimitive3D in this.§_-hF§)
+         for each(collisionPrimitive3D in this.name_hF)
          {
             this.removeObject3D(renderSystem,collisionPrimitive3D.skin);
          }
@@ -128,7 +128,7 @@ package alternativa.tanks.game.entities.tank.graphics
             this.removeObject3D(renderSystem,rayEntry.originSkin);
             this.removeObject3D(renderSystem,rayEntry.endSkin);
          }
-         this.removeObject3D(renderSystem,this.§_-ec§);
+         this.removeObject3D(renderSystem,this.name_ec);
          gameKernel.getRenderSystem().removeRenderer(this);
       }
       
@@ -153,7 +153,7 @@ package alternativa.tanks.game.entities.tank.graphics
          var skin:Object3D = null;
          var worldPos:Vector3 = null;
          var rayLength:Number = NaN;
-         for each(entry in this.§_-hF§)
+         for each(entry in this.name_hF)
          {
             transform = entry.collisionPrimitive.transform;
             transform.getEulerAngles(eulerAngles);
@@ -167,29 +167,29 @@ package alternativa.tanks.game.entities.tank.graphics
          }
          body = this.chassis.getBody();
          body.baseMatrix.getEulerAngles(eulerAngles);
-         this.§_-ec§.rotationX = eulerAngles.x;
-         this.§_-ec§.rotationY = eulerAngles.y;
-         this.§_-ec§.rotationZ = eulerAngles.z;
-         this.§_-ec§.x = body.state.position.x;
-         this.§_-ec§.y = body.state.position.y;
-         this.§_-ec§.z = body.state.position.z;
+         this.name_ec.rotationX = eulerAngles.x;
+         this.name_ec.rotationY = eulerAngles.y;
+         this.name_ec.rotationZ = eulerAngles.z;
+         this.name_ec.x = body.state.position.x;
+         this.name_ec.y = body.state.position.y;
+         this.name_ec.z = body.state.position.z;
          for each(rayEntry in this.rays)
          {
             worldPos = rayEntry.ray.worldPos;
             rayEntry.originSkin.x = worldPos.x;
             rayEntry.originSkin.y = worldPos.y;
             rayEntry.originSkin.z = worldPos.z;
-            if(rayEntry.ray.§_-n3§)
+            if(rayEntry.ray.name_n3)
             {
-               rayLength = rayEntry.ray.§_-ZA§.t;
+               rayLength = rayEntry.ray.name_ZA.t;
             }
             else
             {
-               rayLength = this.chassis.§_-CF§.rayLength;
+               rayLength = this.chassis.name_CF.rayLength;
             }
-            rayEntry.endSkin.x = worldPos.x + rayEntry.ray.§_-Py§.x * rayLength;
-            rayEntry.endSkin.y = worldPos.y + rayEntry.ray.§_-Py§.y * rayLength;
-            rayEntry.endSkin.z = worldPos.z + rayEntry.ray.§_-Py§.z * rayLength;
+            rayEntry.endSkin.x = worldPos.x + rayEntry.ray.name_Py.x * rayLength;
+            rayEntry.endSkin.y = worldPos.y + rayEntry.ray.name_Py.y * rayLength;
+            rayEntry.endSkin.z = worldPos.z + rayEntry.ray.name_Py.z * rayLength;
          }
       }
    }

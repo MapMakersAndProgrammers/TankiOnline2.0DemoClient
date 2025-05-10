@@ -157,10 +157,10 @@ package alternativa.engine3d.core
          this.alternativa3d::ambient[2] = 0;
          this.alternativa3d::ambient[3] = 1;
          this.alternativa3d::context3D = stage3D.context3D;
-         if(this.alternativa3d::context3D != null && this.view != null && this.alternativa3d::renderer != null && (this.view.stage != null || this.view.alternativa3d::_-gJ != null))
+         if(this.alternativa3d::context3D != null && this.view != null && this.alternativa3d::renderer != null && (this.view.stage != null || this.view.name_gJ != null))
          {
             this.alternativa3d::renderer.alternativa3d::camera = this;
-            this.alternativa3d::calculateProjection(this.view.alternativa3d::_-qj,this.view.alternativa3d::_height);
+            this.alternativa3d::calculateProjection(this.view.name_qj,this.view.alternativa3d::_height);
             this.view.alternativa3d::prepareToRender(stage3D,this.alternativa3d::context3D);
             if(alternativa3d::transformChanged)
             {
@@ -227,7 +227,7 @@ package alternativa.engine3d.core
                         for(i = 0; i < this.alternativa3d::lightsLength; )
                         {
                            light = this.alternativa3d::lights[i];
-                           light.alternativa3d::_-cl.combine(root.alternativa3d::cameraToLocalTransform,light.alternativa3d::localToCameraTransform);
+                           light.name_cl.combine(root.alternativa3d::cameraToLocalTransform,light.alternativa3d::localToCameraTransform);
                            if(light.boundBox == null || light.alternativa3d::checkBound(root))
                            {
                               this.alternativa3d::childLights[childLightsLength] = light;
@@ -242,7 +242,7 @@ package alternativa.engine3d.core
                         for(i = 0; i < this.alternativa3d::lightsLength; )
                         {
                            light = this.alternativa3d::lights[i];
-                           light.alternativa3d::_-cl.combine(root.alternativa3d::cameraToLocalTransform,light.alternativa3d::localToCameraTransform);
+                           light.name_cl.combine(root.alternativa3d::cameraToLocalTransform,light.alternativa3d::localToCameraTransform);
                            i++;
                         }
                         root.alternativa3d::collectDraws(this,this.alternativa3d::lights,this.alternativa3d::lightsLength);
@@ -257,13 +257,13 @@ package alternativa.engine3d.core
             }
             this.view.alternativa3d::processMouseEvents(this.alternativa3d::context3D,this);
             this.alternativa3d::renderer.alternativa3d::render(this.alternativa3d::context3D);
-            if(this.view.alternativa3d::_-gJ == null)
+            if(this.view.name_gJ == null)
             {
                this.alternativa3d::context3D.present();
             }
             else
             {
-               this.alternativa3d::context3D.drawToBitmapData(this.view.alternativa3d::_-gJ);
+               this.alternativa3d::context3D.drawToBitmapData(this.view.name_gJ);
                this.alternativa3d::context3D.present();
             }
          }
@@ -279,7 +279,7 @@ package alternativa.engine3d.core
          {
             throw new Error("It is necessary to have view set.");
          }
-         var viewSizeX:Number = this.view.alternativa3d::_-qj * 0.5;
+         var viewSizeX:Number = this.view.name_qj * 0.5;
          var viewSizeY:Number = this.view.alternativa3d::_height * 0.5;
          var focalLength:Number = Math.sqrt(viewSizeX * viewSizeX + viewSizeY * viewSizeY) / Math.tan(this.fov * 0.5);
          var res:Vector3D = globalToLocal(point);
@@ -294,7 +294,7 @@ package alternativa.engine3d.core
          {
             throw new Error("It is necessary to have view set.");
          }
-         var viewSizeX:Number = this.view.alternativa3d::_-qj * 0.5;
+         var viewSizeX:Number = this.view.name_qj * 0.5;
          var viewSizeY:Number = this.view.alternativa3d::_height * 0.5;
          var focalLength:Number = Math.sqrt(viewSizeX * viewSizeX + viewSizeY * viewSizeY) / Math.tan(this.fov * 0.5);
          var dx:Number = viewX - viewSizeX;
@@ -445,7 +445,7 @@ package alternativa.engine3d.core
          }
          else
          {
-            _loc20_ = this.view.alternativa3d::_-qj * 0.5;
+            _loc20_ = this.view.name_qj * 0.5;
             _loc21_ = this.view.alternativa3d::_height * 0.5;
             nearPlane.x = transform.j * transform.e - transform.f * transform.i;
             nearPlane.y = transform.b * transform.i - transform.j * transform.a;
@@ -482,8 +482,8 @@ package alternativa.engine3d.core
          var direction:Vector3D = null;
          for(var i:int = 0; i < this.alternativa3d::raysLength; i++)
          {
-            o = this.view.alternativa3d::_-Cr[i];
-            d = this.view.alternativa3d::_-g4[i];
+            o = this.view.name_Cr[i];
+            d = this.view.name_g4[i];
             origin = this.alternativa3d::origins[i];
             direction = this.alternativa3d::directions[i];
             origin.x = transform.a * o.x + transform.b * o.y + transform.c * o.z + transform.d;

@@ -51,17 +51,17 @@ package alternativa.tanks.game.usertitle
       
       public static const WEAPONBAR:ProgressBarSkin = new ProgressBarSkin(0,weaponEmpty,weaponFull,4);
       
-      public var §_-XU§:BitmapData;
+      public var name_XU:BitmapData;
       
-      public var §_-9Y§:BitmapData;
+      public var name_9Y:BitmapData;
       
-      public var §_-GY§:BitmapData;
+      public var name_GY:BitmapData;
       
-      public var §_-j2§:BitmapData;
+      public var name_j2:BitmapData;
       
-      public var §_-py§:BitmapData;
+      public var name_py:BitmapData;
       
-      public var §_-oU§:BitmapData;
+      public var name_oU:BitmapData;
       
       public var color:uint;
       
@@ -70,13 +70,13 @@ package alternativa.tanks.game.usertitle
          super();
          this.color = color;
          var parts:BarParts = new BarParts(emptyBitmap,tipWidth);
-         this.§_-XU§ = parts.left;
-         this.§_-GY§ = parts.right;
-         this.§_-py§ = parts.center;
+         this.name_XU = parts.left;
+         this.name_GY = parts.right;
+         this.name_py = parts.center;
          parts = new BarParts(fullBitmap,tipWidth);
-         this.§_-9Y§ = parts.left;
-         this.§_-j2§ = parts.right;
-         this.§_-oU§ = parts.center;
+         this.name_9Y = parts.left;
+         this.name_j2 = parts.right;
+         this.name_oU = parts.center;
       }
    }
 }

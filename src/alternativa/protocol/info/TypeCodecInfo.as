@@ -4,17 +4,17 @@ package alternativa.protocol.info
    
    public class TypeCodecInfo extends CodecInfo
    {
-      private var §_-hx§:Class;
+      private var name_hx:Class;
       
       public function TypeCodecInfo(type:Class, optional:Boolean)
       {
          super(optional);
-         this.§_-hx§ = type;
+         this.name_hx = type;
       }
       
       public function get type() : Class
       {
-         return this.§_-hx§;
+         return this.name_hx;
       }
       
       override public function toString() : String

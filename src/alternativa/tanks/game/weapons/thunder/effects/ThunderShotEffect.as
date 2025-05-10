@@ -58,9 +58,9 @@ package alternativa.tanks.game.weapons.thunder.effects
       
       private var sprite3:Sprite3D;
       
-      private var §_-kg§:BlendedMaterial;
+      private var name_kg:BlendedMaterial;
       
-      private var §_-ld§:FillMaterial = new FillMaterial(16563726,0.1);
+      private var name_ld:FillMaterial = new FillMaterial(16563726,0.1);
       
       private var trail1:Trail;
       
@@ -91,10 +91,10 @@ package alternativa.tanks.game.weapons.thunder.effects
       public function ThunderShotEffect(objectPool:ObjectPool)
       {
          super(objectPool);
-         this.§_-kg§ = new BlendedMaterial();
-         this.§_-kg§.§_-L4§ = true;
-         this.§_-kg§.blendModeSource = Context3DBlendFactor.ONE;
-         this.§_-kg§.blendModeDestination = Context3DBlendFactor.ONE;
+         this.name_kg = new BlendedMaterial();
+         this.name_kg.name_L4 = true;
+         this.name_kg.blendModeSource = Context3DBlendFactor.ONE;
+         this.name_kg.blendModeDestination = Context3DBlendFactor.ONE;
          this.createParticles();
       }
       
@@ -142,7 +142,7 @@ package alternativa.tanks.game.weapons.thunder.effects
       {
          var sprite:Sprite3D = new Sprite3D(size,size);
          sprite.rotation = 2 * Math.PI * Math.random();
-         sprite.material = this.§_-kg§;
+         sprite.material = this.name_kg;
          return sprite;
       }
       

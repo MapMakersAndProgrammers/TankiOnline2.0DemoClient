@@ -15,29 +15,29 @@ package alternativa.physics.collision
    {
       private static var _rayAABB:BoundBox = new BoundBox();
       
-      public var §_-bw§:CollisionKdTree;
+      public var name_bw:CollisionKdTree;
       
-      public var §_-Fz§:Vector.<CollisionPrimitive>;
+      public var name_Fz:Vector.<CollisionPrimitive>;
       
-      public var §_-iH§:int;
+      public var name_iH:int;
       
       public var threshold:Number = 0.0001;
       
-      private var §_-P6§:Object = {};
+      private var name_P6:Object = {};
       
-      private var §_-qC§:MinMax = new MinMax();
+      private var name_qC:MinMax = new MinMax();
       
-      private var §_-k8§:Vector3 = new Vector3();
+      private var name_k8:Vector3 = new Vector3();
       
-      private var §_-0q§:Vector3 = new Vector3();
+      private var name_0q:Vector3 = new Vector3();
       
-      private var §_-2P§:RayHit = new RayHit();
+      private var name_2P:RayHit = new RayHit();
       
       public function KdTreeCollisionDetector()
       {
          super();
-         this.§_-bw§ = new CollisionKdTree();
-         this.§_-Fz§ = new Vector.<CollisionPrimitive>();
+         this.name_bw = new CollisionKdTree();
+         this.name_Fz = new Vector.<CollisionPrimitive>();
          this.addCollider(CollisionPrimitive.BOX,CollisionPrimitive.BOX,new BoxBoxCollider());
          this.addCollider(CollisionPrimitive.BOX,CollisionPrimitive.SPHERE,new BoxSphereCollider());
          this.addCollider(CollisionPrimitive.BOX,CollisionPrimitive.RECT,new BoxRectCollider());
@@ -57,7 +57,7 @@ package alternativa.physics.collision
       
       public function init(collisionPrimitives:Vector.<CollisionPrimitive>) : void
       {
-         this.§_-bw§.createTree(collisionPrimitives);
+         this.name_bw.createTree(collisionPrimitives);
       }
       
       public function getAllContacts(contacts:Contact) : Contact
@@ -79,14 +79,14 @@ package alternativa.physics.collision
          {
             return false;
          }
-         var collider:ICollider = this.§_-P6§[prim1.type <= prim2.type ? prim1.type << 16 | prim2.type : prim2.type << 16 | prim1.type] as ICollider;
+         var collider:ICollider = this.name_P6[prim1.type <= prim2.type ? prim1.type << 16 | prim2.type : prim2.type << 16 | prim1.type] as ICollider;
          if(collider != null && Boolean(collider.getContact(prim1,prim2,contact)))
          {
-            if(prim1.postCollisionFilter != null && !prim1.postCollisionFilter.§_-eZ§(prim1,prim2))
+            if(prim1.postCollisionFilter != null && !prim1.postCollisionFilter.acceptPrimitivesCollision(prim1,prim2))
             {
                return false;
             }
-            if(prim2.postCollisionFilter != null && !prim2.postCollisionFilter.§_-eZ§(prim2,prim1))
+            if(prim2.postCollisionFilter != null && !prim2.postCollisionFilter.acceptPrimitivesCollision(prim2,prim1))
             {
                return false;
             }
@@ -109,14 +109,14 @@ package alternativa.physics.collision
          {
             return false;
          }
-         var collider:ICollider = this.§_-P6§[prim1.type <= prim2.type ? prim1.type << 16 | prim2.type : prim2.type << 16 | prim1.type] as ICollider;
+         var collider:ICollider = this.name_P6[prim1.type <= prim2.type ? prim1.type << 16 | prim2.type : prim2.type << 16 | prim1.type] as ICollider;
          if(collider != null && Boolean(collider.haveCollision(prim1,prim2)))
          {
-            if(prim1.postCollisionFilter != null && !prim1.postCollisionFilter.§_-eZ§(prim1,prim2))
+            if(prim1.postCollisionFilter != null && !prim1.postCollisionFilter.acceptPrimitivesCollision(prim1,prim2))
             {
                return false;
             }
-            if(prim2.postCollisionFilter != null && !prim2.postCollisionFilter.§_-eZ§(prim2,prim1))
+            if(prim2.postCollisionFilter != null && !prim2.postCollisionFilter.acceptPrimitivesCollision(prim2,prim1))
             {
                return false;
             }
@@ -128,16 +128,16 @@ package alternativa.physics.collision
       public function raycast(origin:Vector3, dir:Vector3, collisionGroup:int, maxTime:Number, predicate:IRaycastFilter, result:RayHit) : Boolean
       {
          var hasStaticIntersection:Boolean = this.raycastStatic(origin,dir,collisionGroup,maxTime,predicate,result);
-         var hasDynamicIntersection:Boolean = this.intersectRayWithDynamic(origin,dir,collisionGroup,maxTime,predicate,this.§_-2P§);
+         var hasDynamicIntersection:Boolean = this.intersectRayWithDynamic(origin,dir,collisionGroup,maxTime,predicate,this.name_2P);
          if(!(hasDynamicIntersection || hasStaticIntersection))
          {
             return false;
          }
          if(hasDynamicIntersection && hasStaticIntersection)
          {
-            if(result.t > this.§_-2P§.t)
+            if(result.t > this.name_2P.t)
             {
-               result.copy(this.§_-2P§);
+               result.copy(this.name_2P);
             }
             return true;
          }
@@ -145,38 +145,38 @@ package alternativa.physics.collision
          {
             return true;
          }
-         result.copy(this.§_-2P§);
+         result.copy(this.name_2P);
          return true;
       }
       
       public function raycastStatic(origin:Vector3, dir:Vector3, collisionGroup:int, maxTime:Number, predicate:IRaycastFilter, result:RayHit) : Boolean
       {
-         if(!this.getRayBoundBoxIntersection(origin,dir,this.§_-bw§.§_-5H§.boundBox,this.§_-qC§))
+         if(!this.getRayBoundBoxIntersection(origin,dir,this.name_bw.name_5H.boundBox,this.name_qC))
          {
             return false;
          }
-         if(this.§_-qC§.max < 0 || this.§_-qC§.min > maxTime)
+         if(this.name_qC.max < 0 || this.name_qC.min > maxTime)
          {
             return false;
          }
-         if(this.§_-qC§.min <= 0)
+         if(this.name_qC.min <= 0)
          {
-            this.§_-qC§.min = 0;
-            this.§_-0q§.x = origin.x;
-            this.§_-0q§.y = origin.y;
-            this.§_-0q§.z = origin.z;
+            this.name_qC.min = 0;
+            this.name_0q.x = origin.x;
+            this.name_0q.y = origin.y;
+            this.name_0q.z = origin.z;
          }
          else
          {
-            this.§_-0q§.x = origin.x + this.§_-qC§.min * dir.x;
-            this.§_-0q§.y = origin.y + this.§_-qC§.min * dir.y;
-            this.§_-0q§.z = origin.z + this.§_-qC§.min * dir.z;
+            this.name_0q.x = origin.x + this.name_qC.min * dir.x;
+            this.name_0q.y = origin.y + this.name_qC.min * dir.y;
+            this.name_0q.z = origin.z + this.name_qC.min * dir.z;
          }
-         if(this.§_-qC§.max > maxTime)
+         if(this.name_qC.max > maxTime)
          {
-            this.§_-qC§.max = maxTime;
+            this.name_qC.max = maxTime;
          }
-         var hasIntersection:Boolean = this.testRayAgainstNode(this.§_-bw§.§_-5H§,origin,this.§_-0q§,dir,collisionGroup,this.§_-qC§.min,this.§_-qC§.max,predicate,result);
+         var hasIntersection:Boolean = this.testRayAgainstNode(this.name_bw.name_5H,origin,this.name_0q,dir,collisionGroup,this.name_qC.min,this.name_qC.max,predicate,result);
          return hasIntersection ? result.t <= maxTime : false;
       }
       
@@ -187,7 +187,7 @@ package alternativa.physics.collision
       
       private function addCollider(type1:int, type2:int, collider:ICollider) : void
       {
-         this.§_-P6§[type1 <= type2 ? type1 << 16 | type2 : type2 << 16 | type1] = collider;
+         this.name_P6[type1 <= type2 ? type1 << 16 | type2 : type2 << 16 | type1] = collider;
       }
       
       private function getPrimitiveNodeCollisions(node:CollisionKdNode, primitive:CollisionPrimitive, contacts:Contact) : Contact
@@ -236,24 +236,24 @@ package alternativa.physics.collision
             _rayAABB.maxZ = zz;
          }
          minTime = maxTime + 1;
-         for(var i:int = 0; i < this.§_-iH§; )
+         for(var i:int = 0; i < this.name_iH; )
          {
-            primitive = this.§_-Fz§[i];
+            primitive = this.name_Fz[i];
             if((primitive.collisionGroup & collisionGroup) != 0)
             {
                paabb = primitive.aabb;
                if(!(_rayAABB.maxX < paabb.minX || _rayAABB.minX > paabb.maxX || _rayAABB.maxY < paabb.minY || _rayAABB.minY > paabb.maxY || _rayAABB.maxZ < paabb.minZ || _rayAABB.minZ > paabb.maxZ))
                {
-                  if(!(filter != null && !filter.§_-0w§(primitive)))
+                  if(!(filter != null && !filter.acceptRayHit(primitive)))
                   {
-                     t = Number(primitive.raycast(origin,dir,this.threshold,this.§_-k8§));
+                     t = Number(primitive.raycast(origin,dir,this.threshold,this.name_k8));
                      if(t > 0 && t < minTime)
                      {
                         minTime = t;
                         result.primitive = primitive;
-                        result.normal.x = this.§_-k8§.x;
-                        result.normal.y = this.§_-k8§.y;
-                        result.normal.z = this.§_-k8§.z;
+                        result.normal.x = this.name_k8.x;
+                        result.normal.y = this.name_k8.y;
+                        result.normal.z = this.name_k8.z;
                      }
                   }
                }
@@ -353,7 +353,7 @@ package alternativa.physics.collision
          var splitTime:Number = NaN;
          var currChildNode:CollisionKdNode = null;
          var intersects:Boolean = false;
-         if(node.indices != null && this.getRayNodeIntersection(origin,dir,collisionGroup,this.§_-bw§.§_-8A§,node.indices,predicate,result))
+         if(node.indices != null && this.getRayNodeIntersection(origin,dir,collisionGroup,this.name_bw.name_8A,node.indices,predicate,result))
          {
             return true;
          }
@@ -372,7 +372,7 @@ package alternativa.physics.collision
                {
                   splitTime = (node.coord - origin.x) / dir.x;
                }
-               currChildNode = localOrigin.x < node.coord ? node.§_-Gm§ : node.§_-75§;
+               currChildNode = localOrigin.x < node.coord ? node.name_Gm : node.name_75;
                break;
             case 1:
                if(dir.y > -this.threshold && dir.y < this.threshold)
@@ -383,7 +383,7 @@ package alternativa.physics.collision
                {
                   splitTime = (node.coord - origin.y) / dir.y;
                }
-               currChildNode = localOrigin.y < node.coord ? node.§_-Gm§ : node.§_-75§;
+               currChildNode = localOrigin.y < node.coord ? node.name_Gm : node.name_75;
                break;
             case 2:
                if(dir.z > -this.threshold && dir.z < this.threshold)
@@ -394,7 +394,7 @@ package alternativa.physics.collision
                {
                   splitTime = (node.coord - origin.z) / dir.z;
                }
-               currChildNode = localOrigin.z < node.coord ? node.§_-Gm§ : node.§_-75§;
+               currChildNode = localOrigin.z < node.coord ? node.name_Gm : node.name_75;
          }
          if(splitTime < t1 || splitTime > t2)
          {
@@ -405,10 +405,10 @@ package alternativa.physics.collision
          {
             return true;
          }
-         this.§_-0q§.x = origin.x + splitTime * dir.x;
-         this.§_-0q§.y = origin.y + splitTime * dir.y;
-         this.§_-0q§.z = origin.z + splitTime * dir.z;
-         return this.testRayAgainstNode(currChildNode == node.§_-Gm§ ? node.§_-75§ : node.§_-Gm§,origin,this.§_-0q§,dir,collisionGroup,splitTime,t2,predicate,result);
+         this.name_0q.x = origin.x + splitTime * dir.x;
+         this.name_0q.y = origin.y + splitTime * dir.y;
+         this.name_0q.z = origin.z + splitTime * dir.z;
+         return this.testRayAgainstNode(currChildNode == node.name_Gm ? node.name_75 : node.name_Gm,origin,this.name_0q,dir,collisionGroup,splitTime,t2,predicate,result);
       }
       
       private function getRayNodeIntersection(origin:Vector3, dir:Vector3, collisionGroup:int, primitives:Vector.<CollisionPrimitive>, indices:Vector.<int>, filter:IRaycastFilter, intersection:RayHit) : Boolean
@@ -422,16 +422,16 @@ package alternativa.physics.collision
             primitive = primitives[indices[i]];
             if((primitive.collisionGroup & collisionGroup) != 0)
             {
-               if(!(filter != null && !filter.§_-0w§(primitive)))
+               if(!(filter != null && !filter.acceptRayHit(primitive)))
                {
-                  t = Number(primitive.raycast(origin,dir,this.threshold,this.§_-k8§));
+                  t = Number(primitive.raycast(origin,dir,this.threshold,this.name_k8));
                   if(t > 0 && t < minTime)
                   {
                      minTime = t;
                      intersection.primitive = primitive;
-                     intersection.normal.x = this.§_-k8§.x;
-                     intersection.normal.y = this.§_-k8§.y;
-                     intersection.normal.z = this.§_-k8§.z;
+                     intersection.normal.x = this.name_k8.x;
+                     intersection.normal.y = this.name_k8.y;
+                     intersection.normal.z = this.name_k8.z;
                   }
                }
             }

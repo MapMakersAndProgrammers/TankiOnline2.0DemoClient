@@ -14,19 +14,19 @@ package alternativa.engine3d.loaders.collada
       
       internal static const TEXCOORDS:Vector.<uint> = Vector.<uint>([8,16,32,64,128,256,512,1024]);
       
-      internal var §_-2g§:DaeInput;
+      internal var name_2g:DaeInput;
       
-      internal var §_-aL§:Vector.<DaeInput>;
+      internal var name_aL:Vector.<DaeInput>;
       
-      internal var §_-Fl§:DaeInput;
+      internal var name_Fl:DaeInput;
       
-      internal var §_-jU§:Vector.<DaeInput>;
+      internal var name_jU:Vector.<DaeInput>;
       
-      internal var §_-ly§:Vector.<DaeInput>;
+      internal var name_ly:Vector.<DaeInput>;
       
       internal var indices:Vector.<uint>;
       
-      internal var §_-5O§:int;
+      internal var name_5O:int;
       
       public var indexBegin:int;
       
@@ -54,12 +54,12 @@ package alternativa.engine3d.loaders.collada
          var input:DaeInput = null;
          var semantic:String = null;
          var offset:int = 0;
-         this.§_-aL§ = new Vector.<DaeInput>();
-         this.§_-ly§ = new Vector.<DaeInput>();
-         this.§_-jU§ = new Vector.<DaeInput>();
+         this.name_aL = new Vector.<DaeInput>();
+         this.name_ly = new Vector.<DaeInput>();
+         this.name_jU = new Vector.<DaeInput>();
          var inputsList:XMLList = data.input;
          var maxInputOffset:int = 0;
-         for(var i:int = 0,var count:int = int(inputsList.length()); i < count; offset = input.offset,maxInputOffset = offset > maxInputOffset ? offset : maxInputOffset,i++)
+         for(var i:int = 0, count:int = int(inputsList.length()); i < count; offset = input.offset,maxInputOffset = offset > maxInputOffset ? offset : maxInputOffset,i++)
          {
             input = new DaeInput(inputsList[i],document);
             semantic = input.semantic;
@@ -70,29 +70,29 @@ package alternativa.engine3d.loaders.collada
             switch(semantic)
             {
                case "VERTEX":
-                  if(this.§_-2g§ == null)
+                  if(this.name_2g == null)
                   {
-                     this.§_-2g§ = input;
+                     this.name_2g = input;
                   }
                   break;
                case "TEXCOORD":
-                  this.§_-aL§.push(input);
+                  this.name_aL.push(input);
                   break;
                case "NORMAL":
-                  if(this.§_-Fl§ == null)
+                  if(this.name_Fl == null)
                   {
-                     this.§_-Fl§ = input;
+                     this.name_Fl = input;
                   }
                   break;
                case "TEXTANGENT":
-                  this.§_-ly§.push(input);
+                  this.name_ly.push(input);
                   break;
                case "TEXBINORMAL":
-                  this.§_-jU§.push(input);
+                  this.name_jU.push(input);
                   break;
             }
          }
-         this.§_-5O§ = maxInputOffset + 1;
+         this.name_5O = maxInputOffset + 1;
       }
       
       private function parseIndices() : void
@@ -154,7 +154,7 @@ package alternativa.engine3d.loaders.collada
          for(i = 0,count = int(vcount.length); i < count; i++)
          {
             verticesCount = vcount[i];
-            attributesCount = verticesCount * this.§_-5O§;
+            attributesCount = verticesCount * this.name_5O;
             if(verticesCount == 3)
             {
                j = 0;
@@ -170,21 +170,21 @@ package alternativa.engine3d.loaders.collada
             {
                for(j = 1; j < verticesCount - 1; )
                {
-                  for(k = 0; k < this.§_-5O§; k++,indexOut++)
+                  for(k = 0; k < this.name_5O; k++,indexOut++)
                   {
                      res[indexOut] = input[int(indexIn + k)];
                   }
-                  for(k = 0; k < this.§_-5O§; k++,indexOut++)
+                  for(k = 0; k < this.name_5O; k++,indexOut++)
                   {
-                     res[indexOut] = input[int(indexIn + this.§_-5O§ * j + k)];
+                     res[indexOut] = input[int(indexIn + this.name_5O * j + k)];
                   }
-                  for(k = 0; k < this.§_-5O§; k++,indexOut++)
+                  for(k = 0; k < this.name_5O; k++,indexOut++)
                   {
-                     res[indexOut] = input[int(indexIn + this.§_-5O§ * (j + 1) + k)];
+                     res[indexOut] = input[int(indexIn + this.name_5O * (j + 1) + k)];
                   }
                   j++;
                }
-               indexIn += this.§_-5O§ * verticesCount;
+               indexIn += this.name_5O * verticesCount;
             }
          }
          return res;
@@ -199,60 +199,60 @@ package alternativa.engine3d.loaders.collada
          var vertex:DaeVertex = null;
          var s:DaeSource = null;
          var j:int = 0;
-         if(this.§_-2g§ == null)
+         if(this.name_2g == null)
          {
             return 0;
          }
-         this.§_-2g§.parse();
+         this.name_2g.parse();
          var numIndices:int = int(this.indices.length);
-         var daeVertices:DaeVertices = document.findVertices(this.§_-2g§.source);
+         var daeVertices:DaeVertices = document.findVertices(this.name_2g.source);
          if(daeVertices == null)
          {
-            document.logger.logNotFoundError(this.§_-2g§.source);
+            document.logger.logNotFoundError(this.name_2g.source);
             return 0;
          }
          daeVertices.parse();
-         var positionSource:DaeSource = daeVertices.§_-E6§;
+         var positionSource:DaeSource = daeVertices.name_E6;
          var vertexStride:int = 3;
          var mainSource:DaeSource = positionSource;
-         var mainInput:DaeInput = this.§_-2g§;
+         var mainInput:DaeInput = this.name_2g;
          var channels:uint = 0;
          var inputOffsets:Vector.<int> = new Vector.<int>();
-         inputOffsets.push(this.§_-2g§.offset);
-         if(this.§_-Fl§ != null)
+         inputOffsets.push(this.name_2g.offset);
+         if(this.name_Fl != null)
          {
-            normalSource = this.§_-Fl§.prepareSource(3);
-            inputOffsets.push(this.§_-Fl§.offset);
+            normalSource = this.name_Fl.prepareSource(3);
+            inputOffsets.push(this.name_Fl.offset);
             vertexStride += 3;
             channels |= NORMALS;
-            if(this.§_-ly§.length > 0 && this.§_-jU§.length > 0)
+            if(this.name_ly.length > 0 && this.name_jU.length > 0)
             {
-               tangentSource = this.§_-ly§[0].prepareSource(3);
-               inputOffsets.push(this.§_-ly§[0].offset);
-               binormalSource = this.§_-jU§[0].prepareSource(3);
-               inputOffsets.push(this.§_-jU§[0].offset);
+               tangentSource = this.name_ly[0].prepareSource(3);
+               inputOffsets.push(this.name_ly[0].offset);
+               binormalSource = this.name_jU[0].prepareSource(3);
+               inputOffsets.push(this.name_jU[0].offset);
                vertexStride += 4;
                channels |= TANGENT4;
             }
          }
          var textureSources:Vector.<DaeSource> = new Vector.<DaeSource>();
-         var numTexCoordsInputs:int = int(this.§_-aL§.length);
+         var numTexCoordsInputs:int = int(this.name_aL.length);
          if(numTexCoordsInputs > 8)
          {
             numTexCoordsInputs = 8;
          }
          for(var i:int = 0; i < numTexCoordsInputs; )
          {
-            s = this.§_-aL§[i].prepareSource(2);
+            s = this.name_aL[i].prepareSource(2);
             textureSources.push(s);
-            inputOffsets.push(this.§_-aL§[i].offset);
+            inputOffsets.push(this.name_aL[i].offset);
             vertexStride += 2;
             channels |= TEXCOORDS[i];
             i++;
          }
          var verticesLength:int = int(vertices.length);
          this.indexBegin = geometry.alternativa3d::_indices.length;
-         for(i = 0; i < numIndices; i += this.§_-5O§)
+         for(i = 0; i < numIndices; i += this.name_5O)
          {
             index = this.indices[int(i + mainInput.offset)];
             vertex = vertices[index];
@@ -264,23 +264,23 @@ package alternativa.engine3d.loaders.collada
                }
                vertex = new DaeVertex();
                vertices[index] = vertex;
-               vertex.§_-Eq§ = this.indices[int(i + this.§_-2g§.offset)];
-               vertex.addPosition(positionSource.numbers,vertex.§_-Eq§,positionSource.stride,document.unitScaleFactor);
+               vertex.name_Eq = this.indices[int(i + this.name_2g.offset)];
+               vertex.addPosition(positionSource.numbers,vertex.name_Eq,positionSource.stride,document.unitScaleFactor);
                if(normalSource != null)
                {
-                  vertex.addNormal(normalSource.numbers,this.indices[int(i + this.§_-Fl§.offset)],normalSource.stride);
+                  vertex.addNormal(normalSource.numbers,this.indices[int(i + this.name_Fl.offset)],normalSource.stride);
                }
                if(tangentSource != null)
                {
-                  vertex.addTangentBiDirection(tangentSource.numbers,this.indices[int(i + this.§_-ly§[0].offset)],tangentSource.stride,binormalSource.numbers,this.indices[int(i + this.§_-jU§[0].offset)],binormalSource.stride);
+                  vertex.addTangentBiDirection(tangentSource.numbers,this.indices[int(i + this.name_ly[0].offset)],tangentSource.stride,binormalSource.numbers,this.indices[int(i + this.name_jU[0].offset)],binormalSource.stride);
                }
                for(j = 0; j < textureSources.length; )
                {
-                  vertex.appendUV(textureSources[j].numbers,this.indices[int(i + this.§_-aL§[j].offset)],textureSources[j].stride);
+                  vertex.appendUV(textureSources[j].numbers,this.indices[int(i + this.name_aL[j].offset)],textureSources[j].stride);
                   j++;
                }
             }
-            vertex.§_-AR§ = index;
+            vertex.name_AR = index;
             geometry.alternativa3d::_indices.push(index);
          }
          this.numTriangles = (geometry.alternativa3d::_indices.length - this.indexBegin) / 3;
@@ -304,7 +304,7 @@ package alternativa.engine3d.loaders.collada
       private function findInputBySet(inputs:Vector.<DaeInput>, setNum:int) : DaeInput
       {
          var input:DaeInput = null;
-         for(var i:int = 0,var numInputs:int = int(inputs.length); i < numInputs; )
+         for(var i:int = 0, numInputs:int = int(inputs.length); i < numInputs; )
          {
             input = inputs[i];
             if(input.setNum == setNum)
@@ -322,12 +322,12 @@ package alternativa.engine3d.loaders.collada
          var texCoordsInput:DaeInput = null;
          var texCoordsSource:DaeSource = null;
          var data:VertexChannelData = null;
-         var mainInput:DaeInput = this.findInputBySet(this.§_-aL§,mainSetNum);
-         var numInputs:int = int(this.§_-aL§.length);
+         var mainInput:DaeInput = this.findInputBySet(this.name_aL,mainSetNum);
+         var numInputs:int = int(this.name_aL.length);
          var datas:Vector.<VertexChannelData> = new Vector.<VertexChannelData>();
          for(i = 0; i < numInputs; )
          {
-            texCoordsInput = this.§_-aL§[i];
+            texCoordsInput = this.name_aL[i];
             texCoordsSource = texCoordsInput.prepareSource(2);
             if(texCoordsSource != null)
             {
@@ -348,10 +348,10 @@ package alternativa.engine3d.loaders.collada
       
       public function verticesEquals(otherVertices:DaeVertices) : Boolean
       {
-         var vertices:DaeVertices = document.findVertices(this.§_-2g§.source);
+         var vertices:DaeVertices = document.findVertices(this.name_2g.source);
          if(vertices == null)
          {
-            document.logger.logNotFoundError(this.§_-2g§.source);
+            document.logger.logNotFoundError(this.name_2g.source);
          }
          return vertices == otherVertices;
       }

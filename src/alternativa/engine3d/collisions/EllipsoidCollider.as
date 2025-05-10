@@ -21,15 +21,15 @@ package alternativa.engine3d.collisions
       
       private var matrix:Transform3D = new Transform3D();
       
-      private var §_-jX§:Transform3D = new Transform3D();
+      private var name_jX:Transform3D = new Transform3D();
       
       alternativa3d var geometries:Vector.<Geometry> = new Vector.<Geometry>();
       
-      alternativa3d var §_-QK§:Vector.<Transform3D> = new Vector.<Transform3D>();
+      alternativa3d var name_QK:Vector.<Transform3D> = new Vector.<Transform3D>();
       
       private var vertices:Vector.<Number> = new Vector.<Number>();
       
-      private var §_-g0§:Vector.<Number> = new Vector.<Number>();
+      private var name_g0:Vector.<Number> = new Vector.<Number>();
       
       private var indices:Vector.<int> = new Vector.<int>();
       
@@ -39,23 +39,23 @@ package alternativa.engine3d.collisions
       
       private var src:Vector3D = new Vector3D();
       
-      private var §_-o5§:Vector3D = new Vector3D();
+      private var name_o5:Vector3D = new Vector3D();
       
       private var dest:Vector3D = new Vector3D();
       
-      private var §_-SE§:Vector3D = new Vector3D();
+      private var name_SE:Vector3D = new Vector3D();
       
-      private var §_-pU§:Vector3D = new Vector3D();
+      private var name_pU:Vector3D = new Vector3D();
       
       alternativa3d var sphere:Vector3D = new Vector3D();
       
-      private var §_-SZ§:Vector3D = new Vector3D();
+      private var name_SZ:Vector3D = new Vector3D();
       
-      private var §_-1v§:Vector3D = new Vector3D();
+      private var name_1v:Vector3D = new Vector3D();
       
-      private var §_-L9§:Vector3D = new Vector3D();
+      private var name_L9:Vector3D = new Vector3D();
       
-      private var §_-8B§:Vector3D = new Vector3D();
+      private var name_8B:Vector3D = new Vector3D();
       
       public function EllipsoidCollider(radiusX:Number, radiusY:Number, radiusZ:Number)
       {
@@ -70,18 +70,18 @@ package alternativa.engine3d.collisions
          this.alternativa3d::sphere.x = transform.d;
          this.alternativa3d::sphere.y = transform.h;
          this.alternativa3d::sphere.z = transform.l;
-         var sax:Number = transform.a * this.§_-SZ§.x + transform.b * this.§_-SZ§.y + transform.c * this.§_-SZ§.z + transform.d;
-         var say:Number = transform.e * this.§_-SZ§.x + transform.f * this.§_-SZ§.y + transform.g * this.§_-SZ§.z + transform.h;
-         var saz:Number = transform.i * this.§_-SZ§.x + transform.j * this.§_-SZ§.y + transform.k * this.§_-SZ§.z + transform.l;
-         var sbx:Number = transform.a * this.§_-1v§.x + transform.b * this.§_-1v§.y + transform.c * this.§_-1v§.z + transform.d;
-         var sby:Number = transform.e * this.§_-1v§.x + transform.f * this.§_-1v§.y + transform.g * this.§_-1v§.z + transform.h;
-         var sbz:Number = transform.i * this.§_-1v§.x + transform.j * this.§_-1v§.y + transform.k * this.§_-1v§.z + transform.l;
-         var scx:Number = transform.a * this.§_-L9§.x + transform.b * this.§_-L9§.y + transform.c * this.§_-L9§.z + transform.d;
-         var scy:Number = transform.e * this.§_-L9§.x + transform.f * this.§_-L9§.y + transform.g * this.§_-L9§.z + transform.h;
-         var scz:Number = transform.i * this.§_-L9§.x + transform.j * this.§_-L9§.y + transform.k * this.§_-L9§.z + transform.l;
-         var sdx:Number = transform.a * this.§_-8B§.x + transform.b * this.§_-8B§.y + transform.c * this.§_-8B§.z + transform.d;
-         var sdy:Number = transform.e * this.§_-8B§.x + transform.f * this.§_-8B§.y + transform.g * this.§_-8B§.z + transform.h;
-         var sdz:Number = transform.i * this.§_-8B§.x + transform.j * this.§_-8B§.y + transform.k * this.§_-8B§.z + transform.l;
+         var sax:Number = transform.a * this.name_SZ.x + transform.b * this.name_SZ.y + transform.c * this.name_SZ.z + transform.d;
+         var say:Number = transform.e * this.name_SZ.x + transform.f * this.name_SZ.y + transform.g * this.name_SZ.z + transform.h;
+         var saz:Number = transform.i * this.name_SZ.x + transform.j * this.name_SZ.y + transform.k * this.name_SZ.z + transform.l;
+         var sbx:Number = transform.a * this.name_1v.x + transform.b * this.name_1v.y + transform.c * this.name_1v.z + transform.d;
+         var sby:Number = transform.e * this.name_1v.x + transform.f * this.name_1v.y + transform.g * this.name_1v.z + transform.h;
+         var sbz:Number = transform.i * this.name_1v.x + transform.j * this.name_1v.y + transform.k * this.name_1v.z + transform.l;
+         var scx:Number = transform.a * this.name_L9.x + transform.b * this.name_L9.y + transform.c * this.name_L9.z + transform.d;
+         var scy:Number = transform.e * this.name_L9.x + transform.f * this.name_L9.y + transform.g * this.name_L9.z + transform.h;
+         var scz:Number = transform.i * this.name_L9.x + transform.j * this.name_L9.y + transform.k * this.name_L9.z + transform.l;
+         var sdx:Number = transform.a * this.name_8B.x + transform.b * this.name_8B.y + transform.c * this.name_8B.z + transform.d;
+         var sdy:Number = transform.e * this.name_8B.x + transform.f * this.name_8B.y + transform.g * this.name_8B.z + transform.h;
+         var sdz:Number = transform.i * this.name_8B.x + transform.j * this.name_8B.y + transform.k * this.name_8B.z + transform.l;
          var dx:Number = sax - this.alternativa3d::sphere.x;
          var dy:Number = say - this.alternativa3d::sphere.y;
          var dz:Number = saz - this.alternativa3d::sphere.z;
@@ -162,30 +162,30 @@ package alternativa.engine3d.collisions
             this.radius = this.radiusZ;
          }
          this.matrix.compose(source.x,source.y,source.z,0,0,0,this.radiusX / this.radius,this.radiusY / this.radius,this.radiusZ / this.radius);
-         this.§_-jX§.copy(this.matrix);
-         this.§_-jX§.invert();
+         this.name_jX.copy(this.matrix);
+         this.name_jX.invert();
          this.src.x = 0;
          this.src.y = 0;
          this.src.z = 0;
-         this.§_-o5§.x = this.§_-jX§.a * displacement.x + this.§_-jX§.b * displacement.y + this.§_-jX§.c * displacement.z;
-         this.§_-o5§.y = this.§_-jX§.e * displacement.x + this.§_-jX§.f * displacement.y + this.§_-jX§.g * displacement.z;
-         this.§_-o5§.z = this.§_-jX§.i * displacement.x + this.§_-jX§.j * displacement.y + this.§_-jX§.k * displacement.z;
-         this.dest.x = this.src.x + this.§_-o5§.x;
-         this.dest.y = this.src.y + this.§_-o5§.y;
-         this.dest.z = this.src.z + this.§_-o5§.z;
-         var rad:Number = this.radius + this.§_-o5§.length;
-         this.§_-SZ§.x = -rad;
-         this.§_-SZ§.y = -rad;
-         this.§_-SZ§.z = -rad;
-         this.§_-1v§.x = rad;
-         this.§_-1v§.y = -rad;
-         this.§_-1v§.z = -rad;
-         this.§_-L9§.x = rad;
-         this.§_-L9§.y = rad;
-         this.§_-L9§.z = -rad;
-         this.§_-8B§.x = -rad;
-         this.§_-8B§.y = rad;
-         this.§_-8B§.z = -rad;
+         this.name_o5.x = this.name_jX.a * displacement.x + this.name_jX.b * displacement.y + this.name_jX.c * displacement.z;
+         this.name_o5.y = this.name_jX.e * displacement.x + this.name_jX.f * displacement.y + this.name_jX.g * displacement.z;
+         this.name_o5.z = this.name_jX.i * displacement.x + this.name_jX.j * displacement.y + this.name_jX.k * displacement.z;
+         this.dest.x = this.src.x + this.name_o5.x;
+         this.dest.y = this.src.y + this.name_o5.y;
+         this.dest.z = this.src.z + this.name_o5.z;
+         var rad:Number = this.radius + this.name_o5.length;
+         this.name_SZ.x = -rad;
+         this.name_SZ.y = -rad;
+         this.name_SZ.z = -rad;
+         this.name_1v.x = rad;
+         this.name_1v.y = -rad;
+         this.name_1v.z = -rad;
+         this.name_L9.x = rad;
+         this.name_L9.y = rad;
+         this.name_L9.z = -rad;
+         this.name_8B.x = -rad;
+         this.name_8B.y = rad;
+         this.name_8B.z = -rad;
          if(excludedObjects == null || !excludedObjects[object])
          {
             if(object.alternativa3d::transformChanged)
@@ -201,7 +201,7 @@ package alternativa.engine3d.collisions
             }
             if(intersects)
             {
-               object.alternativa3d::localToGlobalTransform.combine(this.§_-jX§,object.alternativa3d::transform);
+               object.alternativa3d::localToGlobalTransform.combine(this.name_jX,object.alternativa3d::transform);
                object.alternativa3d::collectGeometry(this,excludedObjects);
             }
             if(object.alternativa3d::childrenList != null)
@@ -218,11 +218,11 @@ package alternativa.engine3d.collisions
          for(var i:int = 0; i < geometriesLength; i++)
          {
             geometry = this.alternativa3d::geometries[i];
-            transform = this.alternativa3d::_-QK[i];
+            transform = this.name_QK[i];
             geometryIndicesLength = int(geometry.alternativa3d::_indices.length);
             if(!(geometry.alternativa3d::_numVertices == 0 || geometryIndicesLength == 0))
             {
-               vBuffer = VertexAttributes.POSITION < geometry.alternativa3d::_-GM.length ? geometry.alternativa3d::_-GM[VertexAttributes.POSITION] : null;
+               vBuffer = VertexAttributes.POSITION < geometry.name_GM.length ? geometry.name_GM[VertexAttributes.POSITION] : null;
                if(vBuffer != null)
                {
                   attributesOffset = int(geometry.alternativa3d::_attributesOffsets[VertexAttributes.POSITION]);
@@ -300,13 +300,13 @@ package alternativa.engine3d.collisions
                                  indicesLength++;
                                  this.indices[indicesLength] = c;
                                  indicesLength++;
-                                 this.§_-g0§[normalsLength] = normalX;
+                                 this.name_g0[normalsLength] = normalX;
                                  normalsLength++;
-                                 this.§_-g0§[normalsLength] = normalY;
+                                 this.name_g0[normalsLength] = normalY;
                                  normalsLength++;
-                                 this.§_-g0§[normalsLength] = normalZ;
+                                 this.name_g0[normalsLength] = normalZ;
                                  normalsLength++;
-                                 this.§_-g0§[normalsLength] = offset;
+                                 this.name_g0[normalsLength] = offset;
                                  normalsLength++;
                                  ++this.numTriangles;
                               }
@@ -319,7 +319,7 @@ package alternativa.engine3d.collisions
             }
          }
          this.alternativa3d::geometries.length = 0;
-         this.alternativa3d::_-QK.length = 0;
+         this.name_QK.length = 0;
       }
       
       public function calculateDestination(source:Vector3D, displacement:Vector3D, object:Object3D, excludedObjects:Dictionary = null) : Vector3D
@@ -341,17 +341,17 @@ package alternativa.engine3d.collisions
                {
                   break;
                }
-               offset = this.radius + this.threshold + this.§_-pU§.w - this.dest.x * this.§_-pU§.x - this.dest.y * this.§_-pU§.y - this.dest.z * this.§_-pU§.z;
-               this.dest.x += this.§_-pU§.x * offset;
-               this.dest.y += this.§_-pU§.y * offset;
-               this.dest.z += this.§_-pU§.z * offset;
-               this.src.x = this.§_-SE§.x + this.§_-pU§.x * (this.radius + this.threshold);
-               this.src.y = this.§_-SE§.y + this.§_-pU§.y * (this.radius + this.threshold);
-               this.src.z = this.§_-SE§.z + this.§_-pU§.z * (this.radius + this.threshold);
-               this.§_-o5§.x = this.dest.x - this.src.x;
-               this.§_-o5§.y = this.dest.y - this.src.y;
-               this.§_-o5§.z = this.dest.z - this.src.z;
-               if(this.§_-o5§.length < this.threshold)
+               offset = this.radius + this.threshold + this.name_pU.w - this.dest.x * this.name_pU.x - this.dest.y * this.name_pU.y - this.dest.z * this.name_pU.z;
+               this.dest.x += this.name_pU.x * offset;
+               this.dest.y += this.name_pU.y * offset;
+               this.dest.z += this.name_pU.z * offset;
+               this.src.x = this.name_SE.x + this.name_pU.x * (this.radius + this.threshold);
+               this.src.y = this.name_SE.y + this.name_pU.y * (this.radius + this.threshold);
+               this.src.z = this.name_SE.z + this.name_pU.z * (this.radius + this.threshold);
+               this.name_o5.x = this.dest.x - this.src.x;
+               this.name_o5.y = this.dest.y - this.src.y;
+               this.name_o5.z = this.dest.z - this.src.z;
+               if(this.name_o5.length < this.threshold)
                {
                   break;
                }
@@ -385,39 +385,39 @@ package alternativa.engine3d.collisions
          {
             if(this.checkCollision())
             {
-               resCollisionPoint.x = this.matrix.a * this.§_-SE§.x + this.matrix.b * this.§_-SE§.y + this.matrix.c * this.§_-SE§.z + this.matrix.d;
-               resCollisionPoint.y = this.matrix.e * this.§_-SE§.x + this.matrix.f * this.§_-SE§.y + this.matrix.g * this.§_-SE§.z + this.matrix.h;
-               resCollisionPoint.z = this.matrix.i * this.§_-SE§.x + this.matrix.j * this.§_-SE§.y + this.matrix.k * this.§_-SE§.z + this.matrix.l;
-               if(this.§_-pU§.x < this.§_-pU§.y)
+               resCollisionPoint.x = this.matrix.a * this.name_SE.x + this.matrix.b * this.name_SE.y + this.matrix.c * this.name_SE.z + this.matrix.d;
+               resCollisionPoint.y = this.matrix.e * this.name_SE.x + this.matrix.f * this.name_SE.y + this.matrix.g * this.name_SE.z + this.matrix.h;
+               resCollisionPoint.z = this.matrix.i * this.name_SE.x + this.matrix.j * this.name_SE.y + this.matrix.k * this.name_SE.z + this.matrix.l;
+               if(this.name_pU.x < this.name_pU.y)
                {
-                  if(this.§_-pU§.x < this.§_-pU§.z)
+                  if(this.name_pU.x < this.name_pU.z)
                   {
                      abx = 0;
-                     aby = -this.§_-pU§.z;
-                     abz = Number(this.§_-pU§.y);
+                     aby = -this.name_pU.z;
+                     abz = Number(this.name_pU.y);
                   }
                   else
                   {
-                     abx = -this.§_-pU§.y;
-                     aby = Number(this.§_-pU§.x);
+                     abx = -this.name_pU.y;
+                     aby = Number(this.name_pU.x);
                      abz = 0;
                   }
                }
-               else if(this.§_-pU§.y < this.§_-pU§.z)
+               else if(this.name_pU.y < this.name_pU.z)
                {
-                  abx = Number(this.§_-pU§.z);
+                  abx = Number(this.name_pU.z);
                   aby = 0;
-                  abz = -this.§_-pU§.x;
+                  abz = -this.name_pU.x;
                }
                else
                {
-                  abx = -this.§_-pU§.y;
-                  aby = Number(this.§_-pU§.x);
+                  abx = -this.name_pU.y;
+                  aby = Number(this.name_pU.x);
                   abz = 0;
                }
-               acx = this.§_-pU§.z * aby - this.§_-pU§.y * abz;
-               acy = this.§_-pU§.x * abz - this.§_-pU§.z * abx;
-               acz = this.§_-pU§.y * abx - this.§_-pU§.x * aby;
+               acx = this.name_pU.z * aby - this.name_pU.y * abz;
+               acy = this.name_pU.x * abz - this.name_pU.z * abx;
+               acz = this.name_pU.y * abx - this.name_pU.x * aby;
                abx2 = this.matrix.a * abx + this.matrix.b * aby + this.matrix.c * abz;
                aby2 = this.matrix.e * abx + this.matrix.f * aby + this.matrix.g * abz;
                abz2 = this.matrix.i * abx + this.matrix.j * aby + this.matrix.k * abz;
@@ -492,9 +492,9 @@ package alternativa.engine3d.collisions
          var projectionInsideLength:Number = NaN;
          var time:Number = NaN;
          var minTime:Number = 1;
-         var displacementLength:Number = Number(this.§_-o5§.length);
+         var displacementLength:Number = Number(this.name_o5.length);
          var indicesLength:int = this.numTriangles * 3;
-         for(var i:int = 0,var j:int = 0; i < indicesLength; )
+         for(var i:int = 0, j:int = 0; i < indicesLength; )
          {
             index = this.indices[i] * 3;
             i++;
@@ -517,13 +517,13 @@ package alternativa.engine3d.collisions
             cy = this.vertices[index];
             index++;
             cz = this.vertices[index];
-            normalX = this.§_-g0§[j];
+            normalX = this.name_g0[j];
             j++;
-            normalY = this.§_-g0§[j];
+            normalY = this.name_g0[j];
             j++;
-            normalZ = this.§_-g0§[j];
+            normalZ = this.name_g0[j];
             j++;
-            offset = this.§_-g0§[j];
+            offset = this.name_g0[j];
             j++;
             distance = this.src.x * normalX + this.src.y * normalY + this.src.z * normalZ - offset;
             if(distance < this.radius)
@@ -535,9 +535,9 @@ package alternativa.engine3d.collisions
             else
             {
                _loc33_ = (distance - this.radius) / (distance - this.dest.x * normalX - this.dest.y * normalY - this.dest.z * normalZ + offset);
-               pointX = this.src.x + this.§_-o5§.x * _loc33_ - normalX * this.radius;
-               pointY = this.src.y + this.§_-o5§.y * _loc33_ - normalY * this.radius;
-               pointZ = this.src.z + this.§_-o5§.z * _loc33_ - normalZ * this.radius;
+               pointX = this.src.x + this.name_o5.x * _loc33_ - normalX * this.radius;
+               pointY = this.src.y + this.name_o5.y * _loc33_ - normalY * this.radius;
+               pointZ = this.src.z + this.name_o5.z * _loc33_ - normalZ * this.radius;
             }
             min = 1e+22;
             inside = true;
@@ -636,11 +636,11 @@ package alternativa.engine3d.collisions
             deltaX = this.src.x - faceX;
             deltaY = this.src.y - faceY;
             deltaZ = this.src.z - faceZ;
-            if(deltaX * this.§_-o5§.x + deltaY * this.§_-o5§.y + deltaZ * this.§_-o5§.z <= 0)
+            if(deltaX * this.name_o5.x + deltaY * this.name_o5.y + deltaZ * this.name_o5.z <= 0)
             {
-               backX = -this.§_-o5§.x / displacementLength;
-               backY = -this.§_-o5§.y / displacementLength;
-               backZ = -this.§_-o5§.z / displacementLength;
+               backX = -this.name_o5.x / displacementLength;
+               backY = -this.name_o5.y / displacementLength;
+               backZ = -this.name_o5.z / displacementLength;
                deltaLength = deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ;
                projectionLength = deltaX * backX + deltaY * backY + deltaZ * backZ;
                projectionInsideLength = this.radius * this.radius - deltaLength + projectionLength * projectionLength;
@@ -650,23 +650,23 @@ package alternativa.engine3d.collisions
                   if(time < minTime)
                   {
                      minTime = time;
-                     this.§_-SE§.x = faceX;
-                     this.§_-SE§.y = faceY;
-                     this.§_-SE§.z = faceZ;
+                     this.name_SE.x = faceX;
+                     this.name_SE.y = faceY;
+                     this.name_SE.z = faceZ;
                      if(inside)
                      {
-                        this.§_-pU§.x = normalX;
-                        this.§_-pU§.y = normalY;
-                        this.§_-pU§.z = normalZ;
-                        this.§_-pU§.w = offset;
+                        this.name_pU.x = normalX;
+                        this.name_pU.y = normalY;
+                        this.name_pU.z = normalZ;
+                        this.name_pU.w = offset;
                      }
                      else
                      {
                         deltaLength = Number(Math.sqrt(deltaLength));
-                        this.§_-pU§.x = deltaX / deltaLength;
-                        this.§_-pU§.y = deltaY / deltaLength;
-                        this.§_-pU§.z = deltaZ / deltaLength;
-                        this.§_-pU§.w = this.§_-SE§.x * this.§_-pU§.x + this.§_-SE§.y * this.§_-pU§.y + this.§_-SE§.z * this.§_-pU§.z;
+                        this.name_pU.x = deltaX / deltaLength;
+                        this.name_pU.y = deltaY / deltaLength;
+                        this.name_pU.z = deltaZ / deltaLength;
+                        this.name_pU.w = this.name_SE.x * this.name_pU.x + this.name_SE.y * this.name_pU.y + this.name_SE.z * this.name_pU.z;
                      }
                   }
                }

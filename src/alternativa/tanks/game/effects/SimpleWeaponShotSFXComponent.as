@@ -61,6 +61,7 @@ import alternativa.tanks.game.subsystems.timesystem.TimeSystem;
 import alternativa.tanks.game.utils.SFXUtils;
 import alternativa.tanks.game.utils.objectpool.ObjectPool;
 import alternativa.tanks.game.utils.objectpool.PooledObject;
+import alternativa.tanks.game.effects.Plane;
 
 use namespace alternativa3d;
 
@@ -85,7 +86,7 @@ class SimpleWeaponShotEffect extends PooledObject implements IGraphicEffect
       super(objectPool);
       this.mesh = new Plane(40,250,0,250 / 2);
       this.material = new TextureMaterial();
-      this.material.§_-L4§ = true;
+      this.material.name_L4 = true;
       this.mesh.setMaterialToAllSurfaces(this.material);
    }
    

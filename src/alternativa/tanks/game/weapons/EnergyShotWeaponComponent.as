@@ -56,27 +56,27 @@ package alternativa.tanks.game.weapons
       
       private var isActive:Boolean;
       
-      private var §_-Rr§:Boolean;
+      private var name_Rr:Boolean;
       
-      private var §_-3§:Boolean;
+      private var name_3:Boolean;
       
-      private var §_-f3§:Boolean;
+      private var name_f3:Boolean;
       
-      private var §_-hE§:ILogic;
+      private var name_hE:ILogic;
       
       private var gameKernel:GameKernel;
       
       private var baseTime:int;
       
-      private var §_-g8§:int;
+      private var name_g8:int;
       
-      private var §_-Zu§:ITurretPhysicsComponent;
+      private var name_Zu:ITurretPhysicsComponent;
       
       private var chassisComponent:IChassisPhysicsComponent;
       
-      private var §_-bQ§:IWeaponShotEffects;
+      private var name_bQ:IWeaponShotEffects;
       
-      private var §_-eN§:int;
+      private var name_eN:int;
       
       private var maxRange:Number;
       
@@ -108,9 +108,9 @@ package alternativa.tanks.game.weapons
       
       override public function initComponent() : void
       {
-         this.§_-Zu§ = ITurretPhysicsComponent(entity.getComponentStrict(ITurretPhysicsComponent));
+         this.name_Zu = ITurretPhysicsComponent(entity.getComponentStrict(ITurretPhysicsComponent));
          this.chassisComponent = IChassisPhysicsComponent(entity.getComponentStrict(IChassisPhysicsComponent));
-         this.§_-bQ§ = IWeaponShotEffects(entity.getComponentStrict(IWeaponShotEffects));
+         this.name_bQ = IWeaponShotEffects(entity.getComponentStrict(IWeaponShotEffects));
          this.ammunition = IEnergyAmmunition(entity.getComponentStrict(IEnergyAmmunition));
          if(this.isActive)
          {
@@ -125,21 +125,21 @@ package alternativa.tanks.game.weapons
       override public function addToGame(gameKernel:GameKernel) : void
       {
          this.gameKernel = gameKernel;
-         this.§_-hE§ = gameKernel.getLogicSystem2();
+         this.name_hE = gameKernel.getLogicSystem2();
       }
       
       override public function removeFromGame(gameKernel:GameKernel) : void
       {
-         this.§_-hE§ = null;
+         this.name_hE = null;
          this.gameKernel = null;
       }
       
       public function pullTrigger() : void
       {
-         if(!this.§_-3§)
+         if(!this.name_3)
          {
-            this.§_-3§ = true;
-            if(this.§_-Rr§)
+            this.name_3 = true;
+            if(this.name_Rr)
             {
                this.enableLogic();
             }
@@ -148,9 +148,9 @@ package alternativa.tanks.game.weapons
       
       public function releaseTrigger() : void
       {
-         if(this.§_-3§)
+         if(this.name_3)
          {
-            this.§_-3§ = false;
+            this.name_3 = false;
             this.disableLogic();
          }
       }
@@ -175,14 +175,14 @@ package alternativa.tanks.game.weapons
          var round:IGenericRound = null;
          var now:int = TimeSystem.time;
          var currentEnergy:Number = this.getCurrentEnergy(now,this.baseTime);
-         if(now >= this.§_-g8§ && currentEnergy >= this.energyPerShot)
+         if(now >= this.name_g8 && currentEnergy >= this.energyPerShot)
          {
-            this.§_-g8§ = now + this.reloadTime;
+            this.name_g8 = now + this.reloadTime;
             this.baseTime = now - 1000 * (currentEnergy - this.energyPerShot) / this.energyRechargeRate;
-            this.§_-Zu§.getGunData(this.barrelIndex,barrelOrigin,gunDirection,gunElevationAxis);
-            barrelLength = Number(this.§_-Zu§.getBarrelLength(this.barrelIndex));
+            this.name_Zu.getGunData(this.barrelIndex,barrelOrigin,gunDirection,gunElevationAxis);
+            barrelLength = Number(this.name_Zu.getBarrelLength(this.barrelIndex));
             muzzlePosition.copy(barrelOrigin).addScaled(barrelLength,gunDirection);
-            shotId = this.§_-eN§++;
+            shotId = this.name_eN++;
             shooterBody = this.chassisComponent.getBody();
             collisionDetector = this.gameKernel.getPhysicsSystem().getPhysicsScene().collisionDetector;
             filter.body = shooterBody;
@@ -204,15 +204,15 @@ package alternativa.tanks.game.weapons
             }
             round = this.ammunition.getRound(shotType,this.maxRange);
             round.shoot(this.gameKernel,shotId,shooterBody,barrelOrigin,barrelLength,shotDirection,muzzlePosition);
-            this.barrelIndex = (this.barrelIndex + 1) % this.§_-Zu§.getBarrelCount();
+            this.barrelIndex = (this.barrelIndex + 1) % this.name_Zu.getBarrelCount();
          }
       }
       
       public function shoot(shotId:int, shotType:EnergyShotType, shotDirection:Vector3, barrelIndex:int) : void
       {
          var shooterBody:Body = this.chassisComponent.getBody();
-         var barrelLength:Number = Number(this.§_-Zu§.getBarrelLength(barrelIndex));
-         this.§_-Zu§.getGunData(barrelIndex,barrelOrigin,gunDirection,gunElevationAxis);
+         var barrelLength:Number = Number(this.name_Zu.getBarrelLength(barrelIndex));
+         this.name_Zu.getGunData(barrelIndex,barrelOrigin,gunDirection,gunElevationAxis);
          muzzlePosition.copy(barrelOrigin).addScaled(barrelLength,gunDirection);
          this.doShowShotEffects(shotType,barrelIndex,barrelOrigin,muzzlePosition,gunDirection,gunElevationAxis);
          var round:IGenericRound = this.ammunition.getRound(shotType,this.maxRange);
@@ -221,17 +221,17 @@ package alternativa.tanks.game.weapons
       
       public function get enabled() : Boolean
       {
-         return this.§_-Rr§;
+         return this.name_Rr;
       }
       
       public function set enabled(value:Boolean) : void
       {
-         if(this.§_-Rr§ != value)
+         if(this.name_Rr != value)
          {
-            this.§_-Rr§ = value;
-            if(this.§_-Rr§)
+            this.name_Rr = value;
+            if(this.name_Rr)
             {
-               if(this.§_-3§)
+               if(this.name_3)
                {
                   this.enableLogic();
                }
@@ -249,7 +249,7 @@ package alternativa.tanks.game.weapons
          this.chassisComponent.getBody().addWorldForce(barrelOrigin,recoilForceVector);
          if(shotType == EnergyShotType.NORMAL_SHOT)
          {
-            this.§_-bQ§.createShotEffects(barrelIndex,barrelOrigin,muzzlePosition,gunDirection,gunElevationAxis);
+            this.name_bQ.createShotEffects(barrelIndex,barrelOrigin,muzzlePosition,gunDirection,gunElevationAxis);
          }
       }
       
@@ -265,19 +265,19 @@ package alternativa.tanks.game.weapons
       
       private function enableLogic() : void
       {
-         if(!this.§_-f3§)
+         if(!this.name_f3)
          {
-            this.§_-f3§ = true;
-            this.§_-hE§.addLogicUnit(this);
+            this.name_f3 = true;
+            this.name_hE.addLogicUnit(this);
          }
       }
       
       private function disableLogic() : void
       {
-         if(this.§_-f3§)
+         if(this.name_f3)
          {
-            this.§_-f3§ = false;
-            this.§_-hE§.removeLogicUnit(this);
+            this.name_f3 = false;
+            this.name_hE.removeLogicUnit(this);
          }
       }
       

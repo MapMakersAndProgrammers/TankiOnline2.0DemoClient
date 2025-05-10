@@ -9,13 +9,13 @@ package alternativa.engine3d.loaders.collada
    
    public class DaeSampler extends DaeElement
    {
-      private var §_-G6§:Vector.<Number>;
+      private var name_G6:Vector.<Number>;
       
       private var values:Vector.<Number>;
       
-      private var §_-JC§:int;
+      private var name_JC:int;
       
-      private var §_-7i§:int;
+      private var name_7i:int;
       
       public function DaeSampler(data:XML, document:DaeDocument)
       {
@@ -29,7 +29,7 @@ package alternativa.engine3d.loaders.collada
          var input:DaeInput = null;
          var semantic:String = null;
          var inputsList:XMLList = data.input;
-         for(var i:int = 0,var count:int = int(inputsList.length()); i < count; i++)
+         for(var i:int = 0, count:int = int(inputsList.length()); i < count; i++)
          {
             input = new DaeInput(inputsList[i],document);
             semantic = input.semantic;
@@ -43,8 +43,8 @@ package alternativa.engine3d.loaders.collada
                   inputSource = input.prepareSource(1);
                   if(inputSource != null)
                   {
-                     this.§_-G6§ = inputSource.numbers;
-                     this.§_-JC§ = inputSource.stride;
+                     this.name_G6 = inputSource.numbers;
+                     this.name_JC = inputSource.stride;
                   }
                   break;
                case "OUTPUT":
@@ -52,7 +52,7 @@ package alternativa.engine3d.loaders.collada
                   if(outputSource != null)
                   {
                      this.values = outputSource.numbers;
-                     this.§_-7i§ = outputSource.stride;
+                     this.name_7i = outputSource.stride;
                   }
                   break;
             }
@@ -65,13 +65,13 @@ package alternativa.engine3d.loaders.collada
          var track:NumberTrack = null;
          var count:int = 0;
          var i:int = 0;
-         if(this.§_-G6§ != null && this.values != null && this.§_-JC§ > 0)
+         if(this.name_G6 != null && this.values != null && this.name_JC > 0)
          {
             track = new NumberTrack(objectName,property);
-            count = this.§_-G6§.length / this.§_-JC§;
+            count = this.name_G6.length / this.name_JC;
             for(i = 0; i < count; i++)
             {
-               track.addKey(this.§_-G6§[int(this.§_-JC§ * i)],this.values[int(this.§_-7i§ * i)]);
+               track.addKey(this.name_G6[int(this.name_JC * i)],this.values[int(this.name_7i * i)]);
             }
             return track;
          }
@@ -85,15 +85,15 @@ package alternativa.engine3d.loaders.collada
          var i:int = 0;
          var index:int = 0;
          var matrix:Matrix3D = null;
-         if(this.§_-G6§ != null && this.values != null && this.§_-JC§ != 0)
+         if(this.name_G6 != null && this.values != null && this.name_JC != 0)
          {
             track = new TransformTrack(objectName);
-            count = this.§_-G6§.length / this.§_-JC§;
+            count = this.name_G6.length / this.name_JC;
             for(i = 0; i < count; i++)
             {
-               index = this.§_-7i§ * i;
+               index = this.name_7i * i;
                matrix = new Matrix3D(Vector.<Number>([this.values[index],this.values[index + 4],this.values[index + 8],this.values[index + 12],this.values[index + 1],this.values[index + 5],this.values[index + 9],this.values[index + 13],this.values[index + 2],this.values[index + 6],this.values[index + 10],this.values[index + 14],this.values[index + 3],this.values[index + 7],this.values[index + 11],this.values[index + 15]]));
-               track.addKey(this.§_-G6§[i * this.§_-JC§],matrix);
+               track.addKey(this.name_G6[i * this.name_JC],matrix);
             }
             return track;
          }
@@ -109,7 +109,7 @@ package alternativa.engine3d.loaders.collada
          var i:int = 0;
          var index:int = 0;
          var time:Number = NaN;
-         if(this.§_-G6§ != null && this.values != null && this.§_-JC§ != 0)
+         if(this.name_G6 != null && this.values != null && this.name_JC != 0)
          {
             xTrack = new NumberTrack(objectName,xProperty);
             xTrack.object = objectName;
@@ -117,11 +117,11 @@ package alternativa.engine3d.loaders.collada
             yTrack.object = objectName;
             zTrack = new NumberTrack(objectName,zProperty);
             zTrack.object = objectName;
-            count = this.§_-G6§.length / this.§_-JC§;
+            count = this.name_G6.length / this.name_JC;
             for(i = 0; i < count; i++)
             {
-               index = i * this.§_-7i§;
-               time = this.§_-G6§[i * this.§_-JC§];
+               index = i * this.name_7i;
+               time = this.name_G6[i * this.name_JC];
                xTrack.addKey(time,this.values[index]);
                yTrack.addKey(time,this.values[index + 1]);
                zTrack.addKey(time,this.values[index + 2]);

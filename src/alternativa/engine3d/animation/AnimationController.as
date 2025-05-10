@@ -10,17 +10,17 @@ package alternativa.engine3d.animation
    
    public class AnimationController
    {
-      private var §_-cn§:AnimationNode;
+      private var name_cn:AnimationNode;
       
-      private var §_-Kq§:Vector.<Object>;
+      private var name_Kq:Vector.<Object>;
       
-      private var §_-62§:Vector.<Object3D> = new Vector.<Object3D>();
+      private var name_62:Vector.<Object3D> = new Vector.<Object3D>();
       
-      private var §_-oX§:Dictionary = new Dictionary();
+      private var name_oX:Dictionary = new Dictionary();
       
-      private var §_-eB§:Object = new Object();
+      private var name_eB:Object = new Object();
       
-      private var §_-Jl§:int = -1;
+      private var name_Jl:int = -1;
       
       alternativa3d var nearestNotifyers:AnimationNotify;
       
@@ -31,24 +31,24 @@ package alternativa.engine3d.animation
       
       public function get root() : AnimationNode
       {
-         return this.§_-cn§;
+         return this.name_cn;
       }
       
       public function set root(value:AnimationNode) : void
       {
-         if(this.§_-cn§ != value)
+         if(this.name_cn != value)
          {
-            if(this.§_-cn§ != null)
+            if(this.name_cn != null)
             {
-               this.§_-cn§.alternativa3d::setController(null);
-               this.§_-cn§.alternativa3d::_-Eo = false;
+               this.name_cn.alternativa3d::setController(null);
+               this.name_cn.name_Eo = false;
             }
             if(value != null)
             {
                value.alternativa3d::setController(this);
-               value.alternativa3d::_-Eo = true;
+               value.name_Eo = true;
             }
-            this.§_-cn§ = value;
+            this.name_cn = value;
          }
       }
       
@@ -60,30 +60,30 @@ package alternativa.engine3d.animation
          var count:int = 0;
          var _loc6_:int = 0;
          var object:Object3D = null;
-         if(this.§_-Jl§ < 0)
+         if(this.name_Jl < 0)
          {
-            this.§_-Jl§ = getTimer();
+            this.name_Jl = getTimer();
             interval = 0;
          }
          else
          {
             _loc6_ = int(getTimer());
-            interval = 0.001 * (_loc6_ - this.§_-Jl§);
-            this.§_-Jl§ = _loc6_;
+            interval = 0.001 * (_loc6_ - this.name_Jl);
+            this.name_Jl = _loc6_;
          }
-         if(this.§_-cn§ == null)
+         if(this.name_cn == null)
          {
             return;
          }
-         for each(data in this.§_-eB§)
+         for each(data in this.name_eB)
          {
             data.reset();
          }
-         this.§_-cn§.alternativa3d::update(interval,1);
-         for(i = 0,count = int(this.§_-62§.length); i < count; )
+         this.name_cn.alternativa3d::update(interval,1);
+         for(i = 0,count = int(this.name_62.length); i < count; )
          {
-            object = this.§_-62§[i];
-            data = this.§_-eB§[object.name];
+            object = this.name_62[i];
+            data = this.name_eB[object.name];
             if(data != null)
             {
                data.apply(object);
@@ -96,28 +96,28 @@ package alternativa.engine3d.animation
             {
                notify.dispatchEvent(new NotifyEvent(notify));
             }
-            notify = notify.alternativa3d::_-XY;
+            notify = notify.name_XY;
          }
          this.alternativa3d::nearestNotifyers = null;
       }
       
       alternativa3d function addObject(object:Object) : void
       {
-         if(object in this.§_-oX§)
+         if(object in this.name_oX)
          {
-            ++this.§_-oX§[object];
+            ++this.name_oX[object];
          }
          else
          {
             if(object is Object3D)
             {
-               this.§_-62§.push(object);
+               this.name_62.push(object);
             }
             else
             {
-               this.§_-Kq§.push(object);
+               this.name_Kq.push(object);
             }
-            this.§_-oX§[object] = 1;
+            this.name_oX[object] = 1;
          }
       }
       
@@ -126,56 +126,56 @@ package alternativa.engine3d.animation
          var index:int = 0;
          var j:int = 0;
          var count:int = 0;
-         var used:int = int(this.§_-oX§[object]);
+         var used:int = int(this.name_oX[object]);
          used--;
          if(used <= 0)
          {
             if(object is Object3D)
             {
-               index = int(this.§_-62§.indexOf(object));
-               count = this.§_-62§.length - 1;
+               index = int(this.name_62.indexOf(object as Object3D));
+               count = this.name_62.length - 1;
                for(j = index + 1; index < count; )
                {
-                  this.§_-62§[index] = this.§_-62§[j];
+                  this.name_62[index] = this.name_62[j];
                   index++;
                   j++;
                }
-               this.§_-62§.length = count;
+               this.name_62.length = count;
             }
             else
             {
-               index = int(this.§_-Kq§.indexOf(object));
-               count = this.§_-Kq§.length - 1;
+               index = int(this.name_Kq.indexOf(object));
+               count = this.name_Kq.length - 1;
                for(j = index + 1; index < count; )
                {
-                  this.§_-Kq§[index] = this.§_-Kq§[j];
+                  this.name_Kq[index] = this.name_Kq[j];
                   index++;
                   j++;
                }
-               this.§_-Kq§.length = count;
+               this.name_Kq.length = count;
             }
-            delete this.§_-oX§[object];
+            delete this.name_oX[object];
          }
          else
          {
-            this.§_-oX§[object] = used;
+            this.name_oX[object] = used;
          }
       }
       
       alternativa3d function getState(name:String) : AnimationState
       {
-         var state:AnimationState = this.§_-eB§[name];
+         var state:AnimationState = this.name_eB[name];
          if(state == null)
          {
             state = new AnimationState();
-            this.§_-eB§[name] = state;
+            this.name_eB[name] = state;
          }
          return state;
       }
       
       public function freeze() : void
       {
-         this.§_-Jl§ = -1;
+         this.name_Jl = -1;
       }
    }
 }

@@ -81,7 +81,7 @@ package alternativa.engine3d.materials
       
       private static const _passLightMapUVProcedure:Procedure = new Procedure(["#a0=aUV1","#v0=vUV1","mov v0, a0"],"passLightMapUVProcedure");
       
-      private var §_-NH§:int = 0;
+      private var name_NH:int = 0;
       
       public var normalMap:TextureResource;
       
@@ -112,7 +112,7 @@ package alternativa.engine3d.materials
       
       public function get normalMapSpace() : int
       {
-         return this.§_-NH§;
+         return this.name_NH;
       }
       
       public function set normalMapSpace(value:int) : void
@@ -121,7 +121,7 @@ package alternativa.engine3d.materials
          {
             throw new ArgumentError("Value must be a constant from the NormalMapSpace class");
          }
-         this.§_-NH§ = value;
+         this.name_NH = value;
       }
       
       override alternativa3d function fillResources(resources:Dictionary, resourceType:Class) : void
@@ -169,7 +169,7 @@ package alternativa.engine3d.materials
             vertexLinker.setInputParams(procedure,normalVar);
             vertexLinker.setOutputParams(procedure,"tTransformedNormal");
             normalVar = "tTransformedNormal";
-            if((this.§_-NH§ == NormalMapSpace.TANGENT_RIGHT_HANDED || this.§_-NH§ == NormalMapSpace.TANGENT_LEFT_HANDED) && this.normalMap != null)
+            if((this.name_NH == NormalMapSpace.TANGENT_RIGHT_HANDED || this.name_NH == NormalMapSpace.TANGENT_LEFT_HANDED) && this.normalMap != null)
             {
                vertexLinker.declareVariable(tangentVar,VariableType.ATTRIBUTE);
                vertexLinker.declareVariable("tTransformedTangent");
@@ -180,7 +180,7 @@ package alternativa.engine3d.materials
                tangentVar = "tTransformedTangent";
             }
          }
-         else if((this.§_-NH§ == NormalMapSpace.TANGENT_RIGHT_HANDED || this.§_-NH§ == NormalMapSpace.TANGENT_LEFT_HANDED) && this.normalMap != null)
+         else if((this.name_NH == NormalMapSpace.TANGENT_RIGHT_HANDED || this.name_NH == NormalMapSpace.TANGENT_LEFT_HANDED) && this.normalMap != null)
          {
             vertexLinker.declareVariable(tangentVar,VariableType.ATTRIBUTE);
          }
@@ -193,9 +193,9 @@ package alternativa.engine3d.materials
          if(this.normalMap != null)
          {
             fragmentLinker.declareVariable("tNormal");
-            if(this.§_-NH§ == NormalMapSpace.TANGENT_RIGHT_HANDED || this.§_-NH§ == NormalMapSpace.TANGENT_LEFT_HANDED)
+            if(this.name_NH == NormalMapSpace.TANGENT_RIGHT_HANDED || this.name_NH == NormalMapSpace.TANGENT_LEFT_HANDED)
             {
-               nrmProcedure = this.§_-NH§ == NormalMapSpace.TANGENT_RIGHT_HANDED ? _passTBNRightProcedure : _passTBNLeftProcedure;
+               nrmProcedure = this.name_NH == NormalMapSpace.TANGENT_RIGHT_HANDED ? _passTBNRightProcedure : _passTBNLeftProcedure;
                vertexLinker.addProcedure(nrmProcedure);
                vertexLinker.setInputParams(nrmProcedure,tangentVar,normalVar);
                fragmentLinker.addProcedure(_getNormalTangentProcedure);
@@ -209,7 +209,7 @@ package alternativa.engine3d.materials
          }
          vertexLinker.link();
          fragmentLinker.declareVariable("tColor");
-         if(§_-L4§)
+         if(name_L4)
          {
             fragmentLinker.addProcedure(alternativa3d::_samplerSetProcedureDiffuseAlpha);
             fragmentLinker.setOutputParams(alternativa3d::_samplerSetProcedureDiffuseAlpha,"tColor");
@@ -300,7 +300,7 @@ package alternativa.engine3d.materials
          {
             return;
          }
-         if(!§_-L4§ && opacityMap != null && opacityMap.alternativa3d::_texture == null)
+         if(!name_L4 && opacityMap != null && opacityMap.alternativa3d::_texture == null)
          {
             return;
          }
@@ -313,7 +313,7 @@ package alternativa.engine3d.materials
          {
             return;
          }
-         var key:String = alternativa3d::fogMode.toString() + this.§_-NH§.toString() + (this.normalMap != null ? "N" : "n") + (opacityMap != null ? "O" : "o") + (§_-L4§ ? "D" : "d");
+         var key:String = alternativa3d::fogMode.toString() + this.name_NH.toString() + (this.normalMap != null ? "N" : "n") + (opacityMap != null ? "O" : "o") + (name_L4 ? "D" : "d");
          var programs:Dictionary = _programs[object.alternativa3d::transformProcedure];
          if(programs == null)
          {
@@ -333,7 +333,7 @@ package alternativa.engine3d.materials
                programs[key] = program;
             }
          }
-         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.alternativa3d::_-EM,surface.indexBegin,surface.numTriangles,program);
+         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.name_EM,surface.indexBegin,surface.numTriangles,program);
          drawUnit.alternativa3d::setTextureAt(program.fragmentShader.getVariableIndex("sLightMap"),this.lightMap.alternativa3d::_texture);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aPosition"),positionBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.POSITION],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.POSITION]);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aUV"),uvBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.TEXCOORDS[0]],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.TEXCOORDS[0]]);
@@ -347,7 +347,7 @@ package alternativa.engine3d.materials
          if(this.normalMap != null)
          {
             drawUnit.alternativa3d::setTextureAt(envProgram.sBump,this.normalMap.alternativa3d::_texture);
-            if(this.§_-NH§ == NormalMapSpace.TANGENT_RIGHT_HANDED || this.§_-NH§ == NormalMapSpace.TANGENT_LEFT_HANDED)
+            if(this.name_NH == NormalMapSpace.TANGENT_RIGHT_HANDED || this.name_NH == NormalMapSpace.TANGENT_LEFT_HANDED)
             {
                drawUnit.alternativa3d::setVertexBufferAt(envProgram.aTangent,tangentsBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.TANGENT4],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.TANGENT4]);
             }
@@ -362,7 +362,7 @@ package alternativa.engine3d.materials
          drawUnit.alternativa3d::setFragmentConstantsFromNumbers(envProgram.cCamera,cameraToLocalTransform.d,cameraToLocalTransform.h,cameraToLocalTransform.l);
          drawUnit.alternativa3d::setFragmentConstantsFromNumbers(envProgram.cAlpha,0,1 - this.reflection,this.reflection,alpha);
          drawUnit.alternativa3d::setTextureAt(program.fragmentShader.getVariableIndex("sTexture"),diffuseMap.alternativa3d::_texture);
-         if(!§_-L4§ && opacityMap != null)
+         if(!name_L4 && opacityMap != null)
          {
             drawUnit.alternativa3d::setTextureAt(program.fragmentShader.getVariableIndex("sOpacity"),opacityMap.alternativa3d::_texture);
          }
@@ -412,7 +412,7 @@ package alternativa.engine3d.materials
             drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("cFogConsts"),0.5 * uScale,0.5 - uRight,0);
             drawUnit.alternativa3d::setTextureAt(program.fragmentShader.getVariableIndex("sFogTexture"),alternativa3d::fogTexture.alternativa3d::_texture);
          }
-         if(§_-L4§ || opacityMap != null || alpha < 1)
+         if(name_L4 || opacityMap != null || alpha < 1)
          {
             drawUnit.alternativa3d::blendSource = Context3DBlendFactor.SOURCE_ALPHA;
             drawUnit.alternativa3d::blendDestination = Context3DBlendFactor.ONE_MINUS_SOURCE_ALPHA;
@@ -427,6 +427,7 @@ package alternativa.engine3d.materials
 }
 
 import alternativa.engine3d.materials.compiler.Linker;
+import alternativa.engine3d.materials.ShaderProgram;
 
 class EnvironmentMaterialShaderProgram extends ShaderProgram
 {

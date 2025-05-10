@@ -14,9 +14,9 @@ package _codec.versions.version2.a3d.animation
    {
       public static var log:IClientLog = IClientLog(OSGi.getInstance().getService(IClientLog));
       
-      private var §_-dk§:ICodec;
+      private var name_dk:ICodec;
       
-      private var §_-S2§:ICodec;
+      private var name_S2:ICodec;
       
       public function CodecA3D2Keyframe()
       {
@@ -25,16 +25,16 @@ package _codec.versions.version2.a3d.animation
       
       public function init(protocol:IProtocol) : void
       {
-         this.§_-dk§ = protocol.getCodec(new TypeCodecInfo(Float,false));
-         this.§_-S2§ = protocol.getCodec(new TypeCodecInfo(A3D2Transform,false));
+         this.name_dk = protocol.getCodec(new TypeCodecInfo(Float,false));
+         this.name_S2 = protocol.getCodec(new TypeCodecInfo(A3D2Transform,false));
       }
       
       public function decode(protocolBuffer:ProtocolBuffer) : Object
       {
          log = IClientLog(OSGi.getInstance().getService(IClientLog));
-         var value_time:Number = Number(this.§_-dk§.decode(protocolBuffer) as Number);
+         var value_time:Number = Number(this.name_dk.decode(protocolBuffer) as Number);
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.animation.A3D2Keyframe","time",value_time);
-         var value_transform:A3D2Transform = this.§_-S2§.decode(protocolBuffer) as A3D2Transform;
+         var value_transform:A3D2Transform = this.name_S2.decode(protocolBuffer) as A3D2Transform;
          log.log("codec","struct %1 field %2 value %3","versions.version2.a3d.animation.A3D2Keyframe","transform",value_transform);
          return new A3D2Keyframe(value_time,value_transform);
       }
@@ -46,8 +46,8 @@ package _codec.versions.version2.a3d.animation
             throw new Error("Object is null. Use @ProtocolOptional annotation.");
          }
          var struct:A3D2Keyframe = A3D2Keyframe(object);
-         this.§_-dk§.encode(protocolBuffer,struct.time);
-         this.§_-S2§.encode(protocolBuffer,struct.transform);
+         this.name_dk.encode(protocolBuffer,struct.time);
+         this.name_S2.encode(protocolBuffer,struct.transform);
       }
    }
 }

@@ -38,7 +38,7 @@ package alternativa.tanks.game.entities.tank.graphics.materials
          alternativa3d::outputDiffuseAlpha = alternativa3d::outputAlpha;
          alternativa3d::outputOpacity = new Procedure(["#c0=cSurface","#s0=sOpacity","#v0=vUV","tex t0, v0, s0 <2d, repeat,linear,miplinear>","mov i0.w, t0.x","sub t0.x, t0.x, c0.w","kil t0.x","mov o0, i0"],"outputOpacity");
          this.alphaThreshold = alphaThreshold;
-         this.alternativa3d::_-ES = true;
+         this.name_ES = true;
       }
       
       public static function get fogMode() : int
@@ -138,9 +138,9 @@ package alternativa.tanks.game.entities.tank.graphics.materials
          var cloned:TreesMaterial = new TreesMaterial(diffuseMap,normalMap,specularMap,glossinessMap);
          cloned.opacityMap = opacityMap;
          cloned.alpha = alpha;
-         cloned.§_-L4§ = §_-L4§;
+         cloned.name_L4 = name_L4;
          cloned.glossiness = glossiness;
-         cloned.§_-kj§ = §_-kj§;
+         cloned.name_kj = name_kj;
          cloned.normalMapSpace = normalMapSpace;
          cloned.uOffset = this.uOffset;
          cloned.vOffset = this.vOffset;

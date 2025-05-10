@@ -7,15 +7,15 @@ package alternativa.types
    {
       private static var longMap:Dictionary = new Dictionary();
       
-      private var §_-Ec§:int;
+      private var name_Ec:int;
       
-      private var §_-Ti§:int;
+      private var name_Ti:int;
       
       public function Long(high:int, low:int)
       {
          super();
-         this.§_-Ti§ = high;
-         this.§_-Ec§ = low;
+         this.name_Ti = high;
+         this.name_Ec = low;
       }
       
       public static function getLong(high:int, low:int) : Long
@@ -61,17 +61,17 @@ package alternativa.types
       
       public function get low() : int
       {
-         return this.§_-Ec§;
+         return this.name_Ec;
       }
       
       public function get high() : int
       {
-         return this.§_-Ti§;
+         return this.name_Ti;
       }
       
       public function toString() : String
       {
-         return this.intToUhex(this.§_-Ti§) + this.intToUhex(this.§_-Ec§);
+         return this.intToUhex(this.name_Ti) + this.intToUhex(this.name_Ec);
       }
       
       public function toByteArray(result:ByteArray = null) : ByteArray
@@ -81,8 +81,8 @@ package alternativa.types
             result = new ByteArray();
          }
          result.position = 0;
-         result.writeInt(this.§_-Ti§);
-         result.writeInt(this.§_-Ec§);
+         result.writeInt(this.name_Ti);
+         result.writeInt(this.name_Ec);
          result.position = 0;
          return result;
       }

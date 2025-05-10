@@ -13,22 +13,22 @@ package alternativa.tanks
    {
       public var gameKernel:GameKernel;
       
-      private var §_-9P§:IGenericTargetEvaluator;
+      private var name_9P:IGenericTargetEvaluator;
       
-      private var §_-bW§:IRailgunTargetEvaluator;
+      private var name_bW:IRailgunTargetEvaluator;
       
-      private var §_-ci§:IGenericTargetEvaluator;
+      private var name_ci:IGenericTargetEvaluator;
       
-      private var §_-L1§:Dictionary;
+      private var name_L1:Dictionary;
       
-      private var §_-ee§:Dictionary;
+      private var name_ee:Dictionary;
       
       public function TextureResourceService(param1:GameKernel)
       {
          super();
          this.gameKernel = param1;
-         this.§_-L1§ = new Dictionary();
-         this.§_-ee§ = new Dictionary();
+         this.name_L1 = new Dictionary();
+         this.name_ee = new Dictionary();
       }
       
       public function getCompressedTextureResource(param1:ByteArray) : ATFTextureResource
@@ -68,22 +68,22 @@ package alternativa.tanks
       
       private function getCompressedResourceSafe(param1:ByteArray, param2:Boolean) : ATFTextureResource
       {
-         var _loc3_:ATFTextureResource = this.§_-L1§[param1];
+         var _loc3_:ATFTextureResource = this.name_L1[param1];
          if(_loc3_ == null && param2)
          {
             _loc3_ = new ATFTextureResource(param1);
-            this.§_-L1§[param1] = _loc3_;
+            this.name_L1[param1] = _loc3_;
          }
          return _loc3_;
       }
       
       private function getBitmapResourceSafe(param1:BitmapData, param2:Boolean) : BitmapTextureResource
       {
-         var _loc3_:BitmapTextureResource = this.§_-ee§[param1];
+         var _loc3_:BitmapTextureResource = this.name_ee[param1];
          if(_loc3_ == null && param2)
          {
             _loc3_ = new BitmapTextureResource(param1);
-            this.§_-ee§[param1] = _loc3_;
+            this.name_ee[param1] = _loc3_;
          }
          return _loc3_;
       }
@@ -91,51 +91,51 @@ package alternativa.tanks
       public function clear() : void
       {
          this.gameKernel = null;
-         this.§_-9P§ = null;
-         this.§_-bW§ = null;
-         this.§_-ci§ = null;
+         this.name_9P = null;
+         this.name_bW = null;
+         this.name_ci = null;
       }
       
       public function getGenericTargetEvaluator() : IGenericTargetEvaluator
       {
-         if(this.§_-9P§ == null)
+         if(this.name_9P == null)
          {
             throw new Error("Generic target evaluator is not set");
          }
-         return this.§_-9P§;
+         return this.name_9P;
       }
       
       public function setGenericTargetEvaluator(param1:IGenericTargetEvaluator) : void
       {
-         this.§_-9P§ = param1;
+         this.name_9P = param1;
       }
       
       public function getRailgunTargetEvaluator() : IRailgunTargetEvaluator
       {
-         if(this.§_-bW§ == null)
+         if(this.name_bW == null)
          {
             throw new Error("Railgun target evaluator is not set");
          }
-         return this.§_-bW§;
+         return this.name_bW;
       }
       
       public function setRailgunTargetEvaluator(param1:IRailgunTargetEvaluator) : void
       {
-         this.§_-bW§ = param1;
+         this.name_bW = param1;
       }
       
       public function getFlamethrowerTargetEvaluator() : IGenericTargetEvaluator
       {
-         if(this.§_-ci§ == null)
+         if(this.name_ci == null)
          {
             throw new Error("Flame/freeze target evaluator is not set");
          }
-         return this.§_-ci§;
+         return this.name_ci;
       }
       
       public function setFlamethrowerTargetEvaluator(param1:IGenericTargetEvaluator) : void
       {
-         this.§_-ci§ = param1;
+         this.name_ci = param1;
       }
    }
 }

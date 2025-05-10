@@ -2,22 +2,22 @@ package commons
 {
    public class Id
    {
-      private var §_-3I§:uint;
+      private var name_3I:uint;
       
       public function Id(id:uint)
       {
          super();
-         this.§_-3I§ = id;
+         this.name_3I = id;
       }
       
       public function get id() : uint
       {
-         return this.§_-3I§;
+         return this.name_3I;
       }
       
       public function set id(value:uint) : void
       {
-         this.§_-3I§ = value;
+         this.name_3I = value;
       }
       
       public function toString() : String

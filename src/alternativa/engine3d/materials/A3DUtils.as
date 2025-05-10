@@ -70,7 +70,7 @@ package alternativa.engine3d.materials
       private static function getData(source:Vector.<int>) : ByteArray
       {
          var result:ByteArray = new ByteArray();
-         for(var i:int = 0,var length:int = int(source.length); i < length; i++)
+         for(var i:int = 0, length:int = int(source.length); i < length; i++)
          {
             result.writeByte(source[i]);
          }

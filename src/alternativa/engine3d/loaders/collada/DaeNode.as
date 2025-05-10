@@ -23,7 +23,7 @@ package alternativa.engine3d.loaders.collada
       
       private var channels:Vector.<DaeChannel>;
       
-      private var §_-DE§:Vector.<DaeInstanceController>;
+      private var name_DE:Vector.<DaeInstanceController>;
       
       public var nodes:Vector.<DaeNode>;
       
@@ -112,11 +112,11 @@ package alternativa.engine3d.loaders.collada
       
       public function addInstanceController(controller:DaeInstanceController) : void
       {
-         if(this.§_-DE§ == null)
+         if(this.name_DE == null)
          {
-            this.§_-DE§ = new Vector.<DaeInstanceController>();
+            this.name_DE = new Vector.<DaeInstanceController>();
          }
-         this.§_-DE§.push(controller);
+         this.name_DE.push(controller);
       }
       
       override protected function parseImplementation() : Boolean
@@ -131,7 +131,7 @@ package alternativa.engine3d.loaders.collada
          var instance:DaeInstanceMaterial = null;
          var instances:Object = new Object();
          var list:XMLList = geometry.bind_material.technique_common.instance_material;
-         for(var i:int = 0,var count:int = int(list.length()); i < count; i++)
+         for(var i:int = 0, count:int = int(list.length()); i < count; i++)
          {
             instance = new DaeInstanceMaterial(list[i],document);
             instances[instance.symbol] = instance;
@@ -188,14 +188,14 @@ package alternativa.engine3d.loaders.collada
          var instanceController:DaeInstanceController = null;
          var skinAndAnimatedJoints:DaeObject = null;
          var skin:Skin = null;
-         if(this.§_-DE§ == null)
+         if(this.name_DE == null)
          {
             return null;
          }
          var skins:Vector.<DaeObject> = new Vector.<DaeObject>();
-         for(var i:int = 0,var count:int = int(this.§_-DE§.length); i < count; )
+         for(var i:int = 0, count:int = int(this.name_DE.length); i < count; )
          {
-            instanceController = this.§_-DE§[i];
+            instanceController = this.name_DE[i];
             instanceController.parse();
             skinAndAnimatedJoints = instanceController.parseSkin(this.parseInstanceMaterials(instanceController.data));
             if(skinAndAnimatedJoints != null)
@@ -475,7 +475,7 @@ package alternativa.engine3d.loaders.collada
       private function createClip(tracks:Vector.<Track>) : AnimationClip
       {
          var clip:AnimationClip = new AnimationClip();
-         for(var i:int = 0,var count:int = int(tracks.length); i < count; i++)
+         for(var i:int = 0, count:int = int(tracks.length); i < count; i++)
          {
             clip.addTrack(tracks[i]);
          }
@@ -484,7 +484,7 @@ package alternativa.engine3d.loaders.collada
       
       private function addTracksToClip(clip:AnimationClip, tracks:Vector.<Track>) : void
       {
-         for(var i:int = 0,var count:int = int(tracks.length); i < count; i++)
+         for(var i:int = 0, count:int = int(tracks.length); i < count; i++)
          {
             clip.addTrack(tracks[i]);
          }
@@ -494,22 +494,22 @@ package alternativa.engine3d.loaders.collada
       {
          var channel:DaeChannel = null;
          var result:Boolean = false;
-         for(var i:int = 0,var count:int = int(this.channels.length); i < count; )
+         for(var i:int = 0, count:int = int(this.channels.length); i < count; )
          {
             channel = this.channels[i];
             channel.parse();
-            result = channel.§_-dS§ == DaeChannel.PARAM_MATRIX;
-            result ||= channel.§_-dS§ == DaeChannel.PARAM_TRANSLATE;
-            result ||= channel.§_-dS§ == DaeChannel.PARAM_TRANSLATE_X;
-            result ||= channel.§_-dS§ == DaeChannel.PARAM_TRANSLATE_Y;
-            result ||= channel.§_-dS§ == DaeChannel.PARAM_TRANSLATE_Z;
-            result ||= channel.§_-dS§ == DaeChannel.PARAM_ROTATION_X;
-            result ||= channel.§_-dS§ == DaeChannel.PARAM_ROTATION_Y;
-            result ||= channel.§_-dS§ == DaeChannel.PARAM_ROTATION_Z;
-            result ||= channel.§_-dS§ == DaeChannel.PARAM_SCALE;
-            result ||= channel.§_-dS§ == DaeChannel.PARAM_SCALE_X;
-            result ||= channel.§_-dS§ == DaeChannel.PARAM_SCALE_Y;
-            result ||= channel.§_-dS§ == DaeChannel.PARAM_SCALE_Z;
+            result = channel.name_dS == DaeChannel.PARAM_MATRIX;
+            result ||= channel.name_dS == DaeChannel.PARAM_TRANSLATE;
+            result ||= channel.name_dS == DaeChannel.PARAM_TRANSLATE_X;
+            result ||= channel.name_dS == DaeChannel.PARAM_TRANSLATE_Y;
+            result ||= channel.name_dS == DaeChannel.PARAM_TRANSLATE_Z;
+            result ||= channel.name_dS == DaeChannel.PARAM_ROTATION_X;
+            result ||= channel.name_dS == DaeChannel.PARAM_ROTATION_Y;
+            result ||= channel.name_dS == DaeChannel.PARAM_ROTATION_Z;
+            result ||= channel.name_dS == DaeChannel.PARAM_SCALE;
+            result ||= channel.name_dS == DaeChannel.PARAM_SCALE_X;
+            result ||= channel.name_dS == DaeChannel.PARAM_SCALE_Y;
+            result ||= channel.name_dS == DaeChannel.PARAM_SCALE_Z;
             if(result)
             {
                return true;
@@ -522,11 +522,11 @@ package alternativa.engine3d.loaders.collada
       private function getChannel(param:String) : DaeChannel
       {
          var channel:DaeChannel = null;
-         for(var i:int = 0,var count:int = int(this.channels.length); i < count; )
+         for(var i:int = 0, count:int = int(this.channels.length); i < count; )
          {
             channel = this.channels[i];
             channel.parse();
-            if(channel.§_-dS§ == param)
+            if(channel.name_dS == param)
             {
                return channel;
             }
@@ -537,7 +537,7 @@ package alternativa.engine3d.loaders.collada
       
       private function concatTracks(source:Vector.<Track>, dest:Vector.<Track>) : void
       {
-         for(var i:int = 0,var count:int = int(source.length); i < count; i++)
+         for(var i:int = 0, count:int = int(source.length); i < count; i++)
          {
             dest.push(source[i]);
          }

@@ -4,48 +4,48 @@ package versions.version1.a3d.geometry
    
    public class A3DGeometry
    {
-      private var §_-3I§:Id;
+      private var name_3I:Id;
       
-      private var §_-EM§:A3DIndexBuffer;
+      private var name_EM:A3DIndexBuffer;
       
-      private var §_-0B§:Vector.<A3DVertexBuffer>;
+      private var name_0B:Vector.<A3DVertexBuffer>;
       
       public function A3DGeometry(id:Id, indexBuffer:A3DIndexBuffer, vertexBuffers:Vector.<A3DVertexBuffer>)
       {
          super();
-         this.§_-3I§ = id;
-         this.§_-EM§ = indexBuffer;
-         this.§_-0B§ = vertexBuffers;
+         this.name_3I = id;
+         this.name_EM = indexBuffer;
+         this.name_0B = vertexBuffers;
       }
       
       public function get id() : Id
       {
-         return this.§_-3I§;
+         return this.name_3I;
       }
       
       public function set id(value:Id) : void
       {
-         this.§_-3I§ = value;
+         this.name_3I = value;
       }
       
       public function get indexBuffer() : A3DIndexBuffer
       {
-         return this.§_-EM§;
+         return this.name_EM;
       }
       
       public function set indexBuffer(value:A3DIndexBuffer) : void
       {
-         this.§_-EM§ = value;
+         this.name_EM = value;
       }
       
       public function get vertexBuffers() : Vector.<A3DVertexBuffer>
       {
-         return this.§_-0B§;
+         return this.name_0B;
       }
       
       public function set vertexBuffers(value:Vector.<A3DVertexBuffer>) : void
       {
-         this.§_-0B§ = value;
+         this.name_0B = value;
       }
       
       public function toString() : String

@@ -4,22 +4,22 @@ package versions.version2.a3d.objects
    
    public class A3D2Transform
    {
-      private var §_-6p§:A3DMatrix;
+      private var name_6p:A3DMatrix;
       
       public function A3D2Transform(matrix:A3DMatrix)
       {
          super();
-         this.§_-6p§ = matrix;
+         this.name_6p = matrix;
       }
       
       public function get matrix() : A3DMatrix
       {
-         return this.§_-6p§;
+         return this.name_6p;
       }
       
       public function set matrix(value:A3DMatrix) : void
       {
-         this.§_-6p§ = value;
+         this.name_6p = value;
       }
       
       public function toString() : String

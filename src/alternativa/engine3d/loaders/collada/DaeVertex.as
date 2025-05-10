@@ -4,9 +4,9 @@ package alternativa.engine3d.loaders.collada
    
    public class DaeVertex
    {
-      public var §_-Eq§:int;
+      public var name_Eq:int;
       
-      public var §_-AR§:int;
+      public var name_AR:int;
       
       public var indices:Vector.<int> = new Vector.<int>();
       
@@ -20,7 +20,7 @@ package alternativa.engine3d.loaders.collada
       
       public var normal:Vector3D;
       
-      public var §_-hC§:Vector3D;
+      public var name_hC:Vector3D;
       
       public function DaeVertex()
       {
@@ -55,12 +55,12 @@ package alternativa.engine3d.loaders.collada
          var biNormalX:Number = biNormalData[int(biNormalOffset++)];
          var biNormalY:Number = biNormalData[int(biNormalOffset++)];
          var biNormalZ:Number = biNormalData[biNormalOffset];
-         this.§_-hC§ = new Vector3D(tangentData[int(tangentOffset++)],tangentData[int(tangentOffset++)],tangentData[tangentOffset]);
-         var crossX:Number = this.normal.y * this.§_-hC§.z - this.normal.z * this.§_-hC§.y;
-         var crossY:Number = this.normal.z * this.§_-hC§.x - this.normal.x * this.§_-hC§.z;
-         var crossZ:Number = this.normal.x * this.§_-hC§.y - this.normal.y * this.§_-hC§.x;
+         this.name_hC = new Vector3D(tangentData[int(tangentOffset++)],tangentData[int(tangentOffset++)],tangentData[tangentOffset]);
+         var crossX:Number = this.normal.y * this.name_hC.z - this.normal.z * this.name_hC.y;
+         var crossY:Number = this.normal.z * this.name_hC.x - this.normal.x * this.name_hC.z;
+         var crossZ:Number = this.normal.x * this.name_hC.y - this.normal.y * this.name_hC.x;
          var dot:Number = crossX * biNormalX + crossY * biNormalY + crossZ * biNormalZ;
-         this.§_-hC§.w = dot < 0 ? -1 : 1;
+         this.name_hC.w = dot < 0 ? -1 : 1;
       }
       
       public function appendUV(data:Vector.<Number>, dataIndex:int, stride:int) : void

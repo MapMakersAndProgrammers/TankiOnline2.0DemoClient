@@ -8,9 +8,9 @@ package alternativa.osgi.service.dump
    {
       private var osgi:OSGi;
       
-      private var §_-gQ§:Dictionary;
+      private var name_gQ:Dictionary;
       
-      private var §_-G8§:Vector.<IDumper>;
+      private var name_G8:Vector.<IDumper>;
       
       public function DumpService(osgi:OSGi)
       {
@@ -18,27 +18,27 @@ package alternativa.osgi.service.dump
          this.osgi = osgi;
          var console:IConsole = IConsole(osgi.getService(IConsole));
          console.setCommandHandler("dump",this.hadleConsoleCommand);
-         this.§_-gQ§ = new Dictionary(false);
-         this.§_-G8§ = new Vector.<IDumper>();
+         this.name_gQ = new Dictionary(false);
+         this.name_G8 = new Vector.<IDumper>();
       }
       
       public function registerDumper(dumper:IDumper) : void
       {
-         if(this.§_-gQ§[dumper.dumperName] != null)
+         if(this.name_gQ[dumper.dumperName] != null)
          {
             throw new Error("Dumper is already registered");
          }
-         this.§_-gQ§[dumper.dumperName] = dumper;
-         this.§_-G8§.push(dumper);
+         this.name_gQ[dumper.dumperName] = dumper;
+         this.name_G8.push(dumper);
       }
       
       public function unregisterDumper(dumperName:String) : void
       {
-         var dumper:IDumper = this.§_-gQ§[dumperName];
+         var dumper:IDumper = this.name_gQ[dumperName];
          if(dumper != null)
          {
-            this.§_-G8§.splice(this.§_-G8§.indexOf(dumper),1);
-            delete this.§_-gQ§[dumperName];
+            this.name_G8.splice(this.name_G8.indexOf(dumper),1);
+            delete this.name_gQ[dumperName];
          }
       }
       
@@ -53,14 +53,14 @@ package alternativa.osgi.service.dump
          if(dumperName.match(/^\d+$/) != null)
          {
             index = int(int(dumperName));
-            if(index < this.§_-G8§.length)
+            if(index < this.name_G8.length)
             {
-               dumper = this.§_-G8§[index];
+               dumper = this.name_G8[index];
             }
          }
          else
          {
-            dumper = this.§_-gQ§[dumperName];
+            dumper = this.name_gQ[dumperName];
          }
          if(dumper == null)
          {
@@ -71,20 +71,20 @@ package alternativa.osgi.service.dump
       
       public function get dumpersByName() : Dictionary
       {
-         return this.§_-gQ§;
+         return this.name_gQ;
       }
       
       public function get dumpersList() : Vector.<IDumper>
       {
-         return this.§_-G8§;
+         return this.name_G8;
       }
       
       private function getDumperList() : String
       {
          var s:String = "";
-         for(var i:int = 0; i < this.§_-G8§.length; i++)
+         for(var i:int = 0; i < this.name_G8.length; i++)
          {
-            s += i.toString() + " " + this.§_-G8§[i].dumperName + "\n";
+            s += i.toString() + " " + this.name_G8[i].dumperName + "\n";
          }
          return s;
       }

@@ -19,25 +19,25 @@ package alternativa.engine3d.resources
    
    public class WireGeometry extends Resource
    {
-      private const §_-VA§:uint = 65500;
+      private const name_VA:uint = 65500;
       
-      private const §_-Pp§:Number = 2 * Math.tan(Math.PI / 6);
+      private const name_Pp:Number = 2 * Math.tan(Math.PI / 6);
       
-      private const §_-SS§:uint = 7;
+      private const name_SS:uint = 7;
       
       alternativa3d var vertexBuffers:Vector.<VertexBuffer3D>;
       
       alternativa3d var indexBuffers:Vector.<IndexBuffer3D>;
       
-      private var §_-Rz§:Vector.<int>;
+      private var name_Rz:Vector.<int>;
       
       private var vertices:Vector.<Vector.<Number>>;
       
       private var indices:Vector.<Vector.<uint>>;
       
-      private var §_-ix§:int = 0;
+      private var name_ix:int = 0;
       
-      private var §_-dP§:uint = 0;
+      private var name_dP:uint = 0;
       
       public function WireGeometry()
       {
@@ -53,7 +53,7 @@ package alternativa.engine3d.resources
          var inds:Vector.<uint> = null;
          var vBuffer:VertexBuffer3D = null;
          var iBuffer:IndexBuffer3D = null;
-         for(var i:int = 0; i <= this.§_-ix§; )
+         for(var i:int = 0; i <= this.name_ix; )
          {
             if(this.alternativa3d::vertexBuffers[i] != null)
             {
@@ -63,12 +63,12 @@ package alternativa.engine3d.resources
             {
                this.alternativa3d::indexBuffers[i].dispose();
             }
-            if(this.§_-Rz§[i] > 0)
+            if(this.name_Rz[i] > 0)
             {
                verts = this.vertices[i];
                inds = this.indices[i];
-               vBuffer = this.alternativa3d::vertexBuffers[i] = context3D.createVertexBuffer(verts.length / this.§_-SS§,this.§_-SS§);
-               vBuffer.uploadFromVector(verts,0,verts.length / this.§_-SS§);
+               vBuffer = this.alternativa3d::vertexBuffers[i] = context3D.createVertexBuffer(verts.length / this.name_SS,this.name_SS);
+               vBuffer.uploadFromVector(verts,0,verts.length / this.name_SS);
                iBuffer = this.alternativa3d::indexBuffers[i] = context3D.createIndexBuffer(inds.length);
                iBuffer.uploadFromVector(inds,0,inds.length);
             }
@@ -78,7 +78,7 @@ package alternativa.engine3d.resources
       
       override public function dispose() : void
       {
-         for(var i:int = 0; i <= this.§_-ix§; )
+         for(var i:int = 0; i <= this.name_ix; )
          {
             if(this.alternativa3d::vertexBuffers[i] != null)
             {
@@ -96,7 +96,7 @@ package alternativa.engine3d.resources
       
       override public function get isUploaded() : Boolean
       {
-         for(var i:int = 0; i <= this.§_-ix§; )
+         for(var i:int = 0; i <= this.name_ix; )
          {
             if(this.alternativa3d::vertexBuffers[i] == null)
             {
@@ -118,8 +118,8 @@ package alternativa.engine3d.resources
          this.indices = new Vector.<Vector.<uint>>();
          this.vertices[0] = new Vector.<Number>();
          this.indices[0] = new Vector.<uint>();
-         this.§_-Rz§ = new Vector.<int>(1);
-         this.§_-dP§ = 0;
+         this.name_Rz = new Vector.<int>(1);
+         this.name_dP = 0;
       }
       
       alternativa3d function updateBoundBox(boundBox:BoundBox, transform:Transform3D = null) : void
@@ -133,7 +133,7 @@ package alternativa.engine3d.resources
          var x:Number = NaN;
          var y:Number = NaN;
          var z:Number = NaN;
-         for(var i:int = 0,var count:int = int(this.vertices.length); i < count; i++)
+         for(var i:int = 0, count:int = int(this.vertices.length); i < count; i++)
          {
             for(j = 0,vcount = int(this.vertices[i].length); j < vcount; )
             {
@@ -177,7 +177,7 @@ package alternativa.engine3d.resources
                {
                   boundBox.maxZ = z;
                }
-               j += this.§_-SS§;
+               j += this.name_SS;
             }
          }
       }
@@ -191,17 +191,17 @@ package alternativa.engine3d.resources
          {
             shader.upload(camera.alternativa3d::context3D);
          }
-         for(var i:int = 0; i <= this.§_-ix§; )
+         for(var i:int = 0; i <= this.name_ix; )
          {
             iBuffer = this.alternativa3d::indexBuffers[i];
             vBuffer = this.alternativa3d::vertexBuffers[i];
             if(iBuffer != null && vBuffer != null)
             {
-               drawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,shader.program,iBuffer,0,this.§_-Rz§[i],shader);
+               drawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,shader.program,iBuffer,0,this.name_Rz[i],shader);
                drawUnit.alternativa3d::setVertexBufferAt(0,vBuffer,0,Context3DVertexBufferFormat.FLOAT_4);
                drawUnit.alternativa3d::setVertexBufferAt(1,vBuffer,4,Context3DVertexBufferFormat.FLOAT_3);
                drawUnit.alternativa3d::setVertexConstantsFromNumbers(0,0,1,-1,0.000001);
-               drawUnit.alternativa3d::setVertexConstantsFromNumbers(1,-this.§_-Pp§ / camera.view.alternativa3d::_height,0,camera.nearClipping,thickness);
+               drawUnit.alternativa3d::setVertexConstantsFromNumbers(1,-this.name_Pp / camera.view.alternativa3d::_height,0,camera.nearClipping,thickness);
                drawUnit.alternativa3d::setVertexConstantsFromTransform(2,object.alternativa3d::localToCameraTransform);
                drawUnit.alternativa3d::setProjectionConstants(camera,5);
                drawUnit.alternativa3d::setFragmentConstantsFromNumbers(0,color[0],color[1],color[2],color[3]);
@@ -222,26 +222,26 @@ package alternativa.engine3d.resources
       
       alternativa3d function addLine(v1x:Number, v1y:Number, v1z:Number, v2x:Number, v2y:Number, v2z:Number) : void
       {
-         var currentVertices:Vector.<Number> = this.vertices[this.§_-ix§];
-         var currentIndices:Vector.<uint> = this.indices[this.§_-ix§];
-         var verticesCount:uint = currentVertices.length / this.§_-SS§;
-         if(verticesCount > this.§_-VA§ - 4)
+         var currentVertices:Vector.<Number> = this.vertices[this.name_ix];
+         var currentIndices:Vector.<uint> = this.indices[this.name_ix];
+         var verticesCount:uint = currentVertices.length / this.name_SS;
+         if(verticesCount > this.name_VA - 4)
          {
-            this.§_-dP§ = 0;
-            ++this.§_-ix§;
-            this.§_-Rz§[this.§_-ix§] = 0;
-            currentVertices = this.vertices[this.§_-ix§] = new Vector.<Number>();
-            currentIndices = this.indices[this.§_-ix§] = new Vector.<uint>();
-            this.alternativa3d::vertexBuffers.length = this.§_-ix§ + 1;
-            this.alternativa3d::indexBuffers.length = this.§_-ix§ + 1;
+            this.name_dP = 0;
+            ++this.name_ix;
+            this.name_Rz[this.name_ix] = 0;
+            currentVertices = this.vertices[this.name_ix] = new Vector.<Number>();
+            currentIndices = this.indices[this.name_ix] = new Vector.<uint>();
+            this.alternativa3d::vertexBuffers.length = this.name_ix + 1;
+            this.alternativa3d::indexBuffers.length = this.name_ix + 1;
          }
          else
          {
-            this.§_-Rz§[this.§_-ix§] += 2;
+            this.name_Rz[this.name_ix] += 2;
          }
          currentVertices.push(v1x,v1y,v1z,0.5,v2x,v2y,v2z,v2x,v2y,v2z,-0.5,v1x,v1y,v1z,v1x,v1y,v1z,-0.5,v2x,v2y,v2z,v2x,v2y,v2z,0.5,v1x,v1y,v1z);
-         currentIndices.push(this.§_-dP§,this.§_-dP§ + 1,this.§_-dP§ + 2,this.§_-dP§ + 3,this.§_-dP§ + 2,this.§_-dP§ + 1);
-         this.§_-dP§ += 4;
+         currentIndices.push(this.name_dP,this.name_dP + 1,this.name_dP + 2,this.name_dP + 3,this.name_dP + 2,this.name_dP + 1);
+         this.name_dP += 4;
       }
    }
 }

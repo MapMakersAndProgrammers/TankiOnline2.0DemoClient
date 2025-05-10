@@ -15,9 +15,9 @@ package alternativa.tanks.game.subsystems.battlemessages
       
       private var maxMessagesNumber:int;
       
-      private var §_-pQ§:Sprite;
+      private var name_pQ:Sprite;
       
-      private var §_-cd§:Vector.<Message>;
+      private var name_cd:Vector.<Message>;
       
       private var timer:Timer;
       
@@ -25,31 +25,31 @@ package alternativa.tanks.game.subsystems.battlemessages
       {
          super(priority);
          this.maxMessagesNumber = maxMessagesNumber;
-         this.§_-pQ§ = new Sprite();
-         this.§_-pQ§.x = messagesX;
-         this.§_-pQ§.y = messagesY;
-         container.addChild(this.§_-pQ§);
-         this.§_-cd§ = new Vector.<Message>();
+         this.name_pQ = new Sprite();
+         this.name_pQ.x = messagesX;
+         this.name_pQ.y = messagesY;
+         container.addChild(this.name_pQ);
+         this.name_cd = new Vector.<Message>();
          this.timer = new Timer(1000);
          this.timer.addEventListener(TimerEvent.TIMER,this.onTimer);
       }
       
       public function set messagesX(value:int) : void
       {
-         this.§_-pQ§.x = value;
+         this.name_pQ.x = value;
       }
       
       public function set messagesY(value:int) : void
       {
-         this.§_-pQ§.y = value;
+         this.name_pQ.y = value;
       }
       
       public function addMessage(text:String, color:uint) : void
       {
          var message:Message = new Message(text,color,MESSAGE_LIFE_TIME);
-         this.§_-cd§.push(message);
-         this.§_-pQ§.addChild(message);
-         if(this.§_-cd§.length > this.maxMessagesNumber)
+         this.name_cd.push(message);
+         this.name_pQ.addChild(message);
+         if(this.name_cd.length > this.maxMessagesNumber)
          {
             this.removeMessage(0);
          }
@@ -59,13 +59,13 @@ package alternativa.tanks.game.subsystems.battlemessages
       
       override public function stop() : void
       {
-         this.§_-pQ§.parent.removeChild(this.§_-pQ§);
+         this.name_pQ.parent.removeChild(this.name_pQ);
          this.timer.stop();
       }
       
       private function updateTimerState() : void
       {
-         if(this.§_-cd§.length > 0)
+         if(this.name_cd.length > 0)
          {
             if(!this.timer.running)
             {
@@ -81,9 +81,9 @@ package alternativa.tanks.game.subsystems.battlemessages
       private function updateMessagesPositions() : void
       {
          var message:Message = null;
-         for(var i:int = 0; i < this.§_-cd§.length; i++)
+         for(var i:int = 0; i < this.name_cd.length; i++)
          {
-            message = this.§_-cd§[i];
+            message = this.name_cd[i];
             message.y = i * MESSAGE_SPACING_Y;
          }
       }
@@ -97,9 +97,9 @@ package alternativa.tanks.game.subsystems.battlemessages
       
       private function removeExpiredMessages(time:int) : void
       {
-         if(this.§_-cd§.length > 0)
+         if(this.name_cd.length > 0)
          {
-            if(Message(this.§_-cd§[0]).expirationTime <= time)
+            if(Message(this.name_cd[0]).expirationTime <= time)
             {
                this.removeMessage(0);
             }
@@ -108,8 +108,8 @@ package alternativa.tanks.game.subsystems.battlemessages
       
       private function removeMessage(i:int) : void
       {
-         this.§_-pQ§.removeChild(this.§_-cd§[i]);
-         this.§_-cd§.splice(i,1);
+         this.name_pQ.removeChild(this.name_cd[i]);
+         this.name_cd.splice(i,1);
       }
    }
 }

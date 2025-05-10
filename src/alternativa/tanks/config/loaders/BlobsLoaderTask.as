@@ -14,7 +14,7 @@ package alternativa.tanks.config.loaders
    {
       private var config:Config;
       
-      private var §_-d5§:TaskSequence;
+      private var name_d5:TaskSequence;
       
       public function BlobsLoaderTask(param1:Config)
       {
@@ -32,7 +32,7 @@ package alternativa.tanks.config.loaders
          var _loc6_:XML = null;
          var _loc7_:String = null;
          var _loc8_:String = null;
-         this.§_-d5§ = new TaskSequence();
+         this.name_d5 = new TaskSequence();
          for each(_loc1_ in this.config.xml.elements("blobs").elements("blobs-category"))
          {
             _loc2_ = _loc1_.@id;
@@ -44,27 +44,27 @@ package alternativa.tanks.config.loaders
                {
                   _loc7_ = _loc6_.@id;
                   _loc8_ = _loc5_ + _loc6_.@file;
-                  this.§_-d5§.addTask(new BlobLoader(_loc2_,_loc4_,_loc7_,_loc8_,this));
+                  this.name_d5.addTask(new BlobLoader(_loc2_,_loc4_,_loc7_,_loc8_,this));
                }
             }
          }
-         this.§_-d5§.addEventListener(TaskEvent.TASK_COMPLETE,this.onTaskComplete);
-         this.§_-d5§.addEventListener(Event.COMPLETE,this.onLoadingComplete);
-         this.§_-d5§.run();
+         this.name_d5.addEventListener(TaskEvent.TASK_COMPLETE,this.onTaskComplete);
+         this.name_d5.addEventListener(Event.COMPLETE,this.onLoadingComplete);
+         this.name_d5.run();
       }
       
       private function onTaskComplete(param1:TaskEvent) : void
       {
-         dispatchEvent(new TaskEvent(TaskEvent.TASK_PROGRESS,1,this.§_-d5§.length));
+         dispatchEvent(new TaskEvent(TaskEvent.TASK_PROGRESS,1,this.name_d5.length));
       }
       
       public function addBlob(param1:String, param2:String, param3:String, param4:ByteArray) : void
       {
-         var _loc5_:BlobCategory = this.config.§_-WG§.getCategory(param1);
+         var _loc5_:BlobCategory = this.config.name_WG.getCategory(param1);
          if(_loc5_ == null)
          {
             _loc5_ = new BlobCategory();
-            this.config.§_-WG§.setCategory(param1,_loc5_);
+            this.config.name_WG.setCategory(param1,_loc5_);
          }
          var _loc6_:BlobGroup = _loc5_.getGroup(param2);
          if(_loc6_ == null)
@@ -77,7 +77,7 @@ package alternativa.tanks.config.loaders
       
       private function onLoadingComplete(param1:Event) : void
       {
-         this.§_-d5§ = null;
+         this.name_d5 = null;
          completeTask();
       }
    }
@@ -89,6 +89,7 @@ import flash.events.EventDispatcher;
 import flash.net.URLLoader;
 import flash.net.URLLoaderDataFormat;
 import flash.net.URLRequest;
+import alternativa.tanks.config.loaders.BlobsLoaderTask;
 
 class BlobLoader extends Task
 {

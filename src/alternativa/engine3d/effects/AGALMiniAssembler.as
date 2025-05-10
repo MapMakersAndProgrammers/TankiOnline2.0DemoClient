@@ -190,16 +190,16 @@ package alternativa.engine3d.effects
       
       private static const CLAMP:String = "clamp";
       
-      private var §_-0e§:ByteArray = null;
+      private var name_0e:ByteArray = null;
       
-      private var §_-iF§:String = "";
+      private var name_iF:String = "";
       
-      private var §_-9J§:Boolean = false;
+      private var name_9J:Boolean = false;
       
       public function AGALMiniAssembler(debugging:Boolean = false)
       {
          super();
-         this.§_-9J§ = debugging;
+         this.name_9J = debugging;
          if(!initialized)
          {
             init();
@@ -281,12 +281,12 @@ package alternativa.engine3d.effects
       
       public function get error() : String
       {
-         return this.§_-iF§;
+         return this.name_iF;
       }
       
       public function get agalcode() : ByteArray
       {
-         return this.§_-0e§;
+         return this.name_0e;
       }
       
       public function assemble(mode:String, source:String, verbose:Boolean = false) : ByteArray
@@ -332,8 +332,8 @@ package alternativa.engine3d.effects
          var index:uint = 0;
          var byteStr:String = null;
          var start:uint = uint(getTimer());
-         this.§_-0e§ = new ByteArray();
-         this.§_-iF§ = "";
+         this.name_0e = new ByteArray();
+         this.name_iF = "";
          var isFrag:Boolean = false;
          if(mode == FRAGMENT)
          {
@@ -341,7 +341,7 @@ package alternativa.engine3d.effects
          }
          else if(mode != VERTEX)
          {
-            this.§_-iF§ = "ERROR: mode needs to be \"" + FRAGMENT + "\" or \"" + VERTEX + "\" but is \"" + mode + "\".";
+            this.name_iF = "ERROR: mode needs to be \"" + FRAGMENT + "\" or \"" + VERTEX + "\" but is \"" + mode + "\".";
          }
          this.agalcode.endian = Endian.LITTLE_ENDIAN;
          this.agalcode.writeByte(160);
@@ -353,7 +353,7 @@ package alternativa.engine3d.effects
          var nops:int = 0;
          var lng:int = int(lines.length);
          i = 0;
-         while(i < lng && this.§_-iF§ == "")
+         while(i < lng && this.name_iF == "")
          {
             line = new String(lines[i]);
             startcomment = int(line.search("//"));
@@ -369,7 +369,7 @@ package alternativa.engine3d.effects
             }
             opCode = line.match(/^\w{3}/ig);
             opFound = OPMAP[opCode[0]];
-            if(this.§_-9J§)
+            if(this.name_9J)
             {
                trace(opFound);
             }
@@ -388,7 +388,7 @@ package alternativa.engine3d.effects
                   nest--;
                   if(nest < 0)
                   {
-                     this.§_-iF§ = "error: conditional closes without open.";
+                     this.name_iF = "error: conditional closes without open.";
                      break;
                   }
                }
@@ -397,13 +397,13 @@ package alternativa.engine3d.effects
                   nest++;
                   if(nest > MAX_NESTING)
                   {
-                     this.§_-iF§ = "error: nesting to deep, maximum allowed is " + MAX_NESTING + ".";
+                     this.name_iF = "error: nesting to deep, maximum allowed is " + MAX_NESTING + ".";
                      break;
                   }
                }
                if(Boolean(opFound.flags & OP_FRAG_ONLY) && !isFrag)
                {
-                  this.§_-iF§ = "error: opcode is only allowed in fragment programs.";
+                  this.name_iF = "error: opcode is only allowed in fragment programs.";
                   break;
                }
                if(verbose)
@@ -414,13 +414,13 @@ package alternativa.engine3d.effects
                nops++;
                if(nops > MAX_OPCODES)
                {
-                  this.§_-iF§ = "error: too many opcodes. maximum is " + MAX_OPCODES + ".";
+                  this.name_iF = "error: too many opcodes. maximum is " + MAX_OPCODES + ".";
                   break;
                }
                regs = line.match(/vc\[([vof][actps]?)(\d*)?(\.[xyzw](\+\d{1,3})?)?\](\.[xyzw]{1,4})?|([vof][actps]?)(\d*)?(\.[xyzw]{1,4})?/gi);
                if(regs.length != opFound.numRegister)
                {
-                  this.§_-iF§ = "error: wrong number of operands. found " + regs.length + " but expected " + opFound.numRegister + ".";
+                  this.name_iF = "error: wrong number of operands. found " + regs.length + " but expected " + opFound.numRegister + ".";
                   break;
                }
                badreg = false;
@@ -441,13 +441,13 @@ package alternativa.engine3d.effects
                   }
                   res = regs[j].match(/^\b[A-Za-z]{1,2}/ig);
                   regFound = REGMAP[res[0]];
-                  if(this.§_-9J§)
+                  if(this.name_9J)
                   {
                      trace(regFound);
                   }
                   if(regFound == null)
                   {
-                     this.§_-iF§ = "error: could not parse operand " + j + " (" + regs[j] + ").";
+                     this.name_iF = "error: could not parse operand " + j + " (" + regs[j] + ").";
                      badreg = true;
                      break;
                   }
@@ -455,20 +455,20 @@ package alternativa.engine3d.effects
                   {
                      if(!(regFound.flags & REG_FRAG))
                      {
-                        this.§_-iF§ = "error: register operand " + j + " (" + regs[j] + ") only allowed in vertex programs.";
+                        this.name_iF = "error: register operand " + j + " (" + regs[j] + ") only allowed in vertex programs.";
                         badreg = true;
                         break;
                      }
                      if(isRelative)
                      {
-                        this.§_-iF§ = "error: register operand " + j + " (" + regs[j] + ") relative adressing not allowed in fragment programs.";
+                        this.name_iF = "error: register operand " + j + " (" + regs[j] + ") relative adressing not allowed in fragment programs.";
                         badreg = true;
                         break;
                      }
                   }
                   else if(!(regFound.flags & REG_VERT))
                   {
-                     this.§_-iF§ = "error: register operand " + j + " (" + regs[j] + ") only allowed in fragment programs.";
+                     this.name_iF = "error: register operand " + j + " (" + regs[j] + ") only allowed in fragment programs.";
                      badreg = true;
                      break;
                   }
@@ -481,7 +481,7 @@ package alternativa.engine3d.effects
                   }
                   if(regFound.range < regidx)
                   {
-                     this.§_-iF§ = "error: register operand " + j + " (" + regs[j] + ") index exceeds limit of " + (regFound.range + 1) + ".";
+                     this.name_iF = "error: register operand " + j + " (" + regs[j] + ") index exceeds limit of " + (regFound.range + 1) + ".";
                      badreg = true;
                      break;
                   }
@@ -494,7 +494,7 @@ package alternativa.engine3d.effects
                   reloffset = 0;
                   if(isDest && isRelative)
                   {
-                     this.§_-iF§ = "error: relative can not be destination";
+                     this.name_iF = "error: relative can not be destination";
                      badreg = true;
                      break;
                   }
@@ -537,7 +537,7 @@ package alternativa.engine3d.effects
                      regFoundRel = REGMAP[relname[0]];
                      if(regFoundRel == null)
                      {
-                        this.§_-iF§ = "error: bad index register";
+                        this.name_iF = "error: bad index register";
                         badreg = true;
                         break;
                      }
@@ -545,7 +545,7 @@ package alternativa.engine3d.effects
                      selmatch = relreg[0].match(/(\.[xyzw]{1,1})/);
                      if(selmatch.length == 0)
                      {
-                        this.§_-iF§ = "error: bad index register select";
+                        this.name_iF = "error: bad index register select";
                         badreg = true;
                         break;
                      }
@@ -561,7 +561,7 @@ package alternativa.engine3d.effects
                      }
                      if(reloffset < 0 || reloffset > 255)
                      {
-                        this.§_-iF§ = "error: index offset " + reloffset + " out of bounds. [0..255]";
+                        this.name_iF = "error: index offset " + reloffset + " out of bounds. [0..255]";
                         badreg = true;
                         break;
                      }
@@ -652,13 +652,13 @@ package alternativa.engine3d.effects
             }
             i++;
          }
-         if(this.§_-iF§ != "")
+         if(this.name_iF != "")
          {
-            this.§_-iF§ += "\n  at line " + i + " " + lines[i];
+            this.name_iF += "\n  at line " + i + " " + lines[i];
             this.agalcode.length = 0;
-            trace(this.§_-iF§);
+            trace(this.name_iF);
          }
-         if(this.§_-9J§)
+         if(this.name_9J)
          {
             dbgLine = "generated bytecode:";
             agalLength = uint(this.agalcode.length);

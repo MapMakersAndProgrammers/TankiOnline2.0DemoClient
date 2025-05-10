@@ -18,7 +18,7 @@ package alternativa.tanks.config.loaders
       
       private var loader:Loader;
       
-      private var §_-lW§:int;
+      private var name_lW:int;
       
       public function ImageSequenceLoader()
       {
@@ -31,15 +31,15 @@ package alternativa.tanks.config.loaders
          this.imagesXml = param2;
          this.loader = new Loader();
          this.loader.contentLoaderInfo.addEventListener(Event.COMPLETE,this.onImageLoadingComplete);
-         this.§_-lW§ = -1;
+         this.name_lW = -1;
          this.images = new Vector.<BitmapData>();
          this.loadNextImage();
       }
       
       private function loadNextImage() : void
       {
-         ++this.§_-lW§;
-         if(this.§_-lW§ == this.imagesXml.length())
+         ++this.name_lW;
+         if(this.name_lW == this.imagesXml.length())
          {
             this.loader.contentLoaderInfo.removeEventListener(Event.COMPLETE,this.onImageLoadingComplete);
             this.loader.unload();
@@ -53,7 +53,7 @@ package alternativa.tanks.config.loaders
          }
          else
          {
-            this.loader.load(new URLRequest(this.baseUrl + this.imagesXml[this.§_-lW§].@file));
+            this.loader.load(new URLRequest(this.baseUrl + this.imagesXml[this.name_lW].@file));
          }
       }
       

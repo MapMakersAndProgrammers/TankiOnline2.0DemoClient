@@ -13,19 +13,19 @@ package alternativa.engine3d.materials.compiler
          switch(strType)
          {
             case "s":
-               §_-oc§ = VariableType.SAMPLER;
+               name_oc = VariableType.SAMPLER;
                break;
             case "i":
-               §_-oc§ = VariableType.INPUT;
+               name_oc = VariableType.INPUT;
          }
          index = parseInt(source.match(/\d+/g)[0],10);
-         §_-0J§ = index;
+         name_0J = index;
          var optsi:int = int(source.search(/<.*>/g));
          if(optsi != -1)
          {
             opts = source.substring(optsi).match(/(\w+)/g);
          }
-         type = §_-oc§;
+         type = name_oc;
          var optsLength:uint = uint(opts.length);
          for(var i:int = 0; i < optsLength; )
          {
@@ -33,51 +33,51 @@ package alternativa.engine3d.materials.compiler
             switch(op)
             {
                case "2d":
-                  §_-oc§ &= ~0xF000;
+                  name_oc &= ~0xF000;
                   break;
                case "3d":
-                  §_-oc§ &= ~0xF000;
-                  §_-oc§ |= 8192;
+                  name_oc &= ~0xF000;
+                  name_oc |= 8192;
                   break;
                case "cube":
-                  §_-oc§ &= ~0xF000;
-                  §_-oc§ |= 4096;
+                  name_oc &= ~0xF000;
+                  name_oc |= 4096;
                   break;
                case "mipnearest":
-                  §_-oc§ &= ~0x0F000000;
-                  §_-oc§ |= 16777216;
+                  name_oc &= ~0x0F000000;
+                  name_oc |= 16777216;
                   break;
                case "miplinear":
-                  §_-oc§ &= ~0x0F000000;
-                  §_-oc§ |= 33554432;
+                  name_oc &= ~0x0F000000;
+                  name_oc |= 33554432;
                   break;
                case "mipnone":
                case "nomip":
-                  §_-oc§ &= ~0x0F000000;
+                  name_oc &= ~0x0F000000;
                   break;
                case "nearest":
-                  §_-oc§ &= ~4026531840;
+                  name_oc &= ~4026531840;
                   break;
                case "linear":
-                  §_-oc§ &= ~4026531840;
-                  §_-oc§ |= 268435456;
+                  name_oc &= ~4026531840;
+                  name_oc |= 268435456;
                   break;
                case "centroid":
-                  §_-oc§ |= 4294967296;
+                  name_oc |= 4294967296;
                   break;
                case "single":
-                  §_-oc§ |= 8589934592;
+                  name_oc |= 8589934592;
                   break;
                case "depth":
-                  §_-oc§ |= 17179869184;
+                  name_oc |= 17179869184;
                   break;
                case "repeat":
                case "wrap":
-                  §_-oc§ &= ~0xF00000;
-                  §_-oc§ |= 1048576;
+                  name_oc &= ~0xF00000;
+                  name_oc |= 1048576;
                   break;
                case "clamp":
-                  §_-oc§ &= ~0xF00000;
+                  name_oc &= ~0xF00000;
                   break;
             }
             i++;

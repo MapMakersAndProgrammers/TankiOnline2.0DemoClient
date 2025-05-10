@@ -9,9 +9,9 @@ package alternativa.tanks.config
    {
       private var textures:Object = {};
       
-      private var §_-gh§:BitmapData;
+      private var name_gh:BitmapData;
       
-      private var §_-d5§:TaskSequence;
+      private var name_d5:TaskSequence;
       
       public function TextureLibrary(param1:Config)
       {
@@ -33,24 +33,24 @@ package alternativa.tanks.config
          var _loc3_:XML = null;
          var _loc1_:XML = config.xml.textures[0];
          var _loc2_:String = StringUtils.makeCorrectBaseUrl(_loc1_.@baseUrl);
-         this.§_-d5§ = new TaskSequence();
+         this.name_d5 = new TaskSequence();
          for each(_loc3_ in _loc1_.texture)
          {
-            this.§_-d5§.addTask(new TextureLoader(_loc3_.@id,_loc2_ + _loc3_.@url,this));
+            this.name_d5.addTask(new TextureLoader(_loc3_.@id,_loc2_ + _loc3_.@url,this));
          }
-         this.§_-d5§.addEventListener(TaskEvent.TASK_COMPLETE,this.onTaskComplete);
-         this.§_-d5§.addEventListener(Event.COMPLETE,this.onSequenceComplete);
-         this.§_-d5§.run();
+         this.name_d5.addEventListener(TaskEvent.TASK_COMPLETE,this.onTaskComplete);
+         this.name_d5.addEventListener(Event.COMPLETE,this.onSequenceComplete);
+         this.name_d5.run();
       }
       
       private function onTaskComplete(param1:TaskEvent) : void
       {
-         dispatchEvent(new TaskEvent(TaskEvent.TASK_PROGRESS,1,this.§_-d5§.length));
+         dispatchEvent(new TaskEvent(TaskEvent.TASK_PROGRESS,1,this.name_d5.length));
       }
       
       private function onSequenceComplete(param1:Event) : void
       {
-         this.§_-d5§ = null;
+         this.name_d5 = null;
          completeTask();
       }
       
@@ -60,24 +60,24 @@ package alternativa.tanks.config
          var _loc2_:uint = 0;
          var _loc3_:int = 0;
          var _loc4_:int = 0;
-         if(this.§_-gh§ == null)
+         if(this.name_gh == null)
          {
             _loc1_ = 128;
             _loc2_ = 16711935;
-            this.§_-gh§ = new BitmapData(_loc1_,_loc1_,false,0);
+            this.name_gh = new BitmapData(_loc1_,_loc1_,false,0);
             _loc3_ = 0;
             while(_loc3_ < _loc1_)
             {
                _loc4_ = 0;
                while(_loc4_ < _loc1_)
                {
-                  this.§_-gh§.setPixel(Boolean(_loc3_ % 2) ? _loc4_ : _loc4_ + 1,_loc3_,_loc2_);
+                  this.name_gh.setPixel(Boolean(_loc3_ % 2) ? _loc4_ : _loc4_ + 1,_loc3_,_loc2_);
                   _loc4_ += 2;
                }
                _loc3_++;
             }
          }
-         return this.§_-gh§;
+         return this.name_gh;
       }
    }
 }
@@ -91,6 +91,7 @@ import flash.net.URLLoader;
 import flash.net.URLLoaderDataFormat;
 import flash.net.URLRequest;
 import flash.utils.ByteArray;
+import alternativa.tanks.config.TextureLibrary;
 
 class TextureLoader extends Task
 {

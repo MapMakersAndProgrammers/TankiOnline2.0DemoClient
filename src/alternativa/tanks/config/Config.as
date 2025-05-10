@@ -16,21 +16,21 @@ package alternativa.tanks.config
    {
       public var mapData:ByteArrayMap;
       
-      public var §_-WX§:TextureLibrary;
+      public var name_WX:TextureLibrary;
       
       public var tankParts:TankPartsLibrary;
       
       public var soundsLibrary:SoundsLibrary;
       
-      public var §_-WG§:BlobLibrary = new BlobLibrary();
+      public var name_WG:BlobLibrary = new BlobLibrary();
       
-      private var §_-Qb§:XML;
+      private var name_Qb:XML;
       
-      private var §_-d5§:TaskSequence;
+      private var name_d5:TaskSequence;
       
       private var preloader:Preloader;
       
-      private var §_-D9§:Object = {};
+      private var name_D9:Object = {};
       
       public function Config()
       {
@@ -40,27 +40,27 @@ package alternativa.tanks.config
       public function load(param1:String, param2:Preloader) : void
       {
          this.preloader = param2;
-         this.§_-d5§ = new TaskSequence();
+         this.name_d5 = new TaskSequence();
          var _loc3_:ConfigXMLLoader = new ConfigXMLLoader(param1,this);
-         this.§_-d5§.addTask(_loc3_);
+         this.name_d5.addTask(_loc3_);
          _loc3_.addEventListener(TaskEvent.TASK_COMPLETE,this.onTaskProgress);
          var _loc4_:BlobsLoaderTask = new BlobsLoaderTask(this);
-         this.§_-d5§.addTask(_loc4_);
+         this.name_d5.addTask(_loc4_);
          _loc4_.addEventListener(TaskEvent.TASK_PROGRESS,this.onTaskProgress);
-         this.§_-WX§ = new TextureLibrary(this);
-         this.§_-WX§.addEventListener(TaskEvent.TASK_PROGRESS,this.onTaskProgress);
-         this.§_-d5§.addTask(this.§_-WX§);
+         this.name_WX = new TextureLibrary(this);
+         this.name_WX.addEventListener(TaskEvent.TASK_PROGRESS,this.onTaskProgress);
+         this.name_d5.addTask(this.name_WX);
          var _loc5_:Task = this.createMapLoadTask();
-         this.§_-d5§.addTask(_loc5_);
+         this.name_d5.addTask(_loc5_);
          _loc5_.addEventListener(TaskEvent.TASK_COMPLETE,this.onTaskProgress);
          this.tankParts = new TankPartsLibrary(this);
          this.tankParts.addEventListener(TaskEvent.TASK_PROGRESS,this.onTaskProgress);
-         this.§_-d5§.addTask(this.tankParts);
+         this.name_d5.addTask(this.tankParts);
          this.soundsLibrary = new SoundsLibrary(this);
          this.soundsLibrary.addEventListener(TaskEvent.TASK_PROGRESS,this.onTaskProgress);
-         this.§_-d5§.addTask(this.soundsLibrary);
-         this.§_-d5§.addEventListener(Event.COMPLETE,this.onSequenceComplete);
-         this.§_-d5§.run();
+         this.name_d5.addTask(this.soundsLibrary);
+         this.name_d5.addEventListener(Event.COMPLETE,this.onSequenceComplete);
+         this.name_d5.run();
       }
       
       private function onTaskProgress(param1:TaskEvent) : void
@@ -75,18 +75,18 @@ package alternativa.tanks.config
       
       public function get xml() : XML
       {
-         return this.§_-Qb§;
+         return this.name_Qb;
       }
       
       public function set xml(param1:XML) : void
       {
-         this.§_-Qb§ = param1;
+         this.name_Qb = param1;
          this.parseOptions();
       }
       
       public function get options() : Object
       {
-         return this.§_-D9§;
+         return this.name_D9;
       }
       
       public function clear() : void
@@ -96,7 +96,7 @@ package alternativa.tanks.config
          {
             delete this.mapData.data[_loc1_];
          }
-         this.§_-Qb§ = null;
+         this.name_Qb = null;
          this.mapData = null;
       }
       
@@ -107,7 +107,7 @@ package alternativa.tanks.config
       
       private function onSequenceComplete(param1:Event) : void
       {
-         this.§_-d5§ = null;
+         this.name_d5 = null;
          dispatchEvent(new Event(Event.COMPLETE));
       }
       
@@ -120,9 +120,9 @@ package alternativa.tanks.config
       private function parseOptions() : void
       {
          var _loc1_:XML = null;
-         for each(_loc1_ in this.§_-Qb§.kernelOptions.option)
+         for each(_loc1_ in this.name_Qb.kernelOptions.option)
          {
-            this.§_-D9§[_loc1_.@name] = _loc1_.toString();
+            this.name_D9[_loc1_.@name] = _loc1_.toString();
          }
       }
    }
@@ -135,6 +135,7 @@ import flash.net.URLLoader;
 import flash.net.URLLoaderDataFormat;
 import flash.net.URLRequest;
 import flash.utils.ByteArray;
+import alternativa.tanks.config.Config;
 
 class ConfigXMLLoader extends Task
 {

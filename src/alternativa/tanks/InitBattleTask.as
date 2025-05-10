@@ -43,8 +43,8 @@ package alternativa.tanks
          var _loc3_:Entity = this.createMapEntity();
          this.gameKernel.addEntity(_loc3_);
          this.preloader.setProgress(0.75);
-         §_-Uw§.addTask(new TankTestTask(GameKernel.INPUT_SYSTEM_PRIORITY + 1,this.config,this.gameKernel,_loc2_,this.preloader));
-         §_-Uw§.killTask(this);
+         name_Uw.addTask(new TankTestTask(GameKernel.INPUT_SYSTEM_PRIORITY + 1,this.config,this.gameKernel,_loc2_,this.preloader));
+         name_Uw.killTask(this);
       }
       
       private function createMapEntity() : Entity
@@ -52,7 +52,7 @@ package alternativa.tanks
          var _loc2_:ByteArrayMap = null;
          var _loc6_:BlobGroup = null;
          var _loc7_:String = null;
-         var _loc3_:BlobCategory = this.config.§_-WG§.getCategory("skybox");
+         var _loc3_:BlobCategory = this.config.name_WG.getCategory("skybox");
          if(_loc3_ != null)
          {
             _loc2_ = new ByteArrayMap();

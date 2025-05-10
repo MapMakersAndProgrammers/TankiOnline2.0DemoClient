@@ -6,21 +6,21 @@ package alternativa.physics.collision
    {
       public var indices:Vector.<int>;
       
-      public var §_-Xt§:Vector.<int>;
+      public var name_Xt:Vector.<int>;
       
       public var boundBox:BoundBox;
       
       public var parent:CollisionKdNode;
       
-      public var §_-da§:CollisionKdTree2D;
+      public var name_da:CollisionKdTree2D;
       
       public var axis:int = -1;
       
       public var coord:Number;
       
-      public var §_-75§:CollisionKdNode;
+      public var name_75:CollisionKdNode;
       
-      public var §_-Gm§:CollisionKdNode;
+      public var name_Gm:CollisionKdNode;
       
       public function CollisionKdNode()
       {
