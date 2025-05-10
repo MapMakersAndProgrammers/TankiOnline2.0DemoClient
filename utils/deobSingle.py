@@ -16,7 +16,8 @@ detailMapping = {}
 with open(detailMappingPath, "r") as file:
     detailMapping = load(file)
 
-paths = glob(f"{abcPath}/**/*.asasm", recursive=True)
+# paths = glob(f"{abcPath}/**/**/*.asasm")
+# paths += glob(f"{abcPath}/**/*.asasm")
 
 def deobfuscateFile(path):
     print(path)
@@ -84,6 +85,4 @@ def deobfuscateFile(path):
         reader.writelines(new_lines)
 
 # for path in paths:
-#     deobfuscateFile(path)
-pool = Pool(12)
-pool.map(deobfuscateFile, paths)
+deobfuscateFile(abcPath)

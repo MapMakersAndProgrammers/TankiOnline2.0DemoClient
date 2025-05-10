@@ -10,13 +10,21 @@ classMap = {}
 for packageName in mapping:
     package = mapping[packageName]
     for className in package:
-        clas = package[className]
-        func = list(clas.values())
-        if len(func) != 0:
-            func = func[1]
-            realName = func.split("/")[0]
-            fakeName = f"{packageName}:{className}"
-            classMap[fakeName] = realName
+        clas = list(package[className].values())
+        if len(clas) < 2: continue
+        chain = f"{packageName}:{className}"
+        functionName = clas[1]
 
-with open("packagemap.json", "w") as file:
-    dump(classMap, file)
+        realChain = ""
+        if len(functionName.split(":")) == 1:
+            realClassName = functionName.split(":")[-1].split("/")[0]
+            realChain = f"{realClassName}"   
+        else:
+            realPackageName = functionName.split(":")[0]
+            realClassName = functionName.split(":")[-1].split("/")[0]
+            realChain = f"{realPackageName}:{realClassName}"
+
+        classMap[chain] = realChain
+
+with open("packagemap.json", "w") as f:
+    dump(classMap, f)

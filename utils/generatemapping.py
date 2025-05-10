@@ -4,8 +4,7 @@ from glob import glob
 from json import dump
 
 path = argv[1]
-paths = glob(f"{path}/**/**/*.class.asasm")
-paths += glob(f"{path}/**/*.class.asasm")
+paths = glob(f"{path}/**/*.class.asasm", recursive=True)
 
 names = {}
 for path in paths:
@@ -30,7 +29,10 @@ for path in paths:
                 line = line.split("refid \"")
                 line = line[1][:-1]
 
-                names[packageName][className][line] = name
+                if name == None:
+                    names[packageName][className][line] = None
+                elif ".as$" not in name:
+                    names[packageName][className][line] = name
 
 with open("mapping.json", "w") as file:
     dump(names, file)
