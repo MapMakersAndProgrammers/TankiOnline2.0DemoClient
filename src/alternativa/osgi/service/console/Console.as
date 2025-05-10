@@ -36,49 +36,49 @@ package alternativa.osgi.service.console
       
       private var container:Sprite = new Sprite();
       
-      private var var_538:Sprite;
+      private var §_-mB§:Sprite;
       
       private var input:TextField;
       
-      private var var_531:Vector.<TextField> = new Vector.<TextField>();
+      private var §_-2O§:Vector.<TextField> = new Vector.<TextField>();
       
-      private var var_546:int;
+      private var §_-V8§:int;
       
-      private var var_543:int;
+      private var §_-k3§:int;
       
-      private var var_545:int = 0;
+      private var §_-5f§:int = 0;
       
-      private var var_544:Boolean;
+      private var §_-Y3§:Boolean;
       
       private var visible:Boolean;
       
-      private var var_533:Array = [];
+      private var §_-Fe§:Array = [];
       
-      private var var_532:int = 0;
+      private var §_-hY§:int = 0;
       
-      private var var_540:Object = {};
+      private var §_-Pl§:Object = {};
       
-      private var var_536:Object = {};
+      private var §_-I9§:Object = {};
       
-      private var var_529:int;
+      private var §_-HF§:int;
       
-      private var var_541:int;
+      private var §_-6U§:int;
       
-      private var var_530:int;
+      private var §_-gO§:int;
       
       private var buffer:ICircularStringBuffer;
       
-      private var var_535:int;
+      private var §_-Nl§:int;
       
-      private var var_534:int;
+      private var §_-Gl§:int;
       
       private var align:int;
       
-      private var var_539:uint = 16777215;
+      private var §_-0P§:uint = 16777215;
       
-      private var var_537:uint = 0;
+      private var §_-Su§:uint = 0;
       
-      private var var_542:Number = 1;
+      private var §_-S9§:Number = 1;
       
       private var filter:String;
       
@@ -113,12 +113,12 @@ package alternativa.osgi.service.console
       
       public function addVariable(variable:ConsoleVar) : void
       {
-         this.var_536[variable.getName()] = variable;
+         this.§_-I9§[variable.getName()] = variable;
       }
       
       public function removeVariable(variableName:String) : void
       {
-         delete this.var_536[variableName];
+         delete this.§_-I9§[variableName];
       }
       
       public function set horizontalAlignment(value:int) : void
@@ -147,7 +147,7 @@ package alternativa.osgi.service.console
       
       public function addText(text:String) : void
       {
-         var needScroll:Boolean = this.buffer.size - this.var_530 <= this.var_529;
+         var needScroll:Boolean = this.buffer.size - this.§_-gO§ <= this.§_-HF§;
          var linesAdded:int = this.addLine(text);
          if(needScroll)
          {
@@ -157,7 +157,7 @@ package alternativa.osgi.service.console
       
       public function addPrefixedText(prefix:String, text:String) : void
       {
-         var needScroll:Boolean = this.buffer.size - this.var_530 <= this.var_529;
+         var needScroll:Boolean = this.buffer.size - this.§_-gO§ <= this.§_-HF§;
          var linesAdded:int = this.addPrefixedLine(prefix,text);
          if(needScroll)
          {
@@ -169,7 +169,7 @@ package alternativa.osgi.service.console
       {
          var linesAdded:int = 0;
          var line:String = null;
-         var needScroll:Boolean = this.buffer.size - this.var_530 <= this.var_529;
+         var needScroll:Boolean = this.buffer.size - this.§_-gO§ <= this.§_-HF§;
          for each(line in lines)
          {
             linesAdded += this.addLine(line);
@@ -184,7 +184,7 @@ package alternativa.osgi.service.console
       {
          var linesAdded:int = 0;
          var line:String = null;
-         var needScroll:Boolean = this.buffer.size - this.var_530 <= this.var_529;
+         var needScroll:Boolean = this.buffer.size - this.§_-gO§ <= this.§_-HF§;
          for each(line in lines)
          {
             linesAdded += this.addPrefixedLine(prefix,line);
@@ -231,34 +231,34 @@ package alternativa.osgi.service.console
       {
          widthPercent = this.clamp(widthPercent,1,100);
          heightPercent = this.clamp(heightPercent,1,100);
-         if(widthPercent == this.var_535 && heightPercent == this.var_534)
+         if(widthPercent == this.§_-Nl§ && heightPercent == this.§_-Gl§)
          {
             return;
          }
-         this.var_535 = widthPercent;
-         this.var_534 = heightPercent;
+         this.§_-Nl§ = widthPercent;
+         this.§_-Gl§ = heightPercent;
          this.updateSize();
          this.updateAlignment();
       }
       
       public function set width(widthPercent:int) : void
       {
-         this.setSize(widthPercent,this.var_534);
+         this.setSize(widthPercent,this.§_-Gl§);
       }
       
       public function get width() : int
       {
-         return this.var_535;
+         return this.§_-Nl§;
       }
       
       public function set height(heightPercent:int) : void
       {
-         this.setSize(this.var_535,heightPercent);
+         this.setSize(this.§_-Nl§,heightPercent);
       }
       
       public function get height() : int
       {
-         return this.var_534;
+         return this.§_-Gl§;
       }
       
       public function setCommandHandler(commandName:String, handler:Function) : void
@@ -271,7 +271,7 @@ package alternativa.osgi.service.console
          {
             throw new ArgumentError("Handler is null");
          }
-         this.var_540[commandName] = handler;
+         this.§_-Pl§[commandName] = handler;
       }
       
       public function removeCommandHandler(commandName:String) : void
@@ -280,7 +280,7 @@ package alternativa.osgi.service.console
          {
             throw new ArgumentError("Command name is null or empty");
          }
-         delete this.var_540[commandName];
+         delete this.§_-Pl§[commandName];
       }
       
       public function hideDelayed(delay:uint) : void
@@ -295,22 +295,22 @@ package alternativa.osgi.service.console
          {
             return;
          }
-         var len:int = int(this.var_533.length);
-         if(len == 0 || this.var_533[len - 1] != text)
+         var len:int = int(this.§_-Fe§.length);
+         if(len == 0 || this.§_-Fe§[len - 1] != text)
          {
-            this.var_533.push(text);
+            this.§_-Fe§.push(text);
          }
-         this.var_532 = len + 1;
+         this.§_-hY§ = len + 1;
          var tokens:Array = text.match(TOKENIZER);
          var commandName:String = tokens.shift();
-         var variable:ConsoleVar = this.var_536[commandName];
+         var variable:ConsoleVar = this.§_-I9§[commandName];
          if(variable != null)
          {
             variable.processConsoleInput(this,tokens);
          }
          else
          {
-            _loc6_ = this.var_540[commandName];
+            _loc6_ = this.§_-Pl§[commandName];
             if(_loc6_ != null)
             {
                _loc6_.call(null,this,tokens);
@@ -320,13 +320,13 @@ package alternativa.osgi.service.console
       
       public function set alpha(value:Number) : void
       {
-         this.var_542 = value;
+         this.§_-S9§ = value;
          this.updateSize();
       }
       
       public function get alpha() : Number
       {
-         return this.var_542;
+         return this.§_-S9§;
       }
       
       private function calcTextMetrics(stage:Stage) : void
@@ -335,8 +335,8 @@ package alternativa.osgi.service.console
          tf.defaultTextFormat = DEFAULT_TEXT_FORMAT;
          tf.text = "j";
          stage.addChild(tf);
-         this.var_546 = tf.textWidth;
-         this.var_543 = tf.textHeight + 4;
+         this.§_-V8§ = tf.textWidth;
+         this.§_-k3§ = tf.textHeight + 4;
          stage.removeChild(tf);
       }
       
@@ -358,38 +358,38 @@ package alternativa.osgi.service.console
       
       private function initOutput() : void
       {
-         this.var_538 = new Sprite();
-         this.var_538.addEventListener(MouseEvent.MOUSE_WHEEL,this.onMouseWheel);
-         this.container.addChild(this.var_538);
+         this.§_-mB§ = new Sprite();
+         this.§_-mB§.addEventListener(MouseEvent.MOUSE_WHEEL,this.onMouseWheel);
+         this.container.addChild(this.§_-mB§);
       }
       
       private function resizeOutput(w:int, h:int) : void
       {
-         this.var_529 = h / (this.var_543 + this.var_545);
-         this.var_541 = w / this.var_546 - 1;
+         this.§_-HF§ = h / (this.§_-k3§ + this.§_-5f§);
+         this.§_-6U§ = w / this.§_-V8§ - 1;
          this.updateTextFields(w);
          this.scrollOutput(0);
-         var g:Graphics = this.var_538.graphics;
+         var g:Graphics = this.§_-mB§.graphics;
          g.clear();
-         g.beginFill(this.var_539,this.var_542);
+         g.beginFill(this.§_-0P§,this.§_-S9§);
          g.drawRect(0,0,w,h);
          g.endFill();
       }
       
       private function updateTextFields(w:int) : void
       {
-         for(var tf:TextField = null; this.var_531.length > this.var_529; )
+         for(var tf:TextField = null; this.§_-2O§.length > this.§_-HF§; )
          {
-            this.var_538.removeChild(this.var_531.pop());
+            this.§_-mB§.removeChild(this.§_-2O§.pop());
          }
-         while(this.var_531.length < this.var_529)
+         while(this.§_-2O§.length < this.§_-HF§)
          {
             this.createTextField();
          }
-         var lineHeight:int = this.var_543 + this.var_545;
-         for(var i:int = 0; i < this.var_531.length; i++)
+         var lineHeight:int = this.§_-k3§ + this.§_-5f§;
+         for(var i:int = 0; i < this.§_-2O§.length; i++)
          {
-            tf = this.var_531[i];
+            tf = this.§_-2O§[i];
             tf.y = i * lineHeight;
             tf.width = w;
          }
@@ -398,24 +398,24 @@ package alternativa.osgi.service.console
       private function createTextField() : void
       {
          var tf:TextField = new TextField();
-         tf.height = this.var_543;
+         tf.height = this.§_-k3§;
          tf.defaultTextFormat = DEFAULT_TEXT_FORMAT;
          tf.tabEnabled = false;
          tf.selectable = true;
-         this.var_538.addChild(tf);
-         this.var_531.push(tf);
+         this.§_-mB§.addChild(tf);
+         this.§_-2O§.push(tf);
       }
       
       private function scrollOutput(delta:int) : void
       {
-         this.var_530 += delta;
-         if(this.var_530 + this.var_529 > this.buffer.size)
+         this.§_-gO§ += delta;
+         if(this.§_-gO§ + this.§_-HF§ > this.buffer.size)
          {
-            this.var_530 = this.buffer.size - this.var_529;
+            this.§_-gO§ = this.buffer.size - this.§_-HF§;
          }
-         if(this.var_530 < 0)
+         if(this.§_-gO§ < 0)
          {
-            this.var_530 = 0;
+            this.§_-gO§ = 0;
          }
          this.updateOutput();
       }
@@ -431,14 +431,14 @@ package alternativa.osgi.service.console
       private function printPage() : void
       {
          var pageLineIndex:int = 0;
-         var iterator:IStringBufferIterator = this.buffer.getIterator(this.var_530);
-         while(pageLineIndex < this.var_529 && Boolean(iterator.hasNext()))
+         var iterator:IStringBufferIterator = this.buffer.getIterator(this.§_-gO§);
+         while(pageLineIndex < this.§_-HF§ && Boolean(iterator.hasNext()))
          {
-            TextField(this.var_531[pageLineIndex++]).text = iterator.getNext();
+            TextField(this.§_-2O§[pageLineIndex++]).text = iterator.getNext();
          }
-         while(pageLineIndex < this.var_529)
+         while(pageLineIndex < this.§_-HF§)
          {
-            TextField(this.var_531[pageLineIndex++]).text = "";
+            TextField(this.§_-2O§[pageLineIndex++]).text = "";
          }
       }
       
@@ -446,7 +446,7 @@ package alternativa.osgi.service.console
       {
          if(this.isToggleKey(e))
          {
-            this.var_544 = true;
+            this.§_-Y3§ = true;
          }
          switch(e.keyCode)
          {
@@ -468,10 +468,10 @@ package alternativa.osgi.service.console
                this.historyDown();
                break;
             case Keyboard.PAGE_UP:
-               this.scrollOutput(-this.var_529);
+               this.scrollOutput(-this.§_-HF§);
                break;
             case Keyboard.PAGE_DOWN:
-               this.scrollOutput(this.var_529);
+               this.scrollOutput(this.§_-HF§);
          }
          e.stopPropagation();
       }
@@ -486,10 +486,10 @@ package alternativa.osgi.service.console
       
       private function onTextInput(e:TextEvent) : void
       {
-         if(this.var_544)
+         if(this.§_-Y3§)
          {
             e.preventDefault();
-            this.var_544 = false;
+            this.§_-Y3§ = false;
          }
       }
       
@@ -509,26 +509,26 @@ package alternativa.osgi.service.console
       
       private function historyUp() : void
       {
-         if(this.var_532 == 0)
+         if(this.§_-hY§ == 0)
          {
             return;
          }
-         --this.var_532;
-         var command:String = this.var_533[this.var_532];
+         --this.§_-hY§;
+         var command:String = this.§_-Fe§[this.§_-hY§];
          this.input.text = command == null ? "" : command;
       }
       
       private function historyDown() : void
       {
-         ++this.var_532;
-         if(this.var_532 >= this.var_533.length)
+         ++this.§_-hY§;
+         if(this.§_-hY§ >= this.§_-Fe§.length)
          {
-            this.var_532 = this.var_533.length;
+            this.§_-hY§ = this.§_-Fe§.length;
             this.input.text = "";
          }
          else
          {
-            this.input.text = this.var_533[this.var_532];
+            this.input.text = this.§_-Fe§[this.§_-hY§];
          }
       }
       
@@ -565,9 +565,9 @@ package alternativa.osgi.service.console
             {
                for(i = 0; i < line.length; )
                {
-                  this.buffer.add(line.substr(i,this.var_541));
+                  this.buffer.add(line.substr(i,this.§_-6U§));
                   linesAdded++;
-                  i += this.var_541;
+                  i += this.§_-6U§;
                }
             }
          }
@@ -580,7 +580,7 @@ package alternativa.osgi.service.console
          var line:String = null;
          var i:int = 0;
          var lines:Array = s.split(LINE_SPLITTER);
-         var effectiveLineWidth:int = this.var_541 - prefix.length;
+         var effectiveLineWidth:int = this.§_-6U§ - prefix.length;
          for each(line in lines)
          {
             if(!(Boolean(this.filter) && line.indexOf(this.filter) < 0))
@@ -616,8 +616,8 @@ package alternativa.osgi.service.console
       
       private function updateSize() : void
       {
-         var pixelHeight:int = 0.01 * this.var_534 * this.stage.stageHeight;
-         var pixelWidth:int = 0.01 * this.var_535 * this.stage.stageWidth;
+         var pixelHeight:int = 0.01 * this.§_-Gl§ * this.stage.stageHeight;
+         var pixelWidth:int = 0.01 * this.§_-Nl§ * this.stage.stageWidth;
          var outputHeight:int = pixelHeight - INPUT_HEIGHT;
          this.resizeOutput(pixelWidth,outputHeight);
          this.input.y = outputHeight;
@@ -679,7 +679,7 @@ package alternativa.osgi.service.console
       {
          var commandName:String = null;
          var list:Array = [];
-         for(commandName in this.var_540)
+         for(commandName in this.§_-Pl§)
          {
             list.push(commandName);
          }
@@ -718,11 +718,11 @@ package alternativa.osgi.service.console
       {
          if(params.length == 0)
          {
-            this.addText("Width=" + this.var_535);
+            this.addText("Width=" + this.§_-Nl§);
          }
          else
          {
-            this.setSize(int(params[0]),this.var_534);
+            this.setSize(int(params[0]),this.§_-Gl§);
          }
       }
       
@@ -730,11 +730,11 @@ package alternativa.osgi.service.console
       {
          if(params.length == 0)
          {
-            this.addText("Height=" + this.var_534);
+            this.addText("Height=" + this.§_-Gl§);
          }
          else
          {
-            this.setSize(this.var_535,int(params[0]));
+            this.setSize(this.§_-Nl§,int(params[0]));
          }
       }
       
@@ -742,7 +742,7 @@ package alternativa.osgi.service.console
       {
          if(params.length == 0)
          {
-            this.addText("Alpha=" + this.var_542);
+            this.addText("Alpha=" + this.§_-S9§);
          }
          else
          {
@@ -754,14 +754,14 @@ package alternativa.osgi.service.console
       {
          if(params.length == 0)
          {
-            this.addText("Background color = " + this.var_539);
+            this.addText("Background color = " + this.§_-0P§);
          }
          else
          {
-            this.var_539 = uint(params[0]);
+            this.§_-0P§ = uint(params[0]);
             this.updateSize();
-            this.input.backgroundColor = this.var_539;
-            this.addText("Background color set to " + this.var_539);
+            this.input.backgroundColor = this.§_-0P§;
+            this.addText("Background color set to " + this.§_-0P§);
          }
       }
       
@@ -770,20 +770,20 @@ package alternativa.osgi.service.console
          var _loc3_:TextField = null;
          if(params.length == 0)
          {
-            this.addText("Foreground color = " + this.var_537);
+            this.addText("Foreground color = " + this.§_-Su§);
          }
          else
          {
-            this.var_537 = uint(params[0]);
-            DEFAULT_TEXT_FORMAT.color = this.var_537;
-            this.input.textColor = this.var_537;
+            this.§_-Su§ = uint(params[0]);
+            DEFAULT_TEXT_FORMAT.color = this.§_-Su§;
+            this.input.textColor = this.§_-Su§;
             this.input.defaultTextFormat = DEFAULT_TEXT_FORMAT;
-            for each(_loc3_ in this.var_531)
+            for each(_loc3_ in this.§_-2O§)
             {
-               _loc3_.textColor = this.var_537;
+               _loc3_.textColor = this.§_-Su§;
                _loc3_.defaultTextFormat = DEFAULT_TEXT_FORMAT;
             }
-            this.addText("Foreground color set to " + this.var_537);
+            this.addText("Foreground color set to " + this.§_-Su§);
          }
       }
       
@@ -816,11 +816,11 @@ package alternativa.osgi.service.console
          var variable:ConsoleVar = null;
          var s:String = null;
          var vars:Array = [];
-         for(name in this.var_536)
+         for(name in this.§_-I9§)
          {
             if(start == null || start == "" || name.indexOf(start) == 0)
             {
-               variable = this.var_536[name];
+               variable = this.§_-I9§[name];
                vars.push(showValues ? name + " = " + variable.toString() : name);
             }
          }

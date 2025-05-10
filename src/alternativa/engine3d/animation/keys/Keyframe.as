@@ -6,7 +6,7 @@ package alternativa.engine3d.animation.keys
    
    public class Keyframe
    {
-      alternativa3d var var_420:Number = 0;
+      alternativa3d var §_-qC§:Number = 0;
       
       public function Keyframe()
       {
@@ -15,7 +15,7 @@ package alternativa.engine3d.animation.keys
       
       public function get time() : Number
       {
-         return this.alternativa3d::var_420;
+         return this.alternativa3d::_-qC;
       }
       
       public function get value() : Object
@@ -38,7 +38,7 @@ package alternativa.engine3d.animation.keys
       
       public function toString() : String
       {
-         return "[Keyframe time = " + this.alternativa3d::var_420.toFixed(2) + " value = " + this.value + "]";
+         return "[Keyframe time = " + this.alternativa3d::_-qC.toFixed(2) + " value = " + this.value + "]";
       }
    }
 }

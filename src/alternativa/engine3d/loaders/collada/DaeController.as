@@ -1,7 +1,7 @@
 package alternativa.engine3d.loaders.collada
 {
    import alternativa.engine3d.*;
-   import alternativa.engine3d.animation.name_550;
+   import alternativa.engine3d.animation.AnimationClip;
    import alternativa.engine3d.core.Object3D;
    import alternativa.engine3d.core.VertexAttributes;
    import alternativa.engine3d.loaders.ParserMaterial;
@@ -17,25 +17,25 @@ package alternativa.engine3d.loaders.collada
    
    public class DaeController extends DaeElement
    {
-      private var var_725:Vector.<Vector.<Number>>;
+      private var §_-A6§:Vector.<Vector.<Number>>;
       
-      private var var_724:Array;
+      private var §_-2j§:Array;
       
       private var indices:Array;
       
-      private var var_727:DaeInput;
+      private var §_-4h§:DaeInput;
       
-      private var var_726:DaeInput;
+      private var §_-NK§:DaeInput;
       
-      private var var_728:int;
+      private var §_-5O§:int;
       
       private var geometry:Geometry;
       
       private var primitives:Vector.<DaePrimitive>;
       
-      private var var_723:int = 0;
+      private var §_-1U§:int = 0;
       
-      private var var_722:Vector.<Number>;
+      private var §_-I§:Vector.<Number>;
       
       public function DaeController(data:XML, document:DaeDocument)
       {
@@ -78,7 +78,7 @@ package alternativa.engine3d.loaders.collada
          {
             return false;
          }
-         this.var_724 = parseIntsArray(vcountsXML);
+         this.§_-2j§ = parseIntsArray(vcountsXML);
          var indicesXML:XML = vertexWeightsXML.v[0];
          if(indicesXML == null)
          {
@@ -87,23 +87,23 @@ package alternativa.engine3d.loaders.collada
          this.indices = parseIntsArray(indicesXML);
          this.parseInputs();
          this.parseJointsBindMatrices();
-         for(i = 0; i < this.var_724.length; )
+         for(i = 0; i < this.§_-2j§.length; )
          {
-            count = int(this.var_724[i]);
-            if(this.var_723 < count)
+            count = int(this.§_-2j§[i]);
+            if(this.§_-1U§ < count)
             {
-               this.var_723 = count;
+               this.§_-1U§ = count;
             }
             i++;
          }
          var geom:DaeGeometry = this.daeGeometry;
-         this.var_722 = this.getBindShapeMatrix();
+         this.§_-I§ = this.getBindShapeMatrix();
          if(geom != null)
          {
             geom.parse();
-            vertices = geom.var_715;
+            vertices = geom.§_-FV§;
             source = geom.geometry;
-            localMaxJointsPerVertex = this.var_723 % 2 != 0 ? this.var_723 + 1 : this.var_723;
+            localMaxJointsPerVertex = this.§_-1U§ % 2 != 0 ? this.§_-1U§ + 1 : this.§_-1U§;
             this.geometry = new Geometry();
             this.geometry.alternativa3d::_indices = source.alternativa3d::_indices.slice();
             attributes = source.getVertexStreamAttributes(0);
@@ -165,9 +165,9 @@ package alternativa.engine3d.loaders.collada
             y = Number(data.readFloat());
             z = Number(data.readFloat());
             data.position -= 12;
-            data.writeFloat(x * this.var_722[0] + y * this.var_722[1] + z * this.var_722[2] + this.var_722[3]);
-            data.writeFloat(x * this.var_722[4] + y * this.var_722[5] + z * this.var_722[6] + this.var_722[7]);
-            data.writeFloat(x * this.var_722[8] + y * this.var_722[9] + z * this.var_722[10] + this.var_722[11]);
+            data.writeFloat(x * this.§_-I§[0] + y * this.§_-I§[1] + z * this.§_-I§[2] + this.§_-I§[3]);
+            data.writeFloat(x * this.§_-I§[4] + y * this.§_-I§[5] + z * this.§_-I§[6] + this.§_-I§[7]);
+            data.writeFloat(x * this.§_-I§[8] + y * this.§_-I§[9] + z * this.§_-I§[10] + this.§_-I§[11]);
          }
       }
       
@@ -184,9 +184,9 @@ package alternativa.engine3d.loaders.collada
          var index:int = 0;
          var jointIndex:int = 0;
          var weightIndex:int = 0;
-         var jointsOffset:int = this.var_727.offset;
-         var weightsOffset:int = this.var_726.offset;
-         var weightsSource:DaeSource = this.var_726.prepareSource(1);
+         var jointsOffset:int = this.§_-4h§.offset;
+         var weightsOffset:int = this.§_-NK§.offset;
+         var weightsSource:DaeSource = this.§_-NK§.prepareSource(1);
          var weights:Vector.<Number> = weightsSource.numbers;
          var weightsStride:int = weightsSource.stride;
          var verticesDict:Dictionary = new Dictionary();
@@ -198,25 +198,25 @@ package alternativa.engine3d.loaders.collada
             vertex = vertices[i];
             if(vertex != null)
             {
-               vec = verticesDict[vertex.name_600];
+               vec = verticesDict[vertex.§_-Eq§];
                if(vec == null)
                {
-                  vec = verticesDict[vertex.name_600] = new Vector.<uint>();
+                  vec = verticesDict[vertex.§_-Eq§] = new Vector.<uint>();
                }
-               vec.push(vertex.name_601);
+               vec.push(vertex.§_-AR§);
             }
          }
          var vertexIndex:int = 0;
-         for(i = 0,count = int(this.var_724.length); i < count; i++)
+         for(i = 0,count = int(this.§_-2j§.length); i < count; i++)
          {
-            jointsPerVertex = int(this.var_724[i]);
+            jointsPerVertex = int(this.§_-2j§[i]);
             vertexOutIndices = verticesDict[i];
             for(j = 0; j < vertexOutIndices.length; j++)
             {
                byteArray.position = vertexOutIndices[j] * localMaxJointsPerVertex * 8;
                for(k = 0; k < jointsPerVertex; k++)
                {
-                  index = this.var_728 * (vertexIndex + k);
+                  index = this.§_-5O§ * (vertexIndex + k);
                   jointIndex = int(this.indices[int(index + jointsOffset)]);
                   if(jointIndex >= 0)
                   {
@@ -254,20 +254,20 @@ package alternativa.engine3d.loaders.collada
             switch(semantic)
             {
                case "JOINT":
-                  if(this.var_727 == null)
+                  if(this.§_-4h§ == null)
                   {
-                     this.var_727 = input;
+                     this.§_-4h§ = input;
                   }
                   break;
                case "WEIGHT":
-                  if(this.var_726 == null)
+                  if(this.§_-NK§ == null)
                   {
-                     this.var_726 = input;
+                     this.§_-NK§ = input;
                   }
                   break;
             }
          }
-         this.var_728 = maxInputOffset + 1;
+         this.§_-5O§ = maxInputOffset + 1;
       }
       
       private function parseJointsBindMatrices() : void
@@ -290,12 +290,12 @@ package alternativa.engine3d.loaders.collada
                {
                   stride = jointsSource.stride;
                   count = jointsSource.numbers.length / stride;
-                  this.var_725 = new Vector.<Vector.<Number>>(count);
+                  this.§_-A6§ = new Vector.<Vector.<Number>>(count);
                   for(i = 0; i < count; i++)
                   {
                      index = stride * i;
                      matrix = new Vector.<Number>(16);
-                     this.var_725[i] = matrix;
+                     this.§_-A6§[i] = matrix;
                      for(j = 0; j < 16; j++)
                      {
                         matrix[j] = jointsSource.numbers[int(index + j)];
@@ -323,13 +323,13 @@ package alternativa.engine3d.loaders.collada
          var skinXML:XML = data.skin[0];
          if(skinXML != null)
          {
-            this.var_722 = this.getBindShapeMatrix();
-            numJoints = int(this.var_725.length);
-            skin = new Skin(this.var_723,numJoints);
+            this.§_-I§ = this.getBindShapeMatrix();
+            numJoints = int(this.§_-A6§.length);
+            skin = new Skin(this.§_-1U§,numJoints);
             skin.geometry = this.geometry;
             joints = this.addJointsToSkin(skin,topmostJoints,this.findNodes(skeletons));
             this.setJointsBindMatrices(joints);
-            skin.var_633 = this.collectRenderedJoints(joints,numJoints);
+            skin.§_-WA§ = this.collectRenderedJoints(joints,numJoints);
             if(this.primitives != null)
             {
                for(i = 0; i < this.primitives.length; i++)
@@ -364,17 +364,17 @@ package alternativa.engine3d.loaders.collada
          return result;
       }
       
-      private function mergeJointsClips(skin:Skin, joints:Vector.<DaeObject>) : name_550
+      private function mergeJointsClips(skin:Skin, joints:Vector.<DaeObject>) : AnimationClip
       {
          var animatedObject:DaeObject = null;
-         var clip:name_550 = null;
+         var clip:AnimationClip = null;
          var object:Object3D = null;
          var t:int = 0;
          if(!this.hasJointsAnimation(joints))
          {
             return null;
          }
-         var result:name_550 = new name_550();
+         var result:AnimationClip = new AnimationClip();
          var resultObjects:Array = [skin];
          for(var i:int = 0,var count:int = int(joints.length); i < count; i++)
          {
@@ -384,18 +384,18 @@ package alternativa.engine3d.loaders.collada
             {
                for(t = 0; t < clip.numTracks; t++)
                {
-                  result.name_551(clip.name_553(t));
+                  result.addTrack(clip.getTrackAt(t));
                }
             }
             else
             {
-               result.name_551(animatedObject.jointNode.createStaticTransformTrack());
+               result.addTrack(animatedObject.jointNode.createStaticTransformTrack());
             }
             object = animatedObject.object;
             object.name = animatedObject.jointNode.animName;
             resultObjects.push(object);
          }
-         result.alternativa3d::var_348 = resultObjects;
+         result.alternativa3d::_-Kq = resultObjects;
          return result;
       }
       
@@ -418,10 +418,10 @@ package alternativa.engine3d.loaders.collada
       {
          var animatedJoint:DaeObject = null;
          var bindMatrix:Vector.<Number> = null;
-         for(var i:int = 0,var count:int = int(this.var_725.length); i < count; i++)
+         for(var i:int = 0,var count:int = int(this.§_-A6§.length); i < count; i++)
          {
             animatedJoint = animatedJoints[i];
-            bindMatrix = this.var_725[i];
+            bindMatrix = this.§_-A6§[i];
             Joint(animatedJoint.object).alternativa3d::setBindPoseMatrix(bindMatrix);
          }
       }

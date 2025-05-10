@@ -4,95 +4,95 @@ package versions.version2.a3d.objects
    
    public class A3D2Skin
    {
-      private var var_270:int;
+      private var §_-jD§:int;
       
-      private var var_101:Long;
+      private var §_-3I§:Long;
       
-      private var var_277:int;
+      private var §_-Hc§:int;
       
-      private var var_392:Vector.<A3D2JointBindTransform>;
+      private var §_-KB§:Vector.<A3D2JointBindTransform>;
       
-      private var var_390:Vector.<Long>;
+      private var §_-26§:Vector.<Long>;
       
       private var _name:String;
       
-      private var var_391:Vector.<uint>;
+      private var §_-Dr§:Vector.<uint>;
       
-      private var var_269:Long;
+      private var §_-fP§:Long;
       
-      private var var_92:Vector.<A3D2Surface>;
+      private var §_-eW§:Vector.<A3D2Surface>;
       
-      private var var_268:A3D2Transform;
+      private var §_-bP§:A3D2Transform;
       
-      private var var_276:Vector.<int>;
+      private var §_-0B§:Vector.<int>;
       
-      private var var_261:Boolean;
+      private var §_-1u§:Boolean;
       
       public function A3D2Skin(boundBoxId:int, id:Long, indexBufferId:int, jointBindTransforms:Vector.<A3D2JointBindTransform>, joints:Vector.<Long>, name:String, numJoints:Vector.<uint>, parentId:Long, surfaces:Vector.<A3D2Surface>, transform:A3D2Transform, vertexBuffers:Vector.<int>, visible:Boolean)
       {
          super();
-         this.var_270 = boundBoxId;
-         this.var_101 = id;
-         this.var_277 = indexBufferId;
-         this.var_392 = jointBindTransforms;
-         this.var_390 = joints;
+         this.§_-jD§ = boundBoxId;
+         this.§_-3I§ = id;
+         this.§_-Hc§ = indexBufferId;
+         this.§_-KB§ = jointBindTransforms;
+         this.§_-26§ = joints;
          this._name = name;
-         this.var_391 = numJoints;
-         this.var_269 = parentId;
-         this.var_92 = surfaces;
-         this.var_268 = transform;
-         this.var_276 = vertexBuffers;
-         this.var_261 = visible;
+         this.§_-Dr§ = numJoints;
+         this.§_-fP§ = parentId;
+         this.§_-eW§ = surfaces;
+         this.§_-bP§ = transform;
+         this.§_-0B§ = vertexBuffers;
+         this.§_-1u§ = visible;
       }
       
       public function get boundBoxId() : int
       {
-         return this.var_270;
+         return this.§_-jD§;
       }
       
       public function set boundBoxId(value:int) : void
       {
-         this.var_270 = value;
+         this.§_-jD§ = value;
       }
       
       public function get id() : Long
       {
-         return this.var_101;
+         return this.§_-3I§;
       }
       
       public function set id(value:Long) : void
       {
-         this.var_101 = value;
+         this.§_-3I§ = value;
       }
       
       public function get indexBufferId() : int
       {
-         return this.var_277;
+         return this.§_-Hc§;
       }
       
       public function set indexBufferId(value:int) : void
       {
-         this.var_277 = value;
+         this.§_-Hc§ = value;
       }
       
       public function get jointBindTransforms() : Vector.<A3D2JointBindTransform>
       {
-         return this.var_392;
+         return this.§_-KB§;
       }
       
       public function set jointBindTransforms(value:Vector.<A3D2JointBindTransform>) : void
       {
-         this.var_392 = value;
+         this.§_-KB§ = value;
       }
       
       public function get joints() : Vector.<Long>
       {
-         return this.var_390;
+         return this.§_-26§;
       }
       
       public function set joints(value:Vector.<Long>) : void
       {
-         this.var_390 = value;
+         this.§_-26§ = value;
       }
       
       public function get name() : String
@@ -107,62 +107,62 @@ package versions.version2.a3d.objects
       
       public function get numJoints() : Vector.<uint>
       {
-         return this.var_391;
+         return this.§_-Dr§;
       }
       
       public function set numJoints(value:Vector.<uint>) : void
       {
-         this.var_391 = value;
+         this.§_-Dr§ = value;
       }
       
       public function get parentId() : Long
       {
-         return this.var_269;
+         return this.§_-fP§;
       }
       
       public function set parentId(value:Long) : void
       {
-         this.var_269 = value;
+         this.§_-fP§ = value;
       }
       
       public function get surfaces() : Vector.<A3D2Surface>
       {
-         return this.var_92;
+         return this.§_-eW§;
       }
       
       public function set surfaces(value:Vector.<A3D2Surface>) : void
       {
-         this.var_92 = value;
+         this.§_-eW§ = value;
       }
       
       public function get transform() : A3D2Transform
       {
-         return this.var_268;
+         return this.§_-bP§;
       }
       
       public function set transform(value:A3D2Transform) : void
       {
-         this.var_268 = value;
+         this.§_-bP§ = value;
       }
       
       public function get vertexBuffers() : Vector.<int>
       {
-         return this.var_276;
+         return this.§_-0B§;
       }
       
       public function set vertexBuffers(value:Vector.<int>) : void
       {
-         this.var_276 = value;
+         this.§_-0B§ = value;
       }
       
       public function get visible() : Boolean
       {
-         return this.var_261;
+         return this.§_-1u§;
       }
       
       public function set visible(value:Boolean) : void
       {
-         this.var_261 = value;
+         this.§_-1u§ = value;
       }
       
       public function toString() : String

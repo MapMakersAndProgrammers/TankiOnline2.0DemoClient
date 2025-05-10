@@ -15,19 +15,19 @@ package _codec.versions.version1.a3d.materials
    {
       public static var log:IClientLog = IClientLog(OSGi.getInstance().getService(IClientLog));
       
-      private var var_322:ICodec;
+      private var §_-mC§:ICodec;
       
-      private var var_243:ICodec;
+      private var §_-2o§:ICodec;
       
-      private var var_321:ICodec;
+      private var §_-2N§:ICodec;
       
-      private var var_407:ICodec;
+      private var §_-K5§:ICodec;
       
-      private var var_408:ICodec;
+      private var §_-Q5§:ICodec;
       
-      private var var_409:ICodec;
+      private var §_-WH§:ICodec;
       
-      private var var_410:ICodec;
+      private var §_-kh§:ICodec;
       
       public function CodecA3DMap()
       {
@@ -36,31 +36,31 @@ package _codec.versions.version1.a3d.materials
       
       public function init(protocol:IProtocol) : void
       {
-         this.var_322 = protocol.getCodec(new TypeCodecInfo(UShort,false));
-         this.var_243 = protocol.getCodec(new TypeCodecInfo(Id,true));
-         this.var_321 = protocol.getCodec(new TypeCodecInfo(Id,true));
-         this.var_407 = protocol.getCodec(new TypeCodecInfo(Float,true));
-         this.var_408 = protocol.getCodec(new TypeCodecInfo(Float,true));
-         this.var_409 = protocol.getCodec(new TypeCodecInfo(Float,true));
-         this.var_410 = protocol.getCodec(new TypeCodecInfo(Float,true));
+         this.§_-mC§ = protocol.getCodec(new TypeCodecInfo(UShort,false));
+         this.§_-2o§ = protocol.getCodec(new TypeCodecInfo(Id,true));
+         this.§_-2N§ = protocol.getCodec(new TypeCodecInfo(Id,true));
+         this.§_-K5§ = protocol.getCodec(new TypeCodecInfo(Float,true));
+         this.§_-Q5§ = protocol.getCodec(new TypeCodecInfo(Float,true));
+         this.§_-WH§ = protocol.getCodec(new TypeCodecInfo(Float,true));
+         this.§_-kh§ = protocol.getCodec(new TypeCodecInfo(Float,true));
       }
       
       public function decode(protocolBuffer:ProtocolBuffer) : Object
       {
          log = IClientLog(OSGi.getInstance().getService(IClientLog));
-         var value_channel:uint = uint(this.var_322.decode(protocolBuffer) as uint);
+         var value_channel:uint = uint(this.§_-mC§.decode(protocolBuffer) as uint);
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.materials.A3DMap","channel",value_channel);
-         var value_id:Id = this.var_243.decode(protocolBuffer) as Id;
+         var value_id:Id = this.§_-2o§.decode(protocolBuffer) as Id;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.materials.A3DMap","id",value_id);
-         var value_imageId:Id = this.var_321.decode(protocolBuffer) as Id;
+         var value_imageId:Id = this.§_-2N§.decode(protocolBuffer) as Id;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.materials.A3DMap","imageId",value_imageId);
-         var value_uOffset:Number = Number(this.var_407.decode(protocolBuffer) as Number);
+         var value_uOffset:Number = Number(this.§_-K5§.decode(protocolBuffer) as Number);
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.materials.A3DMap","uOffset",value_uOffset);
-         var value_uScale:Number = Number(this.var_408.decode(protocolBuffer) as Number);
+         var value_uScale:Number = Number(this.§_-Q5§.decode(protocolBuffer) as Number);
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.materials.A3DMap","uScale",value_uScale);
-         var value_vOffset:Number = Number(this.var_409.decode(protocolBuffer) as Number);
+         var value_vOffset:Number = Number(this.§_-WH§.decode(protocolBuffer) as Number);
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.materials.A3DMap","vOffset",value_vOffset);
-         var value_vScale:Number = Number(this.var_410.decode(protocolBuffer) as Number);
+         var value_vScale:Number = Number(this.§_-kh§.decode(protocolBuffer) as Number);
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.materials.A3DMap","vScale",value_vScale);
          return new A3DMap(value_channel,value_id,value_imageId,value_uOffset,value_uScale,value_vOffset,value_vScale);
       }
@@ -72,13 +72,13 @@ package _codec.versions.version1.a3d.materials
             throw new Error("Object is null. Use @ProtocolOptional annotation.");
          }
          var struct:A3DMap = A3DMap(object);
-         this.var_322.encode(protocolBuffer,struct.channel);
-         this.var_243.encode(protocolBuffer,struct.id);
-         this.var_321.encode(protocolBuffer,struct.imageId);
-         this.var_407.encode(protocolBuffer,struct.uOffset);
-         this.var_408.encode(protocolBuffer,struct.uScale);
-         this.var_409.encode(protocolBuffer,struct.vOffset);
-         this.var_410.encode(protocolBuffer,struct.vScale);
+         this.§_-mC§.encode(protocolBuffer,struct.channel);
+         this.§_-2o§.encode(protocolBuffer,struct.id);
+         this.§_-2N§.encode(protocolBuffer,struct.imageId);
+         this.§_-K5§.encode(protocolBuffer,struct.uOffset);
+         this.§_-Q5§.encode(protocolBuffer,struct.uScale);
+         this.§_-WH§.encode(protocolBuffer,struct.vOffset);
+         this.§_-kh§.encode(protocolBuffer,struct.vScale);
       }
    }
 }

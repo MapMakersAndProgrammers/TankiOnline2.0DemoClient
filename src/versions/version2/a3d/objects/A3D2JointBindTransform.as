@@ -4,35 +4,35 @@ package versions.version2.a3d.objects
    
    public class A3D2JointBindTransform
    {
-      private var var_417:A3D2Transform;
+      private var §_-NL§:A3D2Transform;
       
-      private var var_101:Long;
+      private var §_-3I§:Long;
       
       public function A3D2JointBindTransform(bindPoseTransform:A3D2Transform, id:Long)
       {
          super();
-         this.var_417 = bindPoseTransform;
-         this.var_101 = id;
+         this.§_-NL§ = bindPoseTransform;
+         this.§_-3I§ = id;
       }
       
       public function get bindPoseTransform() : A3D2Transform
       {
-         return this.var_417;
+         return this.§_-NL§;
       }
       
       public function set bindPoseTransform(value:A3D2Transform) : void
       {
-         this.var_417 = value;
+         this.§_-NL§ = value;
       }
       
       public function get id() : Long
       {
-         return this.var_101;
+         return this.§_-3I§;
       }
       
       public function set id(value:Long) : void
       {
-         this.var_101 = value;
+         this.§_-3I§ = value;
       }
       
       public function toString() : String

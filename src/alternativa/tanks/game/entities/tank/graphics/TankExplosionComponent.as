@@ -99,7 +99,7 @@ package alternativa.tanks.game.entities.tank.graphics
             }
             effect = AnimatedPlaneEffect(this.gameKernel.getObjectPoolManager().getObject(AnimatedPlaneEffect));
             effect.init(actualSize,position,rotation,this.shockWaveFrames,SHOCK_WAVE_FPS,this.shockWaveGrowSpeed);
-            this.gameKernel.getRenderSystem().method_21(effect);
+            this.gameKernel.getRenderSystem().each(effect);
          }
       }
       
@@ -110,7 +110,7 @@ package alternativa.tanks.game.entities.tank.graphics
          position.z += 100;
          var rotation:Number = Math.random() * Math.PI;
          animatedSpriteEffect.init(600,600,this.explosionFrames,position,rotation,400,EXPLOSION_FPS,false);
-         this.gameKernel.getRenderSystem().method_21(animatedSpriteEffect);
+         this.gameKernel.getRenderSystem().each(animatedSpriteEffect);
       }
       
       private function createSmoke(chassisPhysicsComponent:IChassisPhysicsComponent) : void
@@ -136,7 +136,7 @@ package alternativa.tanks.game.entities.tank.graphics
             movingAnimatedSprite = MovingAnimatedSprite(this.gameKernel.getObjectPoolManager().getObject(MovingAnimatedSprite));
             rotation = Math.random() * Math.PI;
             movingAnimatedSprite.init(400,400,this.smokeFrames,position,velocity,-1000,rotation,SMOKE_FPS,false);
-            this.gameKernel.getRenderSystem().method_21(movingAnimatedSprite);
+            this.gameKernel.getRenderSystem().each(movingAnimatedSprite);
             rotationAngle += 2 / 3 * Math.PI;
          }
       }

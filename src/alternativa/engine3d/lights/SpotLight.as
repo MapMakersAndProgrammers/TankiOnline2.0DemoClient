@@ -59,7 +59,7 @@ package alternativa.engine3d.lights
          var debug:int = 0;
          if(camera.debug)
          {
-            debug = int(camera.alternativa3d::checkInDebug(this));
+            debug = camera.alternativa3d::checkInDebug(this);
             if(Boolean(debug & Debug.BOUNDS) && boundBox != null)
             {
                Debug.alternativa3d::drawBoundBox(camera,boundBox,alternativa3d::localToCameraTransform);
@@ -80,22 +80,22 @@ package alternativa.engine3d.lights
          var w:Number = (maxX - minX) * 0.5;
          var l:Number = (maxY - minY) * 0.5;
          var h:Number = (maxZ - minZ) * 0.5;
-         var ax:Number = alternativa3d::name_80.a * w;
-         var ay:Number = alternativa3d::name_80.e * w;
-         var az:Number = alternativa3d::name_80.i * w;
-         var bx:Number = alternativa3d::name_80.b * l;
-         var by:Number = alternativa3d::name_80.f * l;
-         var bz:Number = alternativa3d::name_80.j * l;
-         var cx:Number = alternativa3d::name_80.c * h;
-         var cy:Number = alternativa3d::name_80.g * h;
-         var cz:Number = alternativa3d::name_80.k * h;
+         var ax:Number = alternativa3d::_-cl.a * w;
+         var ay:Number = alternativa3d::_-cl.e * w;
+         var az:Number = alternativa3d::_-cl.i * w;
+         var bx:Number = alternativa3d::_-cl.b * l;
+         var by:Number = alternativa3d::_-cl.f * l;
+         var bz:Number = alternativa3d::_-cl.j * l;
+         var cx:Number = alternativa3d::_-cl.c * h;
+         var cy:Number = alternativa3d::_-cl.g * h;
+         var cz:Number = alternativa3d::_-cl.k * h;
          var objectBB:BoundBox = targetObject.boundBox;
          var hw:Number = (objectBB.maxX - objectBB.minX) * 0.5;
          var hl:Number = (objectBB.maxY - objectBB.minY) * 0.5;
          var hh:Number = (objectBB.maxZ - objectBB.minZ) * 0.5;
-         var dx:Number = alternativa3d::name_80.a * (minX + w) + alternativa3d::name_80.b * (minY + l) + alternativa3d::name_80.c * (minZ + h) + alternativa3d::name_80.d - objectBB.minX - hw;
-         var dy:Number = alternativa3d::name_80.e * (minX + w) + alternativa3d::name_80.f * (minY + l) + alternativa3d::name_80.g * (minZ + h) + alternativa3d::name_80.h - objectBB.minY - hl;
-         var dz:Number = alternativa3d::name_80.i * (minX + w) + alternativa3d::name_80.j * (minY + l) + alternativa3d::name_80.k * (minZ + h) + alternativa3d::name_80.l - objectBB.minZ - hh;
+         var dx:Number = alternativa3d::_-cl.a * (minX + w) + alternativa3d::_-cl.b * (minY + l) + alternativa3d::_-cl.c * (minZ + h) + alternativa3d::_-cl.d - objectBB.minX - hw;
+         var dy:Number = alternativa3d::_-cl.e * (minX + w) + alternativa3d::_-cl.f * (minY + l) + alternativa3d::_-cl.g * (minZ + h) + alternativa3d::_-cl.h - objectBB.minY - hl;
+         var dz:Number = alternativa3d::_-cl.i * (minX + w) + alternativa3d::_-cl.j * (minY + l) + alternativa3d::_-cl.k * (minZ + h) + alternativa3d::_-cl.l - objectBB.minZ - hh;
          sum = 0;
          if(ax >= 0)
          {
@@ -208,7 +208,7 @@ package alternativa.engine3d.lights
             return false;
          }
          sum = 0;
-         pro = alternativa3d::name_80.a * ax + alternativa3d::name_80.e * ay + alternativa3d::name_80.i * az;
+         pro = alternativa3d::_-cl.a * ax + alternativa3d::_-cl.e * ay + alternativa3d::_-cl.i * az;
          if(pro >= 0)
          {
             sum += pro;
@@ -217,7 +217,7 @@ package alternativa.engine3d.lights
          {
             sum -= pro;
          }
-         pro = alternativa3d::name_80.a * bx + alternativa3d::name_80.e * by + alternativa3d::name_80.i * bz;
+         pro = alternativa3d::_-cl.a * bx + alternativa3d::_-cl.e * by + alternativa3d::_-cl.i * bz;
          if(pro >= 0)
          {
             sum += pro;
@@ -226,7 +226,7 @@ package alternativa.engine3d.lights
          {
             sum -= pro;
          }
-         pro = alternativa3d::name_80.a * cx + alternativa3d::name_80.e * cy + alternativa3d::name_80.i * cz;
+         pro = alternativa3d::_-cl.a * cx + alternativa3d::_-cl.e * cy + alternativa3d::_-cl.i * cz;
          if(pro >= 0)
          {
             sum += pro;
@@ -235,31 +235,31 @@ package alternativa.engine3d.lights
          {
             sum -= pro;
          }
-         if(alternativa3d::name_80.a >= 0)
+         if(alternativa3d::_-cl.a >= 0)
          {
-            sum += alternativa3d::name_80.a * hw;
+            sum += alternativa3d::_-cl.a * hw;
          }
          else
          {
-            sum -= alternativa3d::name_80.a * hw;
+            sum -= alternativa3d::_-cl.a * hw;
          }
-         if(alternativa3d::name_80.e >= 0)
+         if(alternativa3d::_-cl.e >= 0)
          {
-            sum += alternativa3d::name_80.e * hl;
+            sum += alternativa3d::_-cl.e * hl;
          }
          else
          {
-            sum -= alternativa3d::name_80.e * hl;
+            sum -= alternativa3d::_-cl.e * hl;
          }
-         if(alternativa3d::name_80.i >= 0)
+         if(alternativa3d::_-cl.i >= 0)
          {
-            sum += alternativa3d::name_80.i * hh;
+            sum += alternativa3d::_-cl.i * hh;
          }
          else
          {
-            sum -= alternativa3d::name_80.i * hh;
+            sum -= alternativa3d::_-cl.i * hh;
          }
-         pro = alternativa3d::name_80.a * dx + alternativa3d::name_80.e * dy + alternativa3d::name_80.i * dz;
+         pro = alternativa3d::_-cl.a * dx + alternativa3d::_-cl.e * dy + alternativa3d::_-cl.i * dz;
          if(pro >= 0)
          {
             sum -= pro;
@@ -273,7 +273,7 @@ package alternativa.engine3d.lights
             return false;
          }
          sum = 0;
-         pro = alternativa3d::name_80.b * ax + alternativa3d::name_80.f * ay + alternativa3d::name_80.j * az;
+         pro = alternativa3d::_-cl.b * ax + alternativa3d::_-cl.f * ay + alternativa3d::_-cl.j * az;
          if(pro >= 0)
          {
             sum += pro;
@@ -282,7 +282,7 @@ package alternativa.engine3d.lights
          {
             sum -= pro;
          }
-         pro = alternativa3d::name_80.b * bx + alternativa3d::name_80.f * by + alternativa3d::name_80.j * bz;
+         pro = alternativa3d::_-cl.b * bx + alternativa3d::_-cl.f * by + alternativa3d::_-cl.j * bz;
          if(pro >= 0)
          {
             sum += pro;
@@ -291,7 +291,7 @@ package alternativa.engine3d.lights
          {
             sum -= pro;
          }
-         pro = alternativa3d::name_80.b * cx + alternativa3d::name_80.f * cy + alternativa3d::name_80.j * cz;
+         pro = alternativa3d::_-cl.b * cx + alternativa3d::_-cl.f * cy + alternativa3d::_-cl.j * cz;
          if(pro >= 0)
          {
             sum += pro;
@@ -300,31 +300,31 @@ package alternativa.engine3d.lights
          {
             sum -= pro;
          }
-         if(alternativa3d::name_80.b >= 0)
+         if(alternativa3d::_-cl.b >= 0)
          {
-            sum += alternativa3d::name_80.b * hw;
+            sum += alternativa3d::_-cl.b * hw;
          }
          else
          {
-            sum -= alternativa3d::name_80.b * hw;
+            sum -= alternativa3d::_-cl.b * hw;
          }
-         if(alternativa3d::name_80.f >= 0)
+         if(alternativa3d::_-cl.f >= 0)
          {
-            sum += alternativa3d::name_80.f * hl;
+            sum += alternativa3d::_-cl.f * hl;
          }
          else
          {
-            sum -= alternativa3d::name_80.f * hl;
+            sum -= alternativa3d::_-cl.f * hl;
          }
-         if(alternativa3d::name_80.j >= 0)
+         if(alternativa3d::_-cl.j >= 0)
          {
-            sum += alternativa3d::name_80.j * hh;
+            sum += alternativa3d::_-cl.j * hh;
          }
          else
          {
-            sum -= alternativa3d::name_80.j * hh;
+            sum -= alternativa3d::_-cl.j * hh;
          }
-         pro = alternativa3d::name_80.b * dx + alternativa3d::name_80.f * dy + alternativa3d::name_80.j * dz;
+         pro = alternativa3d::_-cl.b * dx + alternativa3d::_-cl.f * dy + alternativa3d::_-cl.j * dz;
          if(pro >= 0)
          {
             sum -= pro;
@@ -335,7 +335,7 @@ package alternativa.engine3d.lights
             return false;
          }
          sum = 0;
-         pro = alternativa3d::name_80.c * ax + alternativa3d::name_80.g * ay + alternativa3d::name_80.k * az;
+         pro = alternativa3d::_-cl.c * ax + alternativa3d::_-cl.g * ay + alternativa3d::_-cl.k * az;
          if(pro >= 0)
          {
             sum += pro;
@@ -344,7 +344,7 @@ package alternativa.engine3d.lights
          {
             sum -= pro;
          }
-         pro = alternativa3d::name_80.c * bx + alternativa3d::name_80.g * by + alternativa3d::name_80.k * bz;
+         pro = alternativa3d::_-cl.c * bx + alternativa3d::_-cl.g * by + alternativa3d::_-cl.k * bz;
          if(pro >= 0)
          {
             sum += pro;
@@ -353,7 +353,7 @@ package alternativa.engine3d.lights
          {
             sum -= pro;
          }
-         pro = alternativa3d::name_80.c * cx + alternativa3d::name_80.g * cy + alternativa3d::name_80.k * cz;
+         pro = alternativa3d::_-cl.c * cx + alternativa3d::_-cl.g * cy + alternativa3d::_-cl.k * cz;
          if(pro >= 0)
          {
             sum += pro;
@@ -362,31 +362,31 @@ package alternativa.engine3d.lights
          {
             sum -= pro;
          }
-         if(alternativa3d::name_80.c >= 0)
+         if(alternativa3d::_-cl.c >= 0)
          {
-            sum += alternativa3d::name_80.c * hw;
+            sum += alternativa3d::_-cl.c * hw;
          }
          else
          {
-            sum -= alternativa3d::name_80.c * hw;
+            sum -= alternativa3d::_-cl.c * hw;
          }
-         if(alternativa3d::name_80.g >= 0)
+         if(alternativa3d::_-cl.g >= 0)
          {
-            sum += alternativa3d::name_80.g * hl;
+            sum += alternativa3d::_-cl.g * hl;
          }
          else
          {
-            sum -= alternativa3d::name_80.g * hl;
+            sum -= alternativa3d::_-cl.g * hl;
          }
-         if(alternativa3d::name_80.k >= 0)
+         if(alternativa3d::_-cl.k >= 0)
          {
-            sum += alternativa3d::name_80.k * hh;
+            sum += alternativa3d::_-cl.k * hh;
          }
          else
          {
-            sum -= alternativa3d::name_80.k * hh;
+            sum -= alternativa3d::_-cl.k * hh;
          }
-         pro = alternativa3d::name_80.c * dx + alternativa3d::name_80.g * dy + alternativa3d::name_80.k * dz;
+         pro = alternativa3d::_-cl.c * dx + alternativa3d::_-cl.g * dy + alternativa3d::_-cl.k * dz;
          if(pro >= 0)
          {
             sum -= pro;

@@ -33,13 +33,13 @@ package alternativa.tanks.game.weapons.ammunition.energy
       
       private var gameKernel:GameKernel;
       
-      private var var_623:Vector3 = new Vector3();
+      private var §_-oF§:Vector3 = new Vector3();
       
-      private var var_620:Vector3 = new Vector3();
+      private var §_-hV§:Vector3 = new Vector3();
       
       private var direction:Vector3 = new Vector3();
       
-      private var var_621:Number;
+      private var §_-PL§:Number;
       
       private var shotId:int;
       
@@ -59,17 +59,17 @@ package alternativa.tanks.game.weapons.ammunition.energy
       
       private var ricochetCount:int;
       
-      private var var_622:Vector.<Vector3>;
+      private var §_-LC§:Vector.<Vector3>;
       
       private var effectsFactory:IEnergyRoundEffectsFactory;
       
       public function EnergyRoundComponent()
       {
          super();
-         this.var_622 = new Vector.<Vector3>(NUM_PERIPHERAL_RAYS);
+         this.§_-LC§ = new Vector.<Vector3>(NUM_PERIPHERAL_RAYS);
          for(var i:int = 0; i < NUM_PERIPHERAL_RAYS; i++)
          {
-            this.var_622[i] = new Vector3();
+            this.§_-LC§[i] = new Vector3();
          }
       }
       
@@ -139,7 +139,7 @@ package alternativa.tanks.game.weapons.ammunition.energy
             filter = this.ricochetCount == 0 ? this : null;
             hitTime = deltaDistance + 1;
             body = null;
-            if(this.collisionDetector.raycast(this.var_620,this.direction,CollisionGroup.WEAPON | CollisionGroup.STATIC,deltaDistance,filter,rayHit))
+            if(this.collisionDetector.raycast(this.§_-hV§,this.direction,CollisionGroup.WEAPON | CollisionGroup.STATIC,deltaDistance,filter,rayHit))
             {
                raycastResult = 1;
                hitTime = rayHit.t;
@@ -148,7 +148,7 @@ package alternativa.tanks.game.weapons.ammunition.energy
             }
             for(i = 0; i < NUM_PERIPHERAL_RAYS; )
             {
-               origin = this.var_622[i];
+               origin = this.§_-LC§[i];
                if(this.collisionDetector.raycast(origin,this.direction,CollisionGroup.WEAPON,deltaDistance,filter,rayHit))
                {
                   if(rayHit.t < hitTime)
@@ -163,25 +163,25 @@ package alternativa.tanks.game.weapons.ammunition.energy
             }
             if(raycastResult <= 0)
             {
-               this.var_621 += deltaDistance;
-               if(this.var_621 > this.maxRange)
+               this.§_-PL§ += deltaDistance;
+               if(this.§_-PL§ > this.maxRange)
                {
                   this.gameKernel.removeEntity(entity);
                }
                else
                {
-                  this.var_623.copy(this.var_620);
+                  this.§_-oF§.copy(this.§_-hV§);
                   _vector.copy(this.direction).scale(deltaDistance);
-                  this.var_620.add(_vector);
+                  this.§_-hV§.add(_vector);
                   for(i = 0; i < NUM_PERIPHERAL_RAYS; i++)
                   {
-                     Vector3(this.var_622[i]).add(_vector);
+                     Vector3(this.§_-LC§[i]).add(_vector);
                   }
                }
                return;
             }
-            this.var_621 += hitTime;
-            if(this.var_621 >= this.maxRange)
+            this.§_-PL§ += hitTime;
+            if(this.§_-PL§ >= this.maxRange)
             {
                this.gameKernel.removeEntity(entity);
                return;
@@ -191,11 +191,11 @@ package alternativa.tanks.game.weapons.ammunition.energy
                this.effectsFactory.createExplosionEffects(rayHit.position);
                if(body != null)
                {
-                  impactForce = this.roundData.weakening.getWeakeningCoefficient(this.var_621) * this.roundData.impactForce;
+                  impactForce = this.roundData.weakening.getWeakeningCoefficient(this.§_-PL§) * this.roundData.impactForce;
                   body.addWorldForceScaled(rayHit.position,this.direction,impactForce);
                   if(this.callback != null)
                   {
-                     this.callback.onEnergyRoundHit(this.shotId,rayHit.position,this.var_621,body);
+                     this.callback.onEnergyRoundHit(this.shotId,rayHit.position,this.§_-PL§,body);
                   }
                }
                this.gameKernel.removeEntity(entity);
@@ -203,14 +203,14 @@ package alternativa.tanks.game.weapons.ammunition.energy
             }
             ++this.ricochetCount;
             frameDistance += hitTime;
-            this.var_621 += hitTime;
+            this.§_-PL§ += hitTime;
             deltaDistance -= hitTime;
-            _vector.copy(this.var_620).addScaled(hitTime,this.direction);
+            _vector.copy(this.§_-hV§).addScaled(hitTime,this.direction);
             this.effectsFactory.createRicochetEffects(_vector,_normal,this.direction);
-            this.var_620.addScaled(hitTime,this.direction).addScaled(0.01,_normal);
+            this.§_-hV§.addScaled(hitTime,this.direction).addScaled(0.01,_normal);
             this.direction.addScaled(-2 * this.direction.dot(_normal),_normal);
-            this.var_623.copy(this.var_620).addScaled(-frameDistance,this.direction);
-            this.initRadialPoints(this.var_620,this.direction,this.roundData.radius);
+            this.§_-oF§.copy(this.§_-hV§).addScaled(-frameDistance,this.direction);
+            this.initRadialPoints(this.§_-hV§,this.direction,this.roundData.radius);
          }
       }
       
@@ -220,7 +220,7 @@ package alternativa.tanks.game.weapons.ammunition.energy
       
       public function interpolate(interpolationCoeff:Number) : void
       {
-         _vector.diff(this.var_620,this.var_623).scale(interpolationCoeff).add(this.var_623);
+         _vector.diff(this.§_-hV§,this.§_-oF§).scale(interpolationCoeff).add(this.§_-oF§);
          this.effect.setPosition(_vector);
       }
       
@@ -229,16 +229,16 @@ package alternativa.tanks.game.weapons.ammunition.energy
          this.shotId = shotId;
          this.shooter = shooter;
          this.direction.copy(shotDirection);
-         this.var_621 = 0;
+         this.§_-PL§ = 0;
          switch(this.shotType)
          {
             case EnergyShotType.CLOSE_SHOT:
-               this.var_620.copy(barrelOrigin);
+               this.§_-hV§.copy(barrelOrigin);
                break;
             case EnergyShotType.NORMAL_SHOT:
-               this.var_620.copy(muzzlePosition);
+               this.§_-hV§.copy(muzzlePosition);
          }
-         this.initRadialPoints(this.var_620,shotDirection,this.roundData.radius);
+         this.initRadialPoints(this.§_-hV§,shotDirection,this.roundData.radius);
          gameKernel.addEntity(entity);
       }
       
@@ -283,11 +283,11 @@ package alternativa.tanks.game.weapons.ammunition.energy
          }
          v.normalize().scale(radius);
          _rotationMatrix.fromAxisAngle(shotDirection,RADIAL_ANGLE_STEP);
-         Vector3(this.var_622[0]).copy(centerPoint).add(v);
+         Vector3(this.§_-LC§[0]).copy(centerPoint).add(v);
          for(var i:int = 1; i < NUM_PERIPHERAL_RAYS; i++)
          {
             v.transform3(_rotationMatrix);
-            Vector3(this.var_622[i]).copy(centerPoint).add(v);
+            Vector3(this.§_-LC§[i]).copy(centerPoint).add(v);
          }
       }
    }

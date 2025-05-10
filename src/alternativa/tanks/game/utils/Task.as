@@ -2,7 +2,7 @@ package alternativa.tanks.game.utils
 {
    public class Task
    {
-      private var var_33:TaskSequence;
+      private var §_-UZ§:TaskSequence;
       
       public function Task()
       {
@@ -16,12 +16,12 @@ package alternativa.tanks.game.utils
       
       internal function set taskSequence(value:TaskSequence) : void
       {
-         this.var_33 = value;
+         this.§_-UZ§ = value;
       }
       
       final protected function completeTask() : void
       {
-         this.var_33.taskComplete(this);
+         this.§_-UZ§.taskComplete(this);
       }
    }
 }

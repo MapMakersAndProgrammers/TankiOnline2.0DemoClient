@@ -38,13 +38,13 @@ package alternativa.engine3d.effects
       
       private static const limit:int = 31;
       
-      public var var_141:Boolean = true;
+      public var §_-jW§:Boolean = true;
       
       public var gravity:Vector3D = new Vector3D(0,0,-1);
       
       public var wind:Vector3D = new Vector3D();
       
-      public var name_76:int = 0;
+      public var §_-IN§:int = 0;
       
       public var fogMaxDensity:Number = 0;
       
@@ -54,7 +54,7 @@ package alternativa.engine3d.effects
       
       alternativa3d var scale:Number = 1;
       
-      alternativa3d var effectList:name_77;
+      alternativa3d var effectList:ParticleEffect;
       
       private var drawUnit:DrawUnit = null;
       
@@ -68,19 +68,19 @@ package alternativa.engine3d.effects
       
       private var counter:int;
       
-      private var var_139:Number;
+      private var §_-La§:Number;
       
-      private var var_140:Number;
+      private var §_-p3§:Number;
       
-      private var var_138:Vector.<Object3D> = new Vector.<Object3D>();
+      private var §_-ZN§:Vector.<Object3D> = new Vector.<Object3D>();
       
-      private var var_136:int = 0;
+      private var §_-hr§:int = 0;
       
       private var pause:Boolean = false;
       
-      private var var_135:Number;
+      private var §_-pK§:Number;
       
-      private var var_137:Number = 0;
+      private var §_-L5§:Number = 0;
       
       public function ParticleSystem()
       {
@@ -91,7 +91,7 @@ package alternativa.engine3d.effects
       {
          if(!this.pause)
          {
-            this.var_135 = getTimer() * 0.001;
+            this.§_-pK§ = getTimer() * 0.001;
             this.pause = true;
          }
       }
@@ -100,22 +100,22 @@ package alternativa.engine3d.effects
       {
          if(this.pause)
          {
-            this.var_137 += getTimer() * 0.001 - this.var_135;
+            this.§_-L5§ += getTimer() * 0.001 - this.§_-pK§;
             this.pause = false;
          }
       }
       
       public function prevFrame() : void
       {
-         this.var_135 -= 0.001;
+         this.§_-pK§ -= 0.001;
       }
       
       public function nextFrame() : void
       {
-         this.var_135 += 0.001;
+         this.§_-pK§ += 0.001;
       }
       
-      public function method_21(effect:name_77) : name_77
+      public function each(effect:ParticleEffect) : ParticleEffect
       {
          if(effect.alternativa3d::system != null)
          {
@@ -123,34 +123,34 @@ package alternativa.engine3d.effects
          }
          effect.alternativa3d::startTime = this.alternativa3d::getTime();
          effect.alternativa3d::system = this;
-         effect.alternativa3d::name_329(0);
-         effect.alternativa3d::name_327(0);
-         effect.alternativa3d::name_326 = this.alternativa3d::effectList;
+         effect.alternativa3d::setPositionKeys(0);
+         effect.alternativa3d::setDirectionKeys(0);
+         effect.alternativa3d::implements = this.alternativa3d::effectList;
          this.alternativa3d::effectList = effect;
          return effect;
       }
       
-      public function getEffectByName(name:String) : name_77
+      public function getEffectByName(name:String) : ParticleEffect
       {
-         for(var effect:name_77 = this.alternativa3d::effectList; effect != null; )
+         for(var effect:ParticleEffect = this.alternativa3d::effectList; effect != null; )
          {
             if(effect.name == name)
             {
                return effect;
             }
-            effect = effect.alternativa3d::name_326;
+            effect = effect.alternativa3d::implements;
          }
          return null;
       }
       
       alternativa3d function getTime() : Number
       {
-         return this.pause ? this.var_135 - this.var_137 : getTimer() * 0.001 - this.var_137;
+         return this.pause ? this.§_-pK§ - this.§_-L5§ : getTimer() * 0.001 - this.§_-L5§;
       }
       
       override alternativa3d function collectDraws(camera:Camera3D, lights:Vector.<Light3D>, lightsLength:int) : void
       {
-         var visibleEffectList:name_77 = null;
+         var visibleEffectList:ParticleEffect = null;
          var effectTime:Number = NaN;
          var culling:int = 0;
          var debug:int = 0;
@@ -165,7 +165,7 @@ package alternativa.engine3d.effects
          camera.alternativa3d::calculateFrustum(alternativa3d::cameraToLocalTransform);
          var conflictAnyway:Boolean = false;
          var time:Number = this.alternativa3d::getTime();
-         for(var effect:name_77 = this.alternativa3d::effectList,var prev:name_77 = null; effect != null; )
+         for(var effect:ParticleEffect = this.alternativa3d::effectList,var prev:ParticleEffect = null; effect != null; )
          {
             effectTime = time - effect.alternativa3d::startTime;
             if(effectTime <= effect.alternativa3d::lifeTime)
@@ -178,7 +178,7 @@ package alternativa.engine3d.effects
                }
                if(culling >= 0)
                {
-                  if(effect.alternativa3d::name_328(effectTime))
+                  if(effect.alternativa3d::calculate(effectTime))
                   {
                      if(effect.alternativa3d::particleList != null)
                      {
@@ -187,33 +187,33 @@ package alternativa.engine3d.effects
                         conflictAnyway ||= effect.boundBox == null;
                      }
                      prev = effect;
-                     effect = effect.alternativa3d::name_326;
+                     effect = effect.alternativa3d::implements;
                   }
                   else if(prev != null)
                   {
-                     prev.alternativa3d::name_326 = effect.alternativa3d::name_326;
-                     effect = prev.alternativa3d::name_326;
+                     prev.alternativa3d::implements = effect.alternativa3d::implements;
+                     effect = prev.alternativa3d::implements;
                   }
                   else
                   {
-                     this.alternativa3d::effectList = effect.alternativa3d::name_326;
+                     this.alternativa3d::effectList = effect.alternativa3d::implements;
                      effect = this.alternativa3d::effectList;
                   }
                }
                else
                {
                   prev = effect;
-                  effect = effect.alternativa3d::name_326;
+                  effect = effect.alternativa3d::implements;
                }
             }
             else if(prev != null)
             {
-               prev.alternativa3d::name_326 = effect.alternativa3d::name_326;
-               effect = prev.alternativa3d::name_326;
+               prev.alternativa3d::implements = effect.alternativa3d::implements;
+               effect = prev.alternativa3d::implements;
             }
             else
             {
-               this.alternativa3d::effectList = effect.alternativa3d::name_326;
+               this.alternativa3d::effectList = effect.alternativa3d::implements;
                effect = this.alternativa3d::effectList;
             }
          }
@@ -227,7 +227,7 @@ package alternativa.engine3d.effects
             {
                this.drawParticleList(camera,visibleEffectList.alternativa3d::particleList);
                visibleEffectList.alternativa3d::particleList = null;
-               if(Boolean(camera.debug) && visibleEffectList.boundBox != null && Boolean(camera.alternativa3d::checkInDebug(this) & Debug.BOUNDS))
+               if(camera.debug && visibleEffectList.boundBox != null && Boolean(camera.alternativa3d::checkInDebug(this) & Debug.BOUNDS))
                {
                   Debug.alternativa3d::drawBoundBox(camera,visibleEffectList.alternativa3d::aabb,alternativa3d::localToCameraTransform);
                }
@@ -238,11 +238,11 @@ package alternativa.engine3d.effects
             this.opacity = null;
             this.blendSource = null;
             this.blendDestination = null;
-            this.var_136 = 0;
+            this.§_-hr§ = 0;
          }
          if(camera.debug)
          {
-            debug = int(camera.alternativa3d::checkInDebug(this));
+            debug = camera.alternativa3d::checkInDebug(this);
             if(Boolean(debug & Debug.BOUNDS) && boundBox != null)
             {
                Debug.alternativa3d::drawBoundBox(camera,boundBox,alternativa3d::localToCameraTransform);
@@ -294,13 +294,13 @@ package alternativa.engine3d.effects
       
       private function flush(camera:Camera3D) : void
       {
-         if(this.var_136 == this.var_138.length)
+         if(this.§_-hr§ == this.§_-ZN§.length)
          {
-            this.var_138[this.var_136] = new Object3D();
+            this.§_-ZN§[this.§_-hr§] = new Object3D();
          }
-         var object:Object3D = this.var_138[this.var_136];
-         ++this.var_136;
-         object.alternativa3d::localToCameraTransform.l = (this.var_139 + this.var_140) / 2;
+         var object:Object3D = this.§_-ZN§[this.§_-hr§];
+         ++this.§_-hr§;
+         object.alternativa3d::localToCameraTransform.l = (this.§_-La§ + this.§_-p3§) / 2;
          this.drawUnit.alternativa3d::object = object;
          this.drawUnit.alternativa3d::numTriangles = this.counter << 1;
          if(this.blendDestination == Context3DBlendFactor.ONE_MINUS_SOURCE_ALPHA)
@@ -314,7 +314,7 @@ package alternativa.engine3d.effects
          this.drawUnit.alternativa3d::setVertexBufferAt(0,vertexBuffer,0,Context3DVertexBufferFormat.FLOAT_3);
          this.drawUnit.alternativa3d::setVertexBufferAt(1,vertexBuffer,3,Context3DVertexBufferFormat.FLOAT_3);
          this.drawUnit.alternativa3d::setProjectionConstants(camera,124);
-         this.drawUnit.alternativa3d::setFragmentConstantsFromNumbers(0,(this.name_76 >> 16 & 0xFF) / 255,(this.name_76 >> 8 & 0xFF) / 255,(this.name_76 & 0xFF) / 255,this.fogMaxDensity);
+         this.drawUnit.alternativa3d::setFragmentConstantsFromNumbers(0,(this.§_-IN§ >> 16 & 0xFF) / 255,(this.§_-IN§ >> 8 & 0xFF) / 255,(this.§_-IN§ & 0xFF) / 255,this.fogMaxDensity);
          this.drawUnit.alternativa3d::setFragmentConstantsFromNumbers(1,this.fogNear,this.fogFar - this.fogNear,0,1);
          this.drawUnit.alternativa3d::setTextureAt(0,this.diffuse);
          if(this.opacity != null)
@@ -349,15 +349,15 @@ package alternativa.engine3d.effects
                this.blendSource = particle.blendSource;
                this.blendDestination = particle.blendDestination;
                this.counter = 0;
-               this.var_139 = particle.z;
+               this.§_-La§ = particle.z;
             }
             offset = this.counter << 2;
             this.drawUnit.alternativa3d::setVertexConstantsFromNumbers(offset++,particle.originX,particle.originY,particle.width,particle.height);
             this.drawUnit.alternativa3d::setVertexConstantsFromNumbers(offset++,particle.x,particle.y,particle.z,particle.rotation);
-            this.drawUnit.alternativa3d::setVertexConstantsFromNumbers(offset++,particle.name_333,particle.name_330,particle.name_332,particle.name_331);
+            this.drawUnit.alternativa3d::setVertexConstantsFromNumbers(offset++,particle.§_-q§,particle.§_-Ts§,particle.§_-ej§,particle.§_-W5§);
             this.drawUnit.alternativa3d::setVertexConstantsFromNumbers(offset++,particle.red,particle.green,particle.blue,particle.alpha);
             ++this.counter;
-            this.var_140 = particle.z;
+            this.§_-p3§ = particle.z;
             last = particle;
             particle = particle.next;
          }
@@ -435,12 +435,12 @@ package alternativa.engine3d.effects
          return list;
       }
       
-      private function drawConflictEffects(camera:Camera3D, effectList:name_77) : void
+      private function drawConflictEffects(camera:Camera3D, effectList:ParticleEffect) : void
       {
          var particleList:Particle = null;
-         var next:name_77 = null;
+         var next:ParticleEffect = null;
          var last:Particle = null;
-         for(var effect:name_77 = effectList; effect != null; )
+         for(var effect:ParticleEffect = effectList; effect != null; )
          {
             next = effect.alternativa3d::next;
             effect.alternativa3d::next = null;
@@ -451,7 +451,7 @@ package alternativa.engine3d.effects
             last.next = particleList;
             particleList = effect.alternativa3d::particleList;
             effect.alternativa3d::particleList = null;
-            if(Boolean(camera.debug) && effect.boundBox != null && Boolean(camera.alternativa3d::checkInDebug(this) & Debug.BOUNDS))
+            if(camera.debug && effect.boundBox != null && Boolean(camera.alternativa3d::checkInDebug(this) & Debug.BOUNDS))
             {
                Debug.alternativa3d::drawBoundBox(camera,effect.alternativa3d::aabb,alternativa3d::localToCameraTransform,16711680);
             }

@@ -9,7 +9,7 @@ package alternativa.protocol.codec
    {
       private var codec:ICodec;
       
-      private var var_189:Object;
+      private var §_-In§:Object;
       
       public function OptionalCodecDecorator(codec:ICodec)
       {
@@ -17,13 +17,13 @@ package alternativa.protocol.codec
          this.codec = codec;
          if(codec is IPrimitiveCodec)
          {
-            this.var_189 = IPrimitiveCodec(codec).nullValue();
+            this.§_-In§ = IPrimitiveCodec(codec).nullValue();
          }
       }
       
       public function encode(protocolBuffer:ProtocolBuffer, object:Object) : void
       {
-         if(object == this.var_189)
+         if(object == this.§_-In§)
          {
             protocolBuffer.optionalMap.addBit(true);
          }
@@ -36,7 +36,7 @@ package alternativa.protocol.codec
       
       public function decode(protocolBuffer:ProtocolBuffer) : Object
       {
-         return protocolBuffer.optionalMap.OptionalMap() ? this.var_189 : this.codec.decode(protocolBuffer);
+         return protocolBuffer.optionalMap.OptionalMap() ? this.§_-In§ : this.codec.decode(protocolBuffer);
       }
       
       public function init(protocol:IProtocol) : void

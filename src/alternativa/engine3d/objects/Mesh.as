@@ -20,9 +20,9 @@ package alternativa.engine3d.objects
    {
       public var geometry:Geometry;
       
-      alternativa3d var var_92:Vector.<Surface> = new Vector.<Surface>();
+      alternativa3d var §_-eW§:Vector.<Surface> = new Vector.<Surface>();
       
-      alternativa3d var var_93:int = 0;
+      alternativa3d var §_-Oy§:int = 0;
       
       public function Mesh()
       {
@@ -43,7 +43,7 @@ package alternativa.engine3d.objects
          else if(this.geometry != null)
          {
             minTime = 1e+22;
-            for each(s in this.alternativa3d::var_92)
+            for each(s in this.alternativa3d::_-eW)
             {
                data = this.geometry.alternativa3d::intersectRay(origin,direction,s.indexBegin,s.numTriangles);
                if(data != null && data.time < minTime)
@@ -73,26 +73,26 @@ package alternativa.engine3d.objects
          res.material = material;
          res.indexBegin = indexBegin;
          res.numTriangles = numTriangles;
-         var _loc5_:* = this.alternativa3d::var_93++;
-         this.alternativa3d::var_92[_loc5_] = res;
+         var _loc5_:* = this.alternativa3d::_-Oy++;
+         this.alternativa3d::_-eW[_loc5_] = res;
          return res;
       }
       
       public function getSurface(index:int) : Surface
       {
-         return this.alternativa3d::var_92[index];
+         return this.alternativa3d::_-eW[index];
       }
       
       public function get numSurfaces() : int
       {
-         return this.alternativa3d::var_93;
+         return this.alternativa3d::_-Oy;
       }
       
       public function setMaterialToAllSurfaces(material:Material) : void
       {
-         for(var i:int = 0; i < this.alternativa3d::var_92.length; i++)
+         for(var i:int = 0; i < this.alternativa3d::_-eW.length; i++)
          {
-            this.alternativa3d::var_92[i].material = material;
+            this.alternativa3d::_-eW[i].material = material;
          }
       }
       
@@ -117,9 +117,9 @@ package alternativa.engine3d.objects
          {
             resources[this.geometry] = true;
          }
-         for(var i:int = 0; i < this.alternativa3d::var_93; )
+         for(var i:int = 0; i < this.alternativa3d::_-Oy; )
          {
-            s = this.alternativa3d::var_92[i];
+            s = this.alternativa3d::_-eW[i];
             if(s.material != null)
             {
                s.material.alternativa3d::fillResources(resources,resourceType);
@@ -133,9 +133,9 @@ package alternativa.engine3d.objects
       {
          var surface:Surface = null;
          var debug:int = 0;
-         for(var i:int = 0; i < this.alternativa3d::var_93; )
+         for(var i:int = 0; i < this.alternativa3d::_-Oy; )
          {
-            surface = this.alternativa3d::var_92[i];
+            surface = this.alternativa3d::_-eW[i];
             if(surface.material != null)
             {
                surface.material.alternativa3d::collectDraws(camera,surface,this.geometry,lights,lightsLength);
@@ -148,7 +148,7 @@ package alternativa.engine3d.objects
          }
          if(camera.debug)
          {
-            debug = int(camera.alternativa3d::checkInDebug(this));
+            debug = camera.alternativa3d::checkInDebug(this);
             if(Boolean(debug & Debug.BOUNDS) && boundBox != null)
             {
                Debug.alternativa3d::drawBoundBox(camera,boundBox,alternativa3d::localToCameraTransform);
@@ -159,7 +159,7 @@ package alternativa.engine3d.objects
       override alternativa3d function collectGeometry(collider:EllipsoidCollider, excludedObjects:Dictionary) : void
       {
          collider.alternativa3d::geometries.push(this.geometry);
-         collider.alternativa3d::name_315.push(alternativa3d::localToGlobalTransform);
+         collider.alternativa3d::_-QK.push(alternativa3d::localToGlobalTransform);
       }
       
       override public function clone() : Object3D
@@ -175,9 +175,9 @@ package alternativa.engine3d.objects
          super.clonePropertiesFrom(source);
          var mesh:Mesh = source as Mesh;
          this.geometry = mesh.geometry;
-         this.alternativa3d::var_93 = 0;
-         this.alternativa3d::var_92.length = 0;
-         for each(s in mesh.alternativa3d::var_92)
+         this.alternativa3d::_-Oy = 0;
+         this.alternativa3d::_-eW.length = 0;
+         for each(s in mesh.alternativa3d::_-eW)
          {
             this.addSurface(s.material,s.indexBegin,s.numTriangles);
          }

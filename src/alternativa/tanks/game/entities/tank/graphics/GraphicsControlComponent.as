@@ -14,13 +14,13 @@ package alternativa.tanks.game.entities.tank.graphics
    
    public class GraphicsControlComponent extends EntityComponent implements IRenderer
    {
-      private var var_424:EventStates;
+      private var §_-z§:EventStates;
       
       private var components:Vector.<ITankGraphicsComponent>;
       
-      private var var_426:Boolean;
+      private var §case §:Boolean;
       
-      private var var_425:Boolean;
+      private var §_-DV§:Boolean;
       
       private var alpha:Number = 1;
       
@@ -34,13 +34,13 @@ package alternativa.tanks.game.entities.tank.graphics
       
       override public function initComponent() : void
       {
-         this.var_424 = new EventStates();
-         this.var_424.setEventState(entity,TankEvents.SET_ACTIVATING_STATE,new ActivatingState(this));
-         this.var_424.setEventState(entity,TankEvents.SET_ACTIVE_STATE,new ActiveState(this));
-         this.var_424.setEventState(entity,TankEvents.SET_DEAD_STATE,new DeadState(this));
+         this.§_-z§ = new EventStates();
+         this.§_-z§.setEventState(entity,TankEvents.SET_ACTIVATING_STATE,new ActivatingState(this));
+         this.§_-z§.setEventState(entity,TankEvents.SET_ACTIVE_STATE,new ActiveState(this));
+         this.§_-z§.setEventState(entity,TankEvents.SET_DEAD_STATE,new DeadState(this));
          var respawnState:RespawnState = new RespawnState(this);
-         this.var_424.setEventState(entity,TankEvents.SET_RESPAWN_STATE,respawnState);
-         this.var_424.name_371 = EmptyState.INSTANCE;
+         this.§_-z§.setEventState(entity,TankEvents.SET_RESPAWN_STATE,respawnState);
+         this.§_-z§.§_-Ah§ = EmptyState.INSTANCE;
       }
       
       override public function addToGame(gameKernel:GameKernel) : void
@@ -52,7 +52,7 @@ package alternativa.tanks.game.entities.tank.graphics
       {
          var tankGraphicsComponent:ITankGraphicsComponent = null;
          var renderSystem:RenderSystem = null;
-         if(!this.var_426)
+         if(!this.§case §)
          {
             for each(tankGraphicsComponent in this.components)
             {
@@ -60,25 +60,25 @@ package alternativa.tanks.game.entities.tank.graphics
             }
             renderSystem = this.gameKernel.getRenderSystem();
             renderSystem.addRenderer(this);
-            this.var_426 = true;
+            this.§case § = true;
          }
-         this.var_425 = false;
+         this.§_-DV§ = false;
          this.alpha = 1;
       }
       
       public function removeFromScene() : void
       {
-         if(this.var_426)
+         if(this.§case §)
          {
-            this.var_425 = true;
+            this.§_-DV§ = true;
          }
       }
       
       public function doRemoveFromScene() : void
       {
          var tankGraphicsComponent:ITankGraphicsComponent = null;
-         this.var_425 = false;
-         this.var_426 = false;
+         this.§_-DV§ = false;
+         this.§case § = false;
          for each(tankGraphicsComponent in this.components)
          {
             tankGraphicsComponent.removeFromScene();
@@ -103,7 +103,7 @@ package alternativa.tanks.game.entities.tank.graphics
       public function render() : void
       {
          var tankGraphicsComponent:ITankGraphicsComponent = null;
-         if(this.var_425)
+         if(this.§_-DV§)
          {
             if(this.alpha == 0)
             {

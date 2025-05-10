@@ -40,7 +40,7 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
       
       private var hull:TankHull;
       
-      private var var_488:Mesh;
+      private var §_-nh§:Mesh;
       
       private var hullMaterials:TankPartMaterials;
       
@@ -50,23 +50,23 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
       
       private var gameKernel:GameKernel;
       
-      private var var_233:TextureMaterial;
+      private var §_-Gf§:TextureMaterial;
       
-      private var name_247:Vector.<Mesh>;
+      private var §_-EY§:Vector.<Mesh>;
       
-      private var name_245:Vector.<Mesh>;
+      private var §_-M4§:Vector.<Mesh>;
       
-      private var name_261:Skin;
+      private var §_-Ei§:Skin;
       
-      private var name_266:Skin;
+      private var §_-iA§:Skin;
       
-      private var var_489:TrackAnimator;
+      private var §_-dh§:TrackAnimator;
       
-      private var var_490:TrackAnimator;
+      private var §_-R4§:TrackAnimator;
       
       private var shadowRenderer:DirectionalShadowRenderer;
       
-      private var var_491:DirectionalShadowRendererConstructor;
+      private var §_-5s§:DirectionalShadowRendererConstructor;
       
       public function TrackedChassisGraphicsComponent(hull:TankHull)
       {
@@ -81,10 +81,10 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
       
       public function setTracksMaterial(tracksMaterial:TracksMaterial2) : void
       {
-         this.var_489.material = TracksMaterial2(tracksMaterial.clone());
-         this.name_261.setMaterialToAllSurfaces(this.var_489.material);
-         this.var_490.material = TracksMaterial2(tracksMaterial.clone());
-         this.name_266.setMaterialToAllSurfaces(this.var_490.material);
+         this.§_-dh§.material = TracksMaterial2(tracksMaterial.clone());
+         this.§_-Ei§.setMaterialToAllSurfaces(this.§_-dh§.material);
+         this.§_-R4§.material = TracksMaterial2(tracksMaterial.clone());
+         this.§_-iA§.setMaterialToAllSurfaces(this.§_-R4§.material);
       }
       
       public function setShadowMaterial(material:GiShadowMaterial) : void
@@ -97,13 +97,13 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
       
       public function getObject3D() : Object3D
       {
-         return this.var_488;
+         return this.§_-nh§;
       }
       
       public function setShadowRenderer(shadowRenderer:DirectionalShadowRenderer) : void
       {
          this.shadowRenderer = shadowRenderer;
-         this.var_491 = null;
+         this.§_-5s§ = null;
          if(this.container != null)
          {
             this.gameKernel.getRenderSystem().addShadowRenderer(shadowRenderer);
@@ -119,22 +119,22 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
          }
          if(this.hull != null && this.container != null)
          {
-            this.container.removeChild(this.var_488);
+            this.container.removeChild(this.§_-nh§);
          }
          this.hull = newHull;
          if(this.hull != null)
          {
-            this.var_488 = new Mesh();
-            this.var_488.geometry = this.hull.geometry;
-            this.var_488.addSurface(this.var_233,0,this.hull.geometry.numTriangles);
-            this.var_488.calculateBoundBox();
-            this.name_247 = this.createWheels(this.var_488,this.hull.name_247);
-            this.name_245 = this.createWheels(this.var_488,this.hull.name_245);
-            this.name_261 = this.createTrackMesh(this.hull.name_261,this.var_488);
-            this.name_266 = this.createTrackMesh(this.hull.name_266,this.var_488);
-            dUdY = this.getRatio(this.name_261);
-            this.var_489 = new TrackAnimator(this.name_261,this.name_247,dUdY);
-            this.var_490 = new TrackAnimator(this.name_266,this.name_245,dUdY);
+            this.§_-nh§ = new Mesh();
+            this.§_-nh§.geometry = this.hull.geometry;
+            this.§_-nh§.addSurface(this.§_-Gf§,0,this.hull.geometry.numTriangles);
+            this.§_-nh§.calculateBoundBox();
+            this.§_-EY§ = this.createWheels(this.§_-nh§,this.hull.§_-EY§);
+            this.§_-M4§ = this.createWheels(this.§_-nh§,this.hull.§_-M4§);
+            this.§_-Ei§ = this.createTrackMesh(this.hull.§_-Ei§,this.§_-nh§);
+            this.§_-iA§ = this.createTrackMesh(this.hull.§_-iA§,this.§_-nh§);
+            dUdY = this.getRatio(this.§_-Ei§);
+            this.§_-dh§ = new TrackAnimator(this.§_-Ei§,this.§_-EY§,dUdY);
+            this.§_-R4§ = new TrackAnimator(this.§_-iA§,this.§_-M4§,dUdY);
             if(this.hull.shadow != null)
             {
                this.shadow = new Decal(100);
@@ -146,7 +146,7 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
             }
             if(this.container != null)
             {
-               this.container.addChild(this.var_488);
+               this.container.addChild(this.§_-nh§);
             }
          }
       }
@@ -234,7 +234,7 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
             wheelMesh = new Mesh();
             wheelMesh.name = tankWheel.name;
             wheelMesh.geometry = tankWheel.geometry;
-            wheelMesh.addSurface(this.var_233,0,wheelMesh.geometry.numTriangles);
+            wheelMesh.addSurface(this.§_-Gf§,0,wheelMesh.geometry.numTriangles);
             wheelMesh.calculateBoundBox();
             position = tankWheel.position;
             wheelMesh.x = position.x;
@@ -254,7 +254,7 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
       
       public function get visible() : Boolean
       {
-         return this.var_488.visible;
+         return this.§_-nh§.visible;
       }
       
       public function addToScene() : void
@@ -264,9 +264,9 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
          {
             renderSystem = this.gameKernel.getRenderSystem();
             this.container = renderSystem.getDynamicObjectsContainer();
-            if(this.var_488 != null)
+            if(this.§_-nh§ != null)
             {
-               this.container.addChild(this.var_488);
+               this.container.addChild(this.§_-nh§);
                if(this.shadowRenderer != null)
                {
                   renderSystem.addShadowRenderer(this.shadowRenderer);
@@ -280,9 +280,9 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
       {
          if(this.container != null)
          {
-            if(this.var_488 != null)
+            if(this.§_-nh§ != null)
             {
-               this.container.removeChild(this.var_488);
+               this.container.removeChild(this.§_-nh§);
                if(this.shadowRenderer != null)
                {
                   this.gameKernel.getRenderSystem().removeShadowRenderer(this.shadowRenderer);
@@ -295,39 +295,39 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
       
       public function get hullMesh() : Mesh
       {
-         return this.var_488;
+         return this.§_-nh§;
       }
       
       override public function initComponent() : void
       {
          this.physicsComponent = LegacyTrackedChassisComponent(entity.getComponentStrict(LegacyTrackedChassisComponent));
          GraphicsControlComponent(entity.getComponentStrict(GraphicsControlComponent)).addComponent(this);
-         this.var_489.physicsComponent = this.physicsComponent;
-         this.var_490.physicsComponent = this.physicsComponent;
+         this.§_-dh§.physicsComponent = this.physicsComponent;
+         this.§_-R4§.physicsComponent = this.physicsComponent;
       }
       
       override public function addToGame(gameKernel:GameKernel) : void
       {
          this.gameKernel = gameKernel;
          var renderSystem:RenderSystem = gameKernel.getRenderSystem();
-         this.var_491 = new DirectionalShadowRendererConstructor(this.var_488,renderSystem,this);
+         this.§_-5s§ = new DirectionalShadowRendererConstructor(this.§_-nh§,renderSystem,this);
          if(renderSystem.isShadowSystemReady())
          {
-            this.var_491.createShadowRenderer();
-            this.var_491 = null;
+            this.§_-5s§.createShadowRenderer();
+            this.§_-5s§ = null;
          }
          else
          {
-            renderSystem.addShadowRendererConstructor(this.var_491);
+            renderSystem.addShadowRendererConstructor(this.§_-5s§);
          }
       }
       
       override public function removeFromGame(gameKernel:GameKernel) : void
       {
-         if(this.var_491 != null)
+         if(this.§_-5s§ != null)
          {
-            gameKernel.getRenderSystem().removeShadowRendererConstructor(this.var_491);
-            this.var_491 = null;
+            gameKernel.getRenderSystem().removeShadowRendererConstructor(this.§_-5s§);
+            this.§_-5s§ = null;
          }
          this.removeFromScene();
          gameKernel = null;
@@ -340,26 +340,26 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
             return;
          }
          hullMatrix.toIdentity();
-         hullMatrix.setPosition(this.hull.name_400);
-         hullMatrix.append(this.physicsComponent.var_483);
+         hullMatrix.setPosition(this.hull.§_-Sh§);
+         hullMatrix.append(this.physicsComponent.§_-YH§);
          hullMatrix.getEulerAngles(eulerAngles);
-         this.var_488.x = hullMatrix.d;
-         this.var_488.y = hullMatrix.h;
-         this.var_488.z = hullMatrix.l;
-         this.var_488.rotationX = eulerAngles.x;
-         this.var_488.rotationY = eulerAngles.y;
-         this.var_488.rotationZ = eulerAngles.z;
+         this.§_-nh§.x = hullMatrix.d;
+         this.§_-nh§.y = hullMatrix.h;
+         this.§_-nh§.z = hullMatrix.l;
+         this.§_-nh§.rotationX = eulerAngles.x;
+         this.§_-nh§.rotationY = eulerAngles.y;
+         this.§_-nh§.rotationZ = eulerAngles.z;
          this.animateTracks();
       }
       
       private function animateTracks() : void
       {
          var dt:Number = NaN;
-         if(this.var_489 != null)
+         if(this.§_-dh§ != null)
          {
             dt = TimeSystem.timeDeltaSeconds;
-            this.var_489.animate(this.hull.name_437,this.physicsComponent.getLeftTrackSpeed(),dt);
-            this.var_490.animate(this.hull.name_437,this.physicsComponent.getRightTrackSpeed(),dt);
+            this.§_-dh§.animate(this.hull.§_-DH§,this.physicsComponent.getLeftTrackSpeed(),dt);
+            this.§_-R4§.animate(this.hull.§_-DH§,this.physicsComponent.getRightTrackSpeed(),dt);
          }
       }
       
@@ -369,53 +369,53 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
          {
             case MaterialType.DEAD:
                this.hullMaterials.deadMaterial.alpha = 1;
-               this.var_489.material.alpha = 1;
-               this.var_490.material.alpha = 1;
-               this.var_488.setMaterialToAllSurfaces(this.hullMaterials.deadMaterial);
-               this.var_233 = this.hullMaterials.deadMaterial;
+               this.§_-dh§.material.alpha = 1;
+               this.§_-R4§.material.alpha = 1;
+               this.§_-nh§.setMaterialToAllSurfaces(this.hullMaterials.deadMaterial);
+               this.§_-Gf§ = this.hullMaterials.deadMaterial;
                break;
             case MaterialType.NORMAL:
                this.hullMaterials.normalMaterial.alpha = 1;
-               this.var_489.material.alpha = 1;
-               this.var_490.material.alpha = 1;
-               this.var_488.setMaterialToAllSurfaces(this.hullMaterials.normalMaterial);
-               this.var_233 = this.hullMaterials.normalMaterial;
+               this.§_-dh§.material.alpha = 1;
+               this.§_-R4§.material.alpha = 1;
+               this.§_-nh§.setMaterialToAllSurfaces(this.hullMaterials.normalMaterial);
+               this.§_-Gf§ = this.hullMaterials.normalMaterial;
                break;
             case MaterialType.ACTIVATING:
                this.hullMaterials.normalMaterial.alpha = 0.5;
-               this.var_489.material.alpha = 0.5;
-               this.var_490.material.alpha = 0.5;
-               this.var_488.setMaterialToAllSurfaces(this.hullMaterials.normalMaterial);
-               this.var_233 = this.hullMaterials.normalMaterial;
+               this.§_-dh§.material.alpha = 0.5;
+               this.§_-R4§.material.alpha = 0.5;
+               this.§_-nh§.setMaterialToAllSurfaces(this.hullMaterials.normalMaterial);
+               this.§_-Gf§ = this.hullMaterials.normalMaterial;
          }
-         var numWheels:int = int(this.name_247.length);
+         var numWheels:int = int(this.§_-EY§.length);
          for(var i:int = 0; i < numWheels; i++)
          {
-            this.name_247[i].setMaterialToAllSurfaces(this.var_233);
-            this.name_245[i].setMaterialToAllSurfaces(this.var_233);
+            this.§_-EY§[i].setMaterialToAllSurfaces(this.§_-Gf§);
+            this.§_-M4§[i].setMaterialToAllSurfaces(this.§_-Gf§);
          }
       }
       
       public function setAlpha(value:Number) : void
       {
-         this.var_233.alpha = value;
-         this.var_489.material.alpha = value;
-         this.var_490.material.alpha = value;
+         this.§_-Gf§.alpha = value;
+         this.§_-dh§.material.alpha = value;
+         this.§_-R4§.material.alpha = value;
       }
       
       private function enableMouseListeners() : void
       {
-         if(this.var_488 != null)
+         if(this.§_-nh§ != null)
          {
-            this.var_488.addEventListener(MouseEvent3D.CLICK,this.onMouseClick);
+            this.§_-nh§.addEventListener(MouseEvent3D.CLICK,this.onMouseClick);
          }
       }
       
       private function disableMouseListeners() : void
       {
-         if(this.var_488 != null)
+         if(this.§_-nh§ != null)
          {
-            this.var_488.removeEventListener(MouseEvent3D.CLICK,this.onMouseClick);
+            this.§_-nh§.removeEventListener(MouseEvent3D.CLICK,this.onMouseClick);
          }
       }
       

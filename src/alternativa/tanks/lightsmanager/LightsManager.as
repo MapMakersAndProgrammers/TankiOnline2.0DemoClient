@@ -16,7 +16,7 @@ package alternativa.tanks.lightsmanager
       
       private var renderSystem:RenderSystem;
       
-      private var var_471:Object = {};
+      private var §_-02§:Object = {};
       
       public function LightsManager(param1:RenderSystem)
       {
@@ -24,10 +24,10 @@ package alternativa.tanks.lightsmanager
          this.renderSystem = param1;
          var _loc2_:IConsole = IConsole(OSGi.getInstance().getService(IConsole));
          _loc2_.setCommandHandler("light",this.lightCommandHandler);
-         this.var_471[LIGHT_TYPE_AMBIENT] = new AmbientLightRegistry(param1);
-         this.var_471[LIGHT_TYPE_DIRECTIONAL] = new DirectionalLightRegistry(param1);
-         this.var_471[LIGHT_TYPE_OMNI] = new OmniLightRegistry(param1);
-         this.var_471[LIGHT_TYPE_SPOT] = new SpotLightRegistry(param1);
+         this.§_-02§[LIGHT_TYPE_AMBIENT] = new AmbientLightRegistry(param1);
+         this.§_-02§[LIGHT_TYPE_DIRECTIONAL] = new DirectionalLightRegistry(param1);
+         this.§_-02§[LIGHT_TYPE_OMNI] = new OmniLightRegistry(param1);
+         this.§_-02§[LIGHT_TYPE_SPOT] = new SpotLightRegistry(param1);
       }
       
       private function lightCommandHandler(param1:IConsole, param2:Array) : void
@@ -37,7 +37,7 @@ package alternativa.tanks.lightsmanager
          if(param2.length != 0)
          {
             _loc3_ = param2.shift();
-            _loc4_ = this.var_471[_loc3_];
+            _loc4_ = this.§_-02§[_loc3_];
             if(_loc4_ == null)
             {
                param1.addText("Unknown light type");

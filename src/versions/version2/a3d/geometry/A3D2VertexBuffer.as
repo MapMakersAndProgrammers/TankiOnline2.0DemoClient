@@ -4,61 +4,61 @@ package versions.version2.a3d.geometry
    
    public class A3D2VertexBuffer
    {
-      private var var_272:Vector.<A3D2VertexAttributes>;
+      private var §_-96§:Vector.<A3D2VertexAttributes>;
       
-      private var var_271:ByteArray;
+      private var §_-79§:ByteArray;
       
-      private var var_101:int;
+      private var §_-3I§:int;
       
-      private var var_273:uint;
+      private var §_-g1§:uint;
       
       public function A3D2VertexBuffer(attributes:Vector.<A3D2VertexAttributes>, byteBuffer:ByteArray, id:int, vertexCount:uint)
       {
          super();
-         this.var_272 = attributes;
-         this.var_271 = byteBuffer;
-         this.var_101 = id;
-         this.var_273 = vertexCount;
+         this.§_-96§ = attributes;
+         this.§_-79§ = byteBuffer;
+         this.§_-3I§ = id;
+         this.§_-g1§ = vertexCount;
       }
       
       public function get attributes() : Vector.<A3D2VertexAttributes>
       {
-         return this.var_272;
+         return this.§_-96§;
       }
       
       public function set attributes(value:Vector.<A3D2VertexAttributes>) : void
       {
-         this.var_272 = value;
+         this.§_-96§ = value;
       }
       
       public function get byteBuffer() : ByteArray
       {
-         return this.var_271;
+         return this.§_-79§;
       }
       
       public function set byteBuffer(value:ByteArray) : void
       {
-         this.var_271 = value;
+         this.§_-79§ = value;
       }
       
       public function get id() : int
       {
-         return this.var_101;
+         return this.§_-3I§;
       }
       
       public function set id(value:int) : void
       {
-         this.var_101 = value;
+         this.§_-3I§ = value;
       }
       
       public function get vertexCount() : uint
       {
-         return this.var_273;
+         return this.§_-g1§;
       }
       
       public function set vertexCount(value:uint) : void
       {
-         this.var_273 = value;
+         this.§_-g1§ = value;
       }
       
       public function toString() : String

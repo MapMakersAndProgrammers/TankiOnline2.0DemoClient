@@ -9,13 +9,13 @@ package alternativa.engine3d.animation
    {
       public var name:String;
       
-      alternativa3d var var_420:Number = 0;
+      alternativa3d var §_-qC§:Number = 0;
       
       alternativa3d var next:AnimationNotify;
       
-      alternativa3d var var_735:Number;
+      alternativa3d var §_-1n§:Number;
       
-      alternativa3d var name_587:AnimationNotify;
+      alternativa3d var §_-XY§:AnimationNotify;
       
       public function AnimationNotify(name:String)
       {
@@ -25,7 +25,7 @@ package alternativa.engine3d.animation
       
       public function get time() : Number
       {
-         return this.alternativa3d::var_420;
+         return this.alternativa3d::_-qC;
       }
    }
 }

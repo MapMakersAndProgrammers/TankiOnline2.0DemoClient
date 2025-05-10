@@ -12,13 +12,13 @@ package alternativa.engine3d.materials.compiler
       
       public var byteCode:ByteArray = new ByteArray();
       
-      public var name_343:Vector.<Vector.<Variable>> = new Vector.<Vector.<Variable>>();
+      public var §_-d2§:Vector.<Vector.<Variable>> = new Vector.<Vector.<Variable>>();
       
-      public var var_177:int = 0;
+      public var §_-RT§:int = 0;
       
-      public var var_176:int = 0;
+      public var §_-A§:int = 0;
       
-      alternativa3d var name_344:uint = 0;
+      alternativa3d var §_-in§:uint = 0;
       
       public function Procedure(array:Array = null, name:String = null)
       {
@@ -45,7 +45,7 @@ package alternativa.engine3d.materials.compiler
       
       private function addVariableUsage(v:Variable) : void
       {
-         var vars:Vector.<Variable> = this.name_343[v.type];
+         var vars:Vector.<Variable> = this.§_-d2§[v.type];
          var index:int = v.index;
          if(index >= vars.length)
          {
@@ -60,7 +60,7 @@ package alternativa.engine3d.materials.compiler
       
       public function assignVariableName(type:uint, index:uint, name:String, size:uint = 1) : void
       {
-         for(var v:Variable = this.name_343[type][index]; v != null; )
+         for(var v:Variable = this.§_-d2§[type][index]; v != null; )
          {
             v.size = size;
             v.name = name;
@@ -84,11 +84,11 @@ package alternativa.engine3d.materials.compiler
          var varName:String = null;
          for(var i:int = 0; i < 7; i++)
          {
-            this.name_343[i] = new Vector.<Variable>();
+            this.§_-d2§[i] = new Vector.<Variable>();
          }
          this.byteCode.length = 0;
-         this.var_176 = 0;
-         this.var_177 = 0;
+         this.§_-A§ = 0;
+         this.§_-RT§ = 0;
          var declarationStrings:Vector.<String> = new Vector.<String>();
          var count:int = int(source.length);
          for(i = 0; i < count; i++)
@@ -131,7 +131,7 @@ package alternativa.engine3d.materials.compiler
       
       public function assignConstantsArray(registersCount:uint = 1) : void
       {
-         this.alternativa3d::name_344 = registersCount;
+         this.alternativa3d::_-in = registersCount;
       }
       
       private function writeCommand(source:String) : void
@@ -167,161 +167,161 @@ package alternativa.engine3d.materials.compiler
          {
             case "mov":
                type = CommandType.MOV;
-               ++this.var_177;
+               ++this.§_-RT§;
                break;
             case "add":
                type = CommandType.ADD;
                source2 = new SourceVariable(operands[3]);
                this.addVariableUsage(source2);
-               ++this.var_177;
+               ++this.§_-RT§;
                break;
             case "sub":
                type = CommandType.SUB;
                source2 = new SourceVariable(operands[3]);
                this.addVariableUsage(source2);
-               ++this.var_177;
+               ++this.§_-RT§;
                break;
             case "mul":
                type = CommandType.MUL;
                source2 = new SourceVariable(operands[3]);
                this.addVariableUsage(source2);
-               ++this.var_177;
+               ++this.§_-RT§;
                break;
             case "div":
                type = CommandType.DIV;
                source2 = new SourceVariable(operands[3]);
                this.addVariableUsage(source2);
-               ++this.var_177;
+               ++this.§_-RT§;
                break;
             case "rcp":
                type = CommandType.RCP;
-               ++this.var_177;
+               ++this.§_-RT§;
                break;
             case "min":
                type = CommandType.MIN;
                source2 = new SourceVariable(operands[3]);
                this.addVariableUsage(source2);
-               ++this.var_177;
+               ++this.§_-RT§;
                break;
             case "max":
                type = CommandType.MAX;
                source2 = new SourceVariable(operands[3]);
                this.addVariableUsage(source2);
-               ++this.var_177;
+               ++this.§_-RT§;
                break;
             case "frc":
                type = CommandType.FRC;
-               ++this.var_177;
+               ++this.§_-RT§;
                break;
             case "sqt":
                type = CommandType.SQT;
-               ++this.var_177;
+               ++this.§_-RT§;
                break;
             case "rsq":
                type = CommandType.RSQ;
-               ++this.var_177;
+               ++this.§_-RT§;
                break;
             case "pow":
                type = CommandType.POW;
                source2 = new SourceVariable(operands[3]);
                this.addVariableUsage(source2);
-               this.var_177 += 3;
+               this.§_-RT§ += 3;
                break;
             case "log":
                type = CommandType.LOG;
-               ++this.var_177;
+               ++this.§_-RT§;
                break;
             case "exp":
                type = CommandType.EXP;
-               ++this.var_177;
+               ++this.§_-RT§;
                break;
             case "nrm":
                type = CommandType.NRM;
-               this.var_177 += 3;
+               this.§_-RT§ += 3;
                break;
             case "sin":
                type = CommandType.SIN;
-               this.var_177 += 8;
+               this.§_-RT§ += 8;
                break;
             case "cos":
                type = CommandType.COS;
-               this.var_177 += 8;
+               this.§_-RT§ += 8;
                break;
             case "crs":
                type = CommandType.CRS;
                source2 = new SourceVariable(operands[3]);
                this.addVariableUsage(source2);
-               this.var_177 += 2;
+               this.§_-RT§ += 2;
                break;
             case "dp3":
                type = CommandType.DP3;
                source2 = new SourceVariable(operands[3]);
                this.addVariableUsage(source2);
-               ++this.var_177;
+               ++this.§_-RT§;
                break;
             case "dp4":
                type = CommandType.DP4;
                source2 = new SourceVariable(operands[3]);
                this.addVariableUsage(source2);
-               ++this.var_177;
+               ++this.§_-RT§;
                break;
             case "abs":
                type = CommandType.ABS;
-               ++this.var_177;
+               ++this.§_-RT§;
                break;
             case "neg":
                type = CommandType.NEG;
-               ++this.var_177;
+               ++this.§_-RT§;
                break;
             case "sat":
                type = CommandType.SAT;
-               ++this.var_177;
+               ++this.§_-RT§;
                break;
             case "m33":
                type = CommandType.M33;
                source2 = new SourceVariable(operands[3]);
                this.addVariableUsage(source2);
-               this.var_177 += 3;
+               this.§_-RT§ += 3;
                break;
             case "m44":
                type = CommandType.M44;
                source2 = new SourceVariable(operands[3]);
                this.addVariableUsage(source2);
-               this.var_177 += 4;
+               this.§_-RT§ += 4;
                break;
             case "m34":
                type = CommandType.M34;
                source2 = new SourceVariable(operands[3]);
                this.addVariableUsage(source2);
-               this.var_177 += 3;
+               this.§_-RT§ += 3;
                break;
             case "kil":
                type = CommandType.KIL;
-               ++this.var_177;
+               ++this.§_-RT§;
                break;
             case "tex":
                type = CommandType.TEX;
                source2 = new SamplerVariable(operands[3]);
                this.addVariableUsage(source2);
-               ++this.var_177;
+               ++this.§_-RT§;
                break;
             case "sge":
                type = CommandType.SGE;
                source2 = new SourceVariable(operands[3]);
                this.addVariableUsage(source2);
-               ++this.var_177;
+               ++this.§_-RT§;
                break;
             case "slt":
                type = CommandType.SLT;
                source2 = new SourceVariable(operands[3]);
                this.addVariableUsage(source2);
-               ++this.var_177;
+               ++this.§_-RT§;
          }
          this.byteCode.writeUnsignedInt(type);
          if(destination != null)
          {
             destination.position = this.byteCode.position;
-            this.byteCode.writeUnsignedInt(destination.name_345);
+            this.byteCode.writeUnsignedInt(destination.§_-0J§);
          }
          else
          {
@@ -333,8 +333,8 @@ package alternativa.engine3d.materials.compiler
             this.addVariableUsage(source1.relative);
             source1.relative.position = this.byteCode.position;
          }
-         this.byteCode.writeUnsignedInt(source1.name_345);
-         this.byteCode.writeUnsignedInt(source1.name_346);
+         this.byteCode.writeUnsignedInt(source1.§_-0J§);
+         this.byteCode.writeUnsignedInt(source1.§_-oc§);
          if(source2 != null)
          {
             s2v = source2 as SourceVariable;
@@ -344,24 +344,24 @@ package alternativa.engine3d.materials.compiler
                this.addVariableUsage(s2v.relative);
                s2v.relative.position = s2v.position;
             }
-            this.byteCode.writeUnsignedInt(source2.name_345);
-            this.byteCode.writeUnsignedInt(source2.name_346);
+            this.byteCode.writeUnsignedInt(source2.§_-0J§);
+            this.byteCode.writeUnsignedInt(source2.§_-oc§);
          }
          else
          {
             this.byteCode.position = this.byteCode.length = this.byteCode.length + 8;
          }
-         ++this.var_176;
+         ++this.§_-A§;
       }
       
       public function newInstance() : Procedure
       {
          var res:Procedure = new Procedure();
          res.byteCode = this.byteCode;
-         res.name_343 = this.name_343;
-         res.var_177 = this.var_177;
-         res.alternativa3d::name_344 = this.alternativa3d::name_344;
-         res.var_176 = this.var_176;
+         res.§_-d2§ = this.§_-d2§;
+         res.§_-RT§ = this.§_-RT§;
+         res.alternativa3d::_-in = this.alternativa3d::_-in;
+         res.§_-A§ = this.§_-A§;
          res.name = this.name;
          return res;
       }

@@ -1,9 +1,9 @@
 package alternativa.engine3d.loaders.collada
 {
-   import alternativa.engine3d.animation.keys.name_552;
-   import alternativa.engine3d.animation.keys.name_590;
-   import alternativa.engine3d.animation.keys.name_591;
-   import alternativa.engine3d.animation.name_550;
+   import alternativa.engine3d.animation.AnimationClip;
+   import alternativa.engine3d.animation.keys.NumberTrack;
+   import alternativa.engine3d.animation.keys.Track;
+   import alternativa.engine3d.animation.keys.TransformTrack;
    import alternativa.engine3d.core.Light3D;
    import alternativa.engine3d.core.Object3D;
    import alternativa.engine3d.objects.Mesh;
@@ -23,7 +23,7 @@ package alternativa.engine3d.loaders.collada
       
       private var channels:Vector.<DaeChannel>;
       
-      private var var_698:Vector.<DaeInstanceController>;
+      private var §_-DE§:Vector.<DaeInstanceController>;
       
       public var nodes:Vector.<DaeNode>;
       
@@ -112,11 +112,11 @@ package alternativa.engine3d.loaders.collada
       
       public function addInstanceController(controller:DaeInstanceController) : void
       {
-         if(this.var_698 == null)
+         if(this.§_-DE§ == null)
          {
-            this.var_698 = new Vector.<DaeInstanceController>();
+            this.§_-DE§ = new Vector.<DaeInstanceController>();
          }
-         this.var_698.push(controller);
+         this.§_-DE§.push(controller);
       }
       
       override protected function parseImplementation() : Boolean
@@ -188,14 +188,14 @@ package alternativa.engine3d.loaders.collada
          var instanceController:DaeInstanceController = null;
          var skinAndAnimatedJoints:DaeObject = null;
          var skin:Skin = null;
-         if(this.var_698 == null)
+         if(this.§_-DE§ == null)
          {
             return null;
          }
          var skins:Vector.<DaeObject> = new Vector.<DaeObject>();
-         for(var i:int = 0,var count:int = int(this.var_698.length); i < count; )
+         for(var i:int = 0,var count:int = int(this.§_-DE§.length); i < count; )
          {
-            instanceController = this.var_698[i];
+            instanceController = this.§_-DE§[i];
             instanceController.parse();
             skinAndAnimatedJoints = instanceController.parseSkin(this.parseInstanceMaterials(instanceController.data));
             if(skinAndAnimatedJoints != null)
@@ -345,17 +345,17 @@ package alternativa.engine3d.loaders.collada
       
       public function applyAnimation(object:Object3D) : DaeObject
       {
-         var animation:name_550 = this.parseAnimation(object);
+         var animation:AnimationClip = this.parseAnimation(object);
          if(animation == null)
          {
             return new DaeObject(object);
          }
          object.name = this.animName;
-         animation.method_360(object,false);
+         animation.attach(object,false);
          return new DaeObject(object,animation);
       }
       
-      public function parseAnimation(object:Object3D = null) : name_550
+      public function parseAnimation(object:Object3D = null) : AnimationClip
       {
          if(this.channels == null || !this.hasTransformationAnimation())
          {
@@ -366,7 +366,7 @@ package alternativa.engine3d.loaders.collada
          {
             return this.createClip(channel.tracks);
          }
-         var clip:name_550 = new name_550();
+         var clip:AnimationClip = new AnimationClip();
          var components:Vector.<Vector3D> = object != null ? null : this.getMatrix().decompose();
          channel = this.getChannel(DaeChannel.PARAM_TRANSLATE);
          if(channel != null)
@@ -382,7 +382,7 @@ package alternativa.engine3d.loaders.collada
             }
             else
             {
-               clip.name_551(this.createValueStaticTrack("x",object == null ? Number(components[0].x) : object.x));
+               clip.addTrack(this.createValueStaticTrack("x",object == null ? Number(components[0].x) : object.x));
             }
             channel = this.getChannel(DaeChannel.PARAM_TRANSLATE_Y);
             if(channel != null)
@@ -391,7 +391,7 @@ package alternativa.engine3d.loaders.collada
             }
             else
             {
-               clip.name_551(this.createValueStaticTrack("y",object == null ? Number(components[0].y) : object.y));
+               clip.addTrack(this.createValueStaticTrack("y",object == null ? Number(components[0].y) : object.y));
             }
             channel = this.getChannel(DaeChannel.PARAM_TRANSLATE_Z);
             if(channel != null)
@@ -400,7 +400,7 @@ package alternativa.engine3d.loaders.collada
             }
             else
             {
-               clip.name_551(this.createValueStaticTrack("z",object == null ? Number(components[0].z) : object.z));
+               clip.addTrack(this.createValueStaticTrack("z",object == null ? Number(components[0].z) : object.z));
             }
          }
          channel = this.getChannel(DaeChannel.PARAM_ROTATION_X);
@@ -410,7 +410,7 @@ package alternativa.engine3d.loaders.collada
          }
          else
          {
-            clip.name_551(this.createValueStaticTrack("rotationX",object == null ? Number(components[1].x) : object.rotationX));
+            clip.addTrack(this.createValueStaticTrack("rotationX",object == null ? Number(components[1].x) : object.rotationX));
          }
          channel = this.getChannel(DaeChannel.PARAM_ROTATION_Y);
          if(channel != null)
@@ -419,7 +419,7 @@ package alternativa.engine3d.loaders.collada
          }
          else
          {
-            clip.name_551(this.createValueStaticTrack("rotationY",object == null ? Number(components[1].y) : object.rotationY));
+            clip.addTrack(this.createValueStaticTrack("rotationY",object == null ? Number(components[1].y) : object.rotationY));
          }
          channel = this.getChannel(DaeChannel.PARAM_ROTATION_Z);
          if(channel != null)
@@ -428,7 +428,7 @@ package alternativa.engine3d.loaders.collada
          }
          else
          {
-            clip.name_551(this.createValueStaticTrack("rotationZ",object == null ? Number(components[1].z) : object.rotationZ));
+            clip.addTrack(this.createValueStaticTrack("rotationZ",object == null ? Number(components[1].z) : object.rotationZ));
          }
          channel = this.getChannel(DaeChannel.PARAM_SCALE);
          if(channel != null)
@@ -444,7 +444,7 @@ package alternativa.engine3d.loaders.collada
             }
             else
             {
-               clip.name_551(this.createValueStaticTrack("scaleX",object == null ? Number(components[2].x) : object.scaleX));
+               clip.addTrack(this.createValueStaticTrack("scaleX",object == null ? Number(components[2].x) : object.scaleX));
             }
             channel = this.getChannel(DaeChannel.PARAM_SCALE_Y);
             if(channel != null)
@@ -453,7 +453,7 @@ package alternativa.engine3d.loaders.collada
             }
             else
             {
-               clip.name_551(this.createValueStaticTrack("scaleY",object == null ? Number(components[2].y) : object.scaleY));
+               clip.addTrack(this.createValueStaticTrack("scaleY",object == null ? Number(components[2].y) : object.scaleY));
             }
             channel = this.getChannel(DaeChannel.PARAM_SCALE_Z);
             if(channel != null)
@@ -462,7 +462,7 @@ package alternativa.engine3d.loaders.collada
             }
             else
             {
-               clip.name_551(this.createValueStaticTrack("scaleZ",object == null ? Number(components[2].z) : object.scaleZ));
+               clip.addTrack(this.createValueStaticTrack("scaleZ",object == null ? Number(components[2].z) : object.scaleZ));
             }
          }
          if(clip.numTracks > 0)
@@ -472,21 +472,21 @@ package alternativa.engine3d.loaders.collada
          return null;
       }
       
-      private function createClip(tracks:Vector.<name_552>) : name_550
+      private function createClip(tracks:Vector.<Track>) : AnimationClip
       {
-         var clip:name_550 = new name_550();
+         var clip:AnimationClip = new AnimationClip();
          for(var i:int = 0,var count:int = int(tracks.length); i < count; i++)
          {
-            clip.name_551(tracks[i]);
+            clip.addTrack(tracks[i]);
          }
          return clip;
       }
       
-      private function addTracksToClip(clip:name_550, tracks:Vector.<name_552>) : void
+      private function addTracksToClip(clip:AnimationClip, tracks:Vector.<Track>) : void
       {
          for(var i:int = 0,var count:int = int(tracks.length); i < count; i++)
          {
-            clip.name_551(tracks[i]);
+            clip.addTrack(tracks[i]);
          }
       }
       
@@ -498,18 +498,18 @@ package alternativa.engine3d.loaders.collada
          {
             channel = this.channels[i];
             channel.parse();
-            result = channel.name_589 == DaeChannel.PARAM_MATRIX;
-            result ||= channel.name_589 == DaeChannel.PARAM_TRANSLATE;
-            result ||= channel.name_589 == DaeChannel.PARAM_TRANSLATE_X;
-            result ||= channel.name_589 == DaeChannel.PARAM_TRANSLATE_Y;
-            result ||= channel.name_589 == DaeChannel.PARAM_TRANSLATE_Z;
-            result ||= channel.name_589 == DaeChannel.PARAM_ROTATION_X;
-            result ||= channel.name_589 == DaeChannel.PARAM_ROTATION_Y;
-            result ||= channel.name_589 == DaeChannel.PARAM_ROTATION_Z;
-            result ||= channel.name_589 == DaeChannel.PARAM_SCALE;
-            result ||= channel.name_589 == DaeChannel.PARAM_SCALE_X;
-            result ||= channel.name_589 == DaeChannel.PARAM_SCALE_Y;
-            result ||= channel.name_589 == DaeChannel.PARAM_SCALE_Z;
+            result = channel.§_-dS§ == DaeChannel.PARAM_MATRIX;
+            result ||= channel.§_-dS§ == DaeChannel.PARAM_TRANSLATE;
+            result ||= channel.§_-dS§ == DaeChannel.PARAM_TRANSLATE_X;
+            result ||= channel.§_-dS§ == DaeChannel.PARAM_TRANSLATE_Y;
+            result ||= channel.§_-dS§ == DaeChannel.PARAM_TRANSLATE_Z;
+            result ||= channel.§_-dS§ == DaeChannel.PARAM_ROTATION_X;
+            result ||= channel.§_-dS§ == DaeChannel.PARAM_ROTATION_Y;
+            result ||= channel.§_-dS§ == DaeChannel.PARAM_ROTATION_Z;
+            result ||= channel.§_-dS§ == DaeChannel.PARAM_SCALE;
+            result ||= channel.§_-dS§ == DaeChannel.PARAM_SCALE_X;
+            result ||= channel.§_-dS§ == DaeChannel.PARAM_SCALE_Y;
+            result ||= channel.§_-dS§ == DaeChannel.PARAM_SCALE_Z;
             if(result)
             {
                return true;
@@ -526,7 +526,7 @@ package alternativa.engine3d.loaders.collada
          {
             channel = this.channels[i];
             channel.parse();
-            if(channel.name_589 == param)
+            if(channel.§_-dS§ == param)
             {
                return channel;
             }
@@ -535,7 +535,7 @@ package alternativa.engine3d.loaders.collada
          return null;
       }
       
-      private function concatTracks(source:Vector.<name_552>, dest:Vector.<name_552>) : void
+      private function concatTracks(source:Vector.<Track>, dest:Vector.<Track>) : void
       {
          for(var i:int = 0,var count:int = int(source.length); i < count; i++)
          {
@@ -543,16 +543,16 @@ package alternativa.engine3d.loaders.collada
          }
       }
       
-      private function createValueStaticTrack(property:String, value:Number) : name_552
+      private function createValueStaticTrack(property:String, value:Number) : Track
       {
-         var track:name_591 = new name_591(this.animName,property);
+         var track:NumberTrack = new NumberTrack(this.animName,property);
          track.addKey(0,value);
          return track;
       }
       
-      public function createStaticTransformTrack() : name_590
+      public function createStaticTransformTrack() : TransformTrack
       {
-         var track:name_590 = new name_590(this.animName);
+         var track:TransformTrack = new TransformTrack(this.animName);
          track.addKey(0,this.getMatrix());
          return track;
       }

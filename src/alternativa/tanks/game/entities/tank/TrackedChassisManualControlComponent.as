@@ -33,7 +33,7 @@ package alternativa.tanks.game.entities.tank
       
       private var enabled:Boolean;
       
-      private var var_503:int;
+      private var §_-de§:int;
       
       public function TrackedChassisManualControlComponent(callback:IChassisManualControlCallback)
       {
@@ -67,13 +67,13 @@ package alternativa.tanks.game.entities.tank
       {
          var moveDirection:int = this.input.getKeyState(KEY_FORWARD) - this.input.getKeyState(KEY_BACK);
          var turnDirection:int = this.input.getKeyState(KEY_RIGHT) - this.input.getKeyState(KEY_LEFT);
-         if(Boolean(this.physicsComponent.setChassisControls(moveDirection,turnDirection,Boolean(conReverseBackTurn.value))) || TimeSystem.time - this.var_503 > SYNC_INTERVAL)
+         if(Boolean(this.physicsComponent.setChassisControls(moveDirection,turnDirection,Boolean(conReverseBackTurn.value))) || TimeSystem.time - this.§_-de§ > SYNC_INTERVAL)
          {
             if(this.callback != null)
             {
                this.callback.onControlChanged(moveDirection,turnDirection,Boolean(conReverseBackTurn.value));
             }
-            this.var_503 = TimeSystem.time;
+            this.§_-de§ = TimeSystem.time;
          }
       }
       

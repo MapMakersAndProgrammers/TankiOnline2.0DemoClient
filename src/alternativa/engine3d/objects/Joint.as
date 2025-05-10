@@ -8,11 +8,11 @@ package alternativa.engine3d.objects
    
    public class Joint extends Object3D
    {
-      alternativa3d var name_549:Transform3D = new Transform3D();
+      alternativa3d var §_-Dy§:Transform3D = new Transform3D();
       
       alternativa3d var bindPoseTransform:Transform3D = new Transform3D();
       
-      private var var_689:Transform3D = new Transform3D();
+      private var §_-ar§:Transform3D = new Transform3D();
       
       public function Joint()
       {
@@ -28,7 +28,7 @@ package alternativa.engine3d.objects
       {
          if(this.alternativa3d::bindPoseTransform != null)
          {
-            this.alternativa3d::name_549.combine(alternativa3d::localToGlobalTransform,this.alternativa3d::bindPoseTransform);
+            this.alternativa3d::_-Dy.combine(alternativa3d::localToGlobalTransform,this.alternativa3d::bindPoseTransform);
          }
       }
       

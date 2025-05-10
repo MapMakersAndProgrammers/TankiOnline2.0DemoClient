@@ -1,13 +1,13 @@
 package alternativa.tanks.game.weapons.flamethrower
 {
    import alternativa.engine3d.core.BoundBox;
+   import alternativa.engine3d.effects.ParticleEffect;
    import alternativa.engine3d.effects.ParticlePrototype;
    import alternativa.engine3d.effects.TextureAtlas;
-   import alternativa.engine3d.effects.name_77;
    import flash.display3D.Context3DBlendFactor;
    import flash.geom.Vector3D;
    
-   public class FlameThrower extends name_77
+   public class FlameThrower extends ParticleEffect
    {
       private static var smokePrototype1:ParticlePrototype;
       
@@ -90,32 +90,32 @@ package alternativa.tanks.game.weapons.flamethrower
             addKey(keyTime,this.keyFrame1);
             i++;
          }
-         method_127(var_151[var_148 - 1] + smokePrototype2.lifeTime);
+         setLife(§_-gV§[§_-kf§ - 1] + smokePrototype2.lifeTime);
       }
       
       private function keyFrame1(keyTime:Number, time:Number) : void
       {
          var ang:Number = 6 * 3.14 / 180;
-         dir.x = var_156.x;
-         dir.y = var_156.y;
-         dir.z = var_156.z + 0.2;
+         dir.x = §_-cF§.x;
+         dir.y = §_-cF§.y;
+         dir.z = §_-cF§.z + 0.2;
          dir.normalize();
-         this.randomDirection(var_156,ang,pos);
+         this.randomDirection(§_-cF§,ang,pos);
          pos.scaleBy(time * 300 + 10);
          flashPrototype1.createParticle(this,time,pos,random() * 6.28,1,1,1,random() * flashPrototype1.atlas.rangeLength);
-         this.randomDirection(var_156,ang,pos);
+         this.randomDirection(§_-cF§,ang,pos);
          pos.scaleBy((time - 0.03333333333333333) * 150 + 10);
          flashPrototype2.createParticle(this,time,pos,random() * 6.28,1,1,1,random() * flashPrototype1.atlas.rangeLength);
-         this.randomDirection(var_156,ang,pos);
+         this.randomDirection(§_-cF§,ang,pos);
          pos.scaleBy((time - 0.03333333333333333 - 0.03333333333333333) * 80 + 10);
          flashPrototype3.createParticle(this,time,pos,random() * 6.28,1,1,1,random() * flashPrototype1.atlas.rangeLength);
-         this.randomDirection(var_156,ang,pos);
+         this.randomDirection(§_-cF§,ang,pos);
          pos.scaleBy(time * 240 + 10);
          firePrototype.createParticle(this,time,pos,random() * 6.28,1,1,1,-6 * 0.03333333333333333 * firePrototype.atlas.fps);
          this.randomDirection(dir,ang,pos);
          pos.scaleBy(time * 300 + 10);
          firePrototype.createParticle(this,time,pos,random() * 6.28,1,1,1,-6 * 0.03333333333333333 * firePrototype.atlas.fps);
-         this.randomDirection(var_156,ang,pos);
+         this.randomDirection(§_-cF§,ang,pos);
          pos.scaleBy(time * 300 + 10);
          smokePrototype1.createParticle(this,time,pos,random() * 6.28,1,1,1,random() * smokePrototype1.atlas.rangeLength);
          this.randomDirection(dir,ang,pos);
@@ -148,9 +148,9 @@ package alternativa.tanks.game.weapons.flamethrower
       
       private function displacePosition(time:Number, factor:Number, result:Vector3D) : void
       {
-         result.x += time * windSpeed * var_6.wind.x;
-         result.y += time * windSpeed * var_6.wind.y;
-         result.z += time * windSpeed * var_6.wind.z + time * liftSpeed * factor;
+         result.x += time * windSpeed * particleSystem.wind.x;
+         result.y += time * windSpeed * particleSystem.wind.y;
+         result.z += time * windSpeed * particleSystem.wind.z + time * liftSpeed * factor;
       }
    }
 }

@@ -19,17 +19,17 @@ package _codec.versions.version1.a3d
    {
       public static var log:IClientLog = IClientLog(OSGi.getInstance().getService(IClientLog));
       
-      private var var_359:ICodec;
+      private var §_-EA§:ICodec;
       
-      private var var_419:ICodec;
+      private var §_-PA§:ICodec;
       
-      private var var_363:ICodec;
+      private var §_-Sd§:ICodec;
       
-      private var var_365:ICodec;
+      private var §_-dB§:ICodec;
       
-      private var var_354:ICodec;
+      private var §_-77§:ICodec;
       
-      private var var_351:ICodec;
+      private var §_-1x§:ICodec;
       
       public function CodecA3D()
       {
@@ -38,28 +38,28 @@ package _codec.versions.version1.a3d
       
       public function init(protocol:IProtocol) : void
       {
-         this.var_359 = protocol.getCodec(new CollectionCodecInfo(new TypeCodecInfo(A3DBox,false),true,1));
-         this.var_419 = protocol.getCodec(new CollectionCodecInfo(new TypeCodecInfo(A3DGeometry,false),true,1));
-         this.var_363 = protocol.getCodec(new CollectionCodecInfo(new TypeCodecInfo(A3DImage,false),true,1));
-         this.var_365 = protocol.getCodec(new CollectionCodecInfo(new TypeCodecInfo(A3DMap,false),true,1));
-         this.var_354 = protocol.getCodec(new CollectionCodecInfo(new TypeCodecInfo(A3DMaterial,false),true,1));
-         this.var_351 = protocol.getCodec(new CollectionCodecInfo(new TypeCodecInfo(A3DObject,false),true,1));
+         this.§_-EA§ = protocol.getCodec(new CollectionCodecInfo(new TypeCodecInfo(A3DBox,false),true,1));
+         this.§_-PA§ = protocol.getCodec(new CollectionCodecInfo(new TypeCodecInfo(A3DGeometry,false),true,1));
+         this.§_-Sd§ = protocol.getCodec(new CollectionCodecInfo(new TypeCodecInfo(A3DImage,false),true,1));
+         this.§_-dB§ = protocol.getCodec(new CollectionCodecInfo(new TypeCodecInfo(A3DMap,false),true,1));
+         this.§_-77§ = protocol.getCodec(new CollectionCodecInfo(new TypeCodecInfo(A3DMaterial,false),true,1));
+         this.§_-1x§ = protocol.getCodec(new CollectionCodecInfo(new TypeCodecInfo(A3DObject,false),true,1));
       }
       
       public function decode(protocolBuffer:ProtocolBuffer) : Object
       {
          log = IClientLog(OSGi.getInstance().getService(IClientLog));
-         var value_boxes:Vector.<A3DBox> = this.var_359.decode(protocolBuffer) as Vector.<A3DBox>;
+         var value_boxes:Vector.<A3DBox> = this.§_-EA§.decode(protocolBuffer) as Vector.<A3DBox>;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.A3D","boxes",value_boxes);
-         var value_geometries:Vector.<A3DGeometry> = this.var_419.decode(protocolBuffer) as Vector.<A3DGeometry>;
+         var value_geometries:Vector.<A3DGeometry> = this.§_-PA§.decode(protocolBuffer) as Vector.<A3DGeometry>;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.A3D","geometries",value_geometries);
-         var value_images:Vector.<A3DImage> = this.var_363.decode(protocolBuffer) as Vector.<A3DImage>;
+         var value_images:Vector.<A3DImage> = this.§_-Sd§.decode(protocolBuffer) as Vector.<A3DImage>;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.A3D","images",value_images);
-         var value_maps:Vector.<A3DMap> = this.var_365.decode(protocolBuffer) as Vector.<A3DMap>;
+         var value_maps:Vector.<A3DMap> = this.§_-dB§.decode(protocolBuffer) as Vector.<A3DMap>;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.A3D","maps",value_maps);
-         var value_materials:Vector.<A3DMaterial> = this.var_354.decode(protocolBuffer) as Vector.<A3DMaterial>;
+         var value_materials:Vector.<A3DMaterial> = this.§_-77§.decode(protocolBuffer) as Vector.<A3DMaterial>;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.A3D","materials",value_materials);
-         var value_objects:Vector.<A3DObject> = this.var_351.decode(protocolBuffer) as Vector.<A3DObject>;
+         var value_objects:Vector.<A3DObject> = this.§_-1x§.decode(protocolBuffer) as Vector.<A3DObject>;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.A3D","objects",value_objects);
          return new A3D(value_boxes,value_geometries,value_images,value_maps,value_materials,value_objects);
       }
@@ -71,12 +71,12 @@ package _codec.versions.version1.a3d
             throw new Error("Object is null. Use @ProtocolOptional annotation.");
          }
          var struct:A3D = A3D(object);
-         this.var_359.encode(protocolBuffer,struct.boxes);
-         this.var_419.encode(protocolBuffer,struct.geometries);
-         this.var_363.encode(protocolBuffer,struct.images);
-         this.var_365.encode(protocolBuffer,struct.maps);
-         this.var_354.encode(protocolBuffer,struct.materials);
-         this.var_351.encode(protocolBuffer,struct.objects);
+         this.§_-EA§.encode(protocolBuffer,struct.boxes);
+         this.§_-PA§.encode(protocolBuffer,struct.geometries);
+         this.§_-Sd§.encode(protocolBuffer,struct.images);
+         this.§_-dB§.encode(protocolBuffer,struct.maps);
+         this.§_-77§.encode(protocolBuffer,struct.materials);
+         this.§_-1x§.encode(protocolBuffer,struct.objects);
       }
    }
 }

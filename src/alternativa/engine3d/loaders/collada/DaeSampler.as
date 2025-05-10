@@ -1,21 +1,21 @@
 package alternativa.engine3d.loaders.collada
 {
-   import alternativa.engine3d.animation.keys.name_552;
-   import alternativa.engine3d.animation.keys.name_590;
-   import alternativa.engine3d.animation.keys.name_591;
+   import alternativa.engine3d.animation.keys.NumberTrack;
+   import alternativa.engine3d.animation.keys.Track;
+   import alternativa.engine3d.animation.keys.TransformTrack;
    import flash.geom.Matrix3D;
    
    use namespace collada;
    
    public class DaeSampler extends DaeElement
    {
-      private var var_719:Vector.<Number>;
+      private var §_-G6§:Vector.<Number>;
       
       private var values:Vector.<Number>;
       
-      private var var_720:int;
+      private var §_-JC§:int;
       
-      private var var_721:int;
+      private var §_-7i§:int;
       
       public function DaeSampler(data:XML, document:DaeDocument)
       {
@@ -43,8 +43,8 @@ package alternativa.engine3d.loaders.collada
                   inputSource = input.prepareSource(1);
                   if(inputSource != null)
                   {
-                     this.var_719 = inputSource.numbers;
-                     this.var_720 = inputSource.stride;
+                     this.§_-G6§ = inputSource.numbers;
+                     this.§_-JC§ = inputSource.stride;
                   }
                   break;
                case "OUTPUT":
@@ -52,7 +52,7 @@ package alternativa.engine3d.loaders.collada
                   if(outputSource != null)
                   {
                      this.values = outputSource.numbers;
-                     this.var_721 = outputSource.stride;
+                     this.§_-7i§ = outputSource.stride;
                   }
                   break;
             }
@@ -60,73 +60,73 @@ package alternativa.engine3d.loaders.collada
          return true;
       }
       
-      public function parseNumbersTrack(objectName:String, property:String) : name_591
+      public function parseNumbersTrack(objectName:String, property:String) : NumberTrack
       {
-         var track:name_591 = null;
+         var track:NumberTrack = null;
          var count:int = 0;
          var i:int = 0;
-         if(this.var_719 != null && this.values != null && this.var_720 > 0)
+         if(this.§_-G6§ != null && this.values != null && this.§_-JC§ > 0)
          {
-            track = new name_591(objectName,property);
-            count = this.var_719.length / this.var_720;
+            track = new NumberTrack(objectName,property);
+            count = this.§_-G6§.length / this.§_-JC§;
             for(i = 0; i < count; i++)
             {
-               track.addKey(this.var_719[int(this.var_720 * i)],this.values[int(this.var_721 * i)]);
+               track.addKey(this.§_-G6§[int(this.§_-JC§ * i)],this.values[int(this.§_-7i§ * i)]);
             }
             return track;
          }
          return null;
       }
       
-      public function parseTransformationTrack(objectName:String) : name_552
+      public function parseTransformationTrack(objectName:String) : Track
       {
-         var track:name_590 = null;
+         var track:TransformTrack = null;
          var count:int = 0;
          var i:int = 0;
          var index:int = 0;
          var matrix:Matrix3D = null;
-         if(this.var_719 != null && this.values != null && this.var_720 != 0)
+         if(this.§_-G6§ != null && this.values != null && this.§_-JC§ != 0)
          {
-            track = new name_590(objectName);
-            count = this.var_719.length / this.var_720;
+            track = new TransformTrack(objectName);
+            count = this.§_-G6§.length / this.§_-JC§;
             for(i = 0; i < count; i++)
             {
-               index = this.var_721 * i;
+               index = this.§_-7i§ * i;
                matrix = new Matrix3D(Vector.<Number>([this.values[index],this.values[index + 4],this.values[index + 8],this.values[index + 12],this.values[index + 1],this.values[index + 5],this.values[index + 9],this.values[index + 13],this.values[index + 2],this.values[index + 6],this.values[index + 10],this.values[index + 14],this.values[index + 3],this.values[index + 7],this.values[index + 11],this.values[index + 15]]));
-               track.addKey(this.var_719[i * this.var_720],matrix);
+               track.addKey(this.§_-G6§[i * this.§_-JC§],matrix);
             }
             return track;
          }
          return null;
       }
       
-      public function parsePointsTracks(objectName:String, xProperty:String, yProperty:String, zProperty:String) : Vector.<name_552>
+      public function parsePointsTracks(objectName:String, xProperty:String, yProperty:String, zProperty:String) : Vector.<Track>
       {
-         var xTrack:name_591 = null;
-         var yTrack:name_591 = null;
-         var zTrack:name_591 = null;
+         var xTrack:NumberTrack = null;
+         var yTrack:NumberTrack = null;
+         var zTrack:NumberTrack = null;
          var count:int = 0;
          var i:int = 0;
          var index:int = 0;
          var time:Number = NaN;
-         if(this.var_719 != null && this.values != null && this.var_720 != 0)
+         if(this.§_-G6§ != null && this.values != null && this.§_-JC§ != 0)
          {
-            xTrack = new name_591(objectName,xProperty);
+            xTrack = new NumberTrack(objectName,xProperty);
             xTrack.object = objectName;
-            yTrack = new name_591(objectName,yProperty);
+            yTrack = new NumberTrack(objectName,yProperty);
             yTrack.object = objectName;
-            zTrack = new name_591(objectName,zProperty);
+            zTrack = new NumberTrack(objectName,zProperty);
             zTrack.object = objectName;
-            count = this.var_719.length / this.var_720;
+            count = this.§_-G6§.length / this.§_-JC§;
             for(i = 0; i < count; i++)
             {
-               index = i * this.var_721;
-               time = this.var_719[i * this.var_720];
+               index = i * this.§_-7i§;
+               time = this.§_-G6§[i * this.§_-JC§];
                xTrack.addKey(time,this.values[index]);
                yTrack.addKey(time,this.values[index + 1]);
                zTrack.addKey(time,this.values[index + 2]);
             }
-            return Vector.<name_552>([xTrack,yTrack,zTrack]);
+            return Vector.<Track>([xTrack,yTrack,zTrack]);
          }
          return null;
       }

@@ -62,7 +62,7 @@ package alternativa.engine3d.lights
          var debug:int = 0;
          if(camera.debug)
          {
-            debug = int(camera.alternativa3d::checkInDebug(this));
+            debug = camera.alternativa3d::checkInDebug(this);
             if(Boolean(debug & Debug.BOUNDS) && boundBox != null)
             {
                Debug.alternativa3d::drawBoundBox(camera,boundBox,alternativa3d::localToCameraTransform);
@@ -72,9 +72,9 @@ package alternativa.engine3d.lights
       
       override alternativa3d function checkBound(targetObject:Object3D) : Boolean
       {
-         var rScale:Number = Number(Math.sqrt(alternativa3d::name_80.a * alternativa3d::name_80.a + alternativa3d::name_80.e * alternativa3d::name_80.e + alternativa3d::name_80.i * alternativa3d::name_80.i));
-         rScale += Math.sqrt(alternativa3d::name_80.b * alternativa3d::name_80.b + alternativa3d::name_80.f * alternativa3d::name_80.f + alternativa3d::name_80.j * alternativa3d::name_80.j);
-         rScale += Math.sqrt(alternativa3d::name_80.c * alternativa3d::name_80.c + alternativa3d::name_80.g * alternativa3d::name_80.g + alternativa3d::name_80.k * alternativa3d::name_80.k);
+         var rScale:Number = Number(Math.sqrt(alternativa3d::_-cl.a * alternativa3d::_-cl.a + alternativa3d::_-cl.e * alternativa3d::_-cl.e + alternativa3d::_-cl.i * alternativa3d::_-cl.i));
+         rScale += Math.sqrt(alternativa3d::_-cl.b * alternativa3d::_-cl.b + alternativa3d::_-cl.f * alternativa3d::_-cl.f + alternativa3d::_-cl.j * alternativa3d::_-cl.j);
+         rScale += Math.sqrt(alternativa3d::_-cl.c * alternativa3d::_-cl.c + alternativa3d::_-cl.g * alternativa3d::_-cl.g + alternativa3d::_-cl.k * alternativa3d::_-cl.k);
          rScale /= 3;
          rScale *= this.attenuationEnd;
          rScale *= rScale;
@@ -84,9 +84,9 @@ package alternativa.engine3d.lights
          var minY:Number = bb.minY;
          var minZ:Number = bb.minZ;
          var maxX:Number = bb.maxX;
-         var px:Number = Number(alternativa3d::name_80.d);
-         var py:Number = Number(alternativa3d::name_80.h);
-         var pz:Number = Number(alternativa3d::name_80.l);
+         var px:Number = Number(alternativa3d::_-cl.d);
+         var py:Number = Number(alternativa3d::_-cl.h);
+         var pz:Number = Number(alternativa3d::_-cl.l);
          var maxY:Number = bb.maxY;
          var maxZ:Number = bb.maxZ;
          if(px < minX)

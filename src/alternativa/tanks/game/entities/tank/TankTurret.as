@@ -5,11 +5,11 @@ package alternativa.tanks.game.entities.tank
    
    public class TankTurret extends TankPart
    {
-      public var var_423:Vector.<BoxData> = new Vector.<BoxData>();
+      public var §_-Of§:Vector.<BoxData> = new Vector.<BoxData>();
       
-      public var var_422:Vector.<Vector3> = new Vector.<Vector3>();
+      public var §_-O3§:Vector.<Vector3> = new Vector.<Vector3>();
       
-      public var var_421:Vector3 = new Vector3();
+      public var §_-G3§:Vector3 = new Vector3();
       
       public function TankTurret()
       {

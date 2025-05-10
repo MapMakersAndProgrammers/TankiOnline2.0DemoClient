@@ -12,7 +12,7 @@ package _codec.commons
    {
       public static var log:IClientLog = IClientLog(OSGi.getInstance().getService(IClientLog));
       
-      private var var_243:ICodec;
+      private var §_-2o§:ICodec;
       
       public function CodecId()
       {
@@ -21,13 +21,13 @@ package _codec.commons
       
       public function init(protocol:IProtocol) : void
       {
-         this.var_243 = protocol.getCodec(new TypeCodecInfo(uint,false));
+         this.§_-2o§ = protocol.getCodec(new TypeCodecInfo(uint,false));
       }
       
       public function decode(protocolBuffer:ProtocolBuffer) : Object
       {
          log = IClientLog(OSGi.getInstance().getService(IClientLog));
-         var value_id:uint = uint(this.var_243.decode(protocolBuffer) as uint);
+         var value_id:uint = uint(this.§_-2o§.decode(protocolBuffer) as uint);
          log.log("codec","struct %1 field %2 value %3","commons.Id","id",value_id);
          return new Id(value_id);
       }
@@ -39,7 +39,7 @@ package _codec.commons
             throw new Error("Object is null. Use @ProtocolOptional annotation.");
          }
          var struct:Id = Id(object);
-         this.var_243.encode(protocolBuffer,struct.id);
+         this.§_-2o§.encode(protocolBuffer,struct.id);
       }
    }
 }

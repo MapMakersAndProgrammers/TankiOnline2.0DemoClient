@@ -22,256 +22,256 @@ package versions.version2.a3d
    
    public class A3D2
    {
-      private var var_401:Vector.<A3D2AmbientLight>;
+      private var §_-VP§:Vector.<A3D2AmbientLight>;
       
-      private var var_406:Vector.<A3D2AnimationClip>;
+      private var §_-qp§:Vector.<A3D2AnimationClip>;
       
-      private var var_399:Vector.<A3D2Track>;
+      private var §_-Ib§:Vector.<A3D2Track>;
       
-      private var var_346:Vector.<A3D2Box>;
+      private var §_-0§:Vector.<A3D2Box>;
       
-      private var var_402:Vector.<A3D2CubeMap>;
+      private var §_-fK§:Vector.<A3D2CubeMap>;
       
-      private var var_398:Vector.<A3D2Decal>;
+      private var §_-Gv§:Vector.<A3D2Decal>;
       
-      private var var_396:Vector.<A3D2DirectionalLight>;
+      private var §_-93§:Vector.<A3D2DirectionalLight>;
       
-      private var var_350:Vector.<A3D2Image>;
+      private var §_-ce§:Vector.<A3D2Image>;
       
-      private var var_404:Vector.<A3D2IndexBuffer>;
+      private var §_-jm§:Vector.<A3D2IndexBuffer>;
       
-      private var var_390:Vector.<A3D2Joint>;
+      private var §_-26§:Vector.<A3D2Joint>;
       
-      private var var_349:Vector.<A3D2Map>;
+      private var §_-XJ§:Vector.<A3D2Map>;
       
-      private var var_347:Vector.<A3D2Material>;
+      private var §_-22§:Vector.<A3D2Material>;
       
-      private var var_405:Vector.<A3D2Mesh>;
+      private var §_-jz§:Vector.<A3D2Mesh>;
       
-      private var var_348:Vector.<A3D2Object>;
+      private var §_-Kq§:Vector.<A3D2Object>;
       
-      private var var_403:Vector.<A3D2OmniLight>;
+      private var §_-fM§:Vector.<A3D2OmniLight>;
       
-      private var var_397:Vector.<A3D2Skin>;
+      private var §_-G0§:Vector.<A3D2Skin>;
       
-      private var var_144:Vector.<A3D2SpotLight>;
+      private var §_-pd§:Vector.<A3D2SpotLight>;
       
-      private var var_400:Vector.<A3D2Sprite>;
+      private var §_-Ke§:Vector.<A3D2Sprite>;
       
-      private var var_276:Vector.<A3D2VertexBuffer>;
+      private var §_-0B§:Vector.<A3D2VertexBuffer>;
       
       public function A3D2(ambientLights:Vector.<A3D2AmbientLight>, animationClips:Vector.<A3D2AnimationClip>, animationTracks:Vector.<A3D2Track>, boxes:Vector.<A3D2Box>, cubeMaps:Vector.<A3D2CubeMap>, decals:Vector.<A3D2Decal>, directionalLights:Vector.<A3D2DirectionalLight>, images:Vector.<A3D2Image>, indexBuffers:Vector.<A3D2IndexBuffer>, joints:Vector.<A3D2Joint>, maps:Vector.<A3D2Map>, materials:Vector.<A3D2Material>, meshes:Vector.<A3D2Mesh>, objects:Vector.<A3D2Object>, omniLights:Vector.<A3D2OmniLight>, skins:Vector.<A3D2Skin>, spotLights:Vector.<A3D2SpotLight>, sprites:Vector.<A3D2Sprite>, vertexBuffers:Vector.<A3D2VertexBuffer>)
       {
          super();
-         this.var_401 = ambientLights;
-         this.var_406 = animationClips;
-         this.var_399 = animationTracks;
-         this.var_346 = boxes;
-         this.var_402 = cubeMaps;
-         this.var_398 = decals;
-         this.var_396 = directionalLights;
-         this.var_350 = images;
-         this.var_404 = indexBuffers;
-         this.var_390 = joints;
-         this.var_349 = maps;
-         this.var_347 = materials;
-         this.var_405 = meshes;
-         this.var_348 = objects;
-         this.var_403 = omniLights;
-         this.var_397 = skins;
-         this.var_144 = spotLights;
-         this.var_400 = sprites;
-         this.var_276 = vertexBuffers;
+         this.§_-VP§ = ambientLights;
+         this.§_-qp§ = animationClips;
+         this.§_-Ib§ = animationTracks;
+         this.§_-0§ = boxes;
+         this.§_-fK§ = cubeMaps;
+         this.§_-Gv§ = decals;
+         this.§_-93§ = directionalLights;
+         this.§_-ce§ = images;
+         this.§_-jm§ = indexBuffers;
+         this.§_-26§ = joints;
+         this.§_-XJ§ = maps;
+         this.§_-22§ = materials;
+         this.§_-jz§ = meshes;
+         this.§_-Kq§ = objects;
+         this.§_-fM§ = omniLights;
+         this.§_-G0§ = skins;
+         this.§_-pd§ = spotLights;
+         this.§_-Ke§ = sprites;
+         this.§_-0B§ = vertexBuffers;
       }
       
       public function get ambientLights() : Vector.<A3D2AmbientLight>
       {
-         return this.var_401;
+         return this.§_-VP§;
       }
       
       public function set ambientLights(value:Vector.<A3D2AmbientLight>) : void
       {
-         this.var_401 = value;
+         this.§_-VP§ = value;
       }
       
       public function get animationClips() : Vector.<A3D2AnimationClip>
       {
-         return this.var_406;
+         return this.§_-qp§;
       }
       
       public function set animationClips(value:Vector.<A3D2AnimationClip>) : void
       {
-         this.var_406 = value;
+         this.§_-qp§ = value;
       }
       
       public function get animationTracks() : Vector.<A3D2Track>
       {
-         return this.var_399;
+         return this.§_-Ib§;
       }
       
       public function set animationTracks(value:Vector.<A3D2Track>) : void
       {
-         this.var_399 = value;
+         this.§_-Ib§ = value;
       }
       
       public function get boxes() : Vector.<A3D2Box>
       {
-         return this.var_346;
+         return this.§_-0§;
       }
       
       public function set boxes(value:Vector.<A3D2Box>) : void
       {
-         this.var_346 = value;
+         this.§_-0§ = value;
       }
       
       public function get cubeMaps() : Vector.<A3D2CubeMap>
       {
-         return this.var_402;
+         return this.§_-fK§;
       }
       
       public function set cubeMaps(value:Vector.<A3D2CubeMap>) : void
       {
-         this.var_402 = value;
+         this.§_-fK§ = value;
       }
       
       public function get decals() : Vector.<A3D2Decal>
       {
-         return this.var_398;
+         return this.§_-Gv§;
       }
       
       public function set decals(value:Vector.<A3D2Decal>) : void
       {
-         this.var_398 = value;
+         this.§_-Gv§ = value;
       }
       
       public function get directionalLights() : Vector.<A3D2DirectionalLight>
       {
-         return this.var_396;
+         return this.§_-93§;
       }
       
       public function set directionalLights(value:Vector.<A3D2DirectionalLight>) : void
       {
-         this.var_396 = value;
+         this.§_-93§ = value;
       }
       
       public function get images() : Vector.<A3D2Image>
       {
-         return this.var_350;
+         return this.§_-ce§;
       }
       
       public function set images(value:Vector.<A3D2Image>) : void
       {
-         this.var_350 = value;
+         this.§_-ce§ = value;
       }
       
       public function get indexBuffers() : Vector.<A3D2IndexBuffer>
       {
-         return this.var_404;
+         return this.§_-jm§;
       }
       
       public function set indexBuffers(value:Vector.<A3D2IndexBuffer>) : void
       {
-         this.var_404 = value;
+         this.§_-jm§ = value;
       }
       
       public function get joints() : Vector.<A3D2Joint>
       {
-         return this.var_390;
+         return this.§_-26§;
       }
       
       public function set joints(value:Vector.<A3D2Joint>) : void
       {
-         this.var_390 = value;
+         this.§_-26§ = value;
       }
       
       public function get maps() : Vector.<A3D2Map>
       {
-         return this.var_349;
+         return this.§_-XJ§;
       }
       
       public function set maps(value:Vector.<A3D2Map>) : void
       {
-         this.var_349 = value;
+         this.§_-XJ§ = value;
       }
       
       public function get materials() : Vector.<A3D2Material>
       {
-         return this.var_347;
+         return this.§_-22§;
       }
       
       public function set materials(value:Vector.<A3D2Material>) : void
       {
-         this.var_347 = value;
+         this.§_-22§ = value;
       }
       
       public function get meshes() : Vector.<A3D2Mesh>
       {
-         return this.var_405;
+         return this.§_-jz§;
       }
       
       public function set meshes(value:Vector.<A3D2Mesh>) : void
       {
-         this.var_405 = value;
+         this.§_-jz§ = value;
       }
       
       public function get objects() : Vector.<A3D2Object>
       {
-         return this.var_348;
+         return this.§_-Kq§;
       }
       
       public function set objects(value:Vector.<A3D2Object>) : void
       {
-         this.var_348 = value;
+         this.§_-Kq§ = value;
       }
       
       public function get omniLights() : Vector.<A3D2OmniLight>
       {
-         return this.var_403;
+         return this.§_-fM§;
       }
       
       public function set omniLights(value:Vector.<A3D2OmniLight>) : void
       {
-         this.var_403 = value;
+         this.§_-fM§ = value;
       }
       
       public function get skins() : Vector.<A3D2Skin>
       {
-         return this.var_397;
+         return this.§_-G0§;
       }
       
       public function set skins(value:Vector.<A3D2Skin>) : void
       {
-         this.var_397 = value;
+         this.§_-G0§ = value;
       }
       
       public function get spotLights() : Vector.<A3D2SpotLight>
       {
-         return this.var_144;
+         return this.§_-pd§;
       }
       
       public function set spotLights(value:Vector.<A3D2SpotLight>) : void
       {
-         this.var_144 = value;
+         this.§_-pd§ = value;
       }
       
       public function get sprites() : Vector.<A3D2Sprite>
       {
-         return this.var_400;
+         return this.§_-Ke§;
       }
       
       public function set sprites(value:Vector.<A3D2Sprite>) : void
       {
-         this.var_400 = value;
+         this.§_-Ke§ = value;
       }
       
       public function get vertexBuffers() : Vector.<A3D2VertexBuffer>
       {
-         return this.var_276;
+         return this.§_-0B§;
       }
       
       public function set vertexBuffers(value:Vector.<A3D2VertexBuffer>) : void
       {
-         this.var_276 = value;
+         this.§_-0B§ = value;
       }
       
       public function toString() : String

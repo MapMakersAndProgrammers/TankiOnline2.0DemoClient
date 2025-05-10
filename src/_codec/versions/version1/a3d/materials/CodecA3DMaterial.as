@@ -13,19 +13,19 @@ package _codec.versions.version1.a3d.materials
    {
       public static var log:IClientLog = IClientLog(OSGi.getInstance().getService(IClientLog));
       
-      private var var_381:ICodec;
+      private var §_-9A§:ICodec;
       
-      private var var_386:ICodec;
+      private var §_-hw§:ICodec;
       
-      private var var_243:ICodec;
+      private var §_-2o§:ICodec;
       
-      private var var_384:ICodec;
+      private var §_-Hu§:ICodec;
       
-      private var var_383:ICodec;
+      private var §_-GK§:ICodec;
       
-      private var var_385:ICodec;
+      private var §_-LZ§:ICodec;
       
-      private var var_382:ICodec;
+      private var §_-FU§:ICodec;
       
       public function CodecA3DMaterial()
       {
@@ -34,31 +34,31 @@ package _codec.versions.version1.a3d.materials
       
       public function init(protocol:IProtocol) : void
       {
-         this.var_381 = protocol.getCodec(new TypeCodecInfo(Id,true));
-         this.var_386 = protocol.getCodec(new TypeCodecInfo(Id,true));
-         this.var_243 = protocol.getCodec(new TypeCodecInfo(Id,true));
-         this.var_384 = protocol.getCodec(new TypeCodecInfo(Id,true));
-         this.var_383 = protocol.getCodec(new TypeCodecInfo(Id,true));
-         this.var_385 = protocol.getCodec(new TypeCodecInfo(Id,true));
-         this.var_382 = protocol.getCodec(new TypeCodecInfo(Id,true));
+         this.§_-9A§ = protocol.getCodec(new TypeCodecInfo(Id,true));
+         this.§_-hw§ = protocol.getCodec(new TypeCodecInfo(Id,true));
+         this.§_-2o§ = protocol.getCodec(new TypeCodecInfo(Id,true));
+         this.§_-Hu§ = protocol.getCodec(new TypeCodecInfo(Id,true));
+         this.§_-GK§ = protocol.getCodec(new TypeCodecInfo(Id,true));
+         this.§_-LZ§ = protocol.getCodec(new TypeCodecInfo(Id,true));
+         this.§_-FU§ = protocol.getCodec(new TypeCodecInfo(Id,true));
       }
       
       public function decode(protocolBuffer:ProtocolBuffer) : Object
       {
          log = IClientLog(OSGi.getInstance().getService(IClientLog));
-         var value_diffuseMapId:Id = this.var_381.decode(protocolBuffer) as Id;
+         var value_diffuseMapId:Id = this.§_-9A§.decode(protocolBuffer) as Id;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.materials.A3DMaterial","diffuseMapId",value_diffuseMapId);
-         var value_glossinessMapId:Id = this.var_386.decode(protocolBuffer) as Id;
+         var value_glossinessMapId:Id = this.§_-hw§.decode(protocolBuffer) as Id;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.materials.A3DMaterial","glossinessMapId",value_glossinessMapId);
-         var value_id:Id = this.var_243.decode(protocolBuffer) as Id;
+         var value_id:Id = this.§_-2o§.decode(protocolBuffer) as Id;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.materials.A3DMaterial","id",value_id);
-         var value_lightMapId:Id = this.var_384.decode(protocolBuffer) as Id;
+         var value_lightMapId:Id = this.§_-Hu§.decode(protocolBuffer) as Id;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.materials.A3DMaterial","lightMapId",value_lightMapId);
-         var value_normalMapId:Id = this.var_383.decode(protocolBuffer) as Id;
+         var value_normalMapId:Id = this.§_-GK§.decode(protocolBuffer) as Id;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.materials.A3DMaterial","normalMapId",value_normalMapId);
-         var value_opacityMapId:Id = this.var_385.decode(protocolBuffer) as Id;
+         var value_opacityMapId:Id = this.§_-LZ§.decode(protocolBuffer) as Id;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.materials.A3DMaterial","opacityMapId",value_opacityMapId);
-         var value_specularMapId:Id = this.var_382.decode(protocolBuffer) as Id;
+         var value_specularMapId:Id = this.§_-FU§.decode(protocolBuffer) as Id;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.materials.A3DMaterial","specularMapId",value_specularMapId);
          return new A3DMaterial(value_diffuseMapId,value_glossinessMapId,value_id,value_lightMapId,value_normalMapId,value_opacityMapId,value_specularMapId);
       }
@@ -70,13 +70,13 @@ package _codec.versions.version1.a3d.materials
             throw new Error("Object is null. Use @ProtocolOptional annotation.");
          }
          var struct:A3DMaterial = A3DMaterial(object);
-         this.var_381.encode(protocolBuffer,struct.diffuseMapId);
-         this.var_386.encode(protocolBuffer,struct.glossinessMapId);
-         this.var_243.encode(protocolBuffer,struct.id);
-         this.var_384.encode(protocolBuffer,struct.lightMapId);
-         this.var_383.encode(protocolBuffer,struct.normalMapId);
-         this.var_385.encode(protocolBuffer,struct.opacityMapId);
-         this.var_382.encode(protocolBuffer,struct.specularMapId);
+         this.§_-9A§.encode(protocolBuffer,struct.diffuseMapId);
+         this.§_-hw§.encode(protocolBuffer,struct.glossinessMapId);
+         this.§_-2o§.encode(protocolBuffer,struct.id);
+         this.§_-Hu§.encode(protocolBuffer,struct.lightMapId);
+         this.§_-GK§.encode(protocolBuffer,struct.normalMapId);
+         this.§_-LZ§.encode(protocolBuffer,struct.opacityMapId);
+         this.§_-FU§.encode(protocolBuffer,struct.specularMapId);
       }
    }
 }

@@ -2,8 +2,8 @@ package alternativa.engine3d.loaders.collada
 {
    import alternativa.engine3d.alternativa3d;
    import alternativa.engine3d.animation.keys.NumberKey;
-   import alternativa.engine3d.animation.keys.name_552;
-   import alternativa.engine3d.animation.keys.name_591;
+   import alternativa.engine3d.animation.keys.NumberTrack;
+   import alternativa.engine3d.animation.keys.Track;
    
    use namespace alternativa3d;
    
@@ -35,9 +35,9 @@ package alternativa.engine3d.loaders.collada
       
       public static const PARAM_MATRIX:String = "matrix";
       
-      public var tracks:Vector.<name_552>;
+      public var tracks:Vector.<Track>;
       
-      public var name_589:String = "undefined";
+      public var §_-dS§:String = "undefined";
       
       public var animName:String;
       
@@ -129,13 +129,13 @@ package alternativa.engine3d.loaders.collada
                   switch(componentName)
                   {
                      case "X":
-                        this.name_589 = PARAM_TRANSLATE_X;
+                        this.§_-dS§ = PARAM_TRANSLATE_X;
                         break loop1;
                      case "Y":
-                        this.name_589 = PARAM_TRANSLATE_Y;
+                        this.§_-dS§ = PARAM_TRANSLATE_Y;
                         break loop1;
                      case "Z":
-                        this.name_589 = PARAM_TRANSLATE_Z;
+                        this.§_-dS§ = PARAM_TRANSLATE_Z;
                   }
                   break;
                case "rotate":
@@ -143,26 +143,26 @@ package alternativa.engine3d.loaders.collada
                   switch(axis.indexOf(1))
                   {
                      case 0:
-                        this.name_589 = PARAM_ROTATION_X;
+                        this.§_-dS§ = PARAM_ROTATION_X;
                         break loop1;
                      case 1:
-                        this.name_589 = PARAM_ROTATION_Y;
+                        this.§_-dS§ = PARAM_ROTATION_Y;
                         break loop1;
                      case 2:
-                        this.name_589 = PARAM_ROTATION_Z;
+                        this.§_-dS§ = PARAM_ROTATION_Z;
                   }
                   break;
                case "scale":
                   switch(componentName)
                   {
                      case "X":
-                        this.name_589 = PARAM_SCALE_X;
+                        this.§_-dS§ = PARAM_SCALE_X;
                         break loop1;
                      case "Y":
-                        this.name_589 = PARAM_SCALE_Y;
+                        this.§_-dS§ = PARAM_SCALE_Y;
                         break loop1;
                      case "Z":
-                        this.name_589 = PARAM_SCALE_Z;
+                        this.§_-dS§ = PARAM_SCALE_Z;
                   }
             }
          }
@@ -171,55 +171,55 @@ package alternativa.engine3d.loaders.collada
             switch(transformationName)
             {
                case "translate":
-                  this.name_589 = PARAM_TRANSLATE;
+                  this.§_-dS§ = PARAM_TRANSLATE;
                   break;
                case "scale":
-                  this.name_589 = PARAM_SCALE;
+                  this.§_-dS§ = PARAM_SCALE;
                   break;
                case "matrix":
-                  this.name_589 = PARAM_MATRIX;
+                  this.§_-dS§ = PARAM_MATRIX;
             }
          }
       }
       
       private function parseSampler() : void
       {
-         var track:name_591 = null;
+         var track:NumberTrack = null;
          var toRad:Number = NaN;
          var key:NumberKey = null;
          var sampler:DaeSampler = document.findSampler(data.@source[0]);
          if(sampler != null)
          {
             sampler.parse();
-            if(this.name_589 == PARAM_MATRIX)
+            if(this.§_-dS§ == PARAM_MATRIX)
             {
-               this.tracks = Vector.<name_552>([sampler.parseTransformationTrack(this.animName)]);
+               this.tracks = Vector.<Track>([sampler.parseTransformationTrack(this.animName)]);
                return;
             }
-            if(this.name_589 == PARAM_TRANSLATE)
+            if(this.§_-dS§ == PARAM_TRANSLATE)
             {
                this.tracks = sampler.parsePointsTracks(this.animName,"x","y","z");
                return;
             }
-            if(this.name_589 == PARAM_SCALE)
+            if(this.§_-dS§ == PARAM_SCALE)
             {
                this.tracks = sampler.parsePointsTracks(this.animName,"scaleX","scaleY","scaleZ");
                return;
             }
-            if(this.name_589 == PARAM_ROTATION_X || this.name_589 == PARAM_ROTATION_Y || this.name_589 == PARAM_ROTATION_Z)
+            if(this.§_-dS§ == PARAM_ROTATION_X || this.§_-dS§ == PARAM_ROTATION_Y || this.§_-dS§ == PARAM_ROTATION_Z)
             {
-               track = sampler.parseNumbersTrack(this.animName,this.name_589);
+               track = sampler.parseNumbersTrack(this.animName,this.§_-dS§);
                toRad = Math.PI / 180;
-               for(key = track.alternativa3d::name_599; key != null; key = key.alternativa3d::next)
+               for(key = track.alternativa3d::_-ku; key != null; key = key.alternativa3d::next)
                {
-                  key.alternativa3d::name_598 *= toRad;
+                  key.alternativa3d::_-4O *= toRad;
                }
-               this.tracks = Vector.<name_552>([track]);
+               this.tracks = Vector.<Track>([track]);
                return;
             }
-            if(this.name_589 == PARAM_TRANSLATE_X || this.name_589 == PARAM_TRANSLATE_Y || this.name_589 == PARAM_TRANSLATE_Z || this.name_589 == PARAM_SCALE_X || this.name_589 == PARAM_SCALE_Y || this.name_589 == PARAM_SCALE_Z)
+            if(this.§_-dS§ == PARAM_TRANSLATE_X || this.§_-dS§ == PARAM_TRANSLATE_Y || this.§_-dS§ == PARAM_TRANSLATE_Z || this.§_-dS§ == PARAM_SCALE_X || this.§_-dS§ == PARAM_SCALE_Y || this.§_-dS§ == PARAM_SCALE_Z)
             {
-               this.tracks = Vector.<name_552>([sampler.parseNumbersTrack(this.animName,this.name_589)]);
+               this.tracks = Vector.<Track>([sampler.parseNumbersTrack(this.animName,this.§_-dS§)]);
             }
          }
          else

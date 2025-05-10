@@ -47,7 +47,7 @@ package alternativa.engine3d.core.events
       
       public var localZ:Number;
       
-      alternativa3d var var_109:Surface;
+      alternativa3d var §_-BX§:Surface;
       
       public function MouseEvent3D(type:String, bubbles:Boolean = true, localX:Number = NaN, localY:Number = NaN, localZ:Number = NaN, relatedObject:Object3D = null, ctrlKey:Boolean = false, altKey:Boolean = false, shiftKey:Boolean = false, buttonDown:Boolean = false, delta:int = 0)
       {
@@ -65,12 +65,12 @@ package alternativa.engine3d.core.events
       
       public function get surface() : Surface
       {
-         return this.alternativa3d::var_109;
+         return this.alternativa3d::_-BX;
       }
       
       override public function clone() : Event
       {
-         return new MouseEvent3D(type,alternativa3d::var_107,this.localX,this.localY,this.localZ,this.relatedObject,this.ctrlKey,this.altKey,this.shiftKey,this.buttonDown,this.delta);
+         return new MouseEvent3D(type,alternativa3d::_-iJ,this.localX,this.localY,this.localZ,this.relatedObject,this.ctrlKey,this.altKey,this.shiftKey,this.buttonDown,this.delta);
       }
       
       override public function toString() : String

@@ -15,9 +15,9 @@ package _codec.versions.version1.a3d.objects
    {
       public static var log:IClientLog = IClientLog(OSGi.getInstance().getService(IClientLog));
       
-      private var var_284:ICodec;
+      private var §_-pM§:ICodec;
       
-      private var var_243:ICodec;
+      private var §_-2o§:ICodec;
       
       public function CodecA3DBox()
       {
@@ -26,16 +26,16 @@ package _codec.versions.version1.a3d.objects
       
       public function init(protocol:IProtocol) : void
       {
-         this.var_284 = protocol.getCodec(new CollectionCodecInfo(new TypeCodecInfo(Float,false),true,1));
-         this.var_243 = protocol.getCodec(new TypeCodecInfo(Id,true));
+         this.§_-pM§ = protocol.getCodec(new CollectionCodecInfo(new TypeCodecInfo(Float,false),true,1));
+         this.§_-2o§ = protocol.getCodec(new TypeCodecInfo(Id,true));
       }
       
       public function decode(protocolBuffer:ProtocolBuffer) : Object
       {
          log = IClientLog(OSGi.getInstance().getService(IClientLog));
-         var value_box:Vector.<Number> = this.var_284.decode(protocolBuffer) as Vector.<Number>;
+         var value_box:Vector.<Number> = this.§_-pM§.decode(protocolBuffer) as Vector.<Number>;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.objects.A3DBox","box",value_box);
-         var value_id:Id = this.var_243.decode(protocolBuffer) as Id;
+         var value_id:Id = this.§_-2o§.decode(protocolBuffer) as Id;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.objects.A3DBox","id",value_id);
          return new A3DBox(value_box,value_id);
       }
@@ -47,8 +47,8 @@ package _codec.versions.version1.a3d.objects
             throw new Error("Object is null. Use @ProtocolOptional annotation.");
          }
          var struct:A3DBox = A3DBox(object);
-         this.var_284.encode(protocolBuffer,struct.box);
-         this.var_243.encode(protocolBuffer,struct.id);
+         this.§_-pM§.encode(protocolBuffer,struct.box);
+         this.§_-2o§.encode(protocolBuffer,struct.id);
       }
    }
 }

@@ -14,15 +14,15 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
       
       private var wheels:Vector.<Mesh>;
       
-      private var var_646:Vector.<Number>;
+      private var §_-9d§:Vector.<Number>;
       
-      private var var_647:Vector.<Number>;
+      private var §_-MZ§:Vector.<Number>;
       
-      private var var_648:Vector.<Number>;
+      private var §_-oo§:Vector.<Number>;
       
       private var dUdY:Number;
       
-      private var var_645:Number = 0;
+      private var §_-cr§:Number = 0;
       
       private var trackSkin:Skin;
       
@@ -33,10 +33,10 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
          this.wheels = wheels;
          this.dUdY = dUdY;
          this.physicsComponent = this.physicsComponent;
-         this.var_648 = new Vector.<Number>(wheels.length);
+         this.§_-oo§ = new Vector.<Number>(wheels.length);
          for(var i:int = 0; i < wheels.length; i++)
          {
-            this.var_648[i] = wheels[i].boundBox.maxY;
+            this.§_-oo§[i] = wheels[i].boundBox.maxY;
          }
          this.initZCoords();
       }
@@ -53,32 +53,32 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
          for(var i:int = 0; i < numWheels; )
          {
             wheelMesh = this.wheels[i];
-            wheelMesh.rotationX -= ds / this.var_648[i];
+            wheelMesh.rotationX -= ds / this.§_-oo§[i];
             wheelDeltaZ = Number(this.physicsComponent.getWheelDeltaZ(wheelMesh.name));
-            wheelMesh.z = this.var_646[i] + wheelDeltaZ;
+            wheelMesh.z = this.§_-9d§[i] + wheelDeltaZ;
             bone = this.trackSkin.getChildByName(this.getBoneName(wheelMesh.name));
             if(bone != null)
             {
-               bone.z = this.var_647[i] + wheelDeltaZ;
+               bone.z = this.§_-MZ§[i] + wheelDeltaZ;
             }
             i++;
          }
          if(period > 0)
          {
             delta = ds * this.dUdY;
-            newOffset = this.var_645 + delta;
+            newOffset = this.§_-cr§ + delta;
             if(newOffset < 0)
             {
                while(newOffset < 0)
                {
                   newOffset += period;
                }
-               delta = newOffset - this.var_645;
-               this.var_645 = newOffset;
+               delta = newOffset - this.§_-cr§;
+               this.§_-cr§ = newOffset;
             }
             else if(newOffset < period)
             {
-               this.var_645 = newOffset;
+               this.§_-cr§ = newOffset;
             }
             else
             {
@@ -86,25 +86,25 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
                {
                   newOffset -= period;
                }
-               delta = newOffset - this.var_645;
-               this.var_645 = newOffset;
+               delta = newOffset - this.§_-cr§;
+               this.§_-cr§ = newOffset;
             }
-            this.material.vOffset = this.var_645;
+            this.material.vOffset = this.§_-cr§;
          }
       }
       
       private function initZCoords() : void
       {
          var bone:Object3D = null;
-         this.var_646 = new Vector.<Number>(this.wheels.length);
-         this.var_647 = new Vector.<Number>(this.wheels.length);
+         this.§_-9d§ = new Vector.<Number>(this.wheels.length);
+         this.§_-MZ§ = new Vector.<Number>(this.wheels.length);
          for(var i:int = 0; i < this.wheels.length; )
          {
-            this.var_646[i] = this.wheels[i].z;
+            this.§_-9d§[i] = this.wheels[i].z;
             bone = this.trackSkin.getChildByName(this.getBoneName(this.wheels[i].name));
             if(bone != null)
             {
-               this.var_647[i] = bone.z;
+               this.§_-MZ§[i] = bone.z;
             }
             i++;
          }

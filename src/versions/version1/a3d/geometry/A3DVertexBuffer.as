@@ -4,48 +4,48 @@ package versions.version1.a3d.geometry
    
    public class A3DVertexBuffer
    {
-      private var var_272:Vector.<int>;
+      private var §_-96§:Vector.<int>;
       
-      private var var_271:ByteArray;
+      private var §_-79§:ByteArray;
       
-      private var var_273:uint;
+      private var §_-g1§:uint;
       
       public function A3DVertexBuffer(attributes:Vector.<int>, byteBuffer:ByteArray, vertexCount:uint)
       {
          super();
-         this.var_272 = attributes;
-         this.var_271 = byteBuffer;
-         this.var_273 = vertexCount;
+         this.§_-96§ = attributes;
+         this.§_-79§ = byteBuffer;
+         this.§_-g1§ = vertexCount;
       }
       
       public function get attributes() : Vector.<int>
       {
-         return this.var_272;
+         return this.§_-96§;
       }
       
       public function set attributes(value:Vector.<int>) : void
       {
-         this.var_272 = value;
+         this.§_-96§ = value;
       }
       
       public function get byteBuffer() : ByteArray
       {
-         return this.var_271;
+         return this.§_-79§;
       }
       
       public function set byteBuffer(value:ByteArray) : void
       {
-         this.var_271 = value;
+         this.§_-79§ = value;
       }
       
       public function get vertexCount() : uint
       {
-         return this.var_273;
+         return this.§_-g1§;
       }
       
       public function set vertexCount(value:uint) : void
       {
-         this.var_273 = value;
+         this.§_-g1§ = value;
       }
       
       public function toString() : String

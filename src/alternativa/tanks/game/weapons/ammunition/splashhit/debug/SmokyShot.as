@@ -1,13 +1,13 @@
 package alternativa.tanks.game.weapons.ammunition.splashhit.debug
 {
    import alternativa.engine3d.core.BoundBox;
+   import alternativa.engine3d.effects.ParticleEffect;
    import alternativa.engine3d.effects.ParticlePrototype;
    import alternativa.engine3d.effects.TextureAtlas;
-   import alternativa.engine3d.effects.name_77;
    import flash.display3D.Context3DBlendFactor;
    import flash.geom.Vector3D;
    
-   public class SmokyShot extends name_77
+   public class SmokyShot extends ParticleEffect
    {
       private static var shotPrototype:ParticlePrototype;
       
@@ -32,18 +32,18 @@ package alternativa.tanks.game.weapons.ammunition.splashhit.debug
          boundBox.maxY = 100;
          boundBox.maxZ = 100;
          addKey(0 * 0.03333333333333333,this.keyFrame1);
-         method_127(var_151[var_148 - 1] + shotPrototype.lifeTime);
+         setLife(§_-gV§[§_-kf§ - 1] + shotPrototype.lifeTime);
       }
       
       private function keyFrame1(keyTime:Number, time:Number) : void
       {
-         pos.copyFrom(var_156);
+         pos.copyFrom(§_-cF§);
          pos.scaleBy(time * 100 + 25);
          shotPrototype.createParticle(this,time,pos,random() * 6.28,1,1,1,0);
-         pos.copyFrom(var_156);
+         pos.copyFrom(§_-cF§);
          pos.scaleBy(time * 300 + 32);
          shotPrototype.createParticle(this,time,pos,random() * 6.28,0.88,0.88,1,0);
-         pos.copyFrom(var_156);
+         pos.copyFrom(§_-cF§);
          pos.scaleBy(time * 400 + 39);
          shotPrototype.createParticle(this,time,pos,random() * 6.28,0.66,0.66,1,0);
       }

@@ -4,48 +4,48 @@ package versions.version2.a3d.geometry
    
    public class A3D2IndexBuffer
    {
-      private var var_271:ByteArray;
+      private var §_-79§:ByteArray;
       
-      private var var_101:int;
+      private var §_-3I§:int;
       
-      private var var_379:int;
+      private var §_-m0§:int;
       
       public function A3D2IndexBuffer(byteBuffer:ByteArray, id:int, indexCount:int)
       {
          super();
-         this.var_271 = byteBuffer;
-         this.var_101 = id;
-         this.var_379 = indexCount;
+         this.§_-79§ = byteBuffer;
+         this.§_-3I§ = id;
+         this.§_-m0§ = indexCount;
       }
       
       public function get byteBuffer() : ByteArray
       {
-         return this.var_271;
+         return this.§_-79§;
       }
       
       public function set byteBuffer(value:ByteArray) : void
       {
-         this.var_271 = value;
+         this.§_-79§ = value;
       }
       
       public function get id() : int
       {
-         return this.var_101;
+         return this.§_-3I§;
       }
       
       public function set id(value:int) : void
       {
-         this.var_101 = value;
+         this.§_-3I§ = value;
       }
       
       public function get indexCount() : int
       {
-         return this.var_379;
+         return this.§_-m0§;
       }
       
       public function set indexCount(value:int) : void
       {
-         this.var_379 = value;
+         this.§_-m0§ = value;
       }
       
       public function toString() : String

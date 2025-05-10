@@ -24,13 +24,13 @@ package alternativa.engine3d.objects
       
       private static var _deltaTransformProcedures:Dictionary = new Dictionary();
       
-      public var var_633:Vector.<Joint>;
+      public var §_-WA§:Vector.<Joint>;
       
-      alternativa3d var var_630:Vector.<Vector.<Joint>>;
+      alternativa3d var §_-Cq§:Vector.<Vector.<Joint>>;
       
-      alternativa3d var var_631:Vector.<Procedure>;
+      alternativa3d var §_-fB§:Vector.<Procedure>;
       
-      alternativa3d var var_632:Vector.<Procedure>;
+      alternativa3d var §do §:Vector.<Procedure>;
       
       private var numJoints:int = 0;
       
@@ -41,19 +41,19 @@ package alternativa.engine3d.objects
          super();
          this.numJoints = numJoints;
          this.maxInfluences = maxInfluences;
-         this.var_633 = new Vector.<Joint>();
-         this.alternativa3d::var_630 = new Vector.<Vector.<Joint>>();
-         this.alternativa3d::var_631 = new Vector.<Procedure>();
-         this.alternativa3d::var_632 = new Vector.<Procedure>();
+         this.§_-WA§ = new Vector.<Joint>();
+         this.alternativa3d::_-Cq = new Vector.<Vector.<Joint>>();
+         this.alternativa3d::_-fB = new Vector.<Procedure>();
+         this.alternativa3d::do  = new Vector.<Procedure>();
          alternativa3d::transformProcedure = this.calculateTransformProcedure(maxInfluences,numJoints);
          alternativa3d::deltaTransformProcedure = this.calculateDeltaTransformProcedure(maxInfluences,numJoints);
       }
       
       override public function addSurface(material:Material, indexBegin:uint, numTriangles:uint) : Surface
       {
-         this.alternativa3d::var_631[alternativa3d::var_93] = alternativa3d::transformProcedure;
-         this.alternativa3d::var_632[alternativa3d::var_93] = alternativa3d::deltaTransformProcedure;
-         this.alternativa3d::var_630[alternativa3d::var_93] = this.var_633;
+         this.alternativa3d::_-fB[alternativa3d::_-Oy] = alternativa3d::transformProcedure;
+         this.alternativa3d::do [alternativa3d::_-Oy] = alternativa3d::deltaTransformProcedure;
+         this.alternativa3d::_-Cq[alternativa3d::_-Oy] = this.§_-WA§;
          return super.addSurface(material,indexBegin,numTriangles);
       }
       
@@ -340,16 +340,16 @@ package alternativa.engine3d.objects
             var lastMaxIndex:uint = 0;
             var lastSurfaceIndex:uint = 0;
             var lastIndicesCount:uint = 0;
-            this.alternativa3d::var_630.length = 0;
+            this.alternativa3d::_-Cq.length = 0;
             var jointsBufferNumMappings:int = int(geometry.alternativa3d::_vertexStreams[jointsBuffer].attributes.length);
             var jointsBufferData:ByteArray = geometry.alternativa3d::_vertexStreams[jointsBuffer].data;
-            for(var i:int = 0; i < alternativa3d::var_93; i++)
+            for(var i:int = 0; i < alternativa3d::_-Oy; i++)
             {
                outIndices = new Vector.<uint>();
                outVertices = new ByteArray();
                outJointsMaps = new Vector.<Dictionary>();
                outVertices.endian = Endian.LITTLE_ENDIAN;
-               maxIndex = this.divideSurface(limit,iterations,alternativa3d::var_92[i],jointsOffsets,jointsBufferNumMappings * 4,jointsBufferData,outVertices,outIndices,outSurfaces,outJointsMaps);
+               maxIndex = this.divideSurface(limit,iterations,alternativa3d::_-eW[i],jointsOffsets,jointsBufferNumMappings * 4,jointsBufferData,outVertices,outIndices,outSurfaces,outJointsMaps);
                for(j = 0,count = int(outIndices.length); j < count; j++)
                {
                   var _loc31_:* = totalIndicesLength++;
@@ -358,7 +358,7 @@ package alternativa.engine3d.objects
                for(j = 0,count = int(outJointsMaps.length); j < count; j++)
                {
                   maxJoints = 0;
-                  vec = this.alternativa3d::var_630[j + lastSurfaceIndex] = new Vector.<Joint>();
+                  vec = this.alternativa3d::_-Cq[j + lastSurfaceIndex] = new Vector.<Joint>();
                   joints = outJointsMaps[j];
                   for(key in joints)
                   {
@@ -367,7 +367,7 @@ package alternativa.engine3d.objects
                      {
                         vec.length = index + 1;
                      }
-                     vec[index] = this.var_633[uint(key / 3)];
+                     vec[index] = this.§_-WA§[uint(key / 3)];
                      maxJoints++;
                   }
                }
@@ -380,14 +380,14 @@ package alternativa.engine3d.objects
                totalVertices.writeBytes(outVertices,0,outVertices.length);
                lastMaxIndex += maxIndex;
             }
-            alternativa3d::var_92 = outSurfaces;
-            alternativa3d::var_93 = outSurfaces.length;
-            this.alternativa3d::var_631.length = alternativa3d::var_93;
-            this.alternativa3d::var_632.length = alternativa3d::var_93;
-            for(i = 0; i < alternativa3d::var_93; i++)
+            alternativa3d::_-eW = outSurfaces;
+            alternativa3d::_-Oy = outSurfaces.length;
+            this.alternativa3d::_-fB.length = alternativa3d::_-Oy;
+            this.alternativa3d::do .length = alternativa3d::_-Oy;
+            for(i = 0; i < alternativa3d::_-Oy; i++)
             {
-               this.alternativa3d::var_631[i] = this.calculateTransformProcedure(this.maxInfluences,this.alternativa3d::var_630[i].length);
-               this.alternativa3d::var_632[i] = this.calculateDeltaTransformProcedure(this.maxInfluences,this.alternativa3d::var_630[i].length);
+               this.alternativa3d::_-fB[i] = this.calculateTransformProcedure(this.maxInfluences,this.alternativa3d::_-Cq[i].length);
+               this.alternativa3d::do [i] = this.calculateDeltaTransformProcedure(this.maxInfluences,this.alternativa3d::_-Cq[i].length);
             }
             var newGeometry:Geometry = new Geometry();
             newGeometry.alternativa3d::_indices = totalIndices;
@@ -453,11 +453,11 @@ package alternativa.engine3d.objects
             this.calculateJointsTransforms(child);
             child = child.alternativa3d::next;
          }
-         for(var i:int = 0; i < alternativa3d::var_93; )
+         for(var i:int = 0; i < alternativa3d::_-Oy; )
          {
-            surface = alternativa3d::var_92[i];
-            alternativa3d::transformProcedure = this.alternativa3d::var_631[i];
-            alternativa3d::deltaTransformProcedure = this.alternativa3d::var_632[i];
+            surface = alternativa3d::_-eW[i];
+            alternativa3d::transformProcedure = this.alternativa3d::_-fB[i];
+            alternativa3d::deltaTransformProcedure = this.alternativa3d::do [i];
             if(surface.material != null)
             {
                surface.material.alternativa3d::collectDraws(camera,surface,geometry,lights,lightsLength);
@@ -470,7 +470,7 @@ package alternativa.engine3d.objects
          }
          if(camera.debug)
          {
-            debug = int(camera.alternativa3d::checkInDebug(this));
+            debug = camera.alternativa3d::checkInDebug(this);
             if(Boolean(debug & Debug.BOUNDS) && boundBox != null)
             {
                Debug.alternativa3d::drawBoundBox(camera,boundBox,alternativa3d::localToCameraTransform);
@@ -489,12 +489,12 @@ package alternativa.engine3d.objects
             attribute = int(VertexAttributes.JOINTS[i >> 1]);
             drawUnit.alternativa3d::setVertexBufferAt(vertexShader.getVariableIndex("joint" + i.toString()),geometry.alternativa3d::getVertexBuffer(attribute),geometry.alternativa3d::_attributesOffsets[attribute],VertexAttributes.alternativa3d::FORMATS[attribute]);
          }
-         var surfaceIndex:int = int(alternativa3d::var_92.indexOf(surface));
-         var joints:Vector.<Joint> = this.alternativa3d::var_630[surfaceIndex];
+         var surfaceIndex:int = int(alternativa3d::_-eW.indexOf(surface));
+         var joints:Vector.<Joint> = this.alternativa3d::_-Cq[surfaceIndex];
          for(i = 0,count = int(joints.length); i < count; i++)
          {
             joint = joints[i];
-            drawUnit.alternativa3d::setVertexConstantsFromTransform(i * 3,joint.alternativa3d::name_549);
+            drawUnit.alternativa3d::setVertexConstantsFromTransform(i * 3,joint.alternativa3d::_-Dy);
          }
       }
       
@@ -618,15 +618,15 @@ package alternativa.engine3d.objects
       {
          super.clonePropertiesFrom(source);
          var skin:Skin = Skin(source);
-         if(skin.var_633 != null)
+         if(skin.§_-WA§ != null)
          {
-            this.var_633 = this.cloneJointsVector(skin.var_633,skin);
+            this.§_-WA§ = this.cloneJointsVector(skin.§_-WA§,skin);
          }
-         for(var i:int = 0; i < alternativa3d::var_93; )
+         for(var i:int = 0; i < alternativa3d::_-Oy; )
          {
-            this.alternativa3d::var_630[i] = this.cloneJointsVector(skin.alternativa3d::var_630[i],skin);
-            this.alternativa3d::var_631[i] = this.calculateTransformProcedure(this.maxInfluences,this.alternativa3d::var_630[i].length);
-            this.alternativa3d::var_632[i] = this.calculateDeltaTransformProcedure(this.maxInfluences,this.alternativa3d::var_630[i].length);
+            this.alternativa3d::_-Cq[i] = this.cloneJointsVector(skin.alternativa3d::_-Cq[i],skin);
+            this.alternativa3d::_-fB[i] = this.calculateTransformProcedure(this.maxInfluences,this.alternativa3d::_-Cq[i].length);
+            this.alternativa3d::do [i] = this.calculateDeltaTransformProcedure(this.maxInfluences,this.alternativa3d::_-Cq[i].length);
             i++;
          }
       }

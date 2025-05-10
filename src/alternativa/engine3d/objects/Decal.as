@@ -29,9 +29,9 @@ package alternativa.engine3d.objects
       {
          var surface:Surface = null;
          var debug:int = 0;
-         for(var i:int = 0; i < alternativa3d::var_93; )
+         for(var i:int = 0; i < alternativa3d::_-Oy; )
          {
-            surface = alternativa3d::var_92[i];
+            surface = alternativa3d::_-eW[i];
             if(surface.material != null)
             {
                surface.material.alternativa3d::collectDraws(camera,surface,geometry,lights,lightsLength,RenderPriority.DECALS);
@@ -44,7 +44,7 @@ package alternativa.engine3d.objects
          }
          if(camera.debug)
          {
-            debug = int(camera.alternativa3d::checkInDebug(this));
+            debug = camera.alternativa3d::checkInDebug(this);
             if(Boolean(debug & Debug.BOUNDS) && boundBox != null)
             {
                Debug.alternativa3d::drawBoundBox(camera,boundBox,alternativa3d::localToCameraTransform);

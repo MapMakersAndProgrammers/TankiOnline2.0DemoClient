@@ -10,30 +10,30 @@ package alternativa.tanks.game.subsystems.eventsystem
       
       private var eventQueue2:List;
       
-      private var var_213:Object;
+      private var §_-iZ§:Object;
       
       public function EventSystem(priority:int)
       {
          super(priority);
          this.eventQueue1 = new List();
          this.eventQueue2 = new List();
-         this.var_213 = new Object();
+         this.§_-iZ§ = new Object();
       }
       
       public function addEventListener(eventType:String, listener:IGameEventListener) : void
       {
-         var listeners:List = this.var_213[eventType];
+         var listeners:List = this.§_-iZ§[eventType];
          if(listeners == null)
          {
             listeners = new List();
-            this.var_213[eventType] = listeners;
+            this.§_-iZ§[eventType] = listeners;
          }
          listeners.add(listener);
       }
       
       public function removeEventListener(eventType:String, listener:IGameEventListener) : void
       {
-         var listeners:List = this.var_213[eventType];
+         var listeners:List = this.§_-iZ§[eventType];
          if(listeners != null)
          {
             listeners.remove(listener);
@@ -55,7 +55,7 @@ package alternativa.tanks.game.subsystems.eventsystem
          this.eventQueue1 = this.eventQueue2;
          for(this.eventQueue2 = tmp; (event = GameEvent(this.eventQueue2.poll())) != null; )
          {
-            listeners = this.var_213[event.eventType];
+            listeners = this.§_-iZ§[event.eventType];
             if(listeners != null)
             {
                iterator = listeners.listIterator();

@@ -12,11 +12,11 @@ package alternativa.physics
       
       public var feature2:int;
       
-      public var name_503:Number;
+      public var §_-0C§:Number;
       
-      public var name_505:Number;
+      public var §_-A-§:Number;
       
-      public var name_502:Number;
+      public var §_-DS§:Number;
       
       public var angularInertia1:Number;
       
@@ -26,9 +26,9 @@ package alternativa.physics
       
       public var r2:Vector3 = new Vector3();
       
-      public var name_504:Number;
+      public var §_-Dv§:Number;
       
-      public var name_507:Boolean;
+      public var §_-CV§:Boolean;
       
       public function ContactPoint()
       {

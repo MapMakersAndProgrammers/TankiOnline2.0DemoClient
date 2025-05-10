@@ -4,17 +4,17 @@ package alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy
    {
       public var rayLength:Number = 0;
       
-      public var name_420:Number = 0;
+      public var §_-Fw§:Number = 0;
       
-      public var name_518:Number = 0;
+      public var §_-Ko§:Number = 0;
       
-      public var name_423:Number = 0;
+      public var §_-WZ§:Number = 0;
       
-      public var name_519:Number = 100;
+      public var §_-d7§:Number = 100;
       
-      public var name_520:Number = 3;
+      public var §_-4W§:Number = 3;
       
-      public var name_521:Number = 0.2;
+      public var §_-VW§:Number = 0.2;
       
       public function SuspensionData()
       {

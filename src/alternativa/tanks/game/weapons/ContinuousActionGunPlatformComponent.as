@@ -18,23 +18,23 @@ package alternativa.tanks.game.weapons
       
       private var energyRecoveryRate:Number;
       
-      private var var_442:IContinuousActionWeapon;
+      private var §_-lp§:IContinuousActionWeapon;
       
       private var baseTime:Number;
       
-      private var var_437:Boolean;
+      private var §_-Lq§:Boolean;
       
-      private var var_438:Boolean;
+      private var §_-3§:Boolean;
       
-      private var var_439:Boolean;
+      private var §_-Rr§:Boolean;
       
-      private var var_440:Boolean;
+      private var §_-f3§:Boolean;
       
       private var isLocal:Boolean;
       
       private var gameKernel:GameKernel;
       
-      private var var_441:ILogic;
+      private var §_-hE§:ILogic;
       
       public function ContinuousActionGunPlatformComponent(energyCapacity:Number, energyDrainRate:Number, energyRecoveryRate:Number, isLocal:Boolean)
       {
@@ -48,17 +48,17 @@ package alternativa.tanks.game.weapons
       
       public function get enabled() : Boolean
       {
-         return this.var_439;
+         return this.§_-Rr§;
       }
       
       public function set enabled(value:Boolean) : void
       {
-         if(this.var_439 != value)
+         if(this.§_-Rr§ != value)
          {
-            this.var_439 = value;
+            this.§_-Rr§ = value;
             if(value)
             {
-               if(this.var_438)
+               if(this.§_-3§)
                {
                   this.getLogger().log("gun","ContinuousActionGunPlatformComponent::enabled() activating");
                   this.activate();
@@ -76,7 +76,7 @@ package alternativa.tanks.game.weapons
       
       override public function initComponent() : void
       {
-         this.var_442 = IContinuousActionWeapon(entity.getComponentStrict(IContinuousActionWeapon));
+         this.§_-lp§ = IContinuousActionWeapon(entity.getComponentStrict(IContinuousActionWeapon));
          if(this.isLocal)
          {
             entity.addEventHandler(TankEvents.SET_ACTIVE_STATE,this.setActiveState);
@@ -90,26 +90,26 @@ package alternativa.tanks.game.weapons
       override public function addToGame(gameKernel:GameKernel) : void
       {
          this.gameKernel = gameKernel;
-         this.var_441 = gameKernel.getLogicSystem2();
+         this.§_-hE§ = gameKernel.getLogicSystem2();
       }
       
       override public function removeFromGame(gameKernel:GameKernel) : void
       {
-         this.var_441 = null;
+         this.§_-hE§ = null;
          this.gameKernel = null;
       }
       
       public function getStatus() : Number
       {
-         return this.getCurrentEnergy(TimeSystem.timeSeconds,this.var_437) / this.energyCapacity;
+         return this.getCurrentEnergy(TimeSystem.timeSeconds,this.§_-Lq§) / this.energyCapacity;
       }
       
       public function pullTrigger() : void
       {
-         if(!this.var_438)
+         if(!this.§_-3§)
          {
             this.getLogger().log("gun","ContinuousActionGunPlatformComponent::pullTrigger()");
-            this.var_438 = true;
+            this.§_-3§ = true;
             this.activate();
             this.enableLogic();
          }
@@ -117,10 +117,10 @@ package alternativa.tanks.game.weapons
       
       public function releaseTrigger() : void
       {
-         if(this.var_438)
+         if(this.§_-3§)
          {
             this.getLogger().log("gun","ContinuousActionGunPlatformComponent::releaseTrigger()");
-            this.var_438 = false;
+            this.§_-3§ = false;
             this.deactivate();
             this.disableLogic();
          }
@@ -137,10 +137,10 @@ package alternativa.tanks.game.weapons
       
       public function runLogic() : void
       {
-         var currentEnergy:Number = this.getCurrentEnergy(TimeSystem.timeSeconds,this.var_437);
+         var currentEnergy:Number = this.getCurrentEnergy(TimeSystem.timeSeconds,this.§_-Lq§);
          if(currentEnergy > 0)
          {
-            this.var_442.update();
+            this.§_-lp§.update();
          }
          else
          {
@@ -173,19 +173,19 @@ package alternativa.tanks.game.weapons
       
       private function enableLogic() : void
       {
-         if(!this.var_440 && this.var_439)
+         if(!this.§_-f3§ && this.§_-Rr§)
          {
-            this.var_440 = true;
-            this.var_441.addLogicUnit(this);
+            this.§_-f3§ = true;
+            this.§_-hE§.addLogicUnit(this);
          }
       }
       
       private function disableLogic() : void
       {
-         if(this.var_440)
+         if(this.§_-f3§)
          {
-            this.var_440 = false;
-            this.var_441.removeLogicUnit(this);
+            this.§_-f3§ = false;
+            this.§_-hE§.removeLogicUnit(this);
          }
       }
       
@@ -193,10 +193,10 @@ package alternativa.tanks.game.weapons
       {
          var now:Number = NaN;
          var currentEnergy:Number = NaN;
-         if(!this.var_437 && this.var_439)
+         if(!this.§_-Lq§ && this.§_-Rr§)
          {
-            this.var_437 = true;
-            this.var_442.start();
+            this.§_-Lq§ = true;
+            this.§_-lp§.start();
             now = TimeSystem.timeSeconds;
             currentEnergy = this.getCurrentEnergy(now,false);
             this.baseTime = now - (this.energyCapacity - currentEnergy) / this.energyDrainRate;
@@ -206,10 +206,10 @@ package alternativa.tanks.game.weapons
       private function deactivate() : void
       {
          var now:Number = NaN;
-         if(this.var_437)
+         if(this.§_-Lq§)
          {
-            this.var_437 = false;
-            this.var_442.stop();
+            this.§_-Lq§ = false;
+            this.§_-lp§.stop();
             now = TimeSystem.timeSeconds;
             this.baseTime = now - this.getCurrentEnergy(now,true) / this.energyRecoveryRate;
          }

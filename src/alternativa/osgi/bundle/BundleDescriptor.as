@@ -13,9 +13,9 @@ package alternativa.osgi.bundle
       
       private var _name:String;
       
-      private var var_566:Vector.<IBundleActivator>;
+      private var §_-lF§:Vector.<IBundleActivator>;
       
-      private var var_567:Properties;
+      private var §_-7V§:Properties;
       
       public function BundleDescriptor(properties:Properties)
       {
@@ -23,7 +23,7 @@ package alternativa.osgi.bundle
          var isActivatorExists:Boolean = false;
          var activatorClass:Class = null;
          super();
-         this.var_567 = properties || new Properties();
+         this.§_-7V§ = properties || new Properties();
          this._name = properties.getProperty("Bundle-Name");
          clientLog.log(LOG_CHANNEL,"BundleDescriptor: Bundle name: %1",this._name);
          var activatorClassNames:Array = [properties.getProperty("Bundle-Activator")];
@@ -31,14 +31,14 @@ package alternativa.osgi.bundle
          {
             activatorClassNames.push(this._name.toLowerCase() + ".Activator");
          }
-         this.var_566 = new Vector.<IBundleActivator>();
+         this.§_-lF§ = new Vector.<IBundleActivator>();
          for each(activatorClassName in activatorClassNames)
          {
             isActivatorExists = Boolean(ApplicationDomain.currentDomain.hasDefinition(activatorClassName));
             if(isActivatorExists)
             {
                activatorClass = Class(ApplicationDomain.currentDomain.getDefinition(activatorClassName));
-               this.var_566.push(IBundleActivator(new activatorClass()));
+               this.§_-lF§.push(IBundleActivator(new activatorClass()));
                clientLog.log(LOG_CHANNEL,"BundleDescriptor: Activator has been created: %1",activatorClassName);
             }
             else
@@ -55,12 +55,12 @@ package alternativa.osgi.bundle
       
       public function get activators() : Vector.<IBundleActivator>
       {
-         return this.var_566;
+         return this.§_-lF§;
       }
       
       public function get properties() : Properties
       {
-         return this.var_567;
+         return this.§_-7V§;
       }
    }
 }

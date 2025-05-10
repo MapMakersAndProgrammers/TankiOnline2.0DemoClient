@@ -4,125 +4,125 @@ package versions.version2.a3d.objects
    
    public class A3D2SpotLight
    {
-      private var var_265:Number;
+      private var §_-Hw§:Number;
       
-      private var var_263:Number;
+      private var §_-AS§:Number;
       
-      private var var_270:int;
+      private var §_-jD§:int;
       
-      private var var_266:uint;
+      private var §_-Tn§:uint;
       
-      private var var_267:Number;
+      private var §_-a0§:Number;
       
-      private var var_264:Number;
+      private var §_-GR§:Number;
       
-      private var var_101:Long;
+      private var §_-3I§:Long;
       
-      private var var_262:Number;
+      private var §_-74§:Number;
       
       private var _name:String;
       
-      private var var_269:Long;
+      private var §_-fP§:Long;
       
-      private var var_268:A3D2Transform;
+      private var §_-bP§:A3D2Transform;
       
-      private var var_261:Boolean;
+      private var §_-1u§:Boolean;
       
       public function A3D2SpotLight(attenuationBegin:Number, attenuationEnd:Number, boundBoxId:int, color:uint, falloff:Number, hotspot:Number, id:Long, intensity:Number, name:String, parentId:Long, transform:A3D2Transform, visible:Boolean)
       {
          super();
-         this.var_265 = attenuationBegin;
-         this.var_263 = attenuationEnd;
-         this.var_270 = boundBoxId;
-         this.var_266 = color;
-         this.var_267 = falloff;
-         this.var_264 = hotspot;
-         this.var_101 = id;
-         this.var_262 = intensity;
+         this.§_-Hw§ = attenuationBegin;
+         this.§_-AS§ = attenuationEnd;
+         this.§_-jD§ = boundBoxId;
+         this.§_-Tn§ = color;
+         this.§_-a0§ = falloff;
+         this.§_-GR§ = hotspot;
+         this.§_-3I§ = id;
+         this.§_-74§ = intensity;
          this._name = name;
-         this.var_269 = parentId;
-         this.var_268 = transform;
-         this.var_261 = visible;
+         this.§_-fP§ = parentId;
+         this.§_-bP§ = transform;
+         this.§_-1u§ = visible;
       }
       
       public function get attenuationBegin() : Number
       {
-         return this.var_265;
+         return this.§_-Hw§;
       }
       
       public function set attenuationBegin(value:Number) : void
       {
-         this.var_265 = value;
+         this.§_-Hw§ = value;
       }
       
       public function get attenuationEnd() : Number
       {
-         return this.var_263;
+         return this.§_-AS§;
       }
       
       public function set attenuationEnd(value:Number) : void
       {
-         this.var_263 = value;
+         this.§_-AS§ = value;
       }
       
       public function get boundBoxId() : int
       {
-         return this.var_270;
+         return this.§_-jD§;
       }
       
       public function set boundBoxId(value:int) : void
       {
-         this.var_270 = value;
+         this.§_-jD§ = value;
       }
       
       public function get color() : uint
       {
-         return this.var_266;
+         return this.§_-Tn§;
       }
       
       public function set color(value:uint) : void
       {
-         this.var_266 = value;
+         this.§_-Tn§ = value;
       }
       
       public function get falloff() : Number
       {
-         return this.var_267;
+         return this.§_-a0§;
       }
       
       public function set falloff(value:Number) : void
       {
-         this.var_267 = value;
+         this.§_-a0§ = value;
       }
       
       public function get hotspot() : Number
       {
-         return this.var_264;
+         return this.§_-GR§;
       }
       
       public function set hotspot(value:Number) : void
       {
-         this.var_264 = value;
+         this.§_-GR§ = value;
       }
       
       public function get id() : Long
       {
-         return this.var_101;
+         return this.§_-3I§;
       }
       
       public function set id(value:Long) : void
       {
-         this.var_101 = value;
+         this.§_-3I§ = value;
       }
       
       public function get intensity() : Number
       {
-         return this.var_262;
+         return this.§_-74§;
       }
       
       public function set intensity(value:Number) : void
       {
-         this.var_262 = value;
+         this.§_-74§ = value;
       }
       
       public function get name() : String
@@ -137,32 +137,32 @@ package versions.version2.a3d.objects
       
       public function get parentId() : Long
       {
-         return this.var_269;
+         return this.§_-fP§;
       }
       
       public function set parentId(value:Long) : void
       {
-         this.var_269 = value;
+         this.§_-fP§ = value;
       }
       
       public function get transform() : A3D2Transform
       {
-         return this.var_268;
+         return this.§_-bP§;
       }
       
       public function set transform(value:A3D2Transform) : void
       {
-         this.var_268 = value;
+         this.§_-bP§ = value;
       }
       
       public function get visible() : Boolean
       {
-         return this.var_261;
+         return this.§_-1u§;
       }
       
       public function set visible(value:Boolean) : void
       {
-         this.var_261 = value;
+         this.§_-1u§ = value;
       }
       
       public function toString() : String

@@ -6,7 +6,7 @@ package alternativa.tanks.game.utils.list
       
       internal var tail:ListItem;
       
-      internal var var_568:int;
+      internal var §_-M0§:int;
       
       public function List()
       {
@@ -30,7 +30,7 @@ package alternativa.tanks.game.utils.list
          newItem.prev = this.tail.prev;
          this.tail.prev = newItem;
          newItem.prev.next = newItem;
-         ++this.var_568;
+         ++this.§_-M0§;
       }
       
       public function remove(data:Object) : Boolean
@@ -99,7 +99,7 @@ package alternativa.tanks.game.utils.list
          item.next.prev = item.prev;
          item.next = null;
          item.prev = null;
-         ++this.var_568;
+         ++this.§_-M0§;
       }
    }
 }

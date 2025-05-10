@@ -2,48 +2,48 @@ package versions.version2.a3d.objects
 {
    public class A3D2Surface
    {
-      private var var_300:int;
+      private var §_-50§:int;
       
-      private var var_301:int;
+      private var §_-pS§:int;
       
-      private var var_299:int;
+      private var §_-4C§:int;
       
       public function A3D2Surface(indexBegin:int, materialId:int, numTriangles:int)
       {
          super();
-         this.var_300 = indexBegin;
-         this.var_301 = materialId;
-         this.var_299 = numTriangles;
+         this.§_-50§ = indexBegin;
+         this.§_-pS§ = materialId;
+         this.§_-4C§ = numTriangles;
       }
       
       public function get indexBegin() : int
       {
-         return this.var_300;
+         return this.§_-50§;
       }
       
       public function set indexBegin(value:int) : void
       {
-         this.var_300 = value;
+         this.§_-50§ = value;
       }
       
       public function get materialId() : int
       {
-         return this.var_301;
+         return this.§_-pS§;
       }
       
       public function set materialId(value:int) : void
       {
-         this.var_301 = value;
+         this.§_-pS§ = value;
       }
       
       public function get numTriangles() : int
       {
-         return this.var_299;
+         return this.§_-4C§;
       }
       
       public function set numTriangles(value:int) : void
       {
-         this.var_299 = value;
+         this.§_-4C§ = value;
       }
       
       public function toString() : String

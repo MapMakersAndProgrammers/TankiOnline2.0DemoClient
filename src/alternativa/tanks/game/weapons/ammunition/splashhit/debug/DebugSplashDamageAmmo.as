@@ -11,7 +11,7 @@ package alternativa.tanks.game.weapons.ammunition.splashhit.debug
    
    public class DebugSplashDamageAmmo implements IGenericAmmunition
    {
-      private var var_468:SplashDamageRound;
+      private var §_-ea§:SplashDamageRound;
       
       public function DebugSplashDamageAmmo(gameKernel:GameKernel, radius:Number, impactForce:Number, maximumDamageRadius:Number, minimumDamageRadius:Number, minimumDamageCoefficient:Number, callback:IAOEAmmunitionCallback, frames:Vector.<Material>)
       {
@@ -21,13 +21,13 @@ package alternativa.tanks.game.weapons.ammunition.splashhit.debug
          var splashDamageEffects:DebugSplashDamageEffects = new DebugSplashDamageEffects(gameKernel,frames);
          var collisionDetector:ITanksCollisionDetector = ITanksCollisionDetector(gameKernel.getPhysicsSystem().getPhysicsScene().collisionDetector);
          var debugSplashTargetFilter:DebugSplashTargetFilter = new DebugSplashTargetFilter();
-         this.var_468 = new SplashDamageRound(impactForce,weaponDistanceWeakening,splashDamage,splashDamageEffects,collisionDetector,debugSplashTargetFilter);
-         this.var_468.setCallback(callback);
+         this.§_-ea§ = new SplashDamageRound(impactForce,weaponDistanceWeakening,splashDamage,splashDamageEffects,collisionDetector,debugSplashTargetFilter);
+         this.§_-ea§.setCallback(callback);
       }
       
       public function getRound() : IGenericRound
       {
-         return this.var_468;
+         return this.§_-ea§;
       }
    }
 }

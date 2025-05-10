@@ -18,11 +18,11 @@ package alternativa.tanks.game.effects
       
       private var speed:Number;
       
-      private var var_737:Number;
+      private var §_-Jr§:Number;
       
-      private var var_738:int;
+      private var §_-KH§:int;
       
-      private var var_736:int;
+      private var §_-EE§:int;
       
       public function Blinker(initialInterval:int, minInterval:int, intervalDecrement:int, minValue:Number, maxValue:Number, speedCoeff:Number)
       {
@@ -33,15 +33,15 @@ package alternativa.tanks.game.effects
          this.minValue = minValue;
          this.maxValue = maxValue;
          this.speedCoeff = speedCoeff;
-         this.var_737 = maxValue - minValue;
+         this.§_-Jr§ = maxValue - minValue;
       }
       
       public function init(now:int) : void
       {
          this.value = this.maxValue;
-         this.var_736 = this.initialInterval;
+         this.§_-EE§ = this.initialInterval;
          this.speed = this.getSpeed(-1);
-         this.var_738 = now + this.var_736;
+         this.§_-KH§ = now + this.§_-EE§;
       }
       
       public function setMaxValue(value:Number) : void
@@ -51,7 +51,7 @@ package alternativa.tanks.game.effects
             return;
          }
          this.maxValue = value;
-         this.var_737 = this.maxValue - this.minValue;
+         this.§_-Jr§ = this.maxValue - this.minValue;
       }
       
       public function setMinValue(value:Number) : void
@@ -61,7 +61,7 @@ package alternativa.tanks.game.effects
             return;
          }
          this.minValue = value;
-         this.var_737 = this.maxValue - this.minValue;
+         this.§_-Jr§ = this.maxValue - this.minValue;
       }
       
       public function updateValue(now:int, delta:int) : Number
@@ -75,17 +75,17 @@ package alternativa.tanks.game.effects
          {
             this.value = this.minValue;
          }
-         if(now >= this.var_738)
+         if(now >= this.§_-KH§)
          {
-            if(this.var_736 > this.minInterval)
+            if(this.§_-EE§ > this.minInterval)
             {
-               this.var_736 -= this.intervalDecrement;
-               if(this.var_736 < this.minInterval)
+               this.§_-EE§ -= this.intervalDecrement;
+               if(this.§_-EE§ < this.minInterval)
                {
-                  this.var_736 = this.minInterval;
+                  this.§_-EE§ = this.minInterval;
                }
             }
-            this.var_738 = now + this.var_736;
+            this.§_-KH§ = now + this.§_-EE§;
             if(this.speed < 0)
             {
                this.speed = this.getSpeed(1);
@@ -100,7 +100,7 @@ package alternativa.tanks.game.effects
       
       private function getSpeed(direction:Number) : Number
       {
-         return direction * this.speedCoeff * this.var_737 / this.var_736;
+         return direction * this.speedCoeff * this.§_-Jr§ / this.§_-EE§;
       }
    }
 }

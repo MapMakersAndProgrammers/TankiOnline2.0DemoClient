@@ -12,7 +12,7 @@ package alternativa.engine3d.loaders.collada
       
       public var data:XML;
       
-      private var var_697:int = -1;
+      private var §_-Ba§:int = -1;
       
       public function DaeElement(data:XML, document:DaeDocument)
       {
@@ -35,12 +35,12 @@ package alternativa.engine3d.loaders.collada
       
       public function parse() : Boolean
       {
-         if(this.var_697 < 0)
+         if(this.§_-Ba§ < 0)
          {
-            this.var_697 = this.parseImplementation() ? 1 : 0;
-            return this.var_697 != 0;
+            this.§_-Ba§ = this.parseImplementation() ? 1 : 0;
+            return this.§_-Ba§ != 0;
          }
-         return this.var_697 != 0;
+         return this.§_-Ba§ != 0;
       }
       
       protected function parseImplementation() : Boolean

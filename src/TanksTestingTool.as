@@ -1,5 +1,33 @@
 package
 {
+   import alternativa.ClientConfigurator;
+   import alternativa.engine3d.materials.A3DUtils;
+   import alternativa.engine3d.materials.FogMode;
+   import alternativa.engine3d.materials.TextureFormat;
+   import alternativa.osgi.OSGi;
+   import alternativa.osgi.service.console.IConsole;
+   import alternativa.osgi.service.console.variables.ConsoleVar;
+   import alternativa.osgi.service.console.variables.ConsoleVarFloat;
+   import alternativa.osgi.service.console.variables.ConsoleVarInt;
+   import alternativa.osgi.service.console.variables.ConsoleVarString;
+   import alternativa.protocol.osgi.ProtocolActivator;
+   import alternativa.startup.ConnectionParameters;
+   import alternativa.startup.LibraryInfo;
+   import alternativa.tanks.InitBattleTask;
+   import alternativa.tanks.TankTestTask;
+   import alternativa.tanks.config.Config;
+   import alternativa.tanks.game.GameKernel;
+   import alternativa.tanks.game.camera.AxisIndicator;
+   import alternativa.tanks.game.camera.FreeCameraController;
+   import alternativa.tanks.game.entities.map.MapMaterial;
+   import alternativa.tanks.game.entities.map.VisibleLightMaterial;
+   import alternativa.tanks.game.entities.tank.graphics.materials.GiShadowMaterial;
+   import alternativa.tanks.game.entities.tank.graphics.materials.TankMaterial;
+   import alternativa.tanks.game.entities.tank.graphics.materials.TankMaterial2;
+   import alternativa.tanks.game.entities.tank.graphics.materials.TracksMaterial2;
+   import alternativa.tanks.game.entities.tank.graphics.materials.TreesMaterial;
+   import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
+   import alternativa.utils.Properties;
    import flash.display.DisplayObject;
    import flash.display.Sprite;
    import flash.display.Stage3D;
@@ -11,52 +39,24 @@ package
    import flash.events.FullScreenEvent;
    import flash.events.KeyboardEvent;
    import flash.ui.Keyboard;
-   import package_1.TankMaterial2;
-   import package_1.name_13;
-   import package_1.name_30;
-   import package_1.name_31;
-   import package_1.name_7;
-   import package_10.name_23;
-   import package_11.name_4;
-   import package_12.name_27;
-   import package_13.name_28;
-   import package_14.name_3;
-   import package_15.name_17;
-   import package_16.name_18;
-   import package_17.name_28;
-   import package_18.name_51;
-   import package_2.name_1;
-   import package_2.name_10;
-   import package_2.name_26;
-   import package_2.name_9;
-   import package_3.name_12;
-   import package_3.name_29;
-   import package_3.name_6;
-   import package_4.name_24;
-   import package_4.name_25;
-   import package_5.name_11;
-   import package_5.name_2;
-   import package_6.name_16;
-   import package_6.name_50;
-   import package_7.name_32;
-   import package_7.name_33;
-   import package_8.name_14;
-   import package_9.name_15;
+   import platform.client.a3d.osgi.Activator;
+   import platform.clients.fp10.libraries.alternativaprotocol.Activator;
+   import tankshudDemo.TanksHudDemo;
    
    [SWF(backgroundColor="#333333",frameRate="100",width="1024",height="768")]
    public class TanksTestingTool extends Sprite
    {
-      public static var testTask:name_50;
+      public static var testTask:TankTestTask;
       
-      private var config:name_18;
+      private var config:Config;
       
-      private var gameKernel:name_17;
+      private var gameKernel:GameKernel;
       
-      private var var_1:name_14;
+      private var §_-6s§:TanksHudDemo;
       
       private var stage3D:Stage3D;
       
-      private var var_2:name_15;
+      private var §_-nZ§:ClientConfigurator;
       
       private var preloader:Preloader = new Preloader();
       
@@ -65,173 +65,173 @@ package
          super();
          mouseEnabled = false;
          mouseChildren = false;
-         this.method_13();
-         this.method_17();
-         this.method_7();
-         this.method_8();
-         name_2.fadeRadius = 7000;
-         name_2.spotAngle = 140 * Math.PI / 180;
-         name_2.fallofAngle = 170 * Math.PI / 180;
+         this.initStage();
+         this.initClient();
+         this.initConsole();
+         this.initOptionsSupport();
+         VisibleLightMaterial.fadeRadius = 7000;
+         VisibleLightMaterial.spotAngle = 140 * Math.PI / 180;
+         VisibleLightMaterial.fallofAngle = 170 * Math.PI / 180;
          this.stage3D = stage.stage3Ds[0];
-         this.stage3D.addEventListener(Event.CONTEXT3D_CREATE,this.method_9);
+         this.stage3D.addEventListener(Event.CONTEXT3D_CREATE,this.onContextCreate);
          this.stage3D.requestContext3D();
       }
       
-      private function method_9(param1:Event) : void
+      private function onContextCreate(param1:Event) : void
       {
-         switch(name_29.name_47(this.stage3D.context3D))
+         switch(A3DUtils.getSupportedTextureFormat(this.stage3D.context3D))
          {
-            case name_6.DXT1:
-               this.method_4("cfg.dxt1.xml");
+            case TextureFormat.DXT1:
+               this.loadConfig("cfg.dxt1.xml");
                break;
-            case name_6.ETC1:
-               this.method_4("cfg.etc1.xml");
+            case TextureFormat.ETC1:
+               this.loadConfig("cfg.etc1.xml");
                break;
-            case name_6.PVRTC:
-               this.method_4("cfg.pvrtc.xml");
+            case TextureFormat.PVRTC:
+               this.loadConfig("cfg.pvrtc.xml");
          }
       }
       
-      private function method_8() : void
+      private function initOptionsSupport() : void
       {
-         new name_9("fog_mode",0,0,3,this.method_1);
-         new name_1("fog_near",0,0,1000000,this.method_1);
-         new name_1("fog_far",5000,0,1000000,this.method_1);
-         new name_1("fog_density",1,0,1,this.method_1);
-         new name_1("horizon_offset",0,-1000000,1000000,this.method_1);
-         new name_1("horizon_size",5000,0,1000000,this.method_1);
-         new name_10("fog_color","0x0",this.method_1);
-         var _loc1_:name_4 = name_4(name_3.name_8().name_21(name_4));
-         _loc1_.name_34("fog_texture",this.method_19);
-         new name_1("beam_distance",7000,0,1000000,this.method_2);
-         new name_1("beam_spot",140,0,180,this.method_2);
-         new name_1("beam_fallof",170,0,180,this.method_2);
-         new name_1("beam_fallof",170,0,180,this.method_2);
-         new name_1("camera_smoothing",20,0,200,this.method_6);
-         name_11.fogMode = name_11.DISABLED;
-         name_13.fogMode = name_13.DISABLED;
-         name_7.fogMode = name_7.DISABLED;
-         TankMaterial2.fogMode = name_7.DISABLED;
-         name_31.fogMode = name_12.DISABLED;
-         name_30.fogMode = name_12.DISABLED;
+         new ConsoleVarInt("fog_mode",0,0,3,this.onFogSettingsChange);
+         new ConsoleVarFloat("fog_near",0,0,1000000,this.onFogSettingsChange);
+         new ConsoleVarFloat("fog_far",5000,0,1000000,this.onFogSettingsChange);
+         new ConsoleVarFloat("fog_density",1,0,1,this.onFogSettingsChange);
+         new ConsoleVarFloat("horizon_offset",0,-1000000,1000000,this.onFogSettingsChange);
+         new ConsoleVarFloat("horizon_size",5000,0,1000000,this.onFogSettingsChange);
+         new ConsoleVarString("fog_color","0x0",this.onFogSettingsChange);
+         var _loc1_:IConsole = IConsole(OSGi.getInstance().getService(IConsole));
+         _loc1_.setCommandHandler("fog_texture",this.onFogTextureChange);
+         new ConsoleVarFloat("beam_distance",7000,0,1000000,this.onLightSettingsChange);
+         new ConsoleVarFloat("beam_spot",140,0,180,this.onLightSettingsChange);
+         new ConsoleVarFloat("beam_fallof",170,0,180,this.onLightSettingsChange);
+         new ConsoleVarFloat("beam_fallof",170,0,180,this.onLightSettingsChange);
+         new ConsoleVarFloat("camera_smoothing",20,0,200,this.onControllerSettingsChange);
+         MapMaterial.fogMode = MapMaterial.DISABLED;
+         TreesMaterial.fogMode = TreesMaterial.DISABLED;
+         TankMaterial.fogMode = TankMaterial.DISABLED;
+         TankMaterial2.fogMode = TankMaterial.DISABLED;
+         GiShadowMaterial.fogMode = FogMode.DISABLED;
+         TracksMaterial2.fogMode = FogMode.DISABLED;
       }
       
-      private function method_6(param1:name_1) : void
+      private function onControllerSettingsChange(param1:ConsoleVarFloat) : void
       {
-         name_24.smoothing = param1.value;
+         FreeCameraController.smoothing = param1.value;
       }
       
-      private function method_2(param1:name_26) : void
+      private function onLightSettingsChange(param1:ConsoleVar) : void
       {
-         switch(param1.name_22())
+         switch(param1.getName())
          {
             case "beam_distance":
-               name_2.fadeRadius = name_1(param1).value;
+               VisibleLightMaterial.fadeRadius = ConsoleVarFloat(param1).value;
                break;
             case "beam_spot":
-               name_2.spotAngle = name_1(param1).value * Math.PI / 180;
+               VisibleLightMaterial.spotAngle = ConsoleVarFloat(param1).value * Math.PI / 180;
                break;
             case "beam_fallof":
-               name_2.fallofAngle = name_1(param1).value * Math.PI / 180;
+               VisibleLightMaterial.fallofAngle = ConsoleVarFloat(param1).value * Math.PI / 180;
          }
       }
       
-      private function method_1(param1:name_26) : void
+      private function onFogSettingsChange(param1:ConsoleVar) : void
       {
          var _loc3_:Number = NaN;
          var _loc4_:Number = NaN;
          var _loc5_:Number = NaN;
-         var _loc6_:name_51 = this.gameKernel.name_5();
-         switch(param1.name_22())
+         var _loc6_:RenderSystem = this.gameKernel.getRenderSystem();
+         switch(param1.getName())
          {
             case "fog_mode":
-               _loc6_.name_49(name_9(param1).value);
+               _loc6_.setFogMode(ConsoleVarInt(param1).value);
                break;
             case "fog_near":
-               _loc6_.name_37(name_1(param1).value);
+               _loc6_.setFogNear(ConsoleVarFloat(param1).value);
                break;
             case "fog_far":
-               _loc6_.name_41(name_1(param1).value);
+               _loc6_.setFogFar(ConsoleVarFloat(param1).value);
                break;
             case "fog_density":
-               _loc6_.name_42(name_1(param1).value);
+               _loc6_.setMaxFogDensity(ConsoleVarFloat(param1).value);
                break;
             case "horizon_size":
-               _loc6_.name_43(name_1(param1).value);
+               _loc6_.setFogHorizonSize(ConsoleVarFloat(param1).value);
                break;
             case "horizon_offset":
-               _loc6_.name_38(name_1(param1).value);
+               _loc6_.setFogHorizonOffset(ConsoleVarFloat(param1).value);
                break;
             case "fog_color":
-               _loc6_.name_36(parseInt(name_10(param1).value,16));
+               _loc6_.setFogColor(parseInt(ConsoleVarString(param1).value,16));
          }
       }
       
-      private function method_19(param1:name_4, param2:Array) : void
+      private function onFogTextureChange(param1:IConsole, param2:Array) : void
       {
-         this.gameKernel.name_5().name_39(param2.join(" "));
+         this.gameKernel.getRenderSystem().setFogTextureParams(param2.join(" "));
       }
       
-      private function method_13() : void
+      private function initStage() : void
       {
          stage.scaleMode = StageScaleMode.NO_SCALE;
          stage.align = StageAlign.TOP_LEFT;
          stage.quality = StageQuality.LOW;
       }
       
-      private function method_17() : void
+      private function initClient() : void
       {
-         new name_3();
-         this.var_2 = new name_15();
-         this.var_2.start(this,new name_27(loaderInfo.parameters),new Vector.<name_33>(),new name_32(null,null,null),new Vector.<String>());
-         new name_23().start(name_3.name_8());
-         new package_13.name_28().start(name_3.name_8());
-         new package_17.name_28().start(name_3.name_8());
+         new OSGi();
+         this.§_-nZ§ = new ClientConfigurator();
+         this.§_-nZ§.start(this,new Properties(loaderInfo.parameters),new Vector.<LibraryInfo>(),new ConnectionParameters(null,null,null),new Vector.<String>());
+         new ProtocolActivator().start(OSGi.getInstance());
+         new platform.clients.fp10.libraries.alternativaprotocol.Activator().start(OSGi.getInstance());
+         new platform.client.a3d.osgi.Activator().start(OSGi.getInstance());
       }
       
-      private function method_7() : void
+      private function initConsole() : void
       {
-         var _loc1_:name_4 = name_4(name_3.name_8().name_21(name_4));
+         var _loc1_:IConsole = IConsole(OSGi.getInstance().getService(IConsole));
          _loc1_.width = 100;
          _loc1_.alpha = 0.8;
          _loc1_.height = 30;
       }
       
-      private function method_4(param1:String) : void
+      private function loadConfig(param1:String) : void
       {
          addChild(this.preloader);
-         this.config = new name_18();
-         this.config.addEventListener(Event.COMPLETE,this.method_12);
+         this.config = new Config();
+         this.config.addEventListener(Event.COMPLETE,this.onConfigLoadingComplete);
          this.config.load(param1,this.preloader);
       }
       
-      private function method_12(param1:Event) : void
+      private function onConfigLoadingComplete(param1:Event) : void
       {
-         this.method_10();
-         this.method_18();
+         this.initGame();
+         this.initHUD();
       }
       
-      private function method_18() : void
+      private function initHUD() : void
       {
-         this.var_1 = new name_14();
-         stage.addChild(this.var_1);
-         this.var_1.mouseChildren = true;
-         this.var_1.mouseEnabled = true;
-         this.var_1.addEventListener("CLICK_FULL_SCREEN_BUTTON",this.method_11);
-         this.var_1.addEventListener("CLICK_NEXT_TANK_BUTTON",this.method_16);
+         this.§_-6s§ = new TanksHudDemo();
+         stage.addChild(this.§_-6s§);
+         this.§_-6s§.mouseChildren = true;
+         this.§_-6s§.mouseEnabled = true;
+         this.§_-6s§.addEventListener("CLICK_FULL_SCREEN_BUTTON",this.onClickFullScreenButton);
+         this.§_-6s§.addEventListener("CLICK_NEXT_TANK_BUTTON",this.onClickNextTankButton);
          stage.addChild(this.preloader);
-         stage.addEventListener(KeyboardEvent.KEY_DOWN,this.method_14);
-         this.gameKernel.name_5().name_20().diagramVerticalMargin = 85;
-         this.gameKernel.name_5().name_20().diagramHorizontalMargin = 12;
-         this.method_3(null);
+         stage.addEventListener(KeyboardEvent.KEY_DOWN,this.onKeyDown);
+         this.gameKernel.getRenderSystem().getCamera().diagramVerticalMargin = 85;
+         this.gameKernel.getRenderSystem().getCamera().diagramHorizontalMargin = 12;
+         this.onResize(null);
       }
       
-      private function method_14(param1:KeyboardEvent) : void
+      private function onKeyDown(param1:KeyboardEvent) : void
       {
          var _loc2_:DisplayObject = null;
          if(param1.keyCode == Keyboard.G)
          {
-            _loc2_ = this.gameKernel.name_5().name_40();
+            _loc2_ = this.gameKernel.getRenderSystem().getCameraDiagram();
             if(_loc2_.parent != null)
             {
                _loc2_.parent.removeChild(_loc2_);
@@ -243,54 +243,54 @@ package
          }
       }
       
-      private function method_11(param1:Event) : void
+      private function onClickFullScreenButton(param1:Event) : void
       {
-         stage.displayState = !!this.var_1.name_19 ? StageDisplayState.FULL_SCREEN : StageDisplayState.NORMAL;
-         stage.addEventListener(FullScreenEvent.FULL_SCREEN,this.method_5);
+         stage.displayState = this.§_-6s§.isFullScreen ? StageDisplayState.FULL_SCREEN : StageDisplayState.NORMAL;
+         stage.addEventListener(FullScreenEvent.FULL_SCREEN,this.onFullScreenChange);
       }
       
-      private function method_5(param1:Event) : void
+      private function onFullScreenChange(param1:Event) : void
       {
-         stage.removeEventListener(FullScreenEvent.FULL_SCREEN,this.method_5);
-         this.var_1.name_19 = stage.displayState != StageDisplayState.NORMAL;
+         stage.removeEventListener(FullScreenEvent.FULL_SCREEN,this.onFullScreenChange);
+         this.§_-6s§.isFullScreen = stage.displayState != StageDisplayState.NORMAL;
       }
       
-      private function method_16(param1:Event) : void
+      private function onClickNextTankButton(param1:Event) : void
       {
          if(testTask != null)
          {
-            testTask.include();
+            testTask.selectNextTank();
          }
       }
       
-      private function method_10() : void
+      private function initGame() : void
       {
-         this.gameKernel = new name_17(stage,this.config.options);
-         this.gameKernel.name_5().name_48(this.stage3D);
-         var _loc1_:name_16 = new name_16(this.gameKernel,this.config,this,this.preloader);
+         this.gameKernel = new GameKernel(stage,this.config.options);
+         this.gameKernel.getRenderSystem().setStage3D(this.stage3D);
+         var _loc1_:InitBattleTask = new InitBattleTask(this.gameKernel,this.config,this,this.preloader);
          this.gameKernel.addTask(_loc1_);
-         stage.addEventListener(Event.RESIZE,this.method_3);
-         this.method_3(null);
-         stage.addEventListener(Event.ENTER_FRAME,this.method_15);
+         stage.addEventListener(Event.RESIZE,this.onResize);
+         this.onResize(null);
+         stage.addEventListener(Event.ENTER_FRAME,this.onEnterFrame);
       }
       
-      private function method_15(param1:Event) : void
+      private function onEnterFrame(param1:Event) : void
       {
-         this.gameKernel.name_45();
+         this.gameKernel.tick();
       }
       
-      private function method_3(param1:Event) : void
+      private function onResize(param1:Event) : void
       {
-         var _loc2_:name_25 = null;
+         var _loc2_:AxisIndicator = null;
          if(this.gameKernel != null)
          {
-            this.gameKernel.name_5().name_35(0,0,stage.stageWidth,stage.stageHeight);
-            _loc2_ = this.gameKernel.name_5().name_46();
+            this.gameKernel.getRenderSystem().setViewRect(0,0,stage.stageWidth,stage.stageHeight);
+            _loc2_ = this.gameKernel.getRenderSystem().getAxisIndicator();
             _loc2_.y = stage.stageHeight - _loc2_.size;
          }
-         if(this.var_1 != null)
+         if(this.§_-6s§ != null)
          {
-            this.var_1.name_44(stage.stageWidth,stage.stageHeight);
+            this.§_-6s§.resize(stage.stageWidth,stage.stageHeight);
          }
       }
    }

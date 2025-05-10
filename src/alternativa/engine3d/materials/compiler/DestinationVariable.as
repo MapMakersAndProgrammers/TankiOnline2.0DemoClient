@@ -33,23 +33,23 @@ package alternativa.engine3d.materials.compiler
          {
             regmask = 15;
          }
-         name_345 = regmask << 16 | index;
+         §_-0J§ = regmask << 16 | index;
          switch(strType)
          {
             case "t":
-               name_345 |= 33554432;
+               §_-0J§ |= 33554432;
                type = 2;
                break;
             case "o":
-               name_345 |= 50331648;
+               §_-0J§ |= 50331648;
                type = 3;
                break;
             case "v":
-               name_345 |= 67108864;
+               §_-0J§ |= 67108864;
                type = 4;
                break;
             case "i":
-               name_345 |= 100663296;
+               §_-0J§ |= 100663296;
                type = 6;
                break;
             default:
@@ -60,7 +60,7 @@ package alternativa.engine3d.materials.compiler
       override public function writeToByteArray(byteCode:ByteArray, newIndex:int, newType:int) : void
       {
          byteCode.position = position;
-         byteCode.writeUnsignedInt(name_345 & ~0x0F00FFFF | newIndex | newType << 24);
+         byteCode.writeUnsignedInt(§_-0J§ & ~0x0F00FFFF | newIndex | newType << 24);
       }
    }
 }

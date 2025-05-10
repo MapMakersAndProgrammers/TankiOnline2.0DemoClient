@@ -83,7 +83,7 @@ package alternativa.tanks.game.entities.tank.graphics.materials
          }
       }
       
-      private function method_22(object:Object3D) : ShaderProgram
+      private function final(object:Object3D) : ShaderProgram
       {
          var vertexLinker:Linker = new Linker(Context3DProgramType.VERTEX);
          var positionVar:String = "aPosition";
@@ -152,7 +152,7 @@ package alternativa.tanks.game.entities.tank.graphics.materials
          if(programs == null)
          {
             programs = new Vector.<ShaderProgram>(3,true);
-            program = this.method_22(object);
+            program = this.final(object);
             program.upload(camera.alternativa3d::context3D);
             programs[fogMode] = program;
             _programs[object.alternativa3d::transformProcedure] = programs;
@@ -162,12 +162,12 @@ package alternativa.tanks.game.entities.tank.graphics.materials
             program = programs[fogMode];
             if(program == null)
             {
-               program = this.method_22(object);
+               program = this.final(object);
                program.upload(camera.alternativa3d::context3D);
                programs[fogMode] = program;
             }
          }
-         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.alternativa3d::name_78,surface.indexBegin,surface.numTriangles,program);
+         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.alternativa3d::_-EM,surface.indexBegin,surface.numTriangles,program);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aPosition"),positionBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.POSITION],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.POSITION]);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aUV"),uvBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.TEXCOORDS[0]],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.TEXCOORDS[0]]);
          object.alternativa3d::setTransformConstants(drawUnit,surface,program.vertexShader,camera);

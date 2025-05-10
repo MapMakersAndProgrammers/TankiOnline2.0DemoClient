@@ -53,7 +53,7 @@ package alternativa.engine3d.materials
          this.blue = (value & 0xFF) / 255;
       }
       
-      private function method_22(object:Object3D) : ShaderProgram
+      private function final(object:Object3D) : ShaderProgram
       {
          var vertexLinker:Linker = new Linker(Context3DProgramType.VERTEX);
          var positionVar:String = "aPosition";
@@ -81,11 +81,11 @@ package alternativa.engine3d.materials
          var program:ShaderProgram = _programs[object.alternativa3d::transformProcedure];
          if(program == null)
          {
-            program = this.method_22(object);
+            program = this.final(object);
             program.upload(camera.alternativa3d::context3D);
             _programs[object.alternativa3d::transformProcedure] = program;
          }
-         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.alternativa3d::name_78,surface.indexBegin,surface.numTriangles,program);
+         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.alternativa3d::_-EM,surface.indexBegin,surface.numTriangles,program);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aPosition"),positionBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.POSITION],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.POSITION]);
          object.alternativa3d::setTransformConstants(drawUnit,surface,program.vertexShader,camera);
          drawUnit.alternativa3d::setProjectionConstants(camera,program.vertexShader.getVariableIndex("cProjMatrix"),object.alternativa3d::localToCameraTransform);

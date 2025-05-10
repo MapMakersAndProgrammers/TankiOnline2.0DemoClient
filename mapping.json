@@ -1007,6 +1007,7 @@
       "_-O5:_-c-/class/init": "alternativa.utils:Properties/toString"
     }
   },
+  "_-2n": { "Iterator": { "_-O5:_-2n/Iterator": null } },
   "_-XN": {
     "_-cO": {
       "_-XN:_-cO": null,
@@ -1489,6 +1490,21 @@
       "_-US:_-Xi/instance/remove": "alternativa.physics:BodyList/remove",
       "_-US:_-Xi/instance/_-Di": "alternativa.physics:BodyList/findItem",
       "_-US:_-Xi/class/init": "alternativa.physics:BodyList/findItem"
+    }
+  },
+  "tanki2-14": {
+    "Preloader": {
+      "Preloader": null,
+      "Preloader/instance/init": "Preloader/Preloader",
+      "Preloader/instance/_-QU": "Preloader/setProgress",
+      "Preloader/instance/Preloader/_-Dq": "Preloader/private:onComplete",
+      "Preloader/instance/_-fE": "Preloader/addProgress",
+      "Preloader/instance/Preloader/_-Id": "Preloader/private:onAddToStage",
+      "Preloader/instance/Preloader/_-99": "Preloader/private:onRemoveFromStage",
+      "Preloader/instance/Preloader/_-ba": "Preloader/private:onEnterFrame",
+      "Preloader/instance/Preloader/_-MO": "Preloader/private:onEnterFrameSwitch",
+      "Preloader/instance/Preloader/_-7B": "Preloader/private:onResize",
+      "Preloader/class/init": "Preloader/private:onResize"
     }
   },
   "_-KT": {
@@ -2223,6 +2239,7 @@
       "_-LL:_-nR/class/init": "alternativa.tanks.game.weapons.thunder.effects:ThunderShotEffect/private:setTrailMatrix"
     }
   },
+  "_-nR": { "Trail": { "_-LL:_-nR/Trail": null } },
   "_-kK": {
     "VectorCodecA3D2CubeMapLevel3": {
       "_-kK:VectorCodecA3D2CubeMapLevel3": null,
@@ -2945,7 +2962,7 @@
       "_-jG:_-gg/class/init": "alternativa.tanks.game.weapons.effects:IWeaponShotEffects/alternativa.tanks.game.weapons.effects:IWeaponShotEffects:createShotEffects"
     }
   },
-  "in%20": {
+  "in ": {
     "_-eF": {
       "in :_-eF": null,
       "in :_-eF/instance/init": "alternativa.tanks.game.subsystems.deferredcommandssystem:DeferredCommand/DeferredCommand",
@@ -3581,7 +3598,25 @@
       "_-aF:_-S8/instance/init": "alternativa.engine3d.effects:TextureAtlas/TextureAtlas",
       "_-aF:_-S8/class/init": "alternativa.engine3d.effects:TextureAtlas/TextureAtlas"
     },
-    "_-SG": {},
+    "_-SG": {
+      "_-aF:_-SG": null,
+      "_-aF:_-SG/instance/init": "alternativa.engine3d.effects:ParticleEffect/ParticleEffect",
+      "_-aF:_-SG/instance/position/getter": "alternativa.engine3d.effects:ParticleEffect/position/get",
+      "_-aF:_-SG/instance/position/setter": "alternativa.engine3d.effects:ParticleEffect/position/set",
+      "_-aF:_-SG/instance/direction/getter": "alternativa.engine3d.effects:ParticleEffect/direction/get",
+      "_-aF:_-SG/instance/direction/setter": "alternativa.engine3d.effects:ParticleEffect/direction/set",
+      "_-aF:_-SG/instance/stop": "alternativa.engine3d.effects:ParticleEffect/stop",
+      "_-aF:_-SG/instance/_-ji:_-Ta/getter": "alternativa.engine3d.effects:ParticleEffect/protected:particleSystem/get",
+      "_-aF:_-SG/instance/_-ji:_-iq/getter": "alternativa.engine3d.effects:ParticleEffect/protected:cameraTransform/get",
+      "_-aF:_-SG/instance/_-ji:random": "alternativa.engine3d.effects:ParticleEffect/protected:random",
+      "_-aF:_-SG/instance/_-ji:_-Le": "alternativa.engine3d.effects:ParticleEffect/protected:addKey",
+      "_-aF:_-SG/instance/_-ji:_-DM": "alternativa.engine3d.effects:ParticleEffect/protected:setLife",
+      "_-aF:_-SG/instance/http://alternativaplatform.com/en/alternativa3d:calculateAABB": "alternativa.engine3d.effects:ParticleEffect/alternativa3d:calculateAABB",
+      "_-aF:_-SG/instance/http://alternativaplatform.com/en/alternativa3d:_-is": "alternativa.engine3d.effects:ParticleEffect/alternativa3d:setPositionKeys",
+      "_-aF:_-SG/instance/http://alternativaplatform.com/en/alternativa3d:_-Af": "alternativa.engine3d.effects:ParticleEffect/alternativa3d:setDirectionKeys",
+      "_-aF:_-SG/instance/http://alternativaplatform.com/en/alternativa3d:_-Xj": "alternativa.engine3d.effects:ParticleEffect/alternativa3d:calculate",
+      "_-aF:_-SG/class/init": "alternativa.engine3d.effects:ParticleEffect/alternativa3d:calculate"
+    },
     "_-B0": {
       "_-aF:_-B0": null,
       "_-aF:_-B0/instance/init": "alternativa.engine3d.effects:AGALMiniAssembler/AGALMiniAssembler",
@@ -3783,6 +3818,10 @@
       "_-dz:_-od/instance/_-dz:_-od/_-ip": "alternativa.tanks.game.weapons:InstantShotWeaponComponent/private:disableLogic",
       "_-dz:_-od/class/init": "alternativa.tanks.game.weapons:InstantShotWeaponComponent/private:disableLogic"
     }
+  },
+  "_-4Q": {
+    "RayEntry": { "_-Wh:_-4Q/RayEntry": null },
+    "CollisionPrimitive3D": { "_-Wh:_-4Q/CollisionPrimitive3D": null }
   },
   "_-n8": {
     "VectorCodecshortLevel1": {
@@ -4053,6 +4092,160 @@
       "_-lg:CodecA3DMap/class/init": "_codec.versions.version1.a3d.materials:CodecA3DMap/encode"
     }
   },
+  "alternativa.tanks.game.usertitle": {
+    "_-4R": {
+      "alternativa.tanks.game.usertitle:_-4R": null,
+      "alternativa.tanks.game.usertitle:_-4R/instance/init": "alternativa.tanks.game.usertitle:ProgressBarSkin/ProgressBarSkin",
+      "alternativa.tanks.game.usertitle:_-4R/class/init": "alternativa.tanks.game.usertitle:ProgressBarSkin/ProgressBarSkin"
+    },
+    "ProgressBarSkin_weaponFullCls": {
+      "alternativa.tanks.game.usertitle:ProgressBarSkin_weaponFullCls": null,
+      "alternativa.tanks.game.usertitle:ProgressBarSkin_weaponFullCls/instance/init": "alternativa.tanks.game.usertitle:ProgressBarSkin_weaponFullCls/ProgressBarSkin_weaponFullCls",
+      "alternativa.tanks.game.usertitle:ProgressBarSkin_weaponFullCls/class/init": "alternativa.tanks.game.usertitle:ProgressBarSkin_weaponFullCls/ProgressBarSkin_weaponFullCls"
+    },
+    "EffectIndicator_iconHealthCls": {
+      "alternativa.tanks.game.usertitle:EffectIndicator_iconHealthCls": null,
+      "alternativa.tanks.game.usertitle:EffectIndicator_iconHealthCls/instance/init": "alternativa.tanks.game.usertitle:EffectIndicator_iconHealthCls/EffectIndicator_iconHealthCls",
+      "alternativa.tanks.game.usertitle:EffectIndicator_iconHealthCls/class/init": "alternativa.tanks.game.usertitle:EffectIndicator_iconHealthCls/EffectIndicator_iconHealthCls"
+    },
+    "ProgressBarSkin_hpRedFullCls": {
+      "alternativa.tanks.game.usertitle:ProgressBarSkin_hpRedFullCls": null,
+      "alternativa.tanks.game.usertitle:ProgressBarSkin_hpRedFullCls/instance/init": "alternativa.tanks.game.usertitle:ProgressBarSkin_hpRedFullCls/ProgressBarSkin_hpRedFullCls",
+      "alternativa.tanks.game.usertitle:ProgressBarSkin_hpRedFullCls/class/init": "alternativa.tanks.game.usertitle:ProgressBarSkin_hpRedFullCls/ProgressBarSkin_hpRedFullCls"
+    },
+    "_-ml": {
+      "alternativa.tanks.game.usertitle:_-ml": null,
+      "alternativa.tanks.game.usertitle:_-ml/instance/init": "alternativa.tanks.game.usertitle:BarParts/BarParts",
+      "alternativa.tanks.game.usertitle:_-ml/class/init": "alternativa.tanks.game.usertitle:BarParts/BarParts"
+    },
+    "ProgressBarSkin_weaponEmptyCls": {
+      "alternativa.tanks.game.usertitle:ProgressBarSkin_weaponEmptyCls": null,
+      "alternativa.tanks.game.usertitle:ProgressBarSkin_weaponEmptyCls/instance/init": "alternativa.tanks.game.usertitle:ProgressBarSkin_weaponEmptyCls/ProgressBarSkin_weaponEmptyCls",
+      "alternativa.tanks.game.usertitle:ProgressBarSkin_weaponEmptyCls/class/init": "alternativa.tanks.game.usertitle:ProgressBarSkin_weaponEmptyCls/ProgressBarSkin_weaponEmptyCls"
+    },
+    "ProgressBarSkin_hpGreenEmptyCls": {
+      "alternativa.tanks.game.usertitle:ProgressBarSkin_hpGreenEmptyCls": null,
+      "alternativa.tanks.game.usertitle:ProgressBarSkin_hpGreenEmptyCls/instance/init": "alternativa.tanks.game.usertitle:ProgressBarSkin_hpGreenEmptyCls/ProgressBarSkin_hpGreenEmptyCls",
+      "alternativa.tanks.game.usertitle:ProgressBarSkin_hpGreenEmptyCls/class/init": "alternativa.tanks.game.usertitle:ProgressBarSkin_hpGreenEmptyCls/ProgressBarSkin_hpGreenEmptyCls"
+    },
+    "EffectIndicator_iconArmorCls": {
+      "alternativa.tanks.game.usertitle:EffectIndicator_iconArmorCls": null,
+      "alternativa.tanks.game.usertitle:EffectIndicator_iconArmorCls/instance/init": "alternativa.tanks.game.usertitle:EffectIndicator_iconArmorCls/EffectIndicator_iconArmorCls",
+      "alternativa.tanks.game.usertitle:EffectIndicator_iconArmorCls/class/init": "alternativa.tanks.game.usertitle:EffectIndicator_iconArmorCls/EffectIndicator_iconArmorCls"
+    },
+    "_-C6": {
+      "alternativa.tanks.game.usertitle:_-C6": null,
+      "alternativa.tanks.game.usertitle:_-C6/instance/init": "alternativa.tanks.game.usertitle:IUserTitleRenderer/IUserTitleRenderer",
+      "alternativa.tanks.game.usertitle:_-C6/instance/_-RJ:_-hh": "alternativa.tanks.game.usertitle:IUserTitleRenderer/alternativa.tanks.game.usertitle:IUserTitleRenderer:renderUserTitle",
+      "alternativa.tanks.game.usertitle:_-C6/class/init": "alternativa.tanks.game.usertitle:IUserTitleRenderer/alternativa.tanks.game.usertitle:IUserTitleRenderer:renderUserTitle"
+    },
+    "ProgressBarSkin_hpGreenFullCls": {
+      "alternativa.tanks.game.usertitle:ProgressBarSkin_hpGreenFullCls": null,
+      "alternativa.tanks.game.usertitle:ProgressBarSkin_hpGreenFullCls/instance/init": "alternativa.tanks.game.usertitle:ProgressBarSkin_hpGreenFullCls/ProgressBarSkin_hpGreenFullCls",
+      "alternativa.tanks.game.usertitle:ProgressBarSkin_hpGreenFullCls/class/init": "alternativa.tanks.game.usertitle:ProgressBarSkin_hpGreenFullCls/ProgressBarSkin_hpGreenFullCls"
+    },
+    "ProgressBarSkin_hpBlueEmptyCls": {
+      "alternativa.tanks.game.usertitle:ProgressBarSkin_hpBlueEmptyCls": null,
+      "alternativa.tanks.game.usertitle:ProgressBarSkin_hpBlueEmptyCls/instance/init": "alternativa.tanks.game.usertitle:ProgressBarSkin_hpBlueEmptyCls/ProgressBarSkin_hpBlueEmptyCls",
+      "alternativa.tanks.game.usertitle:ProgressBarSkin_hpBlueEmptyCls/class/init": "alternativa.tanks.game.usertitle:ProgressBarSkin_hpBlueEmptyCls/ProgressBarSkin_hpBlueEmptyCls"
+    },
+    "EffectIndicator_iconNitroCls": {
+      "alternativa.tanks.game.usertitle:EffectIndicator_iconNitroCls": null,
+      "alternativa.tanks.game.usertitle:EffectIndicator_iconNitroCls/instance/init": "alternativa.tanks.game.usertitle:EffectIndicator_iconNitroCls/EffectIndicator_iconNitroCls",
+      "alternativa.tanks.game.usertitle:EffectIndicator_iconNitroCls/class/init": "alternativa.tanks.game.usertitle:EffectIndicator_iconNitroCls/EffectIndicator_iconNitroCls"
+    },
+    "EffectIndicator_iconPowerCls": {
+      "alternativa.tanks.game.usertitle:EffectIndicator_iconPowerCls": null,
+      "alternativa.tanks.game.usertitle:EffectIndicator_iconPowerCls/instance/init": "alternativa.tanks.game.usertitle:EffectIndicator_iconPowerCls/EffectIndicator_iconPowerCls",
+      "alternativa.tanks.game.usertitle:EffectIndicator_iconPowerCls/class/init": "alternativa.tanks.game.usertitle:EffectIndicator_iconPowerCls/EffectIndicator_iconPowerCls"
+    },
+    "ProgressBarSkin_hpBlueFullCls": {
+      "alternativa.tanks.game.usertitle:ProgressBarSkin_hpBlueFullCls": null,
+      "alternativa.tanks.game.usertitle:ProgressBarSkin_hpBlueFullCls/instance/init": "alternativa.tanks.game.usertitle:ProgressBarSkin_hpBlueFullCls/ProgressBarSkin_hpBlueFullCls",
+      "alternativa.tanks.game.usertitle:ProgressBarSkin_hpBlueFullCls/class/init": "alternativa.tanks.game.usertitle:ProgressBarSkin_hpBlueFullCls/ProgressBarSkin_hpBlueFullCls"
+    },
+    "_-fe": {
+      "alternativa.tanks.game.usertitle:_-fe": null,
+      "alternativa.tanks.game.usertitle:_-fe/instance/init": "alternativa.tanks.game.usertitle:IRankIcon/IRankIcon",
+      "alternativa.tanks.game.usertitle:_-fe/instance/_-mi:null ": "alternativa.tanks.game.usertitle:IRankIcon/alternativa.tanks.game.usertitle:IRankIcon:getIcon",
+      "alternativa.tanks.game.usertitle:_-fe/class/init": "alternativa.tanks.game.usertitle:IRankIcon/alternativa.tanks.game.usertitle:IRankIcon:getIcon"
+    },
+    "class": {
+      "alternativa.tanks.game.usertitle:class": null,
+      "alternativa.tanks.game.usertitle:class/instance/init": "alternativa.tanks.game.usertitle:UserTitle/UserTitle",
+      "alternativa.tanks.game.usertitle:class/instance/_-58": "alternativa.tanks.game.usertitle:UserTitle/setResourceManager",
+      "alternativa.tanks.game.usertitle:class/instance/_-S5": "alternativa.tanks.game.usertitle:UserTitle/setLocal",
+      "alternativa.tanks.game.usertitle:class/instance/_-a7": "alternativa.tanks.game.usertitle:UserTitle/setMaxHealth",
+      "alternativa.tanks.game.usertitle:class/instance/_-Wx": "alternativa.tanks.game.usertitle:UserTitle/setHiddenState",
+      "alternativa.tanks.game.usertitle:class/instance/_-cI": "alternativa.tanks.game.usertitle:UserTitle/clearHiddenState",
+      "alternativa.tanks.game.usertitle:class/instance/setDeadState": "alternativa.tanks.game.usertitle:UserTitle/setDeadState",
+      "alternativa.tanks.game.usertitle:class/instance/clearDeadState": "alternativa.tanks.game.usertitle:UserTitle/clearDeadState",
+      "alternativa.tanks.game.usertitle:class/instance/_-bG": "alternativa.tanks.game.usertitle:UserTitle/isVisible",
+      "alternativa.tanks.game.usertitle:class/instance/_-ag": "alternativa.tanks.game.usertitle:UserTitle/setConfiguration",
+      "alternativa.tanks.game.usertitle:class/instance/_-NR": "alternativa.tanks.game.usertitle:UserTitle/setTeamType",
+      "alternativa.tanks.game.usertitle:class/instance/_-Qx": "alternativa.tanks.game.usertitle:UserTitle/setRank",
+      "alternativa.tanks.game.usertitle:class/instance/_-03": "alternativa.tanks.game.usertitle:UserTitle/setLabelText",
+      "alternativa.tanks.game.usertitle:class/instance/setHealth": "alternativa.tanks.game.usertitle:UserTitle/setHealth",
+      "alternativa.tanks.game.usertitle:class/instance/_-XE": "alternativa.tanks.game.usertitle:UserTitle/setWeaponStatus",
+      "alternativa.tanks.game.usertitle:class/instance/_-0W": "alternativa.tanks.game.usertitle:UserTitle/showIndicator",
+      "alternativa.tanks.game.usertitle:class/instance/_-kd": "alternativa.tanks.game.usertitle:UserTitle/hideIndicator",
+      "alternativa.tanks.game.usertitle:class/instance/_-5i": "alternativa.tanks.game.usertitle:UserTitle/hideIndicators",
+      "alternativa.tanks.game.usertitle:class/instance/alternativa.tanks.game.usertitle:_-nC": "alternativa.tanks.game.usertitle:UserTitle/alternativa.tanks.game.usertitle:doHideIndicator",
+      "alternativa.tanks.game.usertitle:class/instance/update": "alternativa.tanks.game.usertitle:UserTitle/update",
+      "alternativa.tanks.game.usertitle:class/instance/alternativa.tanks.game.usertitle:class/_-ki": "alternativa.tanks.game.usertitle:UserTitle/private:isDirtyAndHasOption",
+      "alternativa.tanks.game.usertitle:class/instance/alternativa.tanks.game.usertitle:class/_-Hh": "alternativa.tanks.game.usertitle:UserTitle/private:updateEffectIndicators",
+      "alternativa.tanks.game.usertitle:class/instance/alternativa.tanks.game.usertitle:class/_-Ka": "alternativa.tanks.game.usertitle:UserTitle/private:changeVisibleIndicatorsNumber",
+      "alternativa.tanks.game.usertitle:class/instance/alternativa.tanks.game.usertitle:class/_-Z1": "alternativa.tanks.game.usertitle:UserTitle/private:updateConfiguration",
+      "alternativa.tanks.game.usertitle:class/instance/alternativa.tanks.game.usertitle:class/_-Op": "alternativa.tanks.game.usertitle:UserTitle/private:setupTexture",
+      "alternativa.tanks.game.usertitle:class/instance/alternativa.tanks.game.usertitle:class/_-Uv": "alternativa.tanks.game.usertitle:UserTitle/private:findNearestPowerOfTwo",
+      "alternativa.tanks.game.usertitle:class/instance/alternativa.tanks.game.usertitle:class/_-8n": "alternativa.tanks.game.usertitle:UserTitle/private:setupComponents",
+      "alternativa.tanks.game.usertitle:class/instance/_-p6": "alternativa.tanks.game.usertitle:UserTitle/addToContainer",
+      "alternativa.tanks.game.usertitle:class/instance/_-Md": "alternativa.tanks.game.usertitle:UserTitle/removeFromContainer",
+      "alternativa.tanks.game.usertitle:class/instance/_-Vi": "alternativa.tanks.game.usertitle:UserTitle/setPosition",
+      "alternativa.tanks.game.usertitle:class/instance/alternativa.tanks.game.usertitle:class/_-Xw": "alternativa.tanks.game.usertitle:UserTitle/private:markDirty",
+      "alternativa.tanks.game.usertitle:class/instance/alternativa.tanks.game.usertitle:class/_-o9": "alternativa.tanks.game.usertitle:UserTitle/private:updateLabel",
+      "alternativa.tanks.game.usertitle:class/instance/alternativa.tanks.game.usertitle:class/_-ez": "alternativa.tanks.game.usertitle:UserTitle/private:createEffectsIndicators",
+      "alternativa.tanks.game.usertitle:class/instance/alternativa.tanks.game.usertitle:class/_-Ty": "alternativa.tanks.game.usertitle:UserTitle/private:getEffectIndicatorById",
+      "alternativa.tanks.game.usertitle:class/instance/alternativa.tanks.game.usertitle:class/_-mM": "alternativa.tanks.game.usertitle:UserTitle/private:updateVisibility",
+      "alternativa.tanks.game.usertitle:class/instance/alternativa.tanks.game.usertitle:class/_-I7": "alternativa.tanks.game.usertitle:UserTitle/private:setFlags",
+      "alternativa.tanks.game.usertitle:class/instance/alternativa.tanks.game.usertitle:class/_-F2": "alternativa.tanks.game.usertitle:UserTitle/private:clearFlags",
+      "alternativa.tanks.game.usertitle:class/instance/alternativa.tanks.game.usertitle:class/_-c7": "alternativa.tanks.game.usertitle:UserTitle/private:hasAnyFlags",
+      "alternativa.tanks.game.usertitle:class/instance/alternativa.tanks.game.usertitle:class/_-qq": "alternativa.tanks.game.usertitle:UserTitle/private:hasAllFlags",
+      "alternativa.tanks.game.usertitle:class/class/init": "alternativa.tanks.game.usertitle:UserTitle/private:hasAllFlags"
+    },
+    "_-Ip": {
+      "alternativa.tanks.game.usertitle:_-Ip": null,
+      "alternativa.tanks.game.usertitle:_-Ip/instance/init": "alternativa.tanks.game.usertitle:EffectIndicator/EffectIndicator",
+      "alternativa.tanks.game.usertitle:_-Ip/instance/effectId/getter": "alternativa.tanks.game.usertitle:EffectIndicator/effectId/get",
+      "alternativa.tanks.game.usertitle:_-Ip/instance/_-bG": "alternativa.tanks.game.usertitle:EffectIndicator/isVisible",
+      "alternativa.tanks.game.usertitle:_-Ip/instance/_-gZ": "alternativa.tanks.game.usertitle:EffectIndicator/isHidden",
+      "alternativa.tanks.game.usertitle:_-Ip/instance/show": "alternativa.tanks.game.usertitle:EffectIndicator/show",
+      "alternativa.tanks.game.usertitle:_-Ip/instance/hide": "alternativa.tanks.game.usertitle:EffectIndicator/hide",
+      "alternativa.tanks.game.usertitle:_-Ip/instance/clear": "alternativa.tanks.game.usertitle:EffectIndicator/clear",
+      "alternativa.tanks.game.usertitle:_-Ip/instance/_-Vi": "alternativa.tanks.game.usertitle:EffectIndicator/setPosition",
+      "alternativa.tanks.game.usertitle:_-Ip/instance/_-mo": "alternativa.tanks.game.usertitle:EffectIndicator/forceRedraw",
+      "alternativa.tanks.game.usertitle:_-Ip/instance/update": "alternativa.tanks.game.usertitle:EffectIndicator/update",
+      "alternativa.tanks.game.usertitle:_-Ip/instance/alternativa.tanks.game.usertitle:_-Ip/_-2Z": "alternativa.tanks.game.usertitle:EffectIndicator/private:updateBlinking",
+      "alternativa.tanks.game.usertitle:_-Ip/instance/alternativa.tanks.game.usertitle:_-Ip/draw": "alternativa.tanks.game.usertitle:EffectIndicator/private:draw",
+      "alternativa.tanks.game.usertitle:_-Ip/class/init": "alternativa.tanks.game.usertitle:EffectIndicator/private:draw"
+    },
+    "_-K9": {
+      "alternativa.tanks.game.usertitle:_-K9": null,
+      "alternativa.tanks.game.usertitle:_-K9/instance/init": "alternativa.tanks.game.usertitle:ProgressBar/ProgressBar",
+      "alternativa.tanks.game.usertitle:_-K9/instance/_-gM": "alternativa.tanks.game.usertitle:ProgressBar/setSkin",
+      "alternativa.tanks.game.usertitle:_-K9/instance/progress/getter": "alternativa.tanks.game.usertitle:ProgressBar/progress/get",
+      "alternativa.tanks.game.usertitle:_-K9/instance/progress/setter": "alternativa.tanks.game.usertitle:ProgressBar/progress/set",
+      "alternativa.tanks.game.usertitle:_-K9/instance/draw": "alternativa.tanks.game.usertitle:ProgressBar/draw",
+      "alternativa.tanks.game.usertitle:_-K9/instance/alternativa.tanks.game.usertitle:_-K9/_-6J": "alternativa.tanks.game.usertitle:ProgressBar/private:drawFullBar",
+      "alternativa.tanks.game.usertitle:_-K9/instance/alternativa.tanks.game.usertitle:_-K9/_-SU": "alternativa.tanks.game.usertitle:ProgressBar/private:drawCenter",
+      "alternativa.tanks.game.usertitle:_-K9/class/init": "alternativa.tanks.game.usertitle:ProgressBar/private:drawCenter"
+    },
+    "ProgressBarSkin_hpRedEmptyCls": {
+      "alternativa.tanks.game.usertitle:ProgressBarSkin_hpRedEmptyCls": null,
+      "alternativa.tanks.game.usertitle:ProgressBarSkin_hpRedEmptyCls/instance/init": "alternativa.tanks.game.usertitle:ProgressBarSkin_hpRedEmptyCls/ProgressBarSkin_hpRedEmptyCls",
+      "alternativa.tanks.game.usertitle:ProgressBarSkin_hpRedEmptyCls/class/init": "alternativa.tanks.game.usertitle:ProgressBarSkin_hpRedEmptyCls/ProgressBarSkin_hpRedEmptyCls"
+    }
+  },
   "_-kr": {
     "_-60": {
       "_-kr:_-60": null,
@@ -4282,6 +4475,63 @@
       "_-fT:_-HM/class/init": "alternativa.tanks.game.physics:CollisionGroup/CollisionGroup"
     }
   },
+  "alternativa.tanks.game.usertitle.component": {
+    "_-YR": {
+      "alternativa.tanks.game.usertitle.component:_-YR": null,
+      "alternativa.tanks.game.usertitle.component:_-YR/instance/init": "alternativa.tanks.game.usertitle.component:UserTitleComponent/UserTitleComponent",
+      "alternativa.tanks.game.usertitle.component:_-YR/instance/_-l-": "alternativa.tanks.game.usertitle.component:UserTitleComponent/isOnScene",
+      "alternativa.tanks.game.usertitle.component:_-YR/instance/_-Vj": "alternativa.tanks.game.usertitle.component:UserTitleComponent/isLocalPlayer",
+      "alternativa.tanks.game.usertitle.component:_-YR/instance/_-a7": "alternativa.tanks.game.usertitle.component:UserTitleComponent/setMaxHealth",
+      "alternativa.tanks.game.usertitle.component:_-YR/instance/_-0W": "alternativa.tanks.game.usertitle.component:UserTitleComponent/showIndicator",
+      "alternativa.tanks.game.usertitle.component:_-YR/instance/_-kd": "alternativa.tanks.game.usertitle.component:UserTitleComponent/hideIndicator",
+      "alternativa.tanks.game.usertitle.component:_-YR/instance/initComponent": "alternativa.tanks.game.usertitle.component:UserTitleComponent/initComponent",
+      "alternativa.tanks.game.usertitle.component:_-YR/instance/alternativa.tanks.game.usertitle.component:_-YR/_-RO": "alternativa.tanks.game.usertitle.component:UserTitleComponent/private:onSetHealth",
+      "alternativa.tanks.game.usertitle.component:_-YR/instance/addToGame": "alternativa.tanks.game.usertitle.component:UserTitleComponent/addToGame",
+      "alternativa.tanks.game.usertitle.component:_-YR/instance/removeFromGame": "alternativa.tanks.game.usertitle.component:UserTitleComponent/removeFromGame",
+      "alternativa.tanks.game.usertitle.component:_-YR/instance/addToScene": "alternativa.tanks.game.usertitle.component:UserTitleComponent/addToScene",
+      "alternativa.tanks.game.usertitle.component:_-YR/instance/removeFromScene": "alternativa.tanks.game.usertitle.component:UserTitleComponent/removeFromScene",
+      "alternativa.tanks.game.usertitle.component:_-YR/instance/setHealth": "alternativa.tanks.game.usertitle.component:UserTitleComponent/setHealth",
+      "alternativa.tanks.game.usertitle.component:_-YR/instance/_-Qx": "alternativa.tanks.game.usertitle.component:UserTitleComponent/setRank",
+      "alternativa.tanks.game.usertitle.component:_-YR/instance/render": "alternativa.tanks.game.usertitle.component:UserTitleComponent/render",
+      "alternativa.tanks.game.usertitle.component:_-YR/instance/getTitle": "alternativa.tanks.game.usertitle.component:UserTitleComponent/getTitle",
+      "alternativa.tanks.game.usertitle.component:_-YR/class/init": "alternativa.tanks.game.usertitle.component:UserTitleComponent/getTitle"
+    },
+    "_-Rd": {
+      "alternativa.tanks.game.usertitle.component:_-Rd": null,
+      "alternativa.tanks.game.usertitle.component:_-Rd/instance/init": "alternativa.tanks.game.usertitle.component:DeadState/DeadState",
+      "alternativa.tanks.game.usertitle.component:_-Rd/instance/start": "alternativa.tanks.game.usertitle.component:DeadState/start",
+      "alternativa.tanks.game.usertitle.component:_-Rd/class/init": "alternativa.tanks.game.usertitle.component:DeadState/start"
+    },
+    "_-Up": {
+      "alternativa.tanks.game.usertitle.component:_-Up": null,
+      "alternativa.tanks.game.usertitle.component:_-Up/instance/init": "alternativa.tanks.game.usertitle.component:VisibleState/VisibleState",
+      "alternativa.tanks.game.usertitle.component:_-Up/instance/start": "alternativa.tanks.game.usertitle.component:VisibleState/start",
+      "alternativa.tanks.game.usertitle.component:_-Up/class/init": "alternativa.tanks.game.usertitle.component:VisibleState/start"
+    },
+    "_-po": {
+      "alternativa.tanks.game.usertitle.component:_-po": null,
+      "alternativa.tanks.game.usertitle.component:_-po/instance/init": "alternativa.tanks.game.usertitle.component:OffSceneState/OffSceneState",
+      "alternativa.tanks.game.usertitle.component:_-po/instance/start": "alternativa.tanks.game.usertitle.component:OffSceneState/start",
+      "alternativa.tanks.game.usertitle.component:_-po/class/init": "alternativa.tanks.game.usertitle.component:OffSceneState/start"
+    },
+    "_-CD": {
+      "alternativa.tanks.game.usertitle.component:_-CD": null,
+      "alternativa.tanks.game.usertitle.component:_-CD/instance/init": "alternativa.tanks.game.usertitle.component:ComponentStateBase/ComponentStateBase",
+      "alternativa.tanks.game.usertitle.component:_-CD/instance/start": "alternativa.tanks.game.usertitle.component:ComponentStateBase/start",
+      "alternativa.tanks.game.usertitle.component:_-CD/instance/stop": "alternativa.tanks.game.usertitle.component:ComponentStateBase/stop",
+      "alternativa.tanks.game.usertitle.component:_-CD/class/init": "alternativa.tanks.game.usertitle.component:ComponentStateBase/stop"
+    },
+    "_-3v": {
+      "alternativa.tanks.game.usertitle.component:_-3v": null,
+      "alternativa.tanks.game.usertitle.component:_-3v/instance/init": "alternativa.tanks.game.usertitle.component:IUserName/IUserName",
+      "alternativa.tanks.game.usertitle.component:_-3v/instance/_-0Q:text/setter": "alternativa.tanks.game.usertitle.component:IUserName/alternativa.tanks.game.usertitle.component:IUserName:text/set",
+      "alternativa.tanks.game.usertitle.component:_-3v/instance/_-0Q:textWidth/getter": "alternativa.tanks.game.usertitle.component:IUserName/alternativa.tanks.game.usertitle.component:IUserName:textWidth/get",
+      "alternativa.tanks.game.usertitle.component:_-3v/instance/_-0Q:textHeight/getter": "alternativa.tanks.game.usertitle.component:IUserName/alternativa.tanks.game.usertitle.component:IUserName:textHeight/get",
+      "alternativa.tanks.game.usertitle.component:_-3v/instance/_-0Q:textColor/setter": "alternativa.tanks.game.usertitle.component:IUserName/alternativa.tanks.game.usertitle.component:IUserName:textColor/set",
+      "alternativa.tanks.game.usertitle.component:_-3v/instance/_-0Q:_-Qc": "alternativa.tanks.game.usertitle.component:IUserName/alternativa.tanks.game.usertitle.component:IUserName:getLabel",
+      "alternativa.tanks.game.usertitle.component:_-3v/class/init": "alternativa.tanks.game.usertitle.component:IUserName/alternativa.tanks.game.usertitle.component:IUserName:getLabel"
+    }
+  },
   "_-9n": {
     "_-NS": {
       "_-9n:_-NS": null,
@@ -4294,7 +4544,23 @@
       "_-9n:_-NS/instance/toString": "alternativa.engine3d.animation.keys:Keyframe/toString",
       "_-9n:_-NS/class/init": "alternativa.engine3d.animation.keys:Keyframe/toString"
     },
-    "_-ew": {},
+    "_-ew": {
+      "_-9n:_-ew": null,
+      "_-9n:_-ew/instance/init": "alternativa.engine3d.animation.keys:TransformTrack/TransformTrack",
+      "_-9n:_-ew/instance/http://alternativaplatform.com/en/alternativa3d:keyFramesList/getter": "alternativa.engine3d.animation.keys:TransformTrack/alternativa3d:keyFramesList/get",
+      "_-9n:_-ew/instance/http://alternativaplatform.com/en/alternativa3d:keyFramesList/setter": "alternativa.engine3d.animation.keys:TransformTrack/alternativa3d:keyFramesList/set",
+      "_-9n:_-ew/instance/_-Le": "alternativa.engine3d.animation.keys:TransformTrack/addKey",
+      "_-9n:_-ew/instance/_-mr": "alternativa.engine3d.animation.keys:TransformTrack/addKeyComponents",
+      "_-9n:_-ew/instance/_-9n:_-ew/_-Qn": "alternativa.engine3d.animation.keys:TransformTrack/private:appendQuat",
+      "_-9n:_-ew/instance/_-9n:_-ew/_-OW": "alternativa.engine3d.animation.keys:TransformTrack/private:normalizeQuat",
+      "_-9n:_-ew/instance/_-9n:_-ew/_-3K": "alternativa.engine3d.animation.keys:TransformTrack/private:setQuatFromAxisAngle",
+      "_-9n:_-ew/instance/_-9n:_-ew/_-JN": "alternativa.engine3d.animation.keys:TransformTrack/private:createQuatFromEuler",
+      "_-9n:_-ew/instance/http://alternativaplatform.com/en/alternativa3d:blend": "alternativa.engine3d.animation.keys:TransformTrack/alternativa3d:blend",
+      "_-9n:_-ew/instance/http://alternativaplatform.com/en/alternativa3d:createKeyFrame": "alternativa.engine3d.animation.keys:TransformTrack/alternativa3d:createKeyFrame",
+      "_-9n:_-ew/instance/http://alternativaplatform.com/en/alternativa3d:interpolateKeyFrame": "alternativa.engine3d.animation.keys:TransformTrack/alternativa3d:interpolateKeyFrame",
+      "_-9n:_-ew/instance/slice": "alternativa.engine3d.animation.keys:TransformTrack/slice",
+      "_-9n:_-ew/class/init": "alternativa.engine3d.animation.keys:TransformTrack/slice"
+    },
     "_-j3": {
       "_-9n:_-j3": null,
       "_-9n:_-j3/instance/init": "alternativa.engine3d.animation.keys:NumberKey/NumberKey",
@@ -4316,9 +4582,36 @@
       "_-9n:_-44/instance/http://alternativaplatform.com/en/alternativa3d:nextKeyFrame/setter": "alternativa.engine3d.animation.keys:TransformKey/alternativa3d:nextKeyFrame/set",
       "_-9n:_-44/class/init": "alternativa.engine3d.animation.keys:TransformKey/alternativa3d:nextKeyFrame/set"
     },
-    "_-Np": {},
-    "_-kB": {}
+    "_-Np": {
+      "_-9n:_-Np": null,
+      "_-9n:_-Np/instance/init": "alternativa.engine3d.animation.keys:Track/Track",
+      "_-9n:_-Np/instance/length/getter": "alternativa.engine3d.animation.keys:Track/length/get",
+      "_-9n:_-Np/instance/http://alternativaplatform.com/en/alternativa3d:keyFramesList/getter": "alternativa.engine3d.animation.keys:Track/alternativa3d:keyFramesList/get",
+      "_-9n:_-Np/instance/http://alternativaplatform.com/en/alternativa3d:keyFramesList/setter": "alternativa.engine3d.animation.keys:Track/alternativa3d:keyFramesList/set",
+      "_-9n:_-Np/instance/http://alternativaplatform.com/en/alternativa3d:_-K1": "alternativa.engine3d.animation.keys:Track/alternativa3d:addKeyToList",
+      "_-9n:_-Np/instance/_-dg": "alternativa.engine3d.animation.keys:Track/removeKey",
+      "_-9n:_-Np/instance/keys/getter": "alternativa.engine3d.animation.keys:Track/keys/get",
+      "_-9n:_-Np/instance/http://alternativaplatform.com/en/alternativa3d:blend": "alternativa.engine3d.animation.keys:Track/alternativa3d:blend",
+      "_-9n:_-Np/instance/slice": "alternativa.engine3d.animation.keys:Track/slice",
+      "_-9n:_-Np/instance/http://alternativaplatform.com/en/alternativa3d:createKeyFrame": "alternativa.engine3d.animation.keys:Track/alternativa3d:createKeyFrame",
+      "_-9n:_-Np/instance/http://alternativaplatform.com/en/alternativa3d:interpolateKeyFrame": "alternativa.engine3d.animation.keys:Track/alternativa3d:interpolateKeyFrame",
+      "_-9n:_-Np/instance/http://alternativaplatform.com/en/alternativa3d:_-2Y": "alternativa.engine3d.animation.keys:Track/alternativa3d:sliceImplementation",
+      "_-9n:_-Np/class/init": "alternativa.engine3d.animation.keys:Track/alternativa3d:sliceImplementation"
+    },
+    "_-kB": {
+      "_-9n:_-kB": null,
+      "_-9n:_-kB/instance/init": "alternativa.engine3d.animation.keys:NumberTrack/NumberTrack",
+      "_-9n:_-kB/instance/http://alternativaplatform.com/en/alternativa3d:keyFramesList/getter": "alternativa.engine3d.animation.keys:NumberTrack/alternativa3d:keyFramesList/get",
+      "_-9n:_-kB/instance/http://alternativaplatform.com/en/alternativa3d:keyFramesList/setter": "alternativa.engine3d.animation.keys:NumberTrack/alternativa3d:keyFramesList/set",
+      "_-9n:_-kB/instance/_-Le": "alternativa.engine3d.animation.keys:NumberTrack/addKey",
+      "_-9n:_-kB/instance/http://alternativaplatform.com/en/alternativa3d:blend": "alternativa.engine3d.animation.keys:NumberTrack/alternativa3d:blend",
+      "_-9n:_-kB/instance/http://alternativaplatform.com/en/alternativa3d:createKeyFrame": "alternativa.engine3d.animation.keys:NumberTrack/alternativa3d:createKeyFrame",
+      "_-9n:_-kB/instance/http://alternativaplatform.com/en/alternativa3d:interpolateKeyFrame": "alternativa.engine3d.animation.keys:NumberTrack/alternativa3d:interpolateKeyFrame",
+      "_-9n:_-kB/instance/slice": "alternativa.engine3d.animation.keys:NumberTrack/slice",
+      "_-9n:_-kB/class/init": "alternativa.engine3d.animation.keys:NumberTrack/slice"
+    }
   },
+  "_-1H": { "TaskArray": { "_-az:_-1H/TaskArray": null } },
   "_-GD": {
     "_-6A": {
       "_-GD:_-6A": null,
@@ -4602,6 +4895,7 @@
       "_-fj:_-0N/class/init": "alternativa.tanks.game.entities.tank.physics.chassis.tracked.legacy:LegacyDeadState/start"
     }
   },
+  "_-1t": { "ContactFilter": { "_-fj:_-1t/ContactFilter": null } },
   "_-1c": {
     "_-NM": {
       "_-1c:_-NM": null,
@@ -4877,6 +5171,9 @@
       "_-RG:A3DMapComponent/class/init": "alternativa.tanks.game.entities.map:A3DMapComponent/private:toggleGeometry"
     }
   },
+  "A3DMapBuilder": {
+    "GeometryBuildTask": { "_-RG:A3DMapBuilder/GeometryBuildTask": null }
+  },
   "_-W9": {
     "VectorCodeclongLevel3": {
       "_-W9:VectorCodeclongLevel3": null,
@@ -5100,6 +5397,8 @@
       "_-I0:_-Jv/class/init": "alternativa.tanks.game.camera:FreeCameraController/private:setMatrixFromObject"
     }
   },
+  "_-bt": { "CameraPositionData": { "_-I0:_-bt/CameraPositionData": null } },
+  "_-S6": { "VertexChannelData": { "_-9j:_-S6/VertexChannelData": null } },
   "_-Tr": {
     "_-cL": {
       "_-Tr:_-cL": null,
@@ -5125,6 +5424,7 @@
       "_-Uy:_-oP/class/_-nQ": "alternativa.osgi:OSGi/getInstance"
     }
   },
+  "_-oP": { "InjectPoint": { "_-Uy:_-oP/InjectPoint": null } },
   "_-aA": {
     "_-6t": {
       "_-aA:_-6t": null,
@@ -5144,6 +5444,7 @@
       "_-aA:_-1O/class/init": "alternativa.startup:ConnectionParameters/ConnectionParameters"
     }
   },
+  "_-pE": { "MapMaterialProgram": { "_-RG:_-pE/MapMaterialProgram": null } },
   "_-iL": {
     "_-Yr": {
       "_-iL:_-Yr": null,
@@ -5200,6 +5501,7 @@
       "_-5U:_-fn/class/init": "alternativa:Alternativa3D/Alternativa3D"
     }
   },
+  "_-Kr": { "KeyboardShortcut": { "_-5U:_-Kr/KeyboardShortcut": null } },
   "_-R8": {
     "_-QM": {
       "_-R8:_-QM": null,
@@ -5664,6 +5966,11 @@
       "_-nO:_-KI/class/init": "alternativa.tanks.game.subsystems.logicsystem:ILogicUnit/alternativa.tanks.game.subsystems.logicsystem:ILogicUnit:runLogic"
     }
   },
+  "_-Yk": {
+    "DeferredAction": { "_-nO:_-Yk/DeferredAction": null },
+    "ActionRemoveUnit": { "_-nO:_-Yk/ActionRemoveUnit": null },
+    "ActionAddUnit": { "_-nO:_-Yk/ActionAddUnit": null }
+  },
   "_-j-": {
     "_-B7": {
       "_-j-:_-B7": null,
@@ -5741,7 +6048,7 @@
       "_-L0:import/class/init": "alternativa.tanks.game.utils.list.errors:ConcurrentModificationError/ConcurrentModificationError"
     }
   },
-  "%20var": {
+  " var": {
     "_-QZ": {
       " var:_-QZ": null,
       " var:_-QZ/instance/init": "alternativa.tanks.game.entities.tank.parsers:TankTurretParser/TankTurretParser",
@@ -5857,6 +6164,7 @@
       "_-IQ:_-QL/class/init": "alternativa.tanks.lightsmanager:OmniLightRegistry/private:getLight"
     }
   },
+  "_-JI": { "Logo": { "_-8D:_-JI/Logo": null } },
   "_-Ep": {
     "_-pA": {
       "_-Ep:_-pA": null,
@@ -5909,6 +6217,7 @@
       "_-ks:_-ig/class/init": "alternativa.tanks.game.subsystems.battlemessages:BattleMessagesSubsystem/private:removeMessage"
     }
   },
+  "_-ig": { "Message": { "_-ks:_-ig/Message": null } },
   "_-XV": {
     "_-Yx": {
       "_-XV:_-Yx": null,
@@ -5941,6 +6250,11 @@
       "_-XV:_-31/instance/_-9z:_-nH/getter": "alternativa.osgi.service.display:IDisplay/alternativa.osgi.service.display:IDisplay:cursorLayer/get",
       "_-XV:_-31/class/init": "alternativa.osgi.service.display:IDisplay/alternativa.osgi.service.display:IDisplay:cursorLayer/get"
     }
+  },
+  "_-B0": {
+    "OpCode": { "_-aF:_-B0/OpCode": null },
+    "Register": { "_-aF:_-B0/Register": null },
+    "Sampler": { "_-aF:_-B0/Sampler": null }
   },
   "_-nD": {
     "_-aQ": {
@@ -5988,6 +6302,7 @@
       "_-aa:_-i0/class/init": "alternativa.tanks.config.loaders:SoundsLibrary/private:onSequenceComplete"
     }
   },
+  "_-cS": { "BlobLoader": { "_-aa:_-cS/BlobLoader": null } },
   "_-Oh": {
     "A3D2Track": {
       "_-Oh:A3D2Track": null,
@@ -6057,6 +6372,15 @@
       "_-Fc:catch/instance/_-2X:interpolate": "alternativa.tanks.game.subsystems.physicssystem:IPhysicsController/alternativa.tanks.game.subsystems.physicssystem:IPhysicsController:interpolate",
       "_-Fc:catch/class/init": "alternativa.tanks.game.subsystems.physicssystem:IPhysicsController/alternativa.tanks.game.subsystems.physicssystem:IPhysicsController:interpolate"
     }
+  },
+  "_-8a": {
+    "DeferredActionRemoveBefore": {
+      "_-Fc:_-8a/DeferredActionRemoveBefore": null
+    },
+    "DeferredActionAddBefore": { "_-Fc:_-8a/DeferredActionAddBefore": null },
+    "DeferredActionAddAfter": { "_-Fc:_-8a/DeferredActionAddAfter": null },
+    "DeferredAction": { "_-Fc:_-8a/DeferredAction": null },
+    "DeferredActionRemoveAfter": { "_-Fc:_-8a/DeferredActionRemoveAfter": null }
   },
   "_-pe": {
     "_-m3": {},
@@ -6141,7 +6465,37 @@
       "_-OZ:_-cK/instance/_-ek": "alternativa.engine3d.animation:AnimationController/freeze",
       "_-OZ:_-cK/class/init": "alternativa.engine3d.animation:AnimationController/freeze"
     },
-    "_-FA": {}
+    "_-FA": {
+      "_-OZ:_-FA": null,
+      "_-OZ:_-FA/instance/init": "alternativa.engine3d.animation:AnimationClip/AnimationClip",
+      "_-OZ:_-FA/instance/objects/getter": "alternativa.engine3d.animation:AnimationClip/objects/get",
+      "_-OZ:_-FA/instance/objects/setter": "alternativa.engine3d.animation:AnimationClip/objects/set",
+      "_-OZ:_-FA/instance/http://alternativaplatform.com/en/alternativa3d:setController": "alternativa.engine3d.animation:AnimationClip/alternativa3d:setController",
+      "_-OZ:_-FA/instance/_-OZ:_-FA/instance/addObject": "alternativa.engine3d.animation:AnimationClip/private:addObject",
+      "_-OZ:_-FA/instance/_-OZ:_-FA/instance/_-R5": "alternativa.engine3d.animation:AnimationClip/private:updateObjects",
+      "_-OZ:_-FA/instance/_-SR": "alternativa.engine3d.animation:AnimationClip/updateLength",
+      "_-OZ:_-FA/instance/_-nn": "alternativa.engine3d.animation:AnimationClip/addTrack",
+      "_-OZ:_-FA/instance/_-kS": "alternativa.engine3d.animation:AnimationClip/removeTrack",
+      "_-OZ:_-FA/instance/_-QA": "alternativa.engine3d.animation:AnimationClip/getTrackAt",
+      "_-OZ:_-FA/instance/numTracks/getter": "alternativa.engine3d.animation:AnimationClip/numTracks/get",
+      "_-OZ:_-FA/instance/http://alternativaplatform.com/en/alternativa3d:update": "alternativa.engine3d.animation:AnimationClip/alternativa3d:update",
+      "_-OZ:_-FA/instance/time/getter": "alternativa.engine3d.animation:AnimationClip/time/get",
+      "_-OZ:_-FA/instance/time/setter": "alternativa.engine3d.animation:AnimationClip/time/set",
+      "_-OZ:_-FA/instance/_-SA/getter": "alternativa.engine3d.animation:AnimationClip/normalizedTime/get",
+      "_-OZ:_-FA/instance/_-SA/setter": "alternativa.engine3d.animation:AnimationClip/normalizedTime/set",
+      "_-OZ:_-FA/instance/_-OZ:_-FA/instance/_-8I": "alternativa.engine3d.animation:AnimationClip/private:getNumChildren",
+      "_-OZ:_-FA/instance/_-OZ:_-FA/instance/getChildAt": "alternativa.engine3d.animation:AnimationClip/private:getChildAt",
+      "_-OZ:_-FA/instance/_-OZ:_-FA/instance/_-Lo": "alternativa.engine3d.animation:AnimationClip/private:addChildren",
+      "_-OZ:_-FA/instance/_-L6": "alternativa.engine3d.animation:AnimationClip/attach",
+      "_-OZ:_-FA/instance/http://alternativaplatform.com/en/alternativa3d:_-D3": "alternativa.engine3d.animation:AnimationClip/alternativa3d:collectNotifiers",
+      "_-OZ:_-FA/instance/_-Bn": "alternativa.engine3d.animation:AnimationClip/addNotify",
+      "_-OZ:_-FA/instance/_-VB": "alternativa.engine3d.animation:AnimationClip/addNotifyAtEnd",
+      "_-OZ:_-FA/instance/_-LH": "alternativa.engine3d.animation:AnimationClip/removeNotify",
+      "_-OZ:_-FA/instance/_-ZY/getter": "alternativa.engine3d.animation:AnimationClip/notifiers/get",
+      "_-OZ:_-FA/instance/slice": "alternativa.engine3d.animation:AnimationClip/slice",
+      "_-OZ:_-FA/instance/clone": "alternativa.engine3d.animation:AnimationClip/clone",
+      "_-OZ:_-FA/class/init": "alternativa.engine3d.animation:AnimationClip/clone"
+    }
   },
   "_-jd": {
     "_-nk": {
@@ -6195,6 +6549,12 @@
       "_-jd:_-LO/instance/start": "alternativa.tanks.game.entities.tank.physics.turret:RespawnState/start",
       "_-jd:_-LO/instance/stop": "alternativa.tanks.game.entities.tank.physics.turret:RespawnState/stop",
       "_-jd:_-LO/class/init": "alternativa.tanks.game.entities.tank.physics.turret:RespawnState/stop"
+    }
+  },
+  "_-Tv": { "TextureLoader": { "_-cv:_-Tv/TextureLoader": null } },
+  "_-18": {
+    "EnvironmentMaterialShaderProgram": {
+      "_-Vh:_-18/EnvironmentMaterialShaderProgram": null
     }
   },
   "_-nl": {
@@ -6658,6 +7018,21 @@
       "_-LX:_-VO/class/init": "alternativa.tanks.game.entities.tank.graphics.chassis.tracked:TrackedChassisGraphicsComponent/private:onMouseClick"
     }
   },
+  "tanki2-158": {
+    "_-M9": {
+      "_-M9": null,
+      "_-M9/instance/init": "Preloader_EmbedProgress/Preloader_EmbedProgress",
+      "_-M9/class/init": "Preloader_EmbedProgress/Preloader_EmbedProgress"
+    }
+  },
+  "_-hB": { "CameraPositionData": { "_-I0:_-hB/CameraPositionData": null } },
+  "tanki2-157": {
+    "_-9C": {
+      "_-9C": null,
+      "_-9C/instance/init": "Preloader_EmbedPreloaderA/Preloader_EmbedPreloaderA",
+      "_-9C/class/init": "Preloader_EmbedPreloaderA/Preloader_EmbedPreloaderA"
+    }
+  },
   "_-Yj": {
     "TankMaterial2": {
       "_-Yj:TankMaterial2": null,
@@ -6741,6 +7116,14 @@
       "_-Yj:_-4X/class/_-RX": "alternativa.tanks.game.entities.tank.graphics.materials:TreesMaterial/setFogTexture"
     }
   },
+  "TankMaterial2": {
+    "LightingProgram": { "_-Yj:TankMaterial2/LightingProgram": null },
+    "ShadowOrAmbientProgram": {
+      "_-Yj:TankMaterial2/ShadowOrAmbientProgram": null
+    },
+    "FogProgram": { "_-Yj:TankMaterial2/FogProgram": null }
+  },
+  "_-Wb": { "BlobLoadTask": { "_-mX:_-Wb/BlobLoadTask": null } },
   "_-R1": {
     "OmniLight": {
       "_-R1:OmniLight": null,
@@ -6798,6 +7181,11 @@
       "_-5g:_-iB/class/init": "alternativa.osgi.service.launcherparams:ILauncherParams/alternativa.osgi.service.launcherparams:ILauncherParams:isDebug/get"
     }
   },
+  "_-eG": {
+    "RaycastCellVisitor": { "_-bJ:_-eG/RaycastCellVisitor": null },
+    "BodyCellEntry": { "_-bJ:_-eG/BodyCellEntry": null },
+    "OccupiedCellIndex": { "_-bJ:_-eG/OccupiedCellIndex": null }
+  },
   "_-1s": {
     "Event3D": {
       "_-1s:Event3D": null,
@@ -6819,6 +7207,32 @@
       "_-1s:MouseEvent3D/instance/clone": "alternativa.engine3d.core.events:MouseEvent3D/clone",
       "_-1s:MouseEvent3D/instance/toString": "alternativa.engine3d.core.events:MouseEvent3D/toString",
       "_-1s:MouseEvent3D/class/init": "alternativa.engine3d.core.events:MouseEvent3D/toString"
+    }
+  },
+  "tanki2-0": {
+    "TanksTestingTool": {
+      "TanksTestingTool": null,
+      "TanksTestingTool/instance/init": "TanksTestingTool/TanksTestingTool",
+      "TanksTestingTool/instance/TanksTestingTool/instance/_-9x": "TanksTestingTool/private:onContextCreate",
+      "TanksTestingTool/instance/TanksTestingTool/instance/_-5D": "TanksTestingTool/private:initOptionsSupport",
+      "TanksTestingTool/instance/TanksTestingTool/instance/_-27": "TanksTestingTool/private:onControllerSettingsChange",
+      "TanksTestingTool/instance/TanksTestingTool/instance/_-1B": "TanksTestingTool/private:onLightSettingsChange",
+      "TanksTestingTool/instance/TanksTestingTool/instance/_-JG": "TanksTestingTool/private:onFogSettingsChange",
+      "TanksTestingTool/instance/TanksTestingTool/instance/_-nx": "TanksTestingTool/private:onFogTextureChange",
+      "TanksTestingTool/instance/TanksTestingTool/instance/_-PK": "TanksTestingTool/private:initStage",
+      "TanksTestingTool/instance/TanksTestingTool/instance/_-l2": "TanksTestingTool/private:initClient",
+      "TanksTestingTool/instance/TanksTestingTool/instance/_-33": "TanksTestingTool/private:initConsole",
+      "TanksTestingTool/instance/TanksTestingTool/instance/_-Bw": "TanksTestingTool/private:loadConfig",
+      "TanksTestingTool/instance/TanksTestingTool/instance/_-JY": "TanksTestingTool/private:onConfigLoadingComplete",
+      "TanksTestingTool/instance/TanksTestingTool/instance/_-lN": "TanksTestingTool/private:initHUD",
+      "TanksTestingTool/instance/TanksTestingTool/instance/_-Ze": "TanksTestingTool/private:onKeyDown",
+      "TanksTestingTool/instance/TanksTestingTool/instance/_-GO": "TanksTestingTool/private:onClickFullScreenButton",
+      "TanksTestingTool/instance/TanksTestingTool/instance/_-Tp": "TanksTestingTool/private:onFullScreenChange",
+      "TanksTestingTool/instance/TanksTestingTool/instance/_-gC": "TanksTestingTool/private:onClickNextTankButton",
+      "TanksTestingTool/instance/TanksTestingTool/instance/_-G-": "TanksTestingTool/private:initGame",
+      "TanksTestingTool/instance/TanksTestingTool/instance/_-ba": "TanksTestingTool/private:onEnterFrame",
+      "TanksTestingTool/instance/TanksTestingTool/instance/_-7B": "TanksTestingTool/private:onResize",
+      "TanksTestingTool/class/init": "TanksTestingTool/private:onResize"
     }
   },
   "_-RQ": {
@@ -7082,6 +7496,17 @@
       "_-mH:_-qi/class/init": "alternativa.tanks.game.weapons.ammunition:IAOEAmmunitionCallback/alternativa.tanks.game.weapons.ammunition:IAOEAmmunitionCallback:onHit"
     }
   },
+  "_-A3": {
+    "DummyTurret": { "_-YQ:_-A3/DummyTurret": null },
+    "FrameMaterialsFactory": { "_-YQ:_-A3/FrameMaterialsFactory": null },
+    "DummyTurretCallback": { "_-YQ:_-A3/DummyTurretCallback": null },
+    "PointHitRoundAmmo": { "_-YQ:_-A3/PointHitRoundAmmo": null },
+    "TextureResourceCache": { "_-YQ:_-A3/TextureResourceCache": null },
+    "WeaponHitEffects": { "_-YQ:_-A3/WeaponHitEffects": null },
+    "MultiBitmapTextureResourceCache": {
+      "_-YQ:_-A3/MultiBitmapTextureResourceCache": null
+    }
+  },
   "_-o8": {
     "_-Bh": {
       "_-o8:_-Bh": null,
@@ -7156,6 +7581,9 @@
       "_-am:_-qn/class/init": "alternativa.engine3d.loaders:ParserMaterial/alternativa3d:collectDraws"
     }
   },
+  "_-Fh": { "DummyClientLog": { "_-am:_-Fh/DummyClientLog": null } },
+  "_-cx": { "ValueSmoother": { "_-fj:_-cx/ValueSmoother": null } },
+  "_-DN": { "MapListener": { "_-YQ:_-DN/MapListener": null } },
   "_-GE": {
     "_-RN": {
       "_-GE:_-RN": null,
@@ -7250,6 +7678,14 @@
       "_-K8:_-e5/class/init": "alternativa.tanks.game.effects.debug:FloatingTextEffect/destroy"
     }
   },
+  "_-e5": { "Message": { "_-K8:_-e5/Message": null } },
+  "tanki2-159": {
+    "_-Lz": {
+      "_-Lz": null,
+      "_-Lz/instance/init": "Preloader_EmbedPreloader/Preloader_EmbedPreloader",
+      "_-Lz/class/init": "Preloader_EmbedPreloader/Preloader_EmbedPreloader"
+    }
+  },
   "_-7A": {
     "_-3e": {
       "_-7A:_-3e": null,
@@ -7302,6 +7738,13 @@
       "_-7A:_-Is/class/init": "alternativa.tanks.game.entities.tank.physics:IChassisPhysicsComponent/alternativa.tanks.game.entities.tank.physics:IChassisPhysicsComponent:getWheelDeltaZ"
     }
   },
+  "_-Yf": {
+    "KeyboardEventItem": { "_-aM:_-Yf/KeyboardEventItem": null },
+    "KeybardEventQueue": { "_-aM:_-Yf/KeybardEventQueue": null },
+    "MouseEventQueue": { "_-aM:_-Yf/MouseEventQueue": null },
+    "MouseEventItem": { "_-aM:_-Yf/MouseEventItem": null },
+    "CleanupTask": { "_-aM:_-Yf/CleanupTask": null }
+  },
   "_-io": {
     "_-Cs": {
       "_-io:_-Cs": null,
@@ -7333,6 +7776,10 @@
       "_-io:_-39/class/init": "alternativa.osgi.service.dump:IDumpService/alternativa.osgi.service.dump:IDumpService:dumpersList/get"
     }
   },
+  "_-Ph": { "CollisionPointTmp": { "while:_-Ph/CollisionPointTmp": null } },
+  "_-T": {
+    "SimpleWeaponShotEffect": { "function:_-T/SimpleWeaponShotEffect": null }
+  },
   "_-85": {
     "_-YM": {
       "_-85:_-YM": null,
@@ -7341,6 +7788,13 @@
       "_-85:_-YM/class/init": "alternativa.tanks.game.weapons.ammunition.railgun:MultybodyRaycastFilter/acceptRayHit"
     }
   },
+  "_-AG": { "DummyLogger": { "_-az:_-AG/DummyLogger": null } },
+  "_-i0": { "SoundLoader": { "_-aa:_-i0/SoundLoader": null } },
+  "_-YU": {
+    "MapLoadTask": { "_-cv:_-YU/MapLoadTask": null },
+    "ConfigXMLLoader": { "_-cv:_-YU/ConfigXMLLoader": null }
+  },
+  "_-Hr": { "FileInfo": { "return:_-Hr/FileInfo": null } },
   "_-lS": {
     "_-h2": {
       "_-lS:_-h2": null,
@@ -7350,6 +7804,7 @@
       "_-lS:_-h2/class/init": "alternativa.tanks.game.subsystems.timesystem:TimeSystem/run"
     }
   },
+  "_-q4": { "Particle": { "_-9Z:_-q4/Particle": null } },
   "_-TX": {
     "_-R3": {
       "_-TX:_-R3": null,
@@ -7357,68 +7812,6 @@
       "_-TX:_-R3/instance/start": "platform.clients.fp10.libraries.alternativaprotocol:Activator/start",
       "_-TX:_-R3/instance/stop": "platform.clients.fp10.libraries.alternativaprotocol:Activator/stop",
       "_-TX:_-R3/class/init": "platform.clients.fp10.libraries.alternativaprotocol:Activator/stop"
-    }
-  },
-  "tanki2-14": {
-    "Preloader": {
-      "Preloader": null,
-      "Preloader/instance/init": "Preloader/Preloader",
-      "Preloader/instance/_-QU": "Preloader/setProgress",
-      "Preloader/instance/Preloader/_-Dq": "Preloader/private:onComplete",
-      "Preloader/instance/_-fE": "Preloader/addProgress",
-      "Preloader/instance/Preloader/_-Id": "Preloader/private:onAddToStage",
-      "Preloader/instance/Preloader/_-99": "Preloader/private:onRemoveFromStage",
-      "Preloader/instance/Preloader/_-ba": "Preloader/private:onEnterFrame",
-      "Preloader/instance/Preloader/_-MO": "Preloader/private:onEnterFrameSwitch",
-      "Preloader/instance/Preloader/_-7B": "Preloader/private:onResize",
-      "Preloader/class/init": "Preloader/private:onResize"
-    }
-  },
-  "tanki2-158": {
-    "_-M9": {
-      "_-M9": null,
-      "_-M9/instance/init": "Preloader_EmbedProgress/Preloader_EmbedProgress",
-      "_-M9/class/init": "Preloader_EmbedProgress/Preloader_EmbedProgress"
-    }
-  },
-  "tanki2-157": {
-    "_-9C": {
-      "_-9C": null,
-      "_-9C/instance/init": "Preloader_EmbedPreloaderA/Preloader_EmbedPreloaderA",
-      "_-9C/class/init": "Preloader_EmbedPreloaderA/Preloader_EmbedPreloaderA"
-    }
-  },
-  "tanki2-0": {
-    "TanksTestingTool": {
-      "TanksTestingTool": null,
-      "TanksTestingTool/instance/init": "TanksTestingTool/TanksTestingTool",
-      "TanksTestingTool/instance/TanksTestingTool/instance/_-9x": "TanksTestingTool/private:onContextCreate",
-      "TanksTestingTool/instance/TanksTestingTool/instance/_-5D": "TanksTestingTool/private:initOptionsSupport",
-      "TanksTestingTool/instance/TanksTestingTool/instance/_-27": "TanksTestingTool/private:onControllerSettingsChange",
-      "TanksTestingTool/instance/TanksTestingTool/instance/_-1B": "TanksTestingTool/private:onLightSettingsChange",
-      "TanksTestingTool/instance/TanksTestingTool/instance/_-JG": "TanksTestingTool/private:onFogSettingsChange",
-      "TanksTestingTool/instance/TanksTestingTool/instance/_-nx": "TanksTestingTool/private:onFogTextureChange",
-      "TanksTestingTool/instance/TanksTestingTool/instance/_-PK": "TanksTestingTool/private:initStage",
-      "TanksTestingTool/instance/TanksTestingTool/instance/_-l2": "TanksTestingTool/private:initClient",
-      "TanksTestingTool/instance/TanksTestingTool/instance/_-33": "TanksTestingTool/private:initConsole",
-      "TanksTestingTool/instance/TanksTestingTool/instance/_-Bw": "TanksTestingTool/private:loadConfig",
-      "TanksTestingTool/instance/TanksTestingTool/instance/_-JY": "TanksTestingTool/private:onConfigLoadingComplete",
-      "TanksTestingTool/instance/TanksTestingTool/instance/_-lN": "TanksTestingTool/private:initHUD",
-      "TanksTestingTool/instance/TanksTestingTool/instance/_-Ze": "TanksTestingTool/private:onKeyDown",
-      "TanksTestingTool/instance/TanksTestingTool/instance/_-GO": "TanksTestingTool/private:onClickFullScreenButton",
-      "TanksTestingTool/instance/TanksTestingTool/instance/_-Tp": "TanksTestingTool/private:onFullScreenChange",
-      "TanksTestingTool/instance/TanksTestingTool/instance/_-gC": "TanksTestingTool/private:onClickNextTankButton",
-      "TanksTestingTool/instance/TanksTestingTool/instance/_-G-": "TanksTestingTool/private:initGame",
-      "TanksTestingTool/instance/TanksTestingTool/instance/_-ba": "TanksTestingTool/private:onEnterFrame",
-      "TanksTestingTool/instance/TanksTestingTool/instance/_-7B": "TanksTestingTool/private:onResize",
-      "TanksTestingTool/class/init": "TanksTestingTool/private:onResize"
-    }
-  },
-  "tanki2-159": {
-    "_-Lz": {
-      "_-Lz": null,
-      "_-Lz/instance/init": "Preloader_EmbedPreloader/Preloader_EmbedPreloader",
-      "_-Lz/class/init": "Preloader_EmbedPreloader/Preloader_EmbedPreloader"
     }
   }
 }

@@ -15,9 +15,9 @@ package alternativa.tanks.game.weapons.targeting
       
       private static var rayDirection:Vector3 = new Vector3();
       
-      private var var_469:Number;
+      private var §_-IP§:Number;
       
-      private var var_470:Vector3 = new Vector3();
+      private var §_-3V§:Vector3 = new Vector3();
       
       private var matrix:Matrix3 = new Matrix3();
       
@@ -62,10 +62,10 @@ package alternativa.tanks.game.weapons.targeting
       {
          var body:Body = null;
          this.filter.body = shooter;
-         this.var_469 = maxDistance + 1;
+         this.§_-IP§ = maxDistance + 1;
          if(this.collisionDetector.raycast(barrelOrigin,barrelDirection,collisionMask,maxDistance,this.filter,this.rayHit))
          {
-            this.var_469 = this.rayHit.t;
+            this.§_-IP§ = this.rayHit.t;
             body = this.rayHit.primitive.body;
             if(body == null)
             {
@@ -75,7 +75,7 @@ package alternativa.tanks.game.weapons.targeting
                   return;
                }
             }
-            this.var_470.copy(barrelDirection);
+            this.§_-3V§.copy(barrelDirection);
          }
          if(this.numRaysUp > 0)
          {
@@ -86,13 +86,13 @@ package alternativa.tanks.game.weapons.targeting
             this.checkSector(shooter,barrelOrigin,barrelDirection,gunElevationAxis,this.numRaysDown,-this.angleDown / this.numRaysDown,maxDistance);
          }
          this.filter.body = null;
-         if(this.var_469 > maxDistance)
+         if(this.§_-IP§ > maxDistance)
          {
             result.copy(barrelDirection);
          }
          else
          {
-            result.copy(this.var_470);
+            result.copy(this.§_-3V§);
          }
       }
       
@@ -104,13 +104,13 @@ package alternativa.tanks.game.weapons.targeting
          for(var i:int = 1; i <= numRays; )
          {
             rayDirection.transform3(this.matrix);
-            if(Boolean(this.collisionDetector.raycast(origin,rayDirection,collisionMask,maxDistance,this.filter,this.rayHit)) && this.rayHit.t < this.var_469)
+            if(Boolean(this.collisionDetector.raycast(origin,rayDirection,collisionMask,maxDistance,this.filter,this.rayHit)) && this.rayHit.t < this.§_-IP§)
             {
                targetBody = this.rayHit.primitive.body;
                if(targetBody != null && this.targetValidator.getTargetPriority(shooter,targetBody,0,0) > 0)
                {
-                  this.var_469 = this.rayHit.t;
-                  this.var_470.copy(rayDirection);
+                  this.§_-IP§ = this.rayHit.t;
+                  this.§_-3V§.copy(rayDirection);
                }
             }
             i++;

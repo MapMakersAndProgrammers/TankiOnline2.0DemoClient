@@ -6,39 +6,39 @@ package alternativa.osgi.service.display
    
    public class Display implements IDisplay
    {
-      private var var_43:Stage;
+      private var §_-We§:Stage;
       
-      private var var_557:DisplayObjectContainer;
+      private var §_-j§:DisplayObjectContainer;
       
-      private var var_565:DisplayObjectContainer;
+      private var §finally§:DisplayObjectContainer;
       
-      private var var_563:DisplayObjectContainer;
+      private var §_-TJ§:DisplayObjectContainer;
       
-      private var var_559:DisplayObjectContainer;
+      private var §_-6o§:DisplayObjectContainer;
       
-      private var var_564:DisplayObjectContainer;
+      private var §_-Xl§:DisplayObjectContainer;
       
-      private var var_560:DisplayObjectContainer;
+      private var §_-Ha§:DisplayObjectContainer;
       
-      private var var_558:DisplayObjectContainer;
+      private var §_-5X§:DisplayObjectContainer;
       
-      private var var_562:DisplayObjectContainer;
+      private var §_-Qq§:DisplayObjectContainer;
       
-      private var var_561:DisplayObjectContainer;
+      private var §_-Ow§:DisplayObjectContainer;
       
       public function Display(rootContainer:DisplayObjectContainer)
       {
          super();
-         this.var_43 = rootContainer.stage;
-         this.var_557 = rootContainer;
-         this.var_565 = this.addLayerSprite();
-         this.var_563 = this.addLayerSprite();
-         this.var_559 = this.addLayerSprite();
-         this.var_564 = this.addLayerSprite();
-         this.var_560 = this.addLayerSprite();
-         this.var_558 = this.addLayerSprite();
-         this.var_562 = this.addLayerSprite();
-         this.var_561 = this.addLayerSprite();
+         this.§_-We§ = rootContainer.stage;
+         this.§_-j§ = rootContainer;
+         this.§finally§ = this.addLayerSprite();
+         this.§_-TJ§ = this.addLayerSprite();
+         this.§_-6o§ = this.addLayerSprite();
+         this.§_-Xl§ = this.addLayerSprite();
+         this.§_-Ha§ = this.addLayerSprite();
+         this.§_-5X§ = this.addLayerSprite();
+         this.§_-Qq§ = this.addLayerSprite();
+         this.§_-Ow§ = this.addLayerSprite();
       }
       
       private function addLayerSprite() : Sprite
@@ -46,58 +46,58 @@ package alternativa.osgi.service.display
          var sprite:Sprite = new Sprite();
          sprite.mouseEnabled = false;
          sprite.tabEnabled = false;
-         this.var_557.addChild(sprite);
+         this.§_-j§.addChild(sprite);
          return sprite;
       }
       
       public function get stage() : Stage
       {
-         return this.var_43;
+         return this.§_-We§;
       }
       
       public function get mainContainer() : DisplayObjectContainer
       {
-         return this.var_557;
+         return this.§_-j§;
       }
       
       public function get backgroundLayer() : DisplayObjectContainer
       {
-         return this.var_565;
+         return this.§finally§;
       }
       
       public function get contentLayer() : DisplayObjectContainer
       {
-         return this.var_563;
+         return this.§_-TJ§;
       }
       
       public function get contentUILayer() : DisplayObjectContainer
       {
-         return this.var_559;
+         return this.§_-6o§;
       }
       
       public function get systemLayer() : DisplayObjectContainer
       {
-         return this.var_564;
+         return this.§_-Xl§;
       }
       
       public function get systemUILayer() : DisplayObjectContainer
       {
-         return this.var_560;
+         return this.§_-Ha§;
       }
       
       public function get dialogsLayer() : DisplayObjectContainer
       {
-         return this.var_558;
+         return this.§_-5X§;
       }
       
       public function get noticesLayer() : DisplayObjectContainer
       {
-         return this.var_562;
+         return this.§_-Qq§;
       }
       
       public function get cursorLayer() : DisplayObjectContainer
       {
-         return this.var_561;
+         return this.§_-Ow§;
       }
    }
 }

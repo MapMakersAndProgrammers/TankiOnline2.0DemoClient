@@ -40,7 +40,7 @@ package alternativa.tanks.game.weapons.ammunition.plasma
          var effect:PlasmaRoundEffect = PlasmaRoundEffect(this.gameKernel.getObjectPoolManager().getObject(PlasmaRoundEffect));
          var rotation:Number = Math.random() * Math.PI;
          effect.init(EFFECT_SIZE,EFFECT_SIZE,this.roundFrames,Vector3.ZERO,rotation,50,EFFECT_FPS,true,0.5,0.5);
-         this.gameKernel.getRenderSystem().method_21(effect);
+         this.gameKernel.getRenderSystem().each(effect);
          return effect;
       }
       
@@ -49,7 +49,7 @@ package alternativa.tanks.game.weapons.ammunition.plasma
          var explosionEffect:AnimatedSpriteEffect = AnimatedSpriteEffect(this.gameKernel.getObjectPoolManager().getObject(AnimatedSpriteEffect));
          var rotation:Number = Math.random() * Math.PI;
          explosionEffect.init(EXPLOSION_EFFECT_SIZE,EXPLOSION_EFFECT_SIZE,this.explosionFrames,position,rotation,50,EXPLOSION_FPS,false,0.5,0.5);
-         this.gameKernel.getRenderSystem().method_21(explosionEffect);
+         this.gameKernel.getRenderSystem().each(explosionEffect);
       }
       
       public function createRicochetEffects(position:Vector3, normal:Vector3, direction:Vector3) : void

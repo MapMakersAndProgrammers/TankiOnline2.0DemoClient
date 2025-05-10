@@ -21,21 +21,21 @@ package alternativa.tanks.game.entities.tank.physics.turret
    
    public class TurretPhysicsComponent extends EntityComponent implements ITurretPhysicsComponent, IPhysicsController
    {
-      public var var_430:Number;
+      public var §_-JR§:Number;
       
       private var turnDirection:int;
       
       private var direction:Number = 0;
       
-      private var var_433:Number = 0;
+      private var §_-De§:Number = 0;
       
       private var maxRotationSpeed:Number = 0;
       
       private var rotationAcceleration:Number = 0;
       
-      private var var_432:Number = 0;
+      private var §_-nr§:Number = 0;
       
-      private var var_434:Boolean;
+      private var §_-fV§:Boolean;
       
       private var chassisComponent:IChassisPhysicsComponent;
       
@@ -45,13 +45,13 @@ package alternativa.tanks.game.entities.tank.physics.turret
       
       private var primitives:Vector.<CollisionPrimitive>;
       
-      private var var_431:Vector3;
+      private var §_-CH§:Vector3;
       
-      private var var_426:Boolean;
+      private var §case §:Boolean;
       
-      private var var_424:EventStates;
+      private var §_-z§:EventStates;
       
-      private var var_429:Matrix4 = new Matrix4();
+      private var §_-pP§:Matrix4 = new Matrix4();
       
       public function TurretPhysicsComponent(turret:TankTurret, maxRotationSpeed:Number, rotationAcceleration:Number)
       {
@@ -59,7 +59,7 @@ package alternativa.tanks.game.entities.tank.physics.turret
          this.maxRotationSpeed = maxRotationSpeed;
          this.rotationAcceleration = rotationAcceleration;
          this.primitives = new Vector.<CollisionPrimitive>();
-         this.var_431 = new Vector3();
+         this.§_-CH§ = new Vector3();
          this.setTurret(turret);
       }
       
@@ -71,57 +71,57 @@ package alternativa.tanks.game.entities.tank.physics.turret
       override public function initComponent() : void
       {
          this.chassisComponent = IChassisPhysicsComponent(entity.getComponentStrict(IChassisPhysicsComponent));
-         this.chassisComponent.getTurretMountPoint(this.var_431);
+         this.chassisComponent.getTurretMountPoint(this.§_-CH§);
          this.chassisComponent.setTurret(this);
          this.updatePrimitves();
          InterpolationComponent(entity.getComponentStrict(InterpolationComponent)).setTurretController(this);
-         this.var_424 = new EventStates();
-         this.var_424.setEventState(entity,TankEvents.SET_RESPAWN_STATE,new RespawnState(this));
+         this.§_-z§ = new EventStates();
+         this.§_-z§.setEventState(entity,TankEvents.SET_RESPAWN_STATE,new RespawnState(this));
          var activeState:ActiveState = new ActiveState(this);
-         this.var_424.setEventState(entity,TankEvents.SET_ACTIVATING_STATE,activeState);
-         this.var_424.setEventState(entity,TankEvents.SET_ACTIVE_STATE,activeState);
-         this.var_424.setEventState(entity,TankEvents.SET_DEAD_STATE,new DeadState(this));
-         this.var_424.name_371 = EmptyState.INSTANCE;
+         this.§_-z§.setEventState(entity,TankEvents.SET_ACTIVATING_STATE,activeState);
+         this.§_-z§.setEventState(entity,TankEvents.SET_ACTIVE_STATE,activeState);
+         this.§_-z§.setEventState(entity,TankEvents.SET_DEAD_STATE,new DeadState(this));
+         this.§_-z§.§_-Ah§ = EmptyState.INSTANCE;
          entity.addEventHandler(GameEvents.BATTLE_FINISHED,this.onBattleFinished);
       }
       
       public function getBarrelCount() : int
       {
-         return this.turret.var_422.length;
+         return this.turret.§_-O3§.length;
       }
       
       public function getGunData(barrelIndex:int, barrelOrigin:Vector3, gunDirection:Vector3, gunElevationAxis:Vector3) : void
       {
          var muzzlePoint:Vector3 = this.getLocalMuzzlePoint(barrelIndex);
          barrelOrigin.reset(muzzlePoint.x,0,muzzlePoint.z);
-         barrelOrigin.transform4(this.var_429);
-         this.var_429.getAxis(0,gunElevationAxis);
-         this.var_429.getAxis(1,gunDirection);
+         barrelOrigin.transform4(this.§_-pP§);
+         this.§_-pP§.getAxis(0,gunElevationAxis);
+         this.§_-pP§.getAxis(1,gunDirection);
       }
       
       public function getGunMuzzleData(barrelIndex:int, muzzlePosition:Vector3, gunDirection:Vector3) : void
       {
          var localMuzzlePoint:Vector3 = this.getLocalMuzzlePoint(barrelIndex);
-         this.var_429.transformPoint(localMuzzlePoint,muzzlePosition);
-         this.var_429.getAxis(1,gunDirection);
+         this.§_-pP§.transformPoint(localMuzzlePoint,muzzlePosition);
+         this.§_-pP§.getAxis(1,gunDirection);
       }
       
       public function getGunMuzzleData2(barrelIndex:int, barrelOrigin:Vector3, muzzlePosition:Vector3) : void
       {
          var localMuzzlePoint:Vector3 = this.getLocalMuzzlePoint(barrelIndex);
          barrelOrigin.reset(localMuzzlePoint.x,0,localMuzzlePoint.z);
-         barrelOrigin.transform4(this.var_429);
-         this.var_429.transformPoint(localMuzzlePoint,muzzlePosition);
+         barrelOrigin.transform4(this.§_-pP§);
+         this.§_-pP§.transformPoint(localMuzzlePoint,muzzlePosition);
       }
       
       public function getBarrelLength(barrelIndex:int) : Number
       {
-         return this.turret.var_422[barrelIndex].y;
+         return this.turret.§_-O3§[barrelIndex].y;
       }
       
       public function getInterpolatedTurretDirection() : Number
       {
-         return this.var_430;
+         return this.§_-JR§;
       }
       
       public function getChassisMatrix() : Matrix4
@@ -155,7 +155,7 @@ package alternativa.tanks.game.entities.tank.physics.turret
       
       public function setTurretMountPoint(point:Vector3) : void
       {
-         this.var_431.copy(point);
+         this.§_-CH§.copy(point);
          this.updatePrimitves();
       }
       
@@ -177,13 +177,13 @@ package alternativa.tanks.game.entities.tank.physics.turret
             return false;
          }
          this.turnDirection = turretTurnDirection;
-         this.var_434 = false;
+         this.§_-fV§ = false;
          return true;
       }
       
       public function centerTurret(value:Boolean) : void
       {
-         this.var_434 = value;
+         this.§_-fV§ = value;
       }
       
       public function getTurretPrimitives() : Vector.<CollisionPrimitive>
@@ -194,31 +194,31 @@ package alternativa.tanks.game.entities.tank.physics.turret
       public function updateBeforeSimulation(physicsStep:int) : void
       {
          var _loc2_:Number = NaN;
-         this.var_433 = this.direction;
-         if(!this.var_434 && this.turnDirection == 0)
+         this.§_-De§ = this.direction;
+         if(!this.§_-fV§ && this.turnDirection == 0)
          {
-            this.var_432 = 0;
+            this.§_-nr§ = 0;
          }
          else
          {
             _loc2_ = 0.001 * physicsStep;
-            this.var_432 += this.rotationAcceleration * _loc2_;
-            if(this.var_432 > this.maxRotationSpeed)
+            this.§_-nr§ += this.rotationAcceleration * _loc2_;
+            if(this.§_-nr§ > this.maxRotationSpeed)
             {
-               this.var_432 = this.maxRotationSpeed;
+               this.§_-nr§ = this.maxRotationSpeed;
             }
-            if(this.var_434)
+            if(this.§_-fV§)
             {
-               this.direction = GameMathUtils.advanceValueTowards(this.direction,0,this.var_432 * _loc2_);
+               this.direction = GameMathUtils.advanceValueTowards(this.direction,0,this.§_-nr§ * _loc2_);
                if(this.direction == 0)
                {
-                  this.var_434 = false;
+                  this.§_-fV§ = false;
                }
                this.updatePrimitves();
             }
             else
             {
-               this.setTurretDirection(this.direction + this.turnDirection * this.var_432 * _loc2_);
+               this.setTurretDirection(this.direction + this.turnDirection * this.§_-nr§ * _loc2_);
             }
          }
       }
@@ -229,56 +229,56 @@ package alternativa.tanks.game.entities.tank.physics.turret
       
       public function interpolate(interpolationCoeff:Number) : void
       {
-         var angleDiff:Number = this.direction - this.var_433;
+         var angleDiff:Number = this.direction - this.§_-De§;
          if(angleDiff > Math.PI)
          {
             angleDiff = 2 * Math.PI - angleDiff;
-            this.var_430 = this.var_433 - angleDiff * interpolationCoeff;
-            if(this.var_430 < -Math.PI)
+            this.§_-JR§ = this.§_-De§ - angleDiff * interpolationCoeff;
+            if(this.§_-JR§ < -Math.PI)
             {
-               this.var_430 += 2 * Math.PI;
+               this.§_-JR§ += 2 * Math.PI;
             }
          }
          else if(angleDiff < -Math.PI)
          {
             angleDiff += 2 * Math.PI;
-            this.var_430 = this.var_433 + angleDiff * interpolationCoeff;
-            if(this.var_430 > Math.PI)
+            this.§_-JR§ = this.§_-De§ + angleDiff * interpolationCoeff;
+            if(this.§_-JR§ > Math.PI)
             {
-               this.var_430 -= 2 * Math.PI;
+               this.§_-JR§ -= 2 * Math.PI;
             }
          }
          else
          {
-            this.var_430 = this.var_433 * (1 - interpolationCoeff) + this.direction * interpolationCoeff;
+            this.§_-JR§ = this.§_-De§ * (1 - interpolationCoeff) + this.direction * interpolationCoeff;
          }
-         this.var_429.toIdentity();
-         this.var_429.setRotationMatrix(0,0,this.var_430);
-         this.var_429.setPosition(this.var_431);
-         this.var_429.append(this.chassisComponent.getInterpolatedMatrix());
+         this.§_-pP§.toIdentity();
+         this.§_-pP§.setRotationMatrix(0,0,this.§_-JR§);
+         this.§_-pP§.setPosition(this.§_-CH§);
+         this.§_-pP§.append(this.chassisComponent.getInterpolatedMatrix());
       }
       
       internal function addToScene() : void
       {
-         if(!this.var_426)
+         if(!this.§case §)
          {
             this.gameKernel.getPhysicsSystem().addControllerBefore(this);
-            this.var_426 = true;
+            this.§case § = true;
          }
       }
       
       internal function removeFromScene() : void
       {
-         if(this.var_426)
+         if(this.§case §)
          {
             this.gameKernel.getPhysicsSystem().removeControllerBefore(this);
-            this.var_426 = false;
+            this.§case § = false;
          }
       }
       
       private function getLocalMuzzlePoint(barrelIndex:int) : Vector3
       {
-         return this.turret.var_422[barrelIndex];
+         return this.turret.§_-O3§[barrelIndex];
       }
       
       private function createTurretPrimitives(collisionGroup:int, collisionMask:int) : void
@@ -286,7 +286,7 @@ package alternativa.tanks.game.entities.tank.physics.turret
          var boxData:BoxData = null;
          var collisioinBox:TurretCollisioinBox = null;
          this.primitives.length = 0;
-         for each(boxData in this.turret.var_423)
+         for each(boxData in this.turret.§_-Of§)
          {
             collisioinBox = new TurretCollisioinBox(boxData.hs,boxData.matrix,collisionGroup,collisionMask);
             collisioinBox.localTransform = new Matrix4();
@@ -311,9 +311,9 @@ package alternativa.tanks.game.entities.tank.physics.turret
             m.b = sin;
             m.e = -sin;
             m.f = cos;
-            m.d = this.var_431.x;
-            m.h = this.var_431.y;
-            m.l = this.var_431.z;
+            m.d = this.§_-CH§.x;
+            m.h = this.§_-CH§.y;
+            m.l = this.§_-CH§.z;
             m.prepend(collisionPrimitive.m);
          }
       }

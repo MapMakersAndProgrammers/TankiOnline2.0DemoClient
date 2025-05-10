@@ -40,23 +40,23 @@ package alternativa.tanks.game.weapons
       
       private var callback:IInstantShotWeaponCallback;
       
-      private var var_446:int;
+      private var §_-g8§:int;
       
-      private var var_445:ITurretPhysicsComponent;
+      private var §_-Zu§:ITurretPhysicsComponent;
       
       private var chassisComponent:IChassisPhysicsComponent;
       
-      private var var_447:IWeaponShotEffects;
+      private var §_-bQ§:IWeaponShotEffects;
       
-      private var var_441:ILogic;
+      private var §_-hE§:ILogic;
       
-      private var var_439:Boolean;
+      private var §_-Rr§:Boolean;
       
-      private var var_438:Boolean;
+      private var §_-3§:Boolean;
       
-      private var var_440:Boolean;
+      private var §_-f3§:Boolean;
       
-      private var var_448:int;
+      private var §_-eN§:int;
       
       private var gameKernel:GameKernel;
       
@@ -75,9 +75,9 @@ package alternativa.tanks.game.weapons
       
       override public function initComponent() : void
       {
-         this.var_445 = ITurretPhysicsComponent(entity.getComponentStrict(ITurretPhysicsComponent));
+         this.§_-Zu§ = ITurretPhysicsComponent(entity.getComponentStrict(ITurretPhysicsComponent));
          this.chassisComponent = IChassisPhysicsComponent(entity.getComponentStrict(IChassisPhysicsComponent));
-         this.var_447 = IWeaponShotEffects(entity.getComponentStrict(IWeaponShotEffects));
+         this.§_-bQ§ = IWeaponShotEffects(entity.getComponentStrict(IWeaponShotEffects));
          if(this.isActive)
          {
             entity.addEventHandler(TankEvents.SET_ACTIVE_STATE,this.setActiveState);
@@ -101,27 +101,27 @@ package alternativa.tanks.game.weapons
       override public function addToGame(gameKernel:GameKernel) : void
       {
          this.gameKernel = gameKernel;
-         this.var_441 = gameKernel.getLogicSystem2();
+         this.§_-hE§ = gameKernel.getLogicSystem2();
       }
       
       override public function removeFromGame(gameKernel:GameKernel) : void
       {
-         this.var_441 = null;
+         this.§_-hE§ = null;
          this.gameKernel = null;
       }
       
       public function getStatus() : Number
       {
-         var readiness:Number = 1 + (TimeSystem.time - this.var_446) / this.reloadTime;
+         var readiness:Number = 1 + (TimeSystem.time - this.§_-g8§) / this.reloadTime;
          return readiness > 1 ? 1 : readiness;
       }
       
       public function pullTrigger() : void
       {
-         if(!this.var_438)
+         if(!this.§_-3§)
          {
-            this.var_438 = true;
-            if(this.var_439)
+            this.§_-3§ = true;
+            if(this.§_-Rr§)
             {
                this.enableLogic();
             }
@@ -130,9 +130,9 @@ package alternativa.tanks.game.weapons
       
       public function releaseTrigger() : void
       {
-         if(this.var_438)
+         if(this.§_-3§)
          {
-            this.var_438 = false;
+            this.§_-3§ = false;
             this.disableLogic();
          }
       }
@@ -144,20 +144,20 @@ package alternativa.tanks.game.weapons
       
       public function runLogic() : void
       {
-         if(TimeSystem.time < this.var_446)
+         if(TimeSystem.time < this.§_-g8§)
          {
             return;
          }
-         this.var_446 = TimeSystem.time + this.reloadTime;
+         this.§_-g8§ = TimeSystem.time + this.reloadTime;
          if(this.callback != null)
          {
             this.callback.onInstantShot();
          }
-         this.var_445.getGunData(BARREL_INDEX,barrelOrigin,gunDirection,gunElevationAxis);
-         var barrelLength:Number = Number(this.var_445.getBarrelLength(BARREL_INDEX));
+         this.§_-Zu§.getGunData(BARREL_INDEX,barrelOrigin,gunDirection,gunElevationAxis);
+         var barrelLength:Number = Number(this.§_-Zu§.getBarrelLength(BARREL_INDEX));
          muzzlePosition.copy(barrelOrigin).addScaled(barrelLength,gunDirection);
          this.doShowShotEffects(barrelOrigin,muzzlePosition,gunDirection,gunElevationAxis);
-         var shotId:int = this.var_448++;
+         var shotId:int = this.§_-eN§++;
          var shooterBody:Body = this.chassisComponent.getBody();
          this.targetingSystem.calculateShotDirection(shooterBody,muzzlePosition,barrelOrigin,gunDirection,barrelLength,gunElevationAxis,GameMathUtils.BIG_VALUE,shotDirection);
          var round:IGenericRound = this.ammunition.getRound();
@@ -166,17 +166,17 @@ package alternativa.tanks.game.weapons
       
       public function get enabled() : Boolean
       {
-         return this.var_439;
+         return this.§_-Rr§;
       }
       
       public function set enabled(value:Boolean) : void
       {
-         if(this.var_439 != value)
+         if(this.§_-Rr§ != value)
          {
-            this.var_439 = value;
-            if(this.var_439)
+            this.§_-Rr§ = value;
+            if(this.§_-Rr§)
             {
-               if(this.var_438)
+               if(this.§_-3§)
                {
                   this.enableLogic();
                }
@@ -190,8 +190,8 @@ package alternativa.tanks.game.weapons
       
       public function showShotEffects() : void
       {
-         this.var_445.getGunData(BARREL_INDEX,barrelOrigin,gunDirection,gunElevationAxis);
-         muzzlePosition.copy(barrelOrigin).addScaled(this.var_445.getBarrelLength(BARREL_INDEX),gunDirection);
+         this.§_-Zu§.getGunData(BARREL_INDEX,barrelOrigin,gunDirection,gunElevationAxis);
+         muzzlePosition.copy(barrelOrigin).addScaled(this.§_-Zu§.getBarrelLength(BARREL_INDEX),gunDirection);
          this.doShowShotEffects(barrelOrigin,muzzlePosition,gunDirection,gunElevationAxis);
       }
       
@@ -199,24 +199,24 @@ package alternativa.tanks.game.weapons
       {
          recoilForceVector.copy(gunDirection).scale(-this.recoilForce);
          this.chassisComponent.getBody().addWorldForce(barrelOrigin,recoilForceVector);
-         this.var_447.createShotEffects(BARREL_INDEX,barrelOrigin,muzzlePosition,gunDirection,gunElevationAxis);
+         this.§_-bQ§.createShotEffects(BARREL_INDEX,barrelOrigin,muzzlePosition,gunDirection,gunElevationAxis);
       }
       
       private function enableLogic() : void
       {
-         if(!this.var_440)
+         if(!this.§_-f3§)
          {
-            this.var_440 = true;
-            this.var_441.addLogicUnit(this);
+            this.§_-f3§ = true;
+            this.§_-hE§.addLogicUnit(this);
          }
       }
       
       private function disableLogic() : void
       {
-         if(this.var_440)
+         if(this.§_-f3§)
          {
-            this.var_440 = false;
-            this.var_441.removeLogicUnit(this);
+            this.§_-f3§ = false;
+            this.§_-hE§.removeLogicUnit(this);
          }
       }
    }

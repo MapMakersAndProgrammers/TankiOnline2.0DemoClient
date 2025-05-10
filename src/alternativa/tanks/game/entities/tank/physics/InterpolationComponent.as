@@ -13,7 +13,7 @@ package alternativa.tanks.game.entities.tank.physics
       
       private var gameKernel:GameKernel;
       
-      private var var_426:Boolean;
+      private var §case §:Boolean;
       
       public function InterpolationComponent()
       {
@@ -77,19 +77,19 @@ package alternativa.tanks.game.entities.tank.physics
       
       private function addToScene() : void
       {
-         if(!this.var_426)
+         if(!this.§case §)
          {
             this.gameKernel.getPhysicsSystem().addInterpolationController(this);
-            this.var_426 = true;
+            this.§case § = true;
          }
       }
       
       private function removeFromScene() : void
       {
-         if(this.var_426)
+         if(this.§case §)
          {
             this.gameKernel.getPhysicsSystem().removeInterpolationController(this);
-            this.var_426 = false;
+            this.§case § = false;
          }
       }
    }

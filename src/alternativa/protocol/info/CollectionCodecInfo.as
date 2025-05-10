@@ -4,25 +4,25 @@ package alternativa.protocol.info
    
    public class CollectionCodecInfo extends CodecInfo
    {
-      private var var_186:ICodecInfo;
+      private var §_-jo§:ICodecInfo;
       
-      private var var_185:int;
+      private var §_-fp§:int;
       
       public function CollectionCodecInfo(elementCodec:ICodecInfo, optional:Boolean, level:int)
       {
          super(optional);
-         this.var_186 = elementCodec;
-         this.var_185 = level;
+         this.§_-jo§ = elementCodec;
+         this.§_-fp§ = level;
       }
       
       public function get level() : int
       {
-         return this.var_185;
+         return this.§_-fp§;
       }
       
       public function get elementCodec() : ICodecInfo
       {
-         return this.var_186;
+         return this.§_-jo§;
       }
       
       override public function toString() : String

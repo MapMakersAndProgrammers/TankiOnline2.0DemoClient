@@ -4,35 +4,35 @@ package versions.version2.a3d.animation
    
    public class A3D2Keyframe
    {
-      private var var_420:Number;
+      private var §_-qC§:Number;
       
-      private var var_268:A3D2Transform;
+      private var §_-bP§:A3D2Transform;
       
       public function A3D2Keyframe(time:Number, transform:A3D2Transform)
       {
          super();
-         this.var_420 = time;
-         this.var_268 = transform;
+         this.§_-qC§ = time;
+         this.§_-bP§ = transform;
       }
       
       public function get time() : Number
       {
-         return this.var_420;
+         return this.§_-qC§;
       }
       
       public function set time(value:Number) : void
       {
-         this.var_420 = value;
+         this.§_-qC§ = value;
       }
       
       public function get transform() : A3D2Transform
       {
-         return this.var_268;
+         return this.§_-bP§;
       }
       
       public function set transform(value:A3D2Transform) : void
       {
-         this.var_268 = value;
+         this.§_-bP§ = value;
       }
       
       public function toString() : String

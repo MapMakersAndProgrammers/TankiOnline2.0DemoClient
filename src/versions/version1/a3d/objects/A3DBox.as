@@ -4,35 +4,35 @@ package versions.version1.a3d.objects
    
    public class A3DBox
    {
-      private var var_290:Vector.<Number>;
+      private var §_-Ge§:Vector.<Number>;
       
-      private var var_101:Id;
+      private var §_-3I§:Id;
       
       public function A3DBox(box:Vector.<Number>, id:Id)
       {
          super();
-         this.var_290 = box;
-         this.var_101 = id;
+         this.§_-Ge§ = box;
+         this.§_-3I§ = id;
       }
       
       public function get box() : Vector.<Number>
       {
-         return this.var_290;
+         return this.§_-Ge§;
       }
       
       public function set box(value:Vector.<Number>) : void
       {
-         this.var_290 = value;
+         this.§_-Ge§ = value;
       }
       
       public function get id() : Id
       {
-         return this.var_101;
+         return this.§_-3I§;
       }
       
       public function set id(value:Id) : void
       {
-         this.var_101 = value;
+         this.§_-3I§ = value;
       }
       
       public function toString() : String

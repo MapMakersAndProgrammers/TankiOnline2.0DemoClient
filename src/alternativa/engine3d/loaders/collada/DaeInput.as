@@ -28,7 +28,7 @@ package alternativa.engine3d.loaders.collada
       
       public function get setNum() : int
       {
-         var attr:XML = data.@name_616[0];
+         var attr:XML = data.@set[0];
          return attr == null ? 0 : int(parseInt(attr.toString(),10));
       }
       

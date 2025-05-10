@@ -9,21 +9,21 @@ package alternativa.osgi.service.locale
       
       private var images:Object = {};
       
-      private var var_549:Object = {};
+      private var §_-bK§:Object = {};
       
       private var numbers:Object = {};
       
-      private var var_550:Object = {};
+      private var §_-op§:Object = {};
       
-      private var var_552:String;
+      private var §_-VI§:String;
       
-      private var var_551:String;
+      private var §_-4p§:String;
       
       public function LocaleService(language:String, defaultLanguage:String)
       {
          super();
-         this.var_552 = language;
-         this.var_551 = defaultLanguage;
+         this.§_-VI§ = language;
+         this.§_-4p§ = defaultLanguage;
          this.strings = new Dictionary();
          this.images = new Dictionary();
       }
@@ -40,7 +40,7 @@ package alternativa.osgi.service.locale
       
       public function setBoolean(id:String, value:Boolean) : void
       {
-         this.var_549[id] = value;
+         this.§_-bK§[id] = value;
       }
       
       public function setNumber(id:String, value:Number) : void
@@ -50,7 +50,7 @@ package alternativa.osgi.service.locale
       
       public function setInt(id:String, value:int) : void
       {
-         this.var_550[id] = value;
+         this.§_-op§[id] = value;
       }
       
       public function getText(id:String, ... vars) : String
@@ -75,7 +75,7 @@ package alternativa.osgi.service.locale
       
       public function getBoolean(id:String) : Boolean
       {
-         return this.var_549[id];
+         return this.§_-bK§[id];
       }
       
       public function getNumber(id:String) : Number
@@ -85,17 +85,17 @@ package alternativa.osgi.service.locale
       
       public function getInt(id:String) : int
       {
-         return this.var_550[id];
+         return this.§_-op§[id];
       }
       
       public function get language() : String
       {
-         return this.var_552;
+         return this.§_-VI§;
       }
       
       public function get defaultLanguage() : String
       {
-         return this.var_551;
+         return this.§_-4p§;
       }
    }
 }

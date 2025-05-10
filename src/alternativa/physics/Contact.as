@@ -8,32 +8,32 @@ package alternativa.physics
       
       public var body2:Body;
       
-      public var name_501:Number;
+      public var §_-Pe§:Number;
       
-      public var name_422:Number;
+      public var §_-J1§:Number;
       
       public var normal:Vector3 = new Vector3();
       
       public var points:Vector.<ContactPoint>;
       
-      public var name_506:int;
+      public var §_-P3§:int;
       
-      public var var_663:Number = 0;
+      public var §_-HA§:Number = 0;
       
-      public var name_507:Boolean;
+      public var §_-CV§:Boolean;
       
       public var next:Contact;
       
       public var index:int;
       
-      private const const_3:int = 8;
+      private const §_-29§:int = 8;
       
       public function Contact(index:int)
       {
-         this.points = new Vector.<ContactPoint>(this.const_3,true);
+         this.points = new Vector.<ContactPoint>(this.§_-29§,true);
          super();
          this.index = index;
-         for(var i:int = 0; i < this.const_3; i++)
+         for(var i:int = 0; i < this.§_-29§; i++)
          {
             this.points[i] = new ContactPoint();
          }

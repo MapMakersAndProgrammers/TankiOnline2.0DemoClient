@@ -7,7 +7,7 @@ package alternativa.tanks.game.utils
    {
       private var tasks:Vector.<Task>;
       
-      private var var_192:int;
+      private var §_-LN§:int;
       
       public function TaskSequence()
       {
@@ -28,7 +28,7 @@ package alternativa.tanks.game.utils
       {
          if(this.tasks.length > 0)
          {
-            this.var_192 = 0;
+            this.§_-LN§ = 0;
             this.runCurrentTask();
          }
          else
@@ -39,12 +39,12 @@ package alternativa.tanks.game.utils
       
       private function runCurrentTask() : void
       {
-         Task(this.tasks[this.var_192]).run();
+         Task(this.tasks[this.§_-LN§]).run();
       }
       
       internal function taskComplete(task:Task) : void
       {
-         if(++this.var_192 < this.tasks.length)
+         if(++this.§_-LN§ < this.tasks.length)
          {
             this.runCurrentTask();
          }

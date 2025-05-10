@@ -2,48 +2,48 @@ package versions.version2.a3d.animation
 {
    public class A3D2Track
    {
-      private var var_101:int;
+      private var §_-3I§:int;
       
-      private var var_288:Vector.<A3D2Keyframe>;
+      private var §_-1§:Vector.<A3D2Keyframe>;
       
-      private var var_289:String;
+      private var §_-pa§:String;
       
       public function A3D2Track(id:int, keyframes:Vector.<A3D2Keyframe>, objectName:String)
       {
          super();
-         this.var_101 = id;
-         this.var_288 = keyframes;
-         this.var_289 = objectName;
+         this.§_-3I§ = id;
+         this.§_-1§ = keyframes;
+         this.§_-pa§ = objectName;
       }
       
       public function get id() : int
       {
-         return this.var_101;
+         return this.§_-3I§;
       }
       
       public function set id(value:int) : void
       {
-         this.var_101 = value;
+         this.§_-3I§ = value;
       }
       
       public function get keyframes() : Vector.<A3D2Keyframe>
       {
-         return this.var_288;
+         return this.§_-1§;
       }
       
       public function set keyframes(value:Vector.<A3D2Keyframe>) : void
       {
-         this.var_288 = value;
+         this.§_-1§ = value;
       }
       
       public function get objectName() : String
       {
-         return this.var_289;
+         return this.§_-pa§;
       }
       
       public function set objectName(value:String) : void
       {
-         this.var_289 = value;
+         this.§_-pa§ = value;
       }
       
       public function toString() : String

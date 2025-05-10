@@ -13,9 +13,9 @@ package _codec.versions.version1.a3d.geometry
    {
       public static var log:IClientLog = IClientLog(OSGi.getInstance().getService(IClientLog));
       
-      private var var_240:ICodec;
+      private var §_-GN§:ICodec;
       
-      private var var_308:ICodec;
+      private var §_-mz§:ICodec;
       
       public function CodecA3DIndexBuffer()
       {
@@ -24,16 +24,16 @@ package _codec.versions.version1.a3d.geometry
       
       public function init(protocol:IProtocol) : void
       {
-         this.var_240 = protocol.getCodec(new TypeCodecInfo(ByteArray,true));
-         this.var_308 = protocol.getCodec(new TypeCodecInfo(int,false));
+         this.§_-GN§ = protocol.getCodec(new TypeCodecInfo(ByteArray,true));
+         this.§_-mz§ = protocol.getCodec(new TypeCodecInfo(int,false));
       }
       
       public function decode(protocolBuffer:ProtocolBuffer) : Object
       {
          log = IClientLog(OSGi.getInstance().getService(IClientLog));
-         var value_byteBuffer:ByteArray = this.var_240.decode(protocolBuffer) as ByteArray;
+         var value_byteBuffer:ByteArray = this.§_-GN§.decode(protocolBuffer) as ByteArray;
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.geometry.A3DIndexBuffer","byteBuffer",value_byteBuffer);
-         var value_indexCount:int = int(this.var_308.decode(protocolBuffer) as int);
+         var value_indexCount:int = int(this.§_-mz§.decode(protocolBuffer) as int);
          log.log("codec","struct %1 field %2 value %3","versions.version1.a3d.geometry.A3DIndexBuffer","indexCount",value_indexCount);
          return new A3DIndexBuffer(value_byteBuffer,value_indexCount);
       }
@@ -45,8 +45,8 @@ package _codec.versions.version1.a3d.geometry
             throw new Error("Object is null. Use @ProtocolOptional annotation.");
          }
          var struct:A3DIndexBuffer = A3DIndexBuffer(object);
-         this.var_240.encode(protocolBuffer,struct.byteBuffer);
-         this.var_308.encode(protocolBuffer,struct.indexCount);
+         this.§_-GN§.encode(protocolBuffer,struct.byteBuffer);
+         this.§_-mz§.encode(protocolBuffer,struct.indexCount);
       }
    }
 }

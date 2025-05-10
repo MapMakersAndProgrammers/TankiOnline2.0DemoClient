@@ -4,73 +4,73 @@ package versions.version2.a3d.objects
    
    public class A3D2DirectionalLight
    {
-      private var var_270:int;
+      private var §_-jD§:int;
       
-      private var var_266:uint;
+      private var §_-Tn§:uint;
       
-      private var var_101:Long;
+      private var §_-3I§:Long;
       
-      private var var_262:Number;
+      private var §_-74§:Number;
       
       private var _name:String;
       
-      private var var_269:Long;
+      private var §_-fP§:Long;
       
-      private var var_268:A3D2Transform;
+      private var §_-bP§:A3D2Transform;
       
-      private var var_261:Boolean;
+      private var §_-1u§:Boolean;
       
       public function A3D2DirectionalLight(boundBoxId:int, color:uint, id:Long, intensity:Number, name:String, parentId:Long, transform:A3D2Transform, visible:Boolean)
       {
          super();
-         this.var_270 = boundBoxId;
-         this.var_266 = color;
-         this.var_101 = id;
-         this.var_262 = intensity;
+         this.§_-jD§ = boundBoxId;
+         this.§_-Tn§ = color;
+         this.§_-3I§ = id;
+         this.§_-74§ = intensity;
          this._name = name;
-         this.var_269 = parentId;
-         this.var_268 = transform;
-         this.var_261 = visible;
+         this.§_-fP§ = parentId;
+         this.§_-bP§ = transform;
+         this.§_-1u§ = visible;
       }
       
       public function get boundBoxId() : int
       {
-         return this.var_270;
+         return this.§_-jD§;
       }
       
       public function set boundBoxId(value:int) : void
       {
-         this.var_270 = value;
+         this.§_-jD§ = value;
       }
       
       public function get color() : uint
       {
-         return this.var_266;
+         return this.§_-Tn§;
       }
       
       public function set color(value:uint) : void
       {
-         this.var_266 = value;
+         this.§_-Tn§ = value;
       }
       
       public function get id() : Long
       {
-         return this.var_101;
+         return this.§_-3I§;
       }
       
       public function set id(value:Long) : void
       {
-         this.var_101 = value;
+         this.§_-3I§ = value;
       }
       
       public function get intensity() : Number
       {
-         return this.var_262;
+         return this.§_-74§;
       }
       
       public function set intensity(value:Number) : void
       {
-         this.var_262 = value;
+         this.§_-74§ = value;
       }
       
       public function get name() : String
@@ -85,32 +85,32 @@ package versions.version2.a3d.objects
       
       public function get parentId() : Long
       {
-         return this.var_269;
+         return this.§_-fP§;
       }
       
       public function set parentId(value:Long) : void
       {
-         this.var_269 = value;
+         this.§_-fP§ = value;
       }
       
       public function get transform() : A3D2Transform
       {
-         return this.var_268;
+         return this.§_-bP§;
       }
       
       public function set transform(value:A3D2Transform) : void
       {
-         this.var_268 = value;
+         this.§_-bP§ = value;
       }
       
       public function get visible() : Boolean
       {
-         return this.var_261;
+         return this.§_-1u§;
       }
       
       public function set visible(value:Boolean) : void
       {
-         this.var_261 = value;
+         this.§_-1u§ = value;
       }
       
       public function toString() : String
