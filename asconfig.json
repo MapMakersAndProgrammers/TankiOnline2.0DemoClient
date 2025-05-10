@@ -1,0 +1,18 @@
+{
+	"config": "air",
+	"compilerOptions": {
+		"source-path": [
+			"src"
+		],
+		"output": "bin/tanki2.swf",
+		"default-background-color": "#333333",
+		"default-frame-rate": 100,
+		"default-size": {
+			"width": 1024,
+			"height": 1024
+		},
+		"swf-version": 13
+	},
+	"mainClass": "TanksTestingTool",
+	"application": "TanksTestingTool-app.xml"
+}
