@@ -141,7 +141,7 @@ package alternativa.engine3d.loaders
       private function addObjects(animatedObjects:Vector.<DaeObject>, parent:Object3D, layer:String) : Object3D
       {
          var first:Object3D = this.addObject(animatedObjects[0],parent,layer);
-         for(var i:int = 1,var count:int = int(animatedObjects.length); i < count; i++)
+         for(var i:int = 1, count:int = int(animatedObjects.length); i < count; i++)
          {
             this.addObject(animatedObjects[i],parent,layer);
          }

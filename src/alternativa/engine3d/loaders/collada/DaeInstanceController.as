@@ -44,7 +44,7 @@ package alternativa.engine3d.loaders.collada
             {
                if(Boolean(parents[parent]))
                {
-                  ++parents[parent];
+                  parents[parent]++;
                }
                else
                {

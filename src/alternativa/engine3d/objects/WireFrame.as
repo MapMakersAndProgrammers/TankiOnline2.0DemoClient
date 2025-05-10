@@ -69,7 +69,7 @@ package alternativa.engine3d.objects
          var p1:Vector3D = null;
          var result:WireFrame = new WireFrame(color,alpha,thickness);
          var geometry:WireGeometry = result.alternativa3d::geometry;
-         for(var i:uint = 0,var count:uint = points.length - 1; i < count; i += 2)
+         for(var i:uint = 0, count:uint = points.length - 1; i < count; i += 2)
          {
             p0 = points[i];
             p1 = points[i + 1];
@@ -85,7 +85,7 @@ package alternativa.engine3d.objects
          var p1:Vector3D = null;
          var result:WireFrame = new WireFrame(color,alpha,thickness);
          var geometry:WireGeometry = result.alternativa3d::geometry;
-         for(var i:uint = 0,var count:uint = points.length - 1; i < count; i++)
+         for(var i:uint = 0, count:uint = points.length - 1; i < count; i++)
          {
             p0 = points[i];
             p1 = points[i + 1];

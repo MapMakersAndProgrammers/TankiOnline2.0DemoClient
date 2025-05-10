@@ -105,7 +105,7 @@ package alternativa.engine3d.animation
       {
          if(object in this.name_oX)
          {
-            ++this.name_oX[object];
+            this.name_oX[object]++;
          }
          else
          {

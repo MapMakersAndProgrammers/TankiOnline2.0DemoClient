@@ -444,7 +444,7 @@ package alternativa.engine3d.resources
          {
             throw new ArgumentError("index is out of bounds");
          }
-         for(var i:int = int(indexBegin),var count:int = indexBegin + numTriangles * 3; i < count; )
+         for(var i:int = int(indexBegin), count:int = indexBegin + numTriangles * 3; i < count; )
          {
             indexA = this.indices[i];
             indexB = this.indices[int(i + 1)];

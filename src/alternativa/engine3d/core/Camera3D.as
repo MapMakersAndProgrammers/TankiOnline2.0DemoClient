@@ -82,7 +82,7 @@ package alternativa.engine3d.core
       
       private var debugSet:Object = new Object();
       
-      private var _diagram:Sprite = this.createDiagram();
+      private var _diagram:Sprite = createDiagram();
       
       public var fpsUpdatePeriod:int = 10;
       
