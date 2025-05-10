@@ -32,7 +32,7 @@ package alternativa.engine3d.core
          var list:DrawUnit = null;
          var next:DrawUnit = null;
          var drawUnitsLength:int = int(this.name_T5.length);
-         for(var i:int = 0; i < drawUnitsLength; )
+         for(var i:int = 0; i < drawUnitsLength; i++)
          {
             list = this.name_T5[i];
             if(list != null)
@@ -86,9 +86,19 @@ package alternativa.engine3d.core
                      }
                      context.setDepthTest(false,Context3DCompareMode.LESS);
                }
+               // Rendering, XXX: this was missing from the decompile so I just coppied the code from latest A3D (8.32)
+               while (list != null) {
+                  next = list.next;
+                  renderDrawUnit(list, context, camera);
+                  // Send to collector
+                  list.clear();
+                  list.next = collector;
+                  collector = list;
+                  list = next;
+               }
             }
-            i++;
          }
+
          this.name_T5.length = 0;
       }
       
