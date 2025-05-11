@@ -9,9 +9,30 @@
 		"default-frame-rate": 100,
 		"default-size": {
 			"width": 1024,
-			"height": 1024
+			"height": 768
 		},
 		"swf-version": 13
+	},
+	"airOptions": {
+		"output": "bin/TanksTestingTool.air",
+		"signingOptions": {
+			"storetype": "pkcs12",
+			"keystore": "certificate.p12"
+		},
+		"windows": {
+			"target": "bundle",
+			"output": "bin/windows"
+		},
+		"files": [
+			{
+				"file": "resources/data",
+				"path": "data"
+			},
+			{
+				"file": "resources/cfg.dxt1.xml",
+				"path": "cfg.dxt1.xml"
+			}
+		]
 	},
 	"mainClass": "TanksTestingTool",
 	"application": "TanksTestingTool-app.xml"

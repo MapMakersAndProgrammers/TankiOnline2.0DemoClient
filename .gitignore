@@ -1,3 +1,10 @@
 bin/
 .vscode/
 .DS_Store
+resources/
+
+# Certificates and keys
+*.p12
+*.pfx
+*.pem
+*.crt

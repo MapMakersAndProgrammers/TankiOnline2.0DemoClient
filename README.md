@@ -44,3 +44,5 @@ If you want the original or older versions made by AlternativaPlatform they can 
 This repository uses the vscode [as3mxml](https://github.com/BowlerHatLLC/vscode-as3mxml) extension with the [Adobe AIR SDK](https://airsdk.harman.com/download) 51 from HARMAN, however the project should be able to build and run with any sdk that can target atleast flashplayer 11.
 
 To build just run one of the actionscript build tasks from vscode, such as `compile release` or `compile debug`, which will output the game into the `bin/` folder. To run your built client you will need to download the game `data/` folder and `cfg.dxt1.xml` file from the latest Arena or Crash demos (v3) and place them next to `tanki2.swf`, you can find these files [here](https://github.com/MapMakersAndProgrammers/alternativa-demos/tree/master/alternativa/Tanki2.0).
+
+To package the application you'll need a certificate file (project assumes `./certificate.p12`) and game resources (project assume `data/`, `cfg.dxt1.xml` in `./resources`).
