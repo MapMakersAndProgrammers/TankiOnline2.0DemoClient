@@ -1,28 +1,22 @@
 {
-	"config": "air",
+	"config": "airmobile",
 	"compilerOptions": {
 		"source-path": [
 			"src"
 		],
 		"output": "bin/tanki2.swf",
 		"default-background-color": "#333333",
-		"default-frame-rate": 100,
-		"default-size": {
-			"width": 1024,
-			"height": 768
-		},
+		"default-frame-rate": 60,
 		"swf-version": 13
 	},
 	"airOptions": {
-		"output": "bin/TanksTestingTool.air",
-		"signingOptions": {
-			"storetype": "pkcs12",
-			"keystore": "certificate.p12"
-		},
-		"windows": {
-			"target": "bundle",
-			"output": "bin/windows"
-		},
+        "android": {
+            "output": "bin/TanksTestingTool.apk",
+            "signingOptions": {
+                "storetype": "pkcs12",
+                "keystore": "certificate.p12"
+            }
+        },
 		"files": [
 			{
 				"file": "resources/data",
