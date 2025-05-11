@@ -109,22 +109,22 @@
         <!-- <maxSize></maxSize> -->
 
         <!-- The aspect ratio of the app ("portrait" or "landscape" or "any"). Optional. Mobile only. Default is the natural orientation of the device -->
-        <!-- <aspectRatio></aspectRatio> -->
+        <aspectRatio>landscape</aspectRatio>
 
         <!-- Whether the app will begin auto-orienting on launch. Optional. Mobile only. Default false -->
-        <!-- <autoOrients></autoOrients> -->
+        <autoOrients>false</autoOrients>
 
         <!-- Whether the app will rotate with OS animation effects during auto-orient ("standard" or "none"). Optional. Mobile only. Default standard -->
         <!-- <orientationAnimation></orientationAnimation> -->
 
         <!-- Whether the app launches in full screen. Optional. Mobile only. Default false -->
-        <!-- <fullScreen></fullScreen> -->
+        <fullScreen>true</fullScreen>
 
         <!-- The render mode for the app (either auto, cpu, gpu, or direct). Optional. Default auto -->
-        <renderMode>gpu</renderMode>
+        <renderMode>direct</renderMode>
 
         <!-- Whether the default direct mode rendering context allocates storage for depth and stencil buffers.  Optional.  Default false. -->
-        <!-- <depthAndStencil></depthAndStencil> -->
+        <depthAndStencil>true</depthAndStencil>
 
         <!-- Whether or not to pan when a soft keyboard is raised or lowered (either "pan" or "none").  Optional.  Defaults "pan." -->
         <!-- <softKeyboardBehavior></softKeyboardBehavior> -->
@@ -285,7 +285,7 @@
         <!-- <excludeDefaultUsageDescriptions></excludeDefaultUsageDescriptions> -->
     <!-- </iPhone> -->
 
-    <!--<android> -->
+   <android>
     <!-- Specify Android specific tags that get passed to AndroidManifest.xml file. -->
     <!--    <manifestAdditions>
         <![CDATA[
@@ -366,14 +366,14 @@
         <!-- <storageAccessFrameworkFromAPI></storageAccessFrameworkFromAPI> -->
         <!-- Alters the style used for handling cut-out areas in different orientations. See Android documentation.
              Optional. Values can be "default", "always", "never" or "shortEdges". Default is "default". -->
-        <!-- <displayCutoutMode></displayCutoutMode> -->
+        <displayCutoutMode>always</displayCutoutMode>
         <!-- Specifies a set of name/value properties that will be injected into the manifestPlaceholders section in an
              Android manifest file, so that user/app specific variables can be defined for third party SDKs. Optional. -->
         <!-- <manifestPlaceholders> -->
         <!--    <manifestPlaceholder>baseUrl: "dev.demoserver.com"</manifestPlaceholder> -->
         <!-- </manifestPlaceholders> -->
 
-    <!-- </android> -->
+    </android>
     <!-- A folder to include in the search for Android resources. Optional. -->
     <!-- <resdir></resdir> -->
 

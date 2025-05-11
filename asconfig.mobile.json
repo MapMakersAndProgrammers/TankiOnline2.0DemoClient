@@ -29,5 +29,5 @@
 		]
 	},
 	"mainClass": "TanksTestingTool",
-	"application": "TanksTestingTool-mobileapp.xml"
+	"application": "TanksTestingTool-app.xml"
 }
