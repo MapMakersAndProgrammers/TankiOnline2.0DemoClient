@@ -31,6 +31,22 @@
 			{
 				"file": "resources/cfg.dxt1.xml",
 				"path": "cfg.dxt1.xml"
+			},
+			{
+				"file": "resources/icons/icon32.png",
+				"path": "icons/icon32.png"
+			},
+			{
+				"file": "resources/icons/icon60.png",
+				"path": "icons/icon60.png"
+			},
+			{
+				"file": "resources/icons/icon128.png",
+				"path": "icons/icon128.png"
+			},
+			{
+				"file": "resources/icons/icon256.png",
+				"path": "icons/icon256.png"
 			}
 		]
 	},

@@ -1,7 +1,10 @@
 bin/
 .vscode/
 .DS_Store
-resources/
+
+# Resource file
+data/
+cfg.*.xml
 
 # Certificates and keys
 *.p12
