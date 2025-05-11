@@ -1,0 +1,33 @@
+{
+	"config": "airmobile",
+	"compilerOptions": {
+		"source-path": [
+			"src"
+		],
+		"output": "bin/tanki2.swf",
+		"default-background-color": "#333333",
+		"default-frame-rate": 120,
+		"swf-version": 13
+	},
+	"airOptions": {
+        "android": {
+            "output": "bin/TanksTestingTool.apk",
+            "signingOptions": {
+                "storetype": "pkcs12",
+                "keystore": "certificate.p12"
+            }
+        },
+		"files": [
+			{
+				"file": "resources/data",
+				"path": "data"
+			},
+			{
+				"file": "resources/cfg.dxt1.xml",
+				"path": "cfg.dxt1.xml"
+			}
+		]
+	},
+	"mainClass": "TanksTestingTool",
+	"application": "TanksTestingTool-mobileapp.xml"
+}
