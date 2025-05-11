@@ -12,31 +12,32 @@ If you want the original or older versions made by AlternativaPlatform they can 
 
 ## Controls
 ### Tank
-|Action | Key bind|
-|-------|---------|
-|Move | arrow keys |
-|Rotate turret | `Z`, `X` |
-|Shoot | `space` |
-|Next tank | `enter` |
+| Action        | Key bind   |
+|---------------|------------|
+| Move          | arrow keys |
+| Rotate turret | `Z`, `X`   |
+| Shoot         | `space`    |
+| Next tank     | `enter`    |
 ### Camera
-|Action | Key bind|
-|-------|---------|
-|Change camera vertical angle| `page up`, `page down` |
-|Cycle camera mode (fixed, freecam, orbit) | `\`, `M` |
-|Cycle freecam mode (view locked to tank, normal) | `N` |
-|Freecam move | `W`, `A`, `S`, `D` |
-|Freecam look | click and drag |
-|Freecam fly up, down | `E`, `C` |
-|Freecam sprint | `shift` |
-|Orbit look | click and drag |
+| Action                                           | Key bind               |
+|--------------------------------------------------|------------------------|
+| Change camera vertical angle                     | `page up`, `page down` |
+| Cycle camera mode (fixed, freecam, orbit)        | `\`, `M`               |
+| Cycle freecam mode (view locked to tank, normal) | `N`                    |
+| Freecam move                                     | `W`, `A`, `S`, `D`     |
+| Freecam look                                     | click and drag         |
+| Freecam fly up, down                             | `E`, `C`               |
+| Freecam sprint                                   | `shift`                |
+| Orbit look                                       | click and drag         |
 ### Misc
-|Action | Key bind|
-|-------|---------|
-|Toggle performance statistics | `G` |
-|Toggle antialiasing | `Q` |
-|Toggle console*| `ctrl`+`shift`+`K` |
-|Close console| `escape` |
-|Show "powered by AlternativaPlatform" message| `ctrl`+`shift`+`f1` |
+| Action                                        | Key bind            |
+|-----------------------------------------------|---------------------|
+| Toggle performance statistics                 | `G`                 |
+| Toggle antialiasing                           | `Q`                 |
+| Toggle console*                               | `ctrl`+`shift`+`K`  |
+| Close console                                 | `escape`            |
+| Show "powered by AlternativaPlatform" message | `ctrl`+`shift`+`f1` |
+
 *\* See [the wiki](https://github.com/MapMakersAndProgrammers/TankiOnline2.0DemoClient/wiki) for console commands*
 
 ## Build from source
