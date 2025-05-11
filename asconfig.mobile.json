@@ -6,7 +6,7 @@
 		],
 		"output": "bin/tanki2.swf",
 		"default-background-color": "#333333",
-		"default-frame-rate": 120,
+		"default-frame-rate": 60,
 		"swf-version": 13
 	},
 	"airOptions": {
