@@ -34,7 +34,7 @@ package alternativa.engine3d.loaders
    import flash.utils.ByteArray;
    import flash.utils.Dictionary;
    import flash.utils.Endian;
-   import platform.client.a3d.osgi.Activator;
+   import platform.client.formats.a3d.osgi.Activator;
    import platform.clients.fp10.libraries.alternativaprotocol.Activator;
    import versions.version1.a3d.A3D;
    import versions.version1.a3d.geometry.A3DGeometry;
@@ -338,7 +338,7 @@ package alternativa.engine3d.loaders
          var osgi:OSGi = new OSGi();
          osgi.registerService(IClientLog,new DummyClientLog());
          new ProtocolActivator().start(osgi);
-         new platform.client.a3d.osgi.Activator().start(osgi);
+         new platform.client.formats.a3d.osgi.Activator().start(osgi);
          new platform.clients.fp10.libraries.alternativaprotocol.Activator().start(osgi);
          this.protocol = Protocol(osgi.getService(IProtocol));
          this.name_Y8 = true;

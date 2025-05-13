@@ -39,7 +39,7 @@ package
    import flash.events.FullScreenEvent;
    import flash.events.KeyboardEvent;
    import flash.ui.Keyboard;
-   import platform.client.a3d.osgi.Activator;
+   import platform.client.formats.a3d.osgi.Activator;
    import platform.clients.fp10.libraries.alternativaprotocol.Activator;
    import tankshudDemo.TanksHudDemo;
    
@@ -186,7 +186,7 @@ package
          this.name_nZ.start(this,new Properties(loaderInfo.parameters),new Vector.<LibraryInfo>(),new ConnectionParameters(null,null,null),new Vector.<String>());
          new ProtocolActivator().start(OSGi.getInstance());
          new platform.clients.fp10.libraries.alternativaprotocol.Activator().start(OSGi.getInstance());
-         new platform.client.a3d.osgi.Activator().start(OSGi.getInstance());
+         new platform.client.formats.a3d.osgi.Activator().start(OSGi.getInstance());
       }
       
       private function initConsole() : void

@@ -1,0 +1,3 @@
+[submodule "external/Alternativa3D"]
+	path = external/Alternativa3D
+	url = https://github.com/AlternativaPlatform/Alternativa3D

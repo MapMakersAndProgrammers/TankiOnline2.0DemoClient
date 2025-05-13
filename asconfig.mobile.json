@@ -4,6 +4,9 @@
 		"source-path": [
 			"src"
 		],
+		"library-path": [
+			"external/Alternativa3D/libs"
+		],
 		"output": "bin/tanki2.swf",
 		"default-background-color": "#333333",
 		"default-frame-rate": 60,
