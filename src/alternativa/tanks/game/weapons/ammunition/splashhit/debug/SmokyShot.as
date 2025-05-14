@@ -32,18 +32,18 @@ package alternativa.tanks.game.weapons.ammunition.splashhit.debug
          boundBox.maxY = 100;
          boundBox.maxZ = 100;
          addKey(0 * 0.03333333333333333,this.keyFrame1);
-         setLife(name_gV[name_kf - 1] + shotPrototype.lifeTime);
+         setLife(timeKeys[keysCount - 1] + shotPrototype.lifeTime);
       }
       
       private function keyFrame1(keyTime:Number, time:Number) : void
       {
-         pos.copyFrom(name_cF);
+         pos.copyFrom(keyDirection);
          pos.scaleBy(time * 100 + 25);
          shotPrototype.createParticle(this,time,pos,random() * 6.28,1,1,1,0);
-         pos.copyFrom(name_cF);
+         pos.copyFrom(keyDirection);
          pos.scaleBy(time * 300 + 32);
          shotPrototype.createParticle(this,time,pos,random() * 6.28,0.88,0.88,1,0);
-         pos.copyFrom(name_cF);
+         pos.copyFrom(keyDirection);
          pos.scaleBy(time * 400 + 39);
          shotPrototype.createParticle(this,time,pos,random() * 6.28,0.66,0.66,1,0);
       }

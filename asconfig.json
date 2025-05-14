@@ -2,7 +2,8 @@
 	"config": "air",
 	"compilerOptions": {
 		"source-path": [
-			"src"
+			"src",
+			"external/Alternativa3D/src"
 		],
 		"library-path": [
 			"external/Alternativa3D/libs"

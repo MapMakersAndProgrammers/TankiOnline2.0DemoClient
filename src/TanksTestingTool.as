@@ -25,7 +25,7 @@ package
    import alternativa.tanks.game.entities.tank.graphics.materials.TankMaterial;
    import alternativa.tanks.game.entities.tank.graphics.materials.TankMaterial2;
    import alternativa.tanks.game.entities.tank.graphics.materials.TracksMaterial2;
-   import alternativa.tanks.game.entities.tank.graphics.materials.TreesMaterial;
+   import alternativa.engine3d.materials.StandardMaterial;
    import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
    import alternativa.utils.Properties;
    import flash.display.DisplayObject;
@@ -42,7 +42,11 @@ package
    import platform.client.formats.a3d.osgi.Activator;
    import platform.clients.fp10.libraries.alternativaprotocol.Activator;
    import tankshudDemo.TanksHudDemo;
+   import alternativa.engine3d.alternativa3d;
    
+   // This is so this class can access fog mode settings on materials
+   use namespace alternativa3d;
+
    [SWF(backgroundColor="#333333",frameRate="100",width="1024",height="768")]
    public class TanksTestingTool extends Sprite
    {
@@ -81,13 +85,13 @@ package
       {
          switch(A3DUtils.getSupportedTextureFormat(this.stage3D.context3D))
          {
-            case TextureFormat.DXT1:
+            case A3DUtils.DXT1:
                this.loadConfig("cfg.dxt1.xml");
                break;
-            case TextureFormat.ETC1:
+            case A3DUtils.ETC1:
                this.loadConfig("cfg.etc1.xml");
                break;
-            case TextureFormat.PVRTC:
+            case A3DUtils.PVRTC:
                this.loadConfig("cfg.pvrtc.xml");
          }
       }
@@ -108,12 +112,9 @@ package
          new ConsoleVarFloat("beam_fallof",170,0,180,this.onLightSettingsChange);
          new ConsoleVarFloat("beam_fallof",170,0,180,this.onLightSettingsChange);
          new ConsoleVarFloat("camera_smoothing",20,0,200,this.onControllerSettingsChange);
-         MapMaterial.fogMode = MapMaterial.DISABLED;
-         TreesMaterial.fogMode = TreesMaterial.DISABLED;
+         StandardMaterial.fogMode = StandardMaterial.DISABLED;
          TankMaterial.fogMode = TankMaterial.DISABLED;
-         TankMaterial2.fogMode = TankMaterial.DISABLED;
          GiShadowMaterial.fogMode = FogMode.DISABLED;
-         TracksMaterial2.fogMode = FogMode.DISABLED;
       }
       
       private function onControllerSettingsChange(param1:ConsoleVarFloat) : void

@@ -25,10 +25,11 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
    import alternativa.tanks.game.subsystems.rendersystem.RenderSystem;
    import alternativa.tanks.game.subsystems.timesystem.TimeSystem;
    import flash.geom.Point;
+   import alternativa.engine3d.materials.StandardMaterial;
    
    use namespace alternativa3d;
    
-   public class TrackedChassisGraphicsComponent extends EntityComponent implements ITankGraphicsComponent, IDirectionalShadowRendererConsumer
+   public class TrackedChassisGraphicsComponent extends EntityComponent implements ITankGraphicsComponent
    {
       public static const TANK_CLICK:String = "tankClick";
       
@@ -64,10 +65,6 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
       
       private var name_R4:TrackAnimator;
       
-      private var shadowRenderer:DirectionalShadowRenderer;
-      
-      private var name_5s:DirectionalShadowRendererConstructor;
-      
       public function TrackedChassisGraphicsComponent(hull:TankHull)
       {
          super();
@@ -79,11 +76,11 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
          return this.hull;
       }
       
-      public function setTracksMaterial(tracksMaterial:TracksMaterial2) : void
+      public function setTracksMaterial(tracksMaterial:StandardMaterial) : void
       {
-         this.name_dh.material = TracksMaterial2(tracksMaterial.clone());
+         this.name_dh.material = StandardMaterial(tracksMaterial.clone());
          this.name_Ei.setMaterialToAllSurfaces(this.name_dh.material);
-         this.name_R4.material = TracksMaterial2(tracksMaterial.clone());
+         this.name_R4.material = StandardMaterial(tracksMaterial.clone());
          this.name_iA.setMaterialToAllSurfaces(this.name_R4.material);
       }
       
@@ -98,16 +95,6 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
       public function getObject3D() : Object3D
       {
          return this.name_nh;
-      }
-      
-      public function setShadowRenderer(shadowRenderer:DirectionalShadowRenderer) : void
-      {
-         this.shadowRenderer = shadowRenderer;
-         this.name_5s = null;
-         if(this.container != null)
-         {
-            this.gameKernel.getRenderSystem().addShadowRenderer(shadowRenderer);
-         }
       }
       
       public function setHull(newHull:TankHull) : void
@@ -137,7 +124,7 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
             this.name_R4 = new TrackAnimator(this.name_iA,this.name_M4,dUdY);
             if(this.hull.shadow != null)
             {
-               this.shadow = new Decal(100);
+               this.shadow = new Decal(); //XXX: offset = 100
                this.shadow.geometry = this.hull.shadow.geometry;
                this.shadow.matrix = this.hull.shadow.matrix;
                this.shadow.addSurface(null,0,this.shadow.geometry.numTriangles);
@@ -267,10 +254,6 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
             if(this.name_nh != null)
             {
                this.container.addChild(this.name_nh);
-               if(this.shadowRenderer != null)
-               {
-                  renderSystem.addShadowRenderer(this.shadowRenderer);
-               }
             }
             this.enableMouseListeners();
          }
@@ -283,10 +266,6 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
             if(this.name_nh != null)
             {
                this.container.removeChild(this.name_nh);
-               if(this.shadowRenderer != null)
-               {
-                  this.gameKernel.getRenderSystem().removeShadowRenderer(this.shadowRenderer);
-               }
             }
             this.container = null;
          }
@@ -310,25 +289,10 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
       {
          this.gameKernel = gameKernel;
          var renderSystem:RenderSystem = gameKernel.getRenderSystem();
-         this.name_5s = new DirectionalShadowRendererConstructor(this.name_nh,renderSystem,this);
-         if(renderSystem.isShadowSystemReady())
-         {
-            this.name_5s.createShadowRenderer();
-            this.name_5s = null;
-         }
-         else
-         {
-            renderSystem.addShadowRendererConstructor(this.name_5s);
-         }
       }
       
       override public function removeFromGame(gameKernel:GameKernel) : void
       {
-         if(this.name_5s != null)
-         {
-            gameKernel.getRenderSystem().removeShadowRendererConstructor(this.name_5s);
-            this.name_5s = null;
-         }
          this.removeFromScene();
          gameKernel = null;
       }

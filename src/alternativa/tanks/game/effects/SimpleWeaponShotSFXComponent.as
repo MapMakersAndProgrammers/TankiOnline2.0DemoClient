@@ -43,7 +43,7 @@ package alternativa.tanks.game.effects
       {
          var simpleWeaponShotEffect:SimpleWeaponShotEffect = SimpleWeaponShotEffect(this.gameKernel.getObjectPoolManager().getObject(SimpleWeaponShotEffect));
          simpleWeaponShotEffect.init(barrelIndex,this.turret,this.shotTextureResource,100);
-         this.gameKernel.getRenderSystem().each(simpleWeaponShotEffect);
+         this.gameKernel.getRenderSystem().addEffect(simpleWeaponShotEffect);
       }
    }
 }
@@ -86,7 +86,7 @@ class SimpleWeaponShotEffect extends PooledObject implements IGraphicEffect
       super(objectPool);
       this.mesh = new Plane(40,250,0,250 / 2);
       this.material = new TextureMaterial();
-      this.material.name_L4 = true;
+      this.material.transparentPass = true;
       this.mesh.setMaterialToAllSurfaces(this.material);
    }
    

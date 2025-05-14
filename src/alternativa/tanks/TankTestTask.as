@@ -107,6 +107,7 @@ package alternativa.tanks
    import flash.geom.ColorTransform;
    import flash.geom.Vector3D;
    import flash.ui.Keyboard;
+   import alternativa.engine3d.materials.StandardMaterial;
    
    use namespace alternativa3d;
    
@@ -390,14 +391,14 @@ package alternativa.tanks
          while(_loc5_ < _loc1_.length)
          {
             _loc8_ = new TextureMaterial(_loc1_[_loc5_]);
-            _loc8_.name_L4 = true;
+            _loc8_.transparentPass = true;
             _loc4_[_loc5_] = _loc8_;
             _loc5_++;
          }
          var _loc6_:AnimatedSpriteEffect = AnimatedSpriteEffect(this.gameKernel.getObjectPoolManager().getObject(AnimatedSpriteEffect));
          var _loc7_:Vector3 = new Vector3(Math.random() * 3000,Math.random() * 3000,1000 + Math.random() * 3000);
          _loc6_.init(300,300,_loc4_,_loc7_,0,0,30,true);
-         _loc2_.each(_loc6_);
+         _loc2_.addEffect(_loc6_);
       }
       
       private function createThunderShotEffect() : void
@@ -409,7 +410,7 @@ package alternativa.tanks
          _loc3_.useResource(_loc2_);
          var _loc4_:ThunderShotEffect = ThunderShotEffect(this.gameKernel.getObjectPoolManager().getObject(ThunderShotEffect));
          _loc4_.init(new DummyTurret(),_loc1_,_loc2_);
-         _loc3_.each(_loc4_);
+         _loc3_.addEffect(_loc4_);
       }
       
       private function selectPrevTurret() : void
@@ -484,7 +485,7 @@ package alternativa.tanks
                this.name_T2 = FloatingTextEffect(this.gameKernel.getObjectPoolManager().getObject(FloatingTextEffect));
                _loc1_ = TurretGraphicsComponent(this.activeTank.getComponentStrict(TurretGraphicsComponent));
                this.name_T2.init(5000,_loc1_.getObject3D(),this.onFloatingTextEffectDestroy);
-               this.gameKernel.getRenderSystem().each(this.name_T2);
+               this.gameKernel.getRenderSystem().addEffect(this.name_T2);
             }
             this.name_T2.addMessage("Message " + Math.random(),65280);
          }
@@ -702,14 +703,14 @@ package alternativa.tanks
          }
       }
       
-      private function createTracksMaterial(param1:TankHull) : TracksMaterial2
+      private function createTracksMaterial(param1:TankHull) : StandardMaterial
       {
          var _loc2_:ByteArrayMap = param1.textureData;
          var _loc3_:ATFTextureResource = this.name_fa.getCompressedTextureResource(_loc2_.getValue(TankHullParser.KEY_TRACKS_DIFFUSE));
          var _loc4_:ATFTextureResource = this.name_fa.getCompressedTextureResource(_loc2_.getValue(TankHullParser.KEY_TRACKS_NORMAL));
-         var _loc5_:TracksMaterial2 = new TracksMaterial2();
+         var _loc5_:StandardMaterial = new StandardMaterial();
          _loc5_.glossiness = 65;
-         _loc5_.name_kj = 0.6;
+         _loc5_.specularPower = 0.6;
          _loc5_.diffuseMap = _loc3_;
          _loc5_.normalMap = _loc4_;
          if(_loc2_.getValue(TankHullParser.KEY_TRACKS_OPACITY) != null)
@@ -754,7 +755,7 @@ package alternativa.tanks
          while(_loc11_ < _loc7_.length)
          {
             _loc18_ = new TextureMaterial(_loc7_[_loc11_]);
-            _loc18_.name_L4 = true;
+            _loc18_.transparentPass = true;
             _loc10_[_loc11_] = _loc18_;
             _loc11_++;
          }
@@ -796,7 +797,7 @@ package alternativa.tanks
          while(_loc11_ < _loc7_.length)
          {
             _loc18_ = new TextureMaterial(_loc7_[_loc11_]);
-            _loc18_.name_L4 = true;
+            _loc18_.transparentPass = true;
             _loc10_[_loc11_] = _loc18_;
             _loc11_++;
          }
@@ -949,12 +950,12 @@ package alternativa.tanks
          var _loc10_:ATFTextureResource = this.name_fa.getCompressedTextureResource(_loc7_.getValue(TankPartParser.KEY_SURFACE_MAP));
          var _loc11_:BitmapTextureResource = this.name_fa.getBitmapTextureResource(param2);
          var _loc12_:BitmapTextureResource = this.name_fa.getBitmapTextureResource(param3);
-         var _loc13_:TankMaterial2 = new TankMaterial2(_loc11_,_loc8_,_loc9_,_loc10_);
-         var _loc14_:TankMaterial2 = new TankMaterial2(_loc12_,_loc8_,_loc9_,_loc10_);
-         _loc13_.name_jM = param4;
-         _loc13_.name_Sf = param5;
-         _loc14_.name_jM = param4;
-         _loc14_.name_Sf = param5;
+         var _loc13_:StandardMaterial = new StandardMaterial(_loc8_, _loc9_);
+         var _loc14_:StandardMaterial = new StandardMaterial(_loc8_, _loc9_);
+         // _loc13_.name_jM = param4;
+         // _loc13_.name_Sf = param5;
+         // _loc14_.name_jM = param4;
+         // _loc14_.name_Sf = param5;
          _loc6_.useResource(param1.geometry);
          if(param1 is TankHull)
          {
@@ -1043,7 +1044,7 @@ package alternativa.tanks
                _loc9_ = this.getFrameMaterials(_loc8_);
                _loc10_ = AnimatedPlaneEffect(this.gameKernel.getObjectPoolManager().getObject(AnimatedPlaneEffect));
                _loc10_.init(conShockSize.value,_loc6_,_loc7_,_loc9_,30,conShockSizeGrow.value);
-               this.gameKernel.getRenderSystem().each(_loc10_);
+               this.gameKernel.getRenderSystem().addEffect(_loc10_);
             }
          }
       }
@@ -1071,7 +1072,7 @@ package alternativa.tanks
             _loc8_ = 400;
             _loc9_ = 25;
             _loc4_.init(600,600,_loc3_,_loc6_,_loc7_,_loc8_,_loc9_,false);
-            this.gameKernel.getRenderSystem().each(_loc4_);
+            this.gameKernel.getRenderSystem().addEffect(_loc4_);
          }
       }
       
@@ -1127,7 +1128,7 @@ package alternativa.tanks
                _loc20_ = MovingAnimatedSprite(this.gameKernel.getObjectPoolManager().getObject(MovingAnimatedSprite));
                _loc21_ = Math.random() * Math.PI;
                _loc20_.init(_loc9_,_loc9_,_loc11_,_loc13_,_loc14_,_loc8_,_loc21_,_loc7_,false);
-               this.gameKernel.getRenderSystem().each(_loc20_);
+               this.gameKernel.getRenderSystem().addEffect(_loc20_);
                _loc15_ = _loc15_ + 2 / 3 * Math.PI;
                _loc17_++;
             }
@@ -1209,7 +1210,7 @@ class FrameMaterialsFactory implements IDataFactory
       {
          this.renderSystem.useResource(_loc2_[_loc5_]);
          _loc6_ = new TextureMaterial(_loc2_[_loc5_]);
-         _loc6_.name_L4 = true;
+         _loc6_.transparentPass = true;
          _loc4_[_loc5_] = _loc6_;
          _loc5_++;
       }
@@ -1280,7 +1281,7 @@ class WeaponHitEffects implements IAreaOfEffectSFX
    {
       var _loc4_:AnimatedSpriteEffect = AnimatedSpriteEffect(this.gameKernel.getObjectPoolManager().getObject(AnimatedSpriteEffect));
       _loc4_.init(600,600,this.frames,param1,0,50,30,false);
-      this.gameKernel.getRenderSystem().each(_loc4_);
+      this.gameKernel.getRenderSystem().addEffect(_loc4_);
    }
 }
 

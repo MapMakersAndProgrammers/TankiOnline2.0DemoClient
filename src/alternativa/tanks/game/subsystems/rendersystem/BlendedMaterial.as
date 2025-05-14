@@ -23,7 +23,7 @@ package alternativa.tanks.game.subsystems.rendersystem
          this.blendModeDestination = blendModeDestination;
       }
       
-      override alternativa3d function collectDraws(camera:Camera3D, surface:Surface, geometry:Geometry, lights:Vector.<Light3D>, lightsLength:int, objectRenderPriority:int = -1) : void
+      override alternativa3d function collectDraws(camera:Camera3D, surface:Surface, geometry:Geometry, lights:Vector.<Light3D>, lightsLength:int, useShadow:Boolean, objectRenderPriority:int = -1) : void
       {
       }
    }

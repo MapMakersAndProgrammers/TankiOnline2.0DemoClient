@@ -82,10 +82,10 @@ package alternativa.tanks.game.effects
                newFire.scale = scale;
                newFire.position = position;
                newFire.direction = direction;
-               particleSystem.each(newFire);
+               particleSystem.addEffect(newFire);
             },(live - 5 * ft) * 1000);
          }
-         setLife(name_gV[name_kf - 1] + smokePrototype.lifeTime);
+         setLife(timeKeys[keysCount - 1] + smokePrototype.lifeTime);
       }
       
       private function keyFrame1(keyTime:Number, time:Number) : void

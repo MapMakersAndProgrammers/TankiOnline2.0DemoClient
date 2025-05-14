@@ -6,7 +6,7 @@ package alternativa.tanks.game.entities.map
    import alternativa.engine3d.loaders.ParserA3D;
    import alternativa.engine3d.loaders.ParserCollada;
    import alternativa.engine3d.loaders.ParserMaterial;
-   import alternativa.engine3d.materials.EnviromentMaterial;
+   import alternativa.engine3d.materials.EnvironmentMaterial;
    import alternativa.engine3d.objects.Decal;
    import alternativa.engine3d.objects.Mesh;
    import alternativa.engine3d.objects.Surface;
@@ -16,7 +16,7 @@ package alternativa.tanks.game.entities.map
    import alternativa.engine3d.resources.ExternalTextureResource;
    import alternativa.engine3d.resources.TextureResource;
    import alternativa.physics.collision.CollisionPrimitive;
-   import alternativa.tanks.game.entities.tank.graphics.materials.TreesMaterial;
+   import alternativa.engine3d.materials.StandardMaterial;
    import alternativa.tanks.game.physics.CollisionGroup;
    import alternativa.tanks.game.utils.PhysicsParsingUtils;
    import alternativa.tanks.game.utils.TaskSequence;
@@ -122,13 +122,13 @@ package alternativa.tanks.game.entities.map
                meshName = mesh.name.toLowerCase();
                if(meshName.indexOf("decal") >= 0)
                {
-                  decal = new Decal(1.5);
+                  decal = new Decal(); //XXX: in 8.16 it accepts an offset argument, it was set to 1.5 here before
                   decal.name = meshName;
                   decal.useShadow = true;
                   decal.geometry = mesh.geometry;
-                  decal.name_eW = mesh.name_eW;
-                  decal.name_Oy = mesh.name_Oy;
-                  for each(surface in decal.name_eW)
+                  decal._surfaces = mesh._surfaces;
+                  decal._surfacesLength = mesh._surfacesLength;
+                  for each(surface in decal._surfaces)
                   {
                      surface.alternativa3d::object = decal;
                   }
@@ -167,7 +167,7 @@ package alternativa.tanks.game.entities.map
          var opacity:TextureResource = null;
          var emission:TextureResource = null;
          var reflection:TextureResource = null;
-         var envMaterial:EnviromentMaterial = null;
+         var envMaterial:EnvironmentMaterial = null;
          if(data != null)
          {
             parser = new ParserA3D();
@@ -192,13 +192,16 @@ package alternativa.tanks.game.entities.map
                         if(diffName.indexOf("vetrino01") >= 0)
                         {
                            reflection = this.getCompressedTextureResource(new ExternalTextureResource("vetrino_rfl.atf"),resourceCache,this.mapFiles);
-                           envMaterial = new EnviromentMaterial(diffuse,this.name_TE,null,reflection,emission,opacity);
+                           envMaterial = new EnvironmentMaterial(diffuse,this.name_TE,null,reflection,emission,opacity);
                            envMaterial.reflection = 0.4;
                            surface.material = envMaterial;
                         }
                         else
                         {
-                           surface.material = new MapMaterial(diffuse,emission,1,opacity);
+                           var mapMaterial:StandardMaterial = new StandardMaterial(diffuse, null, null, null, opacity);
+                           mapMaterial.lightMap = emission;
+                           mapMaterial.lightMapChannel = 1;
+                           surface.material = mapMaterial;
                         }
                      }
                      i++;
@@ -216,8 +219,8 @@ package alternativa.tanks.game.entities.map
          var diffuseTextureResource:TextureResource = null;
          var emissionTextureResource:TextureResource = null;
          var opacityTextureResource:TextureResource = null;
-         var material:MapMaterial = null;
-         for each(surface in mesh.name_eW)
+         var material:StandardMaterial = null;
+         for each(surface in mesh._surfaces)
          {
             parserMaterial = surface.material as ParserMaterial;
             if(parserMaterial != null)
@@ -225,13 +228,16 @@ package alternativa.tanks.game.entities.map
                diffuseTextureResource = this.getCompressedTextureResource(parserMaterial.textures["diffuse"],resourceCache,this.mapFiles);
                emissionTextureResource = this.getCompressedTextureResource(parserMaterial.textures["emission"],resourceCache,this.mapFiles);
                opacityTextureResource = this.getCompressedTextureResource(parserMaterial.textures["transparent"],resourceCache,this.mapFiles);
+               material = new StandardMaterial(diffuseTextureResource, null, null, null, opacityTextureResource);
                if(emissionTextureResource == null)
                {
-                  material = new MapMaterial(diffuseTextureResource,fakeEmissionTextureResource,0,opacityTextureResource);
+                  material.lightMap = fakeBumpTextureResource;
+                  material.lightMapChannel = 0;
                }
                else
                {
-                  material = new MapMaterial(diffuseTextureResource,emissionTextureResource,1,opacityTextureResource);
+                  material.lightMap = fakeBumpTextureResource;
+                  material.lightMapChannel = 1;
                }
                surface.material = material;
             }
@@ -265,7 +271,7 @@ package alternativa.tanks.game.entities.map
          var diffuse:TextureResource = null;
          var bump:TextureResource = null;
          var opacity:TextureResource = null;
-         var trMaterial:TreesMaterial = null;
+         var trMaterial:StandardMaterial = null;
          if(data != null)
          {
             parser = new ParserA3D();
@@ -285,8 +291,8 @@ package alternativa.tanks.game.entities.map
                         diffuse = this.getCompressedTextureResource(material.textures["diffuse"],resourceCache,this.mapFiles);
                         bump = this.getCompressedTextureResource(material.textures["bump"],resourceCache,this.mapFiles);
                         opacity = this.getCompressedTextureResource(material.textures["transparent"],resourceCache,this.mapFiles);
-                        trMaterial = new TreesMaterial(diffuse,fakeBumpTextureResource,null,null,opacity);
-                        trMaterial.name_kj = 0;
+                        trMaterial = new StandardMaterial(diffuse,fakeBumpTextureResource,null,null,opacity);
+                        trMaterial.specularPower = 0;
                         trMaterial.alphaThreshold = 0.2;
                         surface.material = trMaterial;
                      }

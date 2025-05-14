@@ -403,7 +403,7 @@ package alternativa.tanks.game.entities.map
          this.name_9h = value;
          for each(decal in this.name_Zy.decals)
          {
-            decal.offset = this.name_9h;
+            //decal.offset = this.name_9h; //XXX: 8.32 does not have decal offset
          }
          IConsole(OSGi.getInstance().getService(IConsole)).addText("Decals offset: " + this.name_9h);
       }

@@ -20,7 +20,6 @@ package alternativa.tanks.game.subsystems.rendersystem
    import alternativa.tanks.game.entities.tank.graphics.materials.TankMaterial;
    import alternativa.tanks.game.entities.tank.graphics.materials.TankMaterial2;
    import alternativa.tanks.game.entities.tank.graphics.materials.TracksMaterial2;
-   import alternativa.tanks.game.entities.tank.graphics.materials.TreesMaterial;
    import alternativa.tanks.game.subsystems.inputsystem.IInput;
    import alternativa.tanks.game.subsystems.inputsystem.KeyboardEventType;
    import alternativa.tanks.game.utils.BitFlags;
@@ -35,6 +34,7 @@ package alternativa.tanks.game.subsystems.rendersystem
    import flash.events.Event;
    import flash.geom.Vector3D;
    import flash.ui.Keyboard;
+   import alternativa.engine3d.materials.StandardMaterial;
    
    use namespace alternativa3d;
    
@@ -106,10 +106,6 @@ package alternativa.tanks.game.subsystems.rendersystem
       
       private var resourceManager:ResourceManager;
       
-      private var name_aD:ShadowsSystem;
-      
-      private var staticShadowRenderer:StaticShadowRenderer;
-      
       private var name_pR:Vector.<IDeferredAction>;
       
       private var name_MI:Vector.<IShadowRendererConstructor>;
@@ -150,8 +146,6 @@ package alternativa.tanks.game.subsystems.rendersystem
          this.rootContainer.addChild(this.particleSystem);
          this.axisIndicator = new AxisIndicator(100);
          this.resourceManager = new ResourceManager();
-         this.name_aD = new ShadowsSystem();
-         this.staticShadowRenderer = new StaticShadowRenderer(null,1024,4);
          this.name_pR = new Vector.<IDeferredAction>();
          this.rootContainer.addEventListener(MouseEvent3D.CLICK,this.onClick);
       }
@@ -160,7 +154,7 @@ package alternativa.tanks.game.subsystems.rendersystem
       {
          if(e.target is Decal)
          {
-            trace(e.target,e.target.name,Decal(e.target).offset,e.target.scaleX,e.target.scaleY,e.target.scaleZ);
+            trace(e.target,e.target.name,e.target.scaleX,e.target.scaleY,e.target.scaleZ);
          }
          else
          {
@@ -175,16 +169,13 @@ package alternativa.tanks.game.subsystems.rendersystem
       
       public function setFogMode(mode:int) : void
       {
-         MapMaterial.fogMode = mode;
          TankMaterial.fogMode = mode;
-         TankMaterial2.fogMode = mode;
-         TracksMaterial2.fogMode = mode;
-         TreesMaterial.fogMode = mode;
+         StandardMaterial.fogMode = mode;
          SkyMaterial.fogMode = mode;
          GiShadowMaterial.fogMode = mode;
          if(mode == 1)
          {
-            this.particleSystem.fogFar = MapMaterial.fogFar;
+            this.particleSystem.fogFar = StandardMaterial.fogFar;
          }
          else
          {
@@ -194,33 +185,24 @@ package alternativa.tanks.game.subsystems.rendersystem
       
       public function setFogNear(value:Number) : void
       {
-         MapMaterial.fogNear = value;
          TankMaterial.fogNear = value;
-         TankMaterial2.fogNear = value;
-         TracksMaterial2.fogNear = value;
-         TreesMaterial.fogNear = value;
+         StandardMaterial.fogNear = value;
          GiShadowMaterial.fogNear = value;
          this.particleSystem.fogNear = value;
       }
       
       public function setFogFar(value:Number) : void
       {
-         MapMaterial.fogFar = value;
          TankMaterial.fogFar = value;
-         TankMaterial2.fogFar = value;
-         TracksMaterial2.fogFar = value;
-         TreesMaterial.fogFar = value;
+         StandardMaterial.fogFar = value;
          GiShadowMaterial.fogFar = value;
          this.particleSystem.fogFar = value;
       }
       
       public function setMaxFogDensity(value:Number) : void
       {
-         MapMaterial.fogMaxDensity = value;
          TankMaterial.fogMaxDensity = value;
-         TankMaterial2.fogMaxDensity = value;
-         TracksMaterial2.fogMaxDensity = value;
-         TreesMaterial.fogMaxDensity = value;
+         StandardMaterial.fogMaxDensity = value;
          SkyMaterial.fogMaxDensity = value;
          GiShadowMaterial.fogMaxDensity = value;
          this.particleSystem.fogMaxDensity = value;
@@ -231,28 +213,19 @@ package alternativa.tanks.game.subsystems.rendersystem
          var r:Number = (color >> 16 & 0xFF) / 255;
          var g:Number = (color >> 8 & 0xFF) / 255;
          var b:Number = (color & 0xFF) / 255;
-         MapMaterial.fogColorR = r;
-         MapMaterial.fogColorG = g;
-         MapMaterial.fogColorB = b;
          TankMaterial.fogColorR = r;
          TankMaterial.fogColorG = g;
          TankMaterial.fogColorB = b;
-         TankMaterial2.fogColorR = r;
-         TankMaterial2.fogColorG = g;
-         TankMaterial2.fogColorB = b;
-         TracksMaterial2.fogColorR = r;
-         TracksMaterial2.fogColorG = g;
-         TracksMaterial2.fogColorB = b;
-         TreesMaterial.fogColorR = r;
-         TreesMaterial.fogColorG = g;
-         TreesMaterial.fogColorB = b;
+         StandardMaterial.fogColorR = r;
+         StandardMaterial.fogColorG = g;
+         StandardMaterial.fogColorB = b;
          SkyMaterial.fogColorR = r;
          SkyMaterial.fogColorG = g;
          SkyMaterial.fogColorB = b;
          GiShadowMaterial.fogColorR = r;
          GiShadowMaterial.fogColorG = g;
          GiShadowMaterial.fogColorB = b;
-         this.particleSystem.name_IN = color;
+         this.particleSystem.fogColor = color;
       }
       
       public function setFogHorizonSize(value:Number) : void
@@ -291,12 +264,9 @@ package alternativa.tanks.game.subsystems.rendersystem
          }
          this.name_Qk = new BitmapTextureResource(bitmapData);
          this.useResource(this.name_Qk);
-         MapMaterial.setFogTexture(this.name_Qk);
          TankMaterial.setFogTexture(this.name_Qk);
-         TankMaterial2.setFogTexture(this.name_Qk);
          GiShadowMaterial.setFogTexture(this.name_Qk);
-         TracksMaterial2.setFogTexture(this.name_Qk);
-         TreesMaterial.setFogTexture(this.name_Qk);
+         StandardMaterial.fogTexture = this.name_Qk;
          SkyMaterial.setFogTexture(this.name_Qk);
       }
       
@@ -353,11 +323,6 @@ package alternativa.tanks.game.subsystems.rendersystem
          }
       }
       
-      public function getShadowSystem() : ShadowsSystem
-      {
-         return this.name_aD;
-      }
-      
       public function setAntialiasing(value:int) : void
       {
          this.view.antiAlias = value;
@@ -366,27 +331,6 @@ package alternativa.tanks.game.subsystems.rendersystem
       public function getAnitaliasing() : int
       {
          return this.view.antiAlias;
-      }
-      
-      public function addShadowRenderer(renderer:ShadowRenderer) : void
-      {
-         if(renderer == null)
-         {
-            throw new ArgumentError("Parameter renderer is null");
-         }
-         if(this.name_aD.renderers.indexOf(renderer) < 0)
-         {
-            this.name_aD.renderers.push(renderer);
-         }
-      }
-      
-      public function removeShadowRenderer(renderer:ShadowRenderer) : void
-      {
-         var index:int = int(this.name_aD.renderers.indexOf(renderer));
-         if(index >= 0)
-         {
-            this.name_aD.renderers.splice(index,1);
-         }
       }
       
       public function setStage3D(stage3d:Stage3D) : void
@@ -545,7 +489,7 @@ package alternativa.tanks.game.subsystems.rendersystem
          this.name_WV.remove(renderer);
       }
       
-      public function each(effect:IGraphicEffect) : void
+      public function addEffect(effect:IGraphicEffect) : void
       {
          if(this.effects.indexOf(effect) >= 0)
          {
@@ -558,7 +502,7 @@ package alternativa.tanks.game.subsystems.rendersystem
       
       public function addA3DEffect(effect:ParticleEffect) : void
       {
-         this.particleSystem.each(effect);
+         this.particleSystem.addEffect(effect);
       }
       
       public function setCameraController(controller:ICameraController) : void
@@ -630,7 +574,6 @@ package alternativa.tanks.game.subsystems.rendersystem
          this.stage3d.context3D.clear(0,0,0,1,1,0,4294967295);
          this.stage3d.context3D.present();
          this.resourceManager.clear();
-         this.staticShadowRenderer.dispose();
       }
       
       override public function run() : void
@@ -681,22 +624,12 @@ package alternativa.tanks.game.subsystems.rendersystem
             this.axisIndicator.update(this.camera);
          }
          this.camera.startTimer();
-         this.name_aD.update(this.rootContainer);
          this.camera.render(this.stage3d);
          this.camera.stopTimer();
       }
       
       public function initStaticShadow(mainDirectionalLight:DirectionalLight) : void
       {
-         var staticShadowInitializer:StaticShadowInitializer = new StaticShadowInitializer(this.staticShadowRenderer,this.mapGeometryContainer,mainDirectionalLight);
-         if(this.isContext3DAvailable())
-         {
-            staticShadowInitializer.execute(this.getContext3D());
-         }
-         else
-         {
-            this.name_pR.push(staticShadowInitializer);
-         }
       }
       
       private function isContext3DAvailable() : Boolean
@@ -723,7 +656,6 @@ package alternativa.tanks.game.subsystems.rendersystem
          var deferredAction:IDeferredAction = null;
          context3D.enableErrorChecking = false;
          this.resourceManager.setContext(context3D);
-         this.staticShadowRenderer.context = context3D;
          for each(var _loc5_ in this.name_pR)
          {
             deferredAction = _loc5_;
@@ -757,7 +689,7 @@ package alternativa.tanks.game.subsystems.rendersystem
             object = objects[i];
             textMarker = TextMarker(this.objectPoolManager.getObject(TextMarker));
             textMarker.init(this.getOverlay("markers"),object.name || "[none]",object);
-            this.each(textMarker);
+            this.addEffect(textMarker);
             markers[i] = textMarker;
          }
          return markers;

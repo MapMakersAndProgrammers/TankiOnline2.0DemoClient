@@ -107,7 +107,7 @@ package alternativa.tanks.game.weapons.ammunition.splashhit.debug
          addKey(3 * 0.03333333333333333,this.keyFrame4);
          addKey(4 * 0.03333333333333333,this.keyFrame5);
          addKey(4.7 * 0.03333333333333333,this.keyFrame6);
-         setLife(name_gV[name_kf - 1] + smokePrototype.lifeTime);
+         setLife(timeKeys[keysCount - 1] + smokePrototype.lifeTime);
       }
       
       private function keyFrame1(keyTime:Number, time:Number) : void

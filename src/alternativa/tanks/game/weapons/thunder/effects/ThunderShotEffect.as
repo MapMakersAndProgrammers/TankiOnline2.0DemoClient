@@ -92,7 +92,7 @@ package alternativa.tanks.game.weapons.thunder.effects
       {
          super(objectPool);
          this.name_kg = new BlendedMaterial();
-         this.name_kg.name_L4 = true;
+         this.name_kg.transparentPass = true;
          this.name_kg.blendModeSource = Context3DBlendFactor.ONE;
          this.name_kg.blendModeDestination = Context3DBlendFactor.ONE;
          this.createParticles();

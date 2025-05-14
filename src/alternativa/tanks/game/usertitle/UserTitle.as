@@ -132,7 +132,7 @@ package alternativa.tanks.game.usertitle
          this.resourceManager = this.resourceManager;
          this.textureResource = new BitmapTextureResource(null);
          this.material = new TextureMaterial(this.textureResource);
-         this.material.name_L4 = true;
+         this.material.transparentPass = true;
          this.sprite = new Sprite3D(100,100,this.material);
          this.sprite.material = this.material;
          this.sprite.perspectiveScale = false;

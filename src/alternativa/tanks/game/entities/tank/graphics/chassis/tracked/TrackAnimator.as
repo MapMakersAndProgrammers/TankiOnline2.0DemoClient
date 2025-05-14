@@ -5,10 +5,11 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
    import alternativa.engine3d.objects.Skin;
    import alternativa.tanks.game.entities.tank.graphics.materials.TracksMaterial2;
    import alternativa.tanks.game.entities.tank.physics.IChassisPhysicsComponent;
+   import alternativa.engine3d.materials.StandardMaterial;
    
    public class TrackAnimator
    {
-      public var material:TracksMaterial2;
+      public var material:StandardMaterial;
       
       public var physicsComponent:IChassisPhysicsComponent;
       
@@ -89,7 +90,7 @@ package alternativa.tanks.game.entities.tank.graphics.chassis.tracked
                delta = newOffset - this.name_cr;
                this.name_cr = newOffset;
             }
-            this.material.vOffset = this.name_cr;
+            //this.material.vOffset = this.name_cr;
          }
       }
       

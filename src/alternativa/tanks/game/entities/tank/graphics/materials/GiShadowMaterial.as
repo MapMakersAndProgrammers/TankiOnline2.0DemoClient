@@ -26,6 +26,7 @@ package alternativa.tanks.game.entities.tank.graphics.materials
    import flash.utils.Dictionary;
    import flash.utils.getDefinitionByName;
    import flash.utils.getQualifiedClassName;
+   import alternativa.engine3d.core.Renderer;
    
    use namespace alternativa3d;
    
@@ -118,11 +119,11 @@ package alternativa.tanks.game.entities.tank.graphics.materials
             fragmentLinker.addProcedure(outputWithAdvancedFogProcedure);
             fragmentLinker.setInputParams(outputWithAdvancedFogProcedure,"outColor");
          }
-         fragmentLinker.setOppositeLinker(vertexLinker);
+         //fragmentLinker.setOppositeLinker(vertexLinker);
          return new ShaderProgram(vertexLinker,fragmentLinker);
       }
       
-      override alternativa3d function collectDraws(camera:Camera3D, surface:Surface, geometry:Geometry, lights:Vector.<Light3D>, lightsLength:int, objectRenderPriority:int = -1) : void
+      override alternativa3d function collectDraws(camera:Camera3D, surface:Surface, geometry:Geometry, lights:Vector.<Light3D>, lightsLength:int, useShadow:Boolean, objectRenderPriority:int = -1) : void
       {
          var program:ShaderProgram = null;
          var lm:Transform3D = null;
@@ -167,7 +168,7 @@ package alternativa.tanks.game.entities.tank.graphics.materials
                programs[fogMode] = program;
             }
          }
-         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.name_EM,surface.indexBegin,surface.numTriangles,program);
+         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry._indexBuffer,surface.indexBegin,surface.numTriangles,program);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aPosition"),positionBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.POSITION],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.POSITION]);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aUV"),uvBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.TEXCOORDS[0]],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.TEXCOORDS[0]]);
          object.alternativa3d::setTransformConstants(drawUnit,surface,program.vertexShader,camera);
@@ -230,7 +231,7 @@ package alternativa.tanks.game.entities.tank.graphics.materials
             drawUnit.alternativa3d::blendSource = Context3DBlendFactor.ONE_MINUS_SOURCE_ALPHA;
             drawUnit.alternativa3d::blendDestination = Context3DBlendFactor.SOURCE_ALPHA;
          }
-         camera.alternativa3d::renderer.alternativa3d::addDrawUnit(drawUnit,RenderPriority.TANK_SHADOW);
+         camera.alternativa3d::renderer.alternativa3d::addDrawUnit(drawUnit,Renderer.DECALS);
       }
       
       override public function clone() : Material

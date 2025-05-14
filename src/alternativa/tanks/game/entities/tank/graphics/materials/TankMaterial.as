@@ -28,6 +28,7 @@ package alternativa.tanks.game.entities.tank.graphics.materials
    import flash.utils.Dictionary;
    import flash.utils.getDefinitionByName;
    import flash.utils.getQualifiedClassName;
+   import alternativa.engine3d.core.Renderer;
    
    use namespace alternativa3d;
    
@@ -208,8 +209,8 @@ package alternativa.tanks.game.entities.tank.graphics.materials
             }
             if(directional != null)
             {
-               vertexLinker.addProcedure(directional.shadow.getVShader());
-               shadowProc = directional.shadow.getFShader();
+               vertexLinker.addProcedure(directional.shadow.vertexShadowProcedure);
+               shadowProc = directional.shadow.fragmentShadowProcedure;
                fragmentLinker.addProcedure(shadowProc);
                fragmentLinker.setOutputParams(shadowProc,"tTotalLight");
                dirMulShadowProcedure = _lightFragmentProcedures[directional.shadow];
@@ -238,12 +239,12 @@ package alternativa.tanks.game.entities.tank.graphics.materials
                      }
                      else if(light is OmniLight)
                      {
-                        lightFragmentProcedure.compileFromArray(["#c0=c" + light.name_oG + "Position","#c1=c" + light.name_oG + "Color","#c2=c" + light.name_oG + "Radius","#v0=vPosition","sub t0, c0, v0","dp3 t0.w, t0.xyz, t0.xyz","nrm t0.xyz, t0.xyz","add t1.xyz, i1.xyz, t0.xyz","mov t1.w, c0.w","nrm t1.xyz, t1.xyz","dp3 t1.w, t1.xyz, i0.xyz","pow t1.w, t1.w, o1.w","sqt t1.x, t0.w","dp3 t0.w, t0.xyz, i0.xyz","sub t0.x, t1.x, c2.z","div t0.y, t0.x, c2.y","sub t0.x, c2.x, t0.y","sat t0.xw, t0.xw","mul t0.xyz, c1.xyz, t0.xxx","mul t1.xyz, t0.xyz, t1.w","add o1.xyz, o1.xyz, t1.xyz","mul t0.xyz, t0.xyz, t0.www","add o0.xyz, o0.xyz, t0.xyz"]);
+                        lightFragmentProcedure.compileFromArray(["#c0=c" + light.lightID + "Position","#c1=c" + light.lightID + "Color","#c2=c" + light.lightID + "Radius","#v0=vPosition","sub t0, c0, v0","dp3 t0.w, t0.xyz, t0.xyz","nrm t0.xyz, t0.xyz","add t1.xyz, i1.xyz, t0.xyz","mov t1.w, c0.w","nrm t1.xyz, t1.xyz","dp3 t1.w, t1.xyz, i0.xyz","pow t1.w, t1.w, o1.w","sqt t1.x, t0.w","dp3 t0.w, t0.xyz, i0.xyz","sub t0.x, t1.x, c2.z","div t0.y, t0.x, c2.y","sub t0.x, c2.x, t0.y","sat t0.xw, t0.xw","mul t0.xyz, c1.xyz, t0.xxx","mul t1.xyz, t0.xyz, t1.w","add o1.xyz, o1.xyz, t1.xyz","mul t0.xyz, t0.xyz, t0.www","add o0.xyz, o0.xyz, t0.xyz"]);
                         lightFragmentProcedure.name = i + "OmniLight";
                      }
                      else if(light is SpotLight)
                      {
-                        lightFragmentProcedure.compileFromArray(["#c0=c" + light.name_oG + "Position","#c1=c" + light.name_oG + "Color","#c2=c" + light.name_oG + "Radius","#c3=c" + light.name_oG + "Axis","#v0=vPosition","sub t0, c0, v0","dp3 t0.w, t0, t0","nrm t0.xyz,t0.xyz","add t2.xyz, i1.xyz, t0.xyz","nrm t2.xyz, t2.xyz","dp3 t2.x, t2.xyz, i0.xyz","pow t2.x, t2.x, o1.w","dp3 t1.x, t0.xyz, c3.xyz","dp3 t0.x,t0,i0","sqt t0.w,t0.w","sub t0.w, t0.w, c2.y","div t0.y, t0.w, c2.x","sub t0.w, c0.w, t0.y","sub t0.y, t1.x, c2.w","div t0.y, t0.y, c2.z","sat t0.xyw,t0.xyw","mul t1.xyz,c1.xyz,t0.yyy","mul t1.xyz,t1.xyz,t0.www","mul t2.xyz, t2.x, t1.xyz","add o1.xyz, o1.xyz, t2.xyz","mul t1.xyz, t1.xyz, t0.xxx","add o0.xyz, o0.xyz, t1.xyz"]);
+                        lightFragmentProcedure.compileFromArray(["#c0=c" + light.lightID + "Position","#c1=c" + light.lightID + "Color","#c2=c" + light.lightID + "Radius","#c3=c" + light.lightID + "Axis","#v0=vPosition","sub t0, c0, v0","dp3 t0.w, t0, t0","nrm t0.xyz,t0.xyz","add t2.xyz, i1.xyz, t0.xyz","nrm t2.xyz, t2.xyz","dp3 t2.x, t2.xyz, i0.xyz","pow t2.x, t2.x, o1.w","dp3 t1.x, t0.xyz, c3.xyz","dp3 t0.x,t0,i0","sqt t0.w,t0.w","sub t0.w, t0.w, c2.y","div t0.y, t0.w, c2.x","sub t0.w, c0.w, t0.y","sub t0.y, t1.x, c2.w","div t0.y, t0.y, c2.z","sat t0.xyw,t0.xyw","mul t1.xyz,c1.xyz,t0.yyy","mul t1.xyz,t1.xyz,t0.www","mul t2.xyz, t2.x, t1.xyz","add o1.xyz, o1.xyz, t2.xyz","mul t1.xyz, t1.xyz, t0.xxx","add o0.xyz, o0.xyz, t1.xyz"]);
                         lightFragmentProcedure.name = i + "SpotLight";
                      }
                   }
@@ -264,7 +265,7 @@ package alternativa.tanks.game.entities.tank.graphics.materials
             fragmentLinker.addProcedure(_applySpecularProcedure);
             fragmentLinker.setOutputParams(_applySpecularProcedure,"tTotalHighLight");
          }
-         if(name_L4)
+         if(transparentPass)
          {
             fragmentLinker.addProcedure(_mulLightingProcedureWithDiffuseAlpha);
             fragmentLinker.setInputParams(_mulLightingProcedureWithDiffuseAlpha,"tTotalLight","tTotalHighLight","outColor");
@@ -292,7 +293,6 @@ package alternativa.tanks.game.entities.tank.graphics.materials
             fragmentLinker.addProcedure(outputWithAdvancedFogProcedure);
             fragmentLinker.setInputParams(outputWithAdvancedFogProcedure,"outColor");
          }
-         fragmentLinker.setOppositeLinker(vertexLinker);
          vertexLinker.link();
          fragmentLinker.link();
          return new ShaderProgram(vertexLinker,fragmentLinker);
@@ -300,7 +300,7 @@ package alternativa.tanks.game.entities.tank.graphics.materials
       
       private function formDirectionalProcedure(procedure:Procedure, light:Light3D, useShadow:Boolean) : void
       {
-         var source:Array = ["#c0=c" + light.name_oG + "Direction","#c1=c" + light.name_oG + "Color","add t0.xyz, i1.xyz, c0.xyz","mov t0.w, c0.w","nrm t0.xyz,t0.xyz","dp3 t0.w, t0.xyz, i0.xyz","pow t0.w, t0.w, o1.w","dp3 t0.x, i0, c0.xyz","sat t0.x, t0.x"];
+         var source:Array = ["#c0=c" + light.lightID + "Direction","#c1=c" + light.lightID + "Color","add t0.xyz, i1.xyz, c0.xyz","mov t0.w, c0.w","nrm t0.xyz,t0.xyz","dp3 t0.w, t0.xyz, i0.xyz","pow t0.w, t0.w, o1.w","dp3 t0.x, i0, c0.xyz","sat t0.x, t0.x"];
          if(useShadow)
          {
             source.push("mul t0.x, t0.x, i2.x");
@@ -341,7 +341,7 @@ package alternativa.tanks.game.entities.tank.graphics.materials
          }
       }
       
-      override alternativa3d function collectDraws(camera:Camera3D, surface:Surface, geometry:Geometry, lights:Vector.<Light3D>, lightsLength:int, objectRenderPriority:int = -1) : void
+      override alternativa3d function collectDraws(camera:Camera3D, surface:Surface, geometry:Geometry, lights:Vector.<Light3D>, lightsLength:int, useShadow:Boolean, objectRenderPriority:int = -1) : void
       {
          var light:Light3D = null;
          var i:int = 0;
@@ -374,7 +374,7 @@ package alternativa.tanks.game.entities.tank.graphics.materials
          {
             return;
          }
-         if(!name_L4 && opacityMap != null && opacityMap.alternativa3d::_texture == null)
+         if(!transparentPass && opacityMap != null && opacityMap.alternativa3d::_texture == null)
          {
             return;
          }
@@ -392,7 +392,7 @@ package alternativa.tanks.game.entities.tank.graphics.materials
             return;
          }
          lightsLength = lightsLength > 5 ? 5 : lightsLength;
-         var key:String = fogMode.toString() + (this.name_Vr ? "T" : "t") + (opacityMap != null ? "O" : "o") + (this.surfaceMap != null ? "S" : "s") + (name_L4 ? "D" : "d");
+         var key:String = fogMode.toString() + (this.name_Vr ? "T" : "t") + (opacityMap != null ? "O" : "o") + (this.surfaceMap != null ? "S" : "s") + (transparentPass ? "D" : "d");
          for(i = 0; i < lightsLength; i++)
          {
             light = lights[i];
@@ -401,7 +401,7 @@ package alternativa.tanks.game.entities.tank.graphics.materials
                directional = DirectionalLight(light);
                key += "S";
             }
-            key += light.name_oG;
+            key += light.lightID;
          }
          var dict:Dictionary = _programs[object.alternativa3d::transformProcedure];
          if(dict == null)
@@ -422,7 +422,7 @@ package alternativa.tanks.game.entities.tank.graphics.materials
                dict[key] = program;
             }
          }
-         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.name_EM,surface.indexBegin,surface.numTriangles,program);
+         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry._indexBuffer,surface.indexBegin,surface.numTriangles,program);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aPosition"),positionBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.POSITION],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.POSITION]);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aUV"),uvBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.TEXCOORDS[0]],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.TEXCOORDS[0]]);
          object.alternativa3d::setTransformConstants(drawUnit,surface,program.vertexShader,camera);
@@ -455,41 +455,41 @@ package alternativa.tanks.game.entities.tank.graphics.materials
                light = lights[i];
                if(light is DirectionalLight)
                {
-                  transform = light.name_cl;
+                  transform = light.lightToObjectTransform;
                   len = Number(Math.sqrt(transform.c * transform.c + transform.g * transform.g + transform.k * transform.k));
-                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.name_oG + "Direction"),-transform.c / len,-transform.g / len,-transform.k / len,1);
-                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.name_oG + "Color"),light.alternativa3d::red,light.alternativa3d::green,light.alternativa3d::blue);
+                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.lightID + "Direction"),-transform.c / len,-transform.g / len,-transform.k / len,1);
+                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.lightID + "Color"),light.alternativa3d::red,light.alternativa3d::green,light.alternativa3d::blue);
                }
                else if(light is OmniLight)
                {
                   omni = light as OmniLight;
-                  transform = light.name_cl;
+                  transform = light.lightToObjectTransform;
                   rScale = Number(Math.sqrt(transform.a * transform.a + transform.e * transform.e + transform.i * transform.i));
                   rScale += Math.sqrt(transform.b * transform.b + transform.f * transform.f + transform.j * transform.j);
                   rScale += Math.sqrt(transform.c * transform.c + transform.g * transform.g + transform.k * transform.k);
                   rScale /= 3;
-                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.name_oG + "Position"),transform.d,transform.h,transform.l);
-                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.name_oG + "Radius"),1,omni.attenuationEnd * rScale - omni.attenuationBegin * rScale,omni.attenuationBegin * rScale);
-                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.name_oG + "Color"),light.alternativa3d::red,light.alternativa3d::green,light.alternativa3d::blue);
+                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.lightID + "Position"),transform.d,transform.h,transform.l);
+                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.lightID + "Radius"),1,omni.attenuationEnd * rScale - omni.attenuationBegin * rScale,omni.attenuationBegin * rScale);
+                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.lightID + "Color"),light.alternativa3d::red,light.alternativa3d::green,light.alternativa3d::blue);
                }
                else if(light is SpotLight)
                {
                   spot = light as SpotLight;
-                  transform = light.name_cl;
+                  transform = light.lightToObjectTransform;
                   rScale = Number(Math.sqrt(transform.a * transform.a + transform.e * transform.e + transform.i * transform.i));
                   rScale += Math.sqrt(transform.b * transform.b + transform.f * transform.f + transform.j * transform.j);
                   rScale += len = Number(Math.sqrt(transform.c * transform.c + transform.g * transform.g + transform.k * transform.k));
                   rScale /= 3;
                   falloff = Number(Math.cos(spot.falloff * 0.5));
                   hotspot = Number(Math.cos(spot.hotspot * 0.5));
-                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.name_oG + "Position"),transform.d,transform.h,transform.l);
-                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.name_oG + "Axis"),-transform.c / len,-transform.g / len,-transform.k / len);
-                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.name_oG + "Radius"),spot.attenuationEnd * rScale - spot.attenuationBegin * rScale,spot.attenuationBegin * rScale,hotspot == falloff ? 0.000001 : hotspot - falloff,falloff);
-                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.name_oG + "Color"),light.alternativa3d::red,light.alternativa3d::green,light.alternativa3d::blue);
+                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.lightID + "Position"),transform.d,transform.h,transform.l);
+                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.lightID + "Axis"),-transform.c / len,-transform.g / len,-transform.k / len);
+                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.lightID + "Radius"),spot.attenuationEnd * rScale - spot.attenuationBegin * rScale,spot.attenuationBegin * rScale,hotspot == falloff ? 0.000001 : hotspot - falloff,falloff);
+                  drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("c" + light.lightID + "Color"),light.alternativa3d::red,light.alternativa3d::green,light.alternativa3d::blue);
                }
                if(directional != null)
                {
-                  directional.shadow.applyShader(drawUnit,program,object,camera);
+                  directional.shadow.setup(drawUnit,program.vertexShader,program.fragmentShader,surface);
                }
                i++;
             }
@@ -541,15 +541,15 @@ package alternativa.tanks.game.entities.tank.graphics.materials
             drawUnit.alternativa3d::setFragmentConstantsFromNumbers(program.fragmentShader.getVariableIndex("cFogConsts"),0.5 * uScale,0.5 - uRight,0);
             drawUnit.alternativa3d::setTextureAt(program.fragmentShader.getVariableIndex("sFogTexture"),fogTexture.alternativa3d::_texture);
          }
-         if(name_L4 || opacityMap != null || alpha < 1)
+         if(transparentPass || opacityMap != null || alpha < 1)
          {
             drawUnit.alternativa3d::blendSource = Context3DBlendFactor.SOURCE_ALPHA;
             drawUnit.alternativa3d::blendDestination = Context3DBlendFactor.ONE_MINUS_SOURCE_ALPHA;
-            camera.alternativa3d::renderer.alternativa3d::addDrawUnit(drawUnit,objectRenderPriority >= 0 ? objectRenderPriority : RenderPriority.TRANSPARENT_SORT);
+            camera.alternativa3d::renderer.alternativa3d::addDrawUnit(drawUnit,objectRenderPriority >= 0 ? objectRenderPriority : Renderer.TRANSPARENT_SORT);
          }
          else
          {
-            camera.alternativa3d::renderer.alternativa3d::addDrawUnit(drawUnit,objectRenderPriority >= 0 ? objectRenderPriority : RenderPriority.OPAQUE);
+            camera.alternativa3d::renderer.alternativa3d::addDrawUnit(drawUnit,objectRenderPriority >= 0 ? objectRenderPriority : Renderer.OPAQUE);
          }
       }
    }

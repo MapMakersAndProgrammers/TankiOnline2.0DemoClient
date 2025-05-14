@@ -23,6 +23,7 @@ package alternativa.tanks.game.entities.map
    import flash.utils.Dictionary;
    import flash.utils.getDefinitionByName;
    import flash.utils.getQualifiedClassName;
+   import alternativa.engine3d.core.Renderer;
    
    use namespace alternativa3d;
    
@@ -82,13 +83,12 @@ package alternativa.tanks.game.entities.map
          vertexLinker.addProcedure(passColorProcedure);
          vertexLinker.setInputParams(passColorProcedure,positionVar,normalVar);
          fragmentLinker.addProcedure(outputProcedure);
-         fragmentLinker.setOppositeLinker(vertexLinker);
          vertexLinker.link();
          fragmentLinker.link();
          return new ShaderProgram(vertexLinker,fragmentLinker);
       }
       
-      override alternativa3d function collectDraws(camera:Camera3D, surface:Surface, geometry:Geometry, lights:Vector.<Light3D>, lightsLength:int, objectRenderPriority:int = -1) : void
+      override alternativa3d function collectDraws(camera:Camera3D, surface:Surface, geometry:Geometry, lights:Vector.<Light3D>, lightsLength:int, useShadow:Boolean, objectRenderPriority:int = -1) : void
       {
          if(this.texture == null || this.texture.alternativa3d::_texture == null)
          {
@@ -109,7 +109,7 @@ package alternativa.tanks.game.entities.map
             program.upload(camera.alternativa3d::context3D);
             _programs[object.alternativa3d::transformProcedure] = program;
          }
-         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry.name_EM,surface.indexBegin,surface.numTriangles,program);
+         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry._indexBuffer,surface.indexBegin,surface.numTriangles,program);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aPosition"),positionBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.POSITION],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.POSITION]);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aUV"),uvBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.TEXCOORDS[0]],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.TEXCOORDS[0]]);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aNormal"),normalsBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.NORMAL],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.NORMAL]);
@@ -127,7 +127,7 @@ package alternativa.tanks.game.entities.map
          drawUnit.alternativa3d::setTextureAt(program.fragmentShader.getVariableIndex("sTexture"),this.texture.alternativa3d::_texture);
          drawUnit.alternativa3d::blendSource = Context3DBlendFactor.ONE;
          drawUnit.alternativa3d::blendDestination = Context3DBlendFactor.ONE;
-         camera.alternativa3d::renderer.alternativa3d::addDrawUnit(drawUnit,objectRenderPriority >= 0 ? objectRenderPriority : RenderPriority.TRANSPARENT_SORT);
+         camera.alternativa3d::renderer.alternativa3d::addDrawUnit(drawUnit,objectRenderPriority >= 0 ? objectRenderPriority : Renderer.TRANSPARENT_SORT);
       }
    }
 }
