@@ -168,7 +168,7 @@ package alternativa.tanks.game.entities.tank.graphics.materials
                programs[fogMode] = program;
             }
          }
-         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry._indexBuffer,surface.indexBegin,surface.numTriangles,program);
+         var drawUnit:DrawUnit = camera.renderer.alternativa3d::createDrawUnit(object,program.program,geometry._indexBuffer,surface.indexBegin,surface.numTriangles,program);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aPosition"),positionBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.POSITION],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.POSITION]);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aUV"),uvBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.TEXCOORDS[0]],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.TEXCOORDS[0]]);
          object.alternativa3d::setTransformConstants(drawUnit,surface,program.vertexShader,camera);
@@ -231,7 +231,7 @@ package alternativa.tanks.game.entities.tank.graphics.materials
             drawUnit.alternativa3d::blendSource = Context3DBlendFactor.ONE_MINUS_SOURCE_ALPHA;
             drawUnit.alternativa3d::blendDestination = Context3DBlendFactor.SOURCE_ALPHA;
          }
-         camera.alternativa3d::renderer.alternativa3d::addDrawUnit(drawUnit,Renderer.DECALS);
+         camera.renderer.alternativa3d::addDrawUnit(drawUnit,Renderer.DECALS);
       }
       
       override public function clone() : Material

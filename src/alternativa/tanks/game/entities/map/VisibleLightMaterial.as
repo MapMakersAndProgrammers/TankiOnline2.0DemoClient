@@ -109,7 +109,7 @@ package alternativa.tanks.game.entities.map
             program.upload(camera.alternativa3d::context3D);
             _programs[object.alternativa3d::transformProcedure] = program;
          }
-         var drawUnit:DrawUnit = camera.alternativa3d::renderer.alternativa3d::createDrawUnit(object,program.program,geometry._indexBuffer,surface.indexBegin,surface.numTriangles,program);
+         var drawUnit:DrawUnit = camera.renderer.alternativa3d::createDrawUnit(object,program.program,geometry._indexBuffer,surface.indexBegin,surface.numTriangles,program);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aPosition"),positionBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.POSITION],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.POSITION]);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aUV"),uvBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.TEXCOORDS[0]],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.TEXCOORDS[0]]);
          drawUnit.alternativa3d::setVertexBufferAt(program.vertexShader.getVariableIndex("aNormal"),normalsBuffer,geometry.alternativa3d::_attributesOffsets[VertexAttributes.NORMAL],VertexAttributes.alternativa3d::FORMATS[VertexAttributes.NORMAL]);
@@ -127,7 +127,7 @@ package alternativa.tanks.game.entities.map
          drawUnit.alternativa3d::setTextureAt(program.fragmentShader.getVariableIndex("sTexture"),this.texture.alternativa3d::_texture);
          drawUnit.alternativa3d::blendSource = Context3DBlendFactor.ONE;
          drawUnit.alternativa3d::blendDestination = Context3DBlendFactor.ONE;
-         camera.alternativa3d::renderer.alternativa3d::addDrawUnit(drawUnit,objectRenderPriority >= 0 ? objectRenderPriority : Renderer.TRANSPARENT_SORT);
+         camera.renderer.alternativa3d::addDrawUnit(drawUnit,objectRenderPriority >= 0 ? objectRenderPriority : Renderer.TRANSPARENT_SORT);
       }
    }
 }
