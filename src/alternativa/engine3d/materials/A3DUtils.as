@@ -3,7 +3,8 @@ package alternativa.engine3d.materials
    import alternativa.engine3d.alternativa3d;
    import alternativa.engine3d.materials.compiler.CommandType;
    import alternativa.engine3d.materials.compiler.VariableType;
-   import avmplus.getQualifiedSuperclassName;
+   // import avmplus.getQualifiedSuperclassName;
+   import flash.utils.getQualifiedSuperclassName;
    import flash.display3D.Context3D;
    import flash.display3D.Context3DTextureFormat;
    import flash.display3D.IndexBuffer3D;
