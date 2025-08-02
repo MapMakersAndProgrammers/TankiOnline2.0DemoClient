@@ -25,6 +25,8 @@ package alternativa.tanks.game.entities.map
    import flash.events.Event;
    import flash.events.EventDispatcher;
    import flash.utils.ByteArray;
+   import alternativa.tanks.game.utils.Task;
+   import flash.display.Bitmap;
    
    use namespace alternativa3d;
    
@@ -43,6 +45,8 @@ package alternativa.tanks.game.entities.map
       public static const BEAMS_FILE:String = "beams.a3d";
       
       public static const LIGHTS_FILE:String = "lights.dae";
+
+      public static const REFLECTION_FILE:String = "vetrino_rfl.png";
       
       private static const COLLISION_MASK:int = 255;
       
@@ -59,10 +63,14 @@ package alternativa.tanks.game.entities.map
       private var name_Gv:Vector.<Decal> = new Vector.<Decal>();
       
       private var name_ah:TaskSequence;
+
+      private var bitmapBuilder:TaskSequence;
       
       private var mapFiles:ByteArrayMap;
       
       private var collector:Vector.<Object3D>;
+
+      private var bitmapCollector:Object;
       
       private var name_TE:BitmapCubeTextureResource = new BitmapCubeTextureResource(new BitmapData(1,1,false,16711680),new BitmapData(1,1,false,16711680),new BitmapData(1,1,false,16711680),new BitmapData(1,1,false,16711680),new BitmapData(1,1,false,16711680),new BitmapData(1,1,false,16711680));
       
@@ -93,19 +101,32 @@ package alternativa.tanks.game.entities.map
       
       public function buildMap(mapFiles:ByteArrayMap) : void
       {
-         var geometryFileName:String = null;
          this.mapFiles = mapFiles;
-         var mapGeometryFiles:Vector.<String> = this.getMapGeometryFiles(mapFiles);
-         this.collector = new Vector.<Object3D>();
-         this.name_ah = new TaskSequence();
-         for each(geometryFileName in mapGeometryFiles)
+
+         this.bitmapCollector = new Object();
+         var mapTextureFiles:Vector.<String> = this.getMapTextureFiles(mapFiles);
+         this.bitmapBuilder = new TaskSequence();
+         for each(var textureFileName:String in mapTextureFiles)
          {
-            this.name_ah.addTask(new GeometryBuildTask(mapFiles.getValue(geometryFileName),this.collector));
+            this.bitmapBuilder.addTask(new BitmapLoadTask(mapFiles.getValue(textureFileName), textureFileName, this.bitmapCollector));
          }
-         this.name_ah.addEventListener(Event.COMPLETE,this.onGeometryComplete);
-         this.name_ah.run();
+         this.bitmapBuilder.addEventListener(Event.COMPLETE, this.onBitmapsComplete);
+         this.bitmapBuilder.run();
       }
       
+      private function onBitmapsComplete(event:Event) : void
+      {
+         this.collector = new Vector.<Object3D>();
+         this.name_ah = new TaskSequence();
+         var mapGeometryFiles:Vector.<String> = this.getMapGeometryFiles(this.mapFiles);
+         for each(var geometryFileName:String in mapGeometryFiles)
+         {
+            this.name_ah.addTask(new GeometryBuildTask(this.mapFiles.getValue(geometryFileName),this.collector));
+         }
+         this.name_ah.addEventListener(Event.COMPLETE,this.onGeometryComplete);
+         this.name_ah.run();    
+      }
+
       private function onGeometryComplete(event:Event) : void
       {
          var surface:Surface = null;
@@ -185,13 +206,13 @@ package alternativa.tanks.game.entities.map
                      {
                         material = ParserMaterial(surface.material);
                         diffName = ExternalTextureResource(material.textures["diffuse"]).url;
-                        diffuse = this.getCompressedTextureResource(material.textures["diffuse"],resourceCache,this.mapFiles);
-                        bump = this.getCompressedTextureResource(material.textures["bump"],resourceCache,this.mapFiles);
-                        opacity = this.getCompressedTextureResource(material.textures["transparent"],resourceCache,this.mapFiles);
-                        emission = this.getCompressedTextureResource(material.textures["emission"],resourceCache,this.mapFiles);
+                        diffuse = this.getBitmapTextureResource(material.textures["diffuse"],resourceCache,this.mapFiles);
+                        bump = this.getBitmapTextureResource(material.textures["bump"],resourceCache,this.mapFiles);
+                        opacity = this.getBitmapTextureResource(material.textures["transparent"],resourceCache,this.mapFiles);
+                        emission = this.getBitmapTextureResource(material.textures["emission"],resourceCache,this.mapFiles);
                         if(diffName.indexOf("vetrino01") >= 0)
                         {
-                           reflection = this.getCompressedTextureResource(new ExternalTextureResource("vetrino_rfl.atf"),resourceCache,this.mapFiles);
+                           reflection = this.getBitmapTextureResource(new ExternalTextureResource(REFLECTION_FILE),resourceCache,this.mapFiles);
                            envMaterial = new EnviromentMaterial(diffuse,this.name_TE,null,reflection,emission,opacity);
                            envMaterial.reflection = 0.4;
                            surface.material = envMaterial;
@@ -222,9 +243,9 @@ package alternativa.tanks.game.entities.map
             parserMaterial = surface.material as ParserMaterial;
             if(parserMaterial != null)
             {
-               diffuseTextureResource = this.getCompressedTextureResource(parserMaterial.textures["diffuse"],resourceCache,this.mapFiles);
-               emissionTextureResource = this.getCompressedTextureResource(parserMaterial.textures["emission"],resourceCache,this.mapFiles);
-               opacityTextureResource = this.getCompressedTextureResource(parserMaterial.textures["transparent"],resourceCache,this.mapFiles);
+               diffuseTextureResource = this.getBitmapTextureResource(parserMaterial.textures["diffuse"],resourceCache,this.mapFiles);
+               emissionTextureResource = this.getBitmapTextureResource(parserMaterial.textures["emission"],resourceCache,this.mapFiles);
+               opacityTextureResource = this.getBitmapTextureResource(parserMaterial.textures["transparent"],resourceCache,this.mapFiles);
                if(emissionTextureResource == null)
                {
                   material = new MapMaterial(diffuseTextureResource,fakeEmissionTextureResource,0,opacityTextureResource);
@@ -252,7 +273,20 @@ package alternativa.tanks.game.entities.map
          }
          return names;
       }
-      
+
+      private function getMapTextureFiles(mapFiles:ByteArrayMap) : Vector.<String>
+      {
+         var names:Vector.<String> = new Vector.<String>();
+         for(var name:String in mapFiles.data)
+         {
+            if (name.indexOf(".png") > 0 || name.indexOf(".jpg") > 0)
+            {
+               names.push(name);
+            }
+         }
+         return names;
+      }
+
       private function parseTrees(data:ByteArray) : void
       {
          var parser:ParserA3D = null;
@@ -282,9 +316,9 @@ package alternativa.tanks.game.entities.map
                      if(surface.material != null)
                      {
                         material = ParserMaterial(surface.material);
-                        diffuse = this.getCompressedTextureResource(material.textures["diffuse"],resourceCache,this.mapFiles);
-                        bump = this.getCompressedTextureResource(material.textures["bump"],resourceCache,this.mapFiles);
-                        opacity = this.getCompressedTextureResource(material.textures["transparent"],resourceCache,this.mapFiles);
+                        diffuse = this.getBitmapTextureResource(material.textures["diffuse"],resourceCache,this.mapFiles);
+                        bump = this.getBitmapTextureResource(material.textures["bump"],resourceCache,this.mapFiles);
+                        opacity = this.getBitmapTextureResource(material.textures["transparent"],resourceCache,this.mapFiles);
                         trMaterial = new TreesMaterial(diffuse,fakeBumpTextureResource,null,null,opacity);
                         trMaterial.name_kj = 0;
                         trMaterial.alphaThreshold = 0.2;
@@ -325,8 +359,8 @@ package alternativa.tanks.game.entities.map
                   if(surface.material != null)
                   {
                      material = ParserMaterial(surface.material);
-                     diffuse = this.getCompressedTextureResource(material.textures["diffuse"],resourceCache,this.mapFiles);
-                     opacity = this.getCompressedTextureResource(material.textures["transparent"],resourceCache,this.mapFiles);
+                     diffuse = this.getBitmapTextureResource(material.textures["diffuse"],resourceCache,this.mapFiles);
+                     opacity = this.getBitmapTextureResource(material.textures["transparent"],resourceCache,this.mapFiles);
                      surface.material = new VisibleLightMaterial(opacity);
                   }
                   i++;
@@ -380,6 +414,38 @@ package alternativa.tanks.game.entities.map
          }
          return null;
       }
+
+      private function getBitmapTextureResource(fileTextureResource:ExternalTextureResource, resourceCache:Object, mapFiles:ByteArrayMap) : BitmapTextureResource
+      {
+         if (fileTextureResource != null && Boolean(fileTextureResource.url))
+         {
+            var textureName:String = fileTextureResource.url.toLowerCase();
+            textureName = textureName.replace(".jpg",".png");
+            if(mapFiles.getValue(textureName) != null)
+            {
+               var resource:BitmapTextureResource = resourceCache[textureName];
+               if(resource == null)
+               {
+                  trace("cache miss: " + textureName);
+                  var texture:Bitmap = bitmapCollector[textureName];
+                  if (texture == null)
+                  {
+                     trace("[ERROR] bitmap texture is null: " + textureName);
+                     return null;
+                  }
+                  resource = new BitmapTextureResource(texture.bitmapData);
+                  resourceCache[textureName] = resource;
+               }
+               return resource;
+            }
+            else
+            {
+               trace("cache hit: " + textureName);
+            }
+            trace("[WARN] texture not found:",fileTextureResource.url.toLowerCase());
+         }
+         return null;
+      }
       
       private function parseCollisionGeometry(a3dData:ByteArray) : void
       {
@@ -416,6 +482,10 @@ import alternativa.engine3d.loaders.ParserA3D;
 import alternativa.tanks.game.utils.Task;
 import flash.utils.ByteArray;
 import flash.utils.setTimeout;
+import flash.display.Loader;
+import flash.events.Event;
+import flash.display.Bitmap;
+import flash.events.IOErrorEvent;
 
 class GeometryBuildTask extends Task
 {
@@ -440,5 +510,42 @@ class GeometryBuildTask extends Task
          this.collector.push(object);
       }
       setTimeout(completeTask,0);
+   }
+}
+
+class BitmapLoadTask extends Task
+{
+   private var data:ByteArray;
+   private var name:String;
+   private var collector:Object;
+   
+   public function BitmapLoadTask(data:ByteArray, name:String, collector:Object)
+   {
+      super();
+
+      this.data = data;
+      this.name = name;
+      this.collector = collector;
+   }
+
+   override public function run() : void
+   {
+      var loader:Loader = new Loader();
+      loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onBitmapLoad);
+      loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, onBitmapError);
+      loader.loadBytes(this.data);
+   }
+
+   private function onBitmapLoad(event:Event):void
+   {
+      trace("Loaded texture: " + this.name);
+      var bitmap:Bitmap = event.target.content as Bitmap;
+      this.collector[this.name] = bitmap;
+      completeTask();
+   }
+
+   private function onBitmapError(event:Event):void
+   {
+      trace("Error loading texture: " + this.name);
    }
 }
