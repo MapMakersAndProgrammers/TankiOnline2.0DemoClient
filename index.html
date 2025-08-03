@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanki Online 2.0</title>
+
+    <style>
+        html, body, ruffle-player, #playerContainer {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="playerContainer"></div>
+    
+    <!-- Ruffle -->
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <script>
+        window.onload = () => {
+            console.log("Init");
+
+            window.RufflePlayer.config = {
+                "autoplay" : "on",
+                "splashScreen": false,
+                "unmuteOverlay":"hidden",
+                "base": "/client/",
+                "logLevel": "info",
+                "contextMenu": "off",
+                "maxExecutionDuration": 360
+            };
+            const ruffle = window.RufflePlayer.newest();
+            const player = ruffle.createPlayer();
+            const playerContainer = document.getElementById("playerContainer");
+            playerContainer.appendChild(player);
+            player.load("client/tanki2.swf");
+        };
+    </script>
+</body>
+</html>
