@@ -40,6 +40,8 @@ package alternativa.tanks.game.entities.map
    import flash.ui.Keyboard;
    import flash.utils.ByteArray;
    import flash.utils.setTimeout;
+   import alternativa.tanks.game.utils.TaskSequence;
+   import flash.display.Bitmap;
    
    use namespace alternativa3d;
    
@@ -62,6 +64,8 @@ package alternativa.tanks.game.entities.map
       private var listener:IA3DMapComponentListener;
       
       private var name_RZ:Boolean = true;
+
+      private var bitmapCollector:Object;
       
       public function A3DMapComponent(files:ByteArrayMap, skyboxFiles:ByteArrayMap, skyboxSize:Number, listener:IA3DMapComponentListener)
       {
@@ -79,7 +83,18 @@ package alternativa.tanks.game.entities.map
       override public function addToGame(gameKernel:GameKernel) : void
       {
          this.gameKernel = gameKernel;
-         this.createSkybox();
+
+
+         this.bitmapCollector = new Object();
+         var skyTextures:Array = [SkyBox.BACK,SkyBox.BOTTOM,SkyBox.FRONT,SkyBox.LEFT,SkyBox.RIGHT,SkyBox.TOP];;
+         var bitmapLoader:TaskSequence = new TaskSequence();
+         for each (var textureName:String in skyTextures)
+         {
+            bitmapLoader.addTask(new BitmapLoadTask(this.skyboxFiles.getValue(textureName), textureName, this.bitmapCollector))
+         }
+         bitmapLoader.addEventListener(Event.COMPLETE, this.createSkybox);
+         bitmapLoader.run();
+         
          gameKernel.getInputSystem().addKeyboardListener(KeyboardEventType.KEY_DOWN,this.onKeyDown);
          if(gameKernel.options[MapOptions.FAKE_MAP] != null)
          {
@@ -91,23 +106,23 @@ package alternativa.tanks.game.entities.map
          }
       }
       
-      private function createSkybox() : void
+      private function createSkybox(event:Event) : void
       {
          var skyBox:SkyBox = null;
          var surfaceIds:Array = null;
          var surfaceId:String = null;
          var renderSystem:RenderSystem = null;
          var container:Object3D = null;
-         var texture:ByteArray = null;
-         var textureResource:ATFTextureResource = null;
+         var texture:Bitmap = null;
+         var textureResource:BitmapTextureResource = null;
          if(this.skyboxFiles != null)
          {
             skyBox = new SkyBox(this.skyboxSize);
             surfaceIds = [SkyBox.BACK,SkyBox.BOTTOM,SkyBox.FRONT,SkyBox.LEFT,SkyBox.RIGHT,SkyBox.TOP];
             for each(surfaceId in surfaceIds)
             {
-               texture = this.skyboxFiles.getValue(surfaceId);
-               textureResource = new ATFTextureResource(texture);
+               texture = this.bitmapCollector[surfaceId];
+               textureResource = new BitmapTextureResource(texture.bitmapData);
                skyBox.getSide(surfaceId).material = new SkyMaterial(textureResource);
             }
             renderSystem = this.gameKernel.getRenderSystem();
@@ -419,3 +434,46 @@ package alternativa.tanks.game.entities.map
    }
 }
 
+import alternativa.tanks.game.utils.Task;
+import flash.utils.ByteArray;
+import flash.display.Loader;
+import flash.events.Event;
+import flash.events.IOErrorEvent;
+import flash.display.Bitmap;
+
+class BitmapLoadTask extends Task
+{
+   private var data:ByteArray;
+   private var name:String;
+   private var collector:Object;
+   
+   public function BitmapLoadTask(data:ByteArray, name:String, collector:Object)
+   {
+      super();
+
+      this.data = data;
+      this.name = name;
+      this.collector = collector;
+   }
+
+   override public function run() : void
+   {
+      var loader:Loader = new Loader();
+      loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onBitmapLoad);
+      loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, onBitmapError);
+      loader.loadBytes(this.data);
+   }
+
+   private function onBitmapLoad(event:Event):void
+   {
+      trace("Loaded texture: " + this.name);
+      var bitmap:Bitmap = event.target.content as Bitmap;
+      this.collector[this.name] = bitmap;
+      completeTask();
+   }
+
+   private function onBitmapError(event:Event):void
+   {
+      trace("Error loading texture: " + this.name);
+   }
+}
