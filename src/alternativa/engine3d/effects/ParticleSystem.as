@@ -19,6 +19,7 @@ package alternativa.engine3d.effects
    import flash.geom.Vector3D;
    import flash.utils.ByteArray;
    import flash.utils.getTimer;
+   import com.adobe.utils.AGALMiniAssembler;
    
    use namespace alternativa3d;
    
@@ -289,7 +290,7 @@ package alternativa.engine3d.effects
             line = program[i];
             string += line + (i < length - 1 ? " \n" : "");
          }
-         return new AGALMiniAssembler().assemble(mode,string,false);
+         return new AGALMiniAssembler().assemble(mode,string);
       }
       
       private function flush(camera:Camera3D) : void
