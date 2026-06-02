@@ -1,0 +1,17 @@
+{
+    "type": "lib",
+    "compilerOptions": {
+        "source-path": [
+            ".",
+            "../OSGi",
+            "../A3DModelsBase",
+            "../AlternativaProtocol",
+
+            "../../external/AGALMiniAssembler"
+        ],
+        "include-sources": [
+            "."
+        ],
+        "output": "bin/Alternativa3D-8.16.0.swc"
+    }
+}

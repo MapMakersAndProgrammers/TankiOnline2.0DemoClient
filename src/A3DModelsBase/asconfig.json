@@ -1,0 +1,14 @@
+{
+    "type": "lib",
+    "compilerOptions": {
+        "source-path": [
+            ".",
+            "../AlternativaProtocol",
+            "../OSGi"
+        ],
+        "include-sources": [
+            "."
+        ],
+        "output": "bin/A3DModelsBase.swc"
+    }
+}

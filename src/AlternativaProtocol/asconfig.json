@@ -1,0 +1,13 @@
+{
+    "type": "lib",
+    "compilerOptions": {
+        "source-path": [
+            ".",
+            "../OSGi"
+        ],
+        "include-sources": [
+            "."
+        ],
+        "output": "bin/AlternativaProtocol.swc"
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "type": "lib",
+    "compilerOptions": {
+        "source-path": [
+            ".",
+            "../AlternativaMath"
+        ],
+        "include-sources": [
+            "."
+        ],
+        "output": "bin/AlternativaPhysics.swc"
+    }
+}
