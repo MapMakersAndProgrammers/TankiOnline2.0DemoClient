@@ -2,7 +2,17 @@
 	"config": "airmobile",
 	"compilerOptions": {
 		"source-path": [
-			"src"
+			"src/Tanks",
+			"src/TanksTestingTool",
+
+			"src/Alternativa3D",
+			"src/AlternativaMath",
+			"src/AlternativaPhysics",
+			"src/AlternativaProtocol",
+			"src/OSGi",
+			"src/A3DModelsBase",
+			
+			"external/AgalMiniAssembler"
 		],
 		"output": "bin/tanki2.swf",
 		"default-background-color": "#333333",

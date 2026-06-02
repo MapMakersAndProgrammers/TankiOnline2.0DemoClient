@@ -2,7 +2,7 @@
 	"config": "air",
 	"compilerOptions": {
 		"source-path": [
-			"src/Tanki2.0",
+			"src/Tanks",
 			"src/TanksTestingTool",
 
 			"src/Alternativa3D",
