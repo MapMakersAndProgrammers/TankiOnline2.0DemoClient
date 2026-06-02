@@ -10,6 +10,7 @@
 			"src/AlternativaPhysics",
 			"src/AlternativaProtocol",
 			"src/OSGi",
+			"src/A3DModelsBase",
 			
 			"external/AgalMiniAssembler"
 		],
