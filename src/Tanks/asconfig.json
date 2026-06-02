@@ -1,0 +1,20 @@
+{
+    "type": "lib",
+    "compilerOptions": {
+        "source-path": [
+            ".",
+			"../Alternativa3D",
+			"../AlternativaMath",
+			"../AlternativaPhysics",
+			"../AlternativaProtocol",
+			"../OSGi",
+			"../A3DModelsBase",
+
+			"../../external/AgalMiniAssembler"
+        ],
+        "include-sources": [
+            "."
+        ],
+        "output": "bin/library.swc"
+    }
+}
