@@ -2,7 +2,16 @@
 	"config": "air",
 	"compilerOptions": {
 		"source-path": [
-			"src"
+			"src/Tanki2.0",
+			"src/TanksTestingTool",
+
+			"src/Alternativa3D",
+			"src/AlternativaMath",
+			"src/AlternativaPhysics",
+			"src/AlternativaProtocol",
+			"src/OSGi",
+			
+			"external/AgalMiniAssembler"
 		],
 		"output": "bin/tanki2.swf",
 		"default-background-color": "#333333",
