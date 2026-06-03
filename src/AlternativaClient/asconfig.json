@@ -1,0 +1,16 @@
+{
+    "type": "lib",
+    "compilerOptions": {
+        "source-path": [
+            ".",
+            "../OSGiBase",
+            "../AlternativaOSGi",
+            "../AlternativaProtocol",
+            "../ResourceModelsBase"
+        ],
+        "include-sources": [
+            "."
+        ],
+        "output": "bin/AlternativaClient.swc"
+    }
+}
