@@ -1,0 +1,17 @@
+{
+    "type": "lib",
+    "compilerOptions": {
+        "source-path": [
+            ".",
+            "../OSGiBase",
+            "../AlternativaOSGi",
+            "../AlternativaProtocol",
+            "../AlternativaClient",
+            "../ResourceModelsBase"
+        ],
+        "include-sources": [
+            "."
+        ],
+        "output": "bin/SpacesModelsBase.swc"
+    }
+}
