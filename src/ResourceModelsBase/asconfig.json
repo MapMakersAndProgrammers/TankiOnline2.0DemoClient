@@ -1,0 +1,15 @@
+{
+    "type": "lib",
+    "compilerOptions": {
+        "source-path": [
+            ".",
+            "../OSGiBase",
+            "../AlternativaOSGi",
+            "../AlternativaProtocol"
+        ],
+        "include-sources": [
+            "."
+        ],
+        "output": "bin/ResourceModelsBase.swc"
+    }
+}
