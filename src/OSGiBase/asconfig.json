@@ -2,13 +2,11 @@
     "type": "lib",
     "compilerOptions": {
         "source-path": [
-            ".",
-            "../OSGiBase",
-            "../AlternativaOSGi"
+            "."
         ],
         "include-sources": [
             "."
         ],
-        "output": "bin/AlternativaProtocol.swc"
+        "output": "bin/OSGiBase.swc"
     }
 }

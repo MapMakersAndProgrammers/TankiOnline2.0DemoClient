@@ -9,7 +9,8 @@
 			"../AlternativaMath",
 			"../AlternativaPhysics",
 			"../AlternativaProtocol",
-			"../OSGi",
+			"../OSGiBase",
+			"../AlternativaOSGi",
 			"../A3DModelsBase",
 			
 			"../../external/AgalMiniAssembler"

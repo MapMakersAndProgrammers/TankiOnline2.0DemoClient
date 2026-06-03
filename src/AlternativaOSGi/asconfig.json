@@ -3,12 +3,11 @@
     "compilerOptions": {
         "source-path": [
             ".",
-            "../OSGiBase",
-            "../AlternativaOSGi"
+            "../OSGiBase"
         ],
         "include-sources": [
             "."
         ],
-        "output": "bin/AlternativaProtocol.swc"
+        "output": "bin/AlternativaOSGi.swc"
     }
 }
