@@ -1,0 +1,20 @@
+{
+	"config": "air",
+	"compilerOptions": {
+		"source-path": [
+			".",
+            "../OSGiBase",
+            "../AlternativaOSGi"
+		],
+		"output": "bin/tanki25.swf",
+		"default-background-color": "#000000",
+		"default-frame-rate": 40,
+		"default-size": {
+			"width": 1024,
+			"height": 768
+		},
+		"swf-version": 13
+	},
+	"mainClass": "TanksLauncher",
+	"application": "TanksLauncher-app.xml"
+}
