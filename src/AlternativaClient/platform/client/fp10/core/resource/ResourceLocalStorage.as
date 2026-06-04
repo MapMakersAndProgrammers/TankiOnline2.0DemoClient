@@ -119,7 +119,7 @@ package platform.client.fp10.core.resource
       {
          var _loc3_:String = null;
          var _loc4_:ResourceObject = null;
-         var _loc2_:ResourceInfo = this.resourceIndex.getResourceInfo(param1);
+         var _loc2_:LocalStorageResourceInfo = this.resourceIndex.getResourceInfo(param1);
          if(_loc2_.empty)
          {
             return;
@@ -320,12 +320,12 @@ class ResourceIndex
       }
    }
    
-   public function getResourceInfo(param1:String) : ResourceInfo
+   public function getResourceInfo(param1:String) : LocalStorageResourceInfo
    {
-      return new ResourceInfo(this.index[param1]);
+      return new LocalStorageResourceInfo(this.index[param1]);
    }
    
-   public function setResourceInfo(param1:String, param2:ResourceInfo) : void
+   public function setResourceInfo(param1:String, param2:LocalStorageResourceInfo) : void
    {
       if(param2 == null)
       {
@@ -344,7 +344,7 @@ class ResourceIndex
    
    public function addResourceData(param1:String, param2:String, param3:String) : void
    {
-      var _loc4_:ResourceInfo = this.getResourceInfo(param1);
+      var _loc4_:LocalStorageResourceInfo = this.getResourceInfo(param1);
       _loc4_.description = param3;
       var _loc5_:Array = _loc4_.classifiers;
       if(_loc5_.indexOf(param2) < 0)
@@ -356,7 +356,7 @@ class ResourceIndex
    
    public function removeResourceData(param1:String, param2:String) : void
    {
-      var _loc3_:ResourceInfo = this.getResourceInfo(param1);
+      var _loc3_:LocalStorageResourceInfo = this.getResourceInfo(param1);
       if(_loc3_.empty)
       {
          return;
@@ -423,7 +423,7 @@ class PrintIndexCommand extends ConsoleCommand
    {
       var counter:int = 0;
       var sid:String = null;
-      var resourceInfo:ResourceInfo = null;
+      var resourceInfo:LocalStorageResourceInfo = null;
       var console:IConsole = param1;
       var params:Array = param2;
       var resourceIndex:ResourceIndex = storage.getResourceIndex();
@@ -548,14 +548,14 @@ class FlushStorageIndexCommand extends ConsoleCommand
    }
 }
 
-class ResourceInfo
+class LocalStorageResourceInfo
 {
    
    public var empty:Boolean;
    
    public var rawData:Object;
    
-   public function ResourceInfo(param1:Object)
+   public function LocalStorageResourceInfo(param1:Object)
    {
       super();
       if(param1 == null)
